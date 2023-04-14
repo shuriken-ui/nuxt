@@ -2,15 +2,30 @@ import colors from 'tailwindcss/colors.js'
 
 export default defineNuxtConfig({
   extends: '..',
+  modules: ['unplugin-fonts/nuxt'],
+  unfonts: {
+    google: {
+      families: ['Roboto Flex', 'Inter', 'Karla'],
+    },
+  },
   tailwindcss: {
     config: {
       content: [],
       theme: {
         fontFamily: {
-          // inverted from default
-          sans: ['Inter', 'sans-serif'],
           heading: ['Roboto Flex', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
           alt: ['Karla', 'sans-serif'],
+          mono: [
+            'ui-monospace',
+            'SFMono-Regular',
+            'Menlo',
+            'Monaco',
+            'Consolas',
+            '"Liberation Mono"',
+            '"Courier New"',
+            'monospace',
+          ],
         },
         extend: {
           colors: {

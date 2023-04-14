@@ -31,6 +31,7 @@ pnpm install -D @shuriken-ui/nuxt
 > - [@nuxtjs/tailwindcss](https://github.com/nuxt-modules/tailwindcss)
 > - [@nuxtjs/color-mode](https://github.com/nuxt-modules/color-mode)
 > - [@vueuse/nuxt](https://github.com/vueuse/vueuse/tree/main/packages/nuxt)
+> - [nuxt-icon](https://github.com/nuxt-modules/icon)
 
 ## Usage
 
@@ -94,7 +95,7 @@ import colors from 'tailwindcss/colors'
 export default withShurikenUI({
   content: [],
   theme: {
-    // Custom fonts
+    // Custom fonts (you must load them yourself, ex: with unplugin-fonts)
     fontFamily: {
       sans: ['Roboto Flex', 'sans-serif'],
       heading: ['Inter', 'sans-serif'],
