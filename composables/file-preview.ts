@@ -1,17 +1,12 @@
-import type { MaybeComputedRef } from '@vueuse/core'
+import type { MaybeRefOrGetter } from '@vueuse/core'
+import { toRef } from '@vueuse/core'
 
 const previewMap = new WeakMap<File, Ref<string | undefined>>()
 
 export function useNinjaFilePreview(
-  _file: MaybeComputedRef<File | null | undefined>
+  _file: MaybeRefOrGetter<File | null | undefined>
 ) {
-  const fileReference = computed(() => {
-    if (!_file) return null
-    if (_file instanceof File) return _file
-    if (isRef(_file)) return _file.value ?? null
-    if (typeof _file === 'function') return _file()
-    return null
-  })
+  const fileReference = toRef(_file)
 
   const preview = computed(() => {
     const file = fileReference.value

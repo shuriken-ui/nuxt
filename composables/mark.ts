@@ -1,29 +1,16 @@
-import type { MaybeComputedRef } from '@vueuse/core'
+import type { MaybeRefOrGetter } from '@vueuse/core'
+import { toRef } from '@vueuse/core'
 // eslint-disable-next-line vue/prefer-import-from-vue
 import { escapeHtml } from '@vue/shared'
 
 export function useNinjaMark(
-  _text?: MaybeComputedRef<string | undefined>,
-  _search?: MaybeComputedRef<string | undefined>,
-  _classes?: MaybeComputedRef<string | undefined>
+  _text?: MaybeRefOrGetter<string | undefined>,
+  _search?: MaybeRefOrGetter<string | undefined>,
+  _classes?: MaybeRefOrGetter<string | undefined>
 ) {
-  const text = computed(() =>
-    typeof _text === 'function' ? _text() : isRef(_text) ? _text.value : _text
-  )
-  const classes = computed(() =>
-    typeof _classes === 'function'
-      ? _classes()
-      : isRef(_classes)
-      ? _classes.value
-      : _classes
-  )
-  const search = computed(() =>
-    typeof _search === 'function'
-      ? _search()
-      : isRef(_search)
-      ? _search.value
-      : _search
-  )
+  const text = toRef(_text)
+  const classes = toRef(_classes)
+  const search = toRef(_search)
 
   return computed(() => {
     const txt = unref(text)
