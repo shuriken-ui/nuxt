@@ -1,0 +1,8 @@
+node_modules
+dist
+.vscode
+.github
+.nuxt
+.output
+CHANGELOG.md
+README.md
