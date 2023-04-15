@@ -45,6 +45,8 @@ export default defineNuxtConfig({
 })
 ```
 
+> **Note**: This is a [layer](https://nuxt.com/docs/getting-started/layers) and not a module, so you must extend your nuxt config with it.
+
 ## Configuration
 
 ### Nuxt `app.config.ts`
@@ -81,6 +83,8 @@ export default defineAppConfig({
   },
 })
 ```
+
+> **Note**: This is an [app configuration](https://nuxt.com/docs/getting-started/configuration#app-configuration) and not a module configuration, so you must define it in `app.config.ts`, not in `nuxt.config.ts`.
 
 
 ### Tailwind `tailwind.config.ts`
