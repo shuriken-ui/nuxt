@@ -41,7 +41,7 @@ const isDark = computed({
 
 <template>
   <label
-    class="hover:ring-muted-200 dark:hover:ring-muted-700 relative block h-9 w-9 shrink-0 overflow-hidden rounded-full ring-1 ring-transparent transition-all duration-300 hover:ring-offset-4"
+    class="nui-focus relative block h-9 w-9 shrink-0 overflow-hidden rounded-full transition-all duration-300 focus-visible:outline-2"
     :class="
       props.inverted
         ? 'ring-offset-muted-500 dark:ring-offset-muted-400'
