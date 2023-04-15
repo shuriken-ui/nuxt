@@ -17,7 +17,7 @@
 
 Shuriken UI is a free and open-source Tailwind CSS UI Kit. It is a collection of components and templates that you can use to build your next Tailwind CSS project.
 
-This repository contains the Nuxt version (a layer) of Shuriken UI with ready to use components (form inputs, buttons, cards, etc.) that you can use to build your  project.
+This repository contains the Nuxt version (a [layer](https://nuxt.com/docs/getting-started/layers)) of Shuriken UI with ready to use components (form inputs, buttons, cards, etc.) that you can use to build your  project.
 
 ## Installation
 
@@ -25,8 +25,7 @@ This repository contains the Nuxt version (a layer) of Shuriken UI with ready to
 pnpm install -D @shuriken-ui/nuxt
 ```
 
-> **Note**:  
-> This also installs the [Shuriken UI Tailwind CSS](https://github.com/shuriken-ui/tailwind) package and required nuxt modules:
+> **Note**: This also installs the [Shuriken UI Tailwind CSS](https://github.com/shuriken-ui/tailwind) package and required nuxt modules:
 >
 > - [@nuxtjs/tailwindcss](https://github.com/nuxt-modules/tailwindcss)
 > - [@nuxtjs/color-mode](https://github.com/nuxt-modules/color-mode)
@@ -51,6 +50,10 @@ export default defineNuxtConfig({
 
 ### Nuxt `app.config.ts`
 
+This is the [app configuration](https://nuxt.com/docs/getting-started/configuration#app-configuration) for Shuriken UI components
+
+> **Note**: It's not a module configuration, so you must define it in `app.config.ts`, not in `nuxt.config.ts`.
+
 ```ts
 export default defineAppConfig({
   /**
@@ -58,33 +61,125 @@ export default defineAppConfig({
    */
   nui: {
     /**
-     * Default shape for components,
-     * can be overriden by component props
+     * Default shape for components
+     * 
+     * This allows to not have to specify the shape prop on every component.
+     * Define only the ones you want to override.
      */
     defaultShapes: {
+      /**
+       * Default shape for the BaseAccordion component
+       *
+       * @type {'straight' | 'rounded' | 'curved'}
+       */
       accordion: 'rounded',
+      /**
+       * Default shape for the BaseAutocompleteItem component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       autocompleteItem: 'rounded',
+      /**
+       * Default shape for the BaseAvatar component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       avatar: 'full',
+      /**
+       * Default shape for the BaseButton component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       button: 'rounded',
+      /**
+       * Default shape for the BaseButtonAction component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       buttonAction: 'rounded',
+      /**
+       * Default shape for the BaseButtonIcon component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       buttonIcon: 'rounded',
+      /**
+       * Default shape for the BaseButtonIcon component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       buttonClose: 'full',
+      /**
+       * Default shape for the BaseCard component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       card: 'rounded',
+      /**
+       * Default shape for the BaseDropdown component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       dropdown: 'rounded',
+      /**
+       * Default shape for the BaseIconBox component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       iconBox: 'rounded',
+      /**
+       * Default shape for all input components component
+       * - BaseAutocomplete
+       * - BaseCheckbox
+       * - BaseInput
+       * - BaseInputFile
+       * - BaseInputListbox
+       * - BaseInputSelect
+       * - BaseInputTextarea
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       input: 'rounded',
+      /**
+       * Default shape for the BaseMessage component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       message: 'curved',
+      /**
+       * Default shape for the BasePagination component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       pagination: 'rounded',
+      /**
+       * Default shape for the BaseProgress component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       progress: 'full',
+      /**
+       * Default shape for the BaseProse component
+       *
+       * @type {'straight' | 'rounded' | 'curved'}
+       */
       prose: 'rounded',
+      /**
+       * Default shape for the BaseTabSlider component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       tabSlider: 'rounded',
+      /**
+       * Default shape for the BaseTag component
+       *
+       * @type {'straight' | 'rounded' | 'curved' | 'full'}
+       */
       tag: 'rounded',
     },
   },
 })
 ```
-
-> **Note**: This is an [app configuration](https://nuxt.com/docs/getting-started/configuration#app-configuration) and not a module configuration, so you must define it in `app.config.ts`, not in `nuxt.config.ts`.
 
 
 ### Tailwind `tailwind.config.ts`
@@ -116,7 +211,7 @@ export default withShurikenUI({
        * Customize colors 
        * 
        * Use tailwind predefined colors,
-       * or generate your own with tailwindshades.com
+       * or generate your own with tools like https://tailwindshades.com
        */
       colors: {
         // Define only the ones you want to override
