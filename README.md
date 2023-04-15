@@ -26,7 +26,7 @@ pnpm install -D @shuriken-ui/nuxt
 ```
 
 > **Note**:  
-> This also install the [Shuriken UI Tailwind CSS](https://github.com/shuriken-ui/tailwind) package and required nuxt modules:
+> This also installs the [Shuriken UI Tailwind CSS](https://github.com/shuriken-ui/tailwind) package and required nuxt modules:
 >
 > - [@nuxtjs/tailwindcss](https://github.com/nuxt-modules/tailwindcss)
 > - [@nuxtjs/color-mode](https://github.com/nuxt-modules/color-mode)
