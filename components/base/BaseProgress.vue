@@ -38,7 +38,7 @@ const props = withDefaults(
 
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.progess
+  () => props.shape ?? appConfig.nui.defaultShapes?.progress
 )
 
 const value = computed(() => {

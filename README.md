@@ -75,7 +75,7 @@ export default defineAppConfig({
       input: 'rounded',
       message: 'curved',
       pagination: 'rounded',
-      progess: 'full',
+      progress: 'full',
       prose: 'rounded',
       tabSlider: 'rounded',
       tag: 'rounded',
@@ -99,7 +99,12 @@ import colors from 'tailwindcss/colors'
 export default withShurikenUI({
   content: [],
   theme: {
-    // Custom fonts (you must load them yourself, ex: with unplugin-fonts)
+    /**
+     * Customize fonts
+     * 
+     * You must load them yourself
+     * (ex: with unplugin-fonts)
+     */
     fontFamily: {
       sans: ['Roboto Flex', 'sans-serif'],
       heading: ['Inter', 'sans-serif'],
@@ -107,8 +112,14 @@ export default withShurikenUI({
       mono: ['ui-monospace', 'monospace'],
     },
     extend: {
-      // Custom colors
+      /**
+       * Customize colors 
+       * 
+       * Use tailwind predefined colors,
+       * or generate your own with tailwindshades.com
+       */
       colors: {
+        // Define only the ones you want to override
         muted: colors.slate,
         primary: colors.violet,
         info: colors.sky,

@@ -14,7 +14,7 @@ export default defineAppConfig({
       input: 'rounded',
       message: 'curved',
       pagination: 'rounded',
-      progess: 'full',
+      progress: 'full',
       prose: 'rounded',
       tabSlider: 'rounded',
       tag: 'rounded',

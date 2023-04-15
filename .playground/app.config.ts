@@ -14,7 +14,7 @@ export default defineAppConfig({
       //     input: 'curved',
       //     message: 'straight',
       //     pagination: 'straight',
-      //     progess: 'straight',
+      //     progress: 'straight',
       //     prose: 'straight',
       //     tabSlider: 'straight',
       //     tag: 'straight',

@@ -92,7 +92,7 @@ export default defineNuxtSchema({
          *
          * @type {'straight' | 'rounded' | 'curved' | 'full'}
          */
-        progess: 'full',
+        progress: 'full',
         /**
          * Default shape for the BaseProse component
          *
