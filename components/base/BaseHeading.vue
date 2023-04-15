@@ -4,7 +4,7 @@ const props = withDefaults(
     /**
      * The heading element to use (e.g. `h1`, `h2`, etc.).
      */
-    as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span'
+    as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'p'
 
     /**
      * The size of the heading.
@@ -35,7 +35,7 @@ const props = withDefaults(
     lead?: 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
   }>(),
   {
-    as: 'h3',
+    as: 'p',
     size: 'xl',
     weight: 'semibold',
     lead: 'normal',
