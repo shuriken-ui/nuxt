@@ -1,6 +1,11 @@
 <script setup lang="ts">
 const router = useRouter()
 const color = useColorMode()
+const logo = computed(() =>
+  color.value === 'dark'
+    ? 'https://user-images.githubusercontent.com/3911343/232132279-8d8bf0ad-b1d7-4802-984e-a696763dc6cd.png'
+    : 'https://user-images.githubusercontent.com/3911343/232132309-62971744-dcdb-429c-aa93-6ba0c1caac42.png'
+)
 const routes = computed(() =>
   router.getRoutes().filter((route) => route.path !== '/')
 )
@@ -11,6 +16,10 @@ const routes = computed(() =>
     <div class="flex min-h-screen">
       <div class="w-2/12">
         <nav class="fixed w-2/12 max-h-screen overflow-y-scroll slimscroll">
+          <div class="w-10/12 px-2 py-6">
+            <img alt="Shuriken UI logo" :src="logo" />
+          </div>
+
           <ul>
             <li>
               <NuxtLink
