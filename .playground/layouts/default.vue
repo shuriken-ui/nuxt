@@ -1,14 +1,24 @@
 <script setup lang="ts">
 const router = useRouter()
 const color = useColorMode()
+
+const isDark = computed(() => color.value === 'dark')
 const logo = computed(() =>
-  color.value === 'dark'
+  isDark.value
     ? 'https://user-images.githubusercontent.com/3911343/232132279-8d8bf0ad-b1d7-4802-984e-a696763dc6cd.png'
     : 'https://user-images.githubusercontent.com/3911343/232132309-62971744-dcdb-429c-aa93-6ba0c1caac42.png'
 )
 const routes = computed(() =>
   router.getRoutes().filter((route) => route.path !== '/')
 )
+
+const toggleColor = () => {
+  color.value = isDark.value ? 'light' : 'dark'
+}
+
+onMounted(() => {
+  console.log(': ', routes.value[0].meta)
+})
 </script>
 
 <template>
@@ -16,8 +26,8 @@ const routes = computed(() =>
     <div class="flex min-h-screen">
       <div class="w-2/12">
         <nav class="fixed w-2/12 max-h-screen overflow-y-scroll slimscroll">
-          <div class="w-10/12 px-2 py-6">
-            <img alt="Shuriken UI logo" :src="logo" />
+          <div class="px-2 py-4">
+            <img alt="Shuriken UI logo" class="h-8" :src="logo" />
           </div>
 
           <ul>
@@ -62,11 +72,27 @@ const routes = computed(() =>
       </div>
     </div>
     <div class="fixed top-0 end-0 p-2 z-10">
-      <BaseSelect v-model="color.preference" condensed>
-        <option value="system">system</option>
-        <option value="light">light</option>
-        <option value="dark">dark</option>
-      </BaseSelect>
+      <div
+        class="rounded-full cursor-pointer p-1 h-12 w-12 m-4"
+        :class="[
+          isDark
+            ? 'text-violet-500 hover:bg-violet-300'
+            : 'text-warning-500 hover:bg-warning-200',
+        ]"
+        @click="toggleColor()"
+      >
+        <span
+          class="h-full w-full inline-block rounded-full p-2"
+          :class="[
+            isDark
+              ? 'text-violet-500 bg-violet-200'
+              : 'text-warning-500 bg-warning-100',
+          ]"
+        >
+          <IconSun v-if="!isDark" />
+          <IconMoon v-else />
+        </span>
+      </div>
     </div>
   </div>
 </template>
