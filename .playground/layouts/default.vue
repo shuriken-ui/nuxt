@@ -15,10 +15,6 @@ const routes = computed(() =>
 const toggleColor = () => {
   color.value = isDark.value ? 'light' : 'dark'
 }
-
-onMounted(() => {
-  console.log(': ', routes.value[0].meta)
-})
 </script>
 
 <template>
@@ -71,27 +67,29 @@ onMounted(() => {
         <slot />
       </div>
     </div>
-    <div class="fixed top-0 end-0 p-2 z-10">
-      <div
-        class="rounded-full cursor-pointer p-1 h-12 w-12 m-4"
-        :class="[
-          isDark
-            ? 'text-violet-500 hover:bg-violet-300'
-            : 'text-warning-500 hover:bg-warning-200',
-        ]"
-        @click="toggleColor()"
-      >
-        <span
-          class="h-full w-full inline-block rounded-full p-2"
+    <div class="fixed top-0 end-0 pr-6 pt-6 z-10">
+      <div class="flex gap-4">
+        <div
+          class="rounded-full cursor-pointer p-1 h-12 w-12"
           :class="[
             isDark
-              ? 'text-violet-500 bg-violet-200'
-              : 'text-warning-500 bg-warning-100',
+              ? 'text-violet-500 hover:bg-violet-300'
+              : 'text-warning-500 hover:bg-warning-200',
           ]"
+          @click="toggleColor()"
         >
-          <IconSun v-if="!isDark" />
-          <IconMoon v-else />
-        </span>
+          <span
+            class="h-full w-full inline-block rounded-full p-2"
+            :class="[
+              isDark
+                ? 'text-violet-500 bg-violet-200'
+                : 'text-warning-500 bg-warning-100',
+            ]"
+          >
+            <IconSun v-if="!isDark" />
+            <IconMoon v-else />
+          </span>
+        </div>
       </div>
     </div>
   </div>
