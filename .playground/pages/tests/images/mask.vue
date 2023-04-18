@@ -3,6 +3,7 @@ definePageMeta({
   title: 'Mask',
   icon: 'lucide:sun',
   description: 'Apply mask to different elements',
+  section: 'images',
 })
 </script>
 

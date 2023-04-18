@@ -5,6 +5,7 @@ definePageMeta({
   title: 'Icons',
   icon: 'lucide:sun',
   description: 'SVG icons',
+  section: 'images',
 })
 </script>
 

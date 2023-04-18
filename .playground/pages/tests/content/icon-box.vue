@@ -3,6 +3,7 @@ definePageMeta({
   title: 'Icon Box',
   icon: 'lucide:box',
   description: 'Box wrappers for icons',
+  section: 'content',
 })
 </script>
 

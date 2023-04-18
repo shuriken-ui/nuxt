@@ -5,6 +5,7 @@ definePageMeta({
   title: 'Avatar',
   icon: 'lucide:sun',
   description: 'SVG icons',
+  section: 'images',
 })
 </script>
 
