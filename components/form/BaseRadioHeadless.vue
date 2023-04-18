@@ -56,7 +56,7 @@ const id = useNinjaId(() => props.id)
 </script>
 
 <template>
-  <div class="group/radio relative">
+  <div class="group/nui-radio-headless relative">
     <label
       v-if="label"
       :for="id"

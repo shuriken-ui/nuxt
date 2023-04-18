@@ -49,7 +49,7 @@ const { is, attributes } = useNinjaButton(props)
     <component
       :is="is"
       v-bind="attributes"
-      class="group/dropitem flex w-full items-center justify-start rounded-md px-3 py-2 text-left text-sm transition-colors duration-300"
+      class="group/nui-dropdown-item flex w-full items-center justify-start rounded-md px-3 py-2 text-left text-sm transition-colors duration-300"
       :class="[
         active
           ? 'bg-muted-100 dark:bg-muted-700 text-primary-500'

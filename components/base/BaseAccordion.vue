@@ -102,7 +102,7 @@ const toggle = (key: number) => {
     >
       <slot name="accordion-item" :item="item" :index="key" :toggle="toggle">
         <summary
-          class="group cursor-pointer list-none outline-none"
+          class="group/nui-accordion cursor-pointer list-none outline-none"
           tabindex="0"
           @click.prevent="() => toggle(key)"
         >
@@ -132,7 +132,7 @@ const toggle = (key: number) => {
 
               <div
                 v-if="props.action === 'dot'"
-                class="group-focus:outline-muted-200 dark:group-focus:outline-muted-700 ms-2 h-3 w-3 rounded-full transition-colors duration-300 group-focus:outline-dashed group-focus:outline-offset-2"
+                class="group-focus/nui-accordion:outline-muted-200 dark:group-focus/nui-accordion:outline-muted-700 ms-2 h-3 w-3 rounded-full transition-colors duration-300 group-focus/nui-accordion:outline-dashed group-focus/nui-accordion:outline-offset-2"
                 :class="
                   internalOpenItems?.includes(key)
                     ? 'bg-primary-500'
@@ -141,7 +141,7 @@ const toggle = (key: number) => {
               ></div>
               <div
                 v-else-if="props.action === 'chevron'"
-                class="group-focus:outline-muted-200 dark:group-focus:outline-muted-700 border-muted-200 dark:border-muted-700 dark:bg-muted-700/60 ms-2 flex h-8 w-8 items-center justify-center rounded-full border bg-white transition-all duration-300 group-focus:outline-dashed group-focus:outline-offset-2"
+                class="group-focus/nui-accordion:outline-muted-200 dark:group-focus/nui-accordion:outline-muted-700 border-muted-200 dark:border-muted-700 dark:bg-muted-700/60 ms-2 flex h-8 w-8 items-center justify-center rounded-full border bg-white transition-all duration-300 group-focus/nui-accordion:outline-dashed group-focus/nui-accordion:outline-offset-2"
                 :class="
                   internalOpenItems?.includes(key)
                     ? 'text-primary-500 rotate-180'
@@ -152,7 +152,7 @@ const toggle = (key: number) => {
               </div>
               <div
                 v-else-if="props.action === 'plus'"
-                class="group-focus:outline-muted-200 dark:group-focus:outline-muted-700 border-muted-200 dark:border-muted-700 dark:bg-muted-700/60 ms-2 flex h-8 w-8 items-center justify-center rounded-full border bg-white transition-all duration-300 group-focus:outline-dashed group-focus:outline-offset-2"
+                class="group-focus/nui-accordion:outline-muted-200 dark:group-focus/nui-accordion:outline-muted-700 border-muted-200 dark:border-muted-700 dark:bg-muted-700/60 ms-2 flex h-8 w-8 items-center justify-center rounded-full border bg-white transition-all duration-300 group-focus/nui-accordion:outline-dashed group-focus:outline-offset-2"
                 :class="
                   internalOpenItems?.includes(key)
                     ? 'text-primary-500 rotate-45'

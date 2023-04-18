@@ -201,7 +201,7 @@ const id = useNinjaId(() => props.id)
     >
       {{ props.label }}
     </label>
-    <div class="group/textarea relative flex flex-col">
+    <div class="group/nui-textarea relative flex flex-col">
       <textarea
         :id="id"
         ref="textareaRef"

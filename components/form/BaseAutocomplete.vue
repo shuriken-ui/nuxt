@@ -283,7 +283,7 @@ function removeItem(item: any) {
         </li>
       </ul>
     </div>
-    <div class="group/autocomplete relative">
+    <div class="group/nui-autocomplete relative">
       <ComboboxInput
         class="nui-focus border-muted-300 text-muted-600 placeholder:text-muted-300 focus:border-muted-300 focus:shadow-muted-300/50 dark:border-muted-700 dark:bg-muted-900/75 dark:text-muted-200 dark:placeholder:text-muted-500 dark:focus:border-muted-700 dark:focus:shadow-muted-800/50 peer w-full border bg-white font-sans leading-5 outline-transparent transition-all duration-300 focus:shadow-lg focus:ring-0 disabled:cursor-not-allowed disabled:opacity-75"
         :class="[
@@ -335,7 +335,7 @@ function removeItem(item: any) {
       </ComboboxLabel>
       <div
         v-if="props.icon || selected?.icon"
-        class="text-muted-400 group-focus-within/autocomplete:text-primary-500 absolute start-0 top-0 flex items-center justify-center transition-colors duration-300"
+        class="text-muted-400 group-focus-within/nui-autocomplete:text-primary-500 absolute start-0 top-0 flex items-center justify-center transition-colors duration-300"
         :class="[props.condensed && 'h-8 w-8', !props.condensed && 'h-10 w-10']"
       >
         <Icon :name="selected?.icon ?? props.icon" class="h-4 w-4" />

@@ -56,7 +56,7 @@ const id = useNinjaId(() => props.id)
 </script>
 
 <template>
-  <div class="group/checkbox relative">
+  <div class="group/nui-checkbox-headless relative">
     <label
       v-if="props.label"
       :for="id"

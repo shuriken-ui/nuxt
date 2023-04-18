@@ -49,7 +49,9 @@ const shape = computed(
 </script>
 
 <template>
-  <div class="group/drop inline-flex items-center justify-center text-right">
+  <div
+    class="group/nui-dropdown inline-flex items-center justify-center text-right"
+  >
     <Menu
       v-slot="{ open, close }: { open: boolean, close: () => void }"
       as="div"
@@ -76,7 +78,7 @@ const shape = computed(
           <button
             v-else-if="props.flavor === 'context'"
             type="button"
-            class="group-hover/drop:ring-muted-200 dark:group-hover/drop:ring-muted-700/70 dark:ring-offset-muted-900 inline-flex h-9 w-9 items-center justify-center rounded-full ring-1 ring-transparent transition-all duration-300 group-hover/drop:ring-offset-4"
+            class="group-hover/nui-dropdown:ring-muted-200 dark:group-hover/nui-dropdown:ring-muted-700/70 dark:ring-offset-muted-900 inline-flex h-9 w-9 items-center justify-center rounded-full ring-1 ring-transparent transition-all duration-300 group-hover/nui-dropdown:ring-offset-4"
           >
             <span
               class="border-muted-200 dark:border-muted-700 dark:bg-muted-800 flex h-9 w-9 items-center justify-center rounded-full border bg-white"
