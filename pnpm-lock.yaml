@@ -14,8 +14,8 @@ dependencies:
     specifier: ^6.6.6
     version: 6.6.6(ts-node@10.9.1)
   '@shuriken-ui/tailwind':
-    specifier: ^0.0.3
-    version: 0.0.3(ts-node@10.9.1)
+    specifier: ^0.0.4
+    version: 0.0.4(ts-node@10.9.1)
   '@vueuse/nuxt':
     specifier: ^10.0.2
     version: 10.0.2(nuxt@3.4.1)
@@ -79,8 +79,8 @@ devDependencies:
     specifier: ^5.0.4
     version: 5.0.4
   unplugin-fonts:
-    specifier: ^1.0.2
-    version: 1.0.2
+    specifier: ^1.0.3
+    version: 1.0.3
   vue-tsc:
     specifier: ^1.2.0
     version: 1.2.0(typescript@5.0.4)
@@ -1316,8 +1316,8 @@ packages:
       picomatch: 2.3.1
       rollup: 3.20.2
 
-  /@shuriken-ui/tailwind@0.0.3(ts-node@10.9.1):
-    resolution: {integrity: sha512-AWnLk49c2bthlFtUZXv67zb4BiH8Kg2cPG+JhK/ZsOmnEW3kPSRap7muFzWUyf5dgBpcZQVv2KtJ4AItpiiIyQ==}
+  /@shuriken-ui/tailwind@0.0.4(ts-node@10.9.1):
+    resolution: {integrity: sha512-N72uQVV4JjsmR7pYgZvgnauqwvy1Y+NKWYN9mo506XPzVXr17zOuo6VvQlrhFn8ExAcuQIIhcC6L80yzFYFP0A==}
     dependencies:
       '@tailwindcss/aspect-ratio': 0.4.2(tailwindcss@3.3.1)
       '@tailwindcss/forms': 0.5.3(tailwindcss@3.3.1)
@@ -7891,8 +7891,8 @@ packages:
     resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
     engines: {node: '>= 10.0.0'}
 
-  /unplugin-fonts@1.0.2:
-    resolution: {integrity: sha512-CLvuyGNjcFLlqJbu2M2BQsJZ5qR7jOvKHHjz47zRM/BSS44aJ59KfsHsd5URsL3CaMO2xZBOZe6KI45eM8uByw==}
+  /unplugin-fonts@1.0.3:
+    resolution: {integrity: sha512-6Wq0SMhMznUx7DTkqr/ogCvWg2vFSCApHmhUcUISxqfnuME2B/KRLa6+bWyX3sbPNhYsW4zI7jvUkkmIumwenw==}
     peerDependencies:
       '@nuxt/kit': ^3.0.0
       vite: ^2.0.0 || ^3.0.0 || ^4.0.0

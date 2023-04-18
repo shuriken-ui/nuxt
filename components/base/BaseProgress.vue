@@ -79,26 +79,9 @@ const value = computed(() => {
         shape === 'rounded' && 'rounded',
         shape === 'curved' && 'rounded-md',
         shape === 'full' && 'rounded-full',
-        value === null && 'animate-indeterminate w-full',
+        value === null && 'animate-nui-indeterminate w-full',
       ]"
       :style="value !== null ? `width: ${value}%` : ''"
     ></div>
   </div>
 </template>
-
-<style scoped>
-/* Indeterminate progress animation */
-@keyframes indeterminate {
-  0% {
-    margin-left: -10%;
-  }
-
-  100% {
-    margin-left: 100%;
-  }
-}
-
-.animate-indeterminate {
-  animation: indeterminate 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-</style>

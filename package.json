@@ -50,7 +50,7 @@
     "@iconify/vue": "^4.1.1",
     "@nuxtjs/color-mode": "^3.2.0",
     "@nuxtjs/tailwindcss": "^6.6.6",
-    "@shuriken-ui/tailwind": "^0.0.3",
+    "@shuriken-ui/tailwind": "^0.0.4",
     "@vueuse/nuxt": "^10.0.2",
     "autoprefixer": "^10.4.14",
     "nuxt-icon": "^0.3.3"
@@ -73,7 +73,7 @@
     "simple-git-hooks": "^2.8.1",
     "standard-version": "^9.5.0",
     "typescript": "^5.0.4",
-    "unplugin-fonts": "^1.0.2",
+    "unplugin-fonts": "^1.0.3",
     "vue-tsc": "^1.2.0"
   },
   "simple-git-hooks": {

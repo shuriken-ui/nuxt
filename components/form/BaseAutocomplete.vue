@@ -156,12 +156,14 @@ const emits = defineEmits<{
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const value = useVModel(props, 'modelValue', emits)
+const selected = useVModel(props, 'modelValue', emits)
 
-const items = ref(props.items)
+const items = shallowRef(props.items)
 const query = ref('')
 const debounced = refDebounced(query, props.filterDebounce)
-const filteredItems = ref<Awaited<ReturnType<typeof props.filterItems>>>([])
+const filteredItems = shallowRef<Awaited<ReturnType<typeof props.filterItems>>>(
+  []
+)
 const pendingFilter = ref(false)
 const pendingDebounce = computed(() => query.value !== debounced.value)
 const pending = computed(() => pendingFilter.value || pendingDebounce.value)
@@ -169,7 +171,7 @@ const pending = computed(() => pendingFilter.value || pendingDebounce.value)
 provide(
   'BaseAutocompleteContext',
   reactive({
-    selected: value,
+    selected,
     items,
     filteredItems,
     query,
@@ -183,7 +185,7 @@ defineExpose({
   /**
    * Current selected value.
    */
-  selected: value,
+  selected,
   /**
    * Resolved items list.
    */
@@ -222,14 +224,14 @@ watch(debounced, async (value) => {
 })
 
 function clear() {
-  value.value = props.clearValue
+  selected.value = props.clearValue
 }
 
 function removeItem(item: any) {
-  for (let i = value.value.length - 1; i >= 0; --i) {
+  for (let i = selected.value.length - 1; i >= 0; --i) {
     // eslint-disable-next-line eqeqeq
-    if (value.value[i] == item) {
-      value.value.splice(i, 1)
+    if (selected.value[i] == item) {
+      selected.value.splice(i, 1)
     }
   }
 }
@@ -237,7 +239,7 @@ function removeItem(item: any) {
 
 <template>
   <Combobox
-    v-model="value"
+    v-model="selected"
     :multiple="props.multiple"
     :disabled="props.disabled"
     class="relative w-full"
@@ -261,10 +263,10 @@ function removeItem(item: any) {
 
     <div v-if="props.multiple" class="block">
       <ul
-        v-if="Array.isArray(value) && value.length > 0"
+        v-if="Array.isArray(selected) && selected.length > 0"
         class="my-2 flex flex-wrap gap-1"
       >
-        <li v-for="item in value" :key="item.id">
+        <li v-for="item in selected" :key="item.id">
           <div
             class="bg-muted-100 text-muted-400 dark:bg-muted-700 flex items-center py-2 pe-2 ps-3 font-sans text-xs font-medium"
             :class="[
@@ -332,14 +334,14 @@ function removeItem(item: any) {
         </slot>
       </ComboboxLabel>
       <div
-        v-if="props.icon || value?.icon"
+        v-if="props.icon || selected?.icon"
         class="text-muted-400 group-focus-within/autocomplete:text-primary-500 absolute start-0 top-0 flex items-center justify-center transition-colors duration-300"
         :class="[props.condensed && 'h-8 w-8', !props.condensed && 'h-10 w-10']"
       >
-        <Icon :name="value?.icon ?? props.icon" class="h-4 w-4" />
+        <Icon :name="selected?.icon ?? props.icon" class="h-4 w-4" />
       </div>
       <button
-        v-if="props.clearable && value"
+        v-if="props.clearable && selected"
         type="button"
         class="text-muted-400 hover:text-muted-700 dark:hover:text-muted-200 absolute end-0 top-0 z-10 flex items-center justify-center transition-colors duration-300"
         :class="[props.condensed && 'h-8 w-8', !props.condensed && 'h-10 w-10']"
