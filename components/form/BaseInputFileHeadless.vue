@@ -124,7 +124,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="group/file relative">
+  <div class="group/nui-file-headless relative">
     <slot
       :id="id"
       :el="el"

@@ -157,7 +157,7 @@ const id = useNinjaId(() => props.id)
     >
       <slot name="label">{{ props.label }}</slot>
     </label>
-    <div class="group/file relative">
+    <div class="group/nui-input-file relative">
       <label
         tabindex="0"
         class="nui-focus border-muted-300 text-muted-600 placeholder:text-muted-300 dark:border-muted-700 dark:bg-muted-900/75 dark:text-muted-200 dark:placeholder:text-muted-500 dark:focus:border-muted-700 peer flex w-full cursor-pointer items-center overflow-hidden border bg-white font-sans transition-colors duration-300 focus-within:outline-1 disabled:cursor-not-allowed disabled:opacity-75"
@@ -181,7 +181,7 @@ const id = useNinjaId(() => props.id)
         ]"
       >
         <div
-          class="group-hover/file:text-primary-500 bg-muted-50 border-muted-300 dark:border-muted-700 dark:bg-muted-800 text-muted-400 group-focus-within/file:text-primary-500 pointer-events-none flex shrink-0 items-center justify-center gap-1 border border-s-0 transition-colors duration-100 group-disabled/file:cursor-not-allowed peer-disabled:opacity-75"
+          class="group-hover/nui-input-file:text-primary-500 bg-muted-50 border-muted-300 dark:border-muted-700 dark:bg-muted-800 text-muted-400 group-focus-within/nui-input-file:text-primary-500 pointer-events-none flex shrink-0 items-center justify-center gap-1 border border-s-0 transition-colors duration-100 group-disabled/nui-input-file:cursor-not-allowed peer-disabled:opacity-75"
           :class="[
             props.condensed && 'h-8 px-2',
             !props.condensed && 'h-10 px-3',

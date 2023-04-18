@@ -199,7 +199,7 @@ if (process.dev) {
     >
       <slot name="label">{{ props.label }}</slot>
     </label>
-    <div class="group/input relative">
+    <div class="group/nui-input relative">
       <input
         :id="id"
         ref="inputRef"
@@ -269,7 +269,7 @@ if (process.dev) {
       </div>
       <div
         v-if="props.icon"
-        class="text-muted-400 group-focus-within/input:text-primary-500 absolute start-0 top-0 flex items-center justify-center transition-colors duration-300 peer-disabled:cursor-not-allowed peer-disabled:opacity-75"
+        class="text-muted-400 group-focus-within/nui-input:text-primary-500 absolute start-0 top-0 flex items-center justify-center transition-colors duration-300 peer-disabled:cursor-not-allowed peer-disabled:opacity-75"
         :class="[
           props.condensed && 'h-8 w-8',
           !props.condensed && 'h-10 w-10',

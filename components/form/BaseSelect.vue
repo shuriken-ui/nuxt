@@ -161,7 +161,7 @@ const placeholder = computed(() => {
     >
       <slot name="label">{{ props.label }}</slot>
     </label>
-    <div class="group/select relative">
+    <div class="group/nui-select relative">
       <select
         :id="id"
         ref="selectRef"
@@ -241,7 +241,7 @@ const placeholder = computed(() => {
       </div>
       <div
         v-if="props.icon"
-        class="text-muted-400 group-focus-within/select:text-primary-500 absolute start-0 top-0 flex items-center justify-center transition-colors duration-300 peer-disabled:cursor-not-allowed peer-disabled:opacity-75"
+        class="text-muted-400 group-focus-within/nui-select:text-primary-500 absolute start-0 top-0 flex items-center justify-center transition-colors duration-300 peer-disabled:cursor-not-allowed peer-disabled:opacity-75"
         :class="[
           props.loading && 'opacity-0',
           props.condensed ? 'h-8 w-8' : 'h-10 w-10',
@@ -262,7 +262,7 @@ const placeholder = computed(() => {
         </slot>
       </div>
       <div
-        class="text-muted-400 pointer-events-none absolute end-0 top-0 flex items-center justify-center transition-transform duration-300 group-focus-within/select:-rotate-180"
+        class="text-muted-400 pointer-events-none absolute end-0 top-0 flex items-center justify-center transition-transform duration-300 group-focus-within/nui-select:-rotate-180"
         :class="[
           props.classes?.chevron,
           props.condensed ? 'h-8 w-8' : 'h-10 w-10',

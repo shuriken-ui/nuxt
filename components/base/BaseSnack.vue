@@ -38,7 +38,7 @@ const emit = defineEmits(['delete'])
 
 <template>
   <div
-    class="nui-focus group/snack inline-flex items-center rounded-full outline-transparent"
+    class="nui-focus group/nui-snack inline-flex items-center rounded-full outline-transparent"
     :class="[
       !props.icon && !props.image && 'ps-4',
       props.small ? 'h-8' : 'h-10',

@@ -108,7 +108,7 @@ const id = useNinjaId(() => props.id)
     ]"
   >
     <div
-      class="nui-focus group/radio relative flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full"
+      class="nui-focus group/nui-radio relative flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full"
     >
       <input
         :id="id"
