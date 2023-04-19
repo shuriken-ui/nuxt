@@ -73,31 +73,6 @@ const toggleColor = () => {
                 </li>
               </ul>
             </div>
-
-            <!-- <li v-for="route in routes" :key="route.path">
-              <NuxtLink
-                active-class="text-primary-500"
-                class="px-4 py-2 hover:bg-muted-50 dark:hover:bg-muted-900 flex flex-col"
-                :to="route.path"
-              >
-                <span class="flex gap-1 items-center">
-                  <Icon
-                    class="text-muted-600"
-                    v-if="
-                      typeof route.meta?.icon === 'string' && route.meta?.icon
-                    "
-                    :name="route.meta?.icon"
-                  />
-                  <span>{{ route.meta?.title }}</span>
-                </span>
-                <span
-                  class="text-xs text-muted-400"
-                  v-if="route.meta?.description"
-                >
-                  {{ route.meta?.description }}
-                </span>
-              </NuxtLink>
-            </li> -->
           </ul>
         </nav>
       </div>
