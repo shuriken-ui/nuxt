@@ -37,7 +37,7 @@ const toggleColor = () => {
           <ul class="flex flex-col gap-6">
             <div v-for="(routeGroup, id) in Object.entries(routes)" :key="id">
               <h3
-                class="capitalize text-sm text-muted-400 font-bold border-b border-muted-300 mx-4 pb-2 mb-4"
+                class="capitalize text-sm text-muted-400 font-medium border-b border-muted-300 mx-4 pb-2 mb-4"
               >
                 {{ routeGroup[0] }}
               </h3>
