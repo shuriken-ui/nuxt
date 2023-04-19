@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { RouteRecordNormalized } from 'vue-router'
+
 const router = useRouter()
 const color = useColorMode()
 
@@ -9,12 +11,22 @@ const logo = computed(() =>
     : 'https://user-images.githubusercontent.com/3911343/232132309-62971744-dcdb-429c-aa93-6ba0c1caac42.png'
 )
 const routes = computed(() =>
-  router.getRoutes().filter((route) => route.path !== '/')
+  router.getRoutes().reduce((r, a) => {
+    if ((a.meta as any).section) {
+      r[(a.meta as any).section] = r[(a.meta as any).section] || []
+      r[(a.meta as any).section].push(a)
+    }
+    return r
+  }, Object.create(null))
 )
 
 const toggleColor = () => {
   color.value = isDark.value ? 'light' : 'dark'
 }
+
+onMounted(() => {
+  console.log(': ', isDark.value, color.preference)
+})
 </script>
 
 <template>
@@ -22,21 +34,55 @@ const toggleColor = () => {
     <div class="flex min-h-screen">
       <div class="w-2/12">
         <nav class="fixed w-2/12 max-h-screen overflow-y-scroll slimscroll">
-          <div class="px-2 py-4">
+          <NuxtLink to="/" class="inline-block px-2 py-4">
             <img alt="Shuriken UI logo" class="h-8" :src="logo" />
-          </div>
+          </NuxtLink>
 
-          <ul>
-            <li>
-              <NuxtLink
-                exact-active-class="text-primary-500"
-                class="block px-4 py-2 hover:bg-muted-50 dark:hover:bg-muted-900"
-                to="/"
+          <ul class="flex flex-col gap-6">
+            <div
+              v-for="(routeGroup, id) in Object.entries(routes)"
+              :key="id"
+              class="px-4"
+            >
+              <h3
+                class="capitalize text-sm text-muted-400 font-bold border-b border-muted-300 pb-2 mb-4"
               >
-                Home
-              </NuxtLink>
-            </li>
-            <li v-for="route in routes" :key="route.path">
+                {{ routeGroup[0] }}
+              </h3>
+              <ul>
+                <li
+                  v-for="route in routeGroup[1]"
+                  :key="(route as RouteRecordNormalized).path"
+                >
+                  <NuxtLink
+                    active-class="text-primary"
+                    class="py-2 hover:bg-muted-50 dark:hover:bg-muted-900 flex flex-col"
+                    :to="(route as RouteRecordNormalized).path"
+                  >
+                    <span class="flex gap-1 items-center">
+                      <Icon
+                        class="text-muted-600"
+                        v-if="
+                          typeof (route as RouteRecordNormalized).meta?.icon === 'string' && (route as RouteRecordNormalized).meta?.icon
+                        "
+                        :name="((route as RouteRecordNormalized).meta?.icon as string)"
+                      />
+                      <span class="inline-bloc">
+                        {{ (route as RouteRecordNormalized).meta?.title }}
+                      </span>
+                    </span>
+                    <span
+                      class="italic text-xs text-muted-500"
+                      v-if="(route as RouteRecordNormalized).meta?.description"
+                    >
+                      {{ (route as RouteRecordNormalized).meta?.description }}
+                    </span>
+                  </NuxtLink>
+                </li>
+              </ul>
+            </div>
+
+            <!-- <li v-for="route in routes" :key="route.path">
               <NuxtLink
                 active-class="text-primary-500"
                 class="px-4 py-2 hover:bg-muted-50 dark:hover:bg-muted-900 flex flex-col"
@@ -59,7 +105,7 @@ const toggleColor = () => {
                   {{ route.meta?.description }}
                 </span>
               </NuxtLink>
-            </li>
+            </li> -->
           </ul>
         </nav>
       </div>
