@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Code',
-  icon: 'lucide:sun',
+  icon: 'lucide:code',
   description: 'SVG icons',
   section: 'content',
 })

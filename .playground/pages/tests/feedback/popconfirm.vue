@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Popconfirm',
-  icon: 'lucide:sun',
+  icon: 'carbon:asset-confirm',
   description: 'SVG icons',
   section: 'feedback',
 })

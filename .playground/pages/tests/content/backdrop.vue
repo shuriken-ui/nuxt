@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Backdrop',
-  icon: 'lucide:sun',
+  icon: 'lucide:box-select',
   description: 'SVG icons',
   section: 'content',
 })

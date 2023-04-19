@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Pagination',
-  icon: 'lucide:sun',
+  icon: 'carbon:page-scroll',
   description: 'SVG icons',
   section: 'data-display',
 })

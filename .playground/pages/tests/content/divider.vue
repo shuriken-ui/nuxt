@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Divider',
-  icon: 'lucide:sun',
+  icon: 'lucide:split-square-vertical',
   description: 'SVG icons',
   section: 'content',
 })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Grid',
-  icon: 'lucide:sun',
+  icon: 'lucide:layout-grid',
   description: 'SVG icons',
   section: 'content',
 })

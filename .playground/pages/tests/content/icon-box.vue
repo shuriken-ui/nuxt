@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Icon Box',
-  icon: 'lucide:box',
+  icon: 'lucide:package-2',
   description: 'Box wrappers for icons',
   section: 'content',
 })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Textarea',
-  icon: 'lucide:sun',
+  icon: 'solar:document-text-broken',
   description: 'SVG icons',
   section: 'form',
 })

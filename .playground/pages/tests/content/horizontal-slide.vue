@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Horizontal Slide',
-  icon: 'lucide:sun',
+  icon: 'lucide:sidebar-open',
   description: 'SVG icons',
   section: 'content',
 })

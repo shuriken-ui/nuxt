@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Drawer',
-  icon: 'lucide:sun',
+  icon: 'lucide:bookmark',
   description: 'SVG icons',
   section: 'content',
 })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Alert',
-  icon: 'lucide:sun',
+  icon: 'solar:notification-unread-lines-broken',
   description: 'SVG icons',
   section: 'feedback',
 })

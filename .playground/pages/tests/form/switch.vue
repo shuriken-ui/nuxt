@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Switch',
-  icon: 'lucide:sun',
+  icon: 'ic:round-published-with-changes',
   description: 'SVG icons',
   section: 'form',
 })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Flex List',
-  icon: 'lucide:sun',
+  icon: 'tabler:list-details',
   description: 'SVG icons',
   section: 'data-display',
 })

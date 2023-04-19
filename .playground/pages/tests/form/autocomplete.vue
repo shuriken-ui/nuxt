@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Autocomplete',
-  icon: 'lucide:sun',
+  icon: 'mdi:auto-fix',
   description: 'SVG icons',
   section: 'form',
 })

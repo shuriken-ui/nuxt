@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Time Picker',
-  icon: 'lucide:sun',
+  icon: 'solar:alarm-broken',
   description: 'SVG icons',
   section: 'form',
 })

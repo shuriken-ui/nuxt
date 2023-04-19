@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Breadcrumbs',
-  icon: 'lucide:sun',
+  icon: 'mdi:navigation-variant-outline',
   description: 'SVG icons',
   section: 'navigation',
 })

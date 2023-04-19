@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Input Tag',
-  icon: 'lucide:sun',
+  icon: 'solar:tag-broken',
   description: 'SVG icons',
   section: 'form',
 })

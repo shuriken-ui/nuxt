@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Color Picker',
-  icon: 'lucide:sun',
+  icon: 'mdi:format-color-fill',
   description: 'SVG icons',
   section: 'form',
 })

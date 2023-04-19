@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Modal',
-  icon: 'lucide:sun',
+  icon: 'solar:smartphone-update-outline',
   description: 'SVG icons',
   section: 'content',
 })

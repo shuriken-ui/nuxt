@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'DataTable',
-  icon: 'lucide:sun',
+  icon: 'tabler:table-options',
   description: 'SVG icons',
   section: 'data-display',
 })

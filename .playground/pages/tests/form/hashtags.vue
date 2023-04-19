@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Hasstags',
-  icon: 'lucide:sun',
+  icon: 'solar:hashtag-square-broken',
   description: 'SVG icons',
   section: 'form',
 })

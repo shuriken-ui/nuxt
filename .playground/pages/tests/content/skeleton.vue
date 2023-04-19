@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Skeleton',
-  icon: 'lucide:sun',
+  icon: 'ph:align-center-horizontal-simple-duotone',
   description: 'SVG icons',
   section: 'content',
 })

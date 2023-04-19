@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Calendar',
-  icon: 'lucide:sun',
+  icon: 'solar:calendar-broken',
   description: 'SVG icons',
   section: 'form',
 })

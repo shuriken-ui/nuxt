@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Rating',
-  icon: 'lucide:sun',
+  icon: 'solar:medal-ribbons-star-broken',
   description: 'SVG icons',
   section: 'form',
 })

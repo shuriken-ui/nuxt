@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Image',
+  title: 'solar:graph-new-line-duotone',
   icon: 'lucide:sun',
   description: 'SVG icons',
   section: 'images',

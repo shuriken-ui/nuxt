@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Mentions',
-  icon: 'lucide:sun',
+  icon: 'solar:mention-square-broken',
   description: 'SVG icons',
   section: 'form',
 })

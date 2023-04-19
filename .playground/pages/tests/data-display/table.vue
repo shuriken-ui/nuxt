@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Table',
-  icon: 'lucide:sun',
+  icon: 'tabler:table',
   description: 'SVG icons',
   section: 'data-display',
 })

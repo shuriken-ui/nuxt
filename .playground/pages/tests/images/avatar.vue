@@ -3,7 +3,7 @@ import IconIndeterminate from '~~/../components/icon/IconIndeterminate.vue'
 
 definePageMeta({
   title: 'Avatar',
-  icon: 'lucide:sun',
+  icon: 'solar:user-circle-broken',
   description: 'SVG icons',
   section: 'images',
 })

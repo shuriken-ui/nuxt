@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Browser Support',
-  icon: 'lucide:sun',
+  icon: 'lucide:globe',
   description: 'SVG icons',
   section: 'base',
 })

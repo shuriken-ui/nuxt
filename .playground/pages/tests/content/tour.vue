@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Tour',
-  icon: 'lucide:sun',
+  icon: 'tabler:tournament',
   description: 'SVG icons',
   section: 'content',
 })

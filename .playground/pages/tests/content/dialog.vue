@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Dialog',
-  icon: 'lucide:sun',
+  icon: 'lucide:airplay',
   description: 'SVG icons',
   section: 'content',
 })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Flex Grid',
-  icon: 'lucide:sun',
+  icon: 'tabler:chart-grid-dots',
   description: 'SVG icons',
   section: 'data-display',
 })

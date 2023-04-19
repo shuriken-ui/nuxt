@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Badge',
-  icon: 'lucide:sun',
+  icon: 'tabler:badge',
   description: 'SVG icons',
   section: 'feedback',
 })

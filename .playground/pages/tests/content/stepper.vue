@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Stepper',
-  icon: 'lucide:sun',
+  icon: 'ic:sharp-content-paste-go',
   description: 'SVG icons',
   section: 'content',
 })

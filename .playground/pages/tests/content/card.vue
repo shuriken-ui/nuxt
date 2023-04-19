@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Card',
-  icon: 'lucide:sun',
+  icon: 'lucide:crop',
   description: 'SVG icons',
   section: 'content',
 })

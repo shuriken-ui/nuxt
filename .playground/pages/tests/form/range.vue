@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Range',
-  icon: 'lucide:sun',
+  icon: 'solar:ruler-angular-line-duotone',
   description: 'SVG icons',
   section: 'form',
 })

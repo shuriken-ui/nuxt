@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Transfer List',
-  icon: 'lucide:sun',
+  icon: 'tabler:checkup-list',
   description: 'SVG icons',
   section: 'content',
 })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Button group',
-  icon: 'lucide:sun',
+  icon: 'lucide:boxes',
   description: 'SVG icons',
   section: 'content',
 })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Notif',
-  icon: 'lucide:sun',
+  icon: 'ic:outline-notifications-paused',
   description: 'SVG icons',
   section: 'feedback',
 })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Date Picker',
-  icon: 'lucide:sun',
+  icon: 'mdi:calendar',
   description: 'SVG icons',
   section: 'form',
 })

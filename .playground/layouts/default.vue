@@ -23,10 +23,6 @@ const routes = computed(() =>
 const toggleColor = () => {
   color.value = isDark.value ? 'light' : 'dark'
 }
-
-onMounted(() => {
-  console.log(': ', isDark.value, color.preference)
-})
 </script>
 
 <template>
@@ -39,13 +35,9 @@ onMounted(() => {
           </NuxtLink>
 
           <ul class="flex flex-col gap-6">
-            <div
-              v-for="(routeGroup, id) in Object.entries(routes)"
-              :key="id"
-              class="px-4"
-            >
+            <div v-for="(routeGroup, id) in Object.entries(routes)" :key="id">
               <h3
-                class="capitalize text-sm text-muted-400 font-bold border-b border-muted-300 pb-2 mb-4"
+                class="capitalize text-sm text-muted-400 font-bold border-b border-muted-300 mx-4 pb-2 mb-4"
               >
                 {{ routeGroup[0] }}
               </h3>
@@ -55,8 +47,8 @@ onMounted(() => {
                   :key="(route as RouteRecordNormalized).path"
                 >
                   <NuxtLink
-                    active-class="text-primary"
-                    class="py-2 hover:bg-muted-50 dark:hover:bg-muted-900 flex flex-col"
+                    active-class="text-primary-500"
+                    class="py-2 px-4 hover:bg-muted-50 dark:hover:bg-muted-900 flex flex-col"
                     :to="(route as RouteRecordNormalized).path"
                   >
                     <span class="flex gap-1 items-center">

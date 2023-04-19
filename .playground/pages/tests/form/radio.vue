@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Radio',
-  icon: 'lucide:sun',
+  icon: 'ri:radio-button-fill',
   description: 'SVG icons',
   section: 'form',
 })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Tabs',
-  icon: 'lucide:sun',
+  icon: 'solar:slider-minimalistic-horizontal-broken',
   description: 'SVG icons',
   section: 'navigation',
 })

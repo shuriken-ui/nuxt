@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'CalendarProgress',
-  icon: 'lucide:sun',
+  icon: 'tabler:progress-bolt',
   description: 'SVG icons',
   section: 'form',
 })

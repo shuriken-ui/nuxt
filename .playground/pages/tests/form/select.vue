@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Select',
-  icon: 'lucide:sun',
+  icon: 'ic:round-menu-open',
   description: 'SVG icons',
   section: 'form',
 })

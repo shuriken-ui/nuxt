@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Expansion Panel',
-  icon: 'lucide:sun',
+  icon: 'lucide:circuit-board',
   description: 'SVG icons',
   section: 'content',
 })

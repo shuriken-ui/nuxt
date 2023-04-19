@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Input File',
-  icon: 'lucide:sun',
+  icon: 'solar:cloud-upload-linear',
   description: 'SVG icons',
   section: 'form',
 })

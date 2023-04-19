@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Input size',
+  title: 'Input',
   icon: 'lucide:sigma',
   description:
     'Check how different input sizes look like compared to each other.',

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Timeline',
-  icon: 'lucide:sun',
+  icon: 'tabler:timeline',
   description: 'SVG icons',
   section: 'content',
 })
