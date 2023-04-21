@@ -29,17 +29,17 @@ export default defineNuxtConfig({
     {
       prefix: '',
       path: resolve('./components/base'),
-      global: true,
+      global: false,
     },
     {
       prefix: '',
       path: resolve('./components/icon'),
-      global: true,
+      global: false,
     },
     {
       prefix: '',
       path: resolve('./components/form'),
-      global: true,
+      global: false,
     },
   ],
 })
