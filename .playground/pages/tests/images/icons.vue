@@ -3,8 +3,9 @@ import IconIndeterminate from '~~/../components/icon/IconIndeterminate.vue'
 
 definePageMeta({
   title: 'Icons',
-  icon: 'lucide:sun',
+  icon: 'tabler:ease-in-out-control-points',
   description: 'SVG icons',
+  section: 'images',
 })
 </script>
 

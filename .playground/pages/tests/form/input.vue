@@ -1,11 +1,13 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Input size',
+  title: 'Input',
   icon: 'lucide:sigma',
   description:
     'Check how different input sizes look like compared to each other.',
+  section: 'form',
 })
 
+const value = ref('')
 const value1 = ref('')
 const value2 = ref(null)
 const value3 = ref('')
@@ -65,6 +67,22 @@ const value53 = ref('')
   <div
     class="flex flex-col gap-12 [&>*]:p-8 [&>:nth-child(odd)]:bg-muted-100 dark:[&>:nth-child(odd)]:bg-muted-900 pb-32"
   >
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        BaseInput - label-float & label slot
+      </BaseHeading>
+      <div>
+        <BaseInput
+          v-model="value"
+          label-float
+          placeholder="Placeholder text"
+          icon="lucide:search"
+          condensed
+        >
+          <template #label>Label from slot</template>
+        </BaseInput>
+      </div>
+    </div>
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
         Raw block

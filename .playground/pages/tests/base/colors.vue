@@ -3,6 +3,7 @@ definePageMeta({
   title: 'Colors',
   icon: 'lucide:pen-tool',
   description: 'Basic colors',
+  section: 'base',
 })
 </script>
 

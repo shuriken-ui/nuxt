@@ -1,0 +1,20 @@
+<script setup lang="ts">
+definePageMeta({
+  title: 'Popconfirm',
+  icon: 'carbon:asset-confirm',
+  description: 'SVG icons',
+  section: 'feedback',
+})
+</script>
+
+<template>
+  <div
+    class="flex flex-col gap-12 [&>*]:p-8 [&>:nth-child(odd)]:bg-muted-100 dark:[&>:nth-child(odd)]:bg-muted-900 pb-32"
+  >
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        Popconfirm
+      </BaseHeading>
+    </div>
+  </div>
+</template>

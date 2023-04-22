@@ -1,8 +1,9 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Mask',
-  icon: 'lucide:sun',
+  icon: 'solar:magic-stick-broken',
   description: 'Apply mask to different elements',
+  section: 'images',
 })
 </script>
 

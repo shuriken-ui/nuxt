@@ -3,6 +3,7 @@ definePageMeta({
   title: 'Dropdown',
   icon: 'lucide:box',
   description: 'Dropdown examples',
+  section: 'content',
 })
 </script>
 

@@ -5,6 +5,7 @@ definePageMeta({
   title: 'Tree Select',
   icon: 'lucide:tree-deciduous',
   description: 'Tree selection component',
+  section: 'navigation',
 })
 
 const tree = [

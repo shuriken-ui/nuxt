@@ -1,8 +1,9 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Button',
+  title: 'Buttons',
   icon: 'lucide:cpu',
   description: 'Button variations',
+  section: 'content',
 })
 
 const value1 = ref('')

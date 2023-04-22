@@ -1,8 +1,9 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Custom checkbox',
+  title: 'Checkbox',
   icon: 'lucide:sigma',
   description: 'Basic custom checkbox and radio',
+  section: 'form',
 })
 
 const check = ref('')

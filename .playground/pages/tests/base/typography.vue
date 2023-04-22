@@ -3,6 +3,7 @@ definePageMeta({
   title: 'Typography',
   icon: 'lucide:text-cursor',
   description: 'Tailwind typography plugin',
+  section: 'base',
 })
 </script>
 

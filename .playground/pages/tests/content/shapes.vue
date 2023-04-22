@@ -3,6 +3,7 @@ definePageMeta({
   title: 'Shapes',
   icon: 'fluent-mdl2:shapes',
   description: 'Check out different shapes',
+  section: 'content',
 })
 
 const app = useAppConfig()

@@ -3,6 +3,7 @@ definePageMeta({
   title: 'Tag',
   icon: 'lucide:smile',
   description: 'Tag variations',
+  section: 'content',
 })
 </script>
 
