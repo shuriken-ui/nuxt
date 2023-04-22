@@ -19,10 +19,6 @@ const routes = computed(() =>
     return r
   }, Object.create(null))
 )
-
-const toggleColor = () => {
-  color.value = isDark.value ? 'light' : 'dark'
-}
 </script>
 
 <template>
@@ -81,29 +77,11 @@ const toggleColor = () => {
       </div>
     </div>
     <div class="fixed top-0 end-0 pr-6 pt-6 z-10">
-      <div class="flex gap-4">
-        <div
-          class="rounded-full cursor-pointer p-1 h-12 w-12"
-          :class="[
-            isDark
-              ? 'text-violet-500 hover:bg-violet-300'
-              : 'text-warning-500 hover:bg-warning-200',
-          ]"
-          @click="toggleColor()"
-        >
-          <span
-            class="h-full w-full inline-block rounded-full p-2"
-            :class="[
-              isDark
-                ? 'text-violet-500 bg-violet-200'
-                : 'text-warning-500 bg-warning-100',
-            ]"
-          >
-            <IconSun v-if="!isDark" />
-            <IconMoon v-else />
-          </span>
-        </div>
-      </div>
+      <BaseSelect v-model="color.preference" condensed>
+        <option value="system">system</option>
+        <option value="light">light</option>
+        <option value="dark">dark</option>
+      </BaseSelect>
     </div>
   </div>
 </template>
