@@ -41,7 +41,7 @@
   Let the content set the size of the tooltips 
   but this will also keep them from being obnoxious
   */
-  @apply text-white font-sans text-xs shadow-lg;
+  @apply font-sans text-xs shadow-lg;
   min-width: 3em;
   max-width: 21em;
   white-space: nowrap;
@@ -49,6 +49,7 @@
   text-overflow: ellipsis;
   padding: 1ch 1.5ch;
   border-radius: 0.5ch;
+  color: var(--tooltip-color);
   background-color: var(--tooltip-bg);
   z-index: 1000; /* absurdity 2 */
 }
