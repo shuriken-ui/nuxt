@@ -213,7 +213,14 @@ const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.avatar)
         props.size === '3xl' && `h-10 w-10`,
         props.size === '4xl' && `h-12 w-12`,
         shape === 'full' && `bottom-0 end-0`,
-        shape === 'straight' && `hidden`,
+        shape === 'straight' && props.size === 'xs' && `-bottom-1 -end-1`,
+        shape === 'straight' && props.size === 'sm' && `-bottom-1 -end-1`,
+        shape === 'straight' && props.size === 'md' && `-bottom-1 -end-1`,
+        shape === 'straight' && props.size === 'lg' && `-bottom-1 -end-1`,
+        shape === 'straight' && props.size === 'xl' && `-bottom-1 -end-1`,
+        shape === 'straight' && props.size === '2xl' && `-bottom-1.5 -end-1.5`,
+        shape === 'straight' && props.size === '3xl' && `-bottom-1.5 -end-1.5`,
+        shape === 'straight' && props.size === '4xl' && `-bottom-2 -end-2`,
         shape === 'rounded' && props.size === 'xs' && `-bottom-1 -end-1`,
         shape === 'rounded' && props.size === 'sm' && `-bottom-1 -end-1`,
         shape === 'rounded' && props.size === 'md' && `-bottom-1 -end-1`,
@@ -230,6 +237,7 @@ const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.avatar)
         shape === 'curved' && props.size === '2xl' && `-bottom-1.5 -end-1.5`,
         shape === 'curved' && props.size === '3xl' && `-bottom-1.5 -end-1.5`,
         shape === 'curved' && props.size === '4xl' && `-bottom-2 -end-2`,
+        props.mask && 'hidden',
       ]"
     >
       <slot name="badge">
