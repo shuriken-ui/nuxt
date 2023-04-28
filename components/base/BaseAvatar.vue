@@ -17,9 +17,19 @@ const props = withDefaults(
     badgeSrc?: string
 
     /**
+     * The URL of dark version of the badge to display on top of the image when the component is in dark mode.
+     */
+    badgeSrcDark?: string
+
+    /**
      * The text to display below the image.
      */
     text?: string
+
+    /**
+     * The text to display below the image.
+     */
+    badgeText?: string
 
     /**
      * The size of the image.
@@ -52,7 +62,9 @@ const props = withDefaults(
   {
     src: undefined,
     srcDark: undefined,
+    badgeSrcDark: undefined,
     text: '?',
+    badgeText: undefined,
     badgeSrc: undefined,
     size: 'sm',
     shape: undefined,
@@ -188,7 +200,7 @@ const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.avatar)
     </div>
 
     <div
-      v-if="'badge' in $slots || props.badgeSrc"
+      v-if="'badge' in $slots || props.badgeSrc || props.badgeText"
       class="dark:bg-muted-800 absolute z-10 block overflow-hidden rounded-full bg-white"
       :class="[
         props.size === 'xxs' && `h-3 w-3`,
@@ -232,8 +244,20 @@ const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.avatar)
           v-if="props.badgeSrc"
           :src="props.badgeSrc"
           class="relative h-full w-full scale-90 rounded-full object-cover"
+          :class="[props.badgeSrcDark ? 'dark:hidden' : '']"
           alt=""
         />
+
+        <img
+          v-if="props.badgeSrc && props.badgeSrcDark"
+          :src="props.badgeSrcDark"
+          class="relative h-full w-full scale-90 rounded-full object-cover"
+          alt=""
+        />
+
+        <span v-if="!props.badgeSrc" class="text-center font-medium uppercase">
+          {{ props.badgeText }}
+        </span>
       </slot>
     </div>
 

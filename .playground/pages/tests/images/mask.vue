@@ -23,6 +23,7 @@ definePageMeta({
         />
         <BaseAvatar
           src="https://source.unsplash.com/random/"
+          badgeSrc="https://source.unsplash.com/random/"
           size="xl"
           class="nui-mask nui-mask-hexed"
         />
@@ -39,7 +40,9 @@ definePageMeta({
         <BaseAvatar
           src="https://source.unsplash.com/random/"
           size="xl"
-          class="nui-mask nui-mask-diamond"
+          shape="straight"
+          mask="hex"
+          badgeText="BP"
         />
       </div>
     </div>
