@@ -14,7 +14,17 @@ definePageMeta({
     class="flex flex-col gap-12 [&>*]:p-8 [&>:nth-child(odd)]:bg-muted-100 dark:[&>:nth-child(odd)]:bg-muted-900 pb-32"
   >
     <div>
-      <BaseHeading size="xl" weight="medium" class="mb-10">Icons</BaseHeading>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        Base Icons
+      </BaseHeading>
+      <div class="grid grid-cols-12 gap-6">
+        <BaseIcon icon="ic:baseline-check" />
+      </div>
+    </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        SVG Icons
+      </BaseHeading>
       <div class="grid grid-cols-12 gap-6">
         <IconCheck />
         <IconIndeterminate />
