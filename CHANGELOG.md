@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/shuriken-ui/nuxt/compare/v0.2.0...v0.2.1) (2023-04-28)
+
+
+### Bug Fixes
+
+* tooltip text color ([e4f78d0](https://github.com/shuriken-ui/nuxt/commit/e4f78d00e0c6bea16247ef96b7e8f290b6fbefe5))
+
 ## [0.2.0](https://github.com/shuriken-ui/nuxt/compare/v0.1.0...v0.2.0) (2023-04-21)
 
 
