@@ -13,17 +13,17 @@ definePageMeta({
   >
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">Images</BaseHeading>
-      <BaseImage src="https://source.unsplash.com/random/" width="80" />
+      <BaseImage src="https://source.unsplash.com/random/" :width="80" />
     </div>
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
         Images Sizing
       </BaseHeading>
       <div class="grid grid-cols-12">
-        <BaseImage src="https://source.unsplash.com/random/" width="20" />
-        <BaseImage src="https://source.unsplash.com/random/" width="40" />
-        <BaseImage src="https://source.unsplash.com/random/" width="60" />
-        <BaseImage src="https://source.unsplash.com/random/" width="80" />
+        <BaseImage src="https://source.unsplash.com/random/" :width="20" />
+        <BaseImage src="https://source.unsplash.com/random/" :width="40" />
+        <BaseImage src="https://source.unsplash.com/random/" :width="60" />
+        <BaseImage src="https://source.unsplash.com/random/" :width="80" />
       </div>
     </div>
     <div>
@@ -33,22 +33,22 @@ definePageMeta({
       <div class="grid grid-cols-12">
         <BaseImage
           src="https://source.unsplash.com/random/"
-          width="80"
+          :width="80"
           shape="straight"
         />
         <BaseImage
           src="https://source.unsplash.com/random/"
-          width="80"
+          :width="80"
           shape="rounded"
         />
         <BaseImage
           src="https://source.unsplash.com/random/"
-          width="80"
+          :width="80"
           shape="curved"
         />
         <BaseImage
           src="https://source.unsplash.com/random/"
-          width="80"
+          :width="80"
           shape="full"
         />
       </div>
