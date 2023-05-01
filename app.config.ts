@@ -11,6 +11,7 @@ export default defineAppConfig({
       card: 'rounded',
       dropdown: 'rounded',
       iconBox: 'rounded',
+      image: 'straight',
       input: 'rounded',
       message: 'curved',
       pagination: 'rounded',
