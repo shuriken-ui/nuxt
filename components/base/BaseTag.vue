@@ -43,289 +43,75 @@ const props = withDefaults(
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.tag)
 
+const solidColorStyle = computed(() => [
+  `bg-${props.color}-500`,
+  `dark:bg-${props.color}-500`,
+  `text-white`,
+])
+const pastelColorStyle = computed(() => [
+  `bg-${props.color}-100`,
+  `text-${props.color}-500`,
+  `border-${props.color}-100`,
+  `dark:border-${props.color}-500`,
+  `dark:text-${props.color}-500`,
+  `border`,
+  `dark:bg-transparent`,
+])
+const outlineColorStyle = computed(() => [
+  `text-${props.color}-500`,
+  `border-${props.color}-500`,
+  `border`,
+])
+const colorStyle = computed(() => {
+  let colors = {}
+  let styleToUse =
+    props.flavor === 'solid'
+      ? solidColorStyle.value
+      : props.flavor === 'outline'
+      ? outlineColorStyle.value
+      : pastelColorStyle.value
+
+  Reflect.set(colors, props.color, styleToUse)
+  colors.default = [
+    'border-muted-300',
+    'text-muted-600',
+    'dark:bg-muted-800',
+    'dark:border-muted-700',
+    'dark:text-muted-300',
+    'border',
+    'bg-white',
+  ]
+  colors.muted = [
+    'text-muted-500',
+    'bg-muted-200',
+    'dark:bg-muted-700',
+    'dark:text-white',
+  ]
+
+  return colors
+})
+
+const shapeStyle = {
+  straight: '',
+  rounded: 'rounded-md',
+  curved: 'rounded-lg',
+  full: 'rounded-full',
+}
+const shadowStyle = {
+  flat: 'shadow-xl',
+  hover: 'hover:shadow-xl',
+}
+
 const classes = computed(() => {
   const classes = []
 
-  if (props.condensed) {
-    classes.push('py-1 text-[0.65rem]')
-  } else {
-    classes.push('py-1.5 text-xs')
-  }
+  props.condensed
+    ? classes.push('py-1 text-[0.65rem]')
+    : classes.push('py-1.5 text-xs')
 
-  if (shape.value) {
-    classes.push(
-      shape.value === 'straight' && '',
-      shape.value === 'rounded' && 'rounded-md',
-      shape.value === 'curved' && 'rounded-lg',
-      shape.value === 'full' && 'rounded-full'
-    )
-  }
-
-  if (props.shadow) {
-    classes.push(
-      props.shadow === 'flat' && 'shadow-xl',
-      props.shadow === 'hover' && 'hover:shadow-xl'
-    )
-
-    switch (props.color) {
-      case 'default': {
-        classes.push(
-          'border-muted-300 text-muted-600 dark:bg-muted-800 dark:border-muted-700 dark:text-muted-300 border bg-white'
-        )
-        break
-      }
-      case 'muted': {
-        classes.push(
-          'text-muted-500 bg-muted-200 dark:bg-muted-700 dark:text-white'
-        )
-        break
-      }
-      case 'primary': {
-        switch (props.flavor) {
-          case 'solid': {
-            classes.push('bg-primary-500 dark:bg-primary-500 text-white')
-
-            break
-          }
-          case 'pastel': {
-            classes.push(
-              'bg-primary-100 text-primary-500 border-primary-100 dark:border-primary-500 dark:text-primary-500 border dark:bg-transparent'
-            )
-
-            break
-          }
-          case 'outline': {
-            classes.push(' text-primary-500  border-primary-500 border ')
-
-            break
-          }
-        }
-        break
-      }
-      case 'info': {
-        switch (props.flavor) {
-          case 'solid': {
-            classes.push('bg-info-500 dark:bg-info-500   text-white')
-
-            break
-          }
-          case 'pastel': {
-            classes.push(
-              'bg-info-100  text-info-500 border-info-100 dark:border-info-500 dark:text-info-500 border dark:bg-transparent'
-            )
-
-            break
-          }
-          case 'outline': {
-            classes.push('text-info-500  border-info-500 border')
-
-            break
-          }
-        }
-        break
-      }
-      case 'success': {
-        switch (props.flavor) {
-          case 'solid': {
-            classes.push('bg-success-500 dark:bg-success-500  text-white')
-
-            break
-          }
-          case 'pastel': {
-            classes.push(
-              'bg-success-100  text-success-500 border-success-100 dark:border-success-500 dark:text-success-500 border dark:bg-transparent'
-            )
-
-            break
-          }
-          case 'outline': {
-            classes.push('text-success-500  border-success-500 border')
-
-            break
-          }
-        }
-        break
-      }
-      case 'warning': {
-        switch (props.flavor) {
-          case 'solid': {
-            classes.push('bg-warning-500 dark:bg-warning-500  text-white')
-
-            break
-          }
-          case 'pastel': {
-            classes.push(
-              'bg-warning-100  text-warning-500 border-warning-100 dark:border-warning-500 dark:text-warning-500 border dark:bg-transparent'
-            )
-
-            break
-          }
-          case 'outline': {
-            classes.push('text-warning-500  border-warning-500 border')
-
-            break
-          }
-        }
-        break
-      }
-      case 'danger': {
-        switch (props.flavor) {
-          case 'solid': {
-            classes.push('bg-danger-500 dark:bg-danger-500  text-white')
-
-            break
-          }
-          case 'pastel': {
-            classes.push(
-              'bg-danger-100  text-danger-500 border-danger-100 dark:border-danger-500 dark:text-danger-500 border dark:bg-transparent'
-            )
-
-            break
-          }
-          case 'outline': {
-            classes.push('text-danger-500  border-danger-500 border')
-
-            break
-          }
-        }
-        break
-      }
-    }
-  } else {
-    switch (props.color) {
-      case 'default': {
-        classes.push(
-          'border-muted-300 text-muted-600 dark:bg-muted-800 dark:border-muted-700 dark:text-muted-300 border bg-white'
-        )
-        break
-      }
-      case 'muted': {
-        switch (props.flavor) {
-          case 'solid': {
-            classes.push(
-              'text-muted-500 bg-muted-200 dark:bg-muted-700 dark:text-white'
-            )
-          }
-          case 'pastel': {
-            classes.push(
-              'text-muted-500 bg-muted-100 dark:bg-muted-800 dark:text-muted-200'
-            )
-          }
-        }
-        break
-      }
-      case 'primary': {
-        switch (props.flavor) {
-          case 'solid': {
-            classes.push('bg-primary-500 dark:bg-primary-500 text-white')
-
-            break
-          }
-          case 'pastel': {
-            classes.push(
-              'bg-primary-100 text-primary-500 border-primary-100 dark:border-primary-500 dark:text-primary-500 border dark:bg-transparent'
-            )
-
-            break
-          }
-          case 'outline': {
-            classes.push('text-primary-500 border-primary-500 border ')
-
-            break
-          }
-        }
-        break
-      }
-      case 'info': {
-        switch (props.flavor) {
-          case 'solid': {
-            classes.push('bg-info-500 dark:bg-info-500 text-white')
-
-            break
-          }
-          case 'pastel': {
-            classes.push(
-              'bg-info-100 text-info-500 border-info-100 dark:border-info-500 dark:text-info-500 border dark:bg-transparent'
-            )
-
-            break
-          }
-          case 'outline': {
-            classes.push('text-info-500 border-info-500 border')
-
-            break
-          }
-        }
-        break
-      }
-      case 'success': {
-        switch (props.flavor) {
-          case 'solid': {
-            classes.push('bg-success-500 dark:bg-success-500  text-white')
-
-            break
-          }
-          case 'pastel': {
-            classes.push(
-              'bg-success-100 text-success-500 border-success-100 dark:border-success-500 dark:text-success-500 border dark:bg-transparent'
-            )
-
-            break
-          }
-          case 'outline': {
-            classes.push('text-success-500  border-success-500 border')
-
-            break
-          }
-        }
-        break
-      }
-      case 'warning': {
-        switch (props.flavor) {
-          case 'solid': {
-            classes.push('bg-warning-500 dark:bg-warning-500 text-white')
-
-            break
-          }
-          case 'pastel': {
-            classes.push(
-              'bg-warning-100  text-warning-500 border-warning-100 dark:border-warning-500 dark:text-warning-500 border dark:bg-transparent'
-            )
-
-            break
-          }
-          case 'outline': {
-            classes.push('text-warning-500  border-warning-500 border')
-
-            break
-          }
-        }
-        break
-      }
-      case 'danger': {
-        switch (props.flavor) {
-          case 'solid': {
-            classes.push('bg-danger-500 dark:bg-danger-500 text-white')
-
-            break
-          }
-          case 'pastel': {
-            classes.push(
-              'bg-danger-100  text-danger-500 border-danger-100 dark:border-danger-500 dark:text-danger-500 border dark:bg-transparent'
-            )
-
-            break
-          }
-          case 'outline': {
-            classes.push('text-danger-500  border-danger-500 border')
-
-            break
-          }
-        }
-        break
-      }
-    }
-  }
+  shape.value && classes.push(shapeStyle[shape.value])
+  props.shadow && classes.push(shadowStyle[props.shadow])
+  classes.push(...colorStyle.value[props.color])
 
   return classes
 })
