@@ -43,35 +43,71 @@ const props = withDefaults(
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.tag)
 
-const solidColorStyle = computed(() => [
-  `bg-${props.color}-500`,
-  `dark:bg-${props.color}-500`,
-  `text-white`,
-])
-const pastelColorStyle = computed(() => [
-  `bg-${props.color}-100`,
-  `text-${props.color}-500`,
-  `border-${props.color}-100`,
-  `dark:border-${props.color}-500`,
-  `dark:text-${props.color}-500`,
-  `border`,
-  `dark:bg-transparent`,
-])
-const outlineColorStyle = computed(() => [
-  `text-${props.color}-500`,
-  `border-${props.color}-500`,
-  `border`,
-])
-const colorStyle = computed(() => {
-  let colors = {}
-  let styleToUse =
-    props.flavor === 'solid'
-      ? solidColorStyle.value
-      : props.flavor === 'outline'
-      ? outlineColorStyle.value
-      : pastelColorStyle.value
+const solidColorVariant = {
+  primary: ['bg-primary-500', 'dark:bg-primary-500', 'text-white'],
+  info: ['bg-info-500', 'dark:bg-info-500', 'text-white'],
+  success: ['bg-success-500', 'dark:bg-success-500', 'text-white'],
+  warning: ['bg-warning-500', 'dark:bg-warning-500', 'text-white'],
+  danger: ['bg-danger-500', 'dark:bg-danger-500', 'text-white'],
+}
+const pasterColorVariant = {
+  primary: [
+    'bg-primary-100',
+    'text-primary-500',
+    'border-primary-100',
+    'dark:border-primary-500',
+    'dark:text-primary-500',
+    'border dark:bg-transparent',
+  ],
+  info: [
+    'bg-info-100',
+    'text-info-500',
+    'border-info-100',
+    'dark:border-info-500',
+    'dark:text-info-500',
+    'border dark:bg-transparent',
+  ],
+  success: [
+    'bg-success-100',
+    'text-success-500',
+    'border-success-100',
+    'dark:border-success-500',
+    'dark:text-success-500',
+    'border dark:bg-transparent',
+  ],
+  warning: [
+    'bg-warning-100',
+    'text-warning-500',
+    'border-warning-100',
+    'dark:border-warning-500',
+    'dark:text-warning-500',
+    'border dark:bg-transparent',
+  ],
+  danger: [
+    'bg-danger-100',
+    'text-danger-500',
+    'border-danger-100',
+    'dark:border-danger-500',
+    'dark:text-danger-500',
+    'border dark:bg-transparent',
+  ],
+}
+const outlineColorVariant = {
+  primary: ['text-primary-500', 'border-primary-500', 'border'],
+  info: ['text-info-500', 'border-info-500', 'border'],
+  success: ['text-success-500', 'border-success-500', 'border'],
+  warning: ['text-warning-500', 'border-warning-500', 'border'],
+  danger: ['text-danger-500', 'border-danger-500', 'border'],
+}
 
-  Reflect.set(colors, props.color, styleToUse)
+const colorStyle = computed(() => {
+  let colors: any =
+    props.flavor === 'solid'
+      ? solidColorVariant
+      : props.flavor === 'outline'
+      ? outlineColorVariant
+      : pasterColorVariant
+
   colors.default = [
     'border-muted-300',
     'text-muted-600',
@@ -111,7 +147,7 @@ const classes = computed(() => {
 
   shape.value && classes.push(shapeStyle[shape.value])
   props.shadow && classes.push(shadowStyle[props.shadow])
-  classes.push(...colorStyle.value[props.color])
+  classes.push(...(colorStyle.value as any)[props.color])
 
   return classes
 })
