@@ -50,7 +50,7 @@ const solidColorVariant = {
   warning: ['bg-warning-500', 'dark:bg-warning-500', 'text-white'],
   danger: ['bg-danger-500', 'dark:bg-danger-500', 'text-white'],
 }
-const pasterColorVariant = {
+const pastelColorVariant = {
   primary: [
     'bg-primary-100',
     'text-primary-500',
@@ -106,7 +106,7 @@ const colorStyle = computed(() => {
       ? solidColorVariant
       : props.flavor === 'outline'
       ? outlineColorVariant
-      : pasterColorVariant
+      : pastelColorVariant
 
   colors.default = [
     'border-muted-300',
@@ -147,7 +147,10 @@ const classes = computed(() => {
 
   shape.value && classes.push(shapeStyle[shape.value])
   props.shadow && classes.push(shadowStyle[props.shadow])
-  classes.push(...(colorStyle.value as any)[props.color])
+
+  if (props.color in colorStyle.value) {
+    classes.push(...colorStyle.value[props.color])
+  }
 
   return classes
 })
