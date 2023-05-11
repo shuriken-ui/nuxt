@@ -114,6 +114,31 @@ const props = withDefaults(
      * You can use this method to implement your own filtering logic or to fetch items from an API.
      */
     filterItems?: (query?: string, items?: any[]) => Promise<any[]> | any[]
+
+    /**
+     * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the label element.
+       */
+      label?: string | string[]
+
+      /**
+       * CSS classes to apply to the input element.
+       */
+      input?: string | string[]
+
+      /**
+       * CSS classes to apply to the icon element.
+       */
+      icon?: string | string[]
+    }
   }>(),
   {
     items: () => [],
@@ -147,6 +172,7 @@ const props = withDefaults(
         return item?.toLowerCase().includes(query.toLowerCase())
       })
     },
+    classes: () => ({}),
   }
 )
 
@@ -243,6 +269,7 @@ function removeItem(item: any) {
     :multiple="props.multiple"
     :disabled="props.disabled"
     class="relative w-full"
+    :class="props.classes?.wrapper"
     as="div"
   >
     <ComboboxLabel
@@ -254,6 +281,9 @@ function removeItem(item: any) {
       :class="[
         props.condensed && 'pb-1 text-xs',
         !props.condensed && 'pb-1 text-[0.825rem]',
+        ...(props.classes?.label && Array.isArray(props.classes.label)
+          ? props.classes.label
+          : [props.classes?.label]),
       ]"
     >
       <slot name="label" v-bind="{ query, filteredItems, pending, items }">
@@ -298,6 +328,9 @@ function removeItem(item: any) {
           shape === 'full' && 'rounded-full',
           props.loading &&
             '!text-transparent placeholder:!text-transparent dark:!text-transparent dark:placeholder:!text-transparent',
+          ...(props.classes?.input && Array.isArray(props.classes.input)
+            ? props.classes.input
+            : [props.classes?.input]),
         ]"
         :display-value="props.multiple ? undefined : props.displayValue"
         :placeholder="props.placeholder"
@@ -327,6 +360,9 @@ function removeItem(item: any) {
             props.condensed &&
             'start-3 -ms-3  -mt-7 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-focus-visible:-ms-3 peer-focus-visible:-mt-7',
           props.condensed ? 'top-1.5' : 'top-2.5',
+          ...(props.classes?.label && Array.isArray(props.classes.label)
+            ? props.classes.label
+            : [props.classes?.label]),
         ]"
       >
         <slot name="label" v-bind="{ query, filteredItems, pending, items }">
@@ -344,7 +380,13 @@ function removeItem(item: any) {
         v-if="props.clearable && value"
         type="button"
         class="text-muted-400 hover:text-muted-700 dark:hover:text-muted-200 absolute end-0 top-0 z-10 flex items-center justify-center transition-colors duration-300"
-        :class="[props.condensed && 'h-8 w-8', !props.condensed && 'h-10 w-10']"
+        :class="[
+          props.condensed && 'h-8 w-8',
+          !props.condensed && 'h-10 w-10',
+          ...(props.classes?.icon && Array.isArray(props.classes.icon)
+            ? props.classes.icon
+            : [props.classes?.icon]),
+        ]"
         @click="clear"
       >
         <Icon :name="clearIcon" class="h-4 w-4" />
