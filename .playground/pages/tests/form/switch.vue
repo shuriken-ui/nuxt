@@ -5,6 +5,8 @@ definePageMeta({
   description: 'SVG icons',
   section: 'form',
 })
+
+const ball = ref(false)
 </script>
 
 <template>
@@ -13,6 +15,12 @@ definePageMeta({
   >
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">Switch</BaseHeading>
+      <div class="flex items-center gap-8" dir="ltr">
+        <BaseThemeSwitch />
+        <BaseThemeToggle />
+        <BaseSwitchBall v-model="ball" />
+        <BaseSwitchThin v-model="ball" />
+      </div>
     </div>
   </div>
 </template>

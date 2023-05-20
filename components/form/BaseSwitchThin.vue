@@ -68,7 +68,7 @@ defineExpose({
         @change="value = !value"
       />
       <span
-        class="border-muted-300 dark:border-muted-600 dark:bg-muted-700 absolute -start-1 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border bg-white shadow transition peer-checked:-translate-y-1/2 peer-checked:translate-x-full"
+        class="border-muted-300 dark:border-muted-600 dark:bg-muted-700 absolute -start-1 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full border bg-white shadow transition peer-checked:-translate-y-1/2 ltr:peer-checked:translate-x-full rtl:peer-checked:-translate-x-full"
       ></span>
       <span
         class="bg-muted-300 peer-focus:outline-muted-300 dark:bg-muted-600 dark:peer-focus:outline-muted-600 block h-4 w-10 rounded-full shadow-inner outline-1 outline-transparent transition-all duration-300 peer-focus:outline-dashed peer-focus:outline-offset-2 peer-focus:ring-0"
