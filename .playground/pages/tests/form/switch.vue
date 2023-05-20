@@ -15,7 +15,7 @@ const ball = ref(false)
   >
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">Switch</BaseHeading>
-      <div class="flex items-center gap-8" dir="ltr">
+      <div class="flex items-center gap-8" dir="rtl">
         <BaseThemeSwitch />
         <BaseThemeToggle />
         <BaseSwitchBall v-model="ball" />

@@ -65,8 +65,8 @@ const isDark = computed({
         class="pointer-events-none absolute start-1/2 top-1/2 block h-5 w-5 text-yellow-400 transition-all duration-300"
         :class="[
           !isDark
-            ? '-translate-y-1/2 opacity-100 ltr:translate-x-[-50%] rtl:translate-x-[50%]'
-            : 'translate-y-[-150%] opacity-0 ltr:translate-x-[-50%] rtl:translate-x-[50%]',
+            ? '-translate-y-1/2 translate-x-[-50%] opacity-100 rtl:translate-x-[50%]'
+            : 'translate-x-[-50%] translate-y-[-150%] opacity-0 rtl:translate-x-[50%]',
         ]"
       />
 
@@ -74,8 +74,8 @@ const isDark = computed({
         class="pointer-events-none absolute start-1/2 top-1/2 block h-5 w-5 text-yellow-400 transition-all duration-300"
         :class="[
           !isDark
-            ? 'translate-y-[-150%] opacity-0 ltr:translate-x-[-45%] rtl:translate-x-[45%]'
-            : '-translate-y-1/2 opacity-100 ltr:translate-x-[-45%] rtl:translate-x-[45%]',
+            ? 'translate-x-[-45%] translate-y-[-150%] opacity-0 rtl:translate-x-[45%]'
+            : '-translate-y-1/2 translate-x-[-45%] opacity-100 rtl:translate-x-[45%]',
         ]"
       />
     </span>
