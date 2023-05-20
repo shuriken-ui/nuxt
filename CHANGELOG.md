@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.7](https://github.com/shuriken-ui/nuxt/compare/v0.2.6...v0.2.7) (2023-05-20)
+
+
+### Features
+
+* add theme switch component, fix switch and theme toggle rtl mode ([6cce995](https://github.com/shuriken-ui/nuxt/commit/6cce9955ac42005c9f8bfa730124bf53f9722b64))
+
 ### [0.2.6](https://github.com/shuriken-ui/nuxt/compare/v0.2.5...v0.2.6) (2023-05-11)
 
 ### [0.2.5](https://github.com/shuriken-ui/nuxt/compare/v0.2.4...v0.2.5) (2023-05-11)
