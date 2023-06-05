@@ -49,6 +49,12 @@ definePageMeta({
         <div
           class="nui-bg-50 aspect-1 flex flex-col items-center justify-center"
         >
+          <span class="nui-text-950">nui-bg-50</span>
+          <small class="nui-text-950">nui-text-950</small>
+        </div>
+        <div
+          class="nui-bg-50 aspect-1 flex flex-col items-center justify-center"
+        >
           <span class="nui-text-900">nui-bg-50</span>
           <small class="nui-text-900">nui-text-900</small>
         </div>
@@ -105,6 +111,12 @@ definePageMeta({
         >
           <span class="nui-text-100">nui-bg-900</span>
           <small class="nui-text-100">nui-text-100</small>
+        </div>
+        <div
+          class="nui-bg-950 aspect-1 flex flex-col items-center justify-center"
+        >
+          <span class="nui-text-50">nui-bg-950</span>
+          <small class="nui-text-50">nui-text-50</small>
         </div>
         <div
           class="nui-bg-black aspect-1 flex flex-col items-center justify-center"

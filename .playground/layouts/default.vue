@@ -25,7 +25,7 @@ const routes = computed(() =>
   <div>
     <div class="flex min-h-screen">
       <div class="w-2/12">
-        <nav class="fixed w-2/12 max-h-screen overflow-y-scroll slimscroll">
+        <nav class="fixed w-2/12 max-h-screen overflow-y-scroll nui-slimscroll">
           <NuxtLink to="/" class="inline-block px-2 py-4">
             <img alt="Shuriken UI logo" class="h-8" :src="logo" />
           </NuxtLink>
