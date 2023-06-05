@@ -9,6 +9,20 @@ const props = withDefaults(
     flavor?: 'button' | 'context' | 'text'
 
     /**
+     * The color of the button.
+     */
+    buttonColor?:
+      | 'default'
+      | 'primary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'danger'
+      | 'light'
+      | 'muted'
+      | 'none'
+
+    /**
      * The shape of the dropdown.
      */
     shape?: 'straight' | 'rounded' | 'curved' | 'full'
@@ -35,6 +49,7 @@ const props = withDefaults(
   }>(),
   {
     flavor: 'button',
+    buttonColor: 'default',
     shape: undefined,
     orientation: 'start',
     label: '',
@@ -62,7 +77,7 @@ const shape = computed(
         <div>
           <BaseButton
             v-if="props.flavor === 'button'"
-            color="default"
+            :color="props.buttonColor"
             :shape="shape"
             class="!pe-3 !ps-4"
           >
@@ -71,8 +86,13 @@ const shape = computed(
             </slot>
             <Icon
               name="lucide:chevron-down"
-              class="text-muted-400 h-4 w-4 transition-transform duration-300"
-              :class="open && 'rotate-180'"
+              class="h-4 w-4 transition-transform duration-300"
+              :class="[
+                open && 'rotate-180',
+                props.buttonColor === 'default'
+                  ? 'text-muted-400'
+                  : 'text-white',
+              ]"
             />
           </BaseButton>
           <button
@@ -124,7 +144,7 @@ const shape = computed(
               : 'end-0 origin-top-right',
             shape === 'rounded' && 'rounded-md',
             shape === 'curved' && 'rounded-xl',
-            shape === 'full' && 'rounded-full',
+            shape === 'full' && 'rounded-xl',
             props.condensed ? 'w-56' : 'w-72',
           ]"
         >
