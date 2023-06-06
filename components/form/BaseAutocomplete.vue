@@ -416,7 +416,7 @@ function removeItem(item: any) {
     >
       <ComboboxOptions
         as="div"
-        class="slimscroll border-muted-200 dark:border-muted-700 dark:bg-muted-800 absolute z-20 mt-1 max-h-[265px] w-full overflow-auto border bg-white py-1 text-base shadow-lg outline-none sm:text-sm"
+        class="nui-slimscroll border-muted-200 dark:border-muted-700 dark:bg-muted-800 absolute z-20 mt-1 max-h-[265px] w-full overflow-auto border bg-white py-1 text-base shadow-lg outline-none sm:text-sm"
         :class="[
           shape === 'rounded' && 'rounded-lg',
           shape === 'curved' && 'rounded-xl',

@@ -295,7 +295,7 @@ const placeholder = computed(() => {
           leave-to-class="opacity-0"
         >
           <ListboxOptions
-            class="slimscroll peer/list border-muted-200 focus:ring-primary-500/50 dark:border-muted-600 dark:bg-muted-700 absolute z-10 mt-1 max-h-60 w-full overflow-auto border bg-white p-2 text-base shadow-lg focus:outline-none focus:ring-1 sm:text-sm"
+            class="nui-slimscroll peer/list border-muted-200 focus:ring-primary-500/50 dark:border-muted-600 dark:bg-muted-700 absolute z-10 mt-1 max-h-60 w-full overflow-auto border bg-white p-2 text-base shadow-lg focus:outline-none focus:ring-1 sm:text-sm"
             :class="[
               shape === 'rounded' && 'rounded-md',
               shape === 'curved' && 'rounded-xl',
