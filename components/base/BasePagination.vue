@@ -174,7 +174,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
           @click="(e:any) => handleLinkClick(e, 1)"
         >
-          {{ currentPage }}
+          1
         </NuxtLink>
       </li>
 
