@@ -21,30 +21,23 @@ const props = withDefaults(
     imageSize: 'xs',
   }
 )
+
+const sizeStyle = {
+  xs: 'max-w-xs',
+  sm: 'max-w-sm',
+  md: 'max-w-md',
+  lg: 'max-w-lg',
+  xl: 'max-w-xl',
+}
 </script>
 
 <template>
   <div class="flex min-h-[400px] items-center justify-center">
-    <div
-      class="mx-auto w-full text-center"
-      :class="[
-        props.imageSize === 'xs' ? 'max-w-xs' : '',
-        props.imageSize === 'sm' ? 'max-w-sm' : '',
-        props.imageSize === 'md' ? 'max-w-md' : '',
-        props.imageSize === 'lg' ? 'max-w-lg' : '',
-        props.imageSize === 'xl' ? 'max-w-xl' : '',
-      ]"
-    >
+    <div class="mx-auto w-full text-center" :class="sizeStyle[props.imageSize]">
       <div
         v-if="'image' in $slots"
         class="mx-auto"
-        :class="[
-          props.imageSize === 'xs' ? 'max-w-xs' : '',
-          props.imageSize === 'sm' ? 'max-w-sm' : '',
-          props.imageSize === 'md' ? 'max-w-md' : '',
-          props.imageSize === 'lg' ? 'max-w-lg' : '',
-          props.imageSize === 'xl' ? 'max-w-xl' : '',
-        ]"
+        :class="sizeStyle[props.imageSize]"
       >
         <slot name="image"></slot>
       </div>

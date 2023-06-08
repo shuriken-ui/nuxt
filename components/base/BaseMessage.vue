@@ -48,197 +48,83 @@ const shape = computed(
   () => props.shape ?? appConfig.nui.defaultShapes?.message
 )
 
-const icon = computed(() => {
-  if (typeof props.icon === 'string') {
-    return props.icon
-  }
+const iconTypeStyle = {
+  info: 'akar-icons:info-fill',
+  warning: 'ci:warning',
+  danger: 'ph:warning-octagon-fill',
+  success: 'carbon:checkmark-filled',
+  primary: '',
+  muted: '',
+}
+const messageTypeStyle = {
+  primary:
+    'bg-primary-100 dark:bg-primary-500/10 border-primary-200 dark:border-primary-700',
+  info: 'bg-info-100 dark:bg-info-500/10 border-info-200 dark:border-info-700',
+  warning:
+    'bg-warning-100 dark:bg-warning-500/10 border-warning-200 dark:border-warning-700',
+  danger:
+    'bg-danger-100 dark:bg-danger-500/10 border-danger-200 dark:border-danger-700',
+  muted:
+    'bg-muted-100 dark:bg-muted-500/10 border-muted-200 dark:border-muted-700',
+  success:
+    'bg-success-100 dark:bg-success-500/10 border-success-200 dark:border-success-700',
+}
+const buttonTypeStyle = {
+  primary:
+    'dark:text-primary-500 hover:enabled:bg-primary-300/50 focus-visible:bg-primary-300/50 active:enabled:bg-primary-300/20 dark:hover:enabled:bg-primary-500/30 dark:focus-visible:bg-primary-500/30 dark:active:enabled:bg-primary-500/20',
+  info: 'dark:text-info-500 hover:enabled:bg-info-300/50 focus-visible:bg-info-300/50 active:enabled:bg-info-300/20 dark:hover:enabled:bg-info-500/30 dark:focus-visible:bg-info-500/30 dark:active:enabled:bg-info-500/20',
+  warning:
+    'dark:text-warning-500 hover:enabled:bg-warning-300/50 focus-visible:bg-warning-300/50 active:enabled:bg-warning-300/20 dark:hover:enabled:bg-warning-500/30 dark:focus-visible:bg-warning-500/30 dark:active:enabled:bg-warning-500/20',
+  danger:
+    'dark:text-danger-500 hover:enabled:bg-danger-300/50 focus-visible:bg-danger-300/50 active:enabled:bg-danger-300/20 dark:hover:enabled:bg-danger-500/30 dark:focus-visible:bg-danger-500/30 dark:active:enabled:bg-danger-500/20',
+  muted:
+    'dark:text-muted-500 hover:enabled:bg-muted-300/50 focus-visible:bg-muted-300/50 active:enabled:bg-muted-300/20 dark:hover:enabled:bg-muted-500/30 dark:focus-visible:bg-muted-500/30 dark:active:enabled:bg-muted-500/20',
+  success:
+    'dark:text-success-500 hover:enabled:bg-success-300/50 focus-visible:bg-success-300/50 active:enabled:bg-success-300/20 dark:hover:enabled:bg-success-500/30 dark:focus-visible:bg-success-500/30 dark:active:enabled:bg-success-500/20',
+}
+const shapeStyle = {
+  straight: '',
+  rounded: 'rounded-md',
+  curved: 'rounded-lg',
+  full: 'rounded-full',
+}
+const bgTypeStyle = {
+  info: 'bg-info-500',
+  warning: 'bg-warning-500',
+  danger: 'bg-danger-500',
+  success: 'bg-success-500',
+  primary: 'bg-primary-500',
+  muted: 'bg-muted-500',
+}
+const txtTypeStyle = {
+  info: 'dark:bg-info-500',
+  warning: 'dark:bg-warning-500',
+  danger: 'dark:bg-danger-500',
+  success: 'dark:bg-success-500',
+  primary: 'dark:bg-primary-500',
+  muted: 'dark:bg-muted-500',
+}
 
-  switch (props.type) {
-    case 'info': {
-      return 'akar-icons:info-fill'
-    }
-    case 'warning': {
-      return 'ci:warning'
-    }
-    case 'danger': {
-      return 'ph:warning-octagon-fill'
-    }
-    case 'success': {
-      return 'carbon:checkmark-filled'
-    }
-  }
-})
-
-const shapeClass = computed(() => {
-  switch (shape.value) {
-    case 'straight': {
-      return ''
-    }
-    case 'rounded': {
-      return 'rounded-md'
-    }
-    case 'full': {
-      return 'rounded-full'
-    }
-    case 'curved': {
-      return 'rounded-xl'
-    }
-  }
-})
-const messageClasses = computed(() => {
-  switch (props.type) {
-    case 'primary': {
-      return [
-        'bg-primary-100',
-        'dark:bg-primary-500/10',
-        'border-primary-200',
-        'dark:border-primary-700',
-      ]
-    }
-    case 'info': {
-      return [
-        'bg-info-100',
-        'dark:bg-info-500/10',
-        'border-info-200',
-        'dark:border-info-700',
-      ]
-    }
-    case 'warning': {
-      return [
-        'bg-warning-100',
-        'dark:bg-warning-500/10',
-        'border-warning-200',
-        'dark:border-warning-700',
-      ]
-    }
-    case 'danger': {
-      return [
-        'bg-danger-100',
-        'dark:bg-danger-500/10',
-        'border-danger-200',
-        'dark:border-danger-700',
-      ]
-    }
-    case 'muted': {
-      return [
-        'bg-muted-100',
-        'dark:bg-muted-500/10',
-        'border-muted-200',
-        'dark:border-muted-700',
-      ]
-    }
-    case 'success': {
-      return [
-        'bg-success-100',
-        'dark:bg-success-500/10',
-        'border-success-200',
-        'dark:border-success-700',
-      ]
-    }
-  }
-})
-const closeButtonClasses = computed(() => {
-  switch (props.type) {
-    case 'primary': {
-      return [
-        'dark:text-primary-500',
-        'hover:enabled:bg-primary-300/50',
-        'focus-visible:bg-primary-300/50',
-        'active:enabled:bg-primary-300/20',
-        'dark:hover:enabled:bg-primary-500/30',
-        'dark:focus-visible:bg-primary-500/30',
-        'dark:active:enabled:bg-primary-500/20',
-      ]
-    }
-    case 'info': {
-      return [
-        'dark:text-info-500',
-        'hover:enabled:bg-info-300/50',
-        'focus-visible:bg-info-300/50',
-        'active:enabled:bg-info-300/20',
-        'dark:hover:enabled:bg-info-500/30',
-        'dark:focus-visible:bg-info-500/30',
-        'dark:active:enabled:bg-info-500/20',
-      ]
-    }
-    case 'warning': {
-      return [
-        'dark:text-warning-500',
-        'hover:enabled:bg-warning-300/50',
-        'focus-visible:bg-warning-300/50',
-        'active:enabled:bg-warning-300/20',
-        'dark:hover:enabled:bg-warning-500/30',
-        'dark:focus-visible:bg-warning-500/30',
-        'dark:active:bg-warning-500/20',
-      ]
-    }
-    case 'danger': {
-      return [
-        'dark:text-danger-500',
-        'hover:enabled:bg-danger-300/50',
-        'focus-visible:bg-danger-300/50',
-        'active:enabled:bg-danger-300/20',
-        'dark:hover:bg-danger-500/30',
-        'dark:focus-visible:bg-danger-500/30',
-        'dark:active:enabled:bg-danger-500/20',
-      ]
-    }
-    case 'muted': {
-      return [
-        'dark:text-muted-500',
-        'hover:enabled:bg-muted-300/50',
-        'focus-visible:bg-muted-300/50',
-        'active:enabled:bg-muted-300/20',
-        'dark:hover:bg-muted-500/30',
-        'dark:focus-visible:bg-muted-500/30',
-        'dark:active:enabled:bg-muted-500/20',
-      ]
-    }
-    case 'success': {
-      return [
-        'dark:text-success-500',
-        'hover:enabled:bg-success-300/50',
-        'focus-visible:bg-success-300/50',
-        'active:enabled:bg-success-300/20',
-        'dark:hover:enabled:bg-success-500/30',
-        'dark:focus-visible:bg-success-500/30',
-        'dark:active:enabled:bg-success-500/20',
-      ]
-    }
-  }
-})
+const icon = computed(() =>
+  typeof props.icon === 'string' ? props.icon : iconTypeStyle[props.type]
+)
 </script>
 
 <template>
   <div
     class="flex min-h-[3rem] items-center border p-1 pe-2"
-    :class="[shapeClass, ...messageClasses]"
+    :class="[shapeStyle[shape], messageTypeStyle[props.type]]"
   >
     <div
       v-if="props.icon"
       class="flex h-10 w-10 shrink-0 items-center justify-center"
-      :class="[
-        shapeClass,
-        props.type === 'success' && 'bg-success-500',
-        props.type === 'info' && 'bg-info-500',
-        props.type === 'warning' && 'bg-warning-500',
-        props.type === 'danger' && 'bg-danger-500',
-        props.type === 'primary' && 'bg-primary-500',
-        props.type === 'muted' && 'bg-muted-500',
-      ]"
+      :class="[shapeClass, bgTypeStyle[props.type]]"
     >
       <Icon v-if="icon" :name="icon" class="h-5 w-5 text-white" />
     </div>
     <span
       class="text-muted-800 mx-3 block font-sans text-sm"
-      :class="[
-        props.type === 'success' && 'dark:text-success-500',
-        props.type === 'info' && 'dark:text-info-500',
-        props.type === 'warning' && 'dark:text-warning-500',
-        props.type === 'danger' && 'dark:text-danger-500',
-        props.type === 'primary' && 'dark:text-primary-500',
-        props.type === 'muted' && 'dark:text-muted-500',
-      ]"
+      :class="txtTypeStyle[props.type]"
     >
       <slot>{{ props.message }}</slot>
     </span>
@@ -247,7 +133,7 @@ const closeButtonClasses = computed(() => {
       type="button"
       tabindex="0"
       class="nui-focus text-muted-800 me-2 ms-auto flex cursor-pointer items-center justify-center p-1 outline-none"
-      :class="[shapeClass, ...closeButtonClasses]"
+      :class="[shapeStyle[shape], messageTypeStyle[props.type]]"
       @click="emit('close')"
     >
       <slot name="close-button">

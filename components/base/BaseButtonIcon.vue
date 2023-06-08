@@ -68,22 +68,12 @@ const shape = computed(
   () => props.shape ?? appConfig.nui.defaultShapes?.buttonIcon
 )
 
-const shapeClass = computed(() => {
-  switch (shape.value) {
-    case 'rounded': {
-      return 'rounded-md'
-    }
-    case 'curved': {
-      return 'rounded-xl'
-    }
-    case 'full': {
-      return 'rounded-full'
-    }
-    case 'straight': {
-      return ''
-    }
-  }
-})
+const shapeStyle = {
+  straight: '',
+  rounded: 'rounded-md',
+  curved: 'rounded-lg',
+  full: 'rounded-full',
+}
 
 const colorClass = computed(() => {
   return [
@@ -97,18 +87,15 @@ const colorClass = computed(() => {
   ].join(' ') // note the join(' ') here
 })
 
-const sizeClass = computed(() => {
-  if (props.condensed) {
-    return 'h-8 w-8 p-1'
-  }
-  return 'h-10 w-10 p-2'
-})
+const sizeClass = computed(() =>
+  props.condensed ? 'h-8 w-8 p-1' : 'h-10 w-10 p-2'
+)
 
 const iconButtonClasses = computed(() => [
   'disabled:opacity-60 disabled:cursor-not-allowed hover:shadow-none',
   props.loading ? '!text-transparent' : '',
   colorClass.value,
-  shapeClass.value,
+  shapeStyle[shape.value],
   sizeClass.value,
 ])
 

@@ -40,6 +40,12 @@ const appConfig = useAppConfig()
 const shape = computed(
   () => props.shape ?? appConfig.nui.defaultShapes?.progress
 )
+const shapeStyle = {
+  straight: '',
+  rounded: 'rounded-md',
+  curved: 'rounded-lg',
+  full: 'rounded-full',
+}
 
 const value = computed(() => {
   const { value, max } = props
@@ -63,9 +69,7 @@ const value = computed(() => {
       props.size === 'md' && 'h-3',
       props.size === 'lg' && 'h-4',
       props.size === 'xl' && 'h-5',
-      shape === 'rounded' && 'rounded',
-      shape === 'curved' && 'rounded-md',
-      shape === 'full' && 'rounded-full',
+      shapeStyle[shape],
     ]"
   >
     <div
@@ -76,9 +80,7 @@ const value = computed(() => {
         props.color === 'info' && 'bg-info-500',
         props.color === 'warning' && 'bg-warning-500',
         props.color === 'danger' && 'bg-danger-500',
-        shape === 'rounded' && 'rounded',
-        shape === 'curved' && 'rounded-md',
-        shape === 'full' && 'rounded-full',
+        shapeStyle[shape],
         value === null && 'animate-nui-indeterminate w-full',
       ]"
       :style="value !== null ? `width: ${value}%` : ''"

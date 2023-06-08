@@ -19,22 +19,12 @@ const shape = computed(
   () => props.shape ?? appConfig.nui.defaultShapes?.buttonClose
 )
 
-const shapeClass = computed(() => {
-  switch (shape.value) {
-    case 'straight': {
-      return ''
-    }
-    case 'curved': {
-      return 'rounded-xl'
-    }
-    case 'full': {
-      return 'rounded-full'
-    }
-    case 'rounded': {
-      return 'rounded-md'
-    }
-  }
-})
+const shapeStyle = {
+  straight: '',
+  rounded: 'rounded-md',
+  curved: 'rounded-lg',
+  full: 'rounded-full',
+}
 </script>
 
 <template>
@@ -48,7 +38,7 @@ const shapeClass = computed(() => {
         'bg-muted-100 hover:bg-muted-50 dark:bg-muted-700 dark:hover:bg-muted-600 text-muted-700 dark:text-muted-50',
       props.color === 'primary' &&
         'bg-primary-500/10 hover:bg-primary-500/20 text-primary-500',
-      shapeClass,
+      shapeStyle[shape],
     ]"
   >
     <IconClose class="h-4 w-4 fill-current" />

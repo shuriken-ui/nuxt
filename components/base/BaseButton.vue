@@ -64,467 +64,378 @@ const props = withDefaults(
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.button)
 
-const shapeClass = computed(() => {
-  switch (shape.value) {
-    case 'straight': {
-      return ''
-    }
-    case 'curved': {
-      return 'rounded-xl'
-    }
-    case 'full': {
-      return 'rounded-full'
-    }
-    case 'rounded': {
-      return 'rounded'
-    }
-  }
+const solidColorVariant = {
+  info: [
+    'bg-info-500',
+    'dark:bg-info-500',
+    'text-white',
+    'hover:enabled:bg-info-400',
+    'dark:hover:enabled:bg-info-400',
+    'hover:enabled:shadow-lg',
+    'hover:enabled:shadow-info-500/50',
+    'dark:hover:enabled:shadow-info-800/20',
+    'focus-visible:outline-info-400/70',
+    'focus-within:outline-info-400/70',
+    'focus-visible:bg-info-500',
+    'active:enabled:bg-info-500',
+    'dark:focus-visible:outline-info-400/70',
+    'dark:focus-within:outline-info-400/70',
+    'dark:focus-visible:bg-info-500',
+    'dark:active:enabled:bg-info-500',
+  ],
+  success: [
+    'bg-success-500',
+    'dark:bg-success-500',
+    'hover:enabled:bg-success-400',
+    'dark:hover:enabled:bg-success-400',
+    'text-white',
+    'hover:enabled:shadow-lg',
+    'hover:enabled:shadow-success-500/50',
+    'dark:hover:enabled:shadow-success-800/20',
+    'focus-visible:outline-success-400/70',
+    'focus-within:outline-success-400/70',
+    'focus-visible:bg-success-500',
+    'active:enabled:bg-success-500',
+    'dark:focus-visible:outline-success-400/70',
+    'dark:focus-within:outline-success-400/70',
+    'dark:focus-visible:bg-success-500',
+    'dark:active:enabled:bg-success-500',
+  ],
+  warning: [
+    'bg-warning-500',
+    'dark:bg-warning-500',
+    'hover:enabled:bg-warning-400',
+    'dark:hover:enabled:bg-warning-400',
+    'text-white',
+    'hover:enabled:shadow-lg',
+    'hover:enabled:shadow-warning-500/50',
+    'dark:hover:enabled:shadow-warning-800/20',
+    'focus-visible:outline-warning-400/70',
+    'focus-within:outline-warning-400/70',
+    'focus-visible:bg-warning-500',
+    'active:enabled:bg-warning-500',
+    'dark:focus-visible:outline-warning-400/70',
+    'dark:focus-within:outline-warning-400/70',
+    'dark:focus-visible:bg-warning-500',
+    'dark:active:enabled:bg-warning-500',
+  ],
+  danger: [
+    'bg-danger-500',
+    'dark:bg-danger-500',
+    'hover:enabled:bg-danger-400',
+    'dark:hover:enabled:bg-danger-400',
+    'text-white',
+    'hover:enabled:shadow-lg',
+    'hover:enabled:shadow-danger-500/50',
+    'dark:hover:enabled:shadow-danger-800/20',
+    'focus-visible:outline-danger-400/70',
+    'focus-within:outline-danger-400/70',
+    'focus-visible:bg-danger-500',
+    'active:enabled:bg-danger-500',
+    'dark:focus-visible:outline-danger-400/70',
+    'dark:focus-within:outline-danger-400/70',
+    'dark:focus-visible:bg-danger-500',
+    'dark:active:enabled:bg-danger-500',
+  ],
+  primary: [
+    'bg-primary-500',
+    'dark:bg-primary-500',
+    'hover:enabled:bg-primary-400',
+    'dark:hover:enabled:bg-primary-400',
+    'text-white',
+    'hover:enabled:shadow-lg',
+    'hover:enabled:shadow-primary-500/50',
+    'dark:hover:enabled:shadow-primary-800/20',
+    'focus-visible:outline-primary-400/70',
+    'focus-within:outline-primary-400/70',
+    'focus-visible:bg-primary-500',
+    'active:enabled:bg-primary-500',
+    'dark:focus-visible:outline-primary-400/70',
+    'dark:focus-within:outline-primary-400/70',
+    'dark:focus-visible:bg-primary-500',
+    'dark:active:enabled:bg-primary-500',
+  ],
+  light: ['is-button-default'],
+  none: [''],
+}
+const pastelColorVariant = {
+  info: [
+    'bg-info-100',
+    'hover:enabled:bg-info-200',
+    'text-info-500',
+    'border-2',
+    'border-info-100',
+    'dark:border-info-500',
+    'dark:bg-transparent',
+    'dark:text-info-500',
+    'dark:hover:enabled:bg-info-500/10',
+    'focus-visible:outline-info-400/70',
+    'focus-within:outline-info-400/70',
+    'focus-visible:bg-info-200',
+    'active:enabled:bg-info-100',
+    'dark:focus-visible:outline-info-400/70',
+    'dark:focus-within:outline-info-400/70',
+    'dark:focus-visible:bg-info-500/10',
+    'dark:active:enabled:bg-transparent',
+  ],
+  success: [
+    'bg-success-100',
+    'hover:enabled:bg-success-200',
+    'text-success-500',
+    'border-2',
+    'border-success-100',
+    'dark:border-success-500',
+    'dark:bg-transparent',
+    'dark:text-success-500',
+    'dark:hover:enabled:bg-success-500/10',
+    'focus-visible:outline-success-400/70',
+    'focus-within:outline-success-400/70',
+    'focus-visible:bg-success-200',
+    'active:enabled:bg-success-100',
+    'dark:focus-visible:outline-success-400/70',
+    'dark:focus-within:outline-success-400/70',
+    'dark:focus-visible:bg-success-500/10',
+    'dark:active:enabled:bg-transparent',
+  ],
+  warning: [
+    'bg-warning-100',
+    'hover:enabled:bg-warning-200',
+    'text-warning-500',
+    'border-2',
+    'border-warning-100',
+    'dark:border-warning-500',
+    'dark:bg-transparent',
+    'dark:text-warning-500',
+    'dark:hover:enabled:bg-warning-500/10',
+    'focus-visible:outline-warning-400/70',
+    'focus-within:outline-warning-400/70',
+    'focus-visible:bg-warning-200',
+    'active:enabled:bg-warning-100',
+    'dark:focus-visible:outline-warning-400/70',
+    'dark:focus-within:outline-warning-400/70',
+    'dark:focus-visible:bg-warning-500/10',
+    'dark:active:enabled:bg-transparent',
+  ],
+  danger: [
+    'bg-danger-100',
+    'hover:enabled:bg-danger-200',
+    'text-danger-500',
+    'border-2',
+    'border-danger-100',
+    'dark:border-danger-500',
+    'dark:bg-transparent',
+    'dark:text-danger-500',
+    'dark:hover:enabled:bg-danger-500/10',
+    'focus-visible:outline-danger-400/70',
+    'focus-within:outline-danger-400/70',
+    'focus-visible:bg-danger-200',
+    'active:enabled:bg-danger-100',
+    'dark:focus-visible:outline-danger-400/70',
+    'dark:focus-within:outline-danger-400/70',
+    'dark:focus-visible:bg-danger-500/10',
+    'dark:active:enabled:bg-transparent',
+  ],
+  primary: [
+    'bg-primary-100',
+    'hover:enabled:bg-primary-200',
+    'text-primary-500',
+    'border-2',
+    'border-primary-100',
+    'dark:border-primary-500',
+    'dark:bg-transparent',
+    'dark:text-primary-500',
+    'dark:hover:enabled:bg-primary-500/10',
+    'focus-visible:outline-primary-400/70',
+    'focus-within:outline-primary-400/70',
+    'focus-visible:bg-primary-200',
+    'active:enabled:bg-primary-100',
+    'dark:focus-visible:outline-primary-400/70',
+    'dark:focus-within:outline-primary-400/70',
+    'dark:focus-visible:bg-primary-500/10',
+    'dark:active:enabled:bg-transparent',
+  ],
+  light: [
+    'bg-white/10',
+    'hover:enabled:bg-white/20',
+    'text-white',
+    'border-2',
+    'border-white/50',
+    'dark:border-white/50',
+    'dark:bg-transparent',
+    'dark:text-white',
+    'dark:hover:enabled:bg-white/10',
+    'focus-visible:outline-white/70',
+    'focus-within:outline-white/70',
+    'focus-visible:bg-white/20',
+    'active:enabled:bg-white/10',
+    'dark:focus-visible:outline-white/70',
+    'dark:focus-within:outline-white/70',
+    'dark:focus-visible:bg-white/10',
+    'dark:active:enabled:bg-transparent',
+  ],
+  none: [''],
+}
+const outlineColorVariant = {
+  info: [
+    'text-info-500',
+    'hover:enabled:text-white',
+    'border-2',
+    'border-info-500',
+    'hover:enabled:bg-info-500',
+    'focus-within:outline-info-400/70',
+    'focus-visible:outline-info-400/70',
+    'focus-visible:bg-info-500',
+    'focus-visible:text-white',
+    'active:enabled:text-white',
+    'active:enabled:bg-info-400',
+  ],
+  success: [
+    'text-success-500',
+    'hover:enabled:text-white',
+    'border-2',
+    'border-success-500',
+    'hover:enabled:bg-success-500',
+    'focus-within:outline-success-400/70',
+    'focus-visible:outline-success-400/70',
+    'focus-visible:bg-success-500',
+    'focus-visible:text-white',
+    'active:enabled:text-white',
+    'active:enabled:bg-success-400',
+  ],
+  warning: [
+    'text-warning-500',
+    'hover:enabled:text-white',
+    'border-2',
+    'border-warning-500',
+    'hover:enabled:bg-warning-500',
+    'focus-within:outline-warning-400/70',
+    'focus-visible:outline-warning-400/70',
+    'focus-visible:bg-warning-500',
+    'focus-visible:text-white',
+    'active:enabled:text-white',
+    'active:enabled:bg-warning-400',
+  ],
+  danger: [
+    'text-danger-500',
+    'hover:enabled:text-white',
+    'border-2',
+    'border-danger-500',
+    'hover:enabled:bg-danger-500',
+    'focus-within:outline-danger-400/70',
+    'focus-visible:outline-danger-400/70',
+    'focus-visible:bg-danger-500',
+    'focus-visible:text-white',
+    'active:enabled:text-white',
+    'active:enabled:bg-danger-400',
+  ],
+  primary: [
+    'text-primary-500',
+    'hover:enabled:text-white',
+    'border-2',
+    'border-primary-500',
+    'hover:enabled:bg-primary-500',
+    'focus-within:outline-primary-400/70',
+    'focus-visible:outline-primary-400/70',
+    'focus-visible:bg-primary-500',
+    'focus-visible:text-white',
+    'active:enabled:text-white',
+    'active:enabled:bg-primary-400',
+  ],
+  light: [
+    'text-white',
+    'hover:enabled:text-muted-700',
+    'border-2',
+    'border-white',
+    'hover:enabled:bg-white',
+    'focus-within:outline-danger-white/70',
+    'focus-visible:outline-danger-white/70',
+    'focus-visible:bg-white',
+    'focus-visible:text-muted-700',
+    'active:enabled:text-muted-700',
+    'active:enabled:bg-white',
+  ],
+  none: [''],
+}
+
+const shapeStyle = {
+  straight: '',
+  rounded: 'rounded-md',
+  curved: 'rounded-lg',
+  full: 'rounded-full',
+}
+
+const flatShadowStyle = {
+  default: '!shadow-xl !shadow-muted-300/30 dark:!shadow-muted-800/20',
+  primary: '!shadow-xl !shadow-primary-500/30 dark:!shadow-primary-500/20',
+  info: '!shadow-xl !shadow-info-500/30 dark:!shadow-info-500/20',
+  success: '!shadow-xl !shadow-success-500/30 dark:!shadow-success-500/20',
+  warning: '!shadow-xl !shadow-warning-500/30 dark:!shadow-warning-500/20',
+  danger: '!shadow-xl !shadow-danger-500/30 dark:!shadow-danger-500/20',
+  light: '',
+  muted: '',
+  none: '',
+}
+const hoverShadowStyle = {
+  default:
+    'hover:!shadow-xl hover:!shadow-muted-300/30 dark:hover:!shadow-muted-800/20',
+  primary:
+    'hover:!shadow-xl hover:!shadow-primary-500/30 dark:hover:!shadow-primary-500/20',
+  info: 'hover:!shadow-xl hover:!shadow-info-500/30 dark:hover:!shadow-info-500/20',
+  success:
+    'hover:!shadow-xl hover:!shadow-success-500/30 dark:hover:!shadow-success-500/20',
+  warning:
+    'hover:!shadow-xl hover:!shadow-warning-500/30 dark:hover:!shadow-warning-500/20',
+  danger:
+    'hover:!shadow-xl hover:!shadow-danger-500/30 dark:hover:!shadow-danger-500/20',
+  light: '',
+  muted: '',
+  none: '',
+}
+
+const colorStyle = computed(() => {
+  let colors: any =
+    props.flavor === 'solid'
+      ? solidColorVariant
+      : props.flavor === 'outline'
+      ? outlineColorVariant
+      : pastelColorVariant
+
+  colors.default = ['is-button-default']
+  colors.muted = [
+    'border',
+    'text-muted-500',
+    'bg-muted-200',
+    'border-muted-200',
+    'dark:text-white',
+    'dark:bg-muted-700',
+    'dark:border-muted-700',
+    'dark:hover:enabled:bg-muted-600',
+    'dark:focus-visible:bg-muted-600',
+    'hover:enabled:bg-muted-100',
+    'focus-visible:bg-muted-100',
+    'active:enabled:bg-muted-200',
+    'dark:active:enabled:bg-muted-700',
+  ]
+
+  return colors
 })
-const colorClasses = computed(() => {
-  if (props.color === 'default') {
-    return ['is-button-default']
-  }
 
-  if (props.color === 'muted') {
-    return [
-      'border',
-      'text-muted-500',
-      'bg-muted-200',
-      'border-muted-200',
-      'dark:text-white',
-      'dark:bg-muted-700',
-      'dark:border-muted-700',
-      'dark:hover:enabled:bg-muted-600',
-      'dark:focus-visible:bg-muted-600',
-      'hover:enabled:bg-muted-100',
-      'focus-visible:bg-muted-100',
-      'active:enabled:bg-muted-200',
-      'dark:active:enabled:bg-muted-700',
-    ]
-  }
-
-  switch (props.flavor) {
-    case 'solid': {
-      switch (props.color) {
-        case 'info': {
-          return [
-            'bg-info-500',
-            'dark:bg-info-500',
-            'text-white',
-            'hover:enabled:bg-info-400',
-            'dark:hover:enabled:bg-info-400',
-            'hover:enabled:shadow-lg',
-            'hover:enabled:shadow-info-500/50',
-            'dark:hover:enabled:shadow-info-800/20',
-            'focus-visible:outline-info-400/70',
-            'focus-within:outline-info-400/70',
-            'focus-visible:bg-info-500',
-            'active:enabled:bg-info-500',
-            'dark:focus-visible:outline-info-400/70',
-            'dark:focus-within:outline-info-400/70',
-            'dark:focus-visible:bg-info-500',
-            'dark:active:enabled:bg-info-500',
-          ]
-        }
-        case 'success': {
-          return [
-            'bg-success-500',
-            'dark:bg-success-500',
-            'hover:enabled:bg-success-400',
-            'dark:hover:enabled:bg-success-400',
-            'text-white',
-            'hover:enabled:shadow-lg',
-            'hover:enabled:shadow-success-500/50',
-            'dark:hover:enabled:shadow-success-800/20',
-            'focus-visible:outline-success-400/70',
-            'focus-within:outline-success-400/70',
-            'focus-visible:bg-success-500',
-            'active:enabled:bg-success-500',
-            'dark:focus-visible:outline-success-400/70',
-            'dark:focus-within:outline-success-400/70',
-            'dark:focus-visible:bg-success-500',
-            'dark:active:enabled:bg-success-500',
-          ]
-        }
-        case 'warning': {
-          return [
-            'bg-warning-500',
-            'dark:bg-warning-500',
-            'hover:enabled:bg-warning-400',
-            'dark:hover:enabled:bg-warning-400',
-            'text-white',
-            'hover:enabled:shadow-lg',
-            'hover:enabled:shadow-warning-500/50',
-            'dark:hover:enabled:shadow-warning-800/20',
-            'focus-visible:outline-warning-400/70',
-            'focus-within:outline-warning-400/70',
-            'focus-visible:bg-warning-500',
-            'active:enabled:bg-warning-500',
-            'dark:focus-visible:outline-warning-400',
-            'dark:focus-within:outline-warning-400',
-            'dark:focus-visible:bg-warning-500',
-            'dark:active:enabled:bg-warning-500',
-          ]
-        }
-        case 'danger': {
-          return [
-            'bg-danger-500',
-            'dark:bg-danger-500',
-            'hover:enabled:bg-danger-400',
-            'dark:hover:enabled:bg-danger-400',
-            'text-white',
-            'hover:enabled:shadow-lg',
-            'hover:enabled:shadow-danger-500/50',
-            'dark:hover:enabled:shadow-danger-800/20',
-            'focus-visible:outline-danger-400/70',
-            'focus-within:outline-danger-400/70',
-            'focus-visible:bg-danger-500',
-            'active:enabled:bg-danger-500',
-            'dark:focus-visible:outline-danger-400',
-            'dark:focus-within:outline-danger-400',
-            'dark:focus-visible:bg-danger-500',
-            'dark:active:enabled:bg-danger-500',
-          ]
-        }
-        case 'primary': {
-          return [
-            'bg-primary-500',
-            'dark:bg-primary-500',
-            'hover:enabled:bg-primary-400',
-            'dark:hover:enabled:bg-primary-400',
-            'text-white',
-            'hover:enabled:shadow-lg',
-            'hover:enabled:shadow-primary-500/50',
-            'dark:hover:enabled:shadow-primary-800/20',
-            'focus-visible:outline-primary-400/70',
-            'focus-within:outline-primary-400/70',
-            'focus-visible:bg-primary-500',
-            'active:enabled:bg-primary-500',
-            'dark:focus-visible:outline-primary-400',
-            'dark:focus-within:outline-primary-400',
-            'dark:focus-visible:bg-primary-500',
-            'dark:active:enabled:bg-primary-500',
-          ]
-        }
-        case 'light': {
-          return ['is-button-default']
-        }
-        case 'none': {
-          return ['']
-        }
-      }
-
-      break
-    }
-    case 'pastel': {
-      switch (props.color) {
-        case 'info': {
-          return [
-            'bg-info-100',
-            'hover:enabled:bg-info-200',
-            'text-info-500',
-            'border-2',
-            'border-info-100',
-            'dark:border-info-500',
-            'dark:bg-transparent',
-            'dark:text-info-500',
-            'dark:hover:enabled:bg-info-500/10',
-            'focus-visible:outline-info-400/70',
-            'focus-within:outline-info-400/70',
-            'focus-visible:bg-info-200',
-            'active:enabled:bg-info-100',
-            'dark:focus-visible:outline-info-400/70',
-            'dark:focus-within:outline-info-400/70',
-            'dark:focus-visible:bg-info-500/10',
-            'dark:active:enabled:bg-transparent',
-          ]
-        }
-        case 'success': {
-          return [
-            'bg-success-100',
-            'hover:enabled:bg-success-200',
-            'text-success-500',
-            'border-2',
-            'border-success-100',
-            'dark:border-success-500',
-            'dark:bg-transparent',
-            'dark:text-success-500',
-            'dark:hover:enabled:bg-success-500/10',
-            'focus-visible:outline-success-400/70',
-            'focus-within:outline-success-400/70',
-            'focus-visible:bg-success-200',
-            'active:enabled:bg-success-100',
-            'dark:focus-visible:outline-success-400/70',
-            'dark:focus-within:outline-success-400/70',
-            'dark:focus-visible:bg-success-500/10',
-            'dark:active:enabled:bg-transparent',
-          ]
-        }
-        case 'warning': {
-          return [
-            'bg-warning-100',
-            'hover:enabled:bg-warning-200',
-            'text-warning-500',
-            'border-2',
-            'border-warning-100',
-            'dark:border-warning-500',
-            'dark:bg-transparent',
-            'dark:text-warning-500',
-            'dark:hover:enabled:bg-warning-500/10',
-            'focus-visible:outline-warning-400/70',
-            'focus-within:outline-warning-400/70',
-            'focus-visible:bg-warning-200',
-            'active:enabled:bg-warning-100',
-            'dark:focus-visible:outline-warning-400/70',
-            'dark:focus-within:outline-warning-400/70',
-            'dark:focus-visible:bg-warning-500/10',
-            'dark:active:enabled:bg-transparent',
-          ]
-        }
-        case 'danger': {
-          return [
-            'bg-danger-100',
-            'hover:enabled:bg-danger-200',
-            'text-danger-500',
-            'border-2',
-            'border-danger-100',
-            'dark:border-danger-500',
-            'dark:bg-transparent',
-            'dark:text-danger-500',
-            'dark:hover:enabled:bg-danger-500/10',
-            'focus-visible:outline-danger-400/70',
-            'focus-within:outline-danger-400/70',
-            'focus-visible:bg-danger-200',
-            'active:enabled:bg-danger-100',
-            'dark:focus-visible:outline-danger-400/70',
-            'dark:focus-within:outline-danger-400/70',
-            'dark:focus-visible:bg-danger-500/10',
-            'dark:active:enabled:bg-transparent',
-          ]
-        }
-        case 'light': {
-          return [
-            'bg-white/10',
-            'hover:enabled:bg-white/20',
-            'text-white',
-            'border-2',
-            'border-white/50',
-            'dark:border-white/50',
-            'dark:bg-transparent',
-            'dark:text-white',
-            'dark:hover:enabled:bg-white/10',
-            'focus-visible:outline-white/70',
-            'focus-within:outline-white/70',
-            'focus-visible:bg-white/20',
-            'active:enabled:bg-white/10',
-            'dark:focus-visible:outline-white/70',
-            'dark:focus-within:outline-white/70',
-            'dark:focus-visible:bg-white/10',
-            'dark:active:enabled:bg-transparent',
-          ]
-        }
-        case 'primary': {
-          return [
-            'bg-primary-100',
-            'hover:enabled:bg-primary-200',
-            'text-primary-500',
-            'border-2',
-            'border-primary-100',
-            'dark:border-primary-500',
-            'dark:bg-transparent',
-            'dark:text-primary-500',
-            'dark:hover:enabled:bg-primary-500/10',
-            'focus-visible:outline-primary-400/70',
-            'focus-within:outline-primary-400/70',
-            'focus-visible:bg-primary-200',
-            'active:enabled:bg-primary-100',
-            'dark:focus-visible:outline-primary-400/70',
-            'dark:focus-within:outline-primary-400/70',
-            'dark:focus-visible:bg-primary-500/10',
-            'dark:active:enabled:bg-transparent',
-          ]
-        }
-      }
-
-      break
-    }
-    case 'outline': {
-      switch (props.color) {
-        case 'info': {
-          return [
-            'text-info-500',
-            'hover:enabled:text-white',
-            'border-2',
-            'border-info-500',
-            'hover:enabled:bg-info-500',
-            'focus-within:outline-info-400/70',
-            'focus-visible:outline-info-400/70',
-            'focus-visible:bg-info-500',
-            'focus-visible:text-white',
-            'active:enabled:text-white',
-            'active:enabled:bg-info-400',
-          ]
-        }
-        case 'success': {
-          return [
-            'text-success-500',
-            'hover:enabled:text-white',
-            'border-2',
-            'border-success-500',
-            'hover:enabled:bg-success-500',
-            'focus-within:outline-success-400/70',
-            'focus-visible:outline-success-400/70',
-            'focus-visible:bg-success-500',
-            'focus-visible:text-white',
-            'active:enabled:text-white',
-            'active:enabled:bg-success-400',
-          ]
-        }
-        case 'warning': {
-          return [
-            'text-warning-500',
-            'hover:enabled:text-white',
-            'border-2',
-            'border-warning-500',
-            'hover:enabled:bg-warning-500',
-            'focus-within:outline-warning-400/70',
-            'focus-visible:outline-warning-400/70',
-            'focus-visible:bg-warning-500',
-            'focus-visible:text-white',
-            'active:enabled:text-white',
-            'active:enabled:bg-warning-400',
-          ]
-        }
-        case 'danger': {
-          return [
-            'text-danger-500',
-            'hover:enabled:text-white',
-            'border-2',
-            'border-danger-500',
-            'hover:enabled:bg-danger-500',
-            'focus-within:outline-danger-400/70',
-            'focus-visible:outline-danger-400/70',
-            'focus-visible:bg-danger-500',
-            'focus-visible:text-white',
-            'active:enabled:text-white',
-            'active:enabled:bg-danger-400',
-          ]
-        }
-        case 'light': {
-          return [
-            'text-white',
-            'hover:enabled:text-muted-700',
-            'border-2',
-            'border-white',
-            'hover:enabled:bg-white',
-            'focus-within:outline-danger-white/70',
-            'focus-visible:outline-danger-white/70',
-            'focus-visible:bg-white',
-            'focus-visible:text-muted-700',
-            'active:enabled:text-muted-700',
-            'active:enabled:bg-white',
-          ]
-        }
-        case 'primary': {
-          return [
-            'text-primary-500',
-            'hover:enabled:text-white',
-            'border-2',
-            'border-primary-500',
-            'hover:enabled:bg-primary-500',
-            'focus-within:outline-primary-400/70',
-            'focus-visible:outline-primary-400/70',
-            'focus-visible:bg-primary-500',
-            'focus-visible:text-white',
-            'active:enabled:text-white',
-            'active:enabled:bg-primary-400',
-          ]
-        }
-      }
-
-      break
-    }
-    // No default
-  }
-
-  return []
-})
-const shadowClasses = computed(() => {
-  if (props.flavor === 'solid' && props.shadow === 'flat') {
-    switch (props.color) {
-      case 'default': {
-        return ['!shadow-xl !shadow-muted-300/30 dark:!shadow-muted-800/20']
-      }
-      case 'primary': {
-        return ['!shadow-xl !shadow-primary-500/30 dark:!shadow-primary-500/20']
-      }
-      case 'info': {
-        return ['!shadow-xl !shadow-info-500/30 dark:!shadow-info-500/20']
-      }
-      case 'success': {
-        return ['!shadow-xl !shadow-success-500/30 dark:!shadow-success-500/20']
-      }
-      case 'warning': {
-        return ['!shadow-xl !shadow-warning-500/30 dark:!shadow-warning-500/20']
-      }
-      case 'danger': {
-        return ['!shadow-xl !shadow-danger-500/30 dark:!shadow-danger-500/20']
-      }
-      default: {
-        return ['']
-      }
-    }
-  } else if (props.flavor === 'solid' && props.shadow === 'hover') {
-    switch (props.color) {
-      case 'default': {
-        return [
-          'hover:!shadow-xl hover:!shadow-muted-300/30 dark:hover:!shadow-muted-800/20',
-        ]
-      }
-      case 'primary': {
-        return [
-          'hover:!shadow-xl hover:!shadow-primary-500/30 dark:hover:!shadow-primary-500/20',
-        ]
-      }
-      case 'info': {
-        return [
-          'hover:!shadow-xl hover:!shadow-info-500/30 dark:hover:!shadow-info-500/20',
-        ]
-      }
-      case 'success': {
-        return [
-          'hover:!shadow-xl hover:!shadow-success-500/30 dark:hover:!shadow-success-500/20',
-        ]
-      }
-      case 'warning': {
-        return [
-          'hover:!shadow-xl hover:!shadow-warning-500/30 dark:hover:!shadow-warning-500/20',
-        ]
-      }
-      case 'danger': {
-        return [
-          'hover:!shadow-xl hover:!shadow-danger-500/30 dark:hover:!shadow-danger-500/20',
-        ]
-      }
-      default: {
-        return ['']
-      }
-    }
-  }
-})
-const buttonClasses = computed(() => [
+const classes = computed(() => [
   props.condensed ? 'is-button-condensed' : 'is-button',
   props.loading && '!text-transparent',
-  shapeClass.value,
-  ...colorClasses.value,
-  shadowClasses.value,
+  shapeStyle[shape.value],
+  ...colorStyle.value[props.color],
+  props.flavor === 'solid' &&
+    (props.shadow === 'flat'
+      ? flatShadowStyle[props.color]
+      : hoverShadowStyle[props.color]),
 ])
 
 const { attributes, is } = useNinjaButton(props)
 </script>
 
 <template>
-  <component :is="is" v-bind="attributes" :class="buttonClasses">
+  <component :is="is" v-bind="attributes" :class="classes">
     <slot v-if="!props.loading" />
     <BasePlaceload v-else class="h-4 w-12 rounded" />
   </component>

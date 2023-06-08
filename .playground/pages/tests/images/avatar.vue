@@ -15,7 +15,7 @@ definePageMeta({
   >
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
-        BaseAvatar
+        BaseAvatar Shape
       </BaseHeading>
       <div class="grid grid-cols-8 gap-6">
         <div class="flex flex-col items-center">
@@ -58,49 +58,112 @@ definePageMeta({
     </div>
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
-        BaseAvatar
-        <small>xl</small>
+        BaseAvatar Mask
       </BaseHeading>
       <div class="grid grid-cols-8 gap-6">
         <div class="flex flex-col items-center">
-          <BaseAvatar src="https://source.unsplash.com/random/" size="xl" dot />
-          <small>default</small>
-        </div>
-        <div class="flex flex-col items-center">
           <BaseAvatar
             src="https://source.unsplash.com/random/"
-            size="xl"
             shape="straight"
+            mask="hex"
             dot
           />
-          <small>straight</small>
+          <small>hex</small>
         </div>
         <div class="flex flex-col items-center">
           <BaseAvatar
             src="https://source.unsplash.com/random/"
-            size="xl"
-            shape="rounded"
+            shape="straight"
+            mask="hexed"
             dot
           />
-          <small>rounded</small>
+          <small>hexed</small>
         </div>
         <div class="flex flex-col items-center">
           <BaseAvatar
             src="https://source.unsplash.com/random/"
-            size="xl"
-            shape="curved"
+            shape="straight"
+            mask="deca"
             dot
           />
-          <small>curved</small>
+          <small>deca</small>
         </div>
         <div class="flex flex-col items-center">
           <BaseAvatar
             src="https://source.unsplash.com/random/"
-            size="xl"
-            shape="full"
+            shape="straight"
+            mask="blob"
             dot
           />
-          <small>full</small>
+          <small>blob</small>
+        </div>
+        <div class="flex flex-col items-center">
+          <BaseAvatar
+            src="https://source.unsplash.com/random/"
+            shape="straight"
+            mask="diamond"
+            dot
+          />
+          <small>diamond</small>
+        </div>
+      </div>
+    </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        BaseAvatar Sizes
+      </BaseHeading>
+      <div class="grid grid-cols-9">
+        <div class="flex flex-col items-center">
+          <BaseAvatar
+            src="https://source.unsplash.com/random/"
+            size="xxs"
+            dot
+          />
+          <small>xxs</small>
+        </div>
+        <div class="flex flex-col items-center">
+          <BaseAvatar src="https://source.unsplash.com/random/" size="xs" dot />
+          <small>xs</small>
+        </div>
+        <div class="flex flex-col items-center">
+          <BaseAvatar src="https://source.unsplash.com/random/" size="sm" dot />
+          <small>sm</small>
+        </div>
+        <div class="flex flex-col items-center">
+          <BaseAvatar src="https://source.unsplash.com/random/" size="md" dot />
+          <small>md</small>
+        </div>
+        <div class="flex flex-col items-center">
+          <BaseAvatar src="https://source.unsplash.com/random/" size="lg" dot />
+          <small>lg</small>
+        </div>
+        <div class="flex flex-col items-center">
+          <BaseAvatar src="https://source.unsplash.com/random/" size="xl" dot />
+          <small>xl</small>
+        </div>
+        <div class="flex flex-col items-center">
+          <BaseAvatar
+            src="https://source.unsplash.com/random/"
+            size="2xl"
+            dot
+          />
+          <small>2xl</small>
+        </div>
+        <div class="flex flex-col items-center">
+          <BaseAvatar
+            src="https://source.unsplash.com/random/"
+            size="3xl"
+            dot
+          />
+          <small>3xl</small>
+        </div>
+        <div class="flex flex-col items-center">
+          <BaseAvatar
+            src="https://source.unsplash.com/random/"
+            size="4xl"
+            dot
+          />
+          <small>4xl</small>
         </div>
       </div>
     </div>
