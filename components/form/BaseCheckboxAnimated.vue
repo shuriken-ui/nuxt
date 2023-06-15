@@ -95,6 +95,16 @@ const checked = computed(() => {
   return props.value === undefined ? false : value.value.includes(props.value)
 })
 
+const colorStyle = {
+  primary: 'text-primary-500',
+  info: 'text-info-500',
+  success: 'text-success-500',
+  warning: 'text-warning-500',
+  danger: 'text-danger-500',
+  light: 'text-light-100',
+  muted: 'text-muted-400',
+}
+
 const updateCheckbox = () => {
   if (element.value && innerElement.value) {
     if (checked.value) {
@@ -136,7 +146,6 @@ function change() {
 watchEffect(updateCheckbox)
 
 const id = useNinjaId(() => props.id)
-// colors
 </script>
 
 <template>
@@ -161,16 +170,7 @@ const id = useNinjaId(() => props.id)
     <label
       class="peer-disabled:opacity-75"
       :for="id"
-      :class="[
-        props.color === 'primary' && 'text-primary-500',
-        props.color === 'info' && 'text-info-500',
-        props.color === 'success' && 'text-success-500',
-        props.color === 'warning' && 'text-warning-500',
-        props.color === 'danger' && 'text-danger-500',
-        props.color === 'light' && 'text-muted-100',
-        props.color === 'muted' && 'text-muted-400',
-        props.classes?.label,
-      ]"
+      :class="[props.color && colorStyle[props.color], props.classes?.label]"
     >
       <div ref="innerElement"></div>
       <IconCheckCircle />

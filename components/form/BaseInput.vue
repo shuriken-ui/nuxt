@@ -133,6 +133,12 @@ const emits = defineEmits<{
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
+const shapeStyle = {
+  straight: '',
+  rounded: 'rounded',
+  curved: 'rounded-md',
+  full: 'rounded-full',
+}
 
 function looseToNumber(val: any) {
   const n = Number.parseFloat(val)
@@ -168,6 +174,24 @@ const placeholder = computed(() => {
 
   return props.placeholder
 })
+const condensedInputStyle = computed(() =>
+  props.condensed
+    ? props.icon === undefined
+      ? 'h-8 py-1 text-xs leading-4 px-2'
+      : 'h-8 py-1 text-xs leading-4 pe-3 ps-7'
+    : props.icon === undefined
+    ? 'h-10 py-2 text-sm leading-5 px-3'
+    : 'h-10 py-2 text-sm leading-5 pe-4 ps-9'
+)
+const condensedLabelStyle = computed(() =>
+  props.condensed
+    ? props.icon === undefined
+      ? 'start-3 -ms-3 -mt-7 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-focus-visible:-ms-3 peer-focus-visible:-mt-7'
+      : 'start-8 -ms-8 -mt-7 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-focus-visible:-ms-8 peer-focus-visible:-mt-7'
+    : props.icon === undefined
+    ? 'start-3 -ms-3  -mt-8 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-placeholder-shown:text-[0.825rem] peer-focus-visible:-ms-3 peer-focus-visible:-mt-8 peer-focus-visible:text-xs'
+    : 'start-10 -ms-10 -mt-8 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-placeholder-shown:text-[0.825rem] peer-focus-visible:-ms-10 peer-focus-visible:-mt-8 peer-focus-visible:text-xs'
+)
 
 if (process.dev) {
   const slots = useSlots()
@@ -178,8 +202,6 @@ if (process.dev) {
     )
   }
 }
-
-// condensed | shape
 </script>
 
 <template>
@@ -210,14 +232,8 @@ if (process.dev) {
         v-bind="$attrs"
         class="nui-focus border-muted-300 text-muted-600 placeholder:text-muted-300 dark:border-muted-700 dark:bg-muted-900/75 dark:text-muted-200 dark:placeholder:text-muted-500 dark:focus:border-muted-700 peer w-full border bg-white font-sans transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-75"
         :class="[
-          props.condensed && 'h-8 py-1 text-xs leading-4',
-          props.condensed && props.icon !== undefined ? 'pe-3 ps-7' : 'px-2',
-          !props.condensed && 'h-10 py-2 text-sm leading-5',
-          !props.condensed && props.icon !== undefined ? 'pe-4 ps-9' : 'px-3',
-          shape === 'rounded' && 'rounded',
-          shape === 'curved' && 'rounded-xl',
-          shape === 'full' && 'rounded-full',
-          props.colorFocus && 'focus:border-primary-500',
+          condensedInputStyle,
+          shape && shapeStyle[shape],
           props.loading &&
             'text-transparent placeholder:text-transparent dark:placeholder:text-transparent',
           props.labelFloat &&
@@ -245,18 +261,7 @@ if (process.dev) {
           props.loading
             ? 'peer-placeholder-shown:text-transparent'
             : 'peer-placeholder-shown:text-muted-300 dark:peer-placeholder-shown:text-muted-600',
-          props.icon !== undefined &&
-            !props.condensed &&
-            'start-10 -ms-10 -mt-8 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-placeholder-shown:text-[0.825rem] peer-focus-visible:-ms-10 peer-focus-visible:-mt-8 peer-focus-visible:text-xs',
-          props.icon !== undefined &&
-            props.condensed &&
-            'start-8 -ms-8 -mt-7 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-focus-visible:-ms-8 peer-focus-visible:-mt-7',
-          props.icon === undefined &&
-            !props.condensed &&
-            'start-3 -ms-3  -mt-8 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-placeholder-shown:text-[0.825rem] peer-focus-visible:-ms-3 peer-focus-visible:-mt-8 peer-focus-visible:text-xs',
-          props.icon === undefined &&
-            props.condensed &&
-            'start-3 -ms-3  -mt-7 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-focus-visible:-ms-3 peer-focus-visible:-mt-7',
+          condensedLabelStyle,
           props.condensed ? 'top-1.5' : 'top-2.5',
         ]"
       >

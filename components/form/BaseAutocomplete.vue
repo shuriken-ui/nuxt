@@ -298,8 +298,6 @@ function removeItem(item: any) {
     }
   }
 }
-
-// condensed
 </script>
 
 <template>

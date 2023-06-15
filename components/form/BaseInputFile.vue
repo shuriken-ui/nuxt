@@ -122,6 +122,18 @@ const emits = defineEmits<{
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
+const shapeLabelStyle = {
+  straight: '',
+  rounded: 'rounded',
+  curved: 'rounded-xl',
+  full: 'rounded-full',
+}
+const shapeContentStyle = {
+  straight: '',
+  rounded: 'rounded-l',
+  curved: 'rounded-s-xl',
+  full: 'rounded-s-full',
+}
 
 // const value = ref(props.modelValue)
 const inputRef = ref<HTMLInputElement>()
@@ -130,6 +142,15 @@ const value = useVModel(props, 'modelValue', emits)
 const textValue = computed(() => {
   return props.textValue?.(value.value)
 })
+const condensedLabelStyle = computed(() =>
+  props.condensed
+    ? props.icon === undefined
+      ? 'h-8 py-2 text-xs leading-4 gap-1'
+      : 'h-8 py-2 text-xs leading-4 pe-3 ps-[6.5rem]'
+    : props.icon === undefined
+    ? 'h-10 text-[0.825rem] leading-5 gap-2'
+    : 'h-10 text-[0.825rem] leading-5 pe-4 ps-[7.25rem]'
+)
 
 defineExpose({
   /**
@@ -139,8 +160,6 @@ defineExpose({
 })
 
 const id = useNinjaId(() => props.id)
-
-// condensed | shape
 </script>
 
 <template>
@@ -165,15 +184,8 @@ const id = useNinjaId(() => props.id)
         class="nui-focus border-muted-300 text-muted-600 placeholder:text-muted-300 dark:border-muted-700 dark:bg-muted-900/75 dark:text-muted-200 dark:placeholder:text-muted-500 dark:focus:border-muted-700 peer flex w-full cursor-pointer items-center overflow-hidden border bg-white font-sans transition-colors duration-300 focus-within:outline-1 disabled:cursor-not-allowed disabled:opacity-75"
         :for="id"
         :class="[
-          props.condensed && 'h-8 py-2 text-xs leading-4',
-          props.condensed && props.icon !== undefined && 'pe-3 ps-[6.5rem]',
-          props.condensed && props.icon === undefined && 'gap-1',
-          !props.condensed && 'h-10 text-[0.825rem] leading-5',
-          !props.condensed && props.icon !== undefined && 'pe-4 ps-[7.25rem]',
-          !props.condensed && props.icon === undefined && 'gap-2',
-          shape === 'rounded' && 'rounded',
-          shape === 'curved' && 'rounded-xl',
-          shape === 'full' && 'rounded-full',
+          condensedLabelStyle,
+          shape && shapeLabelStyle[shape],
           props.colorFocus && 'focus:border-primary-500',
           props.loading && 'text-transparent placeholder:text-transparent',
           props.error && !props.loading && 'border-danger-500',
@@ -187,9 +199,7 @@ const id = useNinjaId(() => props.id)
           :class="[
             props.condensed && 'h-8 px-2',
             !props.condensed && 'h-10 px-3',
-            shape === 'rounded' && 'rounded-l',
-            shape === 'curved' && 'rounded-s-xl',
-            shape === 'full' && 'rounded-s-full',
+            shape && shapeContentStyle[shape],
             props.error && !props.loading && '!text-danger-500',
             props.error &&
               !props.loading &&

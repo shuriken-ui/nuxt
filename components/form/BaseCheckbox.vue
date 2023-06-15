@@ -102,6 +102,22 @@ const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 const inputRef = ref<HTMLInputElement>()
 const value = useVModel(props, 'modelValue', emits)
 
+const shapeStyle = {
+  straight: '',
+  rounded: 'rounded',
+  curved: 'rounded-md',
+  full: 'rounded-full',
+}
+const colorStyle = {
+  primary: 'text-primary-500',
+  info: 'text-info-500',
+  success: 'text-success-500',
+  warning: 'text-warning-500',
+  danger: 'text-danger-500',
+  light: 'text-light-100',
+  muted: 'text-muted-400',
+}
+
 watchEffect(() => {
   if (inputRef.value) {
     inputRef.value.indeterminate = props.indeterminate ?? false
@@ -116,7 +132,6 @@ defineExpose({
 })
 
 const id = useNinjaId(() => props.id)
-// color | shape
 </script>
 
 <template>
@@ -124,23 +139,13 @@ const id = useNinjaId(() => props.id)
     class="relative inline-flex items-start gap-1"
     :class="[
       props.disabled && 'opacity-50',
-      props.color === 'primary' && 'text-primary-500',
-      props.color === 'info' && 'text-info-500',
-      props.color === 'success' && 'text-success-500',
-      props.color === 'warning' && 'text-warning-500',
-      props.color === 'danger' && 'text-danger-500',
-      props.color === 'light' && 'text-muted-100',
-      props.color === 'muted' && 'text-muted-400',
+      props.color && colorStyle[props.color],
       props.classes?.wrapper,
     ]"
   >
     <div
       class="nui-focus group/nui-checkbox relative flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center overflow-hidden"
-      :class="[
-        shape === 'rounded' && 'rounded',
-        shape === 'curved' && 'rounded-md',
-        shape === 'full' && 'rounded-full',
-      ]"
+      :class="shape && shapeStyle[shape]"
     >
       <input
         :id="id"
@@ -155,11 +160,7 @@ const id = useNinjaId(() => props.id)
       />
       <div
         class="border-muted-400 dark:border-muted-700 dark:bg-muted-700 absolute start-0 top-0 z-0 h-full w-full border-2 bg-white peer-checked:border-current peer-indeterminate:border-current peer-checked:dark:border-current peer-indeterminate:dark:border-current"
-        :class="[
-          shape === 'rounded' && 'rounded',
-          shape === 'curved' && 'rounded-md',
-          shape === 'full' && 'rounded-full',
-        ]"
+        :class="shape && shapeStyle[shape]"
       ></div>
       <IconCheck
         class="pointer-events-none absolute z-10 h-2.5 w-2.5 translate-y-6 fill-current opacity-0 transition duration-300 peer-checked:translate-y-0 peer-checked:opacity-100 peer-indeterminate:!translate-y-6"
