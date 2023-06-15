@@ -15,6 +15,9 @@ const props = withDefaults(
      */
     to?: RouteLocationRaw
 
+    /** Using href instead of to result in a native anchor with no router functionality. */
+    href?: string
+
     /**
      * Whether the button or link is disabled.
      */
@@ -56,6 +59,7 @@ const props = withDefaults(
     color: 'default',
     shape: undefined,
     to: undefined,
+    href: undefined,
     type: undefined,
     rel: '',
     target: '',
@@ -95,7 +99,7 @@ const iconButtonClasses = computed(() => [
   'disabled:opacity-60 disabled:cursor-not-allowed hover:shadow-none',
   props.loading ? '!text-transparent' : '',
   colorClass.value,
-  shapeStyle[shape.value],
+  shape.value && shapeStyle[shape.value],
   sizeClass.value,
 ])
 

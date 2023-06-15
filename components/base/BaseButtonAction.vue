@@ -13,6 +13,9 @@ const props = withDefaults(
      */
     to?: RouteLocationRaw
 
+    /** Using href instead of to result in a native anchor with no router functionality. */
+    href?: string
+
     /**
      * Whether the button is disabled.
      */
@@ -54,6 +57,7 @@ const props = withDefaults(
   {
     shape: undefined,
     to: undefined,
+    href: undefined,
     target: '',
     rel: '',
     color: 'default',
@@ -184,6 +188,7 @@ const colorStyle = {
   ],
   none: [''],
   default: [''],
+  muted: [''],
 }
 
 const colorClass = computed(() =>
@@ -225,7 +230,7 @@ const buttonClasses = computed(() => [
   'disabled:opacity-60 disabled:cursor-not-allowed hover:enabled:shadow-none',
   props.loading && '!text-transparent',
   ...colorClass.value,
-  shapeStyle[shape.value],
+  shape.value && shapeStyle[shape.value],
 ])
 
 const { attributes, is } = useNinjaButton(props)
