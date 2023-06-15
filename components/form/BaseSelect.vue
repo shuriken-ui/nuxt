@@ -118,6 +118,12 @@ const emits = defineEmits<{
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
+const shapeStyle = {
+  straight: '',
+  rounded: 'rounded',
+  curved: 'rounded-xl',
+  full: 'rounded-full',
+}
 
 const selectRef = ref<HTMLSelectElement>()
 const value = useVModel(props, 'modelValue', emits)
@@ -140,6 +146,24 @@ const placeholder = computed(() => {
 
   return props.placeholder
 })
+const condensedSelectStyle = computed(() =>
+  props.condensed
+    ? props.icon === undefined
+      ? 'h-8 py-1 text-xs leading-4 px-2'
+      : 'h-8 py-1 text-xs leading-4 pe-3 ps-7'
+    : props.icon === undefined
+    ? 'h-10 py-2 text-sm leading-5 px-3'
+    : 'h-10 py-2 text-sm leading-5 pe-4 ps-9'
+)
+const condensedLabelStyle = computed(() =>
+  props.condensed
+    ? props.icon === undefined
+      ? 'start-3 peer-focus-visible:-ms-3 peer-focus-visible:-mt-7'
+      : 'start-8 peer-focus-visible:-ms-8 peer-focus-visible:-mt-7'
+    : props.icon === undefined
+    ? 'start-3 peer-focus-visible:-ms-3 peer-focus-visible:-mt-8'
+    : 'start-10 peer-focus-visible:-ms-10 peer-focus-visible:-mt-8'
+)
 </script>
 
 <template>
@@ -171,17 +195,8 @@ const placeholder = computed(() => {
         :readonly="props.readonly"
         class="nui-focus border-muted-300 text-muted-600 placeholder:text-muted-300 focus:border-muted-300 focus:shadow-muted-300/50 dark:border-muted-700 dark:bg-muted-900/75 dark:text-muted-200 dark:placeholder:text-muted-600 dark:focus:border-muted-700 dark:focus:shadow-muted-800/50 peer w-full cursor-pointer appearance-none border bg-white font-sans focus:shadow-lg"
         :class="[
-          props.condensed && 'h-8 py-1 text-xs leading-4',
-          props.condensed && props.icon !== undefined
-            ? 'pe-3 ps-7'
-            : 'px-2 pe-9',
-          !props.condensed && 'h-10 py-2 text-sm leading-5',
-          !props.condensed && props.icon !== undefined
-            ? 'pe-4 ps-9'
-            : 'px-3 pe-6',
-          shape === 'rounded' && 'rounded',
-          shape === 'curved' && 'rounded-xl',
-          shape === 'full' && 'rounded-full',
+          condensedSelectStyle,
+          shape && shapeStyle[shape],
           props.icon !== undefined ? 'pe-4 ps-9' : 'px-3',
           props.loading &&
             '!text-transparent placeholder:!text-transparent dark:!text-transparent dark:placeholder:!text-transparent',
@@ -213,21 +228,7 @@ const placeholder = computed(() => {
           ...(props.classes?.label && Array.isArray(props.classes.label)
             ? props.classes.label
             : [props.classes?.label]),
-          props.icon !== undefined &&
-            !props.condensed &&
-            'start-10 peer-focus-visible:-ms-10 peer-focus-visible:-mt-8',
-          props.icon !== undefined &&
-            props.condensed &&
-            'start-8 peer-focus-visible:-ms-8 peer-focus-visible:-mt-7',
-          props.icon === undefined &&
-            !props.condensed &&
-            'start-3 peer-focus-visible:-ms-3 peer-focus-visible:-mt-8',
-          props.icon === undefined &&
-            props.condensed &&
-            'start-3 peer-focus-visible:-ms-3 peer-focus-visible:-mt-7',
-          props.condensed
-            ? 'top-1.5 text-xs'
-            : 'top-2.5 text-[0.825rem] peer-focus-visible:text-xs',
+          condensedLabelStyle,
         ]"
       >
         <slot name="label">{{ props.label }}</slot>

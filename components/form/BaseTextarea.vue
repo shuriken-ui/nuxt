@@ -147,7 +147,12 @@ const props = withDefaults(defineProps<TextareaProps>(), {
 const emits = defineEmits<TextareaEmits>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
-
+const shapeStyle = {
+  straight: '',
+  rounded: 'rounded',
+  curved: 'rounded-xl',
+  full: 'rounded-full',
+}
 const value = useVModel(props, 'modelValue', (_, val) => {
   if (props.modelModifiers.trim) {
     emits('update:modelValue', typeof val === 'string' ? val.trim() : val)
@@ -212,9 +217,7 @@ const id = useNinjaId(() => props.id)
           props.condensed
             ? 'min-h-[2rem] text-xs'
             : 'min-h-[2.5rem] text-sm leading-[1.6]',
-          shape === 'rounded' && 'rounded',
-          shape === 'curved' && 'rounded-xl',
-          shape === 'full' && 'rounded-full',
+          shape && shapeStyle[shape],
           props.colorFocus &&
             'focus:!border-primary-500 transition-colors duration-300',
           props.loading &&

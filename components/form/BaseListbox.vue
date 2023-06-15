@@ -148,6 +148,15 @@ const placeholder = computed(() => {
 
   return props.placeholder
 })
+const condensedLabelStyle = computed(() =>
+  props.condensed
+    ? props.icon === undefined
+      ? 'start-3 peer-focus/list:-ms-3 peer-focus/list:-mt-7 peer-focus-visible/input:-ms-3 peer-focus-visible/input:-mt-7'
+      : 'start-8 peer-focus/list:-ms-8 peer-focus/list:-mt-7 peer-focus-visible/input:-ms-8 peer-focus-visible/input:-mt-7'
+    : props.icon === undefined
+    ? 'start-3 peer-focus/list:-ms-3 peer-focus/list:-mt-8 peer-focus-visible/input:-ms-3 peer-focus-visible/input:-mt-8'
+    : 'start-10 peer-focus/list:-ms-10 peer-focus/list:-mt-8 peer-focus-visible/input:-ms-10 peer-focus-visible/input:-mt-8'
+)
 </script>
 
 <template>
@@ -395,23 +404,7 @@ const placeholder = computed(() => {
             (props.label && props.labelFloat)
           "
           class="peer-focus-visible/input:text-primary-500 peer-focus/list:text-primary-500 pointer-events-none absolute inline-flex h-5 select-none items-center leading-none text-transparent transition-all duration-300"
-          :class="[
-            props.icon !== undefined &&
-              !props.condensed &&
-              'start-10 peer-focus/list:-ms-10 peer-focus/list:-mt-8 peer-focus-visible/input:-ms-10 peer-focus-visible/input:-mt-8',
-            props.icon !== undefined &&
-              props.condensed &&
-              'start-8 peer-focus/list:-ms-8 peer-focus/list:-mt-7 peer-focus-visible/input:-ms-8 peer-focus-visible/input:-mt-7',
-            props.icon === undefined &&
-              !props.condensed &&
-              'start-3 peer-focus/list:-ms-3 peer-focus/list:-mt-8 peer-focus-visible/input:-ms-3 peer-focus-visible/input:-mt-8',
-            props.icon === undefined &&
-              props.condensed &&
-              'start-3 peer-focus/list:-ms-3 peer-focus/list:-mt-7 peer-focus-visible/input:-ms-3 peer-focus-visible/input:-mt-7',
-            props.condensed
-              ? 'top-1.5 text-xs'
-              : 'top-2.5 text-[0.825rem] peer-focus/list:text-xs peer-focus-visible/input:text-xs',
-          ]"
+          :class="condensedLabelStyle"
         >
           <slot name="label">{{ props.label }}</slot>
         </ListboxLabel>

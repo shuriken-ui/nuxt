@@ -73,6 +73,8 @@ const wrapperProps = computed(() => {
     class: 'nui-focus',
   }
 })
+
+// shape
 </script>
 
 <template>

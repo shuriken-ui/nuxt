@@ -179,14 +179,16 @@ const subtreeState = computed(() =>
   props.children ? treeState?.treeMap.get(props.children) : undefined
 )
 const openMap = ref<Record<number, boolean>>(getDefaultOpenMap(props.children))
-const children = computed(() => subtreeState.value?.tree)
+const _children = computed<TreeViewItemNode[] | undefined>(
+  () => subtreeState.value?.tree
+)
 watch(() => props.children, initChildren)
 
 defineExpose({
   /**
    * The loaded tree items from the `children` prop.
    */
-  tree: children,
+  tree: _children,
   /**
    * Force the component to load the tree from the `children` prop.
    */
@@ -432,10 +434,10 @@ function selectAllNode(node?: TreeViewItemNode) {
 }
 
 function selectAllChildren(tree?: TreeViewItemNode[]) {
-  const _children = tree || children.value
-  if (!_children) return
+  const children = tree || _children.value
+  if (!children) return
 
-  for (const child of _children) {
+  for (const child of children) {
     selectAllNode(child)
   }
 }
@@ -472,10 +474,10 @@ function unselectAllNode(node?: TreeViewItemNode) {
 }
 
 function unselectAllChildren(tree?: TreeViewItemNode[]) {
-  const _children = tree || children.value
-  if (!_children) return
+  const children = tree || _children.value
+  if (!children) return
 
-  for (const child of _children) {
+  for (const child of children) {
     unselectAllNode(child)
   }
 }
@@ -513,10 +515,10 @@ function toggleNodeSelection(node?: TreeViewItemNode, event?: Event) {
 }
 
 function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
-  const _children = tree || children.value
-  if (!_children) return
+  const children = tree || _children.value
+  if (!children) return
 
-  for (const child of _children) {
+  for (const child of children) {
     if ('children' in child) {
       toggleChildrenSelection(getNodeChildren(child), event)
     } else {

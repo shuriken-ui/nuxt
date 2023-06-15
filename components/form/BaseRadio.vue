@@ -82,6 +82,15 @@ const emits = defineEmits<{
 }>()
 const inputRef = ref<HTMLInputElement>()
 const value = useVModel(props, 'modelValue', emits)
+const colorStyle = {
+  primary: 'text-primary-500',
+  info: 'text-info-500',
+  success: 'text-success-500',
+  warning: 'text-warning-500',
+  danger: 'text-danger-500',
+  light: 'text-light-100',
+  muted: 'text-muted-400',
+}
 
 defineExpose({
   /**
@@ -96,16 +105,7 @@ const id = useNinjaId(() => props.id)
 <template>
   <div
     class="relative inline-flex items-start gap-1"
-    :class="[
-      props.color === 'primary' && 'text-primary-500',
-      props.color === 'info' && 'text-info-500',
-      props.color === 'success' && 'text-success-500',
-      props.color === 'warning' && 'text-warning-500',
-      props.color === 'danger' && 'text-danger-500',
-      props.color === 'light' && 'text-muted-100',
-      props.color === 'muted' && 'text-muted-400',
-      props.classes?.wrapper,
-    ]"
+    :class="[props.color && colorStyle[props.color], props.classes?.wrapper]"
   >
     <div
       class="nui-focus group/nui-radio relative flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full"

@@ -64,6 +64,13 @@ const shape = computed(
   () => props.shape ?? appConfig.nui.defaultShapes?.autocompleteItem
 )
 
+const shapeStyle = {
+  straight: '',
+  rounded: 'rounded-md',
+  curved: 'rounded-lg',
+  full: 'rounded-full',
+}
+
 const inputContext = inject('BaseAutocompleteContext', {
   query: '',
 })
@@ -79,9 +86,7 @@ const markedText = useNinjaMark(() => props.value?.text, query, mark)
     class="flex cursor-pointer items-center p-2 transition-colors duration-300"
     :class="[
       props.active ? 'bg-muted-100 dark:bg-muted-700' : '',
-      shape === 'rounded' && 'rounded-md',
-      shape === 'curved' && 'rounded-lg',
-      shape === 'full' && 'rounded-xl',
+      shape && shapeStyle[shape],
     ]"
   >
     <BaseAvatar
