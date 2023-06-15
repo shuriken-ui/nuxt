@@ -59,6 +59,7 @@ export const useNinjaButton = (
 
   const attributes = computed(() => ({
     to: properties.disabled ? undefined : properties.to,
+    href: properties.disabled ? undefined : properties.href,
     disabled: properties.disabled,
     type: type.value,
     rel: relationship.value,
