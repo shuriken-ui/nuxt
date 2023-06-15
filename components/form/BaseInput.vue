@@ -178,6 +178,8 @@ if (process.dev) {
     )
   }
 }
+
+// condensed | shape
 </script>
 
 <template>

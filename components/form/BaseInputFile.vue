@@ -139,6 +139,8 @@ defineExpose({
 })
 
 const id = useNinjaId(() => props.id)
+
+// condensed | shape
 </script>
 
 <template>

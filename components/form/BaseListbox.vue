@@ -148,6 +148,8 @@ const placeholder = computed(() => {
 
   return props.placeholder
 })
+
+// leave-active-class issue
 </script>
 
 <template>

@@ -194,6 +194,44 @@ const pendingFilter = ref(false)
 const pendingDebounce = computed(() => query.value !== debounced.value)
 const pending = computed(() => pendingFilter.value || pendingDebounce.value)
 
+const shapeListStyle = {
+  straight: '',
+  rounded: 'rounded-lg',
+  curved: 'rounded-xl',
+  full: 'rounded-full',
+}
+const shapeInputStyle = {
+  straight: '',
+  rounded: 'rounded',
+  curved: 'rounded-xl',
+  full: 'rounded-full',
+}
+const shapeOptionStyle = {
+  straight: '',
+  rounded: 'rounded-lg',
+  curved: 'rounded-xl',
+  full: 'rounded-2xl',
+}
+
+const condensedInputStyle = computed(() =>
+  props.condensed
+    ? props.icon === undefined
+      ? 'h-8 py-1 text-xs leading-4 px-2'
+      : 'h-8 py-1 text-xs leading-4 pe-3 ps-7'
+    : props.icon === undefined
+    ? 'h-10 py-2 text-sm leading-5 px-3'
+    : 'h-10 py-2 text-sm leading-5 pe-4 ps-9'
+)
+const condensedLabelStyle = computed(() =>
+  props.condensed
+    ? props.icon === undefined
+      ? 'start-3 -ms-3 -mt-7 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-focus-visible:-ms-3 peer-focus-visible:-mt-7'
+      : 'start-8 -ms-8 -mt-7 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-focus-visible:-ms-8 peer-focus-visible:-mt-7'
+    : props.icon === undefined
+    ? 'start-3 -ms-3  -mt-8 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-placeholder-shown:text-[0.825rem] peer-focus-visible:-ms-3 peer-focus-visible:-mt-8 peer-focus-visible:text-xs'
+    : 'start-10 -ms-10 -mt-8 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-placeholder-shown:text-[0.825rem] peer-focus-visible:-ms-10 peer-focus-visible:-mt-8 peer-focus-visible:text-xs'
+)
+
 provide(
   'BaseAutocompleteContext',
   reactive({
@@ -206,7 +244,6 @@ provide(
     removeItem,
   })
 )
-
 defineExpose({
   /**
    * Current selected value.
@@ -261,6 +298,8 @@ function removeItem(item: any) {
     }
   }
 }
+
+// condensed
 </script>
 
 <template>
@@ -299,11 +338,7 @@ function removeItem(item: any) {
         <li v-for="item in value" :key="item.id">
           <div
             class="bg-muted-100 text-muted-400 dark:bg-muted-700 flex items-center py-2 pe-2 ps-3 font-sans text-xs font-medium"
-            :class="[
-              shape === 'rounded' && 'rounded-lg',
-              shape === 'curved' && 'rounded-xl',
-              shape === 'full' && 'rounded-full',
-            ]"
+            :class="shape && shapeListStyle[shape]"
           >
             {{ props.displayValue(item) }}
             <button type="button" @click="removeItem(item)">
@@ -317,15 +352,10 @@ function removeItem(item: any) {
       <ComboboxInput
         class="nui-focus border-muted-300 text-muted-600 placeholder:text-muted-300 focus:border-muted-300 focus:shadow-muted-300/50 dark:border-muted-700 dark:bg-muted-900/75 dark:text-muted-200 dark:placeholder:text-muted-500 dark:focus:border-muted-700 dark:focus:shadow-muted-800/50 peer w-full border bg-white font-sans leading-5 outline-transparent transition-all duration-300 focus:shadow-lg focus:ring-0 disabled:cursor-not-allowed disabled:opacity-75"
         :class="[
-          props.condensed && 'h-8 py-1 text-xs leading-4',
-          props.condensed && props.icon !== undefined ? 'pe-3 ps-7' : 'px-2',
-          !props.condensed && 'h-10 py-2 text-sm leading-5',
-          !props.condensed && props.icon !== undefined ? 'pe-4 ps-9' : 'px-3',
+          condensedInputStyle,
+          shape && shapeInputStyle[shape],
           props.labelFloat &&
             'placeholder:text-transparent dark:placeholder:!text-transparent',
-          shape === 'rounded' && 'rounded',
-          shape === 'curved' && 'rounded-xl',
-          shape === 'full' && 'rounded-full',
           props.loading &&
             '!text-transparent placeholder:!text-transparent dark:!text-transparent dark:placeholder:!text-transparent',
           ...(props.classes?.input && Array.isArray(props.classes.input)
@@ -347,18 +377,7 @@ function removeItem(item: any) {
           props.loading
             ? 'peer-placeholder-shown:!text-transparent dark:peer-placeholder-shown:!text-transparent'
             : 'peer-placeholder-shown:text-muted-300 dark:peer-placeholder-shown:text-muted-600',
-          props.icon !== undefined &&
-            !props.condensed &&
-            'start-10 -ms-10 -mt-8 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-placeholder-shown:text-[0.825rem] peer-focus-visible:-ms-10 peer-focus-visible:-mt-8 peer-focus-visible:text-xs',
-          props.icon !== undefined &&
-            props.condensed &&
-            'start-8 -ms-8 -mt-7 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-focus-visible:-ms-8 peer-focus-visible:-mt-7',
-          props.icon === undefined &&
-            !props.condensed &&
-            'start-3 -ms-3  -mt-8 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-placeholder-shown:text-[0.825rem] peer-focus-visible:-ms-3 peer-focus-visible:-mt-8 peer-focus-visible:text-xs',
-          props.icon === undefined &&
-            props.condensed &&
-            'start-3 -ms-3  -mt-7 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-focus-visible:-ms-3 peer-focus-visible:-mt-7',
+          condensedLabelStyle,
           props.condensed ? 'top-1.5' : 'top-2.5',
           ...(props.classes?.label && Array.isArray(props.classes.label)
             ? props.classes.label
@@ -417,11 +436,7 @@ function removeItem(item: any) {
       <ComboboxOptions
         as="div"
         class="nui-slimscroll border-muted-200 dark:border-muted-700 dark:bg-muted-800 absolute z-20 mt-1 max-h-[265px] w-full overflow-auto border bg-white py-1 text-base shadow-lg outline-none sm:text-sm"
-        :class="[
-          shape === 'rounded' && 'rounded-lg',
-          shape === 'curved' && 'rounded-xl',
-          shape === 'full' && 'rounded-2xl',
-        ]"
+        :class="shape && shapeOptionStyle[shape]"
       >
         <!-- Placeholder -->
         <div

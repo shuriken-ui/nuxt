@@ -82,6 +82,8 @@ onBeforeUnmount(() => {
   document.documentElement.removeEventListener('dragover', onDragover)
   document.documentElement.removeEventListener('drop', onDrop)
 })
+
+// check enter-active-class
 </script>
 
 <template>

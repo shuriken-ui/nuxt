@@ -140,6 +140,7 @@ const placeholder = computed(() => {
 
   return props.placeholder
 })
+// condensed | shape
 </script>
 
 <template>

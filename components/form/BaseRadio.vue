@@ -91,6 +91,7 @@ defineExpose({
 })
 
 const id = useNinjaId(() => props.id)
+// colors
 </script>
 
 <template>

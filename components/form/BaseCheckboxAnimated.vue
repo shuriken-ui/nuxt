@@ -136,6 +136,7 @@ function change() {
 watchEffect(updateCheckbox)
 
 const id = useNinjaId(() => props.id)
+// colors
 </script>
 
 <template>

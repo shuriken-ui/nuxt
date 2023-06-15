@@ -72,6 +72,7 @@ const query = computed(() => inputContext.query)
 const mark = computed(() => props.mark)
 const markedName = useNinjaMark(() => props.value?.name, query, mark)
 const markedText = useNinjaMark(() => props.value?.text, query, mark)
+// shape
 </script>
 
 <template>

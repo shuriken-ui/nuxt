@@ -53,6 +53,8 @@ defineExpose({
    */
   el: inputRef,
 })
+
+// colors
 </script>
 
 <template>
