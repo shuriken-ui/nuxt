@@ -38,7 +38,7 @@ const shapeStyle = {
         'bg-muted-100 hover:bg-muted-50 dark:bg-muted-700 dark:hover:bg-muted-600 text-muted-700 dark:text-muted-50',
       props.color === 'primary' &&
         'bg-primary-500/10 hover:bg-primary-500/20 text-primary-500',
-      shapeStyle[shape],
+      shape && shapeStyle[shape],
     ]"
   >
     <IconClose class="h-4 w-4 fill-current" />

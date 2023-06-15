@@ -196,7 +196,7 @@ const badgeShapeStyle = {
     class="relative inline-flex shrink-0 items-center justify-center outline-none"
     :class="[
       avatarSizeStyle[props.size],
-      avatarShapeStyle[shape],
+      shape && avatarShapeStyle[shape],
       props.mask !== undefined && props.shape === 'straight' && 'nui-mask',
       props.mask === 'hex' && props.shape === 'straight' && 'nui-mask-hex',
       props.mask === 'hexed' && props.shape === 'straight' && 'nui-mask-hexed',
@@ -209,7 +209,7 @@ const badgeShapeStyle = {
   >
     <div
       class="flex h-full w-full items-center justify-center overflow-hidden text-center transition-all duration-300"
-      :class="badgeShapeStyle[shape]"
+      :class="shape && badgeShapeStyle[shape]"
     >
       <slot>
         <img
@@ -257,7 +257,11 @@ const badgeShapeStyle = {
     <span
       v-if="props.dot"
       class="dark:border-muted-800 absolute block rounded-full border border-white"
-      :class="[dotSizeStyle[props.size], dotPosStyle, dotTypeStyle[props.dot]]"
+      :class="[
+        dotSizeStyle[props.size],
+        dotPosStyle,
+        props.dot === true ? dotTypeStyle['primary'] : dotTypeStyle[props.dot],
+      ]"
     ></span>
   </div>
 </template>

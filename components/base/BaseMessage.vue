@@ -113,12 +113,12 @@ const icon = computed(() =>
 <template>
   <div
     class="flex min-h-[3rem] items-center border p-1 pe-2"
-    :class="[shapeStyle[shape], messageTypeStyle[props.type]]"
+    :class="[shape && shapeStyle[shape], messageTypeStyle[props.type]]"
   >
     <div
       v-if="props.icon"
       class="flex h-10 w-10 shrink-0 items-center justify-center"
-      :class="[shapeClass, bgTypeStyle[props.type]]"
+      :class="[bgTypeStyle[props.type]]"
     >
       <Icon v-if="icon" :name="icon" class="h-5 w-5 text-white" />
     </div>
@@ -133,7 +133,7 @@ const icon = computed(() =>
       type="button"
       tabindex="0"
       class="nui-focus text-muted-800 me-2 ms-auto flex cursor-pointer items-center justify-center p-1 outline-none"
-      :class="[shapeStyle[shape], messageTypeStyle[props.type]]"
+      :class="[shape && shapeStyle[shape], messageTypeStyle[props.type]]"
       @click="emit('close')"
     >
       <slot name="close-button">

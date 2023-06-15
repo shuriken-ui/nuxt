@@ -69,7 +69,7 @@ const value = computed(() => {
       props.size === 'md' && 'h-3',
       props.size === 'lg' && 'h-4',
       props.size === 'xl' && 'h-5',
-      shapeStyle[shape],
+      shape && shapeStyle[shape],
     ]"
   >
     <div
@@ -80,7 +80,7 @@ const value = computed(() => {
         props.color === 'info' && 'bg-info-500',
         props.color === 'warning' && 'bg-warning-500',
         props.color === 'danger' && 'bg-danger-500',
-        shapeStyle[shape],
+        shape && shapeStyle[shape],
         value === null && 'animate-nui-indeterminate w-full',
       ]"
       :style="value !== null ? `width: ${value}%` : ''"
