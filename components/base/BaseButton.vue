@@ -9,6 +9,9 @@ const props = withDefaults(
     /** The location to which the button should navigate when clicked. This is only applicable if the button is a link. */
     to?: RouteLocationRaw
 
+    /** Using href instead of to result in a native anchor with no router functionality. */
+    href?: string
+
     /** Whether the button should be disabled. */
     disabled?: boolean
 
@@ -54,6 +57,7 @@ const props = withDefaults(
     shape: undefined,
     type: undefined,
     to: undefined,
+    href: undefined,
     disabled: false,
     shadow: undefined,
     rel: '',
@@ -423,7 +427,7 @@ const colorStyle = computed(() => {
 const classes = computed(() => [
   props.condensed ? 'is-button-condensed' : 'is-button',
   props.loading && '!text-transparent',
-  shapeStyle[shape.value],
+  shape.value && shapeStyle[shape.value],
   ...colorStyle.value[props.color],
   props.flavor === 'solid' &&
     (props.shadow === 'flat'

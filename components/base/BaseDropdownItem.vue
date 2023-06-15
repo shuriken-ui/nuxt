@@ -13,6 +13,9 @@ const props = defineProps<{
    */
   to?: RouteLocationRaw
 
+  /** Using href instead of to result in a native anchor with no router functionality. */
+  href?: string
+
   /**
    * Whether the button is disabled.
    */
