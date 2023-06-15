@@ -54,7 +54,7 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     'vue/define-macros-order': 'error',
     'vue/no-irregular-whitespace': 'error',
-    'vue/no-bare-strings-in-template': 'error',
+    // 'vue/no-bare-strings-in-template': 'error',
     'vue/no-duplicate-attr-inheritance': 'error',
     'vue/no-empty-component-block': 'error',
     'vue/no-ref-object-destructure': 'error',
