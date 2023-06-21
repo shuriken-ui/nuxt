@@ -76,15 +76,26 @@ const curvedStyle = {
 }
 
 const avatarSizeStyle = {
-  xxs: 'h-6 w-6 text-xs',
-  xs: 'h-8 w-8 text-sm',
-  sm: 'h-10 w-10 text-sm',
-  md: 'h-12 w-12 text-sm',
-  lg: 'h-16 w-16 text-sm',
-  xl: 'h-20 w-20 text-base',
-  '2xl': 'h-24 w-24 text-xl',
-  '3xl': 'h-28 w-28 text-2xl',
-  '4xl': 'h-32 w-32 text-3xl',
+  xxs: 'h-6 w-6',
+  xs: 'h-8 w-8',
+  sm: 'h-10 w-10',
+  md: 'h-12 w-12',
+  lg: 'h-16 w-16',
+  xl: 'h-20 w-20',
+  '2xl': 'h-24 w-24',
+  '3xl': 'h-28 w-28',
+  '4xl': 'h-32 w-32',
+}
+const avatarTextStyle = {
+  xxs: 'text-xs',
+  xs: 'text-sm',
+  sm: 'text-sm',
+  md: 'text-sm',
+  lg: 'text-sm',
+  xl: 'text-base',
+  '2xl': 'text-xl',
+  '3xl': 'text-2xl',
+  '4xl': 'text-3xl',
 }
 const avatarRoundStyle = {
   xxs: 'rounded',
@@ -232,7 +243,7 @@ const badgeShapeStyle = {
         <span
           v-if="!props.src"
           class="font-heading text-center font-medium uppercase"
-          :class="[avatarSizeStyle[props.size]]"
+          :class="[avatarTextStyle[props.size]]"
         >
           {{ props.text }}
         </span>
