@@ -74,7 +74,7 @@ const shape = computed(
       :class="props.flavor === 'context' && 'w-9 h-9'"
     >
       <MenuButton as="template">
-        <div>
+        <slot name="button" v-bind="{ open, close }">
           <BaseButton
             v-if="props.flavor === 'button'"
             :color="props.buttonColor"
@@ -125,7 +125,7 @@ const shape = computed(
               :class="open && 'rotate-180'"
             />
           </button>
-        </div>
+        </slot>
       </MenuButton>
 
       <Transition
@@ -137,7 +137,7 @@ const shape = computed(
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="border-muted-200 dark:border-muted-700 dark:bg-muted-800 absolute z-10 mt-2 border bg-white shadow-lg focus:outline-none"
+          class="border-muted-200 dark:border-muted-700 dark:bg-muted-800 absolute z-50 mt-2 border bg-white shadow-lg focus:outline-none"
           :class="[
             props.orientation === 'start'
               ? 'start-0 origin-top-left'
