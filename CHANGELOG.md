@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/shuriken-ui/nuxt/compare/v0.2.9...v0.3.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade nui tailwind + remove embed css assets
+
+### Features
+
+* add button customization to dropdown component ([#13](https://github.com/shuriken-ui/nuxt/issues/13)) ([8b079d3](https://github.com/shuriken-ui/nuxt/commit/8b079d3aca5de7ab046c7acd4c8aff782f7e86ae))
+* allow to pass href to render native anchors on buttons ([#20](https://github.com/shuriken-ui/nuxt/issues/20)) ([89b6c34](https://github.com/shuriken-ui/nuxt/commit/89b6c34ccb4608b1ef4a2f1da70f383c1ff48cb1))
+* **dropdown:** add classes props to allow customization ([8c663ad](https://github.com/shuriken-ui/nuxt/commit/8c663addce7ef29c05fd75270864bc8abebe5e21))
+* upgrade nui tailwind + remove embed css assets ([c340932](https://github.com/shuriken-ui/nuxt/commit/c3409327ce4d207f793dbde191f5a101b247fb5d))
+
+
+### Bug Fixes
+
+* **pagination:** display first page to 1 ([#16](https://github.com/shuriken-ui/nuxt/issues/16)) ([98b23f9](https://github.com/shuriken-ui/nuxt/commit/98b23f9120e06e931292cbc9cebbcd1293f79869))
+
 ### [0.2.9](https://github.com/shuriken-ui/nuxt/compare/v0.2.8...v0.2.9) (2023-05-20)
 
 ### [0.2.8](https://github.com/shuriken-ui/nuxt/compare/v0.2.7...v0.2.8) (2023-05-20)
