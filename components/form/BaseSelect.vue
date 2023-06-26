@@ -193,7 +193,7 @@ const condensedLabelStyle = computed(() =>
         v-bind="$attrs"
         :disabled="props.disabled"
         :readonly="props.readonly"
-        class="nui-focus border-muted-300 text-muted-600 placeholder:text-muted-300 focus:border-muted-300 focus:shadow-muted-300/50 dark:border-muted-700 dark:bg-muted-900/75 dark:text-muted-200 dark:placeholder:text-muted-600 dark:focus:border-muted-700 dark:focus:shadow-muted-800/50 peer w-full cursor-pointer appearance-none border bg-white font-sans focus:shadow-lg"
+        class="nui-focus border-muted-300 text-muted-600 placeholder:text-muted-300 focus:border-muted-300 focus:shadow-muted-300/50 dark:border-muted-700 dark:bg-muted-900/75 dark:text-muted-200 dark:placeholder:text-muted-600 dark:focus:border-muted-700 dark:focus:shadow-muted-800/50 peer w-full cursor-pointer appearance-none text-ellipsis border bg-white pe-8 font-sans focus:shadow-lg"
         :class="[
           condensedSelectStyle,
           shape && shapeStyle[shape],
