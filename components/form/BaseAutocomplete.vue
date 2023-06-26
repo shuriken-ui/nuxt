@@ -475,7 +475,7 @@ function removeItem(item: any) {
           </div>
           <ComboboxOption
             v-for="item in filteredItems"
-            v-slot="{ selected }"
+            v-slot="{ active, selected }"
             :key="item.name"
             class="px-2 py-1"
             as="div"
@@ -489,6 +489,7 @@ function removeItem(item: any) {
                 pending,
                 items,
                 item,
+                active,
                 selected,
               }"
             >
@@ -501,6 +502,7 @@ function removeItem(item: any) {
                         name: props.displayValue(item),
                       }
                 "
+                :active="active"
                 :selected="selected"
               />
             </slot>
