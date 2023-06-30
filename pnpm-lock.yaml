@@ -18,8 +18,8 @@ dependencies:
     specifier: ^6.8.0
     version: 6.8.0(ts-node@10.9.1)
   '@shuriken-ui/tailwind':
-    specifier: ^0.1.0
-    version: 0.1.0(ts-node@10.9.1)
+    specifier: ^0.1.1
+    version: 0.1.1(ts-node@10.9.1)
   '@vueuse/nuxt':
     specifier: ^10.2.0
     version: 10.2.0(nuxt@3.5.3)
@@ -1498,8 +1498,8 @@ packages:
       picomatch: 2.3.1
       rollup: 3.25.1
 
-  /@shuriken-ui/tailwind@0.1.0(ts-node@10.9.1):
-    resolution: {integrity: sha512-9jJWmUqZfzYJyypGxvMDzQtG32pYdpz9tj4CviMB+5+4PEde3Rrom1aAuCMxWJ+ckyJnqJGDl6bRrLKHTXpmoQ==}
+  /@shuriken-ui/tailwind@0.1.1(ts-node@10.9.1):
+    resolution: {integrity: sha512-ktZntkLZT/2yZ2PXQ4So7ipwzE5q3DLkv2OM9NrTICeYA+z2wGkFuyWhS1nB2M1HE2QEQgg9hhtbcF8pqsYk8w==}
     dependencies:
       '@tailwindcss/aspect-ratio': 0.4.2(tailwindcss@3.3.2)
       '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.3.2)
