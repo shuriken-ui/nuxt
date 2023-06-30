@@ -186,9 +186,21 @@ const colorStyle = {
     'dark:focus-visible:bg-primary-500',
     'dark:active:enabled:bg-primary-500',
   ],
-  none: [''],
-  default: [''],
-  muted: [''],
+  none: [],
+  default: [],
+  muted: [
+    'text-muted-500',
+    'bg-muted-200',
+    'border-muted-200',
+    'dark:text-white',
+    'dark:bg-muted-700/40',
+    'dark:border-muted-700/40',
+    'dark:hover:enabled:bg-muted-700/60',
+    'hover:enabled:bg-muted-100',
+    'dark:active:enabled:border-muted-800',
+    'dark:active:enabled:bg-muted-800',
+    'active:enabled:bg-muted-200/50',
+  ],
 }
 
 const colorClass = computed(() =>
