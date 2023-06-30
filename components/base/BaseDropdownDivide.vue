@@ -1,3 +1,3 @@
 <template>
-  <div class="nui-dropdown-divide"></div>
+  <div class="nui-dropdown-divider"></div>
 </template>
