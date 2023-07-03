@@ -44,14 +44,14 @@ export const useNinjaButton = (
   })
   const relationship = computed(() => {
     if (!external.value) {
-      return
+      return properties.rel
     }
 
     return properties.rel ?? externalDefaultRelationship
   })
   const target = computed(() => {
     if (!external.value) {
-      return
+      return properties.target
     }
 
     return properties.target ?? externalDefaultTarget
