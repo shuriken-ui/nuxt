@@ -71,13 +71,16 @@ const shape = computed(
       v-slot="{ open, close }: { open: boolean, close: () => void }"
       as="div"
       class="relative text-left"
-      :class="props.flavor === 'context' && 'w-9 h-9'"
+      :class="{
+        'h-9 w-9': props.flavor === 'context',
+      }"
     >
       <MenuButton as="template">
         <slot name="button" v-bind="{ open, close }">
           <BaseButton
             v-if="props.flavor === 'button'"
             :color="props.buttonColor"
+            :condensed="props.condensed"
             :shape="shape"
             class="!pe-3 !ps-4"
           >
