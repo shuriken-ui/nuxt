@@ -111,7 +111,7 @@ const { attributes, is } = useNinjaButton(props)
     :is="is"
     v-bind="attributes"
     :class="iconButtonClasses"
-    class="nui-focus relative inline-flex items-center justify-center space-x-1 font-sans text-sm font-normal leading-5 no-underline outline-none transition-all duration-300"
+    class="nui-focus nui-button-icon"
   >
     <slot v-if="!props.loading"></slot>
     <BasePlaceload v-else class="h-4 w-4 rounded-md" />

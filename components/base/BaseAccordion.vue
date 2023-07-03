@@ -84,7 +84,7 @@ const toggle = (key: number) => {
 
 <template>
   <BaseFocusLoop
-    class="border-muted-200 dark:border-muted-700 dark:bg-muted-800 block overflow-hidden border bg-white"
+    class="nui-accordion"
     :class="[
       exclusive && 'is-exclusive',
       shape === 'rounded' && 'rounded-md',

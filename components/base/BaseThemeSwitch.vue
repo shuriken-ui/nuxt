@@ -35,9 +35,7 @@ const isDark = computed({
 </script>
 
 <template>
-  <label
-    class="bg-muted-200 dark:bg-muted-700 relative block h-6 w-14 scale-[0.8] rounded-full"
-  >
+  <label class="nui-theme-switch">
     <input
       class="peer absolute start-0 top-0 z-10 h-full w-full cursor-pointer opacity-0"
       type="checkbox"

@@ -204,7 +204,7 @@ const badgeShapeStyle = {
 
 <template>
   <div
-    class="relative inline-flex shrink-0 items-center justify-center outline-none"
+    class="nui-avatar"
     :class="[
       avatarSizeStyle[props.size],
       shape && avatarShapeStyle[shape],

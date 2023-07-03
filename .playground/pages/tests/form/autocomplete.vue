@@ -15,6 +15,7 @@ definePageMeta({
       <BaseHeading size="xl" weight="medium" class="mb-10">
         Autocomplete
       </BaseHeading>
+      <BaseAutoComplete />
     </div>
   </div>
 </template>

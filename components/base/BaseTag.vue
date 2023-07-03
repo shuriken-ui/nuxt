@@ -157,10 +157,7 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <span
-    class="inline-block px-3 font-sans transition-shadow duration-300"
-    :class="classes"
-  >
+  <span class="nui-tag" :class="classes">
     <slot></slot>
   </span>
 </template>

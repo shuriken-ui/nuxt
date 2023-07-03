@@ -31,10 +31,7 @@ const shapeClasses = computed(() => {
 </script>
 
 <template>
-  <div
-    class="prose prose-primary prose-muted dark:prose-invert prose-th:p-4 prose-td:p-4 prose-table:bg-white dark:prose-table:bg-muted-800 prose-table:border prose-table:border-muted-200 dark:prose-table:border-muted-700"
-    :class="[shapeClasses]"
-  >
+  <div class="nui-prose" :class="[shapeClasses]">
     <slot></slot>
   </div>
 </template>

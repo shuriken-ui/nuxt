@@ -28,7 +28,7 @@ const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.card)
 
 <template>
   <div
-    class="border-muted-200 dark:border-muted-700 dark:bg-muted-800 relative w-full border bg-white transition-all duration-300"
+    class="nui-card"
     :class="[
       shape === 'rounded' && 'rounded-md',
       shape === 'curved' && 'rounded-xl',

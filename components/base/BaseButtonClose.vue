@@ -30,7 +30,7 @@ const shapeStyle = {
 <template>
   <button
     type="button"
-    class="flex h-9 w-9 items-center justify-center transition-colors duration-300 disabled:opacity-30"
+    class="nui-button-close"
     :class="[
       props.color === 'default' &&
         'hover:bg-muted-100 dark:hover:bg-muted-700 text-muted-700 dark:text-muted-50',
