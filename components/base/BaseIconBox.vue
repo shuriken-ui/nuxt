@@ -20,6 +20,7 @@ const props = withDefaults(
       | 'warning'
       | 'danger'
       | 'light'
+      | 'muted'
 
     /** The flavor of the box. Can be 'solid', 'outline', or 'pastel'. */
     flavor?: 'solid' | 'outline' | 'pastel'
@@ -55,6 +56,7 @@ const solidColorVariant = {
   danger: 'bg-danger-500 text-white',
   primary: 'bg-primary-500 text-white',
   light: 'text-muted-800 bg-white',
+  muted: 'text-muted-500 bg-white dark:text-muted-100 dark:bg-muted-700',
 }
 const pastelColorVariant = {
   info: 'bg-info-500/10 text-info-500',
@@ -63,6 +65,7 @@ const pastelColorVariant = {
   danger: 'bg-danger-500/10 text-danger-500',
   primary: 'bg-primary-500/10 text-primary-500',
   light: 'text-muted-800 bg-white/10',
+  muted: 'text-muted-400 bg-muted-200 dark:text-muted-500 dark:bg-muted-800',
 }
 const outlineColorVariant = {
   info: 'border-2 border-current text-info-500',
@@ -71,6 +74,7 @@ const outlineColorVariant = {
   danger: 'border-2 border-current text-danger-500',
   primary: 'border-2 border-current text-primary-500',
   light: 'border-2 border-current text-muted-800',
+  muted: 'border-2 border-current text-muted-400 dark:text-muted-600',
 }
 
 const sizeStyle = {
