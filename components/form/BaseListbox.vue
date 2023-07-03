@@ -116,13 +116,17 @@ const props = withDefaults(
     placeholder: '',
     shape: undefined,
     error: false,
-    multipleLabel: (value: any[], labelProperty?: string): string => {
-      if (value.length === 0) {
-        return 'No elements selected'
-      } else if (value.length > 1) {
-        return `${value.length} elements selected`
+    multipleLabel: () => {
+      return (value: any[], labelProperty?: string): string => {
+        if (value.length === 0) {
+          return 'No elements selected'
+        } else if (value.length > 1) {
+          return `${value.length} elements selected`
+        }
+        return labelProperty
+          ? String(value?.[0]?.[labelProperty])
+          : String(value?.[0])
       }
-      return labelProperty ? String(value[0][labelProperty]) : String(value[0])
     },
     multiple: false,
     loading: false,
