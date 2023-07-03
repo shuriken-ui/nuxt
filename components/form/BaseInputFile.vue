@@ -146,10 +146,10 @@ const condensedLabelStyle = computed(() =>
   props.condensed
     ? props.icon === undefined
       ? 'h-8 py-2 text-xs leading-4 gap-1'
-      : 'h-8 py-2 text-xs leading-4 pe-3 ps-[6.5rem]'
+      : 'h-8 py-2 text-xs leading-4 pe-3'
     : props.icon === undefined
     ? 'h-10 text-[0.825rem] leading-5 gap-2'
-    : 'h-10 text-[0.825rem] leading-5 pe-4 ps-[7.25rem]'
+    : 'h-10 text-[0.825rem] leading-5 pe-4'
 )
 
 defineExpose({
@@ -226,7 +226,7 @@ const id = useNinjaId(() => props.id)
         </div>
 
         <div
-          class="inline-flex truncate"
+          class="ms-2 inline-flex truncate"
           :class="
             value?.item?.length ? '' : 'text-muted-300 dark:text-muted-500'
           "
