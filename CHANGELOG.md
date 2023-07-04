@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/shuriken-ui/nuxt/compare/v0.3.0...v0.3.1) (2023-07-04)
+
+
+### Features
+
+* **BaseIconBox:** add muted color ([deb9ffa](https://github.com/shuriken-ui/nuxt/commit/deb9ffac142a88c4e04d165a7d1b9040a11b78b0))
+
+
+### Bug Fixes
+
+* **BaseAutocomplete:** use active slot from ComboboxOptions ([51af625](https://github.com/shuriken-ui/nuxt/commit/51af625b4688f7a942317a42a4506cf325890a20))
+* **BaseDropdown:** pass condensed prop to button ([65eee43](https://github.com/shuriken-ui/nuxt/commit/65eee436d5ac99f756b2cedcb69e0e7b1f6ed4de))
+* **BaseInputFile:** button auto spacing ([83f8835](https://github.com/shuriken-ui/nuxt/commit/83f8835d5fb578bcad6cdbf74a00ef7343d89250))
+* **BaseListbox:** fix multiple label properties access ([9f5c99f](https://github.com/shuriken-ui/nuxt/commit/9f5c99f45005d8b506a03a92ba0a2169776e8355))
+* **BaseSelect:** add padding and text-ellipsis to avoid overflow with chevron ([741518d](https://github.com/shuriken-ui/nuxt/commit/741518d70b0c0adcf03b0e9c943c15475a703357))
+* **buttons:** prevent overriding rel and target props ([26cdffa](https://github.com/shuriken-ui/nuxt/commit/26cdffa0060970d862c1caeb4c07cfb9e26973da))
+
 ## [0.3.0](https://github.com/shuriken-ui/nuxt/compare/v0.2.9...v0.3.0) (2023-06-22)
 
 
