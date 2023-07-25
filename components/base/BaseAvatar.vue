@@ -48,16 +48,30 @@ const props = withDefaults(
       | 'danger'
       | 'pink'
       | 'yellow'
+
+    /**
+     * Whether to display a ring around the image .
+     */
+    ring?:
+      | boolean
+      | 'primary'
+      | 'success'
+      | 'info'
+      | 'warning'
+      | 'danger'
+      | 'pink'
+      | 'yellow'
   }>(),
   {
     src: undefined,
     srcDark: undefined,
     text: '?',
     badgeSrc: undefined,
-    size: 'sm',
+    size: 'md',
     shape: undefined,
     mask: undefined,
     dot: false,
+    ring: false,
   }
 )
 const appConfig = useAppConfig()
@@ -71,6 +85,15 @@ const dotStyle = {
   danger: 'nui-dot-danger',
   pink: 'nui-dot-pink',
   yellow: 'nui-dot-yellow',
+}
+const ringStyle = {
+  success: 'nui-ring-success',
+  primary: 'nui-ring-primary',
+  info: 'nui-ring-info',
+  warning: 'nui-ring-warning',
+  danger: 'nui-ring-danger',
+  pink: 'nui-ring-pink',
+  yellow: 'nui-ring-yellow',
 }
 const sizeStyle = {
   xxs: 'nui-avatar-xxs',
@@ -105,6 +128,10 @@ const maskStyle = {
       sizeStyle[props.size],
       shape && shapeStyle[shape],
       props.mask && `nui-avatar-mask ${maskStyle[props.mask]}`,
+      props.ring &&
+        (props.ring === true
+          ? `nui-avatar-ring ${ringStyle['primary']}`
+          : `nui-avatar-ring ${ringStyle[props.ring]}`),
     ]"
   >
     <div class="nui-avatar-inner">

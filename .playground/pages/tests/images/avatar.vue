@@ -55,7 +55,8 @@ definePageMeta({
           <BaseAvatar
             src="https://source.unsplash.com/random/"
             shape="full"
-            dot
+            dot="warning"
+            ring
           />
           <small>full</small>
         </div>
