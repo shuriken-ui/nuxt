@@ -145,6 +145,10 @@ function looseToNumber(val: any) {
   return Number.isNaN(n) ? val : n
 }
 
+// Only bind v-model to the input if a modelValue is present in the props.
+// This prevents conflicts when using v-bind="field" from vee-validate.
+const vModelOnInput = !!props.modelValue ? 'value' : '_unused'
+
 const value = useVModel(props, 'modelValue', (_, val) => {
   if (props.modelModifiers.number) {
     emits('update:modelValue', looseToNumber(val))
@@ -227,8 +231,9 @@ if (process.dev) {
       <input
         :id="id"
         ref="inputRef"
-        v-model="value"
         :type="props.type"
+        v-bind:[vModelOnInput]="value"
+        @input="value = ($event.target as HTMLInputElement).value"
         v-bind="$attrs"
         class="nui-focus border-muted-300 text-muted-600 placeholder:text-muted-300 dark:border-muted-700 dark:bg-muted-900/75 dark:text-muted-200 dark:placeholder:text-muted-500 dark:focus:border-muted-700 peer w-full border bg-white font-sans transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-75"
         :class="[
