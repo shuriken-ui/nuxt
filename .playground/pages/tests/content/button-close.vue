@@ -19,11 +19,15 @@ const value2 = ref('')
         Button shape
       </BaseHeading>
       <div class="flex gap-2">
-        <BaseButtonClose shape="straight">Button</BaseButtonClose>
-        <BaseButtonClose shape="rounded">Button</BaseButtonClose>
-        <BaseButtonClose shape="smooth">Button</BaseButtonClose>
-        <BaseButtonClose shape="curved">Button</BaseButtonClose>
-        <BaseButtonClose shape="full">Button</BaseButtonClose>
+        <BaseButtonClose color="primary" shape="straight">
+          Button
+        </BaseButtonClose>
+        <BaseButtonClose color="primary" shape="rounded">
+          Button
+        </BaseButtonClose>
+        <BaseButtonClose color="primary" shape="smooth">Button</BaseButtonClose>
+        <BaseButtonClose color="primary" shape="curved">Button</BaseButtonClose>
+        <BaseButtonClose color="primary" shape="full">Button</BaseButtonClose>
       </div>
     </div>
     <div>
