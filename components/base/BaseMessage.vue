@@ -78,7 +78,7 @@ const iconTypeStyle = {
   success: 'carbon:checkmark-filled',
   primary: '',
   muted: '',
-}
+} as any
 
 const icon = computed(() =>
   typeof props.icon === 'string' ? props.icon : iconTypeStyle[props.type]
