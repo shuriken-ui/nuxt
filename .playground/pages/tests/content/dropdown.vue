@@ -13,18 +13,280 @@ definePageMeta({
   >
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
-        Dropdown
+        Dropdown Flavor
       </BaseHeading>
-      <div>
+      <div class="flex gap-2">
+        <BaseDropdown flavor="button" label="Dropdown" orientation="start">
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
         <BaseDropdown flavor="context" label="Dropdown" orientation="start">
           <BaseDropdownItem to="#" title="Profile" text="View your profile" />
           <BaseDropdownItem to="#" title="Projects" text="View your projects" />
           <BaseDropdownItem to="#" title="Team" text="Manage your team" />
-          <BaseDropdownItem
-            to="#"
-            title="Settings"
-            text="Set your preferences"
-          />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown flavor="text" label="Dropdown" orientation="start">
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+      </div>
+    </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        Dropdown Button color
+      </BaseHeading>
+      <div class="grid grid-cols-9 gap-2">
+        <BaseDropdown
+          flavor="button"
+          button-color="default"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          button-color="primary"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          button-color="info"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          button-color="success"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          button-color="warning"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          button-color="danger"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          button-color="light"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          button-color="muted"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          button-color="none"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+      </div>
+    </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        Dropdown Color
+      </BaseHeading>
+      <div class="grid grid-cols-10 gap-2">
+        <BaseDropdown
+          flavor="button"
+          color="white"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          color="white-contrast"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          color="muted"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          color="muted-contrast"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          color="primary"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          color="info"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          color="success"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          color="warning"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          color="danger"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown
+          flavor="button"
+          color="none"
+          label="Dropdown"
+          orientation="start"
+        >
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+      </div>
+    </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        Dropdown Shape
+      </BaseHeading>
+      <div class="flex gap-2">
+        <BaseDropdown shape="straight" label="Dropdown" orientation="start">
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown shape="rounded" label="Dropdown" orientation="start">
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown shape="smooth" label="Dropdown" orientation="start">
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
+        </BaseDropdown>
+        <BaseDropdown shape="curved" label="Dropdown" orientation="start">
+          <BaseDropdownItem to="#" title="Profile" text="View your profile" />
+          <BaseDropdownItem to="#" title="Projects" text="View your projects" />
+          <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+          <BaseDropdownItem to="#" title="Settings" text="Your settings" />
         </BaseDropdown>
       </div>
     </div>
