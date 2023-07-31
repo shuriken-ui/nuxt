@@ -38,22 +38,30 @@ const props = withDefaults(
     /**
      * The shape of the button or link.
      */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
 
     /**
      * The color of the button.
      */
-    color?: 'default' | 'muted' | 'primary'
+    color?:
+      | 'default'
+      | 'muted'
+      | 'primary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'danger'
+      | 'none'
+
+    /**
+     * The size of the button.
+     */
+    size?: 'sm' | 'md' | 'lg'
 
     /**
      * Whether the button or link is in a loading state.
      */
     loading?: boolean
-
-    /**
-     * Whether the button or link is small.
-     */
-    condensed?: boolean
   }>(),
   {
     color: 'default',
@@ -65,6 +73,7 @@ const props = withDefaults(
     target: '',
     loading: false,
     condensed: false,
+    size: 'md',
   }
 )
 const appConfig = useAppConfig()
@@ -74,45 +83,40 @@ const shape = computed(
 
 const shapeStyle = {
   straight: '',
-  rounded: 'rounded-md',
-  curved: 'rounded-lg',
-  full: 'rounded-full',
+  rounded: 'nui-button-rounded',
+  smooth: 'nui-button-smooth',
+  curved: 'nui-button-curved',
+  full: 'nui-button-full',
+}
+const sizeStyle = {
+  sm: 'nui-button-small',
+  md: 'nui-button-medium',
+  lg: 'nui-button-large',
+}
+const colorStyle = {
+  default: 'nui-button-default',
+  muted: 'nui-button-muted',
+  primary: 'nui-button-primary',
+  info: 'nui-button-info',
+  success: 'nui-button-success',
+  warning: 'nui-button-warning',
+  danger: 'nui-button-danger',
+  none: '',
 }
 
-const colorClass = computed(() => {
-  return [
-    props.color === 'muted' &&
-      'text-muted-500 bg-muted-200 dark:text-white dark:bg-muted-700 dark:hover:bg-muted-600 hover:bg-muted-100',
-
-    props.color === 'primary' &&
-      'text-primary-500 border-2 border-primary-500 hover:bg-primary-500/20',
-    props.color === 'default' &&
-      'text-muted-700 bg-white border border-muted-300 dark:text-white dark:bg-muted-700 dark:hover:bg-muted-600 dark:border-muted-600 hover:bg-muted-50',
-  ].join(' ') // note the join(' ') here
-})
-
-const sizeClass = computed(() =>
-  props.condensed ? 'h-8 w-8 p-1' : 'h-10 w-10 p-2'
-)
-
-const iconButtonClasses = computed(() => [
-  'disabled:opacity-60 disabled:cursor-not-allowed hover:shadow-none',
-  props.loading ? '!text-transparent' : '',
-  colorClass.value,
+const classes = computed(() => [
+  'nui-button-icon',
+  props.loading && 'nui-button-loading',
   shape.value && shapeStyle[shape.value],
-  sizeClass.value,
+  sizeStyle[props.size],
+  colorStyle[props.color],
 ])
 
 const { attributes, is } = useNinjaButton(props)
 </script>
 
 <template>
-  <component
-    :is="is"
-    v-bind="attributes"
-    :class="iconButtonClasses"
-    class="nui-focus relative inline-flex items-center justify-center space-x-1 font-sans text-sm font-normal leading-5 no-underline outline-none transition-all duration-300"
-  >
+  <component :is="is" v-bind="attributes" :class="classes">
     <slot v-if="!props.loading"></slot>
     <BasePlaceload v-else class="h-4 w-4 rounded-md" />
   </component>
