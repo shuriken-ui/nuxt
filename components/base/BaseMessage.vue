@@ -4,12 +4,19 @@ const props = withDefaults(
     /**
      * The type of the message.
      */
-    type?: 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'muted'
+    type?:
+      | 'default'
+      | 'muted'
+      | 'primary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'danger'
 
     /**
      * The shape of the message.
      */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
 
     /**
      * The message to display.
@@ -48,6 +55,22 @@ const shape = computed(
   () => props.shape ?? appConfig.nui.defaultShapes?.message
 )
 
+const shapeStyle = {
+  straight: '',
+  rounded: 'nui-message-rounded',
+  smooth: 'nui-message-smooth',
+  curved: 'nui-message-curved',
+  full: 'nui-message-full',
+}
+const typeStyle = {
+  default: 'nui-message-default',
+  muted: 'nui-message-muted',
+  primary: 'nui-message-primary',
+  info: 'nui-message-info',
+  success: 'nui-message-success',
+  warning: 'nui-message-warning',
+  danger: 'nui-message-danger',
+}
 const iconTypeStyle = {
   info: 'akar-icons:info-fill',
   warning: 'ci:warning',
@@ -55,54 +78,6 @@ const iconTypeStyle = {
   success: 'carbon:checkmark-filled',
   primary: '',
   muted: '',
-}
-const messageTypeStyle = {
-  primary:
-    'bg-primary-100 dark:bg-primary-500/10 border-primary-200 dark:border-primary-700',
-  info: 'bg-info-100 dark:bg-info-500/10 border-info-200 dark:border-info-700',
-  warning:
-    'bg-warning-100 dark:bg-warning-500/10 border-warning-200 dark:border-warning-700',
-  danger:
-    'bg-danger-100 dark:bg-danger-500/10 border-danger-200 dark:border-danger-700',
-  muted:
-    'bg-muted-100 dark:bg-muted-500/10 border-muted-200 dark:border-muted-700',
-  success:
-    'bg-success-100 dark:bg-success-500/10 border-success-200 dark:border-success-700',
-}
-const buttonTypeStyle = {
-  primary:
-    'dark:text-primary-500 hover:enabled:bg-primary-300/50 focus-visible:bg-primary-300/50 active:enabled:bg-primary-300/20 dark:hover:enabled:bg-primary-500/30 dark:focus-visible:bg-primary-500/30 dark:active:enabled:bg-primary-500/20',
-  info: 'dark:text-info-500 hover:enabled:bg-info-300/50 focus-visible:bg-info-300/50 active:enabled:bg-info-300/20 dark:hover:enabled:bg-info-500/30 dark:focus-visible:bg-info-500/30 dark:active:enabled:bg-info-500/20',
-  warning:
-    'dark:text-warning-500 hover:enabled:bg-warning-300/50 focus-visible:bg-warning-300/50 active:enabled:bg-warning-300/20 dark:hover:enabled:bg-warning-500/30 dark:focus-visible:bg-warning-500/30 dark:active:enabled:bg-warning-500/20',
-  danger:
-    'dark:text-danger-500 hover:enabled:bg-danger-300/50 focus-visible:bg-danger-300/50 active:enabled:bg-danger-300/20 dark:hover:enabled:bg-danger-500/30 dark:focus-visible:bg-danger-500/30 dark:active:enabled:bg-danger-500/20',
-  muted:
-    'dark:text-muted-500 hover:enabled:bg-muted-300/50 focus-visible:bg-muted-300/50 active:enabled:bg-muted-300/20 dark:hover:enabled:bg-muted-500/30 dark:focus-visible:bg-muted-500/30 dark:active:enabled:bg-muted-500/20',
-  success:
-    'dark:text-success-500 hover:enabled:bg-success-300/50 focus-visible:bg-success-300/50 active:enabled:bg-success-300/20 dark:hover:enabled:bg-success-500/30 dark:focus-visible:bg-success-500/30 dark:active:enabled:bg-success-500/20',
-}
-const shapeStyle = {
-  straight: '',
-  rounded: 'rounded-md',
-  curved: 'rounded-lg',
-  full: 'rounded-full',
-}
-const bgTypeStyle = {
-  info: 'bg-info-500',
-  warning: 'bg-warning-500',
-  danger: 'bg-danger-500',
-  success: 'bg-success-500',
-  primary: 'bg-primary-500',
-  muted: 'bg-muted-500',
-}
-const txtTypeStyle = {
-  info: 'dark:bg-info-500',
-  warning: 'dark:bg-warning-500',
-  danger: 'dark:bg-danger-500',
-  success: 'dark:bg-success-500',
-  primary: 'dark:bg-primary-500',
-  muted: 'dark:bg-muted-500',
 }
 
 const icon = computed(() =>
@@ -112,28 +87,21 @@ const icon = computed(() =>
 
 <template>
   <div
-    class="flex min-h-[3rem] items-center border p-1 pe-2"
-    :class="[shape && shapeStyle[shape], messageTypeStyle[props.type]]"
+    class="nui-message"
+    :class="[shape && shapeStyle[shape], typeStyle[props.type]]"
   >
-    <div
-      v-if="props.icon"
-      class="flex h-10 w-10 shrink-0 items-center justify-center"
-      :class="[bgTypeStyle[props.type]]"
-    >
-      <Icon v-if="icon" :name="icon" class="h-5 w-5 text-white" />
+    <div v-if="props.icon" class="nui-message-icon-outer">
+      <Icon v-if="icon" :name="icon" class="nui-message-icon" />
     </div>
-    <span
-      class="text-muted-800 mx-3 block font-sans text-sm"
-      :class="txtTypeStyle[props.type]"
-    >
+    <span class="nui-message-inner-text">
       <slot>{{ props.message }}</slot>
     </span>
     <button
       v-if="props.closable"
       type="button"
       tabindex="0"
-      class="nui-focus text-muted-800 me-2 ms-auto flex cursor-pointer items-center justify-center p-1 outline-none"
-      :class="[shape && shapeStyle[shape], messageTypeStyle[props.type]]"
+      class="nui-message-close"
+      :class="[shape && shapeStyle[shape]]"
       @click="emit('close')"
     >
       <slot name="close-button">
