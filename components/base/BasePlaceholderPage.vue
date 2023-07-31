@@ -23,34 +23,30 @@ const props = withDefaults(
 )
 
 const sizeStyle = {
-  xs: 'max-w-xs',
-  sm: 'max-w-sm',
-  md: 'max-w-md',
-  lg: 'max-w-lg',
-  xl: 'max-w-xl',
+  xs: 'nui-placeholder-xs',
+  sm: 'nui-placeholder-sm',
+  md: 'nui-placeholder-md',
+  lg: 'nui-placeholder-lg',
+  xl: 'nui-placeholder-xl',
 }
 </script>
 
 <template>
-  <div class="flex min-h-[400px] items-center justify-center">
-    <div class="mx-auto w-full text-center" :class="sizeStyle[props.imageSize]">
-      <div
-        v-if="'image' in $slots"
-        class="mx-auto"
-        :class="sizeStyle[props.imageSize]"
-      >
+  <div class="nui-placeholder-page" :class="sizeStyle[props.imageSize]">
+    <div class="nui-placeholder-page-inner">
+      <div v-if="'image' in $slots" class="nui-placeholder-page-img">
         <slot name="image"></slot>
       </div>
-      <div class="mx-auto max-w-sm">
+      <div class="nui-placeholder-page-content">
         <BaseHeading
           as="h4"
           weight="medium"
           size="xl"
-          class="text-muted-800 mb-1 mt-4 dark:text-white"
+          class="nui-placeholder-page-title"
         >
           {{ props.title }}
         </BaseHeading>
-        <p v-if="props.subtitle" class="text-muted-400 font-sans text-sm">
+        <p v-if="props.subtitle" class="nui-placeholder-page-subtitle">
           {{ props.subtitle }}
         </p>
         <slot></slot>
