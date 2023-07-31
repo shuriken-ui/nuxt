@@ -15,7 +15,7 @@ definePageMeta({
       <BaseHeading size="xl" weight="medium" class="mb-10">Snack</BaseHeading>
       <div class="flex gap-3">
         <BaseSnack label="I am a default snack" />
-        <BaseSnack label="I am a muted snack" />
+        <BaseSnack label="I am a muted snack" kind="muted" />
         <BaseSnack label="I am a small snack" size="sm" />
       </div>
     </div>
