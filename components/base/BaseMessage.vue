@@ -105,7 +105,7 @@ const icon = computed(() =>
       @click="emit('close')"
     >
       <slot name="close-button">
-        <Icon :name="closeIcon" class="h-4 w-4" />
+        <Icon :name="closeIcon" class="nui-close-icon" />
       </slot>
     </button>
   </div>
