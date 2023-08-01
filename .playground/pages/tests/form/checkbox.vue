@@ -7,6 +7,7 @@ definePageMeta({
 })
 
 const check = ref('')
+const check2 = ref('')
 const radio = ref('')
 </script>
 
@@ -16,48 +17,32 @@ const radio = ref('')
   >
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
-        BaseCheckboxHeadless
+        BaseCheckboxAnimated Colors
       </BaseHeading>
-      <div>
-        <BaseCheckboxHeadless v-model="check" name="test">
-          <div
-            class="flex items-center justify-between gap-2 p-8 bg-white border border-muted-200 text-muted-200 peer-checked:text-primary-500"
-          >
-            <div class="font-sans text-muted-500">Some checkbox</div>
-            <div class="h-3 w-3 rounded-full bg-current"></div>
-          </div>
-        </BaseCheckboxHeadless>
+      <div class="grid grid-cols-8 gap-4">
+        <BaseCheckboxAnimated v-model="check" color="default" />
+        <BaseCheckboxAnimated v-model="check" color="light" />
+        <BaseCheckboxAnimated v-model="check" color="muted" />
+        <BaseCheckboxAnimated v-model="check" color="primary" />
+        <BaseCheckboxAnimated v-model="check" color="info" />
+        <BaseCheckboxAnimated v-model="check" color="success" />
+        <BaseCheckboxAnimated v-model="check" color="warning" />
+        <BaseCheckboxAnimated v-model="check" color="danger" />
       </div>
     </div>
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
-        BaseCheckboxHeadless
+        BaseCheckboxAnimated2 Colors
       </BaseHeading>
-      <div class="max-w-3xl flex items-center gap-4">
-        <BaseRadioHeadless v-model="radio" name="radio_test" value="value_1">
-          <div
-            class="flex items-center justify-between gap-2 p-8 bg-white border border-muted-200 text-muted-200 peer-checked:text-primary-500"
-          >
-            <div class="font-sans text-muted-500">Some radio box</div>
-            <div class="h-3 w-3 rounded-full bg-current"></div>
-          </div>
-        </BaseRadioHeadless>
-        <BaseRadioHeadless v-model="radio" name="radio_test" value="value_2">
-          <div
-            class="flex items-center justify-between gap-2 p-8 bg-white border border-muted-200 text-muted-200 peer-checked:text-primary-500"
-          >
-            <div class="font-sans text-muted-500">Some radio box</div>
-            <div class="h-3 w-3 rounded-full bg-current"></div>
-          </div>
-        </BaseRadioHeadless>
-        <BaseRadioHeadless v-model="radio" name="radio_test" value="value_3">
-          <div
-            class="flex items-center justify-between gap-2 p-8 bg-white border border-muted-200 text-muted-200 peer-checked:text-primary-500"
-          >
-            <div class="font-sans text-muted-500">Some radio box</div>
-            <div class="h-3 w-3 rounded-full bg-current"></div>
-          </div>
-        </BaseRadioHeadless>
+      <div class="grid grid-cols-8 gap-4">
+        <BaseCheckboxAnimated2 v-model="check2" color="default" />
+        <BaseCheckboxAnimated2 v-model="check2" color="light" />
+        <BaseCheckboxAnimated2 v-model="check2" color="muted" />
+        <BaseCheckboxAnimated2 v-model="check2" color="primary" />
+        <BaseCheckboxAnimated2 v-model="check2" color="info" />
+        <BaseCheckboxAnimated2 v-model="check2" color="success" />
+        <BaseCheckboxAnimated2 v-model="check2" color="warning" />
+        <BaseCheckboxAnimated2 v-model="check2" color="danger" />
       </div>
     </div>
   </div>
