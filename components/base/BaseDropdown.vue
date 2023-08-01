@@ -125,13 +125,8 @@ const colorStyle = {
             </slot>
             <Icon
               name="lucide:chevron-down"
-              class="h-4 w-4 transition-transform duration-300"
-              :class="[
-                open && 'rotate-180',
-                props.buttonColor === 'default'
-                  ? 'text-muted-400'
-                  : 'text-white',
-              ]"
+              class="context-icon"
+              :class="open && 'rotate-180'"
             />
           </BaseButton>
           <button
