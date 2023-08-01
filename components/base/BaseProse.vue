@@ -23,7 +23,7 @@ const shapeStyle = {
 </script>
 
 <template>
-  <div class="nui-prose" :class="shapeStyle">
+  <div class="nui-prose" :class="shape && shapeStyle[shape]">
     <slot></slot>
   </div>
 </template>
