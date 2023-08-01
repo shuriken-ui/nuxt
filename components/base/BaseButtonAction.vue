@@ -34,7 +34,7 @@ const props = withDefaults(
     /**
      * The shape of the button.
      */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
 
     /**
      * Whether the button is in a loading state.
@@ -76,7 +76,8 @@ const shape = computed(
 
 const shapeStyle = {
   straight: '',
-  rounded: 'nui-button-smooth',
+  rounded: 'nui-button-rounded',
+  smooth: 'nui-button-smooth',
   curved: 'nui-button-curved',
   full: 'nui-button-full',
 }
