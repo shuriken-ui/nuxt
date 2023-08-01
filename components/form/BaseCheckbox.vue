@@ -140,7 +140,10 @@ const id = useNinjaId(() => props.id)
 <template>
   <div
     class="nui-checkbox"
-    :class="[shape && shapeStyle[shape], colorStyle[props.color]]"
+    :class="[
+      shape && shapeStyle[shape],
+      props.color && colorStyle[props.color],
+    ]"
   >
     <div class="nui-checkbox-outer">
       <input

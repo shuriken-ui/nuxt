@@ -28,6 +28,21 @@ const radio = ref('')
     </div>
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
+        Checkbox colors
+      </BaseHeading>
+      <div class="grid grid-cols-8 gap-4">
+        <BaseCheckbox v-model="check" color="default" disabled />
+        <BaseCheckbox v-model="check" color="light" indeterminate />
+        <BaseCheckbox v-model="check" color="muted" />
+        <BaseCheckbox v-model="check" color="primary" />
+        <BaseCheckbox v-model="check" color="info" />
+        <BaseCheckbox v-model="check" color="success" />
+        <BaseCheckbox v-model="check" color="warning" />
+        <BaseCheckbox v-model="check" color="danger" />
+      </div>
+    </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
         BaseCheckboxHeadless
       </BaseHeading>
       <div class="max-w-3xl flex items-center gap-4">
