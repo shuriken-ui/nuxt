@@ -131,7 +131,7 @@ const toggle = (key: number) => {
                 size="sm"
                 weight="semibold"
                 lead="none"
-                class="text-muted-800 dark:text-white"
+                class="accordion-header-inner"
               >
                 {{ item.title }}
               </BaseHeading>
@@ -142,24 +142,11 @@ const toggle = (key: number) => {
               ></div>
               <div
                 v-else-if="props.action === 'chevron'"
-                class="group-focus/nui-accordion:outline-muted-200 dark:group-focus/nui-accordion:outline-muted-700 nui-icon-outer group-focus/nui-accordion:outline-dashed group-focus/nui-accordion:outline-offset-2"
-                :class="
-                  internalOpenItems?.includes(key)
-                    ? 'text-primary-500 rotate-180'
-                    : 'text-muted-400'
-                "
+                class="nui-icon-outer"
               >
                 <IconChevronDown class="nui-chevron-icon" />
               </div>
-              <div
-                v-else-if="props.action === 'plus'"
-                class="group-focus/nui-accordion:outline-muted-200 dark:group-focus/nui-accordion:outline-muted-700 nui-icon-outer group-focus/nui-accordion:outline-dashed group-focus:outline-offset-2"
-                :class="
-                  internalOpenItems?.includes(key)
-                    ? 'text-primary-500 rotate-45'
-                    : 'text-muted-400'
-                "
-              >
+              <div v-else-if="props.action === 'plus'" class="nui-icon-outer">
                 <IconPlus class="nui-plus-icon" />
               </div>
             </div>
