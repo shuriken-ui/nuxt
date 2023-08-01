@@ -246,7 +246,6 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
         :to="paginatedLink(currentPage - 1)"
         tabindex="0"
         class="nui-pagination-button"
-        :class="shape && shapeStyle[props.shape]"
         @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
         @click="(e:any) => handleLinkClick(e, currentPage - 1)"
       >
@@ -258,7 +257,6 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
         :to="paginatedLink(currentPage + 1)"
         tabindex="0"
         class="nui-pagination-button"
-        :class="shape && shapeStyle[props.shape]"
         @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
         @click="(e:any) => handleLinkClick(e, currentPage + 1)"
       >
