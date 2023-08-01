@@ -141,6 +141,7 @@ const id = useNinjaId(() => props.id)
   <div
     class="nui-checkbox"
     :class="[
+      props.disabled && 'opacity-50',
       shape && shapeStyle[shape],
       props.color && colorStyle[props.color],
     ]"
@@ -153,6 +154,7 @@ const id = useNinjaId(() => props.id)
         :true-value="props.trueValue"
         :false-value="props.falseValue"
         :class="props.classes?.input"
+        :disabled="props.disabled"
         v-bind="$attrs"
         class="nui-checkbox-input"
         type="checkbox"
