@@ -82,29 +82,32 @@ const buttonTypeStyle = {
   success:
     'dark:text-success-500 hover:enabled:bg-success-300/50 focus-visible:bg-success-300/50 active:enabled:bg-success-300/20 dark:hover:enabled:bg-success-500/30 dark:focus-visible:bg-success-500/30 dark:active:enabled:bg-success-500/20',
 }
+  
 const shapeStyle = {
   straight: '',
   rounded: 'rounded-md',
   curved: 'rounded-lg',
   full: 'rounded-full',
 }
+  
 const bgTypeStyle = {
-  info: 'bg-info-500',
-  warning: 'bg-warning-500',
-  danger: 'bg-danger-500',
-  success: 'bg-success-500',
-  primary: 'bg-primary-500',
-  muted: 'bg-muted-500',
+  info: 'bg-info-500 dark:bg-info-500/10',
+  warning: 'bg-warning-500 dark:bg-warning-500/10',
+  danger: 'bg-danger-500 dark:bg-danger-500/10',
+  success: 'bg-success-500 dark:bg-success-500/10',
+  primary: 'bg-primary-500 dark:bg-primary-500/10',
+  muted: 'bg-muted-500 dark:bg-muted-500/10',
 }
+  
 const txtTypeStyle = {
-  info: 'dark:bg-info-500',
-  warning: 'dark:bg-warning-500',
-  danger: 'dark:bg-danger-500',
-  success: 'dark:bg-success-500',
-  primary: 'dark:bg-primary-500',
-  muted: 'dark:bg-muted-500',
+  info: 'dark:text-info-500',
+  warning: 'dark:text-warning-500',
+  danger: 'dark:text-danger-500',
+  success: 'dark:text-success-500',
+  primary: 'dark:text-primary-500',
+  muted: 'dark:text-muted-500',
 }
-
+  
 const icon = computed(() =>
   typeof props.icon === 'string' ? props.icon : iconTypeStyle[props.type]
 )
