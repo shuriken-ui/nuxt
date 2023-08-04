@@ -34,13 +34,14 @@ const props = withDefaults(
 
     /** The color of the radio. Can be 'default', 'primary', 'info', 'success', 'warning', or 'danger' */
     color?:
+      | 'default'
+      | 'light'
+      | 'muted'
       | 'primary'
       | 'info'
       | 'success'
       | 'warning'
       | 'danger'
-      | 'light'
-      | 'muted'
 
     /**
      * Classes to apply to the various parts of the radio input.
@@ -82,14 +83,16 @@ const emits = defineEmits<{
 }>()
 const inputRef = ref<HTMLInputElement>()
 const value = useVModel(props, 'modelValue', emits)
+
 const colorStyle = {
-  primary: 'text-primary-500',
-  info: 'text-info-500',
-  success: 'text-success-500',
-  warning: 'text-warning-500',
-  danger: 'text-danger-500',
-  light: 'text-light-100',
-  muted: 'text-muted-400',
+  default: 'nui-radio-default',
+  light: 'nui-radio-light',
+  muted: 'nui-radio-muted',
+  primary: 'nui-radio-primary',
+  info: 'nui-radio-info',
+  success: 'nui-radio-success',
+  warning: 'nui-radio-warning',
+  danger: 'nui-radio-danger',
 }
 
 defineExpose({
@@ -104,12 +107,15 @@ const id = useNinjaId(() => props.id)
 
 <template>
   <div
-    class="relative inline-flex items-start gap-1"
-    :class="[props.color && colorStyle[props.color], props.classes?.wrapper]"
+    class="nui-radio"
+    :class="[
+      props.color && colorStyle[props.color],
+      ...(props.classes?.wrapper && Array.isArray(props.classes.wrapper)
+        ? props.classes.wrapper
+        : [props.classes?.wrapper]),
+    ]"
   >
-    <div
-      class="nui-focus group/nui-radio relative flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full"
-    >
+    <div class="nui-radio-outer">
       <input
         :id="id"
         ref="inputRef"
@@ -117,30 +123,21 @@ const id = useNinjaId(() => props.id)
         v-bind="$attrs"
         type="radio"
         :value="props.value"
-        class="peer absolute z-20 h-5 w-5 cursor-pointer opacity-0"
+        class="nui-radio-input peer"
       />
-      <div
-        :class="props.classes?.inputBg"
-        class="border-muted-400 dark:border-muted-600 dark:bg-muted-700 absolute start-0 top-0 z-0 h-full w-full rounded-full border-2 bg-white peer-checked:border-current"
-      ></div>
-      <div
-        :class="props.classes?.inputDot"
-        class="pointer-events-none z-10 block h-1 w-1 scale-0 rounded-full bg-current transition duration-300 peer-checked:scale-100"
-      ></div>
+      <div :class="props.classes?.inputBg" class="nui-radio-inner"></div>
+      <div :class="props.classes?.inputDot" class="nui-radio-dot"></div>
     </div>
-    <div class="inline-flex flex-col">
+    <div class="nui-label-wrapper">
       <label
         v-if="props.label || 'default' in $slots"
         :for="id"
         :class="props.classes?.label"
-        class="text-muted-400 ms-1 cursor-pointer select-none font-sans text-sm"
+        class="nui-label-text"
       >
         <slot>{{ props.label }}</slot>
       </label>
-      <div
-        v-if="props.error"
-        class="text-danger-600 ms-1 inline-block font-sans text-xs"
-      >
+      <div v-if="props.error" class="nui-radio-error">
         {{ props.error }}
       </div>
     </div>
