@@ -13,8 +13,45 @@ definePageMeta({
   >
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
-        Pagination
+        Pagination Shape
       </BaseHeading>
+      <div class="grid grid-cols-3 gap-4">
+        <BasePagination
+          :item-per-page="4"
+          :total-items="200"
+          :current-page="4"
+          :max-links-displayed="2"
+          shape="straight"
+        />
+        <BasePagination
+          :item-per-page="4"
+          :total-items="200"
+          :current-page="4"
+          :max-links-displayed="2"
+          shape="rounded"
+        />
+        <BasePagination
+          :item-per-page="4"
+          :total-items="200"
+          :current-page="4"
+          :max-links-displayed="2"
+          shape="smooth"
+        />
+        <BasePagination
+          :item-per-page="4"
+          :total-items="200"
+          :current-page="4"
+          :max-links-displayed="2"
+          shape="curved"
+        />
+        <BasePagination
+          :item-per-page="4"
+          :total-items="200"
+          :current-page="4"
+          :max-links-displayed="2"
+          shape="full"
+        />
+      </div>
     </div>
   </div>
 </template>
