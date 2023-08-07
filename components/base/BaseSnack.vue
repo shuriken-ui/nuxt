@@ -17,70 +17,53 @@ const props = withDefaults(
     image?: string
 
     /**
-     * Whether or not to display the snackbar in a smaller size.
+     * The size of the snack.
      */
-    small?: boolean
+    size?: 'sm' | 'md'
 
     /**
-     * Whether or not to display the snackbar with a light background.
+     * The kind of snack, might be 'default' or 'muted'.
      */
-    light?: boolean
+    kind?: 'default' | 'muted'
   }>(),
   {
     label: '',
     icon: undefined,
     image: undefined,
+    size: 'md',
+    kind: 'default',
   }
 )
 
 const emit = defineEmits(['delete'])
+const sizeStyle = {
+  sm: 'nui-snack-sm',
+  md: 'nui-snack-md',
+}
+const kindStyle = {
+  default: 'nui-snack-default',
+  muted: 'nui-snack-muted',
+}
 </script>
 
 <template>
   <div
-    class="nui-focus group/nui-snack inline-flex items-center rounded-full outline-transparent"
-    :class="[
-      !props.icon && !props.image && 'ps-4',
-      props.small ? 'h-8' : 'h-10',
-      props.light
-        ? 'dark:bg-muted-700 border-muted-300 dark:border-muted-600 border bg-white'
-        : 'bg-muted-200 dark:bg-muted-700',
-    ]"
+    class="nui-snack"
+    :class="[sizeStyle[props.size], kindStyle[props.kind]]"
   >
-    <div
-      v-if="props.icon && !props.image"
-      class="border-muted-200 -ms-0.5 me-2 flex items-center justify-center rounded-full border bg-white"
-      :class="props.small ? 'h-8 w-8' : 'h-10 w-10'"
-    >
-      <Icon :name="props.icon" :class="[props.small ? 'h-4 w-4' : 'h-5 w-5']" />
+    <div v-if="props.icon && !props.image" class="nui-snack-icon">
+      <Icon :name="props.icon" class="nui-snack-icon-inner" />
     </div>
-    <div
-      v-else-if="props.image && !props.icon"
-      class="-ms-0.5 me-2 flex items-center justify-center rounded-full"
-      :class="props.small ? 'h-8 w-8' : 'h-10 w-10'"
-    >
-      <img
-        :src="props.image"
-        class="rounded-full object-cover"
-        :class="props.small ? 'h-8 w-8' : 'h-10 w-10'"
-        alt=""
-      />
+    <div v-else-if="props.image && !props.icon" class="nui-snack-image">
+      <img :src="props.image" class="nui-snack-image-inner" alt="" />
     </div>
-    <span class="text-muted-600 dark:text-muted-300 font-sans text-sm">
+    <span class="nui-snack-text">
       <slot>{{ props.label }}</slot>
     </span>
-    <button
-      type="button"
-      class="ms-2 cursor-pointer rounded-full p-1 outline-none"
-      :class="[
-        props.small ? 'me-1' : 'me-2',
-        props.light
-          ? 'hover:bg-muted-100 active:bg-muted-200 focus-visible:bg-muted-100 !dark:active:bg-muted-500/50 dark:focus-visible:bg-muted-600 dark:hover:bg-muted-600 '
-          : 'hover:bg-muted-300 active:bg-muted-400/50 focus-visible:bg-muted-300 !dark:active:bg-muted-500/50 dark:focus-visible:bg-muted-600 dark:hover:bg-muted-600 ',
-      ]"
+    <BaseButtonClose
+      class="nui-snack-button"
+      shape="full"
       @click="emit('delete')"
-    >
-      <IconClose class="text-muted-600 dark:text-muted-300 h-4 w-4" />
-    </button>
+    />
   </div>
 </template>
