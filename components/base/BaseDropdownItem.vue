@@ -23,6 +23,16 @@ const props = withDefaults(
     disabled?: boolean
 
     /**
+     * The shape of the dropdown-item.
+     */
+    shape?: 'straight' | 'rounded' | 'smooth' | 'curved'
+
+    /**
+     * The color of the dropdown-item.
+     */
+    color?: 'default' | 'contrast'
+
+    /**
      * The value for the `rel` attribute on the button.
      */
     rel?: string
@@ -57,6 +67,8 @@ const props = withDefaults(
     target: undefined,
     title: undefined,
     text: undefined,
+    shape: undefined,
+    color: 'default',
     disabled: false,
     classes: () => ({
       title:
@@ -65,6 +77,18 @@ const props = withDefaults(
     }),
   }
 )
+
+const shapeStyle = {
+  straight: '',
+  rounded: 'nui-item-rounded',
+  smooth: 'nui-item-smooth',
+  curved: 'nui-item-curved',
+}
+const colorStyle = {
+  default: 'nui-item-default',
+  contrast: 'nui-item-contrast',
+}
+
 const { is, attributes } = useNinjaButton(props)
 </script>
 
@@ -76,16 +100,16 @@ const { is, attributes } = useNinjaButton(props)
     <component
       :is="is"
       v-bind="attributes"
-      class="group/nui-dropdown-item flex w-full items-center justify-start rounded-md px-3 py-2 text-left text-sm transition-colors duration-300"
+      class="nui-dropdown-item"
       :class="[
-        active
-          ? 'bg-muted-100 dark:bg-muted-700 text-primary-500'
-          : 'text-muted-500',
+        active && 'nui-active',
+        props.shape && shapeStyle[props.shape],
+        colorStyle[props.color],
       ]"
       @click.passive="close"
     >
       <slot name="start"></slot>
-      <div class="grow">
+      <div class="nui-item-content">
         <div :class="props.classes.title">
           <slot>{{ props.title }}</slot>
         </div>
