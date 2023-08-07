@@ -92,24 +92,28 @@ const items = computed(() => {
           </BaseDropdownItem>
         </BaseDropdown>
       </li>
-      <li
-        v-for="(item, index) in items"
-        :key="index"
-        class="nui-breadcrumb-item"
-        :class="index !== items.length - 1 ? 'hidden sm:flex' : 'flex'"
-      >
-        <NuxtLink
-          :to="item.to"
-          class="nui-item-inner"
-          :class="[item.to && 'nui-has-link']"
+      <template v-for="(item, index) in items" :key="index">
+        <li
+          class="nui-breadcrumb-item"
+          :class="index !== items.length - 1 ? 'hidden sm:flex' : 'flex'"
         >
-          <Icon v-if="item.icon" :name="item.icon" class="nui-item-icon" />
-          <span :class="[item.hideLabel && 'sr-only']">{{ item.label }}</span>
-        </NuxtLink>
-        <span v-if="index < items.length - 1" class="nui-item-text">
-          <slot>·</slot>
-        </span>
-      </li>
+          <NuxtLink
+            :to="item.to"
+            class="nui-item-inner"
+            :class="[item.to && 'nui-has-link']"
+          >
+            <Icon v-if="item.icon" :name="item.icon" class="nui-item-icon" />
+            <span :class="[item.hideLabel && 'sr-only']">{{ item.label }}</span>
+          </NuxtLink>
+        </li>
+        <li class="nui-breadcrumb-item">
+          <div class="nui-item-inner">
+            <span v-if="index < items.length - 1" class="nui-item-text">
+              <slot>·</slot>
+            </span>
+          </div>
+        </li>
+      </template>
     </ul>
   </nav>
 </template>
