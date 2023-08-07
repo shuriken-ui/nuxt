@@ -22,7 +22,7 @@ const props = withDefaults(
     /**
      * The shape of the multiselect.
      */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
 
     /**
      * The label to display for the multiselect.
@@ -75,9 +75,14 @@ const props = withDefaults(
     placeholder?: string
 
     /**
-     * Whether the input is condensed.
+     * The size of the listbox.
      */
-    condensed?: boolean
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * The kind of the listbox.
+     */
+    kind?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * The properties to use for the value, label, sublabel, media, and icon of the options items.
@@ -114,6 +119,8 @@ const props = withDefaults(
     selectedIcon: 'lucide:check',
     label: '',
     placeholder: '',
+    size: 'md',
+    kind: 'default',
     shape: undefined,
     error: false,
     multipleLabel: () => {
@@ -140,6 +147,25 @@ const emits = defineEmits<{
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
+const shapeStyle = {
+  straight: '',
+  rounded: 'nui-listbox-rounded',
+  smooth: 'nui-listbox-smooth',
+  curved: 'nui-listbox-curved',
+  full: 'nui-listbox-full',
+}
+const sizeStyle = {
+  sm: 'nui-listbox-sm',
+  md: 'nui-listbox-md',
+  lg: 'nui-listbox-lg',
+}
+const kindStyle = {
+  default: 'nui-listbox-default',
+  'default-contrast': 'nui-listbox-default-contrast',
+  muted: 'nui-listbox-muted',
+  'muted-contrast': 'nui-listbox-muted-contrast',
+}
+
 const value = useVModel(props, 'modelValue', emits)
 
 const placeholder = computed(() => {
@@ -152,19 +178,21 @@ const placeholder = computed(() => {
 
   return props.placeholder
 })
-const condensedLabelStyle = computed(() =>
-  props.condensed
-    ? props.icon === undefined
-      ? 'start-3 peer-focus/list:-ms-3 peer-focus/list:-mt-7 peer-focus-visible/input:-ms-3 peer-focus-visible/input:-mt-7'
-      : 'start-8 peer-focus/list:-ms-8 peer-focus/list:-mt-7 peer-focus-visible/input:-ms-8 peer-focus-visible/input:-mt-7'
-    : props.icon === undefined
-    ? 'start-3 peer-focus/list:-ms-3 peer-focus/list:-mt-8 peer-focus-visible/input:-ms-3 peer-focus-visible/input:-mt-8'
-    : 'start-10 peer-focus/list:-ms-10 peer-focus/list:-mt-8 peer-focus-visible/input:-ms-10 peer-focus-visible/input:-mt-8'
-)
 </script>
 
 <template>
-  <div class="relative w-full">
+  <div
+    class="nui-listbox"
+    :class="[
+      kindStyle[props.kind],
+      sizeStyle[props.size],
+      shape && shapeStyle[shape],
+      props.error && !props.loading && 'nui-listbox-error',
+      props.loading && 'nui-listbox-loading',
+      props.labelFloat && 'nui-listbox-label-float',
+      props.icon && 'nui-has-icon',
+    ]"
+  >
     <Listbox
       v-slot="{ open }: { open: boolean }"
       v-model="value"
@@ -177,47 +205,28 @@ const condensedLabelStyle = computed(() =>
           ('label' in $slots && !props.labelFloat) ||
           (props.label && !props.labelFloat)
         "
-        class="nui-label"
-        :class="[
-          props.condensed && 'pb-1 text-xs',
-          !props.condensed && 'pb-1 text-[0.825rem]',
-        ]"
+        class="nui-listbox-label"
       >
         <slot name="label">{{ props.label }}</slot>
       </ListboxLabel>
-      <div class="relative">
-        <ListboxButton
-          :disabled="props.disabled"
-          class="nui-focus border-muted-300 text-muted-600 placeholder:text-muted-300 focus:border-muted-300 focus:shadow-muted-300/50 dark:border-muted-700 dark:bg-muted-900/75 dark:text-muted-200 dark:placeholder:text-muted-500 dark:focus:border-muted-700 dark:focus:shadow-muted-800/50 peer/input relative w-full border bg-white pe-12 ps-4 font-sans text-sm leading-5 focus:shadow-lg disabled:cursor-not-allowed disabled:opacity-75"
-          :class="[
-            shape === 'rounded' && 'rounded',
-            shape === 'curved' && 'rounded-xl',
-            shape === 'full' && 'rounded-full',
-            props.loading && 'pointer-events-none',
-            props.error &&
-              !props.loading &&
-              '!border-danger-500 dark:!border-danger-500',
-          ]"
-        >
+
+      <div class="nui-listbox-outer">
+        <ListboxButton :disabled="props.disabled" class="nui-listbox-button">
           <slot name="listbox-button" :value="value" :open="open">
-            <div
-              class="flex w-full items-center"
-              :class="props.condensed ? 'h-8' : 'h-10'"
-            >
+            <div class="nui-listbox-button-inner">
               <BaseIconBox
                 v-if="props.icon"
                 size="xs"
                 shape="rounded"
-                class="-ms-2 me-2 !h-6 !w-6"
-                :class="[props.error && !props.loading && '!text-danger-500']"
+                class="nui-icon-box"
               >
-                <Icon :name="props.icon" class="h-4 w-4" />
+                <Icon :name="props.icon" class="nui-icon-box-inner" />
               </BaseIconBox>
+
               <template v-if="Array.isArray(value)">
                 <div
                   v-if="value.length === 0 && placeholder"
-                  class="text-muted-300 dark:text-muted-500 block truncate text-left"
-                  :class="props.loading && 'text-transparent select-none'"
+                  class="nui-listbox-placeholder"
                 >
                   {{ placeholder }}
                 </div>
@@ -235,13 +244,13 @@ const condensedLabelStyle = computed(() =>
                   }}
                 </div>
               </template>
+
               <template v-else-if="value">
                 <BaseAvatar
                   v-if="props.properties.media && value[props.properties.media]"
                   :src="value[props.properties.media]"
                   size="xs"
                   class="-ms-2 me-2"
-                  :class="props.condensed ? '!h-5 !w-5' : '!h-6 !w-6'"
                 />
                 <BaseIconBox
                   v-else-if="
@@ -250,7 +259,6 @@ const condensedLabelStyle = computed(() =>
                   size="xs"
                   shape="rounded"
                   class="-ms-2 me-2"
-                  :class="props.condensed ? '!h-5 !w-5' : '!h-6 !w-6'"
                 >
                   <Icon :name="value[props.properties.icon]" class="h-4 w-4" />
                 </BaseIconBox>
@@ -267,36 +275,23 @@ const condensedLabelStyle = computed(() =>
                   }}
                 </div>
               </template>
+
               <template v-else>
-                <div
-                  class="text-muted-300 dark:text-muted-500 truncate text-left"
-                  :class="[
-                    props.loading && 'select-none text-transparent',
-                    props.condensed && 'text-xs',
-                  ]"
-                >
+                <div class="nui-listbox-placeholder">
                   {{ placeholder }}
                 </div>
               </template>
-              <span
-                class="border-muted-300 dark:border-muted-700 pointer-events-none absolute inset-y-0 end-0 flex items-center justify-center border-l"
-                :class="[props.condensed && 'w-8', !props.condensed && 'w-10']"
-              >
+
+              <span class="nui-listbox-chevron">
                 <Icon
                   name="lucide:chevron-down"
-                  class="text-muted-400 transition-transform duration-300"
-                  :class="[
-                    open && 'rotate-180',
-                    props.condensed ? 'h-3 w-3' : 'h-4 w-4',
-                  ]"
+                  class="nui-listbox-chevron-inner"
+                  :class="[open && 'rotate-180']"
                 />
               </span>
-              <div
-                v-if="props.loading"
-                class="absolute start-0 top-0 flex w-full items-center px-4"
-                :class="[props.condensed && 'h-8', !props.condensed && 'h-10']"
-              >
-                <BasePlaceload class="h-3 w-full max-w-[75%] rounded" />
+
+              <div v-if="props.loading" class="nui-listbox-placeload">
+                <BasePlaceload class="nui-placeload" />
               </div>
             </div>
           </slot>
@@ -307,14 +302,7 @@ const condensedLabelStyle = computed(() =>
           leave-from-class="opacity-100"
           leave-to-class="opacity-0"
         >
-          <ListboxOptions
-            class="nui-slimscroll peer/list border-muted-200 focus:ring-primary-500/50 dark:border-muted-600 dark:bg-muted-700 absolute z-10 mt-1 max-h-60 w-full overflow-auto border bg-white p-2 text-base shadow-lg focus:outline-none focus:ring-1 sm:text-sm"
-            :class="[
-              shape === 'rounded' && 'rounded-md',
-              shape === 'curved' && 'rounded-xl',
-              shape === 'full' && 'rounded-2xl',
-            ]"
-          >
+          <ListboxOptions class="nui-listbox-options">
             <ListboxOption
               v-for="item in props.items"
               v-slot="{ active, selected }"
@@ -324,17 +312,7 @@ const condensedLabelStyle = computed(() =>
               :value="item"
               as="template"
             >
-              <li
-                class="relative flex cursor-pointer select-none items-center px-3 py-2"
-                :class="[
-                  active
-                    ? 'bg-primary-100 text-primary-900 dark:bg-muted-800'
-                    : '',
-                  shape === 'rounded' && 'rounded',
-                  shape === 'curved' && 'rounded-md',
-                  shape === 'full' && 'rounded-lg',
-                ]"
-              >
+              <li class="nui-listbox-option" :class="[active && 'nui-active']">
                 <slot
                   name="listbox-item"
                   :item="item"
@@ -348,7 +326,6 @@ const condensedLabelStyle = computed(() =>
                     "
                     :src="item[props.properties.media]"
                     size="xs"
-                    class="me-3"
                   />
                   <BaseIconBox
                     v-else-if="
@@ -356,20 +333,20 @@ const condensedLabelStyle = computed(() =>
                     "
                     size="sm"
                     shape="rounded"
-                    class="text-muted-500 dark:text-muted-400 -ms-2 me-1"
+                    class="nui-icon-box"
                   >
                     <Icon
                       :name="item[props.properties.icon]"
-                      class="h-5 w-5"
-                      :class="[active && 'text-primary-500']"
+                      class="nui-icon-box-inner"
                     />
                   </BaseIconBox>
-                  <div>
+
+                  <div class="nui-listbox-option-inner">
                     <BaseHeading
                       as="h4"
                       :weight="selected ? 'semibold' : 'normal'"
                       size="sm"
-                      class="text-muted-800 block truncate dark:text-white"
+                      class="nui-listbox-heading"
                     >
                       {{
                         props.properties.label
@@ -385,16 +362,16 @@ const condensedLabelStyle = computed(() =>
                         item[props.properties.sublabel]
                       "
                       size="xs"
-                      class="text-muted-400"
+                      class="nui-listbox-text"
                     >
                       {{ item[props.properties.sublabel] }}
                     </BaseText>
                   </div>
-                  <span
-                    v-if="selected"
-                    class="text-primary-600 ms-auto flex items-center"
-                  >
-                    <Icon :name="selectedIcon" class="h-4 w-4" />
+                  <span v-if="selected" class="nui-listbox-selected-icon">
+                    <Icon
+                      :name="selectedIcon"
+                      class="nui-listbobx-selected-icon-inner"
+                    />
                   </span>
                 </slot>
               </li>
@@ -407,8 +384,7 @@ const condensedLabelStyle = computed(() =>
             ('label' in $slots && props.labelFloat) ||
             (props.label && props.labelFloat)
           "
-          class="peer-focus-visible/input:text-primary-500 peer-focus/list:text-primary-500 pointer-events-none absolute inline-flex h-5 select-none items-center leading-none text-transparent transition-all duration-300"
-          :class="condensedLabelStyle"
+          class="nui-label-float"
         >
           <slot name="label">{{ props.label }}</slot>
         </ListboxLabel>
