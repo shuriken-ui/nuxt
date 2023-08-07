@@ -78,11 +78,11 @@ const colorStyle = {
   danger: 'nui-box-danger',
 }
 const maskStyle = {
-  hex: 'nui-mask-hex',
-  hexed: 'nui-mask-hexed',
-  deca: 'nui-mask-deca',
-  blob: 'nui-mask-blob',
-  diamond: 'nui-mask-diamond',
+  hex: 'nui-mask nui-mask-hex',
+  hexed: 'nui-mask nui-mask-hexed',
+  deca: 'nui-mask nui-mask-deca',
+  blob: 'nui-mask nui-mask-blob',
+  diamond: 'nui-mask nui-mask-diamond',
 }
 
 const classes = computed(() => [
