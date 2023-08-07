@@ -49,7 +49,11 @@ const kindStyle = {
 <template>
   <div
     class="nui-snack"
-    :class="[sizeStyle[props.size], kindStyle[props.kind]]"
+    :class="[
+      sizeStyle[props.size],
+      kindStyle[props.kind],
+      props.icon || props.image ? 'nui-has-media' : '',
+    ]"
   >
     <div v-if="props.icon && !props.image" class="nui-snack-icon">
       <Icon :name="props.icon" class="nui-snack-icon-inner" />
