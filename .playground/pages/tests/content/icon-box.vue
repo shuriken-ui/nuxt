@@ -13,50 +13,44 @@ definePageMeta({
   >
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
-        Iconbox pastel
+        Iconbox Shape
       </BaseHeading>
-      <div class="flex gap-3">
-        <BaseIconBox size="lg" color="default">
+      <div class="grid grid-cols-4 gap-3">
+        <BaseIconBox shape="straight" color="default">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="primary">
+        <BaseIconBox shape="rounded" color="primary">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="info">
+        <BaseIconBox shape="curved" color="info">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="success">
-          <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
-        </BaseIconBox>
-        <BaseIconBox size="lg" color="warning">
-          <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
-        </BaseIconBox>
-        <BaseIconBox size="lg" color="danger">
+        <BaseIconBox shape="full" color="success">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
       </div>
     </div>
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
-        Iconbox pastel bordered
+        Iconbox Size
       </BaseHeading>
-      <div class="flex gap-3">
-        <BaseIconBox size="lg" color="default" bordered>
+      <div class="grid grid-cols-6 gap-3">
+        <BaseIconBox size="xs" color="default" bordered>
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="primary" bordered>
+        <BaseIconBox size="sm" color="primary" bordered>
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="info" bordered>
+        <BaseIconBox size="md" color="info" bordered>
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
         <BaseIconBox size="lg" color="success" bordered>
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="warning" bordered>
+        <BaseIconBox size="xl" color="warning" bordered>
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="danger" bordered>
+        <BaseIconBox size="2xl" color="danger" bordered>
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
       </div>
@@ -65,20 +59,26 @@ definePageMeta({
       <BaseHeading size="xl" weight="medium" class="mb-10">
         Iconbox solid
       </BaseHeading>
-      <div class="flex gap-3">
-        <BaseIconBox size="lg" color="primary" flavor="solid">
+      <div class="grid grid-cols-7 gap-3">
+        <BaseIconBox color="default" flavor="solid">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="info" flavor="solid">
+        <BaseIconBox color="invert" flavor="solid">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="success" flavor="solid">
+        <BaseIconBox color="primary" flavor="solid">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="warning" flavor="solid">
+        <BaseIconBox color="info" flavor="solid">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="danger" flavor="solid">
+        <BaseIconBox color="success" flavor="solid">
+          <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
+        </BaseIconBox>
+        <BaseIconBox color="warning" flavor="solid">
+          <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
+        </BaseIconBox>
+        <BaseIconBox color="danger" flavor="solid">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
       </div>
@@ -87,20 +87,26 @@ definePageMeta({
       <BaseHeading size="xl" weight="medium" class="mb-10">
         Iconbox outline
       </BaseHeading>
-      <div class="flex gap-3">
-        <BaseIconBox size="lg" color="primary" flavor="outline">
+      <div class="grid grid-cols-7 gap-3">
+        <BaseIconBox color="default" flavor="outline">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="info" flavor="outline">
+        <BaseIconBox color="invert" flavor="outline">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="success" flavor="outline">
+        <BaseIconBox color="primary" flavor="outline">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="warning" flavor="outline">
+        <BaseIconBox color="info" flavor="outline">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
-        <BaseIconBox size="lg" color="danger" flavor="outline">
+        <BaseIconBox color="success" flavor="outline">
+          <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
+        </BaseIconBox>
+        <BaseIconBox color="warning" flavor="outline">
+          <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
+        </BaseIconBox>
+        <BaseIconBox color="danger" flavor="outline">
           <Icon name="ph:heartbeat-duotone" class="w-6 h-6" />
         </BaseIconBox>
       </div>
