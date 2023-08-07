@@ -57,6 +57,7 @@ const colorStyle = {
   success: 'nui-card-success',
   warning: 'nui-card-warning',
   danger: 'nui-card-danger',
+  none: '',
 }
 
 const classes = computed(() => [
