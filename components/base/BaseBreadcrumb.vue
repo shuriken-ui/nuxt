@@ -78,9 +78,9 @@ const items = computed(() => {
 </script>
 
 <template>
-  <nav>
-    <ul class="mb-6 flex items-center font-sans text-[0.85rem]">
-      <li class="me-3 sm:hidden">
+  <nav class="nui-breadcrumb">
+    <ul class="nui-breadcrumb-list">
+      <li class="nui-breadcrumb-item-mobile">
         <BaseDropdown flavor="context" compact>
           <BaseDropdownItem
             v-for="(item, index) in items.slice(0, items.length - 1)"
@@ -95,22 +95,18 @@ const items = computed(() => {
       <li
         v-for="(item, index) in items"
         :key="index"
-        class="items-center"
+        class="nui-breadcrumb-item"
         :class="index !== items.length - 1 ? 'hidden sm:flex' : 'flex'"
       >
         <NuxtLink
           :to="item.to"
-          class="text-muted-500 flex items-center gap-x-1 transition-colors duration-300"
-          :class="[item.to && 'hover:text-primary-500 focus:text-primary-500']"
+          class="nui-item-inner"
+          :class="[item.to && 'nui-has-link']"
         >
-          <Icon
-            v-if="item.icon"
-            :name="item.icon"
-            class="block h-4 w-4 shrink-0"
-          />
+          <Icon v-if="item.icon" :name="item.icon" class="nui-item-icon" />
           <span :class="[item.hideLabel && 'sr-only']">{{ item.label }}</span>
         </NuxtLink>
-        <span v-if="index < items.length - 1" class="text-muted-500 px-2">
+        <span v-if="index < items.length - 1" class="nui-item-text">
           <slot>·</slot>
         </span>
       </li>

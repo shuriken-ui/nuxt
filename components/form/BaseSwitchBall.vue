@@ -46,6 +46,14 @@ const value = useVModel(props, 'modelValue', emits)
 
 const id = useNinjaId(() => props.id)
 
+const colorStyle = {
+  primary: 'nui-switch-ball-primary',
+  info: 'nui-switch-ball-info',
+  success: 'nui-switch-ball-success',
+  warning: 'nui-switch-ball-warning',
+  danger: 'nui-switch-ball-danger',
+}
+
 const inputRef = ref<HTMLInputElement>()
 defineExpose({
   /**
@@ -56,47 +64,29 @@ defineExpose({
 </script>
 
 <template>
-  <label :for="id" class="flex cursor-pointer items-center">
-    <span class="relative block">
+  <label :for="id" class="nui-switch-ball" :class="colorStyle[props.color]">
+    <span class="nui-switch-ball-outer">
       <input
         :id="id"
         ref="inputRef"
         :checked="value"
         v-bind="$attrs"
         type="checkbox"
-        class="peer absolute z-0 h-full w-full cursor-pointer opacity-0"
+        class="nui-switch-ball-input peer"
         @change="value = !value"
       />
-      <span
-        class="border-muted-300 dark:border-muted-600 dark:bg-muted-700 absolute start-0.5 top-1/2 z-10 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full border bg-white shadow transition focus:w-6 peer-checked:-translate-y-1/2 peer-checked:translate-x-full rtl:peer-checked:-translate-x-full"
-      ></span>
-      <span
-        class="bg-muted-300 peer-focus:outline-muted-300 dark:bg-muted-600 dark:peer-focus:outline-muted-600 block h-6 w-11 rounded-full shadow-inner outline-1 outline-transparent transition-all duration-300 peer-focus:outline-dashed peer-focus:outline-offset-2 peer-focus:ring-0"
-        :class="[
-          props.color === 'primary' && 'peer-checked:bg-primary-400',
-          props.color === 'info' && 'peer-checked:bg-info-400',
-          props.color === 'success' && 'peer-checked:bg-success-400',
-          props.color === 'warning' && 'peer-checked:bg-warning-400',
-          props.color === 'danger' && 'peer-checked:bg-danger-400',
-        ]"
-      ></span>
-      <IconCheck
-        class="pointer-events-none absolute start-2 top-1/2 z-10 h-2.5 w-2.5 translate-y-0 fill-current text-white opacity-0 transition duration-300 peer-checked:-translate-y-1/2 peer-checked:opacity-100"
-      />
+      <span class="nui-switch-ball-handle"></span>
+      <span class="nui-switch-ball-track"></span>
+      <IconCheck class="nui-switch-ball-icon" />
     </span>
-    <span
-      v-if="!props.sublabel"
-      class="text-muted-400 relative ms-3 cursor-pointer select-none font-sans text-sm"
-    >
+    <span v-if="!props.sublabel" class="nui-switch-ball-single-label">
       {{ props.label }}
     </span>
-    <span v-else class="ms-3">
-      <span
-        class="font-heading text-muted-800 block text-sm font-medium dark:text-white"
-      >
+    <span v-else class="nui-switch-ball-dual-label">
+      <span class="nui-switch-label">
         {{ props.label }}
       </span>
-      <span class="text-muted-400 block font-sans text-xs">
+      <span class="nui-switch-sublabel">
         {{ props.sublabel }}
       </span>
     </span>

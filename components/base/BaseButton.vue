@@ -21,6 +21,9 @@ const props = withDefaults(
     /** The value of the 'target' attribute of the button. This attribute is used to specify where to open the linked document. */
     target?: string
 
+    /** The size of the button */
+    size?: 'sm' | 'md' | 'lg' | 'xl'
+
     /** The flavor of the button. Can be 'solid', 'outline', or 'pastel'. */
     flavor?: 'solid' | 'outline' | 'pastel'
 
@@ -42,10 +45,12 @@ const props = withDefaults(
     /** Whether the button is in a loading state. */
     loading?: boolean
 
-    /**
-     * Whether the button is condensed.
-     */
-    condensed?: boolean
+    /** The badge indicator */
+    badge?: boolean
+
+    /** Add a pulse animation on the badge */
+    badgePulse?: boolean
+
     /**
      * Adds a flat or a on hover shadow to the button.
      */
@@ -54,11 +59,14 @@ const props = withDefaults(
   {
     flavor: 'solid',
     color: 'default',
+    size: 'md',
     shape: undefined,
     type: undefined,
     to: undefined,
     href: undefined,
     disabled: false,
+    badge: false,
+    badgePulse: false,
     shadow: undefined,
     rel: '',
     target: '',
@@ -68,371 +76,60 @@ const props = withDefaults(
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.button)
 
-const solidColorVariant = {
-  info: [
-    'bg-info-500',
-    'dark:bg-info-500',
-    'text-white',
-    'hover:enabled:bg-info-400',
-    'dark:hover:enabled:bg-info-400',
-    'hover:enabled:shadow-lg',
-    'hover:enabled:shadow-info-500/50',
-    'dark:hover:enabled:shadow-info-800/20',
-    'focus-visible:outline-info-400/70',
-    'focus-within:outline-info-400/70',
-    'focus-visible:bg-info-500',
-    'active:enabled:bg-info-500',
-    'dark:focus-visible:outline-info-400/70',
-    'dark:focus-within:outline-info-400/70',
-    'dark:focus-visible:bg-info-500',
-    'dark:active:enabled:bg-info-500',
-  ],
-  success: [
-    'bg-success-500',
-    'dark:bg-success-500',
-    'hover:enabled:bg-success-400',
-    'dark:hover:enabled:bg-success-400',
-    'text-white',
-    'hover:enabled:shadow-lg',
-    'hover:enabled:shadow-success-500/50',
-    'dark:hover:enabled:shadow-success-800/20',
-    'focus-visible:outline-success-400/70',
-    'focus-within:outline-success-400/70',
-    'focus-visible:bg-success-500',
-    'active:enabled:bg-success-500',
-    'dark:focus-visible:outline-success-400/70',
-    'dark:focus-within:outline-success-400/70',
-    'dark:focus-visible:bg-success-500',
-    'dark:active:enabled:bg-success-500',
-  ],
-  warning: [
-    'bg-warning-500',
-    'dark:bg-warning-500',
-    'hover:enabled:bg-warning-400',
-    'dark:hover:enabled:bg-warning-400',
-    'text-white',
-    'hover:enabled:shadow-lg',
-    'hover:enabled:shadow-warning-500/50',
-    'dark:hover:enabled:shadow-warning-800/20',
-    'focus-visible:outline-warning-400/70',
-    'focus-within:outline-warning-400/70',
-    'focus-visible:bg-warning-500',
-    'active:enabled:bg-warning-500',
-    'dark:focus-visible:outline-warning-400/70',
-    'dark:focus-within:outline-warning-400/70',
-    'dark:focus-visible:bg-warning-500',
-    'dark:active:enabled:bg-warning-500',
-  ],
-  danger: [
-    'bg-danger-500',
-    'dark:bg-danger-500',
-    'hover:enabled:bg-danger-400',
-    'dark:hover:enabled:bg-danger-400',
-    'text-white',
-    'hover:enabled:shadow-lg',
-    'hover:enabled:shadow-danger-500/50',
-    'dark:hover:enabled:shadow-danger-800/20',
-    'focus-visible:outline-danger-400/70',
-    'focus-within:outline-danger-400/70',
-    'focus-visible:bg-danger-500',
-    'active:enabled:bg-danger-500',
-    'dark:focus-visible:outline-danger-400/70',
-    'dark:focus-within:outline-danger-400/70',
-    'dark:focus-visible:bg-danger-500',
-    'dark:active:enabled:bg-danger-500',
-  ],
-  primary: [
-    'bg-primary-500',
-    'dark:bg-primary-500',
-    'hover:enabled:bg-primary-400',
-    'dark:hover:enabled:bg-primary-400',
-    'text-white',
-    'hover:enabled:shadow-lg',
-    'hover:enabled:shadow-primary-500/50',
-    'dark:hover:enabled:shadow-primary-800/20',
-    'focus-visible:outline-primary-400/70',
-    'focus-within:outline-primary-400/70',
-    'focus-visible:bg-primary-500',
-    'active:enabled:bg-primary-500',
-    'dark:focus-visible:outline-primary-400/70',
-    'dark:focus-within:outline-primary-400/70',
-    'dark:focus-visible:bg-primary-500',
-    'dark:active:enabled:bg-primary-500',
-  ],
-  light: ['is-button-default'],
-  none: [''],
-}
-const pastelColorVariant = {
-  info: [
-    'bg-info-100',
-    'hover:enabled:bg-info-200',
-    'text-info-500',
-    'border-2',
-    'border-info-100',
-    'dark:border-info-500',
-    'dark:bg-transparent',
-    'dark:text-info-500',
-    'dark:hover:enabled:bg-info-500/10',
-    'focus-visible:outline-info-400/70',
-    'focus-within:outline-info-400/70',
-    'focus-visible:bg-info-200',
-    'active:enabled:bg-info-100',
-    'dark:focus-visible:outline-info-400/70',
-    'dark:focus-within:outline-info-400/70',
-    'dark:focus-visible:bg-info-500/10',
-    'dark:active:enabled:bg-transparent',
-  ],
-  success: [
-    'bg-success-100',
-    'hover:enabled:bg-success-200',
-    'text-success-500',
-    'border-2',
-    'border-success-100',
-    'dark:border-success-500',
-    'dark:bg-transparent',
-    'dark:text-success-500',
-    'dark:hover:enabled:bg-success-500/10',
-    'focus-visible:outline-success-400/70',
-    'focus-within:outline-success-400/70',
-    'focus-visible:bg-success-200',
-    'active:enabled:bg-success-100',
-    'dark:focus-visible:outline-success-400/70',
-    'dark:focus-within:outline-success-400/70',
-    'dark:focus-visible:bg-success-500/10',
-    'dark:active:enabled:bg-transparent',
-  ],
-  warning: [
-    'bg-warning-100',
-    'hover:enabled:bg-warning-200',
-    'text-warning-500',
-    'border-2',
-    'border-warning-100',
-    'dark:border-warning-500',
-    'dark:bg-transparent',
-    'dark:text-warning-500',
-    'dark:hover:enabled:bg-warning-500/10',
-    'focus-visible:outline-warning-400/70',
-    'focus-within:outline-warning-400/70',
-    'focus-visible:bg-warning-200',
-    'active:enabled:bg-warning-100',
-    'dark:focus-visible:outline-warning-400/70',
-    'dark:focus-within:outline-warning-400/70',
-    'dark:focus-visible:bg-warning-500/10',
-    'dark:active:enabled:bg-transparent',
-  ],
-  danger: [
-    'bg-danger-100',
-    'hover:enabled:bg-danger-200',
-    'text-danger-500',
-    'border-2',
-    'border-danger-100',
-    'dark:border-danger-500',
-    'dark:bg-transparent',
-    'dark:text-danger-500',
-    'dark:hover:enabled:bg-danger-500/10',
-    'focus-visible:outline-danger-400/70',
-    'focus-within:outline-danger-400/70',
-    'focus-visible:bg-danger-200',
-    'active:enabled:bg-danger-100',
-    'dark:focus-visible:outline-danger-400/70',
-    'dark:focus-within:outline-danger-400/70',
-    'dark:focus-visible:bg-danger-500/10',
-    'dark:active:enabled:bg-transparent',
-  ],
-  primary: [
-    'bg-primary-100',
-    'hover:enabled:bg-primary-200',
-    'text-primary-500',
-    'border-2',
-    'border-primary-100',
-    'dark:border-primary-500',
-    'dark:bg-transparent',
-    'dark:text-primary-500',
-    'dark:hover:enabled:bg-primary-500/10',
-    'focus-visible:outline-primary-400/70',
-    'focus-within:outline-primary-400/70',
-    'focus-visible:bg-primary-200',
-    'active:enabled:bg-primary-100',
-    'dark:focus-visible:outline-primary-400/70',
-    'dark:focus-within:outline-primary-400/70',
-    'dark:focus-visible:bg-primary-500/10',
-    'dark:active:enabled:bg-transparent',
-  ],
-  light: [
-    'bg-white/10',
-    'hover:enabled:bg-white/20',
-    'text-white',
-    'border-2',
-    'border-white/50',
-    'dark:border-white/50',
-    'dark:bg-transparent',
-    'dark:text-white',
-    'dark:hover:enabled:bg-white/10',
-    'focus-visible:outline-white/70',
-    'focus-within:outline-white/70',
-    'focus-visible:bg-white/20',
-    'active:enabled:bg-white/10',
-    'dark:focus-visible:outline-white/70',
-    'dark:focus-within:outline-white/70',
-    'dark:focus-visible:bg-white/10',
-    'dark:active:enabled:bg-transparent',
-  ],
-  none: [''],
-}
-const outlineColorVariant = {
-  info: [
-    'text-info-500',
-    'hover:enabled:text-white',
-    'border-2',
-    'border-info-500',
-    'hover:enabled:bg-info-500',
-    'focus-within:outline-info-400/70',
-    'focus-visible:outline-info-400/70',
-    'focus-visible:bg-info-500',
-    'focus-visible:text-white',
-    'active:enabled:text-white',
-    'active:enabled:bg-info-400',
-  ],
-  success: [
-    'text-success-500',
-    'hover:enabled:text-white',
-    'border-2',
-    'border-success-500',
-    'hover:enabled:bg-success-500',
-    'focus-within:outline-success-400/70',
-    'focus-visible:outline-success-400/70',
-    'focus-visible:bg-success-500',
-    'focus-visible:text-white',
-    'active:enabled:text-white',
-    'active:enabled:bg-success-400',
-  ],
-  warning: [
-    'text-warning-500',
-    'hover:enabled:text-white',
-    'border-2',
-    'border-warning-500',
-    'hover:enabled:bg-warning-500',
-    'focus-within:outline-warning-400/70',
-    'focus-visible:outline-warning-400/70',
-    'focus-visible:bg-warning-500',
-    'focus-visible:text-white',
-    'active:enabled:text-white',
-    'active:enabled:bg-warning-400',
-  ],
-  danger: [
-    'text-danger-500',
-    'hover:enabled:text-white',
-    'border-2',
-    'border-danger-500',
-    'hover:enabled:bg-danger-500',
-    'focus-within:outline-danger-400/70',
-    'focus-visible:outline-danger-400/70',
-    'focus-visible:bg-danger-500',
-    'focus-visible:text-white',
-    'active:enabled:text-white',
-    'active:enabled:bg-danger-400',
-  ],
-  primary: [
-    'text-primary-500',
-    'hover:enabled:text-white',
-    'border-2',
-    'border-primary-500',
-    'hover:enabled:bg-primary-500',
-    'focus-within:outline-primary-400/70',
-    'focus-visible:outline-primary-400/70',
-    'focus-visible:bg-primary-500',
-    'focus-visible:text-white',
-    'active:enabled:text-white',
-    'active:enabled:bg-primary-400',
-  ],
-  light: [
-    'text-white',
-    'hover:enabled:text-muted-700',
-    'border-2',
-    'border-white',
-    'hover:enabled:bg-white',
-    'focus-within:outline-danger-white/70',
-    'focus-visible:outline-danger-white/70',
-    'focus-visible:bg-white',
-    'focus-visible:text-muted-700',
-    'active:enabled:text-muted-700',
-    'active:enabled:bg-white',
-  ],
-  none: [''],
-}
-
+const badgeColorStyle = {
+  primary: 'nui-badge-primary',
+  info: 'nui-badge-info',
+  success: 'nui-badge-success',
+  warning: 'nui-badge-warning',
+  danger: 'nui-badge-danger',
+} as any
+const sizeStyle = {
+  sm: 'nui-button-small',
+  md: 'nui-button-medium',
+  lg: 'nui-button-large',
+  xl: 'nui-button-big',
+} as any
 const shapeStyle = {
   straight: '',
-  rounded: 'rounded-md',
-  curved: 'rounded-lg',
-  full: 'rounded-full',
-}
+  rounded: 'nui-button-rounded',
+  curved: 'nui-button-curved',
+  full: 'nui-button-full',
+} as any
+const flavorStyle = {
+  solid: 'nui-button-solid',
+  pastel: 'nui-button-pastel',
+  outline: 'nui-button-outline',
+} as any
+const colorStyle = {
+  note: '',
+  default: 'nui-button-default',
+  primary: 'nui-button-primary',
+  info: 'nui-button-info',
+  success: 'nui-button-success',
+  warning: 'nui-button-warning',
+  danger: 'nui-button-danger',
+  light: 'nui-button-light',
+  muted: 'nui-button-muted',
+} as any
+const shadowStyle = {
+  flat: 'nui-button-shadow',
+  hover: 'nui-button-shadow-hover',
+} as any
 
-const flatShadowStyle = {
-  default: '!shadow-xl !shadow-muted-300/30 dark:!shadow-muted-800/20',
-  primary: '!shadow-xl !shadow-primary-500/30 dark:!shadow-primary-500/20',
-  info: '!shadow-xl !shadow-info-500/30 dark:!shadow-info-500/20',
-  success: '!shadow-xl !shadow-success-500/30 dark:!shadow-success-500/20',
-  warning: '!shadow-xl !shadow-warning-500/30 dark:!shadow-warning-500/20',
-  danger: '!shadow-xl !shadow-danger-500/30 dark:!shadow-danger-500/20',
-  light: '',
-  muted: '',
-  none: '',
-}
-const hoverShadowStyle = {
-  default:
-    'hover:!shadow-xl hover:!shadow-muted-300/30 dark:hover:!shadow-muted-800/20',
-  primary:
-    'hover:!shadow-xl hover:!shadow-primary-500/30 dark:hover:!shadow-primary-500/20',
-  info: 'hover:!shadow-xl hover:!shadow-info-500/30 dark:hover:!shadow-info-500/20',
-  success:
-    'hover:!shadow-xl hover:!shadow-success-500/30 dark:hover:!shadow-success-500/20',
-  warning:
-    'hover:!shadow-xl hover:!shadow-warning-500/30 dark:hover:!shadow-warning-500/20',
-  danger:
-    'hover:!shadow-xl hover:!shadow-danger-500/30 dark:hover:!shadow-danger-500/20',
-  light: '',
-  muted: '',
-  none: '',
-}
-
-const colorStyle = computed(() => {
-  let colors: any =
-    props.flavor === 'solid'
-      ? solidColorVariant
-      : props.flavor === 'outline'
-      ? outlineColorVariant
-      : pastelColorVariant
-
-  colors.default = ['is-button-default']
-  colors.muted = [
-    'border',
-    'text-muted-500',
-    'bg-muted-200',
-    'border-muted-200',
-    'dark:text-white',
-    'dark:bg-muted-700',
-    'dark:border-muted-700',
-    'dark:hover:enabled:bg-muted-600',
-    'dark:focus-visible:bg-muted-600',
-    'hover:enabled:bg-muted-100',
-    'focus-visible:bg-muted-100',
-    'active:enabled:bg-muted-200',
-    'dark:active:enabled:bg-muted-700',
-  ]
-
-  return colors
-})
+const badgeStyle = computed(() =>
+  props.badge && ['default', 'light', 'muted', 'none'].includes(props.color)
+    ? ''
+    : `nui-button-badge ${badgeColorStyle[props.color]}`
+)
 
 const classes = computed(() => [
-  props.condensed ? 'is-button-condensed' : 'is-button',
-  props.loading && '!text-transparent',
+  'nui-button',
+  props.loading && 'nui-button-loading',
+  sizeStyle[props.size],
   shape.value && shapeStyle[shape.value],
-  ...colorStyle.value[props.color],
-  props.flavor === 'solid' &&
-    (props.shadow === 'flat'
-      ? flatShadowStyle[props.color]
-      : hoverShadowStyle[props.color]),
+  flavorStyle[props.flavor],
+  colorStyle[props.color],
+  props.shadow && shadowStyle[props.shadow],
 ])
 
 const { attributes, is } = useNinjaButton(props)
@@ -442,16 +139,9 @@ const { attributes, is } = useNinjaButton(props)
   <component :is="is" v-bind="attributes" :class="classes">
     <slot v-if="!props.loading" />
     <BasePlaceload v-else class="h-4 w-12 rounded" />
+    <span v-if="props.badge" :class="badgeStyle">
+      <span v-if="props.badgePulse" class="nui-button-badge-pulse"></span>
+      <span class="nui-button-badge-inner"></span>
+    </span>
   </component>
 </template>
-<style scoped>
-.is-button {
-  @apply relative font-sans font-normal text-sm no-underline inline-flex justify-center items-center leading-5 h-10 px-5 py-2 space-x-1 nui-focus transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed hover:shadow-none;
-}
-.is-button-condensed {
-  @apply relative font-sans font-normal text-sm no-underline inline-flex justify-center items-center leading-5 h-8 px-4 py-1 space-x-1 nui-focus transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed hover:shadow-none;
-}
-.is-button-default {
-  @apply text-muted-700 bg-white border border-muted-300 dark:text-white dark:bg-muted-700 dark:border-muted-600 dark:hover:enabled:bg-muted-600 dark:focus-visible:bg-muted-600 dark:active:enabled:bg-muted-700 hover:enabled:bg-muted-50 focus-visible:bg-muted-50 active:enabled:bg-white;
-}
-</style>

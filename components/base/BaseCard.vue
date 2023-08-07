@@ -4,7 +4,7 @@ const props = withDefaults(
     /**
      * The shape of the card.
      */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    shape?: 'straight' | 'rounded' | 'smooth' | 'curved'
 
     /**
      * Whether the card is elevated.
@@ -15,32 +15,61 @@ const props = withDefaults(
      * Whether the card is elevated on hover.
      */
     elevatedHover?: boolean
+
+    /**
+     * The color of the card.
+     */
+    color?:
+      | 'white'
+      | 'white-contrast'
+      | 'muted'
+      | 'muted-contrast'
+      | 'primary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'danger'
+      | 'none'
   }>(),
   {
     shape: undefined,
     elevated: false,
     elevatedHover: false,
+    color: 'muted',
   }
 )
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.card)
+
+const shapeStyle = {
+  straight: '',
+  rounded: 'nui-card-rounded',
+  smooth: 'nui-card-smooth',
+  curved: 'nui-card-curved',
+}
+const colorStyle = {
+  white: 'nui-card-white',
+  'white-contrast': 'nui-card-white-contrast',
+  muted: 'nui-card-muted',
+  'muted-contrast': 'nui-card-muted-contrast',
+  primary: 'nui-card-primary',
+  info: 'nui-card-info',
+  success: 'nui-card-success',
+  warning: 'nui-card-warning',
+  danger: 'nui-card-danger',
+}
+
+const classes = computed(() => [
+  'nui-card',
+  shape.value && shapeStyle[shape.value],
+  colorStyle[props.color],
+  props.elevated && 'nui-card-shadow',
+  props.elevatedHover && 'nui-card-shadow-hover',
+])
 </script>
 
 <template>
-  <div
-    class="border-muted-200 dark:border-muted-700 dark:bg-muted-800 relative w-full border bg-white transition-all duration-300"
-    :class="[
-      shape === 'rounded' && 'rounded-md',
-      shape === 'curved' && 'rounded-xl',
-      shape === 'full' && 'rounded-full',
-      props.elevated &&
-        !props.elevatedHover &&
-        'shadow-muted-300/30 dark:shadow-muted-800/30 shadow-xl',
-      props.elevatedHover &&
-        !props.elevated &&
-        'hover:shadow-muted-300/30 dark:hover:shadow-muted-800/30 hover:shadow-xl',
-    ]"
-  >
+  <div :class="classes">
     <slot></slot>
   </div>
 </template>

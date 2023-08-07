@@ -21,7 +21,7 @@ const props = withDefaults(
      * The shape of the select input.
      * Can be one of 'straight', 'rounded', 'curved', or 'full'.
      */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
 
     /**
      * The label text for the select input.
@@ -64,9 +64,14 @@ const props = withDefaults(
     error?: string | boolean
 
     /**
-     * Whether the select is condensed.
+     * The size of the select input.
      */
-    condensed?: boolean
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * The kind of the select input.
+     */
+    kind?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * Classes to apply to the select input.
@@ -106,6 +111,8 @@ const props = withDefaults(
   {
     id: undefined,
     label: '',
+    size: 'sm',
+    kind: 'default',
     shape: undefined,
     icon: undefined,
     placeholder: '',
@@ -118,11 +125,24 @@ const emits = defineEmits<{
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
+
 const shapeStyle = {
   straight: '',
-  rounded: 'rounded',
-  curved: 'rounded-xl',
-  full: 'rounded-full',
+  rounded: 'nui-select-rounded',
+  smooth: 'nui-select-smooth',
+  curved: 'nui-select-curved',
+  full: 'nui-select-full',
+}
+const sizeStyle = {
+  sm: 'nui-select-sm',
+  md: 'nui-select-md',
+  lg: 'nui-select-lg',
+}
+const kindStyle = {
+  default: 'nui-select-default',
+  'default-contrast': 'nui-select-default-contrast',
+  muted: 'nui-select-muted',
+  'muted-contrast': 'nui-select-muted-contrast',
 }
 
 const selectRef = ref<HTMLSelectElement>()
@@ -146,46 +166,36 @@ const placeholder = computed(() => {
 
   return props.placeholder
 })
-const condensedSelectStyle = computed(() =>
-  props.condensed
-    ? props.icon === undefined
-      ? 'h-8 py-1 text-xs leading-4 px-2'
-      : 'h-8 py-1 text-xs leading-4 pe-3 ps-7'
-    : props.icon === undefined
-    ? 'h-10 py-2 text-sm leading-5 px-3'
-    : 'h-10 py-2 text-sm leading-5 pe-4 ps-9'
-)
-const condensedLabelStyle = computed(() =>
-  props.condensed
-    ? props.icon === undefined
-      ? 'start-3 peer-focus-visible:-ms-3 peer-focus-visible:-mt-7'
-      : 'start-8 peer-focus-visible:-ms-8 peer-focus-visible:-mt-7'
-    : props.icon === undefined
-    ? 'start-3 peer-focus-visible:-ms-3 peer-focus-visible:-mt-8'
-    : 'start-10 peer-focus-visible:-ms-10 peer-focus-visible:-mt-8'
-)
 </script>
 
 <template>
-  <div class="relative" :class="props.classes?.wrapper">
+  <div
+    class="nui-select-wrapper"
+    :class="[
+      kindStyle[props.kind],
+      sizeStyle[props.size],
+      shape && shapeStyle[shape],
+      props.error && !props.loading && 'nui-seelct-error',
+      props.loading && 'nui-seelct-loading',
+      props.labelFloat && 'nui-seelct-label-float',
+      props.icon && 'nui-has-icon',
+      ...(props.classes?.wrapper && Array.isArray(props.classes.wrapper)
+        ? props.classes.wrapper
+        : [props.classes?.wrapper]),
+    ]"
+  >
     <label
       v-if="
         ('label' in $slots && !props.labelFloat) ||
         (props.label && !props.labelFloat)
       "
-      class="nui-label w-full"
+      class="nui-select-label"
       :for="id"
-      :class="[
-        props.condensed && 'pb-1 text-xs',
-        !props.condensed && 'pb-1 text-[0.825rem]',
-        ...(props.classes?.label && Array.isArray(props.classes.label)
-          ? props.classes.label
-          : [props.classes?.label]),
-      ]"
+      :class="props.classes.label"
     >
       <slot name="label">{{ props.label }}</slot>
     </label>
-    <div class="group/nui-select relative">
+    <div class="nui-select-outer">
       <select
         :id="id"
         ref="selectRef"
@@ -193,26 +203,10 @@ const condensedLabelStyle = computed(() =>
         v-bind="$attrs"
         :disabled="props.disabled"
         :readonly="props.readonly"
-        class="nui-focus border-muted-300 text-muted-600 placeholder:text-muted-300 focus:border-muted-300 focus:shadow-muted-300/50 dark:border-muted-700 dark:bg-muted-900/75 dark:text-muted-200 dark:placeholder:text-muted-600 dark:focus:border-muted-700 dark:focus:shadow-muted-800/50 peer w-full cursor-pointer appearance-none text-ellipsis border bg-white pe-8 font-sans focus:shadow-lg"
-        :class="[
-          condensedSelectStyle,
-          shape && shapeStyle[shape],
-          props.icon !== undefined ? 'pe-4 ps-9' : 'px-3',
-          props.loading &&
-            '!text-transparent placeholder:!text-transparent dark:!text-transparent dark:placeholder:!text-transparent',
-          props.error && !props.loading && '!border-danger-500',
-          ...(props.classes?.select && Array.isArray(props.classes.select)
-            ? props.classes.select
-            : [props.classes?.select]),
-        ]"
+        class="nui-select"
+        :class="props.classes.select"
       >
-        <option
-          v-if="placeholder"
-          value=""
-          disabled
-          hidden
-          class="text-muted-300 dark:text-muted-700"
-        >
+        <option v-if="placeholder" value="" disabled hidden>
           {{ placeholder }}
         </option>
         <slot></slot>
@@ -223,57 +217,29 @@ const condensedLabelStyle = computed(() =>
           (props.label && props.labelFloat)
         "
         :for="id"
-        class="nui-label peer-focus-visible:text-primary-500 pointer-events-none absolute inline-flex h-5 select-none items-center leading-none text-transparent transition-all duration-300 dark:text-transparent"
-        :class="[
-          ...(props.classes?.label && Array.isArray(props.classes.label)
-            ? props.classes.label
-            : [props.classes?.label]),
-          condensedLabelStyle,
-        ]"
+        class="nui-label-float"
+        :class="props.classes.label"
       >
         <slot name="label">{{ props.label }}</slot>
       </label>
-      <div
-        v-if="props.loading"
-        class="absolute start-0 top-0 flex w-full items-center px-4"
-        :class="[props.condensed && 'h-8', !props.condensed && 'h-10']"
-      >
-        <BasePlaceload class="h-3 w-full max-w-[75%] rounded" />
+      <div v-if="props.loading" class="nui-select-placeload">
+        <BasePlaceload class="nui-placeload" />
       </div>
       <div
         v-if="props.icon"
-        class="text-muted-400 group-focus-within/nui-select:text-primary-500 absolute start-0 top-0 flex items-center justify-center transition-colors duration-300 peer-disabled:cursor-not-allowed peer-disabled:opacity-75"
-        :class="[
-          props.loading && 'opacity-0',
-          props.condensed ? 'h-8 w-8' : 'h-10 w-10',
-          props.error && !props.loading && '!text-danger-500',
-          ...(props.classes?.icon && Array.isArray(props.classes.icon)
-            ? props.classes.icon
-            : [props.classes?.icon]),
-        ]"
+        class="nui-select-icon"
+        :class="props.classes.icon"
       >
         <slot name="icon">
-          <Icon
-            :name="props.icon"
-            :class="[
-              props.condensed && 'h-[1rem] w-[1rem]',
-              !props.condensed && 'h-[1.15rem] w-[1.15rem]',
-            ]"
-          />
+          <Icon class="nui-select-icon-inner" :name="props.icon" />
         </slot>
       </div>
-      <div
-        class="text-muted-400 pointer-events-none absolute end-0 top-0 flex items-center justify-center transition-transform duration-300 group-focus-within/nui-select:-rotate-180"
-        :class="[
-          props.classes?.chevron,
-          props.condensed ? 'h-8 w-8' : 'h-10 w-10',
-        ]"
-      >
-        <IconChevronDown class="h-4 w-4" />
+      <div class="nui-select-chevron" :class="props.classes?.chevron">
+        <IconChevronDown class="nui-select-chevron-inner" />
       </div>
       <span
         v-if="props.error && typeof props.error === 'string'"
-        class="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none"
+        class="nui-select-error-text"
         :class="props.classes?.error"
       >
         {{ props.error }}
