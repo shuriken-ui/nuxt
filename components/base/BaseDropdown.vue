@@ -67,7 +67,8 @@ const props = withDefaults(
     buttonColor: 'default',
     shape: undefined,
     orientation: 'start',
-    color: 'muted',
+    size: 'md',
+    color: 'white',
     label: '',
     headerLabel: undefined,
   }
