@@ -40,7 +40,7 @@ const props = withDefaults(
       | 'none'
 
     /** The shape of the button. Can be 'straight', 'rounded', 'curved', or 'full'. */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    shape?: 'straight' | 'rounded' | 'curved' | 'smooth' | 'full'
 
     /** Whether the button is in a loading state. */
     loading?: boolean
@@ -82,26 +82,31 @@ const badgeColorStyle = {
   success: 'nui-badge-success',
   warning: 'nui-badge-warning',
   danger: 'nui-badge-danger',
-} as any
+  none: '',
+  default: '',
+  light: '',
+  muted: '',
+}
 const sizeStyle = {
   sm: 'nui-button-small',
   md: 'nui-button-medium',
   lg: 'nui-button-large',
   xl: 'nui-button-big',
-} as any
+}
 const shapeStyle = {
   straight: '',
   rounded: 'nui-button-rounded',
   curved: 'nui-button-curved',
+  smooth: 'nui-button-smooth',
   full: 'nui-button-full',
-} as any
+}
 const flavorStyle = {
   solid: 'nui-button-solid',
   pastel: 'nui-button-pastel',
   outline: 'nui-button-outline',
-} as any
+}
 const colorStyle = {
-  note: '',
+  none: '',
   default: 'nui-button-default',
   primary: 'nui-button-primary',
   info: 'nui-button-info',
@@ -110,11 +115,11 @@ const colorStyle = {
   danger: 'nui-button-danger',
   light: 'nui-button-light',
   muted: 'nui-button-muted',
-} as any
+}
 const shadowStyle = {
   flat: 'nui-button-shadow',
   hover: 'nui-button-shadow-hover',
-} as any
+}
 
 const badgeStyle = computed(() =>
   props.badge && ['default', 'light', 'muted', 'none'].includes(props.color)
