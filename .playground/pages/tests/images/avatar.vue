@@ -19,7 +19,11 @@ definePageMeta({
       </BaseHeading>
       <div class="grid grid-cols-8 gap-6">
         <div class="flex flex-col items-center">
-          <BaseAvatar src="https://source.unsplash.com/random/" dot />
+          <BaseAvatar
+            src="https://source.unsplash.com/random/"
+            dot
+            badgeSrc="https://source.unsplash.com/random/"
+          />
           <small>default</small>
         </div>
         <div class="flex flex-col items-center">
@@ -27,6 +31,7 @@ definePageMeta({
             src="https://source.unsplash.com/random/"
             shape="straight"
             dot
+            badgeSrc="https://source.unsplash.com/random/"
           />
           <small>straight</small>
         </div>
@@ -50,7 +55,8 @@ definePageMeta({
           <BaseAvatar
             src="https://source.unsplash.com/random/"
             shape="full"
-            dot
+            dot="warning"
+            ring
           />
           <small>full</small>
         </div>
