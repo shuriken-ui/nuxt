@@ -29,21 +29,20 @@ const props = withDefaults(
 )
 
 const sizeStyle = {
-  xs: 'avatar-group-xs',
-  sm: 'avatar-group-sm',
-  md: 'avatar-group-md',
-  lg: 'avatar-group-lg',
+  xs: 'nui-avatar-group-xs',
+  sm: 'nui-avatar-group-sm',
+  md: 'nui-avatar-group-md',
+  lg: 'nui-avatar-group-lg',
 }
 </script>
 
 <template>
-  <div class="nui-avatar-group">
+  <div class="nui-avatar-group" :class="[sizeStyle[props.size]]">
     <slot>
       <div
         v-for="avatar in avatars.slice(0, props.limit)"
         :key="typeof avatar === 'string' ? avatar : avatar.src"
         class="nui-avatar-outer"
-        :class="[sizeStyle[props.size]]"
       >
         <BaseAvatar
           v-bind="typeof avatar === 'string' ? { src: avatar } : avatar"
