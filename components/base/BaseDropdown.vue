@@ -23,34 +23,14 @@ const props = withDefaults(
       | 'none'
 
     /**
-     * The color of the dropdown.
-     */
-    color?:
-      | 'white'
-      | 'white-contrast'
-      | 'muted'
-      | 'muted-contrast'
-      | 'primary'
-      | 'info'
-      | 'success'
-      | 'warning'
-      | 'danger'
-      | 'none'
-
-    /**
      * The shape of the dropdown.
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved'
+    shape?: 'straight' | 'rounded' | 'curved' | 'full'
 
     /**
      * The orientation of the dropdown.
      */
     orientation?: 'start' | 'end'
-
-    /**
-     * The size of the dropdown.
-     */
-    size?: 'md' | 'lg'
 
     /**
      * The label to display for the dropdown.
@@ -61,62 +41,46 @@ const props = withDefaults(
      * The header label to display for the dropdown.
      */
     headerLabel?: string
+
+    /**
+     * Whether the dropdown is condensed.
+     */
+    condensed?: boolean
   }>(),
   {
     flavor: 'button',
     buttonColor: 'default',
     shape: undefined,
     orientation: 'start',
-    color: 'muted',
     label: '',
     headerLabel: undefined,
+    condensed: false,
   }
 )
 const appConfig = useAppConfig()
 const shape = computed(
   () => props.shape ?? appConfig.nui.defaultShapes?.dropdown
 )
-
-const orientationStyle = {
-  start: 'nui-dropdown-start',
-  end: 'nui-dropdown-end',
-}
-const sizeStyle = {
-  md: 'nui-menu-md',
-  lg: 'nui-menu-lg',
-}
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-menu-rounded',
-  smooth: 'nui-menu-smooth',
-  curved: 'nui-menu-curved',
-}
-const colorStyle = {
-  white: 'nui-menu-white',
-  'white-contrast': 'nui-menu-white-contrast',
-  muted: 'nui-menu-muted',
-  'muted-contrast': 'nui-menu-muted-contrast',
-  primary: 'nui-menu-primary',
-  info: 'nui-menu-info',
-  success: 'nui-menu-success',
-  warning: 'nui-menu-warning',
-  danger: 'nui-menu-danger',
-  none: '',
-}
 </script>
 
 <template>
-  <div class="nui-dropdown">
+  <div
+    class="group/nui-dropdown inline-flex items-center justify-center text-right"
+  >
     <Menu
       v-slot="{ open, close }: { open: boolean, close: () => void }"
       as="div"
-      class="nui-menu"
+      class="relative text-left"
+      :class="{
+        'h-9 w-9': props.flavor === 'context',
+      }"
     >
       <MenuButton as="template">
         <slot name="button" v-bind="{ open, close }">
           <BaseButton
             v-if="props.flavor === 'button'"
             :color="props.buttonColor"
+            :condensed="props.condensed"
             :shape="shape"
             class="!pe-3 !ps-4"
           >
@@ -125,19 +89,26 @@ const colorStyle = {
             </slot>
             <Icon
               name="lucide:chevron-down"
-              class="context-icon"
-              :class="open && 'rotate-180'"
+              class="h-4 w-4 transition-transform duration-300"
+              :class="[
+                open && 'rotate-180',
+                props.buttonColor === 'default'
+                  ? 'text-muted-400'
+                  : 'text-white',
+              ]"
             />
           </BaseButton>
           <button
             v-else-if="props.flavor === 'context'"
             type="button"
-            class="nui-context-button"
+            class="group-hover/nui-dropdown:ring-muted-200 dark:group-hover/nui-dropdown:ring-muted-700/70 dark:ring-offset-muted-900 inline-flex h-9 w-9 items-center justify-center rounded-full ring-1 ring-transparent transition-all duration-300 group-hover/nui-dropdown:ring-offset-4"
           >
-            <span class="nui-context-button-inner">
+            <span
+              class="border-muted-200 dark:border-muted-700 dark:bg-muted-800 flex h-9 w-9 items-center justify-center rounded-full border bg-white"
+            >
               <Icon
                 name="lucide:more-horizontal"
-                class="nui-context-icon"
+                class="text-muted-400 h-5 w-5 transition-transform duration-300"
                 :class="open && 'rotate-90'"
               />
             </span>
@@ -145,15 +116,15 @@ const colorStyle = {
           <button
             v-else-if="props.flavor === 'text'"
             type="button"
-            class="nui-text-button"
+            class="flex items-center space-x-1"
           >
             <slot name="label" v-bind="{ open, close }">
-              <span class="nui-text-button-inner">{{ props.label }}</span>
+              <span class="text-muted-400 font-sans">{{ props.label }}</span>
             </slot>
 
             <Icon
               name="lucide:chevron-down"
-              class="nui-chevron"
+              class="text-muted-400 h-4 w-4 transition-transform duration-300"
               :class="open && 'rotate-180'"
             />
           </button>
@@ -169,22 +140,27 @@ const colorStyle = {
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="nui-dropdown-menu"
+          class="border-muted-200 dark:border-muted-700 dark:bg-muted-800 absolute z-50 mt-2 border bg-white shadow-lg focus:outline-none"
           :class="[
-            orientationStyle[props.orientation],
-            shape && shapeStyle[shape],
-            sizeStyle[props.size],
-            colorStyle[props.color],
+            props.orientation === 'start'
+              ? 'start-0 origin-top-left'
+              : 'end-0 origin-top-right',
+            shape === 'rounded' && 'rounded-md',
+            shape === 'curved' && 'rounded-xl',
+            shape === 'full' && 'rounded-xl',
+            props.condensed ? 'w-56' : 'w-72',
           ]"
         >
-          <div v-if="props.headerLabel" class="nui-menu-header">
-            <div class="nui-menu-header-inner">
-              <h4 class="nui-menu-header-title">
+          <div v-if="props.headerLabel" class="px-4 pt-5">
+            <div class="relative flex items-center justify-between">
+              <h4
+                class="font-heading text-muted-500 dark:text-muted-200 text-xs uppercase"
+              >
                 {{ props.headerLabel }}
               </h4>
             </div>
           </div>
-          <div class="nui-menu-header-content">
+          <div class="p-2">
             <slot v-bind="{ open, close }"></slot>
           </div>
         </MenuItems>
