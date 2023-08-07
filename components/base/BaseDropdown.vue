@@ -185,7 +185,7 @@ const colorStyle = {
               </h4>
             </div>
           </div>
-          <div class="nui-menu-header-content">
+          <div class="nui-menu-content">
             <slot v-bind="{ open, close }"></slot>
           </div>
         </MenuItems>
