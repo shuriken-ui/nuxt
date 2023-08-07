@@ -154,11 +154,11 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
 </script>
 
 <template>
-  <div class="nui-pagination" :class="[shape && shapeStyle[props.shape]]">
+  <div class="nui-pagination" :class="[props.shape && shapeStyle[props.shape]]">
     <BaseFocusLoop
       as="ul"
       class="nui-pagination-list"
-      :class="shape && shapeStyle[props.shape]"
+      :class="props.shape && shapeStyle[props.shape]"
     >
       <slot name="before-pagination"></slot>
       <!-- Link -->
@@ -169,7 +169,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           class="nui-pagination-link"
           :class="[
             currentPage === 1 && 'nui-active',
-            shape && shapeStyle[props.shape],
+            props.shape && shapeStyle[props.shape],
           ]"
           @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
           @click="(e:any) => handleLinkClick(e, 1)"
@@ -182,7 +182,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
       <li v-if="showLastLink && pages.length > 0 && pages[0] > 2">
         <span
           class="nui-pagination-ellipsis"
-          :class="[shape && shapeStyle[props.shape]]"
+          :class="[props.shape && shapeStyle[props.shape]]"
         >
           {{ props.ellipsis }}
         </span>
@@ -197,7 +197,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           class="nui-pagination-link"
           :class="[
             currentPage === page && 'nui-active',
-            shape && shapeStyle[props.shape],
+            props.shape && shapeStyle[props.shape],
           ]"
           @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
           @click="(e:any) => handleLinkClick(e, page)"
@@ -210,7 +210,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
       <li v-if="showLastLink && pages[pages.length - 1] < lastPage - 1">
         <span
           class="nui-pagination-ellipsis"
-          :class="[shape && shapeStyle[props.shape]]"
+          :class="[props.shape && shapeStyle[props.shape]]"
         >
           {{ props.ellipsis }}
         </span>
@@ -224,7 +224,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           class="nui-pagination-link"
           :class="[
             currentPage === lastPage && 'nui-active',
-            shape && shapeStyle[props.shape],
+            props.shape && shapeStyle[props.shape],
           ]"
           @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
           @click="(e:any) => handleLinkClick(e, lastPage)"
@@ -237,7 +237,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
 
     <BaseFocusLoop
       class="nui-pagination-buttons"
-      :class="shape && shapeStyle[props.shape]"
+      :class="props.shape && shapeStyle[props.shape]"
     >
       <slot name="before-navigation"></slot>
 
