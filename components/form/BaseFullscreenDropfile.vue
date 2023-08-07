@@ -85,12 +85,9 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div>
-    <div
-      v-if="isDropping"
-      class="nui-bg-400/20 fixed inset-0 z-40 backdrop-blur-sm transition-all hover:backdrop-blur-none"
-    />
-    <div v-show="isDropping" class="fixed inset-0 z-50">
+  <div class="nui-fullscreen-dropfile">
+    <div v-if="isDropping" class="nui-fullscreen-dropfile-outer" />
+    <div v-show="isDropping" class="nui-fullscreen-dropfile-inner">
       <Transition
         enter-active-class="transition duration-100 ease-out"
         enter-from-class="transform scale-0 opacity-0"
@@ -99,19 +96,14 @@ onBeforeUnmount(() => {
         leave-from-class="transform scale-1 opacity-100"
         leave-to-class="transform scale-0 opacity-0"
       >
-        <div
-          v-if="isDropping"
-          class="flex h-full flex-1 items-center justify-center"
-        >
-          <div
-            class="border-primary-500 nui-bg-200 mx-auto flex h-[230px] w-[500px] flex-col items-center justify-center gap-6 rounded border drop-shadow-sm"
-          >
+        <div v-if="isDropping" class="nui-fullscreen-dropfile-container">
+          <div class="nui-fullscreen-dropfile-content">
             <Icon
               v-if="props.icon"
               :name="props.icon"
-              class="text-primary-500 text-6xl"
+              class="nui-fullscreen-dropfile-icon"
             />
-            <div class="text-2xl">{{ props.label }}</div>
+            <div class="nui-fullscreen-dropfile-label">{{ props.label }}</div>
           </div>
         </div>
       </Transition>
