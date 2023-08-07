@@ -67,7 +67,7 @@ const props = withDefaults(
     srcDark: undefined,
     text: '?',
     badgeSrc: undefined,
-    size: 'md',
+    size: 'sm',
     shape: undefined,
     mask: undefined,
     dot: false,
