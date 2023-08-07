@@ -35,7 +35,7 @@ const props = withDefaults(
     shape: undefined,
     elevated: false,
     elevatedHover: false,
-    color: 'muted',
+    color: 'white',
   }
 )
 const appConfig = useAppConfig()
