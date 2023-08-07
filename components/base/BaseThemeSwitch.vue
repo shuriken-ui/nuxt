@@ -43,3 +43,10 @@ const isDark = computed({
     </span>
   </label>
 </template>
+
+<style>
+.nui-no-transition * {
+  transition-property: none !important;
+  transition-duration: 0 !important;
+}
+</style>
