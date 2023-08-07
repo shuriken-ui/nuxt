@@ -35,25 +35,11 @@ const isDark = computed({
 </script>
 
 <template>
-  <label
-    class="bg-muted-200 dark:bg-muted-700 relative block h-6 w-14 scale-[0.8] rounded-full"
-  >
-    <input
-      class="peer absolute start-0 top-0 z-10 h-full w-full cursor-pointer opacity-0"
-      type="checkbox"
-      v-model="isDark"
-    />
-    <span
-      class="dark:bg-muted-900 border-muted-200 dark:border-muted-800 absolute -start-1 -top-2 -ms-1 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-all duration-300 peer-checked:ms-[45%] peer-checked:rotate-[360deg]"
-    >
-      <IconSun
-        class="pointer-events-none block h-6 w-6 text-yellow-400 transition-all duration-300"
-        :class="[!isDark ? 'block' : 'hidden']"
-      />
-      <IconMoon
-        class="pointer-events-none block h-6 w-6 text-yellow-400 transition-all duration-300"
-        :class="[!isDark ? 'hidden' : 'block']"
-      />
+  <label class="nui-theme-switch">
+    <input class="nui-theme-switch-input" type="checkbox" v-model="isDark" />
+    <span class="nui-theme-switch-inner">
+      <IconSun class="nui-sun" />
+      <IconMoon class="nui-moon" />
     </span>
   </label>
 </template>
