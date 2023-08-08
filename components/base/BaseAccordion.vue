@@ -107,11 +107,7 @@ const toggle = (key: number) => {
       v-for="(item, key) in items"
       :key="key"
       :open="internalOpenItems?.includes(key) ?? undefined"
-      :class="[
-        internalOpenItems?.includes(key)
-          ? 'nui-accordion-detail[open]'
-          : 'nui-accordion-detail',
-      ]"
+      class="nui-accordion-detail"
     >
       <slot name="accordion-item" :item="item" :index="key" :toggle="toggle">
         <summary
@@ -131,7 +127,7 @@ const toggle = (key: number) => {
                 size="sm"
                 weight="semibold"
                 lead="none"
-                class="accordion-header-inner"
+                class="nui-accordion-header-inner"
               >
                 {{ item.title }}
               </BaseHeading>
