@@ -227,6 +227,7 @@ const placeholder = computed(() => {
                 <div
                   v-if="value.length === 0 && placeholder"
                   class="nui-listbox-placeholder"
+                  :class="props.loading && 'text-transparent select-none'"
                 >
                   {{ placeholder }}
                 </div>
@@ -277,7 +278,10 @@ const placeholder = computed(() => {
               </template>
 
               <template v-else>
-                <div class="nui-listbox-placeholder">
+                <div
+                  class="nui-listbox-placeholder"
+                  :class="props.loading && 'text-transparent select-none'"
+                >
                   {{ placeholder }}
                 </div>
               </template>
@@ -297,7 +301,7 @@ const placeholder = computed(() => {
           </slot>
         </ListboxButton>
 
-        <transition
+        <Transition
           leave-active-class="transition duration-100 ease-in"
           leave-from-class="opacity-100"
           leave-to-class="opacity-0"
@@ -312,7 +316,10 @@ const placeholder = computed(() => {
               :value="item"
               as="template"
             >
-              <li class="nui-listbox-option" :class="[active && 'nui-active']">
+              <li
+                class="nui-listbox-option group/nui-listbox-option"
+                :class="[active && 'nui-active']"
+              >
                 <slot
                   name="listbox-item"
                   :item="item"
@@ -333,11 +340,10 @@ const placeholder = computed(() => {
                     "
                     size="sm"
                     shape="rounded"
-                    class="nui-icon-box"
                   >
                     <Icon
                       :name="item[props.properties.icon]"
-                      class="nui-icon-box-inner"
+                      class="text-muted-400 group-hover/nui-listbox-option:text-primary-500 h-5 w-5 transition-colors duration-200"
                     />
                   </BaseIconBox>
 
@@ -377,7 +383,7 @@ const placeholder = computed(() => {
               </li>
             </ListboxOption>
           </ListboxOptions>
-        </transition>
+        </Transition>
 
         <ListboxLabel
           v-if="
