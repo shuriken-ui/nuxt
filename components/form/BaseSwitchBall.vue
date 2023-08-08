@@ -83,10 +83,10 @@ defineExpose({
       {{ props.label }}
     </span>
     <span v-else class="nui-switch-ball-dual-label">
-      <span class="nui-switch-label">
+      <span class="nui-switch-ball-label">
         {{ props.label }}
       </span>
-      <span class="nui-switch-sublabel">
+      <span class="nui-switch-ball-sublabel">
         {{ props.sublabel }}
       </span>
     </span>
