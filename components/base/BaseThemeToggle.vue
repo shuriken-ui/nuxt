@@ -44,8 +44,8 @@ const isDark = computed({
     class="nui-theme-toggle"
     :class="props.inverted && 'nui-theme-toggle-inverted'"
   >
-    <input v-model="isDark" type="checkbox" class="nui-toggle-input" />
-    <span class="nui-toggle-inner">
+    <input v-model="isDark" type="checkbox" class="nui-theme-toggle-input" />
+    <span class="nui-theme-toggle-inner">
       <IconSun class="nui-sun" />
       <IconMoon class="nui-moon" />
     </span>
