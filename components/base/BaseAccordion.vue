@@ -95,72 +95,70 @@ const toggle = (key: number) => {
 </script>
 
 <template>
-  <BaseFocusLoop
-    class="nui-accordion"
-    :class="[
-      exclusive && 'is-exclusive',
-      actionStyle[props.action],
-      shape && shapeStyle[shape],
-    ]"
-  >
-    <details
+  <BaseFocusLoop>
+    <div
       v-for="(item, key) in items"
       :key="key"
-      :open="internalOpenItems?.includes(key) ?? undefined"
-      class="nui-accordion-detail"
+      class="nui-accordion"
+      :class="[actionStyle[props.action], shape && shapeStyle[shape]]"
     >
-      <slot name="accordion-item" :item="item" :index="key" :toggle="toggle">
-        <summary
-          class="nui-accordion-summary"
-          tabindex="0"
-          @click.prevent="() => toggle(key)"
-        >
-          <slot
-            name="accordion-item-summary"
-            :item="item"
-            :index="key"
-            :toggle="toggle"
+      <details
+        :open="internalOpenItems?.includes(key) ?? undefined"
+        class="nui-accordion-detail"
+      >
+        <slot name="accordion-item" :item="item" :index="key" :toggle="toggle">
+          <summary
+            class="nui-accordion-summary"
+            tabindex="0"
+            @click.prevent="() => toggle(key)"
           >
-            <div class="nui-accordion-header">
-              <BaseHeading
-                as="h4"
-                size="sm"
-                weight="semibold"
-                lead="none"
-                class="nui-accordion-header-inner"
-              >
-                {{ item.title }}
-              </BaseHeading>
+            <slot
+              name="accordion-item-summary"
+              :item="item"
+              :index="key"
+              :toggle="toggle"
+            >
+              <div class="nui-accordion-header">
+                <BaseHeading
+                  as="h4"
+                  size="sm"
+                  weight="semibold"
+                  lead="none"
+                  class="nui-accordion-header-inner"
+                >
+                  {{ item.title }}
+                </BaseHeading>
 
-              <div
-                v-if="props.action === 'dot'"
-                class="nui-accordion-dot"
-              ></div>
-              <div
-                v-else-if="props.action === 'chevron'"
-                class="nui-icon-outer"
-              >
-                <IconChevronDown class="nui-chevron-icon" />
+                <div
+                  v-if="props.action === 'dot'"
+                  class="nui-accordion-dot"
+                ></div>
+                <div
+                  v-else-if="props.action === 'chevron'"
+                  class="nui-icon-outer"
+                >
+                  <IconChevronDown class="nui-chevron-icon" />
+                </div>
+                <div v-else-if="props.action === 'plus'" class="nui-icon-outer">
+                  <IconPlus class="nui-plus-icon" />
+                </div>
               </div>
-              <div v-else-if="props.action === 'plus'" class="nui-icon-outer">
-                <IconPlus class="nui-plus-icon" />
-              </div>
-            </div>
-          </slot>
-        </summary>
-        <div class="nui-accordion-content">
-          <slot
-            name="accordion-item-content"
-            :item="item"
-            :index="key"
-            :toggle="toggle"
-          >
-            <BaseParagraph size="md" lead="tight">
-              {{ item.content }}
-            </BaseParagraph>
-          </slot>
-        </div>
-      </slot>
-    </details>
+            </slot>
+          </summary>
+          <div class="nui-accordion-content">
+            <slot
+              name="accordion-item-content"
+              :item="item"
+              :index="key"
+              :toggle="toggle"
+            >
+              <BaseParagraph size="md" lead="tight">
+                {{ item.content }}
+              </BaseParagraph>
+            </slot>
+          </div>
+        </slot>
+      </details>
+    </div>
   </BaseFocusLoop>
 </template>
