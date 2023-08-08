@@ -123,17 +123,17 @@ const id = useNinjaId(() => props.id)
         v-bind="$attrs"
         type="radio"
         :value="props.value"
-        class="nui-radio-input peer"
+        class="nui-radio-input"
       />
       <div :class="props.classes?.inputBg" class="nui-radio-inner"></div>
       <div :class="props.classes?.inputDot" class="nui-radio-dot"></div>
     </div>
-    <div class="nui-label-wrapper">
+    <div class="nui-radio-label-wrapper">
       <label
         v-if="props.label || 'default' in $slots"
         :for="id"
         :class="props.classes?.label"
-        class="nui-label-text"
+        class="nui-radio-label-text"
       >
         <slot>{{ props.label }}</slot>
       </label>
