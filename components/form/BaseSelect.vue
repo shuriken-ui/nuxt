@@ -111,7 +111,7 @@ const props = withDefaults(
   {
     id: undefined,
     label: '',
-    size: 'sm',
+    size: 'md',
     kind: 'default',
     shape: undefined,
     icon: undefined,
