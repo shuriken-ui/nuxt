@@ -22,16 +22,16 @@ const props = withDefaults(
     size?: 'sm' | 'md'
 
     /**
-     * The kind of snack, might be 'default' or 'muted'.
+     * The color of snack, might be 'default' or 'muted'.
      */
-    kind?: 'default' | 'muted'
+    color?: 'default' | 'muted'
   }>(),
   {
     label: '',
     icon: undefined,
     image: undefined,
     size: 'md',
-    kind: 'default',
+    color: 'default',
   }
 )
 
@@ -40,7 +40,7 @@ const sizeStyle = {
   sm: 'nui-snack-sm',
   md: 'nui-snack-md',
 }
-const kindStyle = {
+const colorStyle = {
   default: 'nui-snack-default',
   muted: 'nui-snack-muted',
 }
@@ -51,7 +51,7 @@ const kindStyle = {
     class="nui-snack"
     :class="[
       sizeStyle[props.size],
-      kindStyle[props.kind],
+      colorStyle[props.color],
       props.icon || props.image ? 'nui-has-media' : '',
     ]"
   >
