@@ -50,17 +50,18 @@ const props = withDefaults(
     /**
      * The shape of the checkbox.
      */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
 
     /** The color of the checkbox. Can be 'default', 'primary', 'info', 'success', 'warning', or 'danger' */
     color?:
+      | 'default'
+      | 'light'
+      | 'muted'
       | 'primary'
       | 'info'
       | 'success'
       | 'warning'
       | 'danger'
-      | 'light'
-      | 'muted'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, and input elements.
@@ -104,18 +105,20 @@ const value = useVModel(props, 'modelValue', emits)
 
 const shapeStyle = {
   straight: '',
-  rounded: 'rounded',
-  curved: 'rounded-md',
-  full: 'rounded-full',
+  rounded: 'nui-checkbox-rounded',
+  smooth: 'nui-checkbox-smooth',
+  curved: 'nui-checkbox-curved',
+  full: 'nui-checkbox-full',
 }
 const colorStyle = {
-  primary: 'text-primary-500',
-  info: 'text-info-500',
-  success: 'text-success-500',
-  warning: 'text-warning-500',
-  danger: 'text-danger-500',
-  light: 'text-light-100',
-  muted: 'text-muted-400',
+  default: 'nui-checkbox-default',
+  light: 'nui-checkbox-light',
+  muted: 'nui-checkbox-muted',
+  primary: 'nui-checkbox-primary',
+  info: 'nui-checkbox-info',
+  success: 'nui-checkbox-success',
+  warning: 'nui-checkbox-warning',
+  danger: 'nui-checkbox-danger',
 }
 
 watchEffect(() => {
@@ -136,17 +139,15 @@ const id = useNinjaId(() => props.id)
 
 <template>
   <div
-    class="relative inline-flex items-start gap-1"
+    class="nui-checkbox"
     :class="[
       props.disabled && 'opacity-50',
+      shape && shapeStyle[shape],
       props.color && colorStyle[props.color],
       props.classes?.wrapper,
     ]"
   >
-    <div
-      class="nui-focus group/nui-checkbox relative flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center overflow-hidden"
-      :class="shape && shapeStyle[shape]"
-    >
+    <div class="nui-checkbox-outer">
       <input
         :id="id"
         ref="inputRef"
@@ -154,34 +155,25 @@ const id = useNinjaId(() => props.id)
         :true-value="props.trueValue"
         :false-value="props.falseValue"
         :class="props.classes?.input"
+        :disabled="props.disabled"
         v-bind="$attrs"
-        class="peer absolute z-20 h-5 w-5 cursor-pointer opacity-0"
+        class="nui-checkbox-input"
         type="checkbox"
       />
-      <div
-        class="border-muted-400 dark:border-muted-700 dark:bg-muted-700 absolute start-0 top-0 z-0 h-full w-full border-2 bg-white peer-checked:border-current peer-indeterminate:border-current peer-checked:dark:border-current peer-indeterminate:dark:border-current"
-        :class="shape && shapeStyle[shape]"
-      ></div>
-      <IconCheck
-        class="pointer-events-none absolute z-10 h-2.5 w-2.5 translate-y-6 fill-current opacity-0 transition duration-300 peer-checked:translate-y-0 peer-checked:opacity-100 peer-indeterminate:!translate-y-6"
-      />
-      <IconIndeterminate
-        class="pointer-events-none absolute z-10 h-2.5 w-2.5 translate-y-6 fill-current opacity-0 transition duration-300 peer-indeterminate:translate-y-0 peer-indeterminate:opacity-100"
-      />
+      <div class="nui-checkbox-inner"></div>
+      <IconCheck class="nui-icon-check" />
+      <IconIndeterminate class="nui-icon-indeterminate" />
     </div>
-    <div class="inline-flex flex-col">
+    <div class="nui-checkbox-label-wrapper">
       <label
         v-if="props.label || 'default' in $slots"
         :for="id"
-        class="text-muted-400 ms-1 cursor-pointer select-none font-sans text-sm"
+        class="nui-checkbox-label-text"
         :class="props.classes?.label"
       >
         <slot>{{ props.label }}</slot>
       </label>
-      <div
-        v-if="props.error"
-        class="text-danger-600 ms-1 inline-block font-sans text-xs"
-      >
+      <div v-if="props.error" class="nui-checkbox-error">
         {{ props.error }}
       </div>
     </div>

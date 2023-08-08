@@ -41,40 +41,49 @@ const props = withDefaults(
     lead: 'normal',
   }
 )
+
+const sizeStyle = {
+  xs: 'nui-heading-xs',
+  sm: 'nui-heading-sm',
+  md: 'nui-heading-md',
+  lg: 'nui-heading-lg',
+  xl: 'nui-heading-xl',
+  '2xl': 'nui-heading-2xl',
+  '3xl': 'nui-heading-3xl',
+  '4xl': 'nui-heading-4xl',
+  '5xl': 'nui-heading-5xl',
+  '6xl': 'nui-heading-6xl',
+  '7xl': 'nui-heading-7xl',
+  '8xl': 'nui-heading-8xl',
+  '9xl': 'nui-heading-9xl',
+}
+const weightStyle = {
+  light: 'nui-weight-light',
+  normal: 'nui-weight-normal',
+  medium: 'nui-weight-medium',
+  semibold: 'nui-weight-semibold',
+  bold: 'nui-weight-bold',
+  extrabold: 'nui-weight-extrabold',
+}
+const leadStyle = {
+  none: 'nui-lead-none',
+  tight: 'nui-lead-tight',
+  snug: 'nui-lead-snug',
+  normal: 'nui-lead-normal',
+  relaxed: 'nui-lead-relaxed',
+  loose: 'nui-lead-loose',
+}
+
+const classes = computed(() => [
+  'nui-heading',
+  sizeStyle[props.size],
+  weightStyle[props.weight],
+  leadStyle[props.lead],
+])
 </script>
 
 <template>
-  <component
-    :is="props.as"
-    class="font-heading"
-    :class="[
-      props.size === 'xs' && 'text-xs',
-      props.size === 'sm' && 'text-sm',
-      props.size === 'md' && 'text-base',
-      props.size === 'lg' && 'text-lg',
-      props.size === 'xl' && 'text-xl',
-      props.size === '2xl' && 'text-2xl',
-      props.size === '3xl' && 'text-3xl',
-      props.size === '4xl' && 'text-4xl',
-      props.size === '5xl' && 'text-5xl',
-      props.size === '6xl' && 'text-6xl',
-      props.size === '7xl' && 'text-7xl',
-      props.size === '8xl' && 'text-8xl',
-      props.size === '9xl' && 'text-9xl',
-      props.weight === 'light' && 'font-light',
-      props.weight === 'normal' && 'font-normal',
-      props.weight === 'medium' && 'font-medium',
-      props.weight === 'semibold' && 'font-semibold',
-      props.weight === 'bold' && 'font-bold',
-      props.weight === 'extrabold' && 'font-extrabold',
-      props.lead === 'none' && 'leading-none',
-      props.lead === 'normal' && 'leading-normal',
-      props.lead === 'tight' && 'leading-tight',
-      props.lead === 'snug' && 'leading-snug',
-      props.lead === 'normal' && 'leading-normal',
-      props.lead === 'loose' && 'leading-loose',
-    ]"
-  >
+  <component :is="props.as" :class="classes">
     <slot></slot>
   </component>
 </template>

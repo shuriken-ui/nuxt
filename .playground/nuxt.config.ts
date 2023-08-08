@@ -1,3 +1,4 @@
+import { addTemplate } from '@nuxt/kit'
 import colors from 'tailwindcss/colors.js'
 
 export default defineNuxtConfig({
@@ -37,9 +38,16 @@ export default defineNuxtConfig({
       },
     },
   },
-  // hooks: {
-  //   'tailwindcss:config'(config) {
-  //     console.dir(config, { depth: null })
-  //   },
-  // },
+  typescript: {
+    shim: false,
+  },
+  hooks: {
+    'tailwindcss:resolvedConfig'(config) {
+      addTemplate({
+        filename: 'tailwind.config.ts', // gets prepended by .nuxt/
+        getContents: () => `export default ${JSON.stringify(config, null, 2)}`,
+        write: true,
+      })
+    },
+  },
 })

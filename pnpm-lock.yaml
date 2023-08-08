@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@headlessui/vue':
     specifier: ^1.7.14
@@ -14,8 +18,8 @@ dependencies:
     specifier: ^6.8.0
     version: 6.8.0(ts-node@10.9.1)
   '@shuriken-ui/tailwind':
-    specifier: ^0.1.1
-    version: 0.1.1(ts-node@10.9.1)
+    specifier: 1.0.0-beta.2
+    version: 1.0.0-beta.2(ts-node@10.9.1)
   '@vueuse/nuxt':
     specifier: ^10.2.0
     version: 10.2.1(nuxt@3.5.3)
@@ -1362,8 +1366,8 @@ packages:
       picomatch: 2.3.1
       rollup: 3.24.0
 
-  /@shuriken-ui/tailwind@0.1.1(ts-node@10.9.1):
-    resolution: {integrity: sha512-ktZntkLZT/2yZ2PXQ4So7ipwzE5q3DLkv2OM9NrTICeYA+z2wGkFuyWhS1nB2M1HE2QEQgg9hhtbcF8pqsYk8w==}
+  /@shuriken-ui/tailwind@1.0.0-beta.2(ts-node@10.9.1):
+    resolution: {integrity: sha512-5P0OwV3KtFtPtW51olb5vJvWNRo+kzUlu6G64ZHRmf2vW4/h7T9eLPaND9tUNQAmMCXdmOt+alLrqHIS2q+Wkw==}
     dependencies:
       '@tailwindcss/aspect-ratio': 0.4.2(tailwindcss@3.3.2)
       '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.3.2)

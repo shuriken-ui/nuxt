@@ -40,7 +40,7 @@ const props = withDefaults(
     /**
      * The shape of the pagination.
      */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
 
     /**
      * The icon to show for the previous button.
@@ -72,6 +72,14 @@ const appConfig = useAppConfig()
 const shape = computed(
   () => props.shape ?? appConfig.nui.defaultShapes?.pagination
 )
+
+const shapeStyle = {
+  straight: '',
+  rounded: 'nui-pagination-rounded',
+  smooth: 'nui-pagination-smooth',
+  curved: 'nui-pagination-curved',
+  full: 'nui-pagination-full',
+}
 
 const route = useRoute()
 const lastPage = computed(
@@ -146,15 +154,11 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
 </script>
 
 <template>
-  <div class="inline-flex w-full flex-col md:flex-row md:justify-between">
+  <div class="nui-pagination" :class="[props.shape && shapeStyle[props.shape]]">
     <BaseFocusLoop
       as="ul"
-      class="border-muted-200 bg-muted-100 dark:border-muted-600 dark:bg-muted-700 mb-4 inline-flex flex-wrap gap-2 border p-1 md:mb-0 md:gap-1"
-      :class="[
-        shape === 'rounded' && 'rounded-md',
-        shape === 'curved' && 'rounded-xl',
-        shape === 'full' && 'rounded-full',
-      ]"
+      class="nui-pagination-list"
+      :class="props.shape && shapeStyle[props.shape]"
     >
       <slot name="before-pagination"></slot>
       <!-- Link -->
@@ -162,14 +166,10 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
         <NuxtLink
           :to="paginatedLink(1)"
           tabindex="0"
-          class="flex h-10 w-10 items-center justify-center border font-sans text-sm transition-all duration-300"
+          class="nui-pagination-link"
           :class="[
-            currentPage === 1
-              ? 'bg-primary-500 border-primary-500 shadow-primary-500/50 dark:shadow-primary-500/20 text-white shadow-sm'
-              : 'dark:bg-muted-800 border-muted-200 dark:border-muted-700 hover:bg-muted-100 dark:hover:bg-muted-900 text-muted-500 hover:text-muted-700 dark:hover:text-muted-400 bg-white',
-            shape === 'rounded' && 'rounded-md',
-            shape === 'curved' && 'rounded-xl',
-            shape === 'full' && 'rounded-full',
+            currentPage === 1 && 'nui-active',
+            props.shape && shapeStyle[props.shape],
           ]"
           @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
           @click="(e:any) => handleLinkClick(e, 1)"
@@ -181,12 +181,8 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
       <!-- Ellipsis -->
       <li v-if="showLastLink && pages.length > 0 && pages[0] > 2">
         <span
-          class="border-muted-200 text-muted-500 dark:border-muted-700 dark:bg-muted-800 flex h-10 w-10 items-center justify-center bg-white font-sans text-sm"
-          :class="[
-            shape === 'rounded' && 'rounded-md',
-            shape === 'curved' && 'rounded-xl',
-            shape === 'full' && 'rounded-full',
-          ]"
+          class="nui-pagination-ellipsis"
+          :class="[props.shape && shapeStyle[props.shape]]"
         >
           {{ props.ellipsis }}
         </span>
@@ -198,14 +194,10 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           :to="paginatedLink(page)"
           tabindex="0"
           :aria-current="currentPage === page ? 'page' : undefined"
-          class="flex h-10 w-10 items-center justify-center font-sans text-sm transition-all duration-300"
+          class="nui-pagination-link"
           :class="[
-            currentPage === page
-              ? 'bg-primary-500 border-primary-500 shadow-primary-500/50 dark:shadow-primary-500/20 text-white shadow-sm'
-              : 'dark:bg-muted-800 border-muted-200 dark:border-muted-700 hover:bg-muted-100 dark:hover:bg-muted-900 text-muted-500 hover:text-muted-700 dark:hover:text-muted-400 bg-white',
-            shape === 'rounded' && 'rounded-md',
-            shape === 'curved' && 'rounded-xl',
-            shape === 'full' && 'rounded-full',
+            currentPage === page && 'nui-active',
+            props.shape && shapeStyle[props.shape],
           ]"
           @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
           @click="(e:any) => handleLinkClick(e, page)"
@@ -217,12 +209,8 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
       <!-- Ellipsis -->
       <li v-if="showLastLink && pages[pages.length - 1] < lastPage - 1">
         <span
-          class="border-muted-200 text-muted-500 dark:border-muted-700 dark:bg-muted-800 flex h-10 w-10 items-center justify-center bg-white font-sans text-sm"
-          :class="[
-            shape === 'rounded' && 'rounded-md',
-            shape === 'curved' && 'rounded-xl',
-            shape === 'full' && 'rounded-full',
-          ]"
+          class="nui-pagination-ellipsis"
+          :class="[props.shape && shapeStyle[props.shape]]"
         >
           {{ props.ellipsis }}
         </span>
@@ -233,14 +221,10 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
         <NuxtLink
           :to="paginatedLink(lastPage)"
           tabindex="0"
-          class="flex h-10 w-10 items-center justify-center font-sans text-sm transition-all duration-300"
+          class="nui-pagination-link"
           :class="[
-            currentPage === lastPage
-              ? 'bg-primary-500 border-primary-500 shadow-primary-500/50 dark:shadow-primary-500/20 text-white shadow-sm'
-              : 'dark:bg-muted-800 border-muted-200 dark:border-muted-700 hover:bg-muted-100 dark:hover:bg-muted-900 text-muted-500 hover:text-muted-700 dark:hover:text-muted-400 bg-white',
-            shape === 'rounded' && 'rounded-md',
-            shape === 'curved' && 'rounded-xl',
-            shape === 'full' && 'rounded-full',
+            currentPage === lastPage && 'nui-active',
+            props.shape && shapeStyle[props.shape],
           ]"
           @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
           @click="(e:any) => handleLinkClick(e, lastPage)"
@@ -252,12 +236,8 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
     </BaseFocusLoop>
 
     <BaseFocusLoop
-      class="border-muted-200 bg-muted-100 dark:border-muted-600 dark:bg-muted-700 flex items-center justify-end gap-1 border p-1"
-      :class="[
-        shape === 'rounded' && 'rounded-md',
-        shape === 'curved' && 'rounded-xl',
-        shape === 'full' && 'rounded-full',
-      ]"
+      class="nui-pagination-buttons"
+      :class="props.shape && shapeStyle[props.shape]"
     >
       <slot name="before-navigation"></slot>
 
@@ -265,32 +245,22 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
       <NuxtLink
         :to="paginatedLink(currentPage - 1)"
         tabindex="0"
-        class="border-muted-200 text-muted-500 hover:bg-muted-100 hover:text-muted-700 dark:border-muted-700 dark:bg-muted-800 dark:hover:bg-muted-900 dark:hover:text-muted-400 flex h-10 w-full items-center justify-center bg-white font-sans text-sm transition-all duration-300 md:w-10"
-        :class="[
-          shape === 'rounded' && 'rounded-md',
-          shape === 'curved' && 'rounded-xl',
-          shape === 'full' && 'rounded-full',
-        ]"
+        class="nui-pagination-button"
         @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
         @click="(e:any) => handleLinkClick(e, currentPage - 1)"
       >
-        <Icon :name="previousIcon" class="block h-4 w-4" />
+        <Icon :name="previousIcon" class="pagination-button-icon" />
       </NuxtLink>
 
       <!-- Next -->
       <NuxtLink
         :to="paginatedLink(currentPage + 1)"
         tabindex="0"
-        class="border-muted-200 text-muted-500 hover:bg-muted-100 hover:text-muted-700 dark:border-muted-700 dark:bg-muted-800 dark:hover:bg-muted-900 dark:hover:text-muted-400 flex h-10 w-full items-center justify-center bg-white font-sans text-sm transition-all duration-300 md:w-10"
-        :class="[
-          shape === 'rounded' && 'rounded-md',
-          shape === 'curved' && 'rounded-xl',
-          shape === 'full' && 'rounded-full',
-        ]"
+        class="nui-pagination-button"
         @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
         @click="(e:any) => handleLinkClick(e, currentPage + 1)"
       >
-        <Icon :name="nextIcon" class="block h-4 w-4" />
+        <Icon :name="nextIcon" class="pagination-button-icon" />
       </NuxtLink>
       <slot name="after-navigation"></slot>
     </BaseFocusLoop>

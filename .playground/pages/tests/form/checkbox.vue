@@ -16,17 +16,29 @@ const radio = ref('')
   >
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
-        BaseCheckboxHeadless
+        Checkbox shape
       </BaseHeading>
-      <div>
-        <BaseCheckboxHeadless v-model="check" name="test">
-          <div
-            class="flex items-center justify-between gap-2 p-8 bg-white border border-muted-200 text-muted-200 peer-checked:text-primary-500"
-          >
-            <div class="font-sans text-muted-500">Some checkbox</div>
-            <div class="h-3 w-3 rounded-full bg-current"></div>
-          </div>
-        </BaseCheckboxHeadless>
+      <div class="grid grid-cols-5 gap-4">
+        <BaseCheckbox v-model="check" shape="straight" disabled />
+        <BaseCheckbox v-model="check" shape="rounded" indeterminate />
+        <BaseCheckbox v-model="check" shape="smooth" />
+        <BaseCheckbox v-model="check" shape="curved" />
+        <BaseCheckbox v-model="check" shape="full" />
+      </div>
+    </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        Checkbox colors
+      </BaseHeading>
+      <div class="grid grid-cols-8 gap-4">
+        <BaseCheckbox v-model="check" color="default" disabled />
+        <BaseCheckbox v-model="check" color="light" indeterminate />
+        <BaseCheckbox v-model="check" color="muted" />
+        <BaseCheckbox v-model="check" color="primary" />
+        <BaseCheckbox v-model="check" color="info" />
+        <BaseCheckbox v-model="check" color="success" />
+        <BaseCheckbox v-model="check" color="warning" />
+        <BaseCheckbox v-model="check" color="danger" />
       </div>
     </div>
     <div>
