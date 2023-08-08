@@ -56,7 +56,7 @@ const id = useNinjaId(() => props.id)
 </script>
 
 <template>
-  <div class="nui-radio-headless">
+  <div class="group/nui-radio-headless nui-radio-headless">
     <label v-if="label" :for="id" class="nui-radio-headless-label">
       {{ props.label }}
     </label>
@@ -69,7 +69,7 @@ const id = useNinjaId(() => props.id)
         type="radio"
         :value="props.value"
         :name="props.name"
-        class="nui-radio-headless-input peer"
+        class="nui-radio-headless-input"
       />
       <slot v-bind="{ value }"></slot>
     </div>
