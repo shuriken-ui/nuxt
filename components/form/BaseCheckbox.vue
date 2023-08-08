@@ -105,7 +105,7 @@ const value = useVModel(props, 'modelValue', emits)
 
 const shapeStyle = {
   straight: '',
-  rounded: 'mui-checkbox-rounded',
+  rounded: 'nui-checkbox-rounded',
   smooth: 'nui-checkbox-smooth',
   curved: 'nui-checkbox-curved',
   full: 'nui-checkbox-full',
@@ -144,6 +144,7 @@ const id = useNinjaId(() => props.id)
       props.disabled && 'opacity-50',
       shape && shapeStyle[shape],
       props.color && colorStyle[props.color],
+      props.classes?.wrapper,
     ]"
   >
     <div class="nui-checkbox-outer">
