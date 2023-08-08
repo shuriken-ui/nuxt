@@ -215,7 +215,7 @@ const id = useNinjaId(() => props.id)
 
 <template>
   <div
-    class="nui-textarea"
+    class="nui-textarea-wrapper"
     :class="[
       kindStyle[props.kind],
       sizeStyle[props.size],
@@ -223,7 +223,6 @@ const id = useNinjaId(() => props.id)
       props.error && !props.loading && 'nui-textarea-error',
       props.loading && 'nui-textarea-loading',
       props.labelFloat && 'nui-textarea-label-float',
-      props.colorFocus && 'nui-textarea-focus',
       !props.resize && 'nui-textarea-not-resize',
       props.addon && 'nui-has-addon',
       ...(props.classes?.wrapper && Array.isArray(props.classes.wrapper)
@@ -246,7 +245,10 @@ const id = useNinjaId(() => props.id)
         v-model="value"
         v-bind="$attrs"
         class="nui-textarea"
-        :class="props.classes.textarea"
+        :class="[
+          props.colorFocus && 'nui-textarea-focus',
+          props.classes.textarea,
+        ]"
         :name="props.name"
         :placeholder="props.placeholder"
         :readonly="props.readonly"
@@ -275,7 +277,7 @@ const id = useNinjaId(() => props.id)
       </div>
       <span
         v-if="props.error && typeof props.error === 'string'"
-        class="text-nui-textarea-error-text"
+        class="nui-textarea-error-text"
         :class="props.classes?.error"
       >
         {{ props.error }}
