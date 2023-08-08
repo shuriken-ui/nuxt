@@ -69,7 +69,7 @@ const id = useNinjaId(() => props.id)
         type="radio"
         :value="props.value"
         :name="props.name"
-        class="nui-radio-headless-input"
+        class="nui-radio-headless-input peer"
       />
       <slot v-bind="{ value }"></slot>
     </div>
