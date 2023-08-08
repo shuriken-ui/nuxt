@@ -25,7 +25,7 @@ const props = withDefaults(
     /**
      * Define the shape of the accordion
      */
-    shape?: 'straight' | 'rounded' | 'curved'
+    shape?: 'straight' | 'rounded' | 'smooth' | 'curved'
     /**
      * Define the icon used for accordion item toggle action
      */
@@ -58,6 +58,18 @@ const shape = computed(
   () => props.shape ?? appConfig.nui.defaultShapes?.accordion
 )
 
+const shapeStyle = {
+  straight: '',
+  rounded: 'nui-accordion-rounded',
+  smooth: 'nui-accordion-smooth',
+  curved: 'nui-accordion-curved',
+}
+const actionStyle = {
+  dot: 'nui-accordion-dot',
+  chevron: 'nui-accordion-chevron',
+  plus: 'nui-accordion-plus',
+}
+
 const internalOpenItems = ref(props.openItems)
 const toggle = (key: number) => {
   const wasOpen = internalOpenItems.value.includes(key)
@@ -84,25 +96,22 @@ const toggle = (key: number) => {
 
 <template>
   <BaseFocusLoop
-    class="border-muted-200 dark:border-muted-700 dark:bg-muted-800 block overflow-hidden border bg-white"
+    class="nui-accordion"
     :class="[
       exclusive && 'is-exclusive',
-      shape === 'rounded' && 'rounded-md',
-      shape === 'curved' && 'rounded-xl',
+      actionStyle[props.action],
+      shape && shapeStyle[shape],
     ]"
   >
     <details
       v-for="(item, key) in items"
       :key="key"
       :open="internalOpenItems?.includes(key) ?? undefined"
-      :class="[
-        internalOpenItems?.includes(key) && 'is-active',
-        key > 0 && 'border-muted-200 dark:border-muted-700 border-t',
-      ]"
+      class="nui-accordion-detail"
     >
       <slot name="accordion-item" :item="item" :index="key" :toggle="toggle">
         <summary
-          class="group/nui-accordion cursor-pointer list-none outline-none"
+          class="nui-accordion-summary"
           tabindex="0"
           @click.prevent="() => toggle(key)"
         >
@@ -112,70 +121,41 @@ const toggle = (key: number) => {
             :index="key"
             :toggle="toggle"
           >
-            <div
-              class="flex items-center justify-between"
-              :class="[
-                props.action === 'dot' && 'p-5',
-                props.action === 'chevron' && 'px-5 py-3',
-                props.action === 'plus' && 'px-5 py-3',
-              ]"
-            >
+            <div class="nui-accordion-header">
               <BaseHeading
                 as="h4"
                 size="sm"
                 weight="semibold"
                 lead="none"
-                class="text-muted-800 dark:text-white"
+                class="nui-accordion-header-inner"
               >
                 {{ item.title }}
               </BaseHeading>
 
               <div
                 v-if="props.action === 'dot'"
-                class="group-focus/nui-accordion:outline-muted-200 dark:group-focus/nui-accordion:outline-muted-700 ms-2 h-3 w-3 rounded-full transition-colors duration-300 group-focus/nui-accordion:outline-dashed group-focus/nui-accordion:outline-offset-2"
-                :class="
-                  internalOpenItems?.includes(key)
-                    ? 'bg-primary-500'
-                    : 'bg-muted-200 dark:bg-muted-700'
-                "
+                class="nui-accordion-dot"
               ></div>
               <div
                 v-else-if="props.action === 'chevron'"
-                class="group-focus/nui-accordion:outline-muted-200 dark:group-focus/nui-accordion:outline-muted-700 border-muted-200 dark:border-muted-700 dark:bg-muted-700/60 ms-2 flex h-8 w-8 items-center justify-center rounded-full border bg-white transition-all duration-300 group-focus/nui-accordion:outline-dashed group-focus/nui-accordion:outline-offset-2"
-                :class="
-                  internalOpenItems?.includes(key)
-                    ? 'text-primary-500 rotate-180'
-                    : 'text-muted-400'
-                "
+                class="nui-icon-outer"
               >
-                <IconChevronDown class="h-4 w-4" />
+                <IconChevronDown class="nui-chevron-icon" />
               </div>
-              <div
-                v-else-if="props.action === 'plus'"
-                class="group-focus/nui-accordion:outline-muted-200 dark:group-focus/nui-accordion:outline-muted-700 border-muted-200 dark:border-muted-700 dark:bg-muted-700/60 ms-2 flex h-8 w-8 items-center justify-center rounded-full border bg-white transition-all duration-300 group-focus/nui-accordion:outline-dashed group-focus:outline-offset-2"
-                :class="
-                  internalOpenItems?.includes(key)
-                    ? 'text-primary-500 rotate-45'
-                    : 'text-muted-400'
-                "
-              >
-                <IconPlus class="h-4 w-4" />
+              <div v-else-if="props.action === 'plus'" class="nui-icon-outer">
+                <IconPlus class="nui-plus-icon" />
               </div>
             </div>
           </slot>
         </summary>
-        <div class="px-5 pb-5">
+        <div class="nui-accordion-content">
           <slot
             name="accordion-item-content"
             :item="item"
             :index="key"
             :toggle="toggle"
           >
-            <BaseParagraph
-              size="md"
-              lead="tight"
-              class="text-muted-500 dark:text-muted-400"
-            >
+            <BaseParagraph size="md" lead="tight">
               {{ item.content }}
             </BaseParagraph>
           </slot>
