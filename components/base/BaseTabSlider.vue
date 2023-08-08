@@ -38,7 +38,7 @@ const props = withDefaults(
   {
     selected: undefined,
     justify: undefined,
-    size: 'sm',
+    size: 'md',
     length: 2,
     shape: undefined,
   }
@@ -69,7 +69,7 @@ const shapeStyle = {
 }
 
 const lengthStyle = computed(() =>
-  props.length == 2 ? 'nui-tabs-two-slots' : 'nui-tabs-three-slots'
+  props.length === 2 ? 'nui-tabs-two-slots' : 'nui-tabs-three-slots'
 )
 
 const activeValue = ref<string | undefined>(
@@ -104,7 +104,7 @@ watch(activeValue, (value) => {
     <div class="nui-tab-slider-inner">
       <div class="nui-tab-slider-track">
         <button
-          v-for="(tab, index) in tabs.slice(0, props.size)"
+          v-for="(tab, index) in tabs.slice(0, props.length)"
           :key="index"
           type="button"
           class="nui-tab-slider-item"
@@ -112,14 +112,14 @@ watch(activeValue, (value) => {
           @keydown.space="toggle(tab?.value)"
           @click="toggle(tab?.value)"
         >
-          <span>{{ tab?.label ?? tab?.value }}</span>
+          {{ tab?.label ?? tab?.value }}
         </button>
         <div v-show="activeValue" class="nui-tab-slider-naver"></div>
       </div>
     </div>
 
     <div class="nui-tab-content">
-      <slot name="tab" :active-value="activeValue"></slot>
+      <slot :active-value="activeValue"></slot>
     </div>
   </div>
 </template>
