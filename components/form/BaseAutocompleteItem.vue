@@ -29,7 +29,7 @@ const props = withDefaults(
     /**
      * The shape of the component.
      */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
 
     /**
      * The icon to show when the component is selected.
@@ -67,8 +67,9 @@ const shape = computed(
 const shapeStyle = {
   straight: '',
   rounded: 'rounded-md',
-  curved: 'rounded-lg',
-  full: 'rounded-full',
+  smooth: 'rounded-lg',
+  curved: 'rounded-xl',
+  full: 'rounded-xl',
 }
 
 const inputContext = inject('BaseAutocompleteContext', {
