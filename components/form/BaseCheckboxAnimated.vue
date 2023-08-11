@@ -179,3 +179,73 @@ const id = useNinjaId(() => props.id)
     </label>
   </div>
 </template>
+
+<style scoped>
+.nui-checkbox-animated-label:deep(svg circle) {
+  height: 32px;
+  width: 32px;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: currentColor;
+  fill: none;
+}
+
+.nui-checkbox-animated-label:deep(svg) {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  color: currentColor;
+  stroke: currentColor;
+  stroke-miterlimit: 10;
+  margin: 0 auto;
+  box-shadow: inset 0 0 0 currentColor;
+}
+
+.nui-checkbox-animated-label:deep(svg path) {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  stroke: currentColor;
+}
+
+.nui-checkbox-animated.nui-checked label:deep(svg circle) {
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) both;
+}
+.nui-checkbox-animated.nui-checked label:deep(svg path) {
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s both;
+}
+.nui-checkbox-animated.nui-unchecked label:deep(svg circle) {
+  animation: reverseCircle 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.2s both;
+}
+.nui-checkbox-animated.nui-unchecked label:deep(svg path) {
+  animation: reverseCheck 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.1s both;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes reverseCircle {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: 166;
+  }
+}
+@keyframes reverseCheck {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: 48;
+  }
+}
+</style>

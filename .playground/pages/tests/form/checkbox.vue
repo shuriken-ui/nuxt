@@ -30,20 +30,5 @@ const radio = ref('')
         <BaseCheckboxAnimated v-model="check" color="danger" />
       </div>
     </div>
-    <div>
-      <BaseHeading size="xl" weight="medium" class="mb-10">
-        BaseCheckboxAnimated2 Colors
-      </BaseHeading>
-      <div class="grid grid-cols-8 gap-4">
-        <BaseCheckboxAnimated2 v-model="check2" color="default" />
-        <BaseCheckboxAnimated2 v-model="check2" color="light" />
-        <BaseCheckboxAnimated2 v-model="check2" color="muted" />
-        <BaseCheckboxAnimated2 v-model="check2" color="primary" />
-        <BaseCheckboxAnimated2 v-model="check2" color="info" />
-        <BaseCheckboxAnimated2 v-model="check2" color="success" />
-        <BaseCheckboxAnimated2 v-model="check2" color="warning" />
-        <BaseCheckboxAnimated2 v-model="check2" color="danger" />
-      </div>
-    </div>
   </div>
 </template>
