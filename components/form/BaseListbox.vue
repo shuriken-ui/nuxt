@@ -80,9 +80,9 @@ const props = withDefaults(
     size?: 'sm' | 'md' | 'lg'
 
     /**
-     * The kind of the listbox.
+     * The contrast of the listbox.
      */
-    kind?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * The properties to use for the value, label, sublabel, media, and icon of the options items.
@@ -120,7 +120,7 @@ const props = withDefaults(
     label: '',
     placeholder: '',
     size: 'md',
-    kind: 'default',
+    contrast: 'default',
     shape: undefined,
     error: false,
     multipleLabel: () => {
@@ -159,7 +159,7 @@ const sizeStyle = {
   md: 'nui-listbox-md',
   lg: 'nui-listbox-lg',
 }
-const kindStyle = {
+const contrastStyle = {
   default: 'nui-listbox-default',
   'default-contrast': 'nui-listbox-default-contrast',
   muted: 'nui-listbox-muted',
@@ -184,7 +184,7 @@ const placeholder = computed(() => {
   <div
     class="nui-listbox"
     :class="[
-      kindStyle[props.kind],
+      contrastStyle[props.contrast],
       sizeStyle[props.size],
       shape && shapeStyle[shape],
       props.error && !props.loading && 'nui-listbox-error',

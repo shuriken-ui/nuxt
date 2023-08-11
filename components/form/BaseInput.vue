@@ -82,9 +82,9 @@ const props = withDefaults(
     size?: 'sm' | 'md' | 'lg'
 
     /**
-     * The kind of the input.
+     * The contrast of the input.
      */
-    kind?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -126,7 +126,7 @@ const props = withDefaults(
     modelModifiers: () => ({}),
     type: 'text',
     size: 'md',
-    kind: 'default',
+    contrast: 'default',
     shape: undefined,
     label: undefined,
     icon: undefined,
@@ -153,7 +153,7 @@ const sizeStyle = {
   md: 'nui-input-md',
   lg: 'nui-input-lg',
 }
-const kindStyle = {
+const contrastStyle = {
   default: 'nui-input-default',
   'default-contrast': 'nui-input-default-contrast',
   muted: 'nui-input-muted',
@@ -210,7 +210,7 @@ if (process.dev) {
   <div
     class="nui-input-wrapper"
     :class="[
-      kindStyle[props.kind],
+      contrastStyle[props.contrast],
       sizeStyle[props.size],
       shape && shapeStyle[shape],
       props.error && !props.loading && 'nui-input-error',

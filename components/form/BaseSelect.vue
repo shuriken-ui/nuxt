@@ -69,9 +69,9 @@ const props = withDefaults(
     size?: 'sm' | 'md' | 'lg'
 
     /**
-     * The kind of the select input.
+     * The contrast of the select input.
      */
-    kind?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * Classes to apply to the select input.
@@ -112,7 +112,7 @@ const props = withDefaults(
     id: undefined,
     label: '',
     size: 'md',
-    kind: 'default',
+    contrast: 'default',
     shape: undefined,
     icon: undefined,
     placeholder: '',
@@ -138,7 +138,7 @@ const sizeStyle = {
   md: 'nui-select-md',
   lg: 'nui-select-lg',
 }
-const kindStyle = {
+const contrastStyle = {
   default: 'nui-select-default',
   'default-contrast': 'nui-select-default-contrast',
   muted: 'nui-select-muted',
@@ -172,7 +172,7 @@ const placeholder = computed(() => {
   <div
     class="nui-select-wrapper"
     :class="[
-      kindStyle[props.kind],
+      contrastStyle[props.contrast],
       sizeStyle[props.size],
       shape && shapeStyle[shape],
       props.error && !props.loading && 'nui-seelct-error',

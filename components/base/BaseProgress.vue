@@ -7,9 +7,9 @@ const props = withDefaults(
     color?: 'primary' | 'info' | 'success' | 'warning' | 'danger'
 
     /**
-     * The kind ot the progress bar.
+     * The contrast ot the progress bar.
      */
-    kind?: 'default' | 'contrast'
+    contrast?: 'default' | 'contrast'
 
     /**
      * The shape of the progress bar.
@@ -34,7 +34,7 @@ const props = withDefaults(
   }>(),
   {
     color: 'primary',
-    kind: 'default',
+    contrast: 'default',
     shape: undefined,
     size: 'sm',
     value: undefined,
@@ -54,7 +54,7 @@ const colorStyle = {
   warning: 'nui-progress-warning',
   danger: 'nui-progress-danger',
 }
-const kindStyle = {
+const contrastStyle = {
   default: 'nui-progress-default',
   contrast: 'nui-progress-contrast',
 }
@@ -89,7 +89,7 @@ const value = computed(() => {
     :aria-valuemax="props.max"
     class="nui-progress"
     :class="[
-      kindStyle[props.kind],
+      contrastStyle[props.contrast],
       colorStyle[props.color],
       sizeStyle[props.size],
       shape && shapeStyle[shape],

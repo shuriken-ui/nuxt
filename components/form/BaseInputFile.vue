@@ -53,9 +53,9 @@ const props = withDefaults(
     size?: 'sm' | 'md' | 'lg'
 
     /**
-     * The kind of the input.
+     * The contrast of the input.
      */
-    kind?: 'white' | 'white-contrast'
+    contrast?: 'white' | 'white-contrast'
 
     /**
      * An error message or boolean value indicating whether the file input is in an error state.
@@ -106,7 +106,7 @@ const props = withDefaults(
     id: undefined,
     type: 'text',
     size: 'md',
-    kind: 'white',
+    contrast: 'white',
     shape: undefined,
     placeholder: 'Choose file',
     label: undefined,
@@ -142,7 +142,7 @@ const sizeStyle = {
   md: 'nui-input-md',
   lg: 'nui-input-lg',
 }
-const kindStyle = {
+const contrastStyle = {
   white: 'nui-input-white',
   'white-contrast': 'nui-input-white-contrast',
 }
@@ -169,7 +169,7 @@ const id = useNinjaId(() => props.id)
   <div
     class="nui-input-file-regular"
     :class="[
-      kindStyle[props.kind],
+      contrastStyle[props.contrast],
       sizeStyle[props.size],
       shape && shapeStyle[shape],
       props.error && !props.loading && 'nui-input-file-error',

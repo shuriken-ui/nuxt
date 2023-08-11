@@ -64,9 +64,9 @@ const props = withDefaults(
     size?: 'sm' | 'md' | 'lg'
 
     /**
-     * The kind of autocomplete component.
+     * The contrast of autocomplete component.
      */
-    kind?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * Whether the component is in a loading state.
@@ -153,7 +153,7 @@ const props = withDefaults(
     label: '',
     error: '',
     size: 'md',
-    kind: 'default',
+    contrast: 'default',
     i18n: () => ({
       pending: 'Loading ...',
       empty: 'Nothing found.',
@@ -213,7 +213,7 @@ const sizeStyle = {
   md: 'nui-autocomplete-md',
   lg: 'nui-autocomplete-lg',
 }
-const kindStyle = {
+const contrastStyle = {
   default: 'nui-autocomplete-default',
   'default-contrast': 'nui-autocomplete-default-contrast',
   muted: 'nui-autocomplete-muted',
@@ -326,7 +326,7 @@ function removeItem(item: any) {
       'nui-autocomplete',
       ...wrapperStyle,
       sizeStyle[props.size],
-      kindStyle[props.kind],
+      contrastStyle[props.contrast],
       shape && shapeStyle[shape],
       props.icon && 'nui-has-icon',
       props.labelFloat && 'nui-autocomplete-label-float',

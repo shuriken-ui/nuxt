@@ -77,9 +77,9 @@ export interface TextareaProps {
   size?: 'sm' | 'md' | 'lg'
 
   /**
-   * The kind of the textarea.
+   * The contrast of the textarea.
    */
-  kind?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+  contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
   /**
    * Whether the textarea is read-only.
@@ -146,7 +146,7 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   shape: undefined,
   placeholder: '',
   size: 'md',
-  kind: 'default',
+  contrast: 'default',
   rows: 4,
   error: false,
   classes: () => ({}),
@@ -167,7 +167,7 @@ const sizeStyle = {
   md: 'nui-textarea-md',
   lg: 'nui-textarea-lg',
 }
-const kindStyle = {
+const contrastStyle = {
   default: 'nui-textarea-default',
   'default-contrast': 'nui-textarea-default-contrast',
   muted: 'nui-textarea-muted',
@@ -217,7 +217,7 @@ const id = useNinjaId(() => props.id)
   <div
     class="nui-textarea-wrapper"
     :class="[
-      kindStyle[props.kind],
+      contrastStyle[props.contrast],
       sizeStyle[props.size],
       shape && shapeStyle[shape],
       props.error && !props.loading && 'nui-textarea-error',
