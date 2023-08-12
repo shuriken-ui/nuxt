@@ -39,6 +39,7 @@ const itemsObject = ref([
         <BaseAutocomplete
           :items="items"
           label="Test"
+          data-cy="test"
           placeholder="Let's test autocomplete"
           error="This is an error message"
           shape="straight"

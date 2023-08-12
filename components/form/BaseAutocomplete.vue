@@ -14,6 +14,10 @@ import {
 
 const props = withDefaults(
   defineProps<{
+    // Temporary fix to allow attributes inheritance with generic components
+    // @see https://github.com/vuejs/core/issues/8372
+    [attrs: string]: any
+
     /**
      * The model value of the component.
      */
@@ -332,22 +336,24 @@ function removeItem(item: T) {
 <template>
   <Combobox
     v-model="value"
-    :multiple="multiple"
-    :disabled="disabled"
+    :multiple="props.multiple"
+    :disabled="props.disabled"
     :class="[
       'nui-autocomplete',
-      classes?.wrapper,
-      sizeStyle[size],
-      contrastStyle[contrast],
+      props.classes?.wrapper,
+      sizeStyle[props.size],
+      contrastStyle[props.contrast],
       shape && shapeStyle[shape],
-      icon && 'nui-has-icon',
-      labelFloat && 'nui-autocomplete-label-float',
-      loading && 'nui-autocomplete-loading',
+      props.icon && 'nui-has-icon',
+      props.labelFloat && 'nui-autocomplete-label-float',
+      props.loading && 'nui-autocomplete-loading',
     ]"
     as="div"
   >
     <ComboboxLabel
-      v-if="('label' in $slots && !labelFloat) || (label && !labelFloat)"
+      v-if="
+        ('label' in $slots && !labelFloat) || (props.label && !props.labelFloat)
+      "
       class="nui-autocomplete-label"
       :class="classes?.label"
     >
@@ -356,14 +362,14 @@ function removeItem(item: T) {
       </slot>
     </ComboboxLabel>
 
-    <div v-if="multiple" class="nui-autocomplete-multiple">
+    <div v-if="props.multiple" class="nui-autocomplete-multiple">
       <ul
         v-if="Array.isArray(value) && value.length > 0"
         class="nui-autocomplete-multiple-list"
       >
         <li v-for="item in value" :key="String(item)">
           <div class="nui-autocomplete-multiple-list-item">
-            {{ displayValue(item) }}
+            {{ props.displayValue(item) }}
             <button type="button" @click="removeItem(item)">
               <Icon
                 :name="chipClearIcon"
@@ -379,42 +385,45 @@ function removeItem(item: T) {
       <ComboboxInput
         class="nui-autocomplete-input"
         :class="classes?.input"
-        :display-value="multiple ? undefined : (displayValue as any)"
-        :placeholder="placeholder"
-        :disabled="disabled"
+        :display-value="props.multiple ? undefined : (props.displayValue as any)"
+        :placeholder="props.placeholder"
+        :disabled="props.disabled"
         @change="query = $event.target.value"
       />
       <ComboboxLabel
-        v-if="('label' in $slots && labelFloat) || (label && labelFloat)"
+        v-if="
+          ('label' in $slots && props.labelFloat) ||
+          (props.label && props.labelFloat)
+        "
         class="nui-label-float"
-        :class="classes?.label"
+        :class="props.classes?.label"
       >
         <slot name="label" v-bind="{ query, filteredItems, pending, items }">
-          {{ label }}
+          {{ props.label }}
         </slot>
       </ComboboxLabel>
       <div v-if="iconResolved" class="nui-autocomplete-icon">
         <Icon :name="iconResolved" class="nui-autocomplete-icon-inner" />
       </div>
       <button
-        v-if="clearable && value"
+        v-if="props.clearable && value"
         type="button"
         class="nui-autocomplete-clear"
-        :class="classes?.icon"
+        :class="props.classes?.icon"
         @click="clear"
       >
-        <Icon :name="clearIcon" class="nui-autocomplete-clear-inner" />
+        <Icon :name="props.clearIcon" class="nui-autocomplete-clear-inner" />
       </button>
-      <div v-if="loading" class="nui-autocomplete-placeload">
-        <BasePlaceload class="nui-placeload" :class="icon && 'ms-6'" />
+      <div v-if="props.loading" class="nui-autocomplete-placeload">
+        <BasePlaceload class="nui-placeload" :class="props.icon && 'ms-6'" />
       </div>
     </div>
 
     <span
-      v-if="error && typeof error === 'string'"
+      v-if="props.error && typeof props.error === 'string'"
       class="nui-autocomplete-error-text"
     >
-      {{ error }}
+      {{ props.error }}
     </span>
 
     <TransitionRoot
@@ -434,7 +443,7 @@ function removeItem(item: T) {
             v-bind="{ query, filteredItems, pending, items }"
           >
             <span class="nui-autocomplete-results-placeholder-text">
-              {{ i18n.pending }}
+              {{ props.i18n.pending }}
             </span>
           </slot>
         </div>
@@ -444,7 +453,7 @@ function removeItem(item: T) {
         >
           <slot name="empty" v-bind="{ query, filteredItems, pending, items }">
             <span class="nui-autocomplete-results-placeholder-text">
-              {{ i18n.empty }}
+              {{ props.i18n.empty }}
             </span>
           </slot>
         </div>
@@ -489,7 +498,7 @@ function removeItem(item: T) {
                   isAutocompleteItem(item)
                     ? item
                     : {
-                        name: displayValue(item),
+                        name: props.displayValue(item),
                       }
                 "
                 :active="active"
