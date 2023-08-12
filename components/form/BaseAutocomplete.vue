@@ -227,35 +227,6 @@ const contrastStyle = {
   'muted-contrast': 'nui-autocomplete-muted-contrast',
 }
 
-const wrapperStyle = computed(() =>
-  props.classes?.wrapper
-    ? Array.isArray(props.classes?.wrapper)
-      ? [...props.classes?.wrapper]
-      : props.classes?.wrapper
-    : ''
-)
-const labelStyle = computed(() =>
-  props.classes?.label
-    ? Array.isArray(props.classes?.label)
-      ? [...props.classes?.label]
-      : props.classes?.label
-    : ''
-)
-const inputStyle = computed(() =>
-  props.classes?.input
-    ? Array.isArray(props.classes?.input)
-      ? [...props.classes?.input]
-      : props.classes?.input
-    : ''
-)
-const iconStyle = computed(() =>
-  props.classes?.icon
-    ? Array.isArray(props.classes?.icon)
-      ? [...props.classes?.icon]
-      : props.classes?.icon
-    : ''
-)
-
 provide(
   'BaseAutocompleteContext',
   reactive({
@@ -365,7 +336,7 @@ function removeItem(item: T) {
     :disabled="disabled"
     :class="[
       'nui-autocomplete',
-      ...wrapperStyle,
+      classes?.wrapper,
       sizeStyle[size],
       contrastStyle[contrast],
       shape && shapeStyle[shape],
@@ -378,7 +349,7 @@ function removeItem(item: T) {
     <ComboboxLabel
       v-if="('label' in $slots && !labelFloat) || (label && !labelFloat)"
       class="nui-autocomplete-label"
-      :class="labelStyle"
+      :class="classes?.label"
     >
       <slot name="label" v-bind="{ query, filteredItems, pending, items }">
         {{ label }}
@@ -407,7 +378,7 @@ function removeItem(item: T) {
     <div class="nui-autocomplete-outer">
       <ComboboxInput
         class="nui-autocomplete-input"
-        :class="inputStyle"
+        :class="classes?.input"
         :display-value="multiple ? undefined : (displayValue as any)"
         :placeholder="placeholder"
         :disabled="disabled"
@@ -416,7 +387,7 @@ function removeItem(item: T) {
       <ComboboxLabel
         v-if="('label' in $slots && labelFloat) || (label && labelFloat)"
         class="nui-label-float"
-        :class="labelStyle"
+        :class="classes?.label"
       >
         <slot name="label" v-bind="{ query, filteredItems, pending, items }">
           {{ label }}
@@ -429,7 +400,7 @@ function removeItem(item: T) {
         v-if="clearable && value"
         type="button"
         class="nui-autocomplete-clear"
-        :class="iconStyle"
+        :class="classes?.icon"
         @click="clear"
       >
         <Icon :name="clearIcon" class="nui-autocomplete-clear-inner" />

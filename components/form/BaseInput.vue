@@ -223,9 +223,7 @@ if (process.dev) {
       props.loading && 'nui-input-loading',
       props.labelFloat && 'nui-input-label-float',
       props.icon && 'nui-has-icon',
-      ...(props.classes?.wrapper && Array.isArray(props.classes.wrapper)
-        ? props.classes.wrapper
-        : [props.classes?.wrapper]),
+      props.classes?.wrapper,
     ]"
   >
     <label

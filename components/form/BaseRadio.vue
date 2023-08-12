@@ -109,12 +109,7 @@ const id = useNinjaId(() => props.id)
 <template>
   <div
     class="nui-radio"
-    :class="[
-      props.color && colorStyle[props.color],
-      ...(props.classes?.wrapper && Array.isArray(props.classes.wrapper)
-        ? props.classes.wrapper
-        : [props.classes?.wrapper]),
-    ]"
+    :class="[props.color && colorStyle[props.color], props.classes?.wrapper]"
   >
     <div class="nui-radio-outer">
       <input

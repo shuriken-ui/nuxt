@@ -180,9 +180,7 @@ const placeholder = computed(() => {
       props.loading && 'nui-seelct-loading',
       props.labelFloat && 'nui-seelct-label-float',
       props.icon && 'nui-has-icon',
-      ...(props.classes?.wrapper && Array.isArray(props.classes.wrapper)
-        ? props.classes.wrapper
-        : [props.classes?.wrapper]),
+      props.classes?.wrapper,
     ]"
   >
     <label

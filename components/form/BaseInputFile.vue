@@ -176,9 +176,7 @@ const id = useNinjaId(() => props.id)
       props.error && !props.loading && 'nui-input-file-error',
       props.loading && 'nui-input-file-loading',
       props.icon && 'nui-has-icon',
-      ...(props.classes?.wrapper && Array.isArray(props.classes.wrapper)
-        ? props.classes.wrapper
-        : [props.classes?.wrapper]),
+      props.classes.wrapper,
     ]"
   >
     <label
@@ -194,12 +192,7 @@ const id = useNinjaId(() => props.id)
         tabindex="0"
         class="nui-input-file-inner"
         :for="id"
-        :class="[
-          props.colorFocus && 'nui-color-focus',
-          ...(props.classes?.input && Array.isArray(props.classes.input)
-            ? props.classes.input
-            : [props.classes?.input]),
-        ]"
+        :class="[props.colorFocus && 'nui-color-focus', props.classes.input]"
       >
         <div class="nui-input-file-addon" :class="props.classes.text">
           <span class="text-xs">{{ props.placeholder }}</span>

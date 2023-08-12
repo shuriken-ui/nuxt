@@ -231,9 +231,7 @@ const id = useNinjaId(() => props.id)
       props.labelFloat && 'nui-textarea-label-float',
       !props.resize && 'nui-textarea-not-resize',
       props.addon && 'nui-has-addon',
-      ...(props.classes?.wrapper && Array.isArray(props.classes.wrapper)
-        ? props.classes.wrapper
-        : [props.classes?.wrapper]),
+      props.classes?.wrapper,
     ]"
   >
     <label
