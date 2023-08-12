@@ -49,10 +49,9 @@ const properties = {
       </BaseHeading>
       <div class="grid grid-cols-3 gap-4">
         <BaseListbox
-          v-model="model.frameworkId"
+          v-model.prop="model.frameworkId"
           :items="frameworks"
           :properties="properties"
-          return-value-prop
         />
         <pre> {{ model }}</pre>
         <BaseButton @click="model.frameworkId = 'vue'">

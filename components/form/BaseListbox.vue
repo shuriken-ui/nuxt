@@ -16,8 +16,20 @@ const props = withDefaults(
 
     /**
      * The model value of the multiselect.
+     *
+     * @modifiers
+     * `v-model="value"`
+     *
+     * @modifiers
+     * the value property of an object (as defined in properties.value) rather than the object itself
+     * `v-model.prop="value"`
      */
-    modelValue: any
+    modelValue?: any
+
+    /**
+     * Used internaly to allow v-model.number and v-model.trim
+     */
+    modelModifiers?: any
 
     /**
      * The shape of the multiselect.
@@ -113,14 +125,11 @@ const props = withDefaults(
        */
       icon?: string
     }
-
-    /**
-     * Set this to only return the value property of an object (as defined in properties.value) rather than the object itself
-     */
-    returnValueProp?: boolean
   }>(),
   {
     icon: '',
+    modelValue: undefined,
+    modelModifiers: () => ({}),
     selectedIcon: 'lucide:check',
     label: '',
     placeholder: '',
@@ -144,7 +153,6 @@ const props = withDefaults(
     loading: false,
     disabled: false,
     properties: () => ({}),
-    returnValueProp: false,
   }
 )
 const emits = defineEmits<{
@@ -172,7 +180,9 @@ const contrastStyle = {
   'muted-contrast': 'nui-listbox-muted-contrast',
 }
 
-const vmodel = useVModel(props, 'modelValue', emits)
+const vmodel = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const placeholder = computed(() => {
   if (props.loading) {
@@ -186,7 +196,7 @@ const placeholder = computed(() => {
 })
 
 const value = computed(() => {
-  if (props.returnValueProp && props.properties.value) {
+  if (props.modelModifiers.prop && props.properties.value) {
     const attr = props.properties.value
     return props.items.find((i) => i[attr] === props.modelValue)
   }
@@ -210,7 +220,7 @@ const value = computed(() => {
     <Listbox
       v-slot="{ open }: { open: boolean }"
       v-model="vmodel"
-      :by="returnValueProp ? undefined : props.properties.value"
+      :by="props.modelModifiers.prop ? undefined : props.properties.value"
       :multiple="props.multiple"
       :disabled="props.disabled"
     >
@@ -328,7 +338,7 @@ const value = computed(() => {
                 props.properties.value ? item[props.properties.value] : item
               "
               :value="
-                returnValueProp && props.properties.value
+                props.modelModifiers.prop && props.properties.value
                   ? item[props.properties.value]
                   : item
               "
