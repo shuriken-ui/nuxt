@@ -1,4 +1,8 @@
-<script setup lang="ts">
+<script
+  setup
+  lang="ts"
+  generic="T extends object | string | boolean | number | null | undefined"
+>
 import {
   Combobox,
   ComboboxInput,
@@ -13,12 +17,12 @@ const props = withDefaults(
     /**
      * The model value of the component.
      */
-    modelValue: any
+    modelValue?: T | T[]
 
     /**
      * The items to display in the component.
      */
-    items?: any[]
+    items?: T[]
 
     /**
      * The shape of the component.
@@ -106,7 +110,7 @@ const props = withDefaults(
     /**
      * A function used to render the items as strings in either the input or the tag when multiple is true.
      */
-    displayValue?: (item?: any) => string
+    displayValue?: (item?: T) => string
 
     /**
      * The debounce time for the filterItems method.
@@ -118,7 +122,7 @@ const props = withDefaults(
      *
      * You can use this method to implement your own filtering logic or to fetch items from an API.
      */
-    filterItems?: (query?: string, items?: any[]) => Promise<any[]> | any[]
+    filterItems?: (query?: string, items?: T[]) => Promise<T[]> | T[]
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -146,6 +150,7 @@ const props = withDefaults(
     }
   }>(),
   {
+    modelValue: undefined,
     items: () => [],
     shape: undefined,
     icon: undefined,
@@ -184,12 +189,12 @@ const props = withDefaults(
 )
 
 const emits = defineEmits<{
-  (event: 'update:modelValue', value?: any): void
+  (event: 'update:modelValue', value?: T | T[]): void
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits) as Ref<T | T[]>
 
 const items = shallowRef(props.items)
 const query = ref('')
@@ -307,7 +312,41 @@ function clear() {
   value.value = props.clearValue
 }
 
-function removeItem(item: any) {
+const iconResolved = computed(() => {
+  if (
+    value.value &&
+    typeof value.value === 'object' &&
+    !Array.isArray(value.value) &&
+    'icon' in value.value &&
+    typeof value.value.icon === 'string'
+  ) {
+    return value.value.icon
+  }
+  return props.icon
+})
+
+function isAutocompleteItem(
+  item: unknown
+): item is Record<'name' | 'text' | 'media' | 'icon', string> {
+  if (
+    item &&
+    typeof item === 'object' &&
+    (('name' in item && typeof item.name === 'string') ||
+      ('text' in item && typeof item.text === 'string') ||
+      ('media' in item && typeof item.media === 'string') ||
+      ('icon' in item && typeof item.icon === 'string'))
+  ) {
+    return true
+  }
+  return false
+}
+
+function removeItem(item: T) {
+  if (!Array.isArray(value.value)) {
+    value.value = props.clearValue
+    return
+  }
+
   for (let i = value.value.length - 1; i >= 0; --i) {
     // eslint-disable-next-line eqeqeq
     if (value.value[i] == item) {
@@ -320,41 +359,38 @@ function removeItem(item: any) {
 <template>
   <Combobox
     v-model="value"
-    :multiple="props.multiple"
-    :disabled="props.disabled"
+    :multiple="multiple"
+    :disabled="disabled"
     :class="[
       'nui-autocomplete',
       ...wrapperStyle,
-      sizeStyle[props.size],
-      contrastStyle[props.contrast],
+      sizeStyle[size],
+      contrastStyle[contrast],
       shape && shapeStyle[shape],
-      props.icon && 'nui-has-icon',
-      props.labelFloat && 'nui-autocomplete-label-float',
-      props.loading && 'nui-autocomplete-loading',
+      icon && 'nui-has-icon',
+      labelFloat && 'nui-autocomplete-label-float',
+      loading && 'nui-autocomplete-loading',
     ]"
     as="div"
   >
     <ComboboxLabel
-      v-if="
-        ('label' in $slots && !props.labelFloat) ||
-        (props.label && !props.labelFloat)
-      "
+      v-if="('label' in $slots && !labelFloat) || (label && !labelFloat)"
       class="nui-autocomplete-label"
       :class="labelStyle"
     >
       <slot name="label" v-bind="{ query, filteredItems, pending, items }">
-        {{ props.label }}
+        {{ label }}
       </slot>
     </ComboboxLabel>
 
-    <div v-if="props.multiple" class="nui-autocomplete-multiple">
+    <div v-if="multiple" class="nui-autocomplete-multiple">
       <ul
         v-if="Array.isArray(value) && value.length > 0"
         class="nui-autocomplete-multiple-list"
       >
-        <li v-for="item in value" :key="item.id">
+        <li v-for="item in value" :key="String(item)">
           <div class="nui-autocomplete-multiple-list-item">
-            {{ props.displayValue(item) }}
+            {{ displayValue(item) }}
             <button type="button" @click="removeItem(item)">
               <Icon
                 :name="chipClearIcon"
@@ -370,31 +406,25 @@ function removeItem(item: any) {
       <ComboboxInput
         class="nui-autocomplete-input"
         :class="inputStyle"
-        :display-value="props.multiple ? undefined : props.displayValue"
-        :placeholder="props.placeholder"
-        :disabled="props.disabled"
+        :display-value="multiple ? undefined : (displayValue as any)"
+        :placeholder="placeholder"
+        :disabled="disabled"
         @change="query = $event.target.value"
       />
       <ComboboxLabel
-        v-if="
-          ('label' in $slots && props.labelFloat) ||
-          (props.label && props.labelFloat)
-        "
+        v-if="('label' in $slots && labelFloat) || (label && labelFloat)"
         class="nui-label-float"
         :class="labelStyle"
       >
         <slot name="label" v-bind="{ query, filteredItems, pending, items }">
-          {{ props.label }}
+          {{ label }}
         </slot>
       </ComboboxLabel>
-      <div v-if="props.icon || value?.icon" class="nui-autocomplete-icon">
-        <Icon
-          :name="value?.icon ?? props.icon"
-          class="nui-autocomplete-icon-inner"
-        />
+      <div v-if="iconResolved" class="nui-autocomplete-icon">
+        <Icon :name="iconResolved" class="nui-autocomplete-icon-inner" />
       </div>
       <button
-        v-if="props.clearable && value"
+        v-if="clearable && value"
         type="button"
         class="nui-autocomplete-clear"
         :class="iconStyle"
@@ -402,16 +432,16 @@ function removeItem(item: any) {
       >
         <Icon :name="clearIcon" class="nui-autocomplete-clear-inner" />
       </button>
-      <div v-if="props.loading" class="nui-autocomplete-placeload">
-        <BasePlaceload class="nui-placeload" :class="props.icon && 'ms-6'" />
+      <div v-if="loading" class="nui-autocomplete-placeload">
+        <BasePlaceload class="nui-placeload" :class="icon && 'ms-6'" />
       </div>
     </div>
 
     <span
-      v-if="props.error && typeof props.error === 'string'"
+      v-if="error && typeof error === 'string'"
       class="nui-autocomplete-error-text"
     >
-      {{ props.error }}
+      {{ error }}
     </span>
 
     <TransitionRoot
@@ -431,7 +461,7 @@ function removeItem(item: any) {
             v-bind="{ query, filteredItems, pending, items }"
           >
             <span class="nui-autocomplete-results-placeholder-text">
-              {{ props.i18n.pending }}
+              {{ i18n.pending }}
             </span>
           </slot>
         </div>
@@ -441,7 +471,7 @@ function removeItem(item: any) {
         >
           <slot name="empty" v-bind="{ query, filteredItems, pending, items }">
             <span class="nui-autocomplete-results-placeholder-text">
-              {{ props.i18n.empty }}
+              {{ i18n.empty }}
             </span>
           </slot>
         </div>
@@ -463,7 +493,7 @@ function removeItem(item: any) {
           <ComboboxOption
             v-for="item in filteredItems"
             v-slot="{ active, selected }"
-            :key="item.name"
+            :key="String(item)"
             class="nui-autocomplete-results-item"
             as="div"
             :value="item"
@@ -483,10 +513,10 @@ function removeItem(item: any) {
               <BaseAutocompleteItem
                 :shape="shape"
                 :value="
-                  typeof item !== 'string'
+                  isAutocompleteItem(item)
                     ? item
                     : {
-                        name: props.displayValue(item),
+                        name: displayValue(item),
                       }
                 "
                 :active="active"

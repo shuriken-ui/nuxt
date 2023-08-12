@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { cp } from 'fs'
+
 definePageMeta({
   title: 'Autocomplete',
   icon: 'mdi:auto-fix',
@@ -6,7 +8,25 @@ definePageMeta({
   section: 'form',
 })
 
-const items = ref<any[]>(['Javascript', 'Vue.js', 'React.js', 'Angular'])
+const selection = ref('')
+const multiple = ref<string[]>([])
+const items = ref(['Javascript', 'Vue.js', 'React.js', 'Angular'])
+
+const objectSelection = ref({ name: '' })
+const itemsObject = ref([
+  {
+    name: 'Javascript',
+  },
+  {
+    name: 'Vue.js',
+  },
+  {
+    name: 'React.js',
+  },
+  {
+    name: 'Angular',
+  },
+])
 </script>
 
 <template>
@@ -39,7 +59,13 @@ const items = ref<any[]>(['Javascript', 'Vue.js', 'React.js', 'Angular'])
           multiple
         />
         <BaseAutocomplete
+          v-model="multiple"
           :items="items"
+          :display-value="
+            (item) => {
+              return item || ''
+            }
+          "
           label="Test"
           placeholder="Let's test autocomplete"
           error="This is an error message"
@@ -49,24 +75,55 @@ const items = ref<any[]>(['Javascript', 'Vue.js', 'React.js', 'Angular'])
           multiple
         />
         <BaseAutocomplete
+          v-model="selection"
           :items="items"
+          :display-value="
+            (item) => {
+              return item || ''
+            }
+          "
+          :filter-items="
+            (query, items) => {
+              if (!query) return items || []
+              return (
+                items?.filter(
+                  (item) => item.toLowerCase().indexOf(query.toLowerCase()) > -1
+                ) || []
+              )
+            }
+          "
           label="Test"
           placeholder="Let's test autocomplete"
           error="This is an error message"
           shape="curved"
           label-float
           clearable
-          multiple
         />
         <BaseAutocomplete
-          :items="items"
+          v-model="objectSelection"
+          :items="itemsObject"
+          :filter-items="
+            (query, items) => {
+              if (!query) return items || []
+              return (
+                items?.filter(
+                  (item) =>
+                    item.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+                ) || []
+              )
+            }
+          "
+          :display-value="
+            (item) => {
+              return item?.name || ''
+            }
+          "
           label="Test"
           placeholder="Let's test autocomplete"
           error="This is an error message"
           shape="full"
           label-float
           clearable
-          multiple
         />
       </div>
     </div>
