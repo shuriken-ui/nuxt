@@ -2,7 +2,8 @@
 definePageMeta({
   title: 'Listbox',
   icon: 'ic:round-menu-open',
-  description: 'SVG icons',
+  description:
+    'Test use of both objects and object value props in listbox models',
   section: 'form',
 })
 const frameworks = [
