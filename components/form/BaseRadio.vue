@@ -20,7 +20,7 @@ const props = withDefaults(
     /**
      * The model value of the radio input.
      */
-    modelValue: any
+    modelValue?: any
 
     /**
      * The label for the radio input.
@@ -70,6 +70,7 @@ const props = withDefaults(
   }>(),
   {
     id: undefined,
+    modelValue: undefined,
     value: undefined,
     label: undefined,
     error: undefined,
@@ -82,7 +83,9 @@ const emits = defineEmits<{
   (e: 'update:modelValue', value: any): void
 }>()
 const inputRef = ref<HTMLInputElement>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const colorStyle = {
   default: 'nui-radio-default',

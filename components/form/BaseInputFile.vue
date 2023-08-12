@@ -10,7 +10,7 @@ const props = withDefaults(
     /**
      * The model value of the file input.
      */
-    modelValue: FileList | null
+    modelValue?: FileList | null
 
     /**
      * The form input identifier.
@@ -65,7 +65,7 @@ const props = withDefaults(
     /**
      * Method to return the text value of the file input.
      */
-    textValue?: (fileList: FileList | null) => string
+    textValue?: (fileList?: FileList | null) => string
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, text, error, and icon elements.
@@ -104,6 +104,7 @@ const props = withDefaults(
   }>(),
   {
     id: undefined,
+    modelValue: undefined,
     type: 'text',
     size: 'md',
     contrast: 'white',
@@ -112,7 +113,7 @@ const props = withDefaults(
     label: undefined,
     icon: undefined,
     error: false,
-    textValue: (fileList: FileList | null) => {
+    textValue: (fileList?: FileList | null) => {
       if (!fileList?.item?.length) {
         return 'No file chosen'
       }
@@ -149,7 +150,9 @@ const contrastStyle = {
 
 // const value = ref(props.modelValue)
 const inputRef = ref<HTMLInputElement>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const textValue = computed(() => {
   return props.textValue?.(value.value)

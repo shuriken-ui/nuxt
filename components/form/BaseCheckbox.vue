@@ -25,7 +25,7 @@ const props = withDefaults(
     /**
      * The model value of the checkbox.
      */
-    modelValue: any
+    modelValue?: any
 
     /**
      * The form input identifier.
@@ -84,6 +84,7 @@ const props = withDefaults(
     }
   }>(),
   {
+    modelValue: undefined,
     id: undefined,
     label: undefined,
     error: '',
@@ -101,7 +102,9 @@ const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
 const inputRef = ref<HTMLInputElement>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const shapeStyle = {
   straight: '',

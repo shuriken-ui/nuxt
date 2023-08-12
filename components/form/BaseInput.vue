@@ -19,7 +19,7 @@ const props = withDefaults(
      * @modifiers
      * `v-model.trim="value"`
      */
-    modelValue: any
+    modelValue?: any
 
     /**
      * Used internaly to allow v-model.number and v-model.trim
@@ -123,6 +123,7 @@ const props = withDefaults(
   }>(),
   {
     id: undefined,
+    modelValue: undefined,
     modelModifiers: () => ({}),
     type: 'text',
     size: 'md',
@@ -165,15 +166,22 @@ function looseToNumber(val: any) {
   return Number.isNaN(n) ? val : n
 }
 
-const value = useVModel(props, 'modelValue', (_, val) => {
-  if (props.modelModifiers.number) {
-    emits('update:modelValue', looseToNumber(val))
-  } else if (props.modelModifiers.trim) {
-    emits('update:modelValue', typeof val === 'string' ? val.trim() : val)
-  } else {
-    emits('update:modelValue', val)
+const value = useVModel(
+  props,
+  'modelValue',
+  (_, val) => {
+    if (props.modelModifiers.number) {
+      emits('update:modelValue', looseToNumber(val))
+    } else if (props.modelModifiers.trim) {
+      emits('update:modelValue', typeof val === 'string' ? val.trim() : val)
+    } else {
+      emits('update:modelValue', val)
+    }
+  },
+  {
+    passive: true,
   }
-})
+)
 
 const inputRef = ref<HTMLInputElement>()
 defineExpose({

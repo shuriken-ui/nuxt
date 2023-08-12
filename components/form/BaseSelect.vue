@@ -10,7 +10,7 @@ const props = withDefaults(
     /**
      * The value of the selected option.
      */
-    modelValue: any
+    modelValue?: any
 
     /**
      * The form input identifier.
@@ -110,6 +110,7 @@ const props = withDefaults(
   }>(),
   {
     id: undefined,
+    modelValue: undefined,
     label: '',
     size: 'md',
     contrast: 'default',
@@ -146,7 +147,9 @@ const contrastStyle = {
 }
 
 const selectRef = ref<HTMLSelectElement>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 defineExpose({
   /**

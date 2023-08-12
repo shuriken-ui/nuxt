@@ -17,7 +17,7 @@ const props = withDefaults(
     /**
      * The model value of the multiselect.
      */
-    modelValue: any
+    modelValue?: any
 
     /**
      * The shape of the multiselect.
@@ -116,6 +116,7 @@ const props = withDefaults(
   }>(),
   {
     icon: '',
+    modelValue: undefined,
     selectedIcon: 'lucide:check',
     label: '',
     placeholder: '',
@@ -166,7 +167,9 @@ const contrastStyle = {
   'muted-contrast': 'nui-listbox-muted-contrast',
 }
 
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const placeholder = computed(() => {
   if (props.loading) {

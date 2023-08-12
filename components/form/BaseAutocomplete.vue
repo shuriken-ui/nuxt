@@ -194,7 +194,9 @@ const emits = defineEmits<{
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const value = useVModel(props, 'modelValue', emits) as Ref<T | T[]>
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+}) as Ref<T | T[]>
 
 const items = shallowRef(props.items)
 const query = ref('')

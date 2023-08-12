@@ -19,7 +19,7 @@ export interface TextareaProps {
    * @example
    * `v-model.trim="value"`
    */
-  modelValue: any
+  modelValue?: any
 
   /**
    * Used internaly to allow v-model.trim
@@ -140,6 +140,7 @@ export interface TextareaProps {
 
 const props = withDefaults(defineProps<TextareaProps>(), {
   id: undefined,
+  modelValue: undefined,
   modelModifiers: () => ({}),
   label: undefined,
   name: undefined,
@@ -174,13 +175,20 @@ const contrastStyle = {
   'muted-contrast': 'nui-textarea-muted-contrast',
 }
 
-const value = useVModel(props, 'modelValue', (_, val) => {
-  if (props.modelModifiers.trim) {
-    emits('update:modelValue', typeof val === 'string' ? val.trim() : val)
-  } else {
-    emits('update:modelValue', val)
+const value = useVModel(
+  props,
+  'modelValue',
+  (_, val) => {
+    if (props.modelModifiers.trim) {
+      emits('update:modelValue', typeof val === 'string' ? val.trim() : val)
+    } else {
+      emits('update:modelValue', val)
+    }
+  },
+  {
+    passive: true,
   }
-})
+)
 
 const textareaRef = ref<HTMLTextAreaElement>()
 

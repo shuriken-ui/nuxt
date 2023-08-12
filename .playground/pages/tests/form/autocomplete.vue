@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { cp } from 'fs'
-
 definePageMeta({
   title: 'Autocomplete',
   icon: 'mdi:auto-fix',
@@ -46,7 +44,6 @@ const itemsObject = ref([
           shape="straight"
           label-float
           clearable
-          multiple
         />
         <BaseAutocomplete
           :items="items"
@@ -160,7 +157,6 @@ const itemsObject = ref([
           size="lg"
           label-float
           clearable
-          multiple
         />
       </div>
     </div>

@@ -15,7 +15,7 @@ const props = withDefaults(
     /**
      * The model value of the switch.
      */
-    modelValue: any
+    modelValue?: any
 
     /**
      * Accessible label of the switch.
@@ -34,6 +34,7 @@ const props = withDefaults(
   }>(),
   {
     id: undefined,
+    modelValue: undefined,
     label: undefined,
     sublabel: undefined,
     color: 'primary',
@@ -42,7 +43,9 @@ const props = withDefaults(
 const emits = defineEmits<{
   (e: 'update:modelValue', value: any): void
 }>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const id = useNinjaId(() => props.id)
 

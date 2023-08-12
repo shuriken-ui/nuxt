@@ -20,7 +20,7 @@ const props = withDefaults(
     /**
      * The model value of the radio input.
      */
-    modelValue: any
+    modelValue?: any
 
     /**
      * The name of the radio input.
@@ -34,6 +34,7 @@ const props = withDefaults(
   }>(),
   {
     id: undefined,
+    modelValue: undefined,
     value: undefined,
     label: undefined,
     name: undefined,
@@ -42,7 +43,9 @@ const props = withDefaults(
 const emits = defineEmits<{
   (e: 'update:modelValue', value: any): void
 }>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const inputRef = ref<HTMLInputElement>()
 defineExpose({
