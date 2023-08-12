@@ -428,7 +428,7 @@ function removeItem(item: T) {
       >
         <Icon
           name="lucide:chevron-down"
-          class="transition-transform duration-300"
+          class="nui-autocomplete-clear-inner transition-transform duration-300"
           :class="[open && 'rotate-180']"
         />
       </ComboboxButton>

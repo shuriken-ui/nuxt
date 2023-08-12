@@ -186,16 +186,28 @@ const itemsObject = ref([
           clearable
           multiple
         />
-        <BaseAutocomplete
-          :items="items"
-          label="Test"
-          placeholder="Let's test autocomplete"
-          size="lg"
-          :classes="{ icon: 'text-red-500' }"
-          combobox
-          label-float
-          clearable
-        />
+        <div>
+          <BaseAutocomplete
+            :items="items"
+            label="Test"
+            placeholder="Let's test autocomplete"
+            size="lg"
+            :classes="{ icon: 'text-red-500' }"
+            combobox
+            label-float
+            clearable
+          />
+          <BaseAutocomplete
+            :items="items"
+            label="Test"
+            placeholder="Let's test autocomplete"
+            size="lg"
+            :classes="{ icon: 'text-red-500' }"
+            combobox
+            label-float
+            clearable
+          />
+        </div>
       </div>
     </div>
   </div>
