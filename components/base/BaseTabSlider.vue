@@ -19,10 +19,6 @@ const props = withDefaults(
      */
     justify?: 'start' | 'center' | 'end'
     /**
-     * Controls the number of tabs displayed in a row. Can be 2 or 3.
-     */
-    length?: 2 | 3
-    /**
      * The size of the tabs.
      */
     size?: 'sm' | 'md'
@@ -68,8 +64,9 @@ const shapeStyle = {
   full: 'nui-tabs-full',
 }
 
+const tabsLength = computed(() => Math.min(3, Math.max(2, props.tabs.length)))
 const lengthStyle = computed(() =>
-  props.length === 2 ? 'nui-tabs-two-slots' : 'nui-tabs-three-slots'
+  tabsLength.value === 2 ? 'nui-tabs-two-slots' : 'nui-tabs-three-slots'
 )
 
 const activeValue = ref<string | undefined>(
@@ -104,7 +101,7 @@ watch(activeValue, (value) => {
     <div class="nui-tab-slider-inner">
       <div class="nui-tab-slider-track">
         <button
-          v-for="(tab, index) in tabs.slice(0, props.length)"
+          v-for="(tab, index) in tabs.slice(0, tabsLength)"
           :key="index"
           type="button"
           class="nui-tab-slider-item"
