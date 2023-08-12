@@ -13,7 +13,7 @@ const props = withDefaults(
     /**
      * The model value of the switch.
      */
-    modelValue?: any
+    modelValue?: boolean
 
     /**
      * Accessible label for the switch.
@@ -39,7 +39,7 @@ const props = withDefaults(
   }
 )
 const emits = defineEmits<{
-  (e: 'update:modelValue', value: any): void
+  (e: 'update:modelValue', value: boolean): void
 }>()
 const value = useVModel(props, 'modelValue', emits, {
   passive: true,
