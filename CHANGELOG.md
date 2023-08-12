@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0-beta.3](https://github.com/shuriken-ui/nuxt/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-08-12)
+
+
+### Features
+
+* **BaseAutocomplete:** use generic component definition ([cce6d91](https://github.com/shuriken-ui/nuxt/commit/cce6d91e466e1292a07d57df01c59f9d9d2db843))
+* **BaseRadioHeadless:** use generic component definition ([ceb48c0](https://github.com/shuriken-ui/nuxt/commit/ceb48c0b4da967af831622d6957ac4f7bcf4c3f9))
+* **BaseRadio:** use generic component definition ([adcb7c4](https://github.com/shuriken-ui/nuxt/commit/adcb7c476147314c100c917d72478f73d0a44621))
+* **BaseTabSlider:** remove lenght property, now computed from tabs length ([2efd031](https://github.com/shuriken-ui/nuxt/commit/2efd03157e512a1d8413a5acb9f4632c7d775c75))
+* make v-model optional on all form components ([4237d08](https://github.com/shuriken-ui/nuxt/commit/4237d08a755d75909261ea5d17041a4826a248e4))
+
+
+### Bug Fixes
+
+* allow boolean in error props for all form components ([9b541c1](https://github.com/shuriken-ui/nuxt/commit/9b541c11d9bdfab935616e5025473434d58d0820)), closes [#75](https://github.com/shuriken-ui/nuxt/issues/75)
+* **BaseInput:** change modelValue type to string | number ([d699c71](https://github.com/shuriken-ui/nuxt/commit/d699c71538ac92e53fd544d13d0579235f709943))
+* **BaseSwitchBall:** change modelValue type to boolean ([0fb7dd5](https://github.com/shuriken-ui/nuxt/commit/0fb7dd583c8006eb07aad9fdbabe173de03892ca))
+* **BaseSwitchThin:** change modelValue type to boolean ([da163b8](https://github.com/shuriken-ui/nuxt/commit/da163b873a4f9d6c8e9a39121b833682fd8f4562))
+* **BaseTextarea:** change modelValue type to string ([8353f08](https://github.com/shuriken-ui/nuxt/commit/8353f081f26e65fe62fd670a03dbc41ca77a7e2a))
+
 ## [1.0.0-beta.2](https://github.com/shuriken-ui/nuxt/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2023-08-12)
 
 ## [1.0.0-beta.1](https://github.com/shuriken-ui/nuxt/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2023-08-12)
