@@ -1,6 +1,6 @@
 <script setup lang="ts">
 export interface TextareaEmits {
-  (event: 'update:modelValue', value?: any): void
+  (event: 'update:modelValue', value?: string): void
 }
 
 export interface TextareaProps {
@@ -13,7 +13,7 @@ export interface TextareaProps {
    * @example
    * `v-model.trim="value"`
    */
-  modelValue?: any
+  modelValue?: string
 
   /**
    * Used internaly to allow v-model.trim
