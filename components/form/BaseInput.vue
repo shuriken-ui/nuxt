@@ -17,7 +17,7 @@ const props = withDefaults(
      * @modifiers
      * `v-model.trim="value"`
      */
-    modelValue?: any
+    modelValue?: string | number
 
     /**
      * Used internaly to allow v-model.number and v-model.trim
@@ -135,7 +135,7 @@ const props = withDefaults(
   }
 )
 const emits = defineEmits<{
-  (event: 'update:modelValue', value?: any): void
+  (event: 'update:modelValue', value?: string | number): void
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
