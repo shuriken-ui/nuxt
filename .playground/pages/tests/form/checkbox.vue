@@ -43,6 +43,20 @@ const radio = ref('')
     </div>
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
+        Checkbox animated
+      </BaseHeading>
+      <div class="grid grid-cols-8 gap-4">
+        <BaseCheckboxAnimated v-model="check" color="light" />
+        <BaseCheckboxAnimated v-model="check" color="muted" />
+        <BaseCheckboxAnimated v-model="check" color="primary" />
+        <BaseCheckboxAnimated v-model="check" color="info" />
+        <BaseCheckboxAnimated v-model="check" color="success" />
+        <BaseCheckboxAnimated v-model="check" color="warning" />
+        <BaseCheckboxAnimated v-model="check" color="danger" />
+      </div>
+    </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
         BaseCheckboxHeadless
       </BaseHeading>
       <div class="max-w-3xl flex items-center gap-4">
