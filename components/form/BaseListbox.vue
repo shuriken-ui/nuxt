@@ -113,6 +113,11 @@ const props = withDefaults(
        */
       icon?: string
     }
+
+    /**
+     * Set this to only return the value property of an object (as defined in properties.value) rather than the object itself
+     */
+    returnValueProp?: boolean
   }>(),
   {
     icon: '',
@@ -139,6 +144,7 @@ const props = withDefaults(
     loading: false,
     disabled: false,
     properties: () => ({}),
+    returnValueProp: false,
   }
 )
 const emits = defineEmits<{
@@ -166,7 +172,7 @@ const contrastStyle = {
   'muted-contrast': 'nui-listbox-muted-contrast',
 }
 
-const value = useVModel(props, 'modelValue', emits)
+const vmodel = useVModel(props, 'modelValue', emits)
 
 const placeholder = computed(() => {
   if (props.loading) {
@@ -177,6 +183,14 @@ const placeholder = computed(() => {
   }
 
   return props.placeholder
+})
+
+const value = computed(() => {
+  if (props.returnValueProp && props.properties.value) {
+    const attr = props.properties.value
+    return props.items.find((i) => i[attr] === props.modelValue)
+  }
+  return props.modelValue
 })
 </script>
 
@@ -195,8 +209,8 @@ const placeholder = computed(() => {
   >
     <Listbox
       v-slot="{ open }: { open: boolean }"
-      v-model="value"
-      :by="props.properties.value"
+      v-model="vmodel"
+      :by="returnValueProp ? undefined : props.properties.value"
       :multiple="props.multiple"
       :disabled="props.disabled"
     >
@@ -313,7 +327,11 @@ const placeholder = computed(() => {
               :key="
                 props.properties.value ? item[props.properties.value] : item
               "
-              :value="item"
+              :value="
+                returnValueProp && props.properties.value
+                  ? item[props.properties.value]
+                  : item
+              "
               as="template"
             >
               <li
