@@ -56,11 +56,15 @@ const id = useNinjaId(() => props.id)
 </script>
 
 <template>
-  <div class="nui-checkbox-headless">
-    <label v-if="props.label" :for="id" class="nui-checkbox-headless-label">
+  <div class="group/nui-checkbox-headless relative">
+    <label
+      v-if="props.label"
+      :for="id"
+      class="text-muted-400 mb-1 inline-block cursor-pointer select-none font-sans text-sm"
+    >
       {{ props.label }}
     </label>
-    <div class="nui-checkbox-headless-inner">
+    <div class="relative">
       <input
         :id="id"
         ref="inputRef"
@@ -68,7 +72,7 @@ const id = useNinjaId(() => props.id)
         :true-value="props.trueValue"
         :false-value="props.falseValue"
         v-bind="$attrs"
-        class="nui-checkbox-headless-input peer"
+        class="peer absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0"
         type="checkbox"
       />
       <slot v-bind="{ value }"></slot>

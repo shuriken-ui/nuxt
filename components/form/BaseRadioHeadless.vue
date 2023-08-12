@@ -56,11 +56,15 @@ const id = useNinjaId(() => props.id)
 </script>
 
 <template>
-  <div class="group/nui-radio-headless nui-radio-headless">
-    <label v-if="label" :for="id" class="nui-radio-headless-label">
+  <div class="group/nui-radio-headless relative">
+    <label
+      v-if="label"
+      :for="id"
+      class="text-muted-400 mb-1 inline-block cursor-pointer select-none font-sans text-sm"
+    >
       {{ props.label }}
     </label>
-    <div class="nui-radio-headless-inner">
+    <div class="relative">
       <input
         :id="id"
         ref="inputRef"
@@ -69,7 +73,7 @@ const id = useNinjaId(() => props.id)
         type="radio"
         :value="props.value"
         :name="props.name"
-        class="nui-radio-headless-input peer"
+        class="peer absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0"
       />
       <slot v-bind="{ value }"></slot>
     </div>
