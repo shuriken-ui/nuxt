@@ -1,9 +1,3 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script setup lang="ts">
 export interface TextareaEmits {
   (event: 'update:modelValue', value?: any): void
@@ -137,6 +131,10 @@ export interface TextareaProps {
     error?: string | string[]
   }
 }
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const props = withDefaults(defineProps<TextareaProps>(), {
   id: undefined,

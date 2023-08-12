@@ -1,11 +1,10 @@
-<script lang="ts">
-import { useNinjaFilePreview } from '../../composables/file-preview'
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script setup lang="ts">
+import { useNinjaFilePreview } from '../../composables/file-preview'
+
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(
   defineProps<{
     /**

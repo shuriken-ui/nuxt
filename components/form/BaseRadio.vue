@@ -1,10 +1,8 @@
-<script lang="ts">
-export default {
+<script setup lang="ts">
+defineOptions({
   inheritAttrs: false,
-}
-</script>
+})
 
-<script setup lang="ts" generics="T extends string | number | undefined">
 const props = withDefaults(
   defineProps<{
     /**
