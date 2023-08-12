@@ -1,16 +1,14 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(
   defineProps<{
     /**
      * The value of the selected option.
      */
-    modelValue: any
+    modelValue?: any
 
     /**
      * The form input identifier.
@@ -110,6 +108,7 @@ const props = withDefaults(
   }>(),
   {
     id: undefined,
+    modelValue: undefined,
     label: '',
     size: 'md',
     contrast: 'default',
@@ -146,7 +145,9 @@ const contrastStyle = {
 }
 
 const selectRef = ref<HTMLSelectElement>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 defineExpose({
   /**
@@ -175,13 +176,11 @@ const placeholder = computed(() => {
       contrastStyle[props.contrast],
       sizeStyle[props.size],
       shape && shapeStyle[shape],
-      props.error && !props.loading && 'nui-seelct-error',
+      props.error && !props.loading && 'nui-select-error',
       props.loading && 'nui-seelct-loading',
       props.labelFloat && 'nui-seelct-label-float',
       props.icon && 'nui-has-icon',
-      ...(props.classes?.wrapper && Array.isArray(props.classes.wrapper)
-        ? props.classes.wrapper
-        : [props.classes?.wrapper]),
+      props.classes?.wrapper,
     ]"
   >
     <label

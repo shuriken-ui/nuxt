@@ -1,12 +1,14 @@
-<script lang="ts">
-export default {
+<script setup lang="ts" generic="T extends any = boolean">
+defineOptions({
   inheritAttrs: false,
-}
-</script>
+})
 
-<script setup lang="ts" generics="T extends string | number | undefined">
 const props = withDefaults(
   defineProps<{
+    // Temporary fix to allow attributes inheritance with generic components
+    // @see https://github.com/vuejs/core/issues/8372
+    [attrs: string]: any
+
     /**
      * The form input identifier.
      */
@@ -15,12 +17,12 @@ const props = withDefaults(
     /**
      * The value of the radio input.
      */
-    value?: any
+    value?: T
 
     /**
      * The model value of the radio input.
      */
-    modelValue: any
+    modelValue?: T
 
     /**
      * The label for the radio input.
@@ -30,7 +32,7 @@ const props = withDefaults(
     /**
      * An error message to display below the radio label.
      */
-    error?: string
+    error?: string | boolean
 
     /** The color of the radio. Can be 'default', 'primary', 'info', 'success', 'warning', or 'danger' */
     color?:
@@ -70,6 +72,7 @@ const props = withDefaults(
   }>(),
   {
     id: undefined,
+    modelValue: undefined,
     value: undefined,
     label: undefined,
     error: undefined,
@@ -79,10 +82,12 @@ const props = withDefaults(
   }
 )
 const emits = defineEmits<{
-  (e: 'update:modelValue', value: any): void
+  (e: 'update:modelValue', value: T): void
 }>()
 const inputRef = ref<HTMLInputElement>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const colorStyle = {
   default: 'nui-radio-default',
@@ -108,12 +113,7 @@ const id = useNinjaId(() => props.id)
 <template>
   <div
     class="nui-radio"
-    :class="[
-      props.color && colorStyle[props.color],
-      ...(props.classes?.wrapper && Array.isArray(props.classes.wrapper)
-        ? props.classes.wrapper
-        : [props.classes?.wrapper]),
-    ]"
+    :class="[props.color && colorStyle[props.color], props.classes?.wrapper]"
   >
     <div class="nui-radio-outer">
       <input
@@ -137,7 +137,10 @@ const id = useNinjaId(() => props.id)
       >
         <slot>{{ props.label }}</slot>
       </label>
-      <div v-if="props.error" class="nui-radio-error">
+      <div
+        v-if="props.error && typeof props.error === 'string'"
+        class="nui-radio-error"
+      >
         {{ props.error }}
       </div>
     </div>

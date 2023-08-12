@@ -47,7 +47,7 @@ export default defineNuxtSchema({
         /**
          * Default shape for the BaseCard component
          *
-         * @type {'straight' | 'rounded' | 'curved' | 'full'}
+         * @type {'straight' | 'rounded' | 'smooth' | 'curved'}
          */
         card: 'rounded',
         /**

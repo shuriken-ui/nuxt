@@ -1,10 +1,8 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(
   defineProps<{
     /**
@@ -25,7 +23,7 @@ const props = withDefaults(
     /**
      * The model value of the checkbox.
      */
-    modelValue: any
+    modelValue?: any
 
     /**
      * The form input identifier.
@@ -35,7 +33,7 @@ const props = withDefaults(
     /**
      * An error message to display below the checkbox label.
      */
-    error?: string
+    error?: string | boolean
 
     /**
      * Whether the checkbox is disabled.
@@ -84,6 +82,7 @@ const props = withDefaults(
     }
   }>(),
   {
+    modelValue: undefined,
     id: undefined,
     label: undefined,
     error: '',
@@ -101,7 +100,9 @@ const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
 const inputRef = ref<HTMLInputElement>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const shapeStyle = {
   straight: '',
@@ -173,7 +174,10 @@ const id = useNinjaId(() => props.id)
       >
         <slot>{{ props.label }}</slot>
       </label>
-      <div v-if="props.error" class="nui-checkbox-error">
+      <div
+        v-if="props.error && typeof props.error === 'string'"
+        class="nui-checkbox-error"
+      >
         {{ props.error }}
       </div>
     </div>

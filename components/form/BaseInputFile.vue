@@ -1,16 +1,14 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(
   defineProps<{
     /**
      * The model value of the file input.
      */
-    modelValue: FileList | null
+    modelValue?: FileList | null
 
     /**
      * The form input identifier.
@@ -65,7 +63,7 @@ const props = withDefaults(
     /**
      * Method to return the text value of the file input.
      */
-    textValue?: (fileList: FileList | null) => string
+    textValue?: (fileList?: FileList | null) => string
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, text, error, and icon elements.
@@ -104,6 +102,7 @@ const props = withDefaults(
   }>(),
   {
     id: undefined,
+    modelValue: undefined,
     type: 'text',
     size: 'md',
     contrast: 'white',
@@ -112,7 +111,7 @@ const props = withDefaults(
     label: undefined,
     icon: undefined,
     error: false,
-    textValue: (fileList: FileList | null) => {
+    textValue: (fileList?: FileList | null) => {
       if (!fileList?.item?.length) {
         return 'No file chosen'
       }
@@ -149,7 +148,9 @@ const contrastStyle = {
 
 // const value = ref(props.modelValue)
 const inputRef = ref<HTMLInputElement>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const textValue = computed(() => {
   return props.textValue?.(value.value)
@@ -175,9 +176,7 @@ const id = useNinjaId(() => props.id)
       props.error && !props.loading && 'nui-input-file-error',
       props.loading && 'nui-input-file-loading',
       props.icon && 'nui-has-icon',
-      ...(props.classes?.wrapper && Array.isArray(props.classes.wrapper)
-        ? props.classes.wrapper
-        : [props.classes?.wrapper]),
+      props.classes.wrapper,
     ]"
   >
     <label
@@ -193,12 +192,7 @@ const id = useNinjaId(() => props.id)
         tabindex="0"
         class="nui-input-file-inner"
         :for="id"
-        :class="[
-          props.colorFocus && 'nui-color-focus',
-          ...(props.classes?.input && Array.isArray(props.classes.input)
-            ? props.classes.input
-            : [props.classes?.input]),
-        ]"
+        :class="[props.colorFocus && 'nui-color-focus', props.classes.input]"
       >
         <div class="nui-input-file-addon" :class="props.classes.text">
           <span class="text-xs">{{ props.placeholder }}</span>

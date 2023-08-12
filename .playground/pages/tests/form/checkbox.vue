@@ -31,14 +31,14 @@ const radio = ref('')
         Checkbox colors
       </BaseHeading>
       <div class="grid grid-cols-8 gap-4">
-        <BaseCheckbox v-model="check" color="default" disabled />
-        <BaseCheckbox v-model="check" color="light" indeterminate />
-        <BaseCheckbox v-model="check" color="muted" />
-        <BaseCheckbox v-model="check" color="primary" />
-        <BaseCheckbox v-model="check" color="info" />
-        <BaseCheckbox v-model="check" color="success" />
-        <BaseCheckbox v-model="check" color="warning" />
-        <BaseCheckbox v-model="check" color="danger" />
+        <BaseCheckbox color="default" disabled />
+        <BaseCheckbox color="light" indeterminate />
+        <BaseCheckbox color="muted" />
+        <BaseCheckbox color="primary" />
+        <BaseCheckbox color="info" />
+        <BaseCheckbox color="success" />
+        <BaseCheckbox color="warning" />
+        <BaseCheckbox color="danger" />
       </div>
     </div>
     <div>

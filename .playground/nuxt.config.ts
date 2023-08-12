@@ -42,6 +42,7 @@ export default defineNuxtConfig({
     shim: false,
   },
   hooks: {
+    // @ts-ignore
     'tailwindcss:resolvedConfig'(config) {
       addTemplate({
         filename: 'tailwind.config.ts', // gets prepended by .nuxt/

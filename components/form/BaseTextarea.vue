@@ -1,12 +1,6 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script setup lang="ts">
 export interface TextareaEmits {
-  (event: 'update:modelValue', value?: any): void
+  (event: 'update:modelValue', value?: string): void
 }
 
 export interface TextareaProps {
@@ -19,7 +13,7 @@ export interface TextareaProps {
    * @example
    * `v-model.trim="value"`
    */
-  modelValue: any
+  modelValue?: string
 
   /**
    * Used internaly to allow v-model.trim
@@ -89,7 +83,7 @@ export interface TextareaProps {
   /**
    * The error message for the textarea, or whether it is in an error state.
    */
-  error?: boolean | string
+  error?: string | boolean
 
   /**
    * Whether to display an addon element in the textarea.
@@ -138,8 +132,13 @@ export interface TextareaProps {
   }
 }
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(defineProps<TextareaProps>(), {
   id: undefined,
+  modelValue: undefined,
   modelModifiers: () => ({}),
   label: undefined,
   name: undefined,
@@ -174,13 +173,20 @@ const contrastStyle = {
   'muted-contrast': 'nui-textarea-muted-contrast',
 }
 
-const value = useVModel(props, 'modelValue', (_, val) => {
-  if (props.modelModifiers.trim) {
-    emits('update:modelValue', typeof val === 'string' ? val.trim() : val)
-  } else {
-    emits('update:modelValue', val)
+const value = useVModel(
+  props,
+  'modelValue',
+  (_, val) => {
+    if (props.modelModifiers.trim) {
+      emits('update:modelValue', typeof val === 'string' ? val.trim() : val)
+    } else {
+      emits('update:modelValue', val)
+    }
+  },
+  {
+    passive: true,
   }
-})
+)
 
 const textareaRef = ref<HTMLTextAreaElement>()
 
@@ -225,9 +231,7 @@ const id = useNinjaId(() => props.id)
       props.labelFloat && 'nui-textarea-label-float',
       !props.resize && 'nui-textarea-not-resize',
       props.addon && 'nui-has-addon',
-      ...(props.classes?.wrapper && Array.isArray(props.classes.wrapper)
-        ? props.classes.wrapper
-        : [props.classes?.wrapper]),
+      props.classes?.wrapper,
     ]"
   >
     <label

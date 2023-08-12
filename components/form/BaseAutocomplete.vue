@@ -1,4 +1,8 @@
-<script setup lang="ts">
+<script
+  setup
+  lang="ts"
+  generic="T extends object | string | boolean | number | null | undefined"
+>
 import {
   Combobox,
   ComboboxInput,
@@ -10,15 +14,19 @@ import {
 
 const props = withDefaults(
   defineProps<{
+    // Temporary fix to allow attributes inheritance with generic components
+    // @see https://github.com/vuejs/core/issues/8372
+    [attrs: string]: any
+
     /**
      * The model value of the component.
      */
-    modelValue: any
+    modelValue?: T | T[]
 
     /**
      * The items to display in the component.
      */
-    items?: any[]
+    items?: T[]
 
     /**
      * The shape of the component.
@@ -56,7 +64,7 @@ const props = withDefaults(
     /**
      * Error text to display when the component is in an error state.
      */
-    error?: string
+    error?: string | boolean
 
     /**
      * The size of the autocomplete component.
@@ -106,7 +114,7 @@ const props = withDefaults(
     /**
      * A function used to render the items as strings in either the input or the tag when multiple is true.
      */
-    displayValue?: (item?: any) => string
+    displayValue?: (item?: T) => string
 
     /**
      * The debounce time for the filterItems method.
@@ -118,7 +126,7 @@ const props = withDefaults(
      *
      * You can use this method to implement your own filtering logic or to fetch items from an API.
      */
-    filterItems?: (query?: string, items?: any[]) => Promise<any[]> | any[]
+    filterItems?: (query?: string, items?: T[]) => Promise<T[]> | T[]
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -146,6 +154,7 @@ const props = withDefaults(
     }
   }>(),
   {
+    modelValue: undefined,
     items: () => [],
     shape: undefined,
     icon: undefined,
@@ -184,12 +193,14 @@ const props = withDefaults(
 )
 
 const emits = defineEmits<{
-  (event: 'update:modelValue', value?: any): void
+  (event: 'update:modelValue', value?: T | T[]): void
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+}) as Ref<T | T[]>
 
 const items = shallowRef(props.items)
 const query = ref('')
@@ -219,35 +230,6 @@ const contrastStyle = {
   muted: 'nui-autocomplete-muted',
   'muted-contrast': 'nui-autocomplete-muted-contrast',
 }
-
-const wrapperStyle = computed(() =>
-  props.classes?.wrapper
-    ? Array.isArray(props.classes?.wrapper)
-      ? [...props.classes?.wrapper]
-      : props.classes?.wrapper
-    : ''
-)
-const labelStyle = computed(() =>
-  props.classes?.label
-    ? Array.isArray(props.classes?.label)
-      ? [...props.classes?.label]
-      : props.classes?.label
-    : ''
-)
-const inputStyle = computed(() =>
-  props.classes?.input
-    ? Array.isArray(props.classes?.input)
-      ? [...props.classes?.input]
-      : props.classes?.input
-    : ''
-)
-const iconStyle = computed(() =>
-  props.classes?.icon
-    ? Array.isArray(props.classes?.icon)
-      ? [...props.classes?.icon]
-      : props.classes?.icon
-    : ''
-)
 
 provide(
   'BaseAutocompleteContext',
@@ -307,7 +289,41 @@ function clear() {
   value.value = props.clearValue
 }
 
-function removeItem(item: any) {
+const iconResolved = computed(() => {
+  if (
+    value.value &&
+    typeof value.value === 'object' &&
+    !Array.isArray(value.value) &&
+    'icon' in value.value &&
+    typeof value.value.icon === 'string'
+  ) {
+    return value.value.icon
+  }
+  return props.icon
+})
+
+function isAutocompleteItem(
+  item: unknown
+): item is Record<'name' | 'text' | 'media' | 'icon', string> {
+  if (
+    item &&
+    typeof item === 'object' &&
+    (('name' in item && typeof item.name === 'string') ||
+      ('text' in item && typeof item.text === 'string') ||
+      ('media' in item && typeof item.media === 'string') ||
+      ('icon' in item && typeof item.icon === 'string'))
+  ) {
+    return true
+  }
+  return false
+}
+
+function removeItem(item: T) {
+  if (!Array.isArray(value.value)) {
+    value.value = props.clearValue
+    return
+  }
+
   for (let i = value.value.length - 1; i >= 0; --i) {
     // eslint-disable-next-line eqeqeq
     if (value.value[i] == item) {
@@ -324,7 +340,7 @@ function removeItem(item: any) {
     :disabled="props.disabled"
     :class="[
       'nui-autocomplete',
-      ...wrapperStyle,
+      props.classes?.wrapper,
       sizeStyle[props.size],
       contrastStyle[props.contrast],
       shape && shapeStyle[shape],
@@ -336,14 +352,13 @@ function removeItem(item: any) {
   >
     <ComboboxLabel
       v-if="
-        ('label' in $slots && !props.labelFloat) ||
-        (props.label && !props.labelFloat)
+        ('label' in $slots && !labelFloat) || (props.label && !props.labelFloat)
       "
       class="nui-autocomplete-label"
-      :class="labelStyle"
+      :class="classes?.label"
     >
       <slot name="label" v-bind="{ query, filteredItems, pending, items }">
-        {{ props.label }}
+        {{ label }}
       </slot>
     </ComboboxLabel>
 
@@ -352,7 +367,7 @@ function removeItem(item: any) {
         v-if="Array.isArray(value) && value.length > 0"
         class="nui-autocomplete-multiple-list"
       >
-        <li v-for="item in value" :key="item.id">
+        <li v-for="item in value" :key="String(item)">
           <div class="nui-autocomplete-multiple-list-item">
             {{ props.displayValue(item) }}
             <button type="button" @click="removeItem(item)">
@@ -369,8 +384,8 @@ function removeItem(item: any) {
     <div class="nui-autocomplete-outer">
       <ComboboxInput
         class="nui-autocomplete-input"
-        :class="inputStyle"
-        :display-value="props.multiple ? undefined : props.displayValue"
+        :class="classes?.input"
+        :display-value="props.multiple ? undefined : (props.displayValue as any)"
         :placeholder="props.placeholder"
         :disabled="props.disabled"
         @change="query = $event.target.value"
@@ -381,26 +396,23 @@ function removeItem(item: any) {
           (props.label && props.labelFloat)
         "
         class="nui-label-float"
-        :class="labelStyle"
+        :class="props.classes?.label"
       >
         <slot name="label" v-bind="{ query, filteredItems, pending, items }">
           {{ props.label }}
         </slot>
       </ComboboxLabel>
-      <div v-if="props.icon || value?.icon" class="nui-autocomplete-icon">
-        <Icon
-          :name="value?.icon ?? props.icon"
-          class="nui-autocomplete-icon-inner"
-        />
+      <div v-if="iconResolved" class="nui-autocomplete-icon">
+        <Icon :name="iconResolved" class="nui-autocomplete-icon-inner" />
       </div>
       <button
         v-if="props.clearable && value"
         type="button"
         class="nui-autocomplete-clear"
-        :class="iconStyle"
+        :class="props.classes?.icon"
         @click="clear"
       >
-        <Icon :name="clearIcon" class="nui-autocomplete-clear-inner" />
+        <Icon :name="props.clearIcon" class="nui-autocomplete-clear-inner" />
       </button>
       <div v-if="props.loading" class="nui-autocomplete-placeload">
         <BasePlaceload class="nui-placeload" :class="props.icon && 'ms-6'" />
@@ -463,7 +475,7 @@ function removeItem(item: any) {
           <ComboboxOption
             v-for="item in filteredItems"
             v-slot="{ active, selected }"
-            :key="item.name"
+            :key="String(item)"
             class="nui-autocomplete-results-item"
             as="div"
             :value="item"
@@ -483,7 +495,7 @@ function removeItem(item: any) {
               <BaseAutocompleteItem
                 :shape="shape"
                 :value="
-                  typeof item !== 'string'
+                  isAutocompleteItem(item)
                     ? item
                     : {
                         name: props.displayValue(item),

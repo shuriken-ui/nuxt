@@ -52,7 +52,12 @@ module.exports = {
 
     'vue/script-setup-uses-vars': 'error',
     'vue/multi-word-component-names': 'off',
-    'vue/define-macros-order': 'error',
+    'vue/define-macros-order': [
+      'error',
+      {
+        order: ['defineOptions', 'defineProps', 'defineEmits'],
+      },
+    ],
     'vue/no-irregular-whitespace': 'error',
     // 'vue/no-bare-strings-in-template': 'error',
     'vue/no-duplicate-attr-inheritance': 'error',

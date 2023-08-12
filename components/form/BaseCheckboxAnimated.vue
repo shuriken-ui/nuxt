@@ -1,10 +1,8 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(
   defineProps<{
     /**
@@ -79,7 +77,9 @@ const props = withDefaults(
 const emits = defineEmits<{
   (e: 'update:modelValue', value: any): void
 }>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const element = ref<HTMLElement>()
 const inputRef = ref<HTMLInputElement>()

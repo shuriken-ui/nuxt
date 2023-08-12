@@ -76,7 +76,7 @@ const routes = computed(() =>
         <slot />
       </div>
     </div>
-    <div class="fixed top-0 end-0 pr-6 pt-6 z-10">
+    <div class="fixed top-0 end-0 pr-6 pt-6 z-50">
       <BaseSelect v-model="color.preference" size="sm">
         <option value="system">system</option>
         <option value="light">light</option>

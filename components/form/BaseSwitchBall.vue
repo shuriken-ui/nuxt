@@ -1,10 +1,8 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(
   defineProps<{
     /**
@@ -15,7 +13,7 @@ const props = withDefaults(
     /**
      * The model value of the switch.
      */
-    modelValue: any
+    modelValue?: boolean
 
     /**
      * Accessible label for the switch.
@@ -34,15 +32,18 @@ const props = withDefaults(
   }>(),
   {
     id: undefined,
+    modelValue: undefined,
     label: undefined,
     sublabel: undefined,
     color: 'primary',
   }
 )
 const emits = defineEmits<{
-  (e: 'update:modelValue', value: any): void
+  (e: 'update:modelValue', value: boolean): void
 }>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const id = useNinjaId(() => props.id)
 

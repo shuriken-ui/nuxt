@@ -1,12 +1,14 @@
-<script lang="ts">
-export default {
+<script setup lang="ts" generic="T extends any = boolean">
+defineOptions({
   inheritAttrs: false,
-}
-</script>
+})
 
-<script setup lang="ts">
 const props = withDefaults(
   defineProps<{
+    // Temporary fix to allow attributes inheritance with generic components
+    // @see https://github.com/vuejs/core/issues/8372
+    [attrs: string]: any
+
     /**
      * The form input identifier.
      */
@@ -15,12 +17,12 @@ const props = withDefaults(
     /**
      * The value of the radio input.
      */
-    value?: any
+    value?: T
 
     /**
      * The model value of the radio input.
      */
-    modelValue: any
+    modelValue?: T
 
     /**
      * The name of the radio input.
@@ -34,15 +36,18 @@ const props = withDefaults(
   }>(),
   {
     id: undefined,
+    modelValue: undefined,
     value: undefined,
     label: undefined,
     name: undefined,
   }
 )
 const emits = defineEmits<{
-  (e: 'update:modelValue', value: any): void
+  (e: 'update:modelValue', value: T): void
 }>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const inputRef = ref<HTMLInputElement>()
 defineExpose({
