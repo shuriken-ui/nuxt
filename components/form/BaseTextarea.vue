@@ -83,7 +83,7 @@ export interface TextareaProps {
   /**
    * The error message for the textarea, or whether it is in an error state.
    */
-  error?: boolean | string
+  error?: string | boolean
 
   /**
    * Whether to display an addon element in the textarea.

@@ -176,7 +176,7 @@ const placeholder = computed(() => {
       contrastStyle[props.contrast],
       sizeStyle[props.size],
       shape && shapeStyle[shape],
-      props.error && !props.loading && 'nui-seelct-error',
+      props.error && !props.loading && 'nui-select-error',
       props.loading && 'nui-seelct-loading',
       props.labelFloat && 'nui-seelct-label-float',
       props.icon && 'nui-has-icon',

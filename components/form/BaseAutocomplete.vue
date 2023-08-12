@@ -64,7 +64,7 @@ const props = withDefaults(
     /**
      * Error text to display when the component is in an error state.
      */
-    error?: string
+    error?: string | boolean
 
     /**
      * The size of the autocomplete component.

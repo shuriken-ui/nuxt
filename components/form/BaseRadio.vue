@@ -32,7 +32,7 @@ const props = withDefaults(
     /**
      * An error message to display below the radio label.
      */
-    error?: string
+    error?: string | boolean
 
     /** The color of the radio. Can be 'default', 'primary', 'info', 'success', 'warning', or 'danger' */
     color?:
@@ -137,7 +137,10 @@ const id = useNinjaId(() => props.id)
       >
         <slot>{{ props.label }}</slot>
       </label>
-      <div v-if="props.error" class="nui-radio-error">
+      <div
+        v-if="props.error && typeof props.error === 'string'"
+        class="nui-radio-error"
+      >
         {{ props.error }}
       </div>
     </div>

@@ -33,7 +33,7 @@ const props = withDefaults(
     /**
      * An error message to display below the checkbox label.
      */
-    error?: string
+    error?: string | boolean
 
     /**
      * Whether the checkbox is disabled.
@@ -174,7 +174,10 @@ const id = useNinjaId(() => props.id)
       >
         <slot>{{ props.label }}</slot>
       </label>
-      <div v-if="props.error" class="nui-checkbox-error">
+      <div
+        v-if="props.error && typeof props.error === 'string'"
+        class="nui-checkbox-error"
+      >
         {{ props.error }}
       </div>
     </div>
