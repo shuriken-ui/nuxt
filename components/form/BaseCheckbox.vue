@@ -33,9 +33,9 @@ const props = withDefaults(
     id?: string
 
     /**
-     * An error message to display below the checkbox label.
+     * An error message or boolean value indicating whether the input is in an error state.
      */
-    error?: string
+    error?: string | boolean
 
     /**
      * Whether the checkbox is disabled.

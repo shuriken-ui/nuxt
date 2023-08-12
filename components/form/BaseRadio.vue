@@ -28,9 +28,9 @@ const props = withDefaults(
     label?: string
 
     /**
-     * An error message to display below the radio label.
+     * An error message or boolean value indicating whether the input is in an error state.
      */
-    error?: string
+    error?: string | boolean
 
     /** The color of the radio. Can be 'default', 'primary', 'info', 'success', 'warning', or 'danger' */
     color?:
