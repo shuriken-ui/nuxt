@@ -1,5 +1,6 @@
 import { createResolver } from '@nuxt/kit'
-import { withShurikenUI } from '@shuriken-ui/tailwind'
+// import { withShurikenUI } from '@shuriken-ui/tailwind'
+import { withShurikenUI } from '../shuriken-ui-tailwind/src'
 
 const { resolve } = createResolver(import.meta.url)
 
