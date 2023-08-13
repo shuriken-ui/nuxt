@@ -416,7 +416,7 @@ function removeItem(item: T) {
         v-if="props.clearable && value"
         type="button"
         class="nui-autocomplete-clear"
-        :class="[props.classes?.icon, props.combobox ? 'mr-6' : '']"
+        :class="[props.classes?.icon, props.combobox && 'mr-6']"
         @click="clear"
       >
         <Icon :name="props.clearIcon" class="nui-autocomplete-clear-inner" />
@@ -429,7 +429,7 @@ function removeItem(item: T) {
         <Icon
           name="lucide:chevron-down"
           class="nui-autocomplete-clear-inner transition-transform duration-300"
-          :class="[open && 'rotate-180']"
+          :class="[props.classes?.icon, open && 'rotate-180']"
         />
       </ComboboxButton>
 
