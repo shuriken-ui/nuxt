@@ -16,8 +16,20 @@ const props = withDefaults(
 
     /**
      * The model value of the multiselect.
+     *
+     * @modifiers
+     * `v-model="value"`
+     *
+     * @modifiers
+     * the value property of an object (as defined in properties.value) rather than the object itself
+     * `v-model.prop="value"`
      */
     modelValue?: any
+
+    /**
+     * Used internaly to allow v-model.number and v-model.trim
+     */
+    modelModifiers?: any
 
     /**
      * The shape of the multiselect.
@@ -117,6 +129,7 @@ const props = withDefaults(
   {
     icon: '',
     modelValue: undefined,
+    modelModifiers: () => ({}),
     selectedIcon: 'lucide:check',
     label: '',
     placeholder: '',
@@ -167,7 +180,7 @@ const contrastStyle = {
   'muted-contrast': 'nui-listbox-muted-contrast',
 }
 
-const value = useVModel(props, 'modelValue', emits, {
+const vmodel = useVModel(props, 'modelValue', emits, {
   passive: true,
 })
 
@@ -180,6 +193,14 @@ const placeholder = computed(() => {
   }
 
   return props.placeholder
+})
+
+const value = computed(() => {
+  if (props.modelModifiers.prop && props.properties.value) {
+    const attr = props.properties.value
+    return props.items.find((i) => i[attr] === props.modelValue)
+  }
+  return props.modelValue
 })
 </script>
 
@@ -198,8 +219,8 @@ const placeholder = computed(() => {
   >
     <Listbox
       v-slot="{ open }: { open: boolean }"
-      v-model="value"
-      :by="props.properties.value"
+      v-model="vmodel"
+      :by="props.modelModifiers.prop ? undefined : props.properties.value"
       :multiple="props.multiple"
       :disabled="props.disabled"
     >
@@ -316,7 +337,11 @@ const placeholder = computed(() => {
               :key="
                 props.properties.value ? item[props.properties.value] : item
               "
-              :value="item"
+              :value="
+                props.modelModifiers.prop && props.properties.value
+                  ? item[props.properties.value]
+                  : item
+              "
               as="template"
             >
               <li
