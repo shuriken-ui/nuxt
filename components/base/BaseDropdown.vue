@@ -126,7 +126,7 @@ const colorStyle = {
             </slot>
             <Icon
               name="lucide:chevron-down"
-              class="context-icon"
+              class="nui-chevron"
               :class="open && 'rotate-180'"
             />
           </BaseButton>
