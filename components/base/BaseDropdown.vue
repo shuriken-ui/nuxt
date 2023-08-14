@@ -107,7 +107,7 @@ const colorStyle = {
 </script>
 
 <template>
-  <div class="nui-dropdown">
+  <div class="nui-dropdown" :class="[orientationStyle[props.orientation]]">
     <Menu
       v-slot="{ open, close }: { open: boolean, close: () => void }"
       as="div"
@@ -172,7 +172,6 @@ const colorStyle = {
         <MenuItems
           class="nui-dropdown-menu"
           :class="[
-            orientationStyle[props.orientation],
             shape && shapeStyle[shape],
             sizeStyle[props.size],
             colorStyle[props.color],
