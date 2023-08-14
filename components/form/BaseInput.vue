@@ -223,6 +223,7 @@ if (process.dev) {
       props.loading && 'nui-input-loading',
       props.labelFloat && 'nui-input-label-float',
       props.icon && 'nui-has-icon',
+      props.colorFocus && 'nui-input-focus',
       props.classes?.wrapper,
     ]"
   >
