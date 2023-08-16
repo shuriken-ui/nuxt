@@ -39,7 +39,7 @@ corepack enable
 corepack prepare pnpm@latest --activate
 ```
 
-> **note:**  
+> **Note**
 > Corepack is installed with Node.js from v16.9.x.
 > If your version is below, install it with: `npm install -g corepack`
 
@@ -78,7 +78,7 @@ const { resolve } = createResolver(import.meta.url)
 export default defineNuxtConfig({
 ```
 
-> **warning:**  
+> **Warning**
 > Make sure to remove the link before committing your changes.
 
 ## Submitting your changes
