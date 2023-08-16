@@ -10,11 +10,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
   ],
-  tailwindcss: {
-    config: withShurikenUI({
-      content: [],
-    }),
-  },
   colorMode: {
     classSuffix: '',
   },
@@ -35,4 +30,10 @@ export default defineNuxtConfig({
       global: false,
     },
   ],
+  hooks: {
+    // @ts-expect-error - hook is handled by nuxtjs/tailwindcss
+    'tailwindcss:config'(config: Config) {
+      withShurikenUI(config)
+    },
+  },
 })
