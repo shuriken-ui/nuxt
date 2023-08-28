@@ -108,9 +108,14 @@ const props = withDefaults(
     chipClearIcon?: string
 
     /**
-     * Whether to act as a combobox
+     * The icon to show in the dropdown button
      */
-    combobox?: boolean
+    dropdownIcon?: string
+
+    /**
+     * Display a chevron icon to open suggestions
+     */
+    dropdown?: boolean
 
     /**
      * Whether the component allows multiple selections.
@@ -179,7 +184,8 @@ const props = withDefaults(
     clearValue: undefined,
     clearIcon: 'lucide:x',
     chipClearIcon: 'lucide:x',
-    combobox: false,
+    dropdownIcon: 'lucide:chevron-down',
+    dropdown: false,
     multiple: false,
     displayValue: (item: any) => item,
     filterDebounce: 0,
@@ -196,7 +202,7 @@ const props = withDefaults(
       })
     },
     classes: () => ({}),
-  }
+  },
 )
 
 const emits = defineEmits<{
@@ -213,7 +219,7 @@ const items = shallowRef(props.items)
 const query = ref('')
 const debounced = refDebounced(query, props.filterDebounce)
 const filteredItems = shallowRef<Awaited<ReturnType<typeof props.filterItems>>>(
-  props.combobox ? props.items : []
+  props.dropdown ? props.items : [],
 )
 const pendingFilter = ref(false)
 const pendingDebounce = computed(() => query.value !== debounced.value)
@@ -248,7 +254,7 @@ provide(
     pending,
     clear,
     removeItem,
-  })
+  }),
 )
 defineExpose({
   /**
@@ -310,7 +316,7 @@ const iconResolved = computed(() => {
 })
 
 function isAutocompleteItem(
-  item: unknown
+  item: unknown,
 ): item is Record<'name' | 'text' | 'media' | 'icon', string> {
   if (
     item &&
@@ -392,7 +398,9 @@ function removeItem(item: T) {
       <ComboboxInput
         class="nui-autocomplete-input"
         :class="classes?.input"
-        :display-value="props.multiple ? undefined : (props.displayValue as any)"
+        :display-value="
+          props.multiple ? undefined : (props.displayValue as any)
+        "
         :placeholder="props.placeholder"
         :disabled="props.disabled"
         @change="query = $event.target.value"
@@ -416,18 +424,18 @@ function removeItem(item: T) {
         v-if="props.clearable && value"
         type="button"
         class="nui-autocomplete-clear"
-        :class="[props.classes?.icon, props.combobox && 'mr-6']"
+        :class="[props.classes?.icon, props.dropdown && 'me-6']"
         @click="clear"
       >
         <Icon :name="props.clearIcon" class="nui-autocomplete-clear-inner" />
       </button>
       <ComboboxButton
-        v-if="props.combobox"
+        v-if="props.dropdown"
         v-slot="{ open }: { open: boolean }"
         class="nui-autocomplete-clear"
       >
         <Icon
-          name="lucide:chevron-down"
+          :name="props.dropdownIcon"
           class="nui-autocomplete-clear-inner transition-transform duration-300"
           :class="[props.classes?.icon, open && 'rotate-180']"
         />

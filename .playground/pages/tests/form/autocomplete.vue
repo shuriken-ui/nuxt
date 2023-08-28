@@ -171,7 +171,7 @@ const itemsObject = ref([
           label="Test"
           placeholder="Let's test autocomplete"
           size="sm"
-          combobox
+          dropdown
           label-float
           clearable
           multiple
@@ -181,7 +181,7 @@ const itemsObject = ref([
           label="Test"
           placeholder="Let's test autocomplete"
           size="md"
-          combobox
+          dropdown
           label-float
           clearable
           multiple
@@ -193,7 +193,7 @@ const itemsObject = ref([
             placeholder="Let's test autocomplete"
             size="lg"
             :classes="{ icon: 'text-red-500' }"
-            combobox
+            dropdown
             label-float
             clearable
           />
@@ -203,7 +203,7 @@ const itemsObject = ref([
             placeholder="Let's test autocomplete"
             size="lg"
             :classes="{ icon: 'text-red-500' }"
-            combobox
+            dropdown
             label-float
             clearable
           />
