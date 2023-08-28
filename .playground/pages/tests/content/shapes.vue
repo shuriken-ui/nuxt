@@ -435,6 +435,7 @@ const app = useAppConfig()
         ></BaseTabSlider>
         <BaseTabSlider
           shape="rounded"
+          :model-value="'rounded2'"
           :tabs="[{ value: 'rounded' }, { value: 'rounded2' }]"
         ></BaseTabSlider>
         <BaseTabSlider

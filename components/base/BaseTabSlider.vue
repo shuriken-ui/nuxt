@@ -13,7 +13,7 @@ const props = withDefaults(
     /**
      * The value of the currently selected tab.
      */
-    selected?: string
+    modelValue?: string
     /**
      * Controls the alignment of the tabs. Can be 'start', 'center', or 'end'.
      */
@@ -32,14 +32,14 @@ const props = withDefaults(
     condensed?: boolean
   }>(),
   {
-    selected: undefined,
+    modelValue: undefined,
     justify: undefined,
     size: 'md',
     shape: undefined,
   },
 )
 const emit = defineEmits<{
-  (event: 'update:selected', value?: string): void
+  (event: 'update:modelValue', value?: string): void
 }>()
 const appConfig = useAppConfig()
 const shape = computed(
@@ -69,7 +69,7 @@ const lengthStyle = computed(() =>
 )
 
 const activeValue = ref<string | undefined>(
-  props.selected ?? props.tabs[0]?.value,
+  props.modelValue ?? props.tabs[0]?.value,
 )
 
 function toggle(value: string) {
@@ -77,13 +77,13 @@ function toggle(value: string) {
 }
 
 watch(
-  () => props.selected,
+  () => props.modelValue,
   (value) => {
     activeValue.value = value
   },
 )
 watch(activeValue, (value) => {
-  emit('update:selected', value)
+  emit('update:modelValue', value)
 })
 </script>
 
