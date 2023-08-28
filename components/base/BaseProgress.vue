@@ -39,12 +39,12 @@ const props = withDefaults(
     size: 'sm',
     value: undefined,
     max: 100,
-  }
+  },
 )
 
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.progress
+  () => props.shape ?? appConfig.nui.defaultShapes?.progress,
 )
 
 const colorStyle = {
@@ -97,8 +97,11 @@ const value = computed(() => {
   >
     <div
       class="nui-progress-bar"
-      :class="[value === null && 'nui-progress-indeterminate']"
-      :style="value !== null ? `width: ${value}%` : ''"
+      :class="[
+        value === null &&
+          'nui-progress-indeterminate animate-nui-progress-indeterminate',
+      ]"
+      :style="value !== null ? `width: ${value}%` : 'width: 100%'"
     ></div>
   </div>
 </template>
