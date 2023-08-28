@@ -5,13 +5,13 @@ export default defineNuxtSchema({
         /**
          * Default shape for the BaseAccordion component
          *
-         * @type {'straight' | 'rounded' | 'curved'}
+         * @type {'straight' | 'rounded' | 'smooth' | 'curved'}
          */
         accordion: 'rounded',
         /**
          * Default shape for the BaseAutocompleteItem component
          *
-         * @type {'straight' | 'rounded' | 'curved' | 'full'}
+         * @type {'straight' | 'rounded' | 'smooth' | 'curved' | 'full'}
          */
         autocompleteItem: 'rounded',
         /**
@@ -23,25 +23,25 @@ export default defineNuxtSchema({
         /**
          * Default shape for the BaseButton component
          *
-         * @type {'straight' | 'rounded' | 'curved' | 'full'}
+         * @type {'straight' | 'rounded' | 'curved' | 'smooth' | 'full'}
          */
         button: 'rounded',
         /**
          * Default shape for the BaseButtonAction component
          *
-         * @type {'straight' | 'rounded' | 'curved' | 'full'}
+         * @type {'straight' | 'rounded' | 'smooth' | 'curved' | 'full'}
          */
         buttonAction: 'rounded',
         /**
          * Default shape for the BaseButtonIcon component
          *
-         * @type {'straight' | 'rounded' | 'curved' | 'full'}
+         * @type {'straight' | 'rounded' | 'smooth' | 'curved' | 'full'}
          */
         buttonIcon: 'rounded',
         /**
-         * Default shape for the BaseButtonIcon component
+         * Default shape for the BaseButtonClose component
          *
-         * @type {'straight' | 'rounded' | 'curved' | 'full'}
+         * @type {'straight' | 'rounded' | 'smooth' | 'curved' | 'full'}
          */
         buttonClose: 'full',
         /**
@@ -53,7 +53,7 @@ export default defineNuxtSchema({
         /**
          * Default shape for the BaseDropdown component
          *
-         * @type {'straight' | 'rounded' | 'curved' | 'full'}
+         * @type {'straight' | 'rounded' | 'smooth' | 'curved'}
          */
         dropdown: 'rounded',
         /**
@@ -72,19 +72,19 @@ export default defineNuxtSchema({
          * - BaseInputSelect
          * - BaseInputTextarea
          *
-         * @type {'straight' | 'rounded' | 'curved' | 'full'}
+         * @type {'straight' | 'rounded' | 'smooth' | 'curved' | 'full'}
          */
         input: 'rounded',
         /**
          * Default shape for the BaseMessage component
          *
-         * @type {'straight' | 'rounded' | 'curved' | 'full'}
+         * @type {'straight' | 'rounded' | 'smooth' | 'curved' | 'full'}
          */
         message: 'curved',
         /**
          * Default shape for the BasePagination component
          *
-         * @type {'straight' | 'rounded' | 'curved' | 'full'}
+         * @type {'straight' | 'rounded' | 'smooth' | 'curved' | 'full'}
          */
         pagination: 'rounded',
         /**
@@ -102,7 +102,7 @@ export default defineNuxtSchema({
         /**
          * Default shape for the BaseTabSlider component
          *
-         * @type {'straight' | 'rounded' | 'curved' | 'full'}
+         * @type {'straight' | 'rounded' | 'smooth' | 'curved' | 'full'}
          */
         tabSlider: 'rounded',
         /**
