@@ -7,6 +7,11 @@ const props = withDefaults(
     color?: 'primary' | 'info' | 'success' | 'warning' | 'danger'
 
     /**
+     * The contrast ot the progress bar.
+     */
+    contrast?: 'default' | 'contrast'
+
+    /**
      * The shape of the progress bar.
      */
     shape?: 'straight' | 'rounded' | 'curved' | 'full'
@@ -29,22 +34,42 @@ const props = withDefaults(
   }>(),
   {
     color: 'primary',
+    contrast: 'default',
     shape: undefined,
     size: 'sm',
     value: undefined,
     max: 100,
-  }
+  },
 )
 
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.progress
+  () => props.shape ?? appConfig.nui.defaultShapes?.progress,
 )
+
+const colorStyle = {
+  primary: 'nui-progress-primary',
+  info: 'nui-progress-info',
+  success: 'nui-progress-success',
+  warning: 'nui-progress-warning',
+  danger: 'nui-progress-danger',
+}
+const contrastStyle = {
+  default: 'nui-progress-default',
+  contrast: 'nui-progress-contrast',
+}
 const shapeStyle = {
   straight: '',
-  rounded: 'rounded-md',
-  curved: 'rounded-lg',
-  full: 'rounded-full',
+  rounded: 'nui-progress-rounded',
+  curved: 'nui-progress-curved',
+  full: 'nui-progress-full',
+}
+const sizeStyle = {
+  xs: 'nui-progress-xs',
+  sm: 'nui-progress-sm',
+  md: 'nui-progress-md',
+  lg: 'nui-progress-lg',
+  xl: 'nui-progress-xl',
 }
 
 const value = computed(() => {
@@ -62,28 +87,21 @@ const value = computed(() => {
     role="progressbar"
     :aria-valuenow="value"
     :aria-valuemax="props.max"
-    class="bg-muted-200 dark:bg-muted-700 relative w-full overflow-hidden"
+    class="nui-progress"
     :class="[
-      props.size === 'xs' && 'h-1',
-      props.size === 'sm' && 'h-2',
-      props.size === 'md' && 'h-3',
-      props.size === 'lg' && 'h-4',
-      props.size === 'xl' && 'h-5',
+      contrastStyle[props.contrast],
+      colorStyle[props.color],
+      sizeStyle[props.size],
       shape && shapeStyle[shape],
     ]"
   >
     <div
-      class="absolute start-0 top-0 h-full transition-all duration-300"
+      class="nui-progress-bar"
       :class="[
-        props.color === 'primary' && 'bg-primary-500',
-        props.color === 'success' && 'bg-success-500',
-        props.color === 'info' && 'bg-info-500',
-        props.color === 'warning' && 'bg-warning-500',
-        props.color === 'danger' && 'bg-danger-500',
-        shape && shapeStyle[shape],
-        value === null && 'animate-nui-indeterminate w-full',
+        value === null &&
+          'nui-progress-indeterminate animate-nui-progress-indeterminate',
       ]"
-      :style="value !== null ? `width: ${value}%` : ''"
+      :style="value !== null ? `width: ${value}%` : 'width: 100%'"
     ></div>
   </div>
 </template>

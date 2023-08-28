@@ -1,17 +1,16 @@
-<script lang="ts">
-import { useNinjaFilePreview } from '../../composables/file-preview'
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script setup lang="ts">
+import { useNinjaFilePreview } from '../../composables/file-preview'
+
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(
   defineProps<{
     /**
      * The model value of the file input.
      */
-    modelValue: FileList | null
+    modelValue?: FileList | null
 
     /**
      * The form input identifier.
@@ -25,14 +24,17 @@ const props = withDefaults(
   }>(),
   {
     id: undefined,
+    modelValue: undefined,
     filterFileDropped: () => true,
-  }
+  },
 )
 const emits = defineEmits<{
   (event: 'update:modelValue', value?: FileList | null): void
 }>()
 const inputRef = ref<HTMLInputElement>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const id = useNinjaId(() => props.id)
 
@@ -88,7 +90,7 @@ provide(
     remove,
     preview: useNinjaFilePreview,
     drop,
-  })
+  }),
 )
 
 defineExpose({
@@ -127,11 +129,11 @@ defineExpose({
   <div class="group/nui-file-headless relative">
     <slot
       :id="id"
-      :el="el"
-      :files="files"
+      :el="inputRef"
+      :files="value"
       :open="open"
       :remove="remove"
-      :preview="preview"
+      :preview="useNinjaFilePreview"
       :drop="drop"
     ></slot>
     <input
@@ -140,7 +142,7 @@ defineExpose({
       type="file"
       v-bind="$attrs"
       class="hidden"
-      @change="(event) => value = (event.target as HTMLInputElement).files"
+      @change="(event) => (value = (event.target as HTMLInputElement).files)"
     />
   </div>
 </template>

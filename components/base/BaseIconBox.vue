@@ -14,13 +14,12 @@ const props = withDefaults(
     /** The color of the box. Can be 'default', 'primary', 'info', 'success', 'warning', or 'danger' */
     color?:
       | 'default'
+      | 'invert'
       | 'primary'
       | 'info'
       | 'success'
       | 'warning'
       | 'danger'
-      | 'light'
-      | 'muted'
 
     /** The flavor of the box. Can be 'solid', 'outline', or 'pastel'. */
     flavor?: 'solid' | 'outline' | 'pastel'
@@ -44,113 +43,57 @@ const props = withDefaults(
     mask: undefined,
   }
 )
+
 const appConfig = useAppConfig()
 const shape = computed(
   () => props.shape ?? appConfig.nui.defaultShapes?.iconBox
 )
 
-const solidColorVariant = {
-  info: 'bg-info-500 text-white',
-  success: 'bg-success-500 text-white',
-  warning: 'bg-warning-500 text-white',
-  danger: 'bg-danger-500 text-white',
-  primary: 'bg-primary-500 text-white',
-  light: 'text-muted-800 bg-white',
-  muted: 'text-muted-500 bg-white dark:text-muted-100 dark:bg-muted-700',
+const shapeStyle = {
+  straight: '',
+  rounded: 'nui-box-rounded',
+  curved: 'nui-box-curved',
+  full: 'nui-box-full',
 }
-const pastelColorVariant = {
-  info: 'bg-info-500/10 text-info-500',
-  success: 'bg-success-500/10 text-success-500',
-  warning: 'bg-warning-500/10 text-warning-500',
-  danger: 'bg-danger-500/10 text-danger-500',
-  primary: 'bg-primary-500/10 text-primary-500',
-  light: 'text-muted-800 bg-white/10',
-  muted: 'text-muted-400 bg-muted-200 dark:text-muted-500 dark:bg-muted-800',
-}
-const outlineColorVariant = {
-  info: 'border-2 border-current text-info-500',
-  success: 'border-2 border-current text-success-500',
-  warning: 'border-2 border-current text-warning-500',
-  danger: 'border-2 border-current text-danger-500',
-  primary: 'border-2 border-current text-primary-500',
-  light: 'border-2 border-current text-muted-800',
-  muted: 'border-2 border-current text-muted-400 dark:text-muted-600',
-}
-
 const sizeStyle = {
-  xs: 'h-8 w-8',
-  sm: 'h-10 w-10',
-  md: 'h-12 w-12',
-  lg: 'h-16 w-16',
-  xl: 'h-20 w-20',
-  '2xl': 'h-24 w-24',
+  xs: 'nui-box-xs',
+  sm: 'nui-box-sm',
+  md: 'nui-box-md',
+  lg: 'nui-box-lg',
+  xl: 'nui-box-xl',
+  '2xl': 'nui-box-2xl',
+}
+const flavorStyle = {
+  solid: 'nui-box-solid',
+  pastel: 'nui-box-pastel',
+  outline: 'nui-box-outline',
+}
+const colorStyle = {
+  default: 'nui-box-default',
+  invert: 'nui-box-invert',
+  primary: 'nui-box-primary',
+  info: 'nui-box-info',
+  success: 'nui-box-success',
+  warning: 'nui-box-warning',
+  danger: 'nui-box-danger',
+}
+const maskStyle = {
+  hex: 'nui-mask nui-mask-hex',
+  hexed: 'nui-mask nui-mask-hexed',
+  deca: 'nui-mask nui-mask-deca',
+  blob: 'nui-mask nui-mask-blob',
+  diamond: 'nui-mask nui-mask-diamond',
 }
 
-const curvedStyle = {
-  xs: 'rounded-xl',
-  sm: 'rounded-xl',
-  md: 'rounded-2xl',
-  lg: 'rounded-2xl',
-  xl: 'rounded-3xl',
-  '2xl': 'rounded-3xl',
-}
-const roundedStyle = {
-  xs: 'rounded-lg',
-  sm: 'rounded-lg',
-  md: 'rounded-xl',
-  lg: 'rounded-xl',
-  xl: 'rounded-2xl',
-  '2xl': 'rounded-2xl',
-}
-
-const colorStyle = computed(() => {
-  let colors: any =
-    props.flavor === 'solid'
-      ? solidColorVariant
-      : props.flavor === 'outline'
-      ? outlineColorVariant
-      : pastelColorVariant
-
-  colors.default =
-    'bg-muted-100 dark:bg-muted-700 text-muted-600 dark:text-muted-200'
-
-  return colors
-})
-const shapeStyle = computed(() =>
-  shape.value === 'full'
-    ? 'rounded-full'
-    : shape.value === 'rounded'
-    ? roundedStyle[props.size]
-    : curvedStyle[props.size]
-)
-
-const classes = computed(() => {
-  let ret = [
-    'relative inline-flex shrink-0 items-center justify-center',
-    sizeStyle[props.size],
-    props.color ? colorStyle.value[props.color] : '',
-    shapeStyle.value,
-  ]
-  props.bordered &&
-    props.flavor === 'pastel' &&
-    ret.push('border-2 border-current')
-  props.mask !== undefined && props.shape === 'straight' && ret.push('nui-mask')
-  props.mask === 'hex' && props.shape === 'straight' && ret.push('nui-mask-hex')
-  props.mask === 'hexed' &&
-    props.shape === 'straight' &&
-    ret.push('nui-mask-hexed')
-  props.mask === 'deca' &&
-    props.shape === 'straight' &&
-    ret.push('nui-mask-deca')
-  props.mask === 'blob' &&
-    props.shape === 'straight' &&
-    ret.push('nui-mask-blob')
-  props.mask === 'diamond' &&
-    props.shape === 'straight' &&
-    ret.push('nui-mask-diamond')
-
-  return ret
-})
+const classes = computed(() => [
+  'nui-icon-box',
+  props.bordered && 'nui-box-bordered',
+  shape.value && shapeStyle[shape.value],
+  sizeStyle[props.size],
+  flavorStyle[props.flavor],
+  props.color && colorStyle[props.color],
+  props.mask && maskStyle[props.mask],
+])
 </script>
 
 <template>

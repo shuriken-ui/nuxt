@@ -1,10 +1,8 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(
   defineProps<{
     /**
@@ -25,7 +23,7 @@ const props = withDefaults(
     /**
      * The model value of the checkbox.
      */
-    modelValue: any
+    modelValue?: any
 
     /**
      * The form input identifier.
@@ -33,6 +31,7 @@ const props = withDefaults(
     id?: string
   }>(),
   {
+    modelValue: undefined,
     id: undefined,
     label: undefined,
     trueValue: true,
@@ -43,7 +42,9 @@ const emits = defineEmits<{
   (e: 'update:modelValue', value: string | number | boolean): void
 }>()
 const inputRef = ref<HTMLInputElement>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 defineExpose({
   /**

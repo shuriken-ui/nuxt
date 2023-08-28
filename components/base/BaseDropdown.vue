@@ -67,7 +67,8 @@ const props = withDefaults(
     buttonColor: 'default',
     shape: undefined,
     orientation: 'start',
-    color: 'muted',
+    size: 'md',
+    color: 'white',
     label: '',
     headerLabel: undefined,
   }
@@ -106,7 +107,7 @@ const colorStyle = {
 </script>
 
 <template>
-  <div class="nui-dropdown">
+  <div class="nui-dropdown" :class="[orientationStyle[props.orientation]]">
     <Menu
       v-slot="{ open, close }: { open: boolean, close: () => void }"
       as="div"
@@ -125,7 +126,7 @@ const colorStyle = {
             </slot>
             <Icon
               name="lucide:chevron-down"
-              class="context-icon"
+              class="nui-chevron"
               :class="open && 'rotate-180'"
             />
           </BaseButton>
@@ -171,7 +172,6 @@ const colorStyle = {
         <MenuItems
           class="nui-dropdown-menu"
           :class="[
-            orientationStyle[props.orientation],
             shape && shapeStyle[shape],
             sizeStyle[props.size],
             colorStyle[props.color],
@@ -184,7 +184,7 @@ const colorStyle = {
               </h4>
             </div>
           </div>
-          <div class="nui-menu-header-content">
+          <div class="nui-menu-content">
             <slot v-bind="{ open, close }"></slot>
           </div>
         </MenuItems>

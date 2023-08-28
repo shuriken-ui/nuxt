@@ -21,7 +21,7 @@ const props = withDefaults(
     /**
      * The value of the currently selected tab. This should match the value of one of the tabs in the tabs array.
      */
-    selected?: string
+    modelValue?: string
     /**
      * The type of tabs to display. Can be either "tabs" or "box".
      */
@@ -40,57 +40,52 @@ const props = withDefaults(
     hideLabel?: boolean
   }>(),
   {
-    selected: undefined,
+    modelValue: undefined,
     type: 'tabs',
     justify: undefined,
-  }
+  },
 )
+
 const emit = defineEmits<{
-  (event: 'update:selected', value?: string): void
+  (event: 'update:modelValue', value?: string): void
 }>()
-const activeValue = ref(props.selected)
+const justifyStyle = {
+  start: '',
+  center: 'nui-tabs-centered',
+  end: 'nui-tabs-end',
+}
+const typeStyle = {
+  tabs: 'nui-tab-item',
+  box: 'nui-pill-item',
+}
+
+const activeValue = ref(props.modelValue)
 
 function toggle(value: string) {
   activeValue.value = value
 }
 
 watch(
-  () => props.selected,
+  () => props.modelValue,
   (value) => {
     activeValue.value = value
-  }
+  },
 )
-
 watch(activeValue, (value) => {
-  emit('update:selected', value)
+  emit('update:modelValue', value)
 })
 </script>
 
 <template>
-  <div class="relative">
-    <div
-      class="font-alt mb-6 flex"
-      :class="[
-        props.justify === 'center' && 'justify-center',
-        props.justify === 'end' && 'justify-end',
-      ]"
-    >
+  <div class="nui-tabs" :class="props.justify && justifyStyle[props.justify]">
+    <div class="nui-tabs-inner">
       <a
         v-for="(tab, key) in tabs"
         :key="key"
-        class="cursor-pointer text-base transition-all duration-300"
         :class="[
-          activeValue === tab.value && props.type === 'tabs'
-            ? 'border-primary-500 text-muted-800 dark:text-muted-100'
-            : 'text-muted-400 border-transparent',
-          activeValue === tab.value && props.type === 'box'
-            ? 'bg-primary-500 shadow-primary-500/50 !text-white shadow-lg'
-            : 'text-muted-400',
-          tab.icon && 'flex items-center',
-          props.type === 'tabs' && 'border-b-2 px-4 py-3',
-          props.type === 'box' && 'flex flex-col rounded-xl px-5 text-center',
-          props.type === 'box' && tab.icon && 'py-3',
-          props.type === 'box' && !tab.icon && 'py-2',
+          typeStyle[props.type],
+          activeValue === tab.value && 'nui-active',
+          tab.icon && 'nui-has-icon',
         ]"
         tabindex="0"
         @click="toggle(tab.value)"

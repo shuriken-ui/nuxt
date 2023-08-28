@@ -222,6 +222,15 @@ export default withShurikenUI({
         warning: colors.amber,
         danger: colors.rose,
       },
+
+      /**
+       * Customize Shuriken UI components
+       * 
+       * @see https://github.com/shuriken-ui/tailwind
+       */
+      shurikenUi: {
+        // ...
+      }
     },
   },
 })

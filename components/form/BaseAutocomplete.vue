@@ -1,6 +1,11 @@
-<script setup lang="ts">
+<script
+  setup
+  lang="ts"
+  generic="T extends object | string | boolean | number | null | undefined"
+>
 import {
   Combobox,
+  ComboboxButton,
   ComboboxInput,
   ComboboxLabel,
   ComboboxOption,
@@ -10,20 +15,24 @@ import {
 
 const props = withDefaults(
   defineProps<{
+    // Temporary fix to allow attributes inheritance with generic components
+    // @see https://github.com/vuejs/core/issues/8372
+    [attrs: string]: any
+
     /**
      * The model value of the component.
      */
-    modelValue: any
+    modelValue?: T | T[]
 
     /**
      * The items to display in the component.
      */
-    items?: any[]
+    items?: T[]
 
     /**
      * The shape of the component.
      */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
 
     /**
      * The label to display for the component.
@@ -56,12 +65,17 @@ const props = withDefaults(
     /**
      * Error text to display when the component is in an error state.
      */
-    error?: string
+    error?: string | boolean
 
     /**
-     * Whether the component is condensed.
+     * The size of the autocomplete component.
      */
-    condensed?: boolean
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * The contrast of autocomplete component.
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * Whether the component is in a loading state.
@@ -94,6 +108,16 @@ const props = withDefaults(
     chipClearIcon?: string
 
     /**
+     * The icon to show in the dropdown button
+     */
+    dropdownIcon?: string
+
+    /**
+     * Display a chevron icon to open suggestions
+     */
+    dropdown?: boolean
+
+    /**
      * Whether the component allows multiple selections.
      */
     multiple?: boolean
@@ -101,7 +125,7 @@ const props = withDefaults(
     /**
      * A function used to render the items as strings in either the input or the tag when multiple is true.
      */
-    displayValue?: (item?: any) => string
+    displayValue?: (item?: T) => string
 
     /**
      * The debounce time for the filterItems method.
@@ -113,7 +137,7 @@ const props = withDefaults(
      *
      * You can use this method to implement your own filtering logic or to fetch items from an API.
      */
-    filterItems?: (query?: string, items?: any[]) => Promise<any[]> | any[]
+    filterItems?: (query?: string, items?: T[]) => Promise<T[]> | T[]
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -141,12 +165,15 @@ const props = withDefaults(
     }
   }>(),
   {
+    modelValue: undefined,
     items: () => [],
     shape: undefined,
     icon: undefined,
     placeholder: '',
     label: '',
     error: '',
+    size: 'md',
+    contrast: 'default',
     i18n: () => ({
       pending: 'Loading ...',
       empty: 'Nothing found.',
@@ -157,6 +184,8 @@ const props = withDefaults(
     clearValue: undefined,
     clearIcon: 'lucide:x',
     chipClearIcon: 'lucide:x',
+    dropdownIcon: 'lucide:chevron-down',
+    dropdown: false,
     multiple: false,
     displayValue: (item: any) => item,
     filterDebounce: 0,
@@ -173,64 +202,47 @@ const props = withDefaults(
       })
     },
     classes: () => ({}),
-  }
+  },
 )
 
 const emits = defineEmits<{
-  (event: 'update:modelValue', value?: any): void
+  (event: 'update:modelValue', value?: T | T[]): void
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+}) as Ref<T | T[]>
 
 const items = shallowRef(props.items)
 const query = ref('')
 const debounced = refDebounced(query, props.filterDebounce)
 const filteredItems = shallowRef<Awaited<ReturnType<typeof props.filterItems>>>(
-  []
+  props.dropdown ? props.items : [],
 )
 const pendingFilter = ref(false)
 const pendingDebounce = computed(() => query.value !== debounced.value)
 const pending = computed(() => pendingFilter.value || pendingDebounce.value)
 
-const shapeListStyle = {
+const shapeStyle = {
   straight: '',
-  rounded: 'rounded-lg',
-  curved: 'rounded-xl',
-  full: 'rounded-full',
+  rounded: 'nui-autocomplete-rounded',
+  smooth: 'nui-autocomplete-smooth',
+  curved: 'nui-autocomplete-curved',
+  full: 'nui-autocomplete-full',
 }
-const shapeInputStyle = {
-  straight: '',
-  rounded: 'rounded',
-  curved: 'rounded-xl',
-  full: 'rounded-full',
+const sizeStyle = {
+  sm: 'nui-autocomplete-sm',
+  md: 'nui-autocomplete-md',
+  lg: 'nui-autocomplete-lg',
 }
-const shapeOptionStyle = {
-  straight: '',
-  rounded: 'rounded-lg',
-  curved: 'rounded-xl',
-  full: 'rounded-2xl',
+const contrastStyle = {
+  default: 'nui-autocomplete-default',
+  'default-contrast': 'nui-autocomplete-default-contrast',
+  muted: 'nui-autocomplete-muted',
+  'muted-contrast': 'nui-autocomplete-muted-contrast',
 }
-
-const condensedInputStyle = computed(() =>
-  props.condensed
-    ? props.icon === undefined
-      ? 'h-8 py-1 text-xs leading-4 px-2'
-      : 'h-8 py-1 text-xs leading-4 pe-3 ps-7'
-    : props.icon === undefined
-    ? 'h-10 py-2 text-sm leading-5 px-3'
-    : 'h-10 py-2 text-sm leading-5 pe-4 ps-9'
-)
-const condensedLabelStyle = computed(() =>
-  props.condensed
-    ? props.icon === undefined
-      ? 'start-3 -ms-3 -mt-7 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-focus-visible:-ms-3 peer-focus-visible:-mt-7'
-      : 'start-8 -ms-8 -mt-7 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-focus-visible:-ms-8 peer-focus-visible:-mt-7'
-    : props.icon === undefined
-    ? 'start-3 -ms-3  -mt-8 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-placeholder-shown:text-[0.825rem] peer-focus-visible:-ms-3 peer-focus-visible:-mt-8 peer-focus-visible:text-xs'
-    : 'start-10 -ms-10 -mt-8 text-xs peer-placeholder-shown:ms-0 peer-placeholder-shown:mt-0 peer-placeholder-shown:text-[0.825rem] peer-focus-visible:-ms-10 peer-focus-visible:-mt-8 peer-focus-visible:text-xs'
-)
 
 provide(
   'BaseAutocompleteContext',
@@ -242,7 +254,7 @@ provide(
     pending,
     clear,
     removeItem,
-  })
+  }),
 )
 defineExpose({
   /**
@@ -290,7 +302,41 @@ function clear() {
   value.value = props.clearValue
 }
 
-function removeItem(item: any) {
+const iconResolved = computed(() => {
+  if (
+    value.value &&
+    typeof value.value === 'object' &&
+    !Array.isArray(value.value) &&
+    'icon' in value.value &&
+    typeof value.value.icon === 'string'
+  ) {
+    return value.value.icon
+  }
+  return props.icon
+})
+
+function isAutocompleteItem(
+  item: unknown,
+): item is Record<'name' | 'text' | 'media' | 'icon', string> {
+  if (
+    item &&
+    typeof item === 'object' &&
+    (('name' in item && typeof item.name === 'string') ||
+      ('text' in item && typeof item.text === 'string') ||
+      ('media' in item && typeof item.media === 'string') ||
+      ('icon' in item && typeof item.icon === 'string'))
+  ) {
+    return true
+  }
+  return false
+}
+
+function removeItem(item: T) {
+  if (!Array.isArray(value.value)) {
+    value.value = props.clearValue
+    return
+  }
+
   for (let i = value.value.length - 1; i >= 0; --i) {
     // eslint-disable-next-line eqeqeq
     if (value.value[i] == item) {
@@ -305,62 +351,56 @@ function removeItem(item: any) {
     v-model="value"
     :multiple="props.multiple"
     :disabled="props.disabled"
-    class="relative w-full"
-    :class="props.classes?.wrapper"
+    :class="[
+      'nui-autocomplete',
+      props.classes?.wrapper,
+      sizeStyle[props.size],
+      contrastStyle[props.contrast],
+      shape && shapeStyle[shape],
+      props.icon && 'nui-has-icon',
+      props.labelFloat && 'nui-autocomplete-label-float',
+      props.loading && 'nui-autocomplete-loading',
+    ]"
     as="div"
   >
     <ComboboxLabel
       v-if="
-        ('label' in $slots && !props.labelFloat) ||
-        (props.label && !props.labelFloat)
+        ('label' in $slots && !labelFloat) || (props.label && !props.labelFloat)
       "
-      class="nui-label"
-      :class="[
-        props.condensed && 'pb-1 text-xs',
-        !props.condensed && 'pb-1 text-[0.825rem]',
-        ...(props.classes?.label && Array.isArray(props.classes.label)
-          ? props.classes.label
-          : [props.classes?.label]),
-      ]"
+      class="nui-autocomplete-label"
+      :class="classes?.label"
     >
       <slot name="label" v-bind="{ query, filteredItems, pending, items }">
-        {{ props.label }}
+        {{ label }}
       </slot>
     </ComboboxLabel>
 
-    <div v-if="props.multiple" class="block">
+    <div v-if="props.multiple" class="nui-autocomplete-multiple">
       <ul
         v-if="Array.isArray(value) && value.length > 0"
-        class="my-2 flex flex-wrap gap-1"
+        class="nui-autocomplete-multiple-list"
       >
-        <li v-for="item in value" :key="item.id">
-          <div
-            class="bg-muted-100 text-muted-400 dark:bg-muted-700 flex items-center py-2 pe-2 ps-3 font-sans text-xs font-medium"
-            :class="shape && shapeListStyle[shape]"
-          >
+        <li v-for="item in value" :key="String(item)">
+          <div class="nui-autocomplete-multiple-list-item">
             {{ props.displayValue(item) }}
             <button type="button" @click="removeItem(item)">
-              <Icon :name="chipClearIcon" class="ms-1 block h-3 w-3" />
+              <Icon
+                :name="chipClearIcon"
+                class="nui-autocomplete-multiple-list-item-icon"
+              />
             </button>
           </div>
         </li>
       </ul>
     </div>
-    <div class="group/autocomplete relative">
+
+    <div class="nui-autocomplete-outer">
       <ComboboxInput
-        class="nui-focus border-muted-300 text-muted-600 placeholder:text-muted-300 focus:border-muted-300 focus:shadow-muted-300/50 dark:border-muted-700 dark:bg-muted-900/75 dark:text-muted-200 dark:placeholder:text-muted-500 dark:focus:border-muted-700 dark:focus:shadow-muted-800/50 peer w-full border bg-white font-sans leading-5 outline-transparent transition-all duration-300 focus:shadow-lg focus:ring-0 disabled:cursor-not-allowed disabled:opacity-75"
-        :class="[
-          condensedInputStyle,
-          shape && shapeInputStyle[shape],
-          props.labelFloat &&
-            'placeholder:text-transparent dark:placeholder:!text-transparent',
-          props.loading &&
-            '!text-transparent placeholder:!text-transparent dark:!text-transparent dark:placeholder:!text-transparent',
-          ...(props.classes?.input && Array.isArray(props.classes.input)
-            ? props.classes.input
-            : [props.classes?.input]),
-        ]"
-        :display-value="props.multiple ? undefined : props.displayValue"
+        class="nui-autocomplete-input"
+        :class="classes?.input"
+        :display-value="
+          props.multiple ? undefined : (props.displayValue as any)
+        "
         :placeholder="props.placeholder"
         :disabled="props.disabled"
         @change="query = $event.target.value"
@@ -370,99 +410,85 @@ function removeItem(item: any) {
           ('label' in $slots && props.labelFloat) ||
           (props.label && props.labelFloat)
         "
-        class="text-primary-500 peer-focus-visible:text-primary-500 dark:peer-focus-visible:text-primary-500 pointer-events-none absolute inline-flex h-5 select-none items-center leading-none transition-all duration-300"
-        :class="[
-          props.loading
-            ? 'peer-placeholder-shown:!text-transparent dark:peer-placeholder-shown:!text-transparent'
-            : 'peer-placeholder-shown:text-muted-300 dark:peer-placeholder-shown:text-muted-600',
-          condensedLabelStyle,
-          props.condensed ? 'top-1.5' : 'top-2.5',
-          ...(props.classes?.label && Array.isArray(props.classes.label)
-            ? props.classes.label
-            : [props.classes?.label]),
-        ]"
+        class="nui-label-float"
+        :class="props.classes?.label"
       >
         <slot name="label" v-bind="{ query, filteredItems, pending, items }">
           {{ props.label }}
         </slot>
       </ComboboxLabel>
-      <div
-        v-if="props.icon || value?.icon"
-        class="text-muted-400 group-focus-within/autocomplete:text-primary-500 absolute start-0 top-0 flex items-center justify-center transition-colors duration-300"
-        :class="[props.condensed && 'h-8 w-8', !props.condensed && 'h-10 w-10']"
-      >
-        <Icon :name="value?.icon ?? props.icon" class="h-4 w-4" />
+      <div v-if="iconResolved" class="nui-autocomplete-icon">
+        <Icon :name="iconResolved" class="nui-autocomplete-icon-inner" />
       </div>
       <button
         v-if="props.clearable && value"
         type="button"
-        class="text-muted-400 hover:text-muted-700 dark:hover:text-muted-200 absolute end-0 top-0 z-10 flex items-center justify-center transition-colors duration-300"
-        :class="[
-          props.condensed && 'h-8 w-8',
-          !props.condensed && 'h-10 w-10',
-          ...(props.classes?.icon && Array.isArray(props.classes.icon)
-            ? props.classes.icon
-            : [props.classes?.icon]),
-        ]"
+        class="nui-autocomplete-clear"
+        :class="[props.classes?.icon, props.dropdown && 'me-6']"
         @click="clear"
       >
-        <Icon :name="clearIcon" class="h-4 w-4" />
+        <Icon :name="props.clearIcon" class="nui-autocomplete-clear-inner" />
       </button>
-      <div
-        v-if="props.loading"
-        class="absolute start-0 top-0 flex w-full items-center px-4"
-        :class="[props.condensed && 'h-8', !props.condensed && 'h-10']"
+      <ComboboxButton
+        v-if="props.dropdown"
+        v-slot="{ open }: { open: boolean }"
+        class="nui-autocomplete-clear"
       >
-        <BasePlaceload
-          class="h-3 w-full max-w-[75%] rounded"
-          :class="props.icon && 'ms-6'"
+        <Icon
+          :name="props.dropdownIcon"
+          class="nui-autocomplete-clear-inner transition-transform duration-300"
+          :class="[props.classes?.icon, open && 'rotate-180']"
         />
+      </ComboboxButton>
+
+      <div v-if="props.loading" class="nui-autocomplete-placeload">
+        <BasePlaceload class="nui-placeload" :class="props.icon && 'ms-6'" />
       </div>
     </div>
+
     <span
       v-if="props.error && typeof props.error === 'string'"
-      class="inline-block font-sans text-[.8rem] text-pink-600"
+      class="nui-autocomplete-error-text"
     >
       {{ props.error }}
     </span>
+
     <TransitionRoot
       leave="transition ease-in duration-100"
       leave-from="opacity-100"
       leave-to="opacity-0"
       @after-leave="query = ''"
     >
-      <ComboboxOptions
-        as="div"
-        class="nui-slimscroll border-muted-200 dark:border-muted-700 dark:bg-muted-800 absolute z-20 mt-1 max-h-[265px] w-full overflow-auto border bg-white py-1 text-base shadow-lg outline-none sm:text-sm"
-        :class="shape && shapeOptionStyle[shape]"
-      >
+      <ComboboxOptions as="div" class="nui-autocomplete-results">
         <!-- Placeholder -->
         <div
           v-if="filteredItems.length === 0 && pending"
-          class="relative px-4 py-2"
+          class="nui-autocomplete-results-placeholder"
         >
           <slot
             name="pending"
             v-bind="{ query, filteredItems, pending, items }"
           >
-            <span
-              class="text-muted-700 dark:text-muted-400 cursor-default select-none"
-            >
+            <span class="nui-autocomplete-results-placeholder-text">
               {{ props.i18n.pending }}
             </span>
           </slot>
         </div>
-        <div v-else-if="filteredItems.length === 0" class="relative px-4 py-2">
+        <div
+          v-else-if="filteredItems.length === 0"
+          class="nui-autocomplete-results-placeholder"
+        >
           <slot name="empty" v-bind="{ query, filteredItems, pending, items }">
-            <span
-              class="text-muted-700 dark:text-muted-400 cursor-default select-none"
-            >
+            <span class="nui-autocomplete-results-placeholder-text">
               {{ props.i18n.empty }}
             </span>
           </slot>
         </div>
         <template v-else>
-          <div v-if="'start-item' in $slots" class="relative px-2 py-1">
+          <div
+            v-if="'start-item' in $slots"
+            class="nui-autocomplete-results-header"
+          >
             <slot
               name="start-item"
               v-bind="{
@@ -476,8 +502,8 @@ function removeItem(item: any) {
           <ComboboxOption
             v-for="item in filteredItems"
             v-slot="{ active, selected }"
-            :key="item.name"
-            class="px-2 py-1"
+            :key="String(item)"
+            class="nui-autocomplete-results-item"
             as="div"
             :value="item"
           >
@@ -496,7 +522,7 @@ function removeItem(item: any) {
               <BaseAutocompleteItem
                 :shape="shape"
                 :value="
-                  typeof item !== 'string'
+                  isAutocompleteItem(item)
                     ? item
                     : {
                         name: props.displayValue(item),
@@ -507,7 +533,10 @@ function removeItem(item: any) {
               />
             </slot>
           </ComboboxOption>
-          <div v-if="'end-item' in $slots" class="relative px-2 py-1">
+          <div
+            v-if="'end-item' in $slots"
+            class="nui-autocomplete-results-footer"
+          >
             <slot
               name="end-item"
               v-bind="{

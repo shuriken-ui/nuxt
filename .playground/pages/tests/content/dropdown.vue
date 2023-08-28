@@ -290,5 +290,21 @@ definePageMeta({
         </BaseDropdown>
       </div>
     </div>
+
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        Dropdown And Autocomplete
+      </BaseHeading>
+      <div class="flex flex-col gap-2 max-w-[200px]">
+        <BaseListbox :items="['foo', 'bar', 'baz']" />
+        <BaseListbox :items="['foo', 'bar', 'baz']" />
+        <BaseAutocomplete
+          :items="['Javascript', 'Vue.js', 'React.js', 'Angular']"
+          placeholder="Let's test autocomplete"
+          error="This is an error message"
+          clearable
+        />
+      </div>
+    </div>
   </div>
 </template>

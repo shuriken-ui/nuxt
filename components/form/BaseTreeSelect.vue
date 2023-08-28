@@ -130,7 +130,9 @@ const props = withDefaults(
 const emits = defineEmits<{
   (e: 'update:modelValue', value?: any[]): void
 }>()
-const value = useVModel(props, 'modelValue', emits)
+const value = useVModel(props, 'modelValue', emits, {
+  passive: true,
+})
 
 const defaultIcons = {
   open: 'lucide:minus',

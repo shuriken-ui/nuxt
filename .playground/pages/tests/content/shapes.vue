@@ -260,7 +260,7 @@ const app = useAppConfig()
         <BaseCard class="p-2" shape="straight">straight</BaseCard>
         <BaseCard class="p-2" shape="rounded">rounded</BaseCard>
         <BaseCard class="p-2" shape="curved">curved</BaseCard>
-        <BaseCard class="p-2" shape="full">full</BaseCard>
+        <BaseCard class="p-2" shape="smooth">smooth</BaseCard>
       </div>
     </div>
 
@@ -273,7 +273,7 @@ const app = useAppConfig()
         <BaseDropdown shape="straight" label="straight">straight</BaseDropdown>
         <BaseDropdown shape="rounded" label="rounded">rounded</BaseDropdown>
         <BaseDropdown shape="curved" label="curved">curved</BaseDropdown>
-        <BaseDropdown shape="full" label="full">full</BaseDropdown>
+        <BaseDropdown shape="smooth" label="smooth">smooth</BaseDropdown>
       </div>
     </div>
 
@@ -435,6 +435,7 @@ const app = useAppConfig()
         ></BaseTabSlider>
         <BaseTabSlider
           shape="rounded"
+          :model-value="'rounded2'"
           :tabs="[{ value: 'rounded' }, { value: 'rounded2' }]"
         ></BaseTabSlider>
         <BaseTabSlider
