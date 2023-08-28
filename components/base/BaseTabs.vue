@@ -21,7 +21,7 @@ const props = withDefaults(
     /**
      * The value of the currently selected tab. This should match the value of one of the tabs in the tabs array.
      */
-    selected?: string
+    modelValue?: string
     /**
      * The type of tabs to display. Can be either "tabs" or "box".
      */
@@ -40,14 +40,14 @@ const props = withDefaults(
     hideLabel?: boolean
   }>(),
   {
-    selected: undefined,
+    modelValue: undefined,
     type: 'tabs',
     justify: undefined,
-  }
+  },
 )
 
 const emit = defineEmits<{
-  (event: 'update:selected', value?: string): void
+  (event: 'update:modelValue', value?: string): void
 }>()
 const justifyStyle = {
   start: '',
@@ -59,20 +59,20 @@ const typeStyle = {
   box: 'nui-pill-item',
 }
 
-const activeValue = ref(props.selected)
+const activeValue = ref(props.modelValue)
 
 function toggle(value: string) {
   activeValue.value = value
 }
 
 watch(
-  () => props.selected,
+  () => props.modelValue,
   (value) => {
     activeValue.value = value
-  }
+  },
 )
 watch(activeValue, (value) => {
-  emit('update:selected', value)
+  emit('update:modelValue', value)
 })
 </script>
 
