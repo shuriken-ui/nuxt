@@ -185,7 +185,7 @@ const value = useVModel(
   },
   {
     passive: true,
-  }
+  },
 )
 
 const textareaRef = ref<HTMLTextAreaElement>()
@@ -206,7 +206,7 @@ watch(
   async () => {
     await nextTick()
     fitSize()
-  }
+  },
 )
 
 defineExpose({
@@ -214,6 +214,11 @@ defineExpose({
    * The underlying HTMLTextAreaElement element.
    */
   el: textareaRef,
+
+  /**
+   * A method to resize the textarea to fit its content.
+   */
+  fitSize,
 })
 
 const id = useNinjaId(() => props.id)
