@@ -35,16 +35,15 @@ const props = withDefaults(
     selected: undefined,
     justify: undefined,
     size: 'md',
-    length: 2,
     shape: undefined,
-  }
+  },
 )
 const emit = defineEmits<{
   (event: 'update:selected', value?: string): void
 }>()
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.tabSlider
+  () => props.shape ?? appConfig.nui.defaultShapes?.tabSlider,
 )
 
 const justifyStyle = {
@@ -66,11 +65,11 @@ const shapeStyle = {
 
 const tabsLength = computed(() => Math.min(3, Math.max(2, props.tabs.length)))
 const lengthStyle = computed(() =>
-  tabsLength.value === 2 ? 'nui-tabs-two-slots' : 'nui-tabs-three-slots'
+  tabsLength.value === 2 ? 'nui-tabs-two-slots' : 'nui-tabs-three-slots',
 )
 
 const activeValue = ref<string | undefined>(
-  props.selected ?? props.tabs[0]?.value
+  props.selected ?? props.tabs[0]?.value,
 )
 
 function toggle(value: string) {
@@ -81,7 +80,7 @@ watch(
   () => props.selected,
   (value) => {
     activeValue.value = value
-  }
+  },
 )
 watch(activeValue, (value) => {
   emit('update:selected', value)
