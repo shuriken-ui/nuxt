@@ -39,7 +39,6 @@ const itemsObject = ref([
         <BaseAutocomplete
           :items="items"
           label="Test"
-          data-cy="test"
           placeholder="Let's test autocomplete"
           error="This is an error message"
           shape="straight"
@@ -85,7 +84,8 @@ const itemsObject = ref([
               if (!query) return items || []
               return (
                 items?.filter(
-                  (item) => item.toLowerCase().indexOf(query.toLowerCase()) > -1
+                  (item) =>
+                    item.toLowerCase().indexOf(query.toLowerCase()) > -1,
                 ) || []
               )
             }
@@ -106,7 +106,7 @@ const itemsObject = ref([
               return (
                 items?.filter(
                   (item) =>
-                    item.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+                    item.name.toLowerCase().indexOf(query.toLowerCase()) > -1,
                 ) || []
               )
             }
