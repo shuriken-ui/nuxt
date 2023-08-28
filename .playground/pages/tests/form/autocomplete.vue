@@ -161,5 +161,54 @@ const itemsObject = ref([
         />
       </div>
     </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        Autocomplete as Combobox
+      </BaseHeading>
+      <div class="grid grid-cols-3 gap-4">
+        <BaseAutocomplete
+          :items="items"
+          label="Test"
+          placeholder="Let's test autocomplete"
+          size="sm"
+          combobox
+          label-float
+          clearable
+          multiple
+        />
+        <BaseAutocomplete
+          :items="items"
+          label="Test"
+          placeholder="Let's test autocomplete"
+          size="md"
+          combobox
+          label-float
+          clearable
+          multiple
+        />
+        <div>
+          <BaseAutocomplete
+            :items="items"
+            label="Test"
+            placeholder="Let's test autocomplete"
+            size="lg"
+            :classes="{ icon: 'text-red-500' }"
+            combobox
+            label-float
+            clearable
+          />
+          <BaseAutocomplete
+            :items="items"
+            label="Test"
+            placeholder="Let's test autocomplete"
+            size="lg"
+            :classes="{ icon: 'text-red-500' }"
+            combobox
+            label-float
+            clearable
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>

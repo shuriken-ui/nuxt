@@ -5,6 +5,7 @@
 >
 import {
   Combobox,
+  ComboboxButton,
   ComboboxInput,
   ComboboxLabel,
   ComboboxOption,
@@ -107,6 +108,11 @@ const props = withDefaults(
     chipClearIcon?: string
 
     /**
+     * Whether to act as a combobox
+     */
+    combobox?: boolean
+
+    /**
      * Whether the component allows multiple selections.
      */
     multiple?: boolean
@@ -173,6 +179,7 @@ const props = withDefaults(
     clearValue: undefined,
     clearIcon: 'lucide:x',
     chipClearIcon: 'lucide:x',
+    combobox: false,
     multiple: false,
     displayValue: (item: any) => item,
     filterDebounce: 0,
@@ -206,7 +213,7 @@ const items = shallowRef(props.items)
 const query = ref('')
 const debounced = refDebounced(query, props.filterDebounce)
 const filteredItems = shallowRef<Awaited<ReturnType<typeof props.filterItems>>>(
-  []
+  props.combobox ? props.items : []
 )
 const pendingFilter = ref(false)
 const pendingDebounce = computed(() => query.value !== debounced.value)
@@ -409,11 +416,23 @@ function removeItem(item: T) {
         v-if="props.clearable && value"
         type="button"
         class="nui-autocomplete-clear"
-        :class="props.classes?.icon"
+        :class="[props.classes?.icon, props.combobox && 'mr-6']"
         @click="clear"
       >
         <Icon :name="props.clearIcon" class="nui-autocomplete-clear-inner" />
       </button>
+      <ComboboxButton
+        v-if="props.combobox"
+        v-slot="{ open }: { open: boolean }"
+        class="nui-autocomplete-clear"
+      >
+        <Icon
+          name="lucide:chevron-down"
+          class="nui-autocomplete-clear-inner transition-transform duration-300"
+          :class="[props.classes?.icon, open && 'rotate-180']"
+        />
+      </ComboboxButton>
+
       <div v-if="props.loading" class="nui-autocomplete-placeload">
         <BasePlaceload class="nui-placeload" :class="props.icon && 'ms-6'" />
       </div>
