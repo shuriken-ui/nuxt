@@ -26,7 +26,7 @@ const props = withDefaults(
     id: undefined,
     modelValue: undefined,
     filterFileDropped: () => true,
-  }
+  },
 )
 const emits = defineEmits<{
   (event: 'update:modelValue', value?: FileList | null): void
@@ -90,7 +90,7 @@ provide(
     remove,
     preview: useNinjaFilePreview,
     drop,
-  })
+  }),
 )
 
 defineExpose({
@@ -129,11 +129,11 @@ defineExpose({
   <div class="group/nui-file-headless relative">
     <slot
       :id="id"
-      :el="el"
-      :files="files"
+      :el="inputRef"
+      :files="value"
       :open="open"
       :remove="remove"
-      :preview="preview"
+      :preview="useNinjaFilePreview"
       :drop="drop"
     ></slot>
     <input
@@ -142,7 +142,7 @@ defineExpose({
       type="file"
       v-bind="$attrs"
       class="hidden"
-      @change="(event) => value = (event.target as HTMLInputElement).files"
+      @change="(event) => (value = (event.target as HTMLInputElement).files)"
     />
   </div>
 </template>
