@@ -153,7 +153,7 @@ const props = withDefaults(
     loading: false,
     disabled: false,
     properties: () => ({}),
-  }
+  },
 )
 const emits = defineEmits<{
   (event: 'update:modelValue', value?: any): void
@@ -198,9 +198,9 @@ const placeholder = computed(() => {
 const value = computed(() => {
   if (props.modelModifiers.prop && props.properties.value) {
     const attr = props.properties.value
-    return props.items.find((i) => i[attr] === props.modelValue)
+    return props.items.find((i) => i[attr] === vmodel.value)
   }
-  return props.modelValue
+  return vmodel.value
 })
 </script>
 
@@ -253,7 +253,7 @@ const value = computed(() => {
                   class="nui-listbox-placeholder"
                   :class="props.loading && 'text-transparent select-none'"
                 >
-                  {{ placeholder }}
+                  {{ placeholder }}azeaze
                 </div>
                 <div
                   class="block truncate text-left"
@@ -266,7 +266,7 @@ const value = computed(() => {
                     typeof props.multipleLabel === 'function'
                       ? props.multipleLabel(value, props.properties.label)
                       : props.multipleLabel
-                  }}
+                  }}sdfsf
                 </div>
               </template>
 
