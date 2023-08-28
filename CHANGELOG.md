@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/shuriken-ui/nuxt/compare/v1.0.0-beta.3...v1.0.0) (2023-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **BaseTabSlider:** rename selected prop to modelValue to allow v-model
+* **BaseTabs:** rename selected prop to modelValue to allow v-model
+
+### Features
+
+* add combobox button to autocomplete ([#78](https://github.com/shuriken-ui/nuxt/issues/78)) ([efcb128](https://github.com/shuriken-ui/nuxt/commit/efcb1282d22bb05572d88c530dcf9142d320b9c2))
+* **BaseListbox:** allow value prop as model with v-model.prop ([#76](https://github.com/shuriken-ui/nuxt/issues/76)) ([908e585](https://github.com/shuriken-ui/nuxt/commit/908e58595a51b7c96f59a3d6bd57d11bceca10e8))
+* **BaseTabSlider:** rename selected prop to modelValue to allow v-model ([fda6395](https://github.com/shuriken-ui/nuxt/commit/fda639559b50cdb29bde799d35c4d9776a2ae12a))
+* **BaseTabs:** rename selected prop to modelValue to allow v-model ([d20e934](https://github.com/shuriken-ui/nuxt/commit/d20e93416398c4270335c45404603578956a749f))
+* **BaseTextarea:** expose fitSize prop ([3f7be0b](https://github.com/shuriken-ui/nuxt/commit/3f7be0b0f30f8fe12255eb20cdf214e73ebbb1a0)), closes [#23](https://github.com/shuriken-ui/nuxt/issues/23)
+* update layer schema ([25214bd](https://github.com/shuriken-ui/nuxt/commit/25214bdad503f84b115c7c0fcc10248ab68ef691))
+
+
+### Bug Fixes
+
+* **BaseInputFileHeadless:** bind default slot values ([bc49903](https://github.com/shuriken-ui/nuxt/commit/bc49903d5cd70740b2ae8412f1b0dd65e10458dd))
+* **BaseProgress:** add indeterminate animation ([651de7d](https://github.com/shuriken-ui/nuxt/commit/651de7d67a39b8f4f3dcbed53d7580a2d121fbe3))
+* prevent shuriken-ui preset to be included more than once ([a8f52f2](https://github.com/shuriken-ui/nuxt/commit/a8f52f2111645de55e31273aaa02d11d6d55f103))
+
 ## [1.0.0-beta.3](https://github.com/shuriken-ui/nuxt/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2023-08-12)
 
 
