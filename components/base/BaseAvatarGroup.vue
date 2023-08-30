@@ -4,8 +4,8 @@ const props = withDefaults(
     /** The maximum number of avatars to display. */
     limit?: number
 
-    /** The size of the avatars. Can be 'xs', 'sm', 'md', or 'lg'. */
-    size?: 'xs' | 'sm' | 'md' | 'lg'
+    /** The size of the avatars. */
+    size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
 
     /** An array of avatar objects. */
     avatars: {
@@ -17,22 +17,24 @@ const props = withDefaults(
 
       /** The text to display as the avatar. */
       text?: string
-
-      /** The tooltip to display when hovering over the avatar. */
-      tooltip?: string
     }[]
   }>(),
   {
     limit: 4,
     size: 'sm',
-  }
+  },
 )
 
 const sizeStyle = {
+  xxs: 'nui-avatar-group-xxs',
   xs: 'nui-avatar-group-xs',
   sm: 'nui-avatar-group-sm',
   md: 'nui-avatar-group-md',
   lg: 'nui-avatar-group-lg',
+  xl: 'nui-avatar-group-lg',
+  '2xl': 'nui-avatar-group-lg',
+  '3xl': 'nui-avatar-group-lg',
+  '4xl': 'nui-avatar-group-lg',
 }
 </script>
 
@@ -40,7 +42,9 @@ const sizeStyle = {
   <div class="nui-avatar-group" :class="[sizeStyle[props.size]]">
     <slot>
       <div
-        v-for="avatar in avatars.slice(0, props.limit)"
+        v-for="avatar in avatars.length <= limit
+          ? avatars
+          : avatars.slice(0, props.limit - 1)"
         :key="typeof avatar === 'string' ? avatar : avatar.src"
         class="nui-avatar-outer"
       >
@@ -55,7 +59,7 @@ const sizeStyle = {
       <div v-if="avatars.length > props.limit" class="nui-avatar-count">
         <div class="nui-avatar-count-inner">
           <span class="nui-avatar-count-text">
-            +{{ avatars.length - props.limit }}
+            +{{ avatars.length - props.limit + 1 }}
           </span>
         </div>
       </div>

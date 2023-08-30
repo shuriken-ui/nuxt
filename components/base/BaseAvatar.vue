@@ -72,7 +72,7 @@ const props = withDefaults(
     mask: undefined,
     dot: false,
     ring: false,
-  }
+  },
 )
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.avatar)
