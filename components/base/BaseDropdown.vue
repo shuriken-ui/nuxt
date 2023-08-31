@@ -40,7 +40,7 @@ const props = withDefaults(
     /**
      * The shape of the dropdown.
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved'
+    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
 
     /**
      * The orientation of the dropdown.
@@ -71,11 +71,11 @@ const props = withDefaults(
     color: 'white',
     label: '',
     headerLabel: undefined,
-  }
+  },
 )
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.dropdown
+  () => props.shape ?? appConfig.nui.defaultShapes?.dropdown,
 )
 
 const orientationStyle = {
@@ -91,6 +91,7 @@ const shapeStyle = {
   rounded: 'nui-menu-rounded',
   smooth: 'nui-menu-smooth',
   curved: 'nui-menu-curved',
+  full: 'nui-menu-curved',
 }
 const colorStyle = {
   white: 'nui-menu-white',
@@ -109,7 +110,7 @@ const colorStyle = {
 <template>
   <div class="nui-dropdown" :class="[orientationStyle[props.orientation]]">
     <Menu
-      v-slot="{ open, close }: { open: boolean, close: () => void }"
+      v-slot="{ open, close }: { open: boolean; close: () => void }"
       as="div"
       class="nui-menu"
     >

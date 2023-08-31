@@ -53,7 +53,7 @@ export default defineNuxtSchema({
         /**
          * Default shape for the BaseDropdown component
          *
-         * @type {'straight' | 'rounded' | 'smooth' | 'curved'}
+         * @type {'straight' | 'rounded' | 'smooth' | 'curved' | 'full'}
          */
         dropdown: 'rounded',
         /**
