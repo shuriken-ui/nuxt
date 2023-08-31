@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/shuriken-ui/nuxt/compare/v1.0.0...v1.0.1) (2023-08-31)
+
+
+### Bug Fixes
+
+* **BaseAvatarGroup:** allow same sizes as BaseAvatar ([b28bc88](https://github.com/shuriken-ui/nuxt/commit/b28bc885b0015e592afbc01346c248ba79c7d804))
+* **BaseDropdown:** allow same shape as BaseButton ([d5224f7](https://github.com/shuriken-ui/nuxt/commit/d5224f79b1d498b2e5249ca7abdd8add1f672ef9))
+
 ## [1.0.0](https://github.com/shuriken-ui/nuxt/compare/v1.0.0-beta.3...v1.0.0) (2023-08-28)
 
 
