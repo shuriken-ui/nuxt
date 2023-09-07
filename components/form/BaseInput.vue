@@ -94,6 +94,11 @@ const props = withDefaults(
       wrapper?: string | string[]
 
       /**
+       * CSS classes to apply to the outer element.
+       */
+      outer?: string | string[]
+
+      /**
        * CSS classes to apply to the label element.
        */
       label?: string | string[]
@@ -132,7 +137,7 @@ const props = withDefaults(
     error: false,
     placeholder: undefined,
     classes: () => ({}),
-  }
+  },
 )
 const emits = defineEmits<{
   (event: 'update:modelValue', value?: string | number): void
@@ -178,7 +183,7 @@ const value = useVModel(
   },
   {
     passive: true,
-  }
+  },
 )
 
 const inputRef = ref<HTMLInputElement>()
@@ -206,7 +211,7 @@ if (process.dev) {
   if (props.labelFloat && 'label' in slots) {
     // eslint-disable-next-line no-console
     console.warn(
-      '[ninja-ui][base-input] The "label-float" property is not compatible with the label slot, use the label property instead.'
+      '[ninja-ui][base-input] The "label-float" property is not compatible with the label slot, use the label property instead.',
     )
   }
 }
@@ -238,37 +243,43 @@ if (process.dev) {
     >
       <slot name="label">{{ props.label }}</slot>
     </label>
-    <div class="nui-input-outer">
-      <input
-        :id="id"
-        ref="inputRef"
-        v-model="value"
-        :type="props.type"
-        v-bind="$attrs"
-        class="nui-input"
-        :class="props.classes.input"
-        :placeholder="placeholder"
-      />
-      <label
-        v-if="
-          ('label' in $slots && props.labelFloat) ||
-          (props.label && props.labelFloat)
-        "
-        class="nui-label-float"
-        :for="id"
-        :class="props.classes.label"
-      >
-        <slot name="label">{{ props.label }}</slot>
-      </label>
-      <div v-if="props.loading" class="nui-input-placeload">
-        <BasePlaceload class="nui-placeload" />
+    <div class="nui-input-outer" :class="props.classes?.outer">
+      <div>
+        <input
+          :id="id"
+          ref="inputRef"
+          v-model="value"
+          :type="props.type"
+          v-bind="$attrs"
+          class="nui-input"
+          :class="props.classes.input"
+          :placeholder="placeholder"
+        />
+        <label
+          v-if="
+            ('label' in $slots && props.labelFloat) ||
+            (props.label && props.labelFloat)
+          "
+          class="nui-label-float"
+          :for="id"
+          :class="props.classes.label"
+        >
+          <slot name="label">{{ props.label }}</slot>
+        </label>
+        <div v-if="props.loading" class="nui-input-placeload">
+          <BasePlaceload class="nui-placeload" />
+        </div>
+        <div
+          v-if="props.icon"
+          class="nui-input-icon"
+          :class="props.classes.icon"
+        >
+          <slot name="icon">
+            <Icon :name="props.icon" class="nui-input-icon-inner" />
+          </slot>
+        </div>
+        <slot name="action"></slot>
       </div>
-      <div v-if="props.icon" class="nui-input-icon" :class="props.classes.icon">
-        <slot name="icon">
-          <Icon :name="props.icon" class="nui-input-icon-inner" />
-        </slot>
-      </div>
-      <slot name="action"></slot>
       <span
         v-if="props.error && typeof props.error === 'string'"
         :class="props.classes?.error"
