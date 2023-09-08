@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/shuriken-ui/nuxt/compare/v1.0.1...v1.0.2) (2023-09-08)
+
+
+### Bug Fixes
+
+* **BaseInput:** allow set custom class on outer element ([3c944c4](https://github.com/shuriken-ui/nuxt/commit/3c944c456a3c7c5901950e4b16d86312e92ef2a6))
+* **BaseLink:** use internal internal instead of import for props ([e49f48f](https://github.com/shuriken-ui/nuxt/commit/e49f48fa25c1fd0b7c0e749fb6f00e851fbb6b76))
+
 ### [1.0.1](https://github.com/shuriken-ui/nuxt/compare/v1.0.0...v1.0.1) (2023-08-31)
 
 
