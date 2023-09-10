@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/shuriken-ui/nuxt/compare/v1.0.2...v1.1.0) (2023-09-10)
+
+
+### Features
+
+* upgrade @shuriken-ui/tailwind ([e491ef9](https://github.com/shuriken-ui/nuxt/commit/e491ef993c56907619223cdc7972a102f86c1ccf))
+
+
+### Bug Fixes
+
+* **BaseAutocomplete:** remove generic ([1bddca1](https://github.com/shuriken-ui/nuxt/commit/1bddca15359851a39923a7b304ec29b9b8e0a620))
+
 ### [1.0.2](https://github.com/shuriken-ui/nuxt/compare/v1.0.1...v1.0.2) (2023-09-08)
 
 
