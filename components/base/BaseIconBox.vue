@@ -41,12 +41,12 @@ const props = withDefaults(
     flavor: 'pastel',
     bordered: false,
     mask: undefined,
-  }
+  },
 )
 
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.iconBox
+  () => props.shape ?? appConfig.nui.defaultShapes?.iconBox,
 )
 
 const shapeStyle = {

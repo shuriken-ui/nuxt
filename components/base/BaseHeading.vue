@@ -39,7 +39,7 @@ const props = withDefaults(
     size: 'xl',
     weight: 'semibold',
     lead: 'normal',
-  }
+  },
 )
 
 const sizeStyle = {

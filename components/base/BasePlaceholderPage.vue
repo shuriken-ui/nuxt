@@ -19,7 +19,7 @@ const props = withDefaults(
   {
     subtitle: undefined,
     imageSize: 'xs',
-  }
+  },
 )
 
 const sizeStyle = {

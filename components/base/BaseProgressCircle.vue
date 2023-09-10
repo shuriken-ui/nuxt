@@ -26,7 +26,7 @@ const props = withDefaults(
     max: 100,
     size: 60,
     thickness: 4,
-  }
+  },
 )
 
 const value = computed(() => {

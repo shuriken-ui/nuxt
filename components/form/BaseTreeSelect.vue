@@ -125,7 +125,7 @@ const props = withDefaults(
     }),
     parent: undefined,
     level: 1,
-  }
+  },
 )
 const emits = defineEmits<{
   (e: 'update:modelValue', value?: any[]): void
@@ -178,11 +178,11 @@ const checkboxClasses = computed(() => {
 const treeState = useTreeState()
 
 const subtreeState = computed(() =>
-  props.children ? treeState?.treeMap.get(props.children) : undefined
+  props.children ? treeState?.treeMap.get(props.children) : undefined,
 )
 const openMap = ref<Record<number, boolean>>(getDefaultOpenMap(props.children))
 const _children = computed<TreeViewItemNode[] | undefined>(
-  () => subtreeState.value?.tree
+  () => subtreeState.value?.tree,
 )
 watch(() => props.children, initChildren)
 

@@ -8,7 +8,7 @@ const props = withDefaults(
   }>(),
   {
     disableTransitions: false,
-  }
+  },
 )
 
 const colorMode = useColorMode()

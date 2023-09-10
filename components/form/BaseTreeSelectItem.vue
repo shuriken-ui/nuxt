@@ -46,12 +46,12 @@ const props = withDefaults(
     shape: undefined,
     value: () => ({}),
     toggle: undefined,
-  }
+  },
 )
 
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui?.defaultShapes?.autocompleteItem
+  () => props.shape ?? appConfig.nui?.defaultShapes?.autocompleteItem,
 )
 
 const wrapperTag = computed(() => {

@@ -72,7 +72,7 @@ const props = withDefaults(
       label: [],
       input: [],
     }),
-  }
+  },
 )
 const emits = defineEmits<{
   (e: 'update:modelValue', value: any): void

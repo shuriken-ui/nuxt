@@ -65,12 +65,12 @@ const props = withDefaults(
     shape: undefined,
     previousIcon: 'lucide:chevron-left',
     nextIcon: 'lucide:chevron-right',
-  }
+  },
 )
 const emits = defineEmits<PaginationEmits>()
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.pagination
+  () => props.shape ?? appConfig.nui.defaultShapes?.pagination,
 )
 
 const shapeStyle = {
@@ -83,12 +83,12 @@ const shapeStyle = {
 
 const route = useRoute()
 const lastPage = computed(
-  () => Math.ceil(props.totalItems / props.itemPerPage) || 1
+  () => Math.ceil(props.totalItems / props.itemPerPage) || 1,
 )
 const totalPageDisplayed = computed(() =>
   lastPage.value > props.maxLinksDisplayed + 2
     ? props.maxLinksDisplayed + 2
-    : lastPage.value
+    : lastPage.value,
 )
 const pages = computed(() => {
   const _pages = []
@@ -171,8 +171,8 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
             currentPage === 1 && 'nui-active',
             props.shape && shapeStyle[props.shape],
           ]"
-          @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
-          @click="(e:any) => handleLinkClick(e, 1)"
+          @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
+          @click="(e: any) => handleLinkClick(e, 1)"
         >
           1
         </NuxtLink>
@@ -199,8 +199,8 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
             currentPage === page && 'nui-active',
             props.shape && shapeStyle[props.shape],
           ]"
-          @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
-          @click="(e:any) => handleLinkClick(e, page)"
+          @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
+          @click="(e: any) => handleLinkClick(e, page)"
         >
           {{ page }}
         </NuxtLink>
@@ -226,8 +226,8 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
             currentPage === lastPage && 'nui-active',
             props.shape && shapeStyle[props.shape],
           ]"
-          @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
-          @click="(e:any) => handleLinkClick(e, lastPage)"
+          @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
+          @click="(e: any) => handleLinkClick(e, lastPage)"
         >
           {{ lastPage }}
         </NuxtLink>
@@ -246,8 +246,8 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
         :to="paginatedLink(currentPage - 1)"
         tabindex="0"
         class="nui-pagination-button"
-        @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
-        @click="(e:any) => handleLinkClick(e, currentPage - 1)"
+        @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
+        @click="(e: any) => handleLinkClick(e, currentPage - 1)"
       >
         <Icon :name="previousIcon" class="pagination-button-icon" />
       </NuxtLink>
@@ -257,8 +257,8 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
         :to="paginatedLink(currentPage + 1)"
         tabindex="0"
         class="nui-pagination-button"
-        @keydown.space="(e:any) => (e.target as HTMLAnchorElement).click()"
-        @click="(e:any) => handleLinkClick(e, currentPage + 1)"
+        @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
+        @click="(e: any) => handleLinkClick(e, currentPage + 1)"
       >
         <Icon :name="nextIcon" class="pagination-button-icon" />
       </NuxtLink>

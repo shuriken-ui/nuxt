@@ -45,14 +45,14 @@ const props = withDefaults(
     icon: false,
     closable: false,
     closeIcon: 'lucide:x',
-  }
+  },
 )
 const emit = defineEmits<{
   (event: 'close'): void
 }>()
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.message
+  () => props.shape ?? appConfig.nui.defaultShapes?.message,
 )
 
 const shapeStyle = {
@@ -82,7 +82,7 @@ const iconTypeStyle = {
 }
 
 const icon = computed(() =>
-  typeof props.icon === 'string' ? props.icon : iconTypeStyle[props.type]
+  typeof props.icon === 'string' ? props.icon : iconTypeStyle[props.type],
 )
 </script>
 

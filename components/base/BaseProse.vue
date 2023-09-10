@@ -8,11 +8,11 @@ const props = withDefaults(
   }>(),
   {
     shape: undefined,
-  }
+  },
 )
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.progress
+  () => props.shape ?? appConfig.nui.defaultShapes?.progress,
 )
 
 const shapeStyle = {

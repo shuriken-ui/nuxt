@@ -66,12 +66,12 @@ const props = withDefaults(
     loading: false,
     active: false,
     muted: false,
-  }
+  },
 )
 
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.buttonAction
+  () => props.shape ?? appConfig.nui.defaultShapes?.buttonAction,
 )
 
 const shapeStyle = {

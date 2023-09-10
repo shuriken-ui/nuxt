@@ -57,7 +57,7 @@ export default defineComponent({
         listener.node?.removeEventListener('focus', listener.focusListener)
         listener.node?.removeEventListener(
           'focusout',
-          listener.focusOutListener
+          listener.focusOutListener,
         )
       }
       listeners = []
@@ -79,7 +79,7 @@ export default defineComponent({
                 ? NodeFilter.FILTER_ACCEPT
                 : NodeFilter.FILTER_SKIP
             },
-          }
+          },
         )
 
         clearListeners()

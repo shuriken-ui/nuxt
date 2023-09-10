@@ -40,7 +40,7 @@ const props = withDefaults(
     value: undefined,
     label: undefined,
     name: undefined,
-  }
+  },
 )
 const emits = defineEmits<{
   (e: 'update:modelValue', value: T): void

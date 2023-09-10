@@ -8,7 +8,7 @@ const isDark = computed(() => color.value === 'dark')
 const logo = computed(() =>
   isDark.value
     ? 'https://user-images.githubusercontent.com/3911343/232132279-8d8bf0ad-b1d7-4802-984e-a696763dc6cd.png'
-    : 'https://user-images.githubusercontent.com/3911343/232132309-62971744-dcdb-429c-aa93-6ba0c1caac42.png'
+    : 'https://user-images.githubusercontent.com/3911343/232132309-62971744-dcdb-429c-aa93-6ba0c1caac42.png',
 )
 const routes = computed(() =>
   router.getRoutes().reduce((r, a) => {
@@ -17,7 +17,7 @@ const routes = computed(() =>
       r[(a.meta as any).section].push(a)
     }
     return r
-  }, Object.create(null))
+  }, Object.create(null)),
 )
 </script>
 
@@ -51,9 +51,13 @@ const routes = computed(() =>
                       <Icon
                         class="text-muted-600"
                         v-if="
-                          typeof (route as RouteRecordNormalized).meta?.icon === 'string' && (route as RouteRecordNormalized).meta?.icon
+                          typeof (route as RouteRecordNormalized).meta?.icon ===
+                            'string' &&
+                          (route as RouteRecordNormalized).meta?.icon
                         "
-                        :name="((route as RouteRecordNormalized).meta?.icon as string)"
+                        :name="
+                          (route as RouteRecordNormalized).meta?.icon as string
+                        "
                       />
                       <span class="inline-bloc">
                         {{ (route as RouteRecordNormalized).meta?.title }}

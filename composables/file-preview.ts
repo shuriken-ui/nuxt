@@ -4,7 +4,7 @@ import { toRef } from '@vueuse/core'
 const previewMap = new WeakMap<File, Ref<string | undefined>>()
 
 export function useNinjaFilePreview(
-  _file: MaybeRefOrGetter<File | null | undefined>
+  _file: MaybeRefOrGetter<File | null | undefined>,
 ) {
   const fileReference = toRef(_file)
 

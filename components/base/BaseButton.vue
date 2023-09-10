@@ -70,7 +70,7 @@ const props = withDefaults(
     shadow: undefined,
     rel: '',
     target: '',
-  }
+  },
 )
 
 const appConfig = useAppConfig()
@@ -124,7 +124,7 @@ const shadowStyle = {
 const badgeStyle = computed(() =>
   props.badge && ['default', 'light', 'muted', 'none'].includes(props.color)
     ? ''
-    : `nui-button-badge ${badgeColorStyle[props.color]}`
+    : `nui-button-badge ${badgeColorStyle[props.color]}`,
 )
 
 const classes = computed(() => [

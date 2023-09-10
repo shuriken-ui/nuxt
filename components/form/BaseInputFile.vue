@@ -121,7 +121,7 @@ const props = withDefaults(
         : `${fileList?.item?.length ?? 0} files selected`
     },
     classes: () => ({}),
-  }
+  },
 )
 const emits = defineEmits<{
   (event: 'update:modelValue', value?: FileList | null): void
@@ -214,7 +214,9 @@ const id = useNinjaId(() => props.id)
           type="file"
           v-bind="$attrs"
           class="hidden"
-          @change="(event) => value = (event.target as HTMLInputElement).files"
+          @change="
+            (event) => (value = (event.target as HTMLInputElement).files)
+          "
         />
       </label>
 

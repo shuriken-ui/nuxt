@@ -13,7 +13,7 @@ const props = withDefaults(
   {
     inverted: false,
     disableTransitions: false,
-  }
+  },
 )
 
 const colorMode = useColorMode()

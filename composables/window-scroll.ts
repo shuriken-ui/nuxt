@@ -13,7 +13,7 @@ export function useNinjaWindowScroll() {
       {
         capture: false,
         passive: true,
-      }
+      },
     )
     onMounted(() => {
       x.value = window.scrollX

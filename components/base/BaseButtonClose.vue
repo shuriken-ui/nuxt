@@ -19,12 +19,12 @@ const props = withDefaults(
   {
     shape: undefined,
     color: 'default',
-  }
+  },
 )
 
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.buttonClose
+  () => props.shape ?? appConfig.nui.defaultShapes?.buttonClose,
 )
 
 const shapeStyle = {

@@ -36,7 +36,7 @@ const props = withDefaults(
     label: undefined,
     sublabel: undefined,
     color: 'primary',
-  }
+  },
 )
 const emits = defineEmits<{
   (e: 'update:modelValue', value: boolean): void

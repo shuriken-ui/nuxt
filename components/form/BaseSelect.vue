@@ -117,7 +117,7 @@ const props = withDefaults(
     placeholder: '',
     error: false,
     classes: () => ({}),
-  }
+  },
 )
 const emits = defineEmits<{
   (event: 'update:modelValue', value?: any): void

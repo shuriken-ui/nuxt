@@ -39,7 +39,7 @@ const props = withDefaults(
     shape: undefined,
     shadow: undefined,
     size: 'md',
-  }
+  },
 )
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.tag)

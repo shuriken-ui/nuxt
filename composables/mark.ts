@@ -6,7 +6,7 @@ import { escapeHtml } from '@vue/shared'
 export function useNinjaMark(
   _text?: MaybeRefOrGetter<string | undefined>,
   _search?: MaybeRefOrGetter<string | undefined>,
-  _classes?: MaybeRefOrGetter<string | undefined>
+  _classes?: MaybeRefOrGetter<string | undefined>,
 ) {
   const text = toRef(_text)
   const classes = toRef(_classes)

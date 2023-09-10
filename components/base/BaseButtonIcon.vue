@@ -74,11 +74,11 @@ const props = withDefaults(
     loading: false,
     condensed: false,
     size: 'md',
-  }
+  },
 )
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.buttonIcon
+  () => props.shape ?? appConfig.nui.defaultShapes?.buttonIcon,
 )
 
 const shapeStyle = {

@@ -47,9 +47,14 @@ const textarea2 = ref()
             <BaseAutocomplete
               v-model="autocomplete1"
               :items="['tete', 'hello', 'test', 'tast', 'tutu', 'holla']"
-              :filter-items="(query?: string, items?: string[]) => items?.filter((item) => {
-                return query ? item?.toLowerCase().startsWith(query.toLowerCase()) : true
-              }) ?? []"
+              :filter-items="
+                (query?: string, items?: string[]) =>
+                  items?.filter((item) => {
+                    return query
+                      ? item?.toLowerCase().startsWith(query.toLowerCase())
+                      : true
+                  }) ?? []
+              "
             >
               <template #item="{ item }">
                 <span>{{ item }}</span>
@@ -445,7 +450,9 @@ inputFile1: {{ inputFile1?.item?.(0)?.name }}({{ typeof inputFile1 }})</pre
             <BaseInputFileHeadless
               multiple
               accept="image/*"
-              :filter-file-dropped="(file: File) => file.type.startsWith('image')"
+              :filter-file-dropped="
+                (file: File) => file.type.startsWith('image')
+              "
               v-model="inputFileCustom1"
               v-slot="{ open, remove, preview, drop, files }"
             >

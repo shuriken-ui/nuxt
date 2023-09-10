@@ -91,7 +91,7 @@ const props = withDefaults(
     shape: undefined,
     color: undefined,
     classes: () => ({}),
-  }
+  },
 )
 const emits = defineEmits<{
   (e: 'update:modelValue', value: string | number | boolean): void

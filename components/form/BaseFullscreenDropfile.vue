@@ -20,7 +20,7 @@ const props = withDefaults(
     icon: '',
     label: 'Drop your files',
     filterFileDropped: () => true,
-  }
+  },
 )
 const emits = defineEmits<{
   (event: 'drop', value: FileList): void

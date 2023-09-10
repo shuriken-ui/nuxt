@@ -7,7 +7,7 @@ import { toRef } from '@vueuse/core'
  */
 export const useNinjaScrollspy = (
   _options?: MaybeRefOrGetter<IntersectionObserverInit>,
-  _selectors?: MaybeRefOrGetter<string[]>
+  _selectors?: MaybeRefOrGetter<string[]>,
 ) => {
   const options = toRef(_options)
   const selectors = toRef(_selectors)
@@ -59,7 +59,7 @@ export const useNinjaScrollspy = (
           timer = setTimeout(() => {
             if (selectors.value) {
               const element = document.querySelectorAll(
-                selectors.value.join(', ')
+                selectors.value.join(', '),
               )
               updateElements([...element])
             }
@@ -68,7 +68,7 @@ export const useNinjaScrollspy = (
       },
       {
         immediate: true,
-      }
+      },
     )
   }
 

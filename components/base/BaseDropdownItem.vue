@@ -75,7 +75,7 @@ const props = withDefaults(
         'font-heading text-muted-800 text-xs font-semibold leading-tight dark:text-white',
       text: 'text-muted-400 font-sans text-xs',
     }),
-  }
+  },
 )
 
 const shapeStyle = {
@@ -94,7 +94,7 @@ const { is, attributes } = useNinjaButton(props)
 
 <template>
   <MenuItem
-    v-slot="{ active, close }: { active: boolean, close: () => void }"
+    v-slot="{ active, close }: { active: boolean; close: () => void }"
     as="div"
   >
     <component

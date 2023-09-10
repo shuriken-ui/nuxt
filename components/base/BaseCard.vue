@@ -36,7 +36,7 @@ const props = withDefaults(
     elevated: false,
     elevatedHover: false,
     color: 'white',
-  }
+  },
 )
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.card)

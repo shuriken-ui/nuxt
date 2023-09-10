@@ -56,12 +56,12 @@ const props = withDefaults(
     mark: 'nui-mark',
     selectedIcon: 'lucide:check',
     value: () => ({}),
-  }
+  },
 )
 
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.autocompleteItem
+  () => props.shape ?? appConfig.nui.defaultShapes?.autocompleteItem,
 )
 
 const shapeStyle = {

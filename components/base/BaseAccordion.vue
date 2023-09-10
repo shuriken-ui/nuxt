@@ -36,7 +36,7 @@ const props = withDefaults(
     shape: undefined,
     action: 'dot',
     exclusive: false,
-  }
+  },
 )
 const emits = defineEmits<{
   (
@@ -50,12 +50,12 @@ const emits = defineEmits<{
        * The content of the accordion item.
        */
       content: string
-    }
+    },
   ): void
 }>()
 const appConfig = useAppConfig()
 const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.accordion
+  () => props.shape ?? appConfig.nui.defaultShapes?.accordion,
 )
 
 const shapeStyle = {

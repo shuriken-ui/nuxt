@@ -34,7 +34,7 @@ export default defineComponent({
             !hasMedia && `nui-list-base ${ordered}`,
           ],
         },
-        children
+        children,
       )
     }
   },

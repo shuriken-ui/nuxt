@@ -4,7 +4,6 @@ Thanks for taking the time to contribute! 🎉
 
 In this guide you will find all the information you need to contribute to the project.
 
-
 ## What is Shuriken UI Nuxt?
 
 Shuriken UI Nuxt is part of the Shuriken UI project by [Css Ninja](https://github.com/cssninjaStudio). It goal is to provide a set of components to build a apps with Nuxt.js using the Shuriken UI design system.
@@ -16,7 +15,6 @@ Shuriken UI Nuxt is part of the Shuriken UI project by [Css Ninja](https://githu
       A("@shuriken-ui/tailwind")-->D("@shuriken-ui/next");
 ```
 
-
 ## New contributor guide
 
 Components in Shuriken UI Nuxt are built using Shuriken UI Tailwind which declare some components (prefixed with `nui-`) in tailwind plugins. This allow to use the same components in different frameworks and let tailwind jit to include only used styles.
@@ -26,9 +24,6 @@ If you find a bug or want to add new features, makes sure to check if it can be 
 Also, note that we use `release/next` branch to develop new features. If you want to contribute, make sure to create a new branch from `release/next` and to submit your pull request to `release/next` branch. (see [Git conventions](#git-conventions))
 
 If you have any doubt or questions, feel free to [open a discussion](https://github.com/shuriken-ui/nuxt/discussions).
-
-
-
 
 ## Setup the project
 
@@ -63,7 +58,6 @@ Don't forget to run the tests after your changes to make sure everything is work
 pnpm test
 ```
 
-
 ### Link Shuriken UI Tailwind
 
 If you need to update Shuriken UI Tailwind, you can link it to the playground by editing `nuxt.config.ts` at the root of the project:
@@ -92,8 +86,6 @@ Once you are done with your changes, you can submit a pull request, also known a
 - Enable the checkbox to [allow maintainer edits](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/allowing-changes-to-a-pull-request-branch-created-from-a-fork) so the branch can be updated for a merge. Once you submit your PR, a Shuriken UI maintainer will review your proposal. We may ask questions or request additional information.
 - We may ask for changes to be made before a PR can be merged, either using [suggested changes](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/incorporating-feedback-in-your-pull-request) or pull request comments. You can apply suggested changes directly through the UI. You can make any other changes in your fork, then commit them to your branch.
 
-
-
 ## Git conventions
 
 We use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to make our commits more readable and to generate our changelog.
@@ -102,8 +94,6 @@ Make sure to prefix your commit with one of the following types:
 `fix:`, `feat:`, `build:`, `chore:`, `ci:`, `docs:`, `style:`, `refactor:`, `perf:`, `test:`
 
 Use the imperative, present tense: “change” _not “changed” nor “changes”_.
-
-
 
 ```mermaid
 gitGraph

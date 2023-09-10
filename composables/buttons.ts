@@ -15,12 +15,12 @@ export const useNinjaButton = (
     // @todo: make this configurable (design tokens)
     externalDefaultRelationship = 'noopener noreferrer',
     externalDefaultTarget = '_blank',
-  } = {}
+  } = {},
 ) => {
   const NuxtLink = defineNuxtLink({})
 
   const is = computed(() =>
-    properties.to ? NuxtLink : properties.href ? 'a' : 'button'
+    properties.to ? NuxtLink : properties.href ? 'a' : 'button',
   )
   const type = computed(() => {
     if (is.value === 'button') {

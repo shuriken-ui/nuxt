@@ -32,7 +32,7 @@ const props = withDefaults(
     image: undefined,
     size: 'md',
     color: 'default',
-  }
+  },
 )
 
 const emit = defineEmits(['delete'])

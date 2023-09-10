@@ -79,7 +79,7 @@ const props = withDefaults(
     name: undefined,
     color: undefined,
     classes: () => ({}),
-  }
+  },
 )
 const emits = defineEmits<{
   (e: 'update:modelValue', value: T): void
