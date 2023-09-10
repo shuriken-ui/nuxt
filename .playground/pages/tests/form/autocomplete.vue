@@ -59,7 +59,7 @@ const itemsObject = ref([
           v-model="multiple"
           :items="items"
           :display-value="
-            (item) => {
+            (item: string) => {
               return item || ''
             }
           "
@@ -75,16 +75,16 @@ const itemsObject = ref([
           v-model="selection"
           :items="items"
           :display-value="
-            (item) => {
+            (item: string) => {
               return item || ''
             }
           "
           :filter-items="
-            (query, items) => {
+            (query: string, items: string[]) => {
               if (!query) return items || []
               return (
                 items?.filter(
-                  (item) =>
+                  (item: any) =>
                     item.toLowerCase().indexOf(query.toLowerCase()) > -1,
                 ) || []
               )
@@ -101,18 +101,18 @@ const itemsObject = ref([
           v-model="objectSelection"
           :items="itemsObject"
           :filter-items="
-            (query, items) => {
+            (query: string, items: any) => {
               if (!query) return items || []
               return (
                 items?.filter(
-                  (item) =>
+                  (item: any) =>
                     item.name.toLowerCase().indexOf(query.toLowerCase()) > -1,
                 ) || []
               )
             }
           "
           :display-value="
-            (item) => {
+            (item: any) => {
               return item?.name || ''
             }
           "

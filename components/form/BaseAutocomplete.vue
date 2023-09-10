@@ -1,8 +1,4 @@
-<script
-  setup
-  lang="ts"
-  generic="T extends object | string | boolean | number | null | undefined"
->
+<script setup lang="ts">
 import {
   Combobox,
   ComboboxButton,
@@ -22,12 +18,12 @@ const props = withDefaults(
     /**
      * The model value of the component.
      */
-    modelValue?: T | T[]
+    modelValue?: any[]
 
     /**
      * The items to display in the component.
      */
-    items?: T[]
+    items?: any[]
 
     /**
      * The shape of the component.
@@ -125,7 +121,7 @@ const props = withDefaults(
     /**
      * A function used to render the items as strings in either the input or the tag when multiple is true.
      */
-    displayValue?: (item?: T) => string
+    displayValue?: (item: any) => string
 
     /**
      * The debounce time for the filterItems method.
@@ -137,7 +133,7 @@ const props = withDefaults(
      *
      * You can use this method to implement your own filtering logic or to fetch items from an API.
      */
-    filterItems?: (query?: string, items?: T[]) => Promise<T[]> | T[]
+    filterItems?: (query?: string, items?: any[]) => Promise<any[]> | any[]
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -206,14 +202,14 @@ const props = withDefaults(
 )
 
 const emits = defineEmits<{
-  (event: 'update:modelValue', value?: T | T[]): void
+  (event: 'update:modelValue', value?: any | any[]): void
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
 const value = useVModel(props, 'modelValue', emits, {
   passive: true,
-}) as Ref<T | T[]>
+}) as Ref<any | any[]>
 
 const items = shallowRef(props.items)
 const query = ref('')
@@ -331,7 +327,7 @@ function isAutocompleteItem(
   return false
 }
 
-function removeItem(item: T) {
+function removeItem(item: any) {
   if (!Array.isArray(value.value)) {
     value.value = props.clearValue
     return
