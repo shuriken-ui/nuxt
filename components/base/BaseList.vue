@@ -1,12 +1,4 @@
 <script lang="ts">
-// const slots = useSlots()
-// const hasMedia = computed(() => {
-//   return slots.default?.().some((vnode) => {
-//     console.log(vnode)
-//     return typeof vnode.type !== 'string'
-//   })
-// })
-
 export default defineComponent({
   props: {
     /**
@@ -16,17 +8,26 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    /**
+     * Force the list to be media.
+     */
+    media: {
+      type: Boolean,
+      default: undefined,
+    },
   },
   setup(props, { slots }) {
     return () => {
       const ordered = props.ordered ? 'nui-list-ol' : 'nui-list-ul'
       const children = slots.default?.()
-      const hasMedia = children?.some((vnode) => {
-        return typeof vnode.type !== 'string'
-      })
+      const hasMedia =
+        props.media ??
+        children?.some((vnode) => {
+          return typeof vnode.type !== 'string'
+        })
 
       return h(
-        'div',
+        props.ordered ? 'ol' : 'ul',
         {
           class: [
             'nui-list',

@@ -20,7 +20,7 @@ const hasSubtitle = computed(() => {
 </script>
 
 <template>
-  <div class="nui-list-item">
+  <li class="nui-list-item">
     <slot />
 
     <div v-if="hasTitle || hasSubtitle">
@@ -45,5 +45,5 @@ const hasSubtitle = computed(() => {
     <div class="ms-auto">
       <slot name="end" />
     </div>
-  </div>
+  </li>
 </template>
