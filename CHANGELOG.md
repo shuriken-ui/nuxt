@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/shuriken-ui/nuxt/compare/v1.1.0...v1.1.1) (2023-09-15)
+
+
+### Bug Fixes
+
+* **BaseList:** render ul/ol and li tags ([44c3876](https://github.com/shuriken-ui/nuxt/commit/44c3876aa51f7e033b33a48a2465008f3af7c935))
+
 ## [1.1.0](https://github.com/shuriken-ui/nuxt/compare/v1.0.2...v1.1.0) (2023-09-10)
 
 
