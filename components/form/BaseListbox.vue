@@ -266,7 +266,7 @@ const value = computed(() => {
                     typeof props.multipleLabel === 'function'
                       ? props.multipleLabel(value, props.properties.label)
                       : props.multipleLabel
-                  }}sdfsf
+                  }}
                 </div>
               </template>
 
