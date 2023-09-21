@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/shuriken-ui/nuxt/compare/v1.1.3...v1.1.4) (2023-09-21)
+
+
+### Bug Fixes
+
+* **BaseListbox:** Remove text left in development ([#93](https://github.com/shuriken-ui/nuxt/issues/93)) ([cb2adce](https://github.com/shuriken-ui/nuxt/commit/cb2adce68da78c82d095ab8c5e3010596119c0b5))
+
 ### [1.1.3](https://github.com/shuriken-ui/nuxt/compare/v1.1.2...v1.1.3) (2023-09-19)
 
 ### [1.1.2](https://github.com/shuriken-ui/nuxt/compare/v1.1.1...v1.1.2) (2023-09-17)
