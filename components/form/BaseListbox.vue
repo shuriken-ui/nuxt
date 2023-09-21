@@ -153,7 +153,7 @@ const props = withDefaults(
     loading: false,
     disabled: false,
     properties: () => ({}),
-  },
+  }
 )
 const emits = defineEmits<{
   (event: 'update:modelValue', value?: any): void
@@ -253,7 +253,7 @@ const value = computed(() => {
                   class="nui-listbox-placeholder"
                   :class="props.loading && 'text-transparent select-none'"
                 >
-                  {{ placeholder }}azeaze
+                  {{ placeholder }}
                 </div>
                 <div
                   class="block truncate text-left"
