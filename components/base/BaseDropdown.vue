@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems } from '@headlessui/vue'
+import { Float } from '@headlessui-float/vue'
 
 const props = withDefaults(
   defineProps<{
@@ -114,62 +115,64 @@ const colorStyle = {
       as="div"
       class="nui-menu"
     >
-      <MenuButton as="template">
-        <slot name="button" v-bind="{ open, close }">
-          <BaseButton
-            v-if="props.flavor === 'button'"
-            :color="props.buttonColor"
-            :shape="shape"
-            class="!pe-3 !ps-4"
-          >
-            <slot name="label" v-bind="{ open, close }">
-              <span>{{ props.label }}</span>
-            </slot>
-            <Icon
-              name="lucide:chevron-down"
-              class="nui-chevron"
-              :class="open && 'rotate-180'"
-            />
-          </BaseButton>
-          <button
-            v-else-if="props.flavor === 'context'"
-            type="button"
-            class="nui-context-button"
-          >
-            <span class="nui-context-button-inner">
-              <Icon
-                name="lucide:more-horizontal"
-                class="nui-context-icon"
-                :class="open && 'rotate-90'"
-              />
-            </span>
-          </button>
-          <button
-            v-else-if="props.flavor === 'text'"
-            type="button"
-            class="nui-text-button"
-          >
-            <slot name="label" v-bind="{ open, close }">
-              <span class="nui-text-button-inner">{{ props.label }}</span>
-            </slot>
-
-            <Icon
-              name="lucide:chevron-down"
-              class="nui-chevron"
-              :class="open && 'rotate-180'"
-            />
-          </button>
-        </slot>
-      </MenuButton>
-
-      <Transition
+      <Float
         enter-active-class="transition duration-100 ease-out"
         enter-from-class="transform scale-95 opacity-0"
         enter-to-class="transform scale-100 opacity-100"
         leave-active-class="transition duration-75 ease-in"
         leave-from-class="transform scale-100 opacity-100"
         leave-to-class="transform scale-95 opacity-0"
+        flip
+        :offset="4"
       >
+        <MenuButton as="template">
+          <slot name="button" v-bind="{ open, close }">
+            <BaseButton
+              v-if="props.flavor === 'button'"
+              :color="props.buttonColor"
+              :shape="shape"
+              class="!pe-3 !ps-4"
+            >
+              <slot name="label" v-bind="{ open, close }">
+                <span>{{ props.label }}</span>
+              </slot>
+              <Icon
+                name="lucide:chevron-down"
+                class="nui-chevron"
+                :class="open && 'rotate-180'"
+              />
+            </BaseButton>
+            <button
+              v-else-if="props.flavor === 'context'"
+              type="button"
+              class="nui-context-button"
+            >
+              <span class="nui-context-button-inner">
+                <Icon
+                  name="lucide:more-horizontal"
+                  class="nui-context-icon"
+                  :class="open && 'rotate-90'"
+                />
+              </span>
+            </button>
+            <button
+              v-else-if="props.flavor === 'text'"
+              type="button"
+              class="nui-text-button"
+            >
+              <slot name="label" v-bind="{ open, close }">
+                <span class="nui-text-button-inner">{{ props.label }}</span>
+              </slot>
+
+              <Icon
+                name="lucide:chevron-down"
+                class="nui-chevron"
+                :class="open && 'rotate-180'"
+              />
+            </button>
+          </slot>
+        </MenuButton>
+
         <MenuItems
           class="nui-dropdown-menu"
           :class="[
@@ -189,7 +192,14 @@ const colorStyle = {
             <slot v-bind="{ open, close }"></slot>
           </div>
         </MenuItems>
-      </Transition>
+      </Float>
     </Menu>
   </div>
 </template>
+
+<style scoped>
+.nui-dropdown .nui-dropdown-menu {
+  position: unset;
+  margin-top: unset;
+}
+</style>
