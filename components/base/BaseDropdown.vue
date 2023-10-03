@@ -45,8 +45,27 @@ const props = withDefaults(
 
     /**
      * The orientation of the dropdown.
+     *
+     * @deprecated use placement instead
      */
     orientation?: 'start' | 'end'
+
+    /**
+     * The placement of the dropdown via floating-ui.
+     */
+    placement?:
+      | 'top'
+      | 'top-start'
+      | 'top-end'
+      | 'right'
+      | 'right-start'
+      | 'right-end'
+      | 'bottom'
+      | 'bottom-start'
+      | 'bottom-end'
+      | 'left'
+      | 'left-start'
+      | 'left-end'
 
     /**
      * The size of the dropdown.
@@ -68,21 +87,19 @@ const props = withDefaults(
     buttonColor: 'default',
     shape: undefined,
     orientation: 'start',
+    placement: undefined,
     size: 'md',
     color: 'white',
     label: '',
     headerLabel: undefined,
   },
 )
+
 const appConfig = useAppConfig()
 const shape = computed(
   () => props.shape ?? appConfig.nui.defaultShapes?.dropdown,
 )
 
-const orientationStyle = {
-  start: 'nui-dropdown-start',
-  end: 'nui-dropdown-end',
-}
 const sizeStyle = {
   md: 'nui-menu-md',
   lg: 'nui-menu-lg',
@@ -106,10 +123,22 @@ const colorStyle = {
   danger: 'nui-menu-danger',
   none: '',
 }
+
+/**
+ * fallback placement with old orientation value
+ * @todo remove this on next major version
+ */
+const placementValue = computed(() => {
+  if (props.placement) {
+    return props.placement
+  }
+
+  return props.orientation === 'end' ? 'bottom-end' : 'bottom-start'
+})
 </script>
 
 <template>
-  <div class="nui-dropdown" :class="[orientationStyle[props.orientation]]">
+  <div class="nui-dropdown">
     <Menu
       v-slot="{ open, close }: { open: boolean; close: () => void }"
       as="div"
@@ -123,7 +152,8 @@ const colorStyle = {
         leave-from-class="transform scale-100 opacity-100"
         leave-to-class="transform scale-95 opacity-0"
         flip
-        :offset="4"
+        :offset="props.flavor === 'context' ? 6 : 4"
+        :placement="placementValue"
       >
         <MenuButton as="template">
           <slot name="button" v-bind="{ open, close }">
