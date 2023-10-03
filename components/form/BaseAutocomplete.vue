@@ -6,8 +6,8 @@ import {
   ComboboxLabel,
   ComboboxOption,
   ComboboxOptions,
-  TransitionRoot,
 } from '@headlessui/vue'
+import { Float, FloatReference, FloatContent } from '@headlessui-float/vue'
 
 const props = withDefaults(
   defineProps<{
@@ -295,7 +295,7 @@ watch(debounced, async (value) => {
 })
 
 function clear() {
-  value.value = props.clearValue
+  value.value = props.clearValue ?? []
 }
 
 const iconResolved = computed(() => {
@@ -359,192 +359,217 @@ function removeItem(item: any) {
     ]"
     as="div"
   >
-    <ComboboxLabel
-      v-if="
-        ('label' in $slots && !labelFloat) || (props.label && !props.labelFloat)
-      "
-      class="nui-autocomplete-label"
-      :class="classes?.label"
-    >
-      <slot name="label" v-bind="{ query, filteredItems, pending, items }">
-        {{ label }}
-      </slot>
-    </ComboboxLabel>
-
-    <div v-if="props.multiple" class="nui-autocomplete-multiple">
-      <ul
-        v-if="Array.isArray(value) && value.length > 0"
-        class="nui-autocomplete-multiple-list"
-      >
-        <li v-for="item in value" :key="String(item)">
-          <div class="nui-autocomplete-multiple-list-item">
-            {{ props.displayValue(item) }}
-            <button type="button" @click="removeItem(item)">
-              <Icon
-                :name="chipClearIcon"
-                class="nui-autocomplete-multiple-list-item-icon"
-              />
-            </button>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    <div class="nui-autocomplete-outer">
-      <ComboboxInput
-        class="nui-autocomplete-input"
-        :class="classes?.input"
-        :display-value="
-          props.multiple ? undefined : (props.displayValue as any)
-        "
-        :placeholder="props.placeholder"
-        :disabled="props.disabled"
-        @change="query = $event.target.value"
-      />
-      <ComboboxLabel
-        v-if="
-          ('label' in $slots && props.labelFloat) ||
-          (props.label && props.labelFloat)
-        "
-        class="nui-label-float"
-        :class="props.classes?.label"
-      >
-        <slot name="label" v-bind="{ query, filteredItems, pending, items }">
-          {{ props.label }}
-        </slot>
-      </ComboboxLabel>
-      <div v-if="iconResolved" class="nui-autocomplete-icon">
-        <Icon :name="iconResolved" class="nui-autocomplete-icon-inner" />
-      </div>
-      <button
-        v-if="props.clearable && value"
-        type="button"
-        class="nui-autocomplete-clear"
-        :class="[props.classes?.icon, props.dropdown && 'me-6']"
-        @click="clear"
-      >
-        <Icon :name="props.clearIcon" class="nui-autocomplete-clear-inner" />
-      </button>
-      <ComboboxButton
-        v-if="props.dropdown"
-        v-slot="{ open }: { open: boolean }"
-        class="nui-autocomplete-clear"
-      >
-        <Icon
-          :name="props.dropdownIcon"
-          class="nui-autocomplete-clear-inner transition-transform duration-300"
-          :class="[props.classes?.icon, open && 'rotate-180']"
-        />
-      </ComboboxButton>
-
-      <div v-if="props.loading" class="nui-autocomplete-placeload">
-        <BasePlaceload class="nui-placeload" :class="props.icon && 'ms-6'" />
-      </div>
-    </div>
-
-    <span
-      v-if="props.error && typeof props.error === 'string'"
-      class="nui-autocomplete-error-text"
-    >
-      {{ props.error }}
-    </span>
-
-    <TransitionRoot
+    <Float
+      composable
       leave="transition ease-in duration-100"
       leave-from="opacity-100"
       leave-to="opacity-0"
-      @after-leave="query = ''"
+      @hide="query = ''"
+      :flip="!props.multiple"
+      :offset="5"
     >
-      <ComboboxOptions as="div" class="nui-autocomplete-results">
-        <!-- Placeholder -->
-        <div
-          v-if="filteredItems.length === 0 && pending"
-          class="nui-autocomplete-results-placeholder"
+      <ComboboxLabel
+        v-if="
+          ('label' in $slots && !labelFloat) ||
+          (props.label && !props.labelFloat)
+        "
+        class="nui-autocomplete-label"
+        :class="classes?.label"
+      >
+        <slot name="label" v-bind="{ query, filteredItems, pending, items }">
+          {{ label }}
+        </slot>
+      </ComboboxLabel>
+
+      <div v-if="props.multiple" class="nui-autocomplete-multiple">
+        <ul
+          v-if="Array.isArray(value) && value.length > 0"
+          class="nui-autocomplete-multiple-list"
         >
-          <slot
-            name="pending"
-            v-bind="{ query, filteredItems, pending, items }"
-          >
-            <span class="nui-autocomplete-results-placeholder-text">
-              {{ props.i18n.pending }}
-            </span>
-          </slot>
-        </div>
-        <div
-          v-else-if="filteredItems.length === 0"
-          class="nui-autocomplete-results-placeholder"
-        >
-          <slot name="empty" v-bind="{ query, filteredItems, pending, items }">
-            <span class="nui-autocomplete-results-placeholder-text">
-              {{ props.i18n.empty }}
-            </span>
-          </slot>
-        </div>
-        <template v-else>
-          <div
-            v-if="'start-item' in $slots"
-            class="nui-autocomplete-results-header"
+          <li v-for="item in value" :key="String(item)">
+            <div class="nui-autocomplete-multiple-list-item">
+              {{ props.displayValue(item) }}
+              <button type="button" @click="removeItem(item)">
+                <Icon
+                  :name="chipClearIcon"
+                  class="nui-autocomplete-multiple-list-item-icon"
+                />
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <FloatReference>
+        <div class="nui-autocomplete-outer">
+          <ComboboxInput
+            class="nui-autocomplete-input"
+            :class="classes?.input"
+            :display-value="
+              props.multiple ? undefined : (props.displayValue as any)
+            "
+            :placeholder="props.placeholder"
+            :disabled="props.disabled"
+            @change="query = $event.target.value"
+          />
+          <ComboboxLabel
+            v-if="
+              ('label' in $slots && props.labelFloat) ||
+              (props.label && props.labelFloat)
+            "
+            class="nui-label-float"
+            :class="props.classes?.label"
           >
             <slot
-              name="start-item"
-              v-bind="{
-                query,
-                filteredItems,
-                pending,
-                items,
-              }"
-            ></slot>
-          </div>
-          <ComboboxOption
-            v-for="item in filteredItems"
-            v-slot="{ active, selected }"
-            :key="String(item)"
-            class="nui-autocomplete-results-item"
-            as="div"
-            :value="item"
-          >
-            <slot
-              name="item"
-              v-bind="{
-                query,
-                filteredItems,
-                pending,
-                items,
-                item,
-                active,
-                selected,
-              }"
+              name="label"
+              v-bind="{ query, filteredItems, pending, items }"
             >
-              <BaseAutocompleteItem
-                :shape="shape"
-                :value="
-                  isAutocompleteItem(item)
-                    ? item
-                    : {
-                        name: props.displayValue(item),
-                      }
-                "
-                :active="active"
-                :selected="selected"
-              />
+              {{ props.label }}
             </slot>
-          </ComboboxOption>
+          </ComboboxLabel>
+          <div v-if="iconResolved" class="nui-autocomplete-icon">
+            <Icon :name="iconResolved" class="nui-autocomplete-icon-inner" />
+          </div>
+          <button
+            v-if="props.clearable && value"
+            type="button"
+            class="nui-autocomplete-clear"
+            :class="[props.classes?.icon, props.dropdown && 'me-6']"
+            @click="clear"
+          >
+            <Icon
+              :name="props.clearIcon"
+              class="nui-autocomplete-clear-inner"
+            />
+          </button>
+          <ComboboxButton
+            v-if="props.dropdown"
+            v-slot="{ open }: { open: boolean }"
+            class="nui-autocomplete-clear"
+          >
+            <Icon
+              :name="props.dropdownIcon"
+              class="nui-autocomplete-clear-inner transition-transform duration-300"
+              :class="[props.classes?.icon, open && 'rotate-180']"
+            />
+          </ComboboxButton>
+
+          <div v-if="props.loading" class="nui-autocomplete-placeload">
+            <BasePlaceload
+              class="nui-placeload"
+              :class="props.icon && 'ms-6'"
+            />
+          </div>
+        </div>
+      </FloatReference>
+
+      <span
+        v-if="props.error && typeof props.error === 'string'"
+        class="nui-autocomplete-error-text"
+      >
+        {{ props.error }}
+      </span>
+      <FloatContent class="w-full">
+        <ComboboxOptions as="div" class="nui-autocomplete-results">
+          <!-- Placeholder -->
           <div
-            v-if="'end-item' in $slots"
-            class="nui-autocomplete-results-footer"
+            v-if="filteredItems.length === 0 && pending"
+            class="nui-autocomplete-results-placeholder"
           >
             <slot
-              name="end-item"
-              v-bind="{
-                query,
-                filteredItems,
-                pending,
-                items,
-              }"
-            ></slot>
+              name="pending"
+              v-bind="{ query, filteredItems, pending, items }"
+            >
+              <span class="nui-autocomplete-results-placeholder-text">
+                {{ props.i18n.pending }}
+              </span>
+            </slot>
           </div>
-        </template>
-      </ComboboxOptions>
-    </TransitionRoot>
+          <div
+            v-else-if="filteredItems.length === 0"
+            class="nui-autocomplete-results-placeholder"
+          >
+            <slot
+              name="empty"
+              v-bind="{ query, filteredItems, pending, items }"
+            >
+              <span class="nui-autocomplete-results-placeholder-text">
+                {{ props.i18n.empty }}
+              </span>
+            </slot>
+          </div>
+          <template v-else>
+            <div
+              v-if="'start-item' in $slots"
+              class="nui-autocomplete-results-header"
+            >
+              <slot
+                name="start-item"
+                v-bind="{
+                  query,
+                  filteredItems,
+                  pending,
+                  items,
+                }"
+              ></slot>
+            </div>
+            <ComboboxOption
+              v-for="item in filteredItems"
+              v-slot="{ active, selected }"
+              :key="String(item)"
+              class="nui-autocomplete-results-item"
+              as="div"
+              :value="item"
+            >
+              <slot
+                name="item"
+                v-bind="{
+                  query,
+                  filteredItems,
+                  pending,
+                  items,
+                  item,
+                  active,
+                  selected,
+                }"
+              >
+                <BaseAutocompleteItem
+                  :shape="shape"
+                  :value="
+                    isAutocompleteItem(item)
+                      ? item
+                      : {
+                          name: props.displayValue(item),
+                        }
+                  "
+                  :active="active"
+                  :selected="selected"
+                />
+              </slot>
+            </ComboboxOption>
+            <div
+              v-if="'end-item' in $slots"
+              class="nui-autocomplete-results-footer"
+            >
+              <slot
+                name="end-item"
+                v-bind="{
+                  query,
+                  filteredItems,
+                  pending,
+                  items,
+                }"
+              ></slot>
+            </div>
+          </template>
+        </ComboboxOptions>
+      </FloatContent>
+    </Float>
   </Combobox>
 </template>
+
+<style scoped>
+.nui-autocomplete .nui-autocomplete-results {
+  position: unset;
+  margin-top: unset;
+}
+</style>

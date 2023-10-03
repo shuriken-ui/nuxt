@@ -7,6 +7,8 @@ import {
   ListboxOptions,
 } from '@headlessui/vue'
 
+import { Float, FloatReference, FloatContent } from '@headlessui-float/vue'
+
 const props = withDefaults(
   defineProps<{
     /**
@@ -224,212 +226,235 @@ const value = computed(() => {
       :multiple="props.multiple"
       :disabled="props.disabled"
     >
-      <ListboxLabel
-        v-if="
-          ('label' in $slots && !props.labelFloat) ||
-          (props.label && !props.labelFloat)
-        "
-        class="nui-listbox-label"
+      <Float
+        composable
+        leave-active-class="transition duration-100 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+        flip
+        :offset="5"
       >
-        <slot name="label">{{ props.label }}</slot>
-      </ListboxLabel>
-
-      <div class="nui-listbox-outer">
-        <ListboxButton :disabled="props.disabled" class="nui-listbox-button">
-          <slot name="listbox-button" :value="value" :open="open">
-            <div class="nui-listbox-button-inner">
-              <BaseIconBox
-                v-if="props.icon"
-                size="xs"
-                shape="rounded"
-                class="nui-icon-box"
-              >
-                <Icon :name="props.icon" class="nui-icon-box-inner" />
-              </BaseIconBox>
-
-              <template v-if="Array.isArray(value)">
-                <div
-                  v-if="value.length === 0 && placeholder"
-                  class="nui-listbox-placeholder"
-                  :class="props.loading && 'text-transparent select-none'"
-                >
-                  {{ placeholder }}
-                </div>
-                <div
-                  class="block truncate text-left"
-                  :class="[
-                    props.loading && 'select-none text-transparent',
-                    value.length === 0 && 'text-muted-300 dark:text-muted-500',
-                  ]"
-                >
-                  {{
-                    typeof props.multipleLabel === 'function'
-                      ? props.multipleLabel(value, props.properties.label)
-                      : props.multipleLabel
-                  }}
-                </div>
-              </template>
-
-              <template v-else-if="value">
-                <BaseAvatar
-                  v-if="props.properties.media && value[props.properties.media]"
-                  :src="value[props.properties.media]"
-                  size="xs"
-                  class="-ms-2 me-2"
-                />
-                <BaseIconBox
-                  v-else-if="
-                    props.properties.icon && value[props.properties.icon]
-                  "
-                  size="xs"
-                  shape="rounded"
-                  class="-ms-2 me-2"
-                >
-                  <Icon :name="value[props.properties.icon]" class="h-4 w-4" />
-                </BaseIconBox>
-                <div
-                  class="truncate text-left"
-                  :class="props.loading && 'text-transparent select-none'"
-                >
-                  {{
-                    props.properties.label
-                      ? value[props.properties.label]
-                      : props.properties.value
-                      ? value[props.properties.value]
-                      : value
-                  }}
-                </div>
-              </template>
-
-              <template v-else>
-                <div
-                  class="nui-listbox-placeholder"
-                  :class="props.loading && 'text-transparent select-none'"
-                >
-                  {{ placeholder }}
-                </div>
-              </template>
-
-              <span class="nui-listbox-chevron">
-                <Icon
-                  name="lucide:chevron-down"
-                  class="nui-listbox-chevron-inner"
-                  :class="[open && 'rotate-180']"
-                />
-              </span>
-
-              <div v-if="props.loading" class="nui-listbox-placeload">
-                <BasePlaceload class="nui-placeload" />
-              </div>
-            </div>
-          </slot>
-        </ListboxButton>
-
-        <Transition
-          leave-active-class="transition duration-100 ease-in"
-          leave-from-class="opacity-100"
-          leave-to-class="opacity-0"
-        >
-          <ListboxOptions class="nui-listbox-options">
-            <ListboxOption
-              v-for="item in props.items"
-              v-slot="{ active, selected }"
-              :key="
-                props.properties.value ? item[props.properties.value] : item
-              "
-              :value="
-                props.modelModifiers.prop && props.properties.value
-                  ? item[props.properties.value]
-                  : item
-              "
-              as="template"
-            >
-              <li
-                class="nui-listbox-option group/nui-listbox-option"
-                :class="[active && 'nui-active']"
-              >
-                <slot
-                  name="listbox-item"
-                  :item="item"
-                  :open="open"
-                  :active="active"
-                  :selected="selected"
-                >
-                  <BaseAvatar
-                    v-if="
-                      props.properties.media && item[props.properties.media]
-                    "
-                    :src="item[props.properties.media]"
-                    size="xs"
-                  />
-                  <BaseIconBox
-                    v-else-if="
-                      props.properties.icon && item[props.properties.icon]
-                    "
-                    size="sm"
-                    shape="rounded"
-                  >
-                    <Icon
-                      :name="item[props.properties.icon]"
-                      class="text-muted-400 group-hover/nui-listbox-option:text-primary-500 h-5 w-5 transition-colors duration-200"
-                    />
-                  </BaseIconBox>
-
-                  <div class="nui-listbox-option-inner">
-                    <BaseHeading
-                      as="h4"
-                      :weight="selected ? 'semibold' : 'normal'"
-                      size="sm"
-                      class="nui-listbox-heading"
-                    >
-                      {{
-                        props.properties.label
-                          ? item[props.properties.label]
-                          : props.properties.value
-                          ? item[props.properties.value]
-                          : item
-                      }}
-                    </BaseHeading>
-                    <BaseText
-                      v-if="
-                        props.properties.sublabel &&
-                        item[props.properties.sublabel]
-                      "
-                      size="xs"
-                      class="nui-listbox-text"
-                    >
-                      {{ item[props.properties.sublabel] }}
-                    </BaseText>
-                  </div>
-                  <span v-if="selected" class="nui-listbox-selected-icon">
-                    <Icon
-                      :name="selectedIcon"
-                      class="nui-listbobx-selected-icon-inner"
-                    />
-                  </span>
-                </slot>
-              </li>
-            </ListboxOption>
-          </ListboxOptions>
-        </Transition>
-
         <ListboxLabel
           v-if="
-            ('label' in $slots && props.labelFloat) ||
-            (props.label && props.labelFloat)
+            ('label' in $slots && !props.labelFloat) ||
+            (props.label && !props.labelFloat)
           "
-          class="nui-label-float"
+          class="nui-listbox-label"
         >
           <slot name="label">{{ props.label }}</slot>
         </ListboxLabel>
 
-        <span
-          v-if="props.error && typeof props.error === 'string'"
-          class="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none"
-        >
-          {{ props.error }}
-        </span>
-      </div>
+        <div class="nui-listbox-outer">
+          <FloatReference>
+            <ListboxButton
+              :disabled="props.disabled"
+              class="nui-listbox-button"
+            >
+              <slot name="listbox-button" :value="value" :open="open">
+                <div class="nui-listbox-button-inner">
+                  <BaseIconBox
+                    v-if="props.icon"
+                    size="xs"
+                    shape="rounded"
+                    class="nui-icon-box"
+                  >
+                    <Icon :name="props.icon" class="nui-icon-box-inner" />
+                  </BaseIconBox>
+
+                  <template v-if="Array.isArray(value)">
+                    <div
+                      v-if="value.length === 0 && placeholder"
+                      class="nui-listbox-placeholder"
+                      :class="props.loading && 'text-transparent select-none'"
+                    >
+                      {{ placeholder }}
+                    </div>
+                    <div
+                      class="block truncate text-left"
+                      :class="[
+                        props.loading && 'select-none text-transparent',
+                        value.length === 0 &&
+                          'text-muted-300 dark:text-muted-500',
+                      ]"
+                    >
+                      {{
+                        typeof props.multipleLabel === 'function'
+                          ? props.multipleLabel(value, props.properties.label)
+                          : props.multipleLabel
+                      }}
+                    </div>
+                  </template>
+
+                  <template v-else-if="value">
+                    <BaseAvatar
+                      v-if="
+                        props.properties.media && value[props.properties.media]
+                      "
+                      :src="value[props.properties.media]"
+                      size="xs"
+                      class="-ms-2 me-2"
+                    />
+                    <BaseIconBox
+                      v-else-if="
+                        props.properties.icon && value[props.properties.icon]
+                      "
+                      size="xs"
+                      shape="rounded"
+                      class="-ms-2 me-2"
+                    >
+                      <Icon
+                        :name="value[props.properties.icon]"
+                        class="h-4 w-4"
+                      />
+                    </BaseIconBox>
+                    <div
+                      class="truncate text-left"
+                      :class="props.loading && 'text-transparent select-none'"
+                    >
+                      {{
+                        props.properties.label
+                          ? value[props.properties.label]
+                          : props.properties.value
+                          ? value[props.properties.value]
+                          : value
+                      }}
+                    </div>
+                  </template>
+
+                  <template v-else>
+                    <div
+                      class="nui-listbox-placeholder"
+                      :class="props.loading && 'text-transparent select-none'"
+                    >
+                      {{ placeholder }}
+                    </div>
+                  </template>
+
+                  <span class="nui-listbox-chevron">
+                    <Icon
+                      name="lucide:chevron-down"
+                      class="nui-listbox-chevron-inner"
+                      :class="[open && 'rotate-180']"
+                    />
+                  </span>
+
+                  <div v-if="props.loading" class="nui-listbox-placeload">
+                    <BasePlaceload class="nui-placeload" />
+                  </div>
+                </div>
+              </slot>
+            </ListboxButton>
+          </FloatReference>
+
+          <FloatContent class="w-full">
+            <ListboxOptions class="nui-listbox-options">
+              <ListboxOption
+                v-for="item in props.items"
+                v-slot="{ active, selected }"
+                :key="
+                  props.properties.value ? item[props.properties.value] : item
+                "
+                :value="
+                  props.modelModifiers.prop && props.properties.value
+                    ? item[props.properties.value]
+                    : item
+                "
+                as="template"
+              >
+                <li
+                  class="nui-listbox-option group/nui-listbox-option"
+                  :class="[active && 'nui-active']"
+                >
+                  <slot
+                    name="listbox-item"
+                    :item="item"
+                    :open="open"
+                    :active="active"
+                    :selected="selected"
+                  >
+                    <BaseAvatar
+                      v-if="
+                        props.properties.media && item[props.properties.media]
+                      "
+                      :src="item[props.properties.media]"
+                      size="xs"
+                    />
+                    <BaseIconBox
+                      v-else-if="
+                        props.properties.icon && item[props.properties.icon]
+                      "
+                      size="sm"
+                      shape="rounded"
+                    >
+                      <Icon
+                        :name="item[props.properties.icon]"
+                        class="text-muted-400 group-hover/nui-listbox-option:text-primary-500 h-5 w-5 transition-colors duration-200"
+                      />
+                    </BaseIconBox>
+
+                    <div class="nui-listbox-option-inner">
+                      <BaseHeading
+                        as="h4"
+                        :weight="selected ? 'semibold' : 'normal'"
+                        size="sm"
+                        class="nui-listbox-heading"
+                      >
+                        {{
+                          props.properties.label
+                            ? item[props.properties.label]
+                            : props.properties.value
+                            ? item[props.properties.value]
+                            : item
+                        }}
+                      </BaseHeading>
+                      <BaseText
+                        v-if="
+                          props.properties.sublabel &&
+                          item[props.properties.sublabel]
+                        "
+                        size="xs"
+                        class="nui-listbox-text"
+                      >
+                        {{ item[props.properties.sublabel] }}
+                      </BaseText>
+                    </div>
+                    <span v-if="selected" class="nui-listbox-selected-icon">
+                      <Icon
+                        :name="selectedIcon"
+                        class="nui-listbobx-selected-icon-inner"
+                      />
+                    </span>
+                  </slot>
+                </li>
+              </ListboxOption>
+            </ListboxOptions>
+          </FloatContent>
+
+          <ListboxLabel
+            v-if="
+              ('label' in $slots && props.labelFloat) ||
+              (props.label && props.labelFloat)
+            "
+            class="nui-label-float"
+          >
+            <slot name="label">{{ props.label }}</slot>
+          </ListboxLabel>
+
+          <span
+            v-if="props.error && typeof props.error === 'string'"
+            class="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none"
+          >
+            {{ props.error }}
+          </span>
+        </div>
+      </Float>
     </Listbox>
   </div>
 </template>
+
+<style scoped>
+.nui-listbox .nui-listbox-options {
+  position: unset;
+  margin-top: unset;
+}
+</style>
