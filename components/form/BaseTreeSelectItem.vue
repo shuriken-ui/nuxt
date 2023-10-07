@@ -100,7 +100,7 @@ const wrapperProps = computed(() => {
         size="xs"
         shape="full"
       >
-        <slot name="itemIcon">
+        <slot name="item-icon">
           <Icon :name="props.value.icon" class="h-4 w-4" />
         </slot>
       </BaseIconBox>
