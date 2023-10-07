@@ -92,7 +92,7 @@ const icon = computed(() =>
     :class="[shape && shapeStyle[shape], typeStyle[props.type]]"
   >
     <div v-if="props.icon" class="nui-message-icon-outer">
-      <slot name="icon">
+      <slot name="icon" icon-name="icon">
         <Icon v-if="icon" :name="icon" class="nui-message-icon" />
       </slot>
     </div>
