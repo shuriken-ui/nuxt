@@ -390,10 +390,12 @@ function removeItem(item: any) {
             <div class="nui-autocomplete-multiple-list-item">
               {{ props.displayValue(item) }}
               <button type="button" @click="removeItem(item)">
-                <Icon
-                  :name="chipClearIcon"
-                  class="nui-autocomplete-multiple-list-item-icon"
-                />
+                <slot name="chipClearIcon">
+                  <Icon
+                    :name="chipClearIcon"
+                    class="nui-autocomplete-multiple-list-item-icon"
+                  />
+                </slot>
               </button>
             </div>
           </li>
@@ -427,7 +429,9 @@ function removeItem(item: any) {
             </slot>
           </ComboboxLabel>
           <div v-if="iconResolved" class="nui-autocomplete-icon">
-            <Icon :name="iconResolved" class="nui-autocomplete-icon-inner" />
+            <slot name="icon" :icon-name="iconResolved">
+              <Icon :name="iconResolved" class="nui-autocomplete-icon-inner" />
+            </slot>
           </div>
           <button
             v-if="props.clearable && value"
@@ -436,21 +440,25 @@ function removeItem(item: any) {
             :class="[props.classes?.icon, props.dropdown && 'me-6']"
             @click="clear"
           >
-            <Icon
-              :name="props.clearIcon"
-              class="nui-autocomplete-clear-inner"
-            />
+            <slot name="clearIcon">
+              <Icon
+                :name="props.clearIcon"
+                class="nui-autocomplete-clear-inner"
+              />
+            </slot>
           </button>
           <ComboboxButton
             v-if="props.dropdown"
             v-slot="{ open }: { open: boolean }"
             class="nui-autocomplete-clear"
           >
-            <Icon
-              :name="props.dropdownIcon"
-              class="nui-autocomplete-clear-inner transition-transform duration-300"
-              :class="[props.classes?.icon, open && 'rotate-180']"
-            />
+            <slot name="dropdownIcon">
+              <Icon
+                :name="props.dropdownIcon"
+                class="nui-autocomplete-clear-inner transition-transform duration-300"
+                :class="[props.classes?.icon, open && 'rotate-180']"
+              />
+            </slot>
           </ComboboxButton>
 
           <div v-if="props.loading" class="nui-autocomplete-placeload">

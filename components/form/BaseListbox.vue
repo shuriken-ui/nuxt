@@ -258,7 +258,9 @@ const value = computed(() => {
                     shape="rounded"
                     class="nui-icon-box"
                   >
-                    <Icon :name="props.icon" class="nui-icon-box-inner" />
+                    <slot name="icon">
+                      <Icon :name="props.icon" class="nui-icon-box-inner" />
+                    </slot>
                   </BaseIconBox>
 
                   <template v-if="Array.isArray(value)">
