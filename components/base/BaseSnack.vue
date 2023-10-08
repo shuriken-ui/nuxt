@@ -56,7 +56,9 @@ const colorStyle = {
     ]"
   >
     <div v-if="props.icon && !props.image" class="nui-snack-icon">
-      <Icon :name="props.icon" class="nui-snack-icon-inner" />
+      <slot name="icon">
+        <Icon :name="props.icon" class="nui-snack-icon-inner" />
+      </slot>
     </div>
     <div v-else-if="props.image && !props.icon" class="nui-snack-image">
       <img :src="props.image" class="nui-snack-image-inner" alt="" />

@@ -100,7 +100,9 @@ const wrapperProps = computed(() => {
         size="xs"
         shape="full"
       >
-        <Icon :name="props.value.icon" class="h-4 w-4" />
+        <slot name="item-icon">
+          <Icon :name="props.value.icon" class="h-4 w-4" />
+        </slot>
       </BaseIconBox>
       <div class="flex flex-col items-start">
         <div
