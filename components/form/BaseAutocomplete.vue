@@ -18,7 +18,7 @@ const props = withDefaults(
     /**
      * The model value of the component.
      */
-    modelValue?: any[]
+    modelValue?: any | any[]
 
     /**
      * The items to display in the component.
