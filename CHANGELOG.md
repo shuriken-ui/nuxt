@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/shuriken-ui/nuxt/compare/v1.2.0...v1.3.0) (2023-10-09)
+
+
+### Features
+
+* add icons slots ([#96](https://github.com/shuriken-ui/nuxt/issues/96)) ([eb0ab38](https://github.com/shuriken-ui/nuxt/commit/eb0ab38ee4739ac070d203d4712fdecf9ede1815))
+
+
+### Bug Fixes
+
+* modelValue type on autocomplete ([#97](https://github.com/shuriken-ui/nuxt/issues/97)) ([be90658](https://github.com/shuriken-ui/nuxt/commit/be90658087b151e3b1d098ec91e62c4eb56749c1))
+
 ## [1.2.0](https://github.com/shuriken-ui/nuxt/compare/v1.1.4...v1.2.0) (2023-10-03)
 
 
