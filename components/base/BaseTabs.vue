@@ -90,7 +90,9 @@ watch(activeValue, (value) => {
         tabindex="0"
         @click="toggle(tab.value)"
       >
-        <Icon v-if="tab.icon" :name="tab.icon" class="me-1 block h-5 w-5" />
+        <slot v-if="tab.icon" name="icon" :icon-name="tab.icon">
+          <Icon :name="tab.icon" class="me-1 block h-5 w-5" />
+        </slot>
         <span
           :class="[
             props.type === 'box' && tab.icon && 'text-[.85rem]',

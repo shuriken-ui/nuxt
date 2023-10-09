@@ -128,7 +128,9 @@ const markedText = useNinjaMark(() => props.value?.text, query, mark)
       class="ms-auto flex items-center justify-center"
       :class="[props.value.media && 'h-8 w-8', props.value.icon && 'h-8 w-8']"
     >
-      <Icon :name="selectedIcon" class="text-success-500 block h-4 w-4" />
+      <slot name="selected-icon">
+        <Icon :name="selectedIcon" class="text-success-500 block h-4 w-4" />
+      </slot>
     </div>
   </div>
 </template>

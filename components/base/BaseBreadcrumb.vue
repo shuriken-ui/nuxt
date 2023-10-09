@@ -102,7 +102,9 @@ const items = computed(() => {
             class="nui-item-inner"
             :class="[item.to && 'nui-has-link']"
           >
-            <Icon v-if="item.icon" :name="item.icon" class="nui-item-icon" />
+            <slot name="icon" :icon-name="item.icon">
+              <Icon v-if="item.icon" :name="item.icon" class="nui-item-icon" />
+            </slot>
             <span :class="[item.hideLabel && 'sr-only']">{{ item.label }}</span>
           </NuxtLink>
         </li>
