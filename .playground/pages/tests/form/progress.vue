@@ -13,6 +13,29 @@ definePageMeta({
   >
     <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
+        ProgressCircle Sizes
+      </BaseHeading>
+      <div class="grid grid-cols-5 gap-4">
+        <BaseProgressCircle :size="20" :value="10" class="text-primary-500" />
+        <BaseProgressCircle :size="40" :value="45" class="text-success-500" />
+        <BaseProgressCircle :size="60" :value="50" class="text-info-500" />
+        <BaseProgressCircle
+          :size="70"
+          :value="75"
+          class="text-warning-500"
+          :animation="1"
+        />
+        <BaseProgressCircle
+          :size="80"
+          :value="100"
+          :max="200"
+          class="text-danger-500"
+          :animation="false"
+        />
+      </div>
+    </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
         Progress Shape
       </BaseHeading>
       <div class="grid grid-cols-4 gap-4">

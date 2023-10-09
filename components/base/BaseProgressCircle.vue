@@ -20,16 +20,22 @@ const props = withDefaults(
      * The thickness of the progress circle.
      */
     thickness?: number
+
+    /**
+     * Enable/disable animation, or set the animation duration (in seconds).
+     */
+    animation?: boolean | number
   }>(),
   {
     value: 0,
     max: 100,
     size: 60,
     thickness: 4,
+    animation: 2,
   },
 )
 
-const value = computed(() => {
+const percent = computed(() => {
   const { value, max } = props
 
   if (max === 0) {
@@ -37,12 +43,25 @@ const value = computed(() => {
   }
   return (value / max) * 100
 })
+
+const dasharray = computed(() => {
+  return `${percent.value} 100`
+})
+const duration = computed(() => {
+  if (props.animation === false) {
+    return '0s'
+  }
+
+  const maxDuration = props.animation === true ? 2 : props.animation
+  const ratio = percent.value / 100
+  return ratio ? `${Math.round(maxDuration * ratio * 10) / 10}s` : '0s'
+})
 </script>
 
 <template>
   <svg
     role="progressbar"
-    :aria-valuenow="value"
+    :aria-valuenow="props.value"
     :aria-valuemax="props.max"
     class="block"
     viewBox="0 0 45 45"
@@ -58,9 +77,9 @@ const value = computed(() => {
       r="15.91549431"
     />
     <circle
-      class="stroke-current transition-all duration-500"
+      class="circle-value stroke-current transition-all duration-500"
       :stroke-width="props.thickness"
-      :stroke-dasharray="`${value},100`"
+      :stroke-dasharray="`${percent},100`"
       stroke-linecap="round"
       fill="none"
       cx="50%"
@@ -72,53 +91,26 @@ const value = computed(() => {
 
 <style scoped>
 .block {
-  animation: circle-chart-fill 2.4s reverse;
-  transform: rotate(-90deg);
   transform-origin: center;
-  animation-timing-function: cubic-bezier(0.78, 0.59, 0.19, 0.33);
+  transform: rotate(-90deg);
 }
 
-.block svg circle:nth-child(2) {
-  animation: circle-chart-fill 2.4s reverse;
-  transform: rotate(-90deg);
+.circle-value {
+  animation-name: circle-chart-fill;
+  animation-duration: v-bind(duration);
+  /* transform: rotate(-90deg); */
   transform-origin: center;
+  stroke-dashoffset: 0;
   animation-timing-function: cubic-bezier(0.78, 0.59, 0.19, 0.33);
 }
 
 @keyframes circle-chart-fill {
-  50% {
-    stroke-dasharray: 0 0;
-  }
-
-  100% {
-    stroke-dasharray: 0 100;
-  }
-}
-
-@keyframes circle-chart-fill-2 {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    stroke-dasharray: 0 100;
-    opacity: 0;
-  }
-}
-
-@keyframes circle-chart-fill-3 {
   0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 1;
     stroke-dasharray: 0 100;
   }
 
   100% {
-    stroke-dasharray: 0 100;
-    opacity: 0;
+    stroke-dasharray: v-bind(dasharray);
   }
 }
 </style>
