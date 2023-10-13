@@ -3,7 +3,7 @@ definePageMeta({
   title: 'Message',
   icon: 'solar:notification-unread-lines-broken',
   description: 'Base message component',
-  section: 'feedback',
+  section: 'content',
 })
 </script>
 

@@ -3,7 +3,7 @@ definePageMeta({
   title: 'Pagination',
   icon: 'carbon:page-scroll',
   description: 'SVG icons',
-  section: 'data-display',
+  section: 'content',
 })
 </script>
 

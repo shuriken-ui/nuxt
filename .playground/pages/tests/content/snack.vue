@@ -3,7 +3,7 @@ definePageMeta({
   title: 'Snack',
   icon: 'tabler:badge',
   description: 'Snack details',
-  section: 'feedback',
+  section: 'content',
 })
 </script>
 
