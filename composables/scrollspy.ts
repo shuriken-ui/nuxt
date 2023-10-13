@@ -1,5 +1,4 @@
-import type { MaybeRefOrGetter } from '@vueuse/core'
-import { toRef } from '@vueuse/core'
+import type { MaybeRefOrGetter } from 'vue'
 
 /**
  * Scrollspy allows you to watch visible headings in a specific page.

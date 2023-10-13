@@ -1,5 +1,4 @@
-import type { MaybeRefOrGetter } from '@vueuse/core'
-import { toRef } from '@vueuse/core'
+import type { MaybeRefOrGetter } from 'vue'
 // eslint-disable-next-line vue/prefer-import-from-vue
 import { escapeHtml } from '@vue/shared'
 

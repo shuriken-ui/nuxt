@@ -1,4 +1,4 @@
-import type { MaybeRefOrGetter } from '@vueuse/core'
+import type { MaybeRefOrGetter } from 'vue'
 
 let lastId = 0
 

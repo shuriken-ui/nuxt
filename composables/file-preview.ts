@@ -1,5 +1,4 @@
-import type { MaybeRefOrGetter } from '@vueuse/core'
-import { toRef } from '@vueuse/core'
+import type { MaybeRefOrGetter } from 'vue'
 
 const previewMap = new WeakMap<File, Ref<string | undefined>>()
 
