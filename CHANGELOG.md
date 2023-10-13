@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/shuriken-ui/nuxt/compare/v1.4.1...v1.5.0) (2023-10-13)
+
+
+### Features
+
+* **BaseInput:** add lazy v-model modifier ([6f012de](https://github.com/shuriken-ui/nuxt/commit/6f012de2479949f9e363c32161a8b159d9feb826))
+
 ### [1.4.1](https://github.com/shuriken-ui/nuxt/compare/v1.4.0...v1.4.1) (2023-10-13)
 
 
