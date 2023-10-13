@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/shuriken-ui/nuxt/compare/v1.4.0...v1.4.1) (2023-10-13)
+
+
+### Bug Fixes
+
+* **dropdown:** set dropdown content z-index ([711419c](https://github.com/shuriken-ui/nuxt/commit/711419c4dbdd1c23c66625fdd9e26e1c67784a90))
+
 ## [1.4.0](https://github.com/shuriken-ui/nuxt/compare/v1.3.0...v1.4.0) (2023-10-09)
 
 
