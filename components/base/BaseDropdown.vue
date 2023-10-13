@@ -154,6 +154,7 @@ const placementValue = computed(() => {
         flip
         :offset="props.flavor === 'context' ? 6 : 4"
         :placement="placementValue"
+        :z-index="20"
       >
         <MenuButton as="template">
           <slot name="button" v-bind="{ open, close }">

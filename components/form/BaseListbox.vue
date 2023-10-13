@@ -233,6 +233,7 @@ const value = computed(() => {
         leave-to-class="opacity-0"
         flip
         :offset="5"
+        :z-index="20"
       >
         <ListboxLabel
           v-if="

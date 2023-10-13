@@ -367,6 +367,7 @@ function removeItem(item: any) {
       @hide="query = ''"
       :flip="!props.multiple"
       :offset="5"
+      :z-index="20"
     >
       <ComboboxLabel
         v-if="
