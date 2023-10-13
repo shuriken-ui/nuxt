@@ -64,8 +64,7 @@ export default defineComponent({
     }
 
     function checkFocusables() {
-      // @ts-ignore process.server exists in nuxt context
-      if (process.client && wrapper.value) {
+      if (import.meta.browser && wrapper.value) {
         const treeWalker = document.createTreeWalker(
           wrapper.value,
           NodeFilter.SHOW_ELEMENT,
