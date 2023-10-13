@@ -246,6 +246,18 @@ if (process.dev) {
     <div class="nui-input-outer" :class="props.classes?.outer">
       <div>
         <input
+          v-if="props.modelModifiers.lazy"
+          :id="id"
+          ref="inputRef"
+          v-model.lazy="value"
+          :type="props.type"
+          v-bind="$attrs"
+          class="nui-input"
+          :class="props.classes.input"
+          :placeholder="placeholder"
+        />
+        <input
+          v-else
           :id="id"
           ref="inputRef"
           v-model="value"

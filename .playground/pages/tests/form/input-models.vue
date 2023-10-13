@@ -23,6 +23,7 @@ const switchThin = ref()
 const input1 = ref()
 const input2 = ref()
 const input3 = ref()
+const input4 = ref()
 const inputFile1 = ref<FileList | null>(null)
 const inputFileCustom1 = ref<FileList | null>(null)
 const listbox1 = ref()
@@ -414,6 +415,24 @@ animatedCheckbox2: {{ animatedCheckbox2 }}({{ typeof animatedCheckbox2 }})</pre
           <BaseCard class="col-span-2 p-2">
             <pre>input3: {{ input3 }}({{ typeof input3 }})</pre>
             <BaseButtonAction @click="input3 = undefined">
+              reset
+            </BaseButtonAction>
+          </BaseCard>
+        </div>
+      </div>
+    </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        BaseInput (v-model.lazy)
+      </BaseHeading>
+      <div>
+        <div class="grid grid-cols-4 gap-6">
+          <div class="col-span-2">
+            <BaseInput v-model.lazy="input4" />
+          </div>
+          <BaseCard class="col-span-2 p-2">
+            <pre>input4: {{ input4 }}({{ typeof input4 }})</pre>
+            <BaseButtonAction @click="input4 = undefined">
               reset
             </BaseButtonAction>
           </BaseCard>
