@@ -12,13 +12,20 @@ export interface TextareaProps {
    *
    * @example
    * `v-model.trim="value"`
+   *
+   * @modifiers
+   * `v-model.lazy="value"`
    */
   modelValue?: string
 
   /**
-   * Used internaly to allow v-model.trim
+   * Used internaly to allow .trim
+   * and .lazy v-model modifiers.
    */
-  modelModifiers?: any
+  modelModifiers?: {
+    trim?: boolean
+    lazy?: boolean
+  }
 
   /**
    * The form input identifier.
@@ -249,6 +256,24 @@ const id = useNinjaId(() => props.id)
     </label>
     <div class="nui-textarea-outer">
       <textarea
+        v-if="props.modelModifiers.lazy"
+        :id="id"
+        ref="textareaRef"
+        v-model.lazy="value"
+        v-bind="$attrs"
+        class="nui-textarea"
+        :class="[
+          props.colorFocus && 'nui-textarea-focus',
+          props.classes.textarea,
+        ]"
+        :name="props.name"
+        :placeholder="props.placeholder"
+        :readonly="props.readonly"
+        :disabled="props.disabled"
+        :rows="props.rows"
+      ></textarea>
+      <textarea
+        v-else
         :id="id"
         ref="textareaRef"
         v-model="value"

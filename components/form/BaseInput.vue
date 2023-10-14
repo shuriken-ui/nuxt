@@ -16,13 +16,21 @@ const props = withDefaults(
      *
      * @modifiers
      * `v-model.trim="value"`
+     *
+     * @modifiers
+     * `v-model.lazy="value"`
      */
     modelValue?: string | number
 
     /**
-     * Used internaly to allow v-model.number and v-model.trim
+     * Used internaly to allow .number, .trim
+     * and .lazy v-model modifiers.
      */
-    modelModifiers?: any
+    modelModifiers?: {
+      number?: boolean
+      trim?: boolean
+      lazy?: boolean
+    }
 
     /**
      * The form input identifier.
