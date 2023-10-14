@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/shuriken-ui/nuxt/compare/v1.5.0...v1.6.0) (2023-10-14)
+
+
+### Features
+
+* **BaseTextarea:** add .lazy v-model modifier ([6d68fa5](https://github.com/shuriken-ui/nuxt/commit/6d68fa5e27ccb3714cf87750e16973836d9f9afe))
+
+
+### Bug Fixes
+
+* improve autocomplete, listbox, radio typing ([b18930d](https://github.com/shuriken-ui/nuxt/commit/b18930d825ef7d7fe4cda3542c93b1af00f095fc))
+* improve checkbox typing ([9d1e985](https://github.com/shuriken-ui/nuxt/commit/9d1e98552413d3d76e40abfc3c05e808972aa133))
+
 ## [1.5.0](https://github.com/shuriken-ui/nuxt/compare/v1.4.1...v1.5.0) (2023-10-13)
 
 
