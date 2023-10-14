@@ -5,10 +5,6 @@ defineOptions({
 
 const props = withDefaults(
   defineProps<{
-    // Temporary fix to allow attributes inheritance with generic components
-    // @see https://github.com/vuejs/core/issues/8372
-    [attrs: string]: any
-
     /**
      * The form input identifier.
      */

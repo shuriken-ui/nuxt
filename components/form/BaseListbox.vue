@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends any = string">
 import {
   Listbox,
   ListboxButton,
@@ -14,7 +14,7 @@ const props = withDefaults(
     /**
      * The items to display in the multiselect.
      */
-    items: any[]
+    items: T[]
 
     /**
      * The model value of the multiselect.
@@ -26,12 +26,14 @@ const props = withDefaults(
      * the value property of an object (as defined in properties.value) rather than the object itself
      * `v-model.prop="value"`
      */
-    modelValue?: any
+    modelValue?: T | T[]
 
     /**
-     * Used internaly to allow v-model.number and v-model.trim
+     * Used internaly to allow .prop v-model modifier
      */
-    modelModifiers?: any
+    modelModifiers?: {
+      prop?: boolean
+    }
 
     /**
      * The shape of the multiselect.
@@ -81,7 +83,7 @@ const props = withDefaults(
     /**
      * The label to display for multiple selections, or a function that returns the label.
      */
-    multipleLabel?: string | ((value: any[], labelProperty?: string) => string)
+    multipleLabel?: string | ((value: T[], labelProperty?: string) => string)
 
     /**
      * The placeholder text to display when no selection has been made.
@@ -105,27 +107,27 @@ const props = withDefaults(
       /**
        * The property to use for the value of the options.
        */
-      value?: string
+      value?: T extends object ? keyof T : string
 
       /**
        * The property to use for the label of the options.
        */
-      label?: string
+      label?: T extends object ? keyof T : string
 
       /**
        * The property to use for the sublabel of the options.
        */
-      sublabel?: string
+      sublabel?: T extends object ? keyof T : string
 
       /**
        * The property to use for the media of the options.
        */
-      media?: string
+      media?: T extends object ? keyof T : string
 
       /**
        * The property to use for the icon of the options.
        */
-      icon?: string
+      icon?: T extends object ? keyof T : string
     }
   }>(),
   {
@@ -140,14 +142,14 @@ const props = withDefaults(
     shape: undefined,
     error: false,
     multipleLabel: () => {
-      return (value: any[], labelProperty?: string): string => {
+      return (value: T[], labelProperty?: string): string => {
         if (value.length === 0) {
           return 'No elements selected'
         } else if (value.length > 1) {
           return `${value.length} elements selected`
         }
-        return labelProperty
-          ? String(value?.[0]?.[labelProperty])
+        return labelProperty && typeof value?.[0] === 'object'
+          ? String((value?.[0] as any)?.[labelProperty])
           : String(value?.[0])
       }
     },
@@ -158,7 +160,7 @@ const props = withDefaults(
   },
 )
 const emits = defineEmits<{
-  (event: 'update:modelValue', value?: any): void
+  (event: 'update:modelValue', value?: T): void
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
@@ -200,7 +202,13 @@ const placeholder = computed(() => {
 const value = computed(() => {
   if (props.modelModifiers.prop && props.properties.value) {
     const attr = props.properties.value
-    return props.items.find((i) => i[attr] === vmodel.value)
+    return props.items.find(
+      (item) =>
+        item &&
+        typeof item === 'object' &&
+        attr in item &&
+        (item as any)[attr] === vmodel.value,
+    )
   }
   return vmodel.value
 })
@@ -291,22 +299,24 @@ const value = computed(() => {
                   <template v-else-if="value">
                     <BaseAvatar
                       v-if="
-                        props.properties.media && value[props.properties.media]
+                        props.properties.media &&
+                        (value as any)[props.properties.media]
                       "
-                      :src="value[props.properties.media]"
+                      :src="(value as any)[props.properties.media]"
                       size="xs"
                       class="-ms-2 me-2"
                     />
                     <BaseIconBox
                       v-else-if="
-                        props.properties.icon && value[props.properties.icon]
+                        props.properties.icon &&
+                        (value as any)[props.properties.icon]
                       "
                       size="xs"
                       shape="rounded"
                       class="-ms-2 me-2"
                     >
                       <Icon
-                        :name="value[props.properties.icon]"
+                        :name="(value as any)[props.properties.icon]"
                         class="h-4 w-4"
                       />
                     </BaseIconBox>
@@ -316,9 +326,9 @@ const value = computed(() => {
                     >
                       {{
                         props.properties.label
-                          ? value[props.properties.label]
+                          ? (value as any)[props.properties.label]
                           : props.properties.value
-                          ? value[props.properties.value]
+                          ? (value as any)[props.properties.value]
                           : value
                       }}
                     </div>
@@ -355,11 +365,13 @@ const value = computed(() => {
                 v-for="item in props.items"
                 v-slot="{ active, selected }"
                 :key="
-                  props.properties.value ? item[props.properties.value] : item
+                  props.properties.value
+                    ? (item as any)[props.properties.value]
+                    : item
                 "
                 :value="
                   props.modelModifiers.prop && props.properties.value
-                    ? item[props.properties.value]
+                    ? (item as any)[props.properties.value]
                     : item
                 "
                 as="template"
@@ -375,58 +387,30 @@ const value = computed(() => {
                     :active="active"
                     :selected="selected"
                   >
-                    <BaseAvatar
-                      v-if="
-                        props.properties.media && item[props.properties.media]
-                      "
-                      :src="item[props.properties.media]"
-                      size="xs"
-                    />
-                    <BaseIconBox
-                      v-else-if="
-                        props.properties.icon && item[props.properties.icon]
-                      "
-                      size="sm"
-                      shape="rounded"
-                    >
-                      <Icon
-                        :name="item[props.properties.icon]"
-                        class="text-muted-400 group-hover/nui-listbox-option:text-primary-500 h-5 w-5 transition-colors duration-200"
-                      />
-                    </BaseIconBox>
-
-                    <div class="nui-listbox-option-inner">
-                      <BaseHeading
-                        as="h4"
-                        :weight="selected ? 'semibold' : 'normal'"
-                        size="sm"
-                        class="nui-listbox-heading"
-                      >
-                        {{
-                          props.properties.label
-                            ? item[props.properties.label]
-                            : props.properties.value
-                            ? item[props.properties.value]
-                            : item
-                        }}
-                      </BaseHeading>
-                      <BaseText
-                        v-if="
+                    <BaseListboxItem
+                      :value="{
+                        value: props.properties.label
+                          ? (item as any)[props.properties.label]
+                          : props.properties.value
+                          ? (item as any)[props.properties.value]
+                          : (item as any),
+                        label:
+                          props.properties.label &&
+                          (item as any)[props.properties.label],
+                        sublabel:
                           props.properties.sublabel &&
-                          item[props.properties.sublabel]
-                        "
-                        size="xs"
-                        class="nui-listbox-text"
-                      >
-                        {{ item[props.properties.sublabel] }}
-                      </BaseText>
-                    </div>
-                    <span v-if="selected" class="nui-listbox-selected-icon">
-                      <Icon
-                        :name="selectedIcon"
-                        class="nui-listbobx-selected-icon-inner"
-                      />
-                    </span>
+                          (item as any)[props.properties.sublabel],
+                        media:
+                          props.properties.media &&
+                          (item as any)[props.properties.media],
+                        icon:
+                          props.properties.icon &&
+                          (item as any)[props.properties.icon],
+                      }"
+                      :selected-icon="props.selectedIcon"
+                      :active="active"
+                      :selected="selected"
+                    />
                   </slot>
                 </li>
               </ListboxOption>

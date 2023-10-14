@@ -6,16 +6,16 @@ definePageMeta({
   section: 'form',
 })
 
-const autocomplete1 = ref()
-const autocomplete2 = ref()
+const autocomplete1 = ref<string>()
+const autocomplete2 = ref<{ name: string }>()
 const checkbox1 = ref()
 const checkbox2 = ref()
 const checkbox3 = ref([])
-const radio1 = ref()
-const radio2 = ref()
-const radio3 = ref()
+const radio1 = ref<boolean>()
+const radio2 = ref<string>()
+const radio3 = ref<{ [key: string]: number }>()
 const checkboxCustom1 = ref()
-const radioCustom1 = ref()
+const radioCustom1 = ref<'yes' | 'no'>()
 const animatedCheckbox1 = ref()
 const animatedCheckbox2 = ref([])
 const switchBall = ref()
@@ -26,8 +26,8 @@ const input3 = ref()
 const input4 = ref()
 const inputFile1 = ref<FileList | null>(null)
 const inputFileCustom1 = ref<FileList | null>(null)
-const listbox1 = ref()
-const listbox2 = ref()
+const listbox1 = ref<string>()
+const listbox2 = ref<{ name: string }>()
 const select1 = ref()
 const select2 = ref()
 const textarea1 = ref()
@@ -49,7 +49,7 @@ const textarea2 = ref()
               v-model="autocomplete1"
               :items="['tete', 'hello', 'test', 'tast', 'tutu', 'holla']"
               :filter-items="
-                (query?: string, items?: string[]) =>
+                (query, items) =>
                   items?.filter((item) => {
                     return query
                       ? item?.toLowerCase().startsWith(query.toLowerCase())
@@ -82,7 +82,7 @@ autocomplete1: {{ autocomplete1 }}({{ typeof autocomplete1 }})</pre
           <div class="col-span-2">
             <BaseAutocomplete
               v-model="autocomplete2"
-              :display-value="(item: any) => item.name"
+              :display-value="(item) => item.name"
               clearable
               :items="[
                 {
