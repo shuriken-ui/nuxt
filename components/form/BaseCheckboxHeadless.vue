@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends any = boolean">
 defineOptions({
   inheritAttrs: false,
 })
@@ -11,19 +11,24 @@ const props = withDefaults(
     label?: string
 
     /**
+     * Defines the value of the checkbox when it's checked.
+     */
+    value?: T
+
+    /**
      * The value to set when the checkbox is checked.
      */
-    trueValue?: string | number | boolean
+    trueValue?: T
 
     /**
      * The value to set when the checkbox is unchecked.
      */
-    falseValue?: string | number | boolean
+    falseValue?: T
 
     /**
      * The model value of the checkbox.
      */
-    modelValue?: any
+    modelValue?: T | T[]
 
     /**
      * The form input identifier.
@@ -32,19 +37,20 @@ const props = withDefaults(
   }>(),
   {
     modelValue: undefined,
+    value: undefined,
     id: undefined,
     label: undefined,
-    trueValue: true,
-    falseValue: false,
+    trueValue: true as any,
+    falseValue: false as any,
   },
 )
 const emits = defineEmits<{
-  (e: 'update:modelValue', value: string | number | boolean): void
+  (e: 'update:modelValue', value: T | T[]): void
 }>()
 const inputRef = ref<HTMLInputElement>()
-const value = useVModel(props, 'modelValue', emits, {
+const internal = useVModel(props, 'modelValue', emits, {
   passive: true,
-})
+}) as any
 
 defineExpose({
   /**
@@ -69,14 +75,15 @@ const id = useNinjaId(() => props.id)
       <input
         :id="id"
         ref="inputRef"
-        v-model="value"
+        v-model="internal"
+        :value="props.value"
         :true-value="props.trueValue"
         :false-value="props.falseValue"
         v-bind="$attrs"
         class="peer absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0"
         type="checkbox"
       />
-      <slot v-bind="{ value }"></slot>
+      <slot v-bind="{ value: internal }"></slot>
     </div>
   </div>
 </template>

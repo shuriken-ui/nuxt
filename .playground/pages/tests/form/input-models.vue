@@ -8,16 +8,16 @@ definePageMeta({
 
 const autocomplete1 = ref<string>()
 const autocomplete2 = ref<{ name: string }>()
-const checkbox1 = ref()
-const checkbox2 = ref()
-const checkbox3 = ref([])
+const checkbox1 = ref<boolean>()
+const checkbox2 = ref<{ checked: boolean }>()
+const checkbox3 = ref<string[]>([])
 const radio1 = ref<boolean>()
 const radio2 = ref<string>()
 const radio3 = ref<{ [key: string]: number }>()
 const checkboxCustom1 = ref()
 const radioCustom1 = ref<'yes' | 'no'>()
-const animatedCheckbox1 = ref()
-const animatedCheckbox2 = ref([])
+const animatedCheckbox1 = ref<boolean>()
+const animatedCheckbox2 = ref<string[]>([])
 const switchBall = ref()
 const switchThin = ref()
 const input1 = ref()
@@ -32,6 +32,7 @@ const select1 = ref()
 const select2 = ref()
 const textarea1 = ref()
 const textarea2 = ref()
+const textarea3 = ref()
 </script>
 
 <template>
@@ -650,6 +651,24 @@ inputFileCustom1: {{
           <BaseCard class="col-span-2 p-2">
             <pre>textarea2: {{ textarea2 }}({{ typeof textarea2 }})</pre>
             <BaseButtonAction @click="textarea2 = undefined">
+              reset
+            </BaseButtonAction>
+          </BaseCard>
+        </div>
+      </div>
+    </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        BaseTextarea (v-model.lazy)
+      </BaseHeading>
+      <div>
+        <div class="grid grid-cols-4 gap-6">
+          <div class="col-span-2">
+            <BaseTextarea v-model.lazy="textarea3" />
+          </div>
+          <BaseCard class="col-span-2 p-2">
+            <pre>textarea3: {{ textarea3 }}({{ typeof textarea3 }})</pre>
+            <BaseButtonAction @click="textarea3 = undefined">
               reset
             </BaseButtonAction>
           </BaseCard>

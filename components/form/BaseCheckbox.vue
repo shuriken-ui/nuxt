@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends any = boolean">
 defineOptions({
   inheritAttrs: false,
 })
@@ -11,19 +11,24 @@ const props = withDefaults(
     label?: string
 
     /**
+     * Defines the value of the checkbox when it's checked.
+     */
+    value?: T
+
+    /**
      * The value to set when the checkbox is checked.
      */
-    trueValue?: any
+    trueValue?: T
 
     /**
      * The value to set when the checkbox is unchecked.
      */
-    falseValue?: any
+    falseValue?: T
 
     /**
      * The model value of the checkbox.
      */
-    modelValue?: any
+    modelValue?: T | T[]
 
     /**
      * The form input identifier.
@@ -83,18 +88,19 @@ const props = withDefaults(
   }>(),
   {
     modelValue: undefined,
+    value: undefined,
     id: undefined,
     label: undefined,
     error: '',
-    trueValue: true,
-    falseValue: false,
+    trueValue: true as any,
+    falseValue: false as any,
     shape: undefined,
     color: undefined,
     classes: () => ({}),
   },
 )
 const emits = defineEmits<{
-  (e: 'update:modelValue', value: string | number | boolean): void
+  (e: 'update:modelValue', value: T | T[]): void
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
@@ -153,6 +159,7 @@ const id = useNinjaId(() => props.id)
         :id="id"
         ref="inputRef"
         v-model="value"
+        :value="props.value"
         :true-value="props.trueValue"
         :false-value="props.falseValue"
         :class="props.classes?.input"

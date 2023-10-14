@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends any = boolean">
 defineOptions({
   inheritAttrs: false,
 })
@@ -8,7 +8,7 @@ const props = withDefaults(
     /**
      * The value of the component.
      */
-    value?: any
+    value?: T
 
     /**
      * The form input identifier.
@@ -18,17 +18,17 @@ const props = withDefaults(
     /**
      * The model value of the component.
      */
-    modelValue?: any
+    modelValue?: T | T[]
 
     /**
      * The value to set when the component is checked.
      */
-    trueValue?: any
+    trueValue?: T
 
     /**
      * The value to set when the component is unchecked.
      */
-    falseValue?: any
+    falseValue?: T
 
     /** The color of the checkbox. Can be 'default', 'primary', 'info', 'success', 'warning', or 'danger' */
     color?:
@@ -63,9 +63,9 @@ const props = withDefaults(
   {
     id: undefined,
     value: undefined,
-    trueValue: true,
-    falseValue: false,
-    modelValue: false,
+    trueValue: true as any,
+    falseValue: false as any,
+    modelValue: undefined,
     color: undefined,
     classes: () => ({
       wrapper: [],
@@ -75,11 +75,11 @@ const props = withDefaults(
   },
 )
 const emits = defineEmits<{
-  (e: 'update:modelValue', value: any): void
+  (e: 'update:modelValue', value: T | T[]): void
 }>()
 const value = useVModel(props, 'modelValue', emits, {
   passive: true,
-})
+}) as any
 
 const element = ref<HTMLElement>()
 const inputRef = ref<HTMLInputElement>()
@@ -92,7 +92,11 @@ const checked = computed(() => {
     return false
   }
 
-  return props.value === undefined ? false : value.value.includes(props.value)
+  return props.value === undefined
+    ? false
+    : Array.isArray(value.value)
+    ? value.value.includes(props.value)
+    : value.value === props.value
 })
 
 const colorStyle = {
