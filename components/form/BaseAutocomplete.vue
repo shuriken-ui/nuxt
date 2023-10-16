@@ -199,6 +199,7 @@ const props = withDefaults(
 
 const emits = defineEmits<{
   (event: 'update:modelValue', value?: T | T[]): void
+  (event: 'keydown', value: KeyboardEvent): void
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
@@ -409,6 +410,7 @@ function removeItem(item: any) {
             :placeholder="props.placeholder"
             :disabled="props.disabled"
             @change="query = $event.target.value"
+            @keydown="(event: KeyboardEvent) => emits('keydown', event)"
           />
           <ComboboxLabel
             v-if="
@@ -520,7 +522,7 @@ function removeItem(item: any) {
             <ComboboxOption
               v-for="item in filteredItems"
               v-slot="{ active, selected }"
-              :key="String(item)"
+              :key="props.displayValue(item)"
               class="nui-autocomplete-results-item"
               as="div"
               :value="item as any"
