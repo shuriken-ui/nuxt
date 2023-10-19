@@ -24,6 +24,8 @@ const input1 = ref()
 const input2 = ref()
 const input3 = ref()
 const input4 = ref()
+const inputNumber1 = ref()
+const inputNumber2 = ref()
 const inputFile1 = ref<FileList | null>(null)
 const inputFileCustom1 = ref<FileList | null>(null)
 const listbox1 = ref<string>()
@@ -434,6 +436,46 @@ animatedCheckbox2: {{ animatedCheckbox2 }}({{ typeof animatedCheckbox2 }})</pre
           <BaseCard class="col-span-2 p-2">
             <pre>input4: {{ input4 }}({{ typeof input4 }})</pre>
             <BaseButtonAction @click="input4 = undefined">
+              reset
+            </BaseButtonAction>
+          </BaseCard>
+        </div>
+      </div>
+    </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        BaseInputNumber
+      </BaseHeading>
+      <div>
+        <div class="grid grid-cols-4 gap-6">
+          <div class="col-span-2">
+            <BaseInputNumber v-model="inputNumber1" :min="-2" :max="5" />
+          </div>
+          <BaseCard class="col-span-2 p-2">
+            <pre>
+inputNumber1: {{ inputNumber1 }}({{ typeof inputNumber1 }})</pre
+            >
+            <BaseButtonAction @click="inputNumber1 = undefined">
+              reset
+            </BaseButtonAction>
+          </BaseCard>
+        </div>
+      </div>
+    </div>
+    <div>
+      <BaseHeading size="xl" weight="medium" class="mb-10">
+        BaseInputNumber (v-model.lazy)
+      </BaseHeading>
+      <div>
+        <div class="grid grid-cols-4 gap-6">
+          <div class="col-span-2">
+            <BaseInputNumber v-model.lazy="inputNumber2" :step="0.00001" />
+          </div>
+          <BaseCard class="col-span-2 p-2">
+            <pre>
+inputNumber2: {{ inputNumber2 }}({{ typeof inputNumber2 }})</pre
+            >
+            <BaseButtonAction @click="inputNumber2 = undefined">
               reset
             </BaseButtonAction>
           </BaseCard>
