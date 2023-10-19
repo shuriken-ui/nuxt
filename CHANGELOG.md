@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/shuriken-ui/nuxt/compare/v1.6.1...v1.7.0) (2023-10-19)
+
+
+### Features
+
+* add BaseInputNumber component ([4aa7eea](https://github.com/shuriken-ui/nuxt/commit/4aa7eeaa5478565167a7954bcbab35a7809a5700))
+
 ### [1.6.1](https://github.com/shuriken-ui/nuxt/compare/v1.6.0...v1.6.1) (2023-10-16)
 
 
