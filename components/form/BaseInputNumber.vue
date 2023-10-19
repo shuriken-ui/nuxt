@@ -243,22 +243,16 @@ const placeholder = computed(() => {
 })
 
 const floatPrecision = computed(() => {
-  if (props.step > Number.MAX_SAFE_INTEGER) return 0
-
-  const step = Math.abs(props.step)
+  if (!Number.isFinite(props.step) || Number.isNaN(props.step)) return 0
+  let exp = 1
   let precision = 0
-
-  if (step) {
-    while (step !== +step.toFixed(precision)) {
-      if (!Number.isFinite(precision) || precision > Number.MAX_SAFE_INTEGER)
-        return 0
-
-      precision++
-    }
+  while (Math.round(props.step * exp) / exp !== props.step) {
+    exp *= 10
+    precision++
   }
   return precision
 })
-const floatPrecisionExp = computed(() => floatPrecision.value ** 10)
+const floatPrecisionExp = computed(() => 10 ** floatPrecision.value)
 const stepAbs = computed(() => Math.abs(props.step))
 
 function clamp(value: number) {
@@ -274,7 +268,9 @@ function clamp(value: number) {
 function increment() {
   if (value.value === undefined) {
     value.value = 0
+    return
   }
+
   if (typeof value.value === 'number') {
     value.value = clamp(value.value + stepAbs.value)
   }
@@ -283,7 +279,9 @@ function increment() {
 function decrement() {
   if (value.value === undefined) {
     value.value = 0
+    return
   }
+
   if (typeof value.value === 'number') {
     value.value = clamp(value.value - stepAbs.value)
   }
