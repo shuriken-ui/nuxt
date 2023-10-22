@@ -155,6 +155,10 @@ const props = withDefaults(
        */
       icon?: string | string[]
     }
+    /**
+     * Allow custom entries in the combo input
+     */
+    allowCustom?: boolean
   }>(),
   {
     modelValue: undefined,
@@ -194,6 +198,7 @@ const props = withDefaults(
       })
     },
     classes: () => ({}),
+    allowCustom: false,
   },
 )
 
@@ -217,6 +222,10 @@ const filteredItems = shallowRef<Awaited<ReturnType<typeof props.filterItems>>>(
 const pendingFilter = ref(false)
 const pendingDebounce = computed(() => query.value !== debounced.value)
 const pending = computed(() => pendingFilter.value || pendingDebounce.value)
+
+const queryCustom = computed(() => {
+  return query.value === '' ? null : query.value
+})
 
 const shapeStyle = {
   straight: '',
@@ -476,7 +485,13 @@ function removeItem(item: any) {
         {{ props.error }}
       </span>
       <FloatContent class="w-full">
-        <ComboboxOptions as="div" class="nui-autocomplete-results">
+        <ComboboxOptions
+          as="div"
+          :class="{
+            'nui-autocomplete-results':
+              filteredItems.length > 0 || !allowCustom,
+          }"
+        >
           <!-- Placeholder -->
           <div
             v-if="filteredItems.length === 0 && pending"
@@ -492,7 +507,7 @@ function removeItem(item: any) {
             </slot>
           </div>
           <div
-            v-else-if="filteredItems.length === 0"
+            v-else-if="filteredItems.length === 0 && !allowCustom"
             class="nui-autocomplete-results-placeholder"
           >
             <slot
@@ -519,6 +534,14 @@ function removeItem(item: any) {
                 }"
               ></slot>
             </div>
+            <ComboboxOption
+              v-if="allowCustom && queryCustom"
+              :value="queryCustom"
+              class="hidden"
+              as="div"
+            >
+              Create {{ query }}
+            </ComboboxOption>
             <ComboboxOption
               v-for="item in filteredItems"
               v-slot="{ active, selected }"
