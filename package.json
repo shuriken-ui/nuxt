@@ -20,7 +20,11 @@
   ],
   "type": "module",
   "exports": {
-    ".": "./nuxt.config.ts"
+    ".": "./nuxt.config.ts",
+    "./component-meta": {
+      "types": "./component-meta.d.ts",
+      "import": "./component-meta.mjs"
+    }
   },
   "files": [
     "assets",
@@ -43,7 +47,8 @@
     "release": "run-s test release:*",
     "release:standard-version": "standard-version",
     "release:publish": "git push --follow-tags origin main && npm publish",
-    "prepare": "simple-git-hooks && nuxt prepare .playground"
+    "prepare": "simple-git-hooks && nuxt prepare .playground",
+    "prepack": "nuxt build .playground && npx jiti scripts/copy-meta.ts"
   },
   "dependencies": {
     "@headlessui-float/vue": "^0.11.4",
@@ -71,6 +76,7 @@
     "lint-staged": "^15.0.1",
     "npm-run-all": "^4.1.5",
     "nuxt": "^3.7.4",
+    "nuxt-component-meta": "^0.5.4",
     "simple-git-hooks": "^2.9.0",
     "standard-version": "^9.5.0",
     "typescript": "^5.2.2",

@@ -1,1 +1,3 @@
 typescript.includeWorkspace=true
+typescript.shim=false
+typescript.strict=true

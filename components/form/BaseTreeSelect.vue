@@ -106,6 +106,7 @@ const props = withDefaults(
       closed: 'lucide:plus',
       item: '',
       pending: '',
+      empty: '',
     }),
     classes: () => ({
       pendingIcon: '',

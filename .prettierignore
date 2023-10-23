@@ -7,3 +7,6 @@ dist
 CHANGELOG.md
 README.md
 LICENSE.md
+
+component-meta.mjs
+component-meta.d.ts

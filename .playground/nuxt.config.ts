@@ -1,9 +1,11 @@
 import { addTemplate } from '@nuxt/kit'
 import colors from 'tailwindcss/colors.js'
+import { join, dirname } from 'pathe'
+import { fileURLToPath } from 'node:url'
 
 export default defineNuxtConfig({
   extends: '..',
-  modules: ['unplugin-fonts/nuxt'],
+  modules: ['nuxt-component-meta', 'unplugin-fonts/nuxt'],
   unfonts: {
     google: {
       families: ['Roboto Flex', 'Inter', 'Karla'],
@@ -38,8 +40,26 @@ export default defineNuxtConfig({
       },
     },
   },
-  typescript: {
-    shim: false,
+  componentMeta: {
+    globalsOnly: false,
+    debug: 2,
+    exclude: [
+      (component: any) => {
+        const componentsPath = join(
+          dirname(fileURLToPath(import.meta.url)),
+          '../components',
+        )
+        const isExternal = !component.filePath?.startsWith?.(componentsPath)
+        const isIcon = component?.kebabName?.startsWith('icon-')
+
+        return isExternal || isIcon
+      },
+    ],
+    checkerOptions: {
+      schema: {
+        ignore: ['KeyboardEvent'],
+      },
+    },
   },
   hooks: {
     // @ts-ignore

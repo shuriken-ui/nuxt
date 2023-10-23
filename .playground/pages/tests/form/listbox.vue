@@ -14,12 +14,8 @@ const frameworks = [
 ]
 const model = ref({
   frameworkId: '',
-  framework: {},
+  framework: undefined as (typeof frameworks)[number] | undefined,
 })
-const properties = {
-  value: 'value',
-  label: 'label',
-}
 </script>
 
 <template>
@@ -34,7 +30,10 @@ const properties = {
         <BaseListbox
           v-model="model.framework"
           :items="frameworks"
-          :properties="properties"
+          :properties="{
+            value: 'value',
+            label: 'label',
+          }"
         />
         <pre> {{ model }}</pre>
         <BaseButton @click="model.framework = frameworks[1]">
@@ -51,7 +50,10 @@ const properties = {
         <BaseListbox
           v-model.prop="model.frameworkId"
           :items="frameworks"
-          :properties="properties"
+          :properties="{
+            value: 'value',
+            label: 'label',
+          }"
         />
         <pre> {{ model }}</pre>
         <BaseButton @click="model.frameworkId = 'vue'">

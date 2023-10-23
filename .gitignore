@@ -49,3 +49,6 @@ coverage
 Network Trash Folder
 Temporary Items
 .apdisk
+
+component-meta.mjs
+component-meta.d.ts

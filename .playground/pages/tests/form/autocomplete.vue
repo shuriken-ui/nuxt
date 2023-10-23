@@ -80,7 +80,7 @@ const itemsObject = ref([
             }
           "
           :filter-items="
-            (query: string, items: string[]) => {
+            (query, items) => {
               if (!query) return items || []
               return (
                 items?.filter(
@@ -101,7 +101,7 @@ const itemsObject = ref([
           v-model="objectSelection"
           :items="itemsObject"
           :filter-items="
-            (query: string, items: any) => {
+            (query, items) => {
               if (!query) return items || []
               return (
                 items?.filter(
