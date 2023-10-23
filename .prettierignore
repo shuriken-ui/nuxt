@@ -9,4 +9,5 @@ README.md
 LICENSE.md
 
 component-meta.mjs
+component-meta.cjs
 component-meta.d.ts

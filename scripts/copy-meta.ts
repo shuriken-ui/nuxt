@@ -30,7 +30,8 @@ async function main() {
   const directory = dirname(fileURLToPath(import.meta.url))
 
   const inputSource = join(directory, '../.playground/.nuxt/component-meta.mjs')
-  const outSource = join(directory, '../component-meta.mjs')
+  const outImport = join(directory, '../component-meta.mjs')
+  const outRequire = join(directory, '../component-meta.cjs')
 
   const inputDts = join(directory, '../.playground/.nuxt/component-meta.d.ts')
   const outDts = join(directory, '../component-meta.d.ts')
@@ -48,8 +49,12 @@ async function main() {
   await Promise.all([
     copyFile(inputDts, outDts),
     writeFile(
-      outSource,
+      outImport,
       `export default ${JSON.stringify(components, filterKeys, 2)}`,
+    ),
+    writeFile(
+      outRequire,
+      `module.exports = ${JSON.stringify(components, filterKeys, 2)}`,
     ),
   ])
 }

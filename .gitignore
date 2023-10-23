@@ -51,4 +51,5 @@ Temporary Items
 .apdisk
 
 component-meta.mjs
+component-meta.cjs
 component-meta.d.ts
