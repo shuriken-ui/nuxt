@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.7.3](https://github.com/shuriken-ui/nuxt/compare/v1.7.2...v1.7.3) (2023-10-23)
+
+
+### Bug Fixes
+
+* export cjs pre-computed component meta ([ba8915d](https://github.com/shuriken-ui/nuxt/commit/ba8915d57ce7ac0aa6e3bb27765c909af4665e99))
+
 ### [1.7.2](https://github.com/shuriken-ui/nuxt/compare/v1.7.1...v1.7.2) (2023-10-23)
 
 
