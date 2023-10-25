@@ -155,6 +155,44 @@ const props = withDefaults(
        */
       icon?: string | string[]
     }
+    /**
+     * Allow custom entries by the user
+     */
+    allowCustom?: boolean
+
+    /**
+     * Portal the dropdown to body
+     */
+    portal?: boolean
+
+    /**
+     * The properties to use for the value, label, sublabel, media, and icon of the options items.
+     */
+    properties?: {
+      /**
+       * The property to use for the key of the options.
+       */
+      key?: T extends object ? keyof T | ((arg: T) => string) : string
+      /**
+       * The property to use for the label of the options.
+       */
+      label?: T extends object ? keyof T | ((arg: T) => string) : string
+
+      /**
+       * The property to use for the sublabel of the options.
+       */
+      sublabel?: T extends object ? keyof T | ((arg: T) => string) : string
+
+      /**
+       * The property to use for the media of the options.
+       */
+      media?: T extends object ? keyof T | ((arg: T) => string) : string
+
+      /**
+       * The property to use for the icon of the options.
+       */
+      icon?: T extends object ? keyof T | ((arg: T) => string) : string
+    }
   }>(),
   {
     modelValue: undefined,
@@ -194,6 +232,9 @@ const props = withDefaults(
       })
     },
     classes: () => ({}),
+    allowCustom: false,
+    portal: false,
+    properties: undefined,
   },
 )
 
@@ -337,6 +378,16 @@ function removeItem(item: any) {
     }
   }
 }
+
+function key(item: T) {
+  if (props.properties == null) return props.displayValue(item)
+  if (typeof props.properties.key === 'string')
+    return (item as any)[props.properties.key]
+  if (typeof props.properties.key === 'function')
+    //@ts-expect-error not sure why properties.key ends up undefined
+    return props.properties.key(item as any)
+  return props.displayValue(item)
+}
 </script>
 
 <template>
@@ -364,6 +415,8 @@ function removeItem(item: any) {
       @hide="query = ''"
       :flip="!props.multiple"
       :offset="5"
+      :portal="props.portal"
+      :adaptive-width="props.portal"
       :z-index="20"
     >
       <ComboboxLabel
@@ -475,7 +528,15 @@ function removeItem(item: any) {
       >
         {{ props.error }}
       </span>
-      <FloatContent class="w-full">
+      <FloatContent
+        :class="[
+          !props.portal && 'w-full',
+          props.portal && 'nui-autocomplete',
+          props.portal && sizeStyle[props.size],
+          props.portal && contrastStyle[props.contrast],
+          props.portal && shape && shapeStyle[shape],
+        ]"
+      >
         <ComboboxOptions as="div" class="nui-autocomplete-results">
           <!-- Placeholder -->
           <div
@@ -522,7 +583,7 @@ function removeItem(item: any) {
             <ComboboxOption
               v-for="item in filteredItems"
               v-slot="{ active, selected }"
-              :key="props.displayValue(item)"
+              :key="key(item)"
               class="nui-autocomplete-results-item"
               as="div"
               :value="item as any"
@@ -541,15 +602,16 @@ function removeItem(item: any) {
               >
                 <BaseAutocompleteItem
                   :shape="shape"
-                  :value="
-                    isAutocompleteItem(item)
+                  :item="
+                    properties
                       ? item
-                      : {
-                          name: props.displayValue(item),
-                        }
+                      : ({
+                          label: props.displayValue(item),
+                        } as T)
                   "
                   :active="active"
                   :selected="selected"
+                  :properties="properties"
                 />
               </slot>
             </ComboboxOption>

@@ -1,30 +1,10 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends object">
 const props = withDefaults(
   defineProps<{
     /**
      * The items to display in the component.
      */
-    value?: {
-      /**
-       * The name of the item.
-       */
-      name?: string
-
-      /**
-       * Optional text to display for the item.
-       */
-      text?: string
-
-      /**
-       * Optional media (such as an image URL) to display for the item.
-       */
-      media?: string
-
-      /**
-       * Optional icon to display for the item.
-       */
-      icon?: string
-    }
+    item?: T
 
     /**
      * The shape of the component.
@@ -50,12 +30,37 @@ const props = withDefaults(
      * CSS Class applied to the matching part of the text.
      */
     mark?: string
+    /**
+     * The properties to use for the value, label, sublabel, media, and icon of the options items.
+     */
+    properties?: {
+      /**
+       * The property to use for the label of the options.
+       */
+      label?: T extends object ? keyof T | ((arg: T) => string) : string
+
+      /**
+       * The property to use for the sublabel of the options.
+       */
+      sublabel?: T extends object ? keyof T | ((arg: T) => string) : string
+
+      /**
+       * The property to use for the media of the options.
+       */
+      media?: T extends object ? keyof T | ((arg: T) => string) : string
+
+      /**
+       * The property to use for the icon of the options.
+       */
+      icon?: T extends object ? keyof T | ((arg: T) => string) : string
+    }
   }>(),
   {
     shape: undefined,
     mark: 'nui-mark',
     selectedIcon: 'lucide:check',
-    value: () => ({}),
+    item: undefined,
+    properties: undefined,
   },
 )
 
@@ -76,10 +81,46 @@ const inputContext = inject('BaseAutocompleteContext', {
   query: '',
 })
 
+const label = computed(() => {
+  if (props.item == null || props.properties == null) return
+  if (typeof props.properties.label === 'string')
+    return (props.item as any)[props.properties.label]
+  if (typeof props.properties.label === 'function')
+    return props.properties.label(props.item)
+  return
+})
+
+const sublabel = computed(() => {
+  if (props.item == null || props.properties == null) return
+  if (typeof props.properties.sublabel === 'string')
+    return (props.item as any)[props.properties.sublabel]
+  if (typeof props.properties.sublabel === 'function')
+    return props.properties.sublabel(props.item)
+  return
+})
+
+const media = computed(() => {
+  if (props.item == null || props.properties == null) return
+  if (typeof props.properties.media === 'string')
+    return (props.item as any)[props.properties.media]
+  if (typeof props.properties.media === 'function')
+    return props.properties.media(props.item)
+  return
+})
+
+const icon = computed(() => {
+  if (props.item == null || props.properties == null) return
+  if (typeof props.properties.icon === 'string')
+    return (props.item as any)[props.properties.icon]
+  if (typeof props.properties.icon === 'function')
+    return props.properties.icon(props.item)
+  return
+})
+
 const query = computed(() => inputContext.query)
 const mark = computed(() => props.mark)
-const markedName = useNinjaMark(() => props.value?.name, query, mark)
-const markedText = useNinjaMark(() => props.value?.text, query, mark)
+const markedLabel = useNinjaMark(() => label.value, query, mark)
+const markedSublabel = useNinjaMark(() => sublabel.value, query, mark)
 </script>
 
 <template>
@@ -90,20 +131,15 @@ const markedText = useNinjaMark(() => props.value?.text, query, mark)
       shape && shapeStyle[shape],
     ]"
   >
-    <BaseAvatar
-      v-if="props.value.media && !props.value.icon"
-      :src="props.value.media"
-      size="xs"
-      class="me-3"
-    />
+    <BaseAvatar v-if="media && !icon" :src="media" size="xs" class="me-3" />
     <BaseIconBox
-      v-else-if="props.value.icon && !props.value.media"
+      v-else-if="icon && !media"
       size="sm"
       shape="rounded"
       class="me-1"
     >
       <Icon
-        :name="props.value.icon"
+        :name="icon"
         class="h-4 w-4"
         :class="[props.selected ? 'text-primary-500' : 'text-muted-500']"
       />
@@ -116,17 +152,17 @@ const markedText = useNinjaMark(() => props.value?.text, query, mark)
         class="text-muted-800 dark:text-white"
       >
         <!-- eslint-disable-next-line vue/no-v-html -->
-        <span v-html="markedName"></span>
+        <span v-html="markedLabel"></span>
       </BaseHeading>
-      <BaseText v-if="value.text" size="xs" class="text-muted-400">
+      <BaseText v-if="sublabel" size="xs" class="text-muted-400">
         <!-- eslint-disable-next-line vue/no-v-html -->
-        <span v-html="markedText"></span>
+        <span v-html="markedSublabel"></span>
       </BaseText>
     </div>
     <div
       v-show="props.selected"
       class="ms-auto flex items-center justify-center"
-      :class="[props.value.media && 'h-8 w-8', props.value.icon && 'h-8 w-8']"
+      :class="[media && 'h-8 w-8', icon && 'h-8 w-8']"
     >
       <slot name="selected-icon">
         <Icon :name="selectedIcon" class="text-success-500 block h-4 w-4" />
