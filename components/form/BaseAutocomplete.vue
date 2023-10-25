@@ -161,9 +161,26 @@ const props = withDefaults(
     allowCustom?: boolean
 
     /**
-     * Portal the dropdown to body
+     * Used a fixed strategy to float the component
      */
-    portal?: boolean
+    fixed?: boolean
+
+    /**
+     * The placement of the component via floating-ui.
+     */
+    placement?:
+      | 'top'
+      | 'top-start'
+      | 'top-end'
+      | 'right'
+      | 'right-start'
+      | 'right-end'
+      | 'bottom'
+      | 'bottom-start'
+      | 'bottom-end'
+      | 'left'
+      | 'left-start'
+      | 'left-end'
 
     /**
      * The properties to use for the value, label, sublabel, media, and icon of the options items.
@@ -233,8 +250,9 @@ const props = withDefaults(
     },
     classes: () => ({}),
     allowCustom: false,
-    portal: false,
-    properties: undefined,
+    fixed: false,
+    placement: 'bottom-start',
+    properties: () => ({}),
   },
 )
 
@@ -403,8 +421,9 @@ function key(item: T) {
       @hide="query = ''"
       :flip="!props.multiple"
       :offset="5"
-      :portal="props.portal"
-      :adaptive-width="props.portal"
+      :strategy="props.fixed ? 'fixed' : 'absolute'"
+      :placement="props.placement"
+      :adaptive-width="props.fixed"
       :z-index="20"
     >
       <ComboboxLabel
@@ -516,22 +535,13 @@ function key(item: T) {
       >
         {{ props.error }}
       </span>
-      <FloatContent
-        :class="[
-          !props.portal && 'w-full',
-          props.portal && 'nui-autocomplete',
-          props.portal && sizeStyle[props.size],
-          props.portal && contrastStyle[props.contrast],
-          props.portal && shape && shapeStyle[shape],
-        ]"
-      >
+      <FloatContent :class="!props.fixed && 'w-full'">
         <ComboboxOptions
           as="div"
           :class="{
             'nui-autocomplete-results':
               filteredItems.length > 0 || !allowCustom,
           }"
-          :unmount="!portal"
         >
           <!-- Placeholder -->
           <div

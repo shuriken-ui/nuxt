@@ -60,7 +60,13 @@ const props = withDefaults(
     mark: 'nui-mark',
     selectedIcon: 'lucide:check',
     item: undefined,
-    properties: undefined,
+    properties: () =>
+      ({
+        label: 'label',
+        sublabel: 'sublabel',
+        media: 'media',
+        icon: 'icon',
+      }) as any,
   },
 )
 
