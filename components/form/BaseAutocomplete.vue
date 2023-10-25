@@ -537,7 +537,11 @@ function key(item: T) {
           props.portal && shape && shapeStyle[shape],
         ]"
       >
-        <ComboboxOptions as="div" class="nui-autocomplete-results">
+        <ComboboxOptions
+          as="div"
+          class="nui-autocomplete-results"
+          :unmount="!portal"
+        >
           <!-- Placeholder -->
           <div
             v-if="filteredItems.length === 0 && pending"
