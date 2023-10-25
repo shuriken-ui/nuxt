@@ -252,7 +252,7 @@ const props = withDefaults(
     allowCustom: false,
     fixed: false,
     placement: 'bottom-start',
-    properties: () => ({}),
+    properties: undefined,
   },
 )
 
