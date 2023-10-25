@@ -259,6 +259,10 @@ const pendingFilter = ref(false)
 const pendingDebounce = computed(() => query.value !== debounced.value)
 const pending = computed(() => pendingFilter.value || pendingDebounce.value)
 
+const queryCustom = computed(() => {
+  return query.value === '' ? null : query.value
+})
+
 const shapeStyle = {
   straight: '',
   rounded: 'nui-autocomplete-rounded',
@@ -348,22 +352,6 @@ const iconResolved = computed(() => {
   }
   return props.icon
 })
-
-function isAutocompleteItem(
-  item: unknown,
-): item is Record<'name' | 'text' | 'media' | 'icon', string> {
-  if (
-    item &&
-    typeof item === 'object' &&
-    (('name' in item && typeof item.name === 'string') ||
-      ('text' in item && typeof item.text === 'string') ||
-      ('media' in item && typeof item.media === 'string') ||
-      ('icon' in item && typeof item.icon === 'string'))
-  ) {
-    return true
-  }
-  return false
-}
 
 function removeItem(item: any) {
   if (!Array.isArray(value.value)) {
@@ -539,7 +527,10 @@ function key(item: T) {
       >
         <ComboboxOptions
           as="div"
-          class="nui-autocomplete-results"
+          :class="{
+            'nui-autocomplete-results':
+              filteredItems.length > 0 || !allowCustom,
+          }"
           :unmount="!portal"
         >
           <!-- Placeholder -->
@@ -557,7 +548,7 @@ function key(item: T) {
             </slot>
           </div>
           <div
-            v-else-if="filteredItems.length === 0"
+            v-else-if="filteredItems.length === 0 && !allowCustom"
             class="nui-autocomplete-results-placeholder"
           >
             <slot
@@ -584,6 +575,14 @@ function key(item: T) {
                 }"
               ></slot>
             </div>
+            <ComboboxOption
+              v-if="allowCustom && queryCustom"
+              :value="queryCustom"
+              class="hidden"
+              as="div"
+            >
+              Create {{ query }}
+            </ComboboxOption>
             <ComboboxOption
               v-for="item in filteredItems"
               v-slot="{ active, selected }"
