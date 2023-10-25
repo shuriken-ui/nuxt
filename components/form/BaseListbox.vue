@@ -129,6 +129,10 @@ const props = withDefaults(
        */
       icon?: T extends object ? keyof T : string
     }
+    /**
+     * Portal the dropdown to body
+     */
+    portal?: boolean
   }>(),
   {
     icon: '',
@@ -157,6 +161,7 @@ const props = withDefaults(
     loading: false,
     disabled: false,
     properties: () => ({}),
+    portal: false,
   },
 )
 const emits = defineEmits<{
@@ -241,6 +246,8 @@ const value = computed(() => {
         leave-to-class="opacity-0"
         flip
         :offset="5"
+        :portal="props.portal"
+        :adaptive-width="props.portal"
         :z-index="20"
       >
         <ListboxLabel
@@ -359,8 +366,16 @@ const value = computed(() => {
             </ListboxButton>
           </FloatReference>
 
-          <FloatContent class="w-full">
-            <ListboxOptions class="nui-listbox-options">
+          <FloatContent
+            :class="[
+              !props.portal && 'w-full',
+              props.portal && 'nui-listbox',
+              props.portal && sizeStyle[props.size],
+              props.portal && contrastStyle[props.contrast],
+              props.portal && shape && shapeStyle[shape],
+            ]"
+          >
+            <ListboxOptions class="nui-listbox-options" :unmount="!portal">
               <ListboxOption
                 v-for="item in props.items"
                 v-slot="{ active, selected }"
