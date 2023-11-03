@@ -12,9 +12,23 @@ import {
 const props = withDefaults(
   defineProps<{
     /**
-     * The model value of the component.
+     * The model value of the multiselect.
+     *
+     * @modifiers
+     * `v-model="value"`
+     *
+     * @modifiers
+     * the value property of an object (as defined in properties.value) rather than the object itself
+     * `v-model.prop="value"`
      */
     modelValue?: T | T[]
+
+    /**
+     * Used internaly to allow .prop v-model modifier
+     */
+    modelModifiers?: {
+      prop?: boolean
+    }
 
     /**
      * The items to display in the component.
@@ -161,6 +175,11 @@ const props = withDefaults(
     allowCustom?: boolean
 
     /**
+     * Hide the create custom prompt (just set the model to the value entered)
+     */
+    hideCustomPrompt?: boolean
+
+    /**
      * Used a fixed strategy to float the component
      */
     fixed?: boolean
@@ -189,7 +208,7 @@ const props = withDefaults(
       /**
        * The property to use for the key of the options.
        */
-      key?: T extends object ? keyof T | ((arg: T) => string) : string
+      value?: T extends object ? keyof T | ((arg: T) => string) : string
       /**
        * The property to use for the label of the options.
        */
@@ -213,6 +232,9 @@ const props = withDefaults(
   }>(),
   {
     modelValue: undefined,
+    modelModifiers: () => ({
+      prop: false,
+    }),
     items: () => [],
     shape: undefined,
     icon: undefined,
@@ -239,6 +261,7 @@ const props = withDefaults(
     filterItems: undefined,
     classes: () => ({}),
     allowCustom: false,
+    hideCustomPrompt: false,
     fixed: false,
     placement: 'bottom-start',
     properties: undefined,
@@ -251,7 +274,16 @@ const emits = defineEmits<{
 }>()
 
 const defaultDisplayValue = (item: any): any => {
-  if (typeof item === 'string') return item
+  if (props.modelModifiers.prop && props.properties?.value) {
+    const attr = props.properties.value
+    const result = items.value.find(
+      (i) =>
+        i && typeof i === 'object' && attr in i && (i as any)[attr] === item,
+    )
+    // @ts-expect-error not sure what the issue is here
+    if (result && props.properties.label) return result[props.properties.label]
+  }
+  if (item == null || typeof item === 'string') return item
   if (
     typeof item === 'object' &&
     props.properties?.label &&
@@ -298,9 +330,23 @@ const displayValueResolved = computed(() => {
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const value = useVModel(props, 'modelValue', emits, {
+const vmodel = useVModel(props, 'modelValue', emits, {
   passive: true,
 }) as Ref<any>
+
+const value = computed(() => {
+  if (props.modelModifiers.prop && props.properties?.value) {
+    const attr = props.properties.value
+    return items.value.find(
+      (item) =>
+        item &&
+        typeof item === 'object' &&
+        attr in item &&
+        (item as any)[attr] === vmodel.value,
+    )
+  }
+  return vmodel.value
+})
 
 const items = shallowRef(props.items)
 const query = ref('')
@@ -390,7 +436,7 @@ watch(debounced, async (value) => {
 })
 
 function clear() {
-  value.value = props.clearValue ?? []
+  vmodel.value = props.clearValue ?? []
 }
 
 const iconResolved = computed(() => {
@@ -407,33 +453,43 @@ const iconResolved = computed(() => {
 })
 
 function removeItem(item: any) {
-  if (!Array.isArray(value.value)) {
-    value.value = props.clearValue
+  if (!Array.isArray(vmodel.value)) {
+    vmodel.value = props.clearValue
     return
   }
 
-  for (let i = value.value.length - 1; i >= 0; --i) {
+  for (let i = vmodel.value.length - 1; i >= 0; --i) {
+    if (props.properties?.value) {
+      if (vmodel.value[i] === item) {
+        vmodel.value.splice(i, 1)
+      }
+    }
     // eslint-disable-next-line eqeqeq
-    if (value.value[i] == item) {
-      value.value.splice(i, 1)
+    else if (vmodel.value[i] === item) {
+      vmodel.value.splice(i, 1)
     }
   }
 }
 
 function key(item: T) {
   if (props.properties == null) return displayValueResolved.value(item)
-  if (typeof props.properties.key === 'string')
-    return (item as any)[props.properties.key]
-  if (typeof props.properties.key === 'function')
-    //@ts-expect-error not sure why properties.key ends up undefined
-    return props.properties.key(item as any)
+  if (typeof props.properties.value === 'string')
+    return (item as any)[props.properties.value]
+  if (typeof props.properties.value === 'function')
+    //@ts-expect-error not sure why properties.value ends up undefined
+    return props.properties.value(item as any)
   return displayValueResolved.value(item)
 }
 </script>
 
 <template>
   <Combobox
-    v-model="value"
+    v-model="vmodel"
+    :by="
+      props.modelModifiers.prop && props.properties?.value
+        ? undefined
+        : props.properties?.value
+    "
     :multiple="props.multiple"
     :disabled="props.disabled"
     :class="[
@@ -476,10 +532,10 @@ function key(item: T) {
 
       <div v-if="props.multiple" class="nui-autocomplete-multiple">
         <ul
-          v-if="Array.isArray(value) && value.length > 0"
+          v-if="Array.isArray(vmodel) && vmodel.length > 0"
           class="nui-autocomplete-multiple-list"
         >
-          <li v-for="item in value" :key="String(item)">
+          <li v-for="item in vmodel" :key="String(item)">
             <div class="nui-autocomplete-multiple-list-item">
               {{ displayValueResolved(item) }}
               <button type="button" @click="removeItem(item)">
@@ -528,10 +584,10 @@ function key(item: T) {
             </slot>
           </div>
           <button
-            v-if="props.clearable && value"
+            v-if="props.clearable && vmodel && vmodel?.length > 0"
             type="button"
             class="nui-autocomplete-clear"
-            :class="[props.classes?.icon, props.dropdown && 'me-6']"
+            :class="[props.classes?.icon, props.dropdown && 'me-10']"
             @click="clear"
           >
             <slot name="clear-icon">
@@ -542,9 +598,8 @@ function key(item: T) {
             </slot>
           </button>
           <ComboboxButton
-            v-if="props.dropdown"
             v-slot="{ open }: { open: boolean }"
-            class="nui-autocomplete-clear"
+            class="nui-autocomplete-clear nui-autocomplete-chevron"
           >
             <slot name="dropdown-icon">
               <Icon
@@ -575,7 +630,7 @@ function key(item: T) {
           as="div"
           :class="{
             'nui-autocomplete-results':
-              filteredItems.length > 0 || !allowCustom,
+              filteredItems.length > 0 || !hideCustomPrompt,
           }"
         >
           <!-- Placeholder -->
@@ -623,8 +678,10 @@ function key(item: T) {
             <ComboboxOption
               v-if="allowCustom && queryCustom"
               :value="queryCustom"
-              class="hidden"
               as="div"
+              :class="
+                hideCustomPrompt ? 'hidden' : 'nui-autocomplete-results-item'
+              "
             >
               Create {{ query }}
             </ComboboxOption>
@@ -634,7 +691,11 @@ function key(item: T) {
               :key="key(item)"
               class="nui-autocomplete-results-item"
               as="div"
-              :value="item as any"
+              :value="
+                props.modelModifiers.prop && props.properties?.value
+                  ? (item as any)[props.properties.value]
+                  : (item as any)
+              "
             >
               <slot
                 name="item"
@@ -684,9 +745,22 @@ function key(item: T) {
   </Combobox>
 </template>
 
-<style scoped>
+<style>
 .nui-autocomplete .nui-autocomplete-results {
   position: unset;
   margin-top: unset;
+}
+
+:is(.dark .nui-autocomplete-chevron) {
+  --tw-border-opacity: 1;
+  border-color: rgb(51 65 85 / 1);
+  border-color: rgb(51 65 85 / var(--tw-border-opacity));
+  border-inline-start-width: 1px;
+}
+.nui-autocomplete-chevron {
+  --tw-border-opacity: 1;
+  border-color: rgb(226 232 240 / 1);
+  border-color: rgb(226 232 240 / var(--tw-border-opacity));
+  border-inline-start-width: 1px;
 }
 </style>
