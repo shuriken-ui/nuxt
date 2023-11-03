@@ -554,7 +554,11 @@ function key(item: T) {
         <div class="nui-autocomplete-outer">
           <ComboboxInput
             class="nui-autocomplete-input"
-            :class="[classes?.input, props.dropdown && '!pe-8']"
+            :class="[
+              classes?.input,
+              props.dropdown && !props.clearable && '!pe-12',
+              props.dropdown && props.clearable && '!pe-[4.5rem]',
+            ]"
             :display-value="
               props.multiple ? undefined : (displayValueResolved as any)
             "
@@ -584,8 +588,13 @@ function key(item: T) {
             </slot>
           </div>
           <button
-            v-if="props.clearable && vmodel && vmodel?.length > 0"
+            v-if="
+              props.clearable &&
+              ((Array.isArray(vmodel) && vmodel?.length > 0) ||
+                (!Array.isArray(vmodel) && vmodel != null))
+            "
             type="button"
+            tabindex="-1"
             class="nui-autocomplete-clear"
             :class="[props.classes?.icon, props.dropdown && 'me-10']"
             @click="clear"
