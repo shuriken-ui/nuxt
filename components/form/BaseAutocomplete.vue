@@ -607,6 +607,7 @@ function key(item: T) {
             </slot>
           </button>
           <ComboboxButton
+            v-if="props.dropdown"
             v-slot="{ open }: { open: boolean }"
             class="nui-autocomplete-clear nui-autocomplete-chevron"
           >
