@@ -1,4 +1,5 @@
 <script setup lang="ts" generic="T extends any = string">
+import { Float, FloatContent, FloatReference } from '@headlessui-float/vue'
 import {
   Combobox,
   ComboboxButton,
@@ -7,7 +8,6 @@ import {
   ComboboxOption,
   ComboboxOptions,
 } from '@headlessui/vue'
-import { Float, FloatReference, FloatContent } from '@headlessui-float/vue'
 
 const props = withDefaults(
   defineProps<{
@@ -234,20 +234,9 @@ const props = withDefaults(
     dropdownIcon: 'lucide:chevron-down',
     dropdown: false,
     multiple: false,
-    displayValue: (item: any) => item,
+    displayValue: undefined,
     filterDebounce: 0,
-    filterItems: (query?: string, items?: T[]) => {
-      if (!query || !items) {
-        return items ?? []
-      }
-
-      return items.filter((item) => {
-        if (typeof item !== 'string') {
-          return false
-        }
-        return item?.toLowerCase().includes(query.toLowerCase())
-      })
-    },
+    filterItems: undefined,
     classes: () => ({}),
     allowCustom: false,
     fixed: false,
@@ -260,6 +249,52 @@ const emits = defineEmits<{
   (event: 'update:modelValue', value?: T | T[]): void
   (event: 'keydown', value: KeyboardEvent): void
 }>()
+
+const defaultDisplayValue = (item: any): any => {
+  if (typeof item === 'string') return item
+  if (
+    typeof item === 'object' &&
+    props.properties?.label &&
+    props.properties.label in item
+  )
+    return item[props.properties.label]
+
+  return item
+}
+
+const defaultFilter = (query?: string, items?: T[]): T[] => {
+  if (!query || !items) {
+    return items ?? []
+  }
+
+  const lower = query.toLowerCase()
+
+  return items.filter((item: any) => {
+    if (typeof item === 'string') return item?.toLowerCase().includes(lower)
+    if (
+      typeof item === 'object' &&
+      props.properties?.label &&
+      props.properties.label in item
+    )
+      return item[props.properties.label].toLowerCase().includes(lower)
+    if (
+      typeof item === 'object' &&
+      props.properties?.sublabel &&
+      props.properties.sublabel in item
+    )
+      return item[props.properties.sublabel].toLowerCase().includes(lower)
+  })
+}
+
+const filterResolved = computed(() => {
+  if (props.filterItems === undefined) return defaultFilter
+  return props.filterItems
+})
+const displayValueResolved = computed(() => {
+  if (props.displayValue === undefined) return defaultDisplayValue
+  return props.displayValue
+})
+
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
@@ -270,9 +305,9 @@ const value = useVModel(props, 'modelValue', emits, {
 const items = shallowRef(props.items)
 const query = ref('')
 const debounced = refDebounced(query, props.filterDebounce)
-const filteredItems = shallowRef<Awaited<ReturnType<typeof props.filterItems>>>(
-  props.dropdown ? props.items : [],
-)
+const filteredItems = shallowRef<
+  Awaited<ReturnType<typeof filterResolved.value>>
+>(props.dropdown ? props.items : [])
 const pendingFilter = ref(false)
 const pendingDebounce = computed(() => query.value !== debounced.value)
 const pending = computed(() => pendingFilter.value || pendingDebounce.value)
@@ -341,7 +376,7 @@ defineExpose({
 watch(debounced, async (value) => {
   pendingFilter.value = true
   try {
-    filteredItems.value = await props.filterItems(value, items.value)
+    filteredItems.value = await filterResolved.value(value, items.value)
   } catch (error: any) {
     if (error?.name === 'AbortError') {
       // Ignore abort errors
@@ -386,13 +421,13 @@ function removeItem(item: any) {
 }
 
 function key(item: T) {
-  if (props.properties == null) return props.displayValue(item)
+  if (props.properties == null) return displayValueResolved.value(item)
   if (typeof props.properties.key === 'string')
     return (item as any)[props.properties.key]
   if (typeof props.properties.key === 'function')
     //@ts-expect-error not sure why properties.key ends up undefined
     return props.properties.key(item as any)
-  return props.displayValue(item)
+  return displayValueResolved.value(item)
 }
 </script>
 
@@ -424,7 +459,7 @@ function key(item: T) {
       :strategy="props.fixed ? 'fixed' : 'absolute'"
       :placement="props.placement"
       :adaptive-width="props.fixed"
-      :z-index="20"
+      :z-index="200"
     >
       <ComboboxLabel
         v-if="
@@ -446,7 +481,7 @@ function key(item: T) {
         >
           <li v-for="item in value" :key="String(item)">
             <div class="nui-autocomplete-multiple-list-item">
-              {{ props.displayValue(item) }}
+              {{ displayValueResolved(item) }}
               <button type="button" @click="removeItem(item)">
                 <slot name="chip-clear-icon">
                   <Icon
@@ -463,9 +498,9 @@ function key(item: T) {
         <div class="nui-autocomplete-outer">
           <ComboboxInput
             class="nui-autocomplete-input"
-            :class="classes?.input"
+            :class="[classes?.input, props.dropdown && '!pe-8']"
             :display-value="
-              props.multiple ? undefined : (props.displayValue as any)
+              props.multiple ? undefined : (displayValueResolved as any)
             "
             :placeholder="props.placeholder"
             :disabled="props.disabled"
@@ -619,7 +654,7 @@ function key(item: T) {
                     properties
                       ? item
                       : ({
-                          label: props.displayValue(item),
+                          label: displayValueResolved(item),
                         } as T)
                   "
                   :active="active"
