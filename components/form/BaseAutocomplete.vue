@@ -156,9 +156,9 @@ const props = withDefaults(
       icon?: string | string[]
     }
     /**
-     * Allow custom entries in the combo input
+     * Allow create custom entries in the combo input
      */
-    allowCustom?: boolean
+    allowCreate?: boolean
   }>(),
   {
     modelValue: undefined,
@@ -198,7 +198,7 @@ const props = withDefaults(
       })
     },
     classes: () => ({}),
-    allowCustom: false,
+    allowCreate: false,
   },
 )
 
@@ -489,7 +489,7 @@ function removeItem(item: any) {
           as="div"
           :class="{
             'nui-autocomplete-results':
-              filteredItems.length > 0 || !allowCustom,
+              filteredItems.length > 0 || !allowCreate,
           }"
         >
           <!-- Placeholder -->
@@ -507,7 +507,7 @@ function removeItem(item: any) {
             </slot>
           </div>
           <div
-            v-else-if="filteredItems.length === 0 && !allowCustom"
+            v-else-if="filteredItems.length === 0 && !allowCreate"
             class="nui-autocomplete-results-placeholder"
           >
             <slot
@@ -535,12 +535,26 @@ function removeItem(item: any) {
               ></slot>
             </div>
             <ComboboxOption
-              v-if="allowCustom && queryCustom"
+              v-if="allowCreate && queryCustom"
               :value="queryCustom"
-              class="hidden"
+              v-slot="{ active, selected }"
               as="div"
             >
-              Create {{ query }}
+              <slot
+                name="create-item"
+                v-bind="{
+                  query,
+                  filteredItems,
+                  pending,
+                  items,
+                  active,
+                  selected,
+                }"
+              >
+                <span class="nui-autocomplete-results-item">
+                  Create {{ query }}
+                </span>
+              </slot>
             </ComboboxOption>
             <ComboboxOption
               v-for="item in filteredItems"
