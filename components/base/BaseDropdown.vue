@@ -49,6 +49,10 @@ const props = withDefaults(
      * @deprecated use placement instead
      */
     orientation?: 'start' | 'end'
+    /**
+     * Used a fixed strategy to float the component
+     */
+    fixed?: boolean
 
     /**
      * The placement of the dropdown via floating-ui.
@@ -92,6 +96,7 @@ const props = withDefaults(
     color: 'white',
     label: '',
     headerLabel: undefined,
+    fixed: false,
   },
 )
 
@@ -153,7 +158,9 @@ const placementValue = computed(() => {
         leave-to-class="transform scale-95 opacity-0"
         flip
         :offset="props.flavor === 'context' ? 6 : 4"
+        :strategy="props.fixed ? 'fixed' : 'absolute'"
         :placement="placementValue"
+        :adaptive-width="props.fixed"
         :z-index="20"
       >
         <MenuButton as="template">

@@ -1,4 +1,5 @@
 <script setup lang="ts" generic="T extends any = string">
+import { Float, FloatContent, FloatReference } from '@headlessui-float/vue'
 import {
   Combobox,
   ComboboxButton,
@@ -7,14 +8,27 @@ import {
   ComboboxOption,
   ComboboxOptions,
 } from '@headlessui/vue'
-import { Float, FloatReference, FloatContent } from '@headlessui-float/vue'
 
 const props = withDefaults(
   defineProps<{
     /**
-     * The model value of the component.
+     * The model value of the multiselect.
+     *
+     * @modifiers
+     * `v-model="value"`
+     *
+     * @modifiers
+     * the value property of an object (as defined in properties.value) rather than the object itself
+     * `v-model.prop="value"`
      */
     modelValue?: T | T[]
+
+    /**
+     * Used internaly to allow .prop v-model modifier
+     */
+    modelModifiers?: {
+      prop?: boolean
+    }
 
     /**
      * The items to display in the component.
@@ -155,9 +169,67 @@ const props = withDefaults(
        */
       icon?: string | string[]
     }
+    /**
+     * Allow custom entries by the user
+     */
+    allowCreate?: boolean
+
+    /**
+     * Used a fixed strategy to float the component
+     */
+    fixed?: boolean
+
+    /**
+     * The placement of the component via floating-ui.
+     */
+    placement?:
+      | 'top'
+      | 'top-start'
+      | 'top-end'
+      | 'right'
+      | 'right-start'
+      | 'right-end'
+      | 'bottom'
+      | 'bottom-start'
+      | 'bottom-end'
+      | 'left'
+      | 'left-start'
+      | 'left-end'
+
+    /**
+     * The properties to use for the value, label, sublabel, media, and icon of the options items.
+     */
+    properties?: {
+      /**
+       * The property to use for the key of the options.
+       */
+      value?: T extends object ? keyof T | ((arg: T) => string) : string
+      /**
+       * The property to use for the label of the options.
+       */
+      label?: T extends object ? keyof T | ((arg: T) => string) : string
+
+      /**
+       * The property to use for the sublabel of the options.
+       */
+      sublabel?: T extends object ? keyof T | ((arg: T) => string) : string
+
+      /**
+       * The property to use for the media of the options.
+       */
+      media?: T extends object ? keyof T | ((arg: T) => string) : string
+
+      /**
+       * The property to use for the icon of the options.
+       */
+      icon?: T extends object ? keyof T | ((arg: T) => string) : string
+    }
   }>(),
   {
     modelValue: undefined,
+    modelModifiers: () => ({
+      prop: false,
+    }),
     items: () => [],
     shape: undefined,
     icon: undefined,
@@ -179,21 +251,14 @@ const props = withDefaults(
     dropdownIcon: 'lucide:chevron-down',
     dropdown: false,
     multiple: false,
-    displayValue: (item: any) => item,
+    displayValue: undefined,
     filterDebounce: 0,
-    filterItems: (query?: string, items?: T[]) => {
-      if (!query || !items) {
-        return items ?? []
-      }
-
-      return items.filter((item) => {
-        if (typeof item !== 'string') {
-          return false
-        }
-        return item?.toLowerCase().includes(query.toLowerCase())
-      })
-    },
+    filterItems: undefined,
     classes: () => ({}),
+    allowCreate: false,
+    fixed: false,
+    placement: 'bottom-start',
+    properties: undefined,
   },
 )
 
@@ -201,22 +266,95 @@ const emits = defineEmits<{
   (event: 'update:modelValue', value?: T | T[]): void
   (event: 'keydown', value: KeyboardEvent): void
 }>()
+
+const defaultDisplayValue = (item: any): any => {
+  if (props.modelModifiers.prop && props.properties?.value) {
+    const attr = props.properties.value
+    const result = items.value.find(
+      (i) =>
+        i && typeof i === 'object' && attr in i && (i as any)[attr] === item,
+    )
+    // @ts-expect-error not sure what the issue is here
+    if (result && props.properties.label) return result[props.properties.label]
+  }
+  if (item == null || typeof item === 'string') return item
+  if (
+    typeof item === 'object' &&
+    props.properties?.label &&
+    props.properties.label in item
+  )
+    return item[props.properties.label]
+
+  return item
+}
+
+const defaultFilter = (query?: string, items?: T[]): T[] => {
+  if (!query || !items) {
+    return items ?? []
+  }
+
+  const lower = query.toLowerCase()
+
+  return items.filter((item: any) => {
+    if (typeof item === 'string') return item?.toLowerCase().includes(lower)
+    if (
+      typeof item === 'object' &&
+      props.properties?.label &&
+      props.properties.label in item
+    )
+      return item[props.properties.label].toLowerCase().includes(lower)
+    if (
+      typeof item === 'object' &&
+      props.properties?.sublabel &&
+      props.properties.sublabel in item
+    )
+      return item[props.properties.sublabel].toLowerCase().includes(lower)
+  })
+}
+
+const filterResolved = computed(() => {
+  if (props.filterItems === undefined) return defaultFilter
+  return props.filterItems
+})
+const displayValueResolved = computed(() => {
+  if (props.displayValue === undefined) return defaultDisplayValue
+  return props.displayValue
+})
+
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const value = useVModel(props, 'modelValue', emits, {
+const vmodel = useVModel(props, 'modelValue', emits, {
   passive: true,
 }) as Ref<any>
+
+const value = computed(() => {
+  if (props.modelModifiers.prop && props.properties?.value) {
+    const attr = props.properties.value
+    return items.value.find(
+      (item) =>
+        item &&
+        typeof item === 'object' &&
+        attr in item &&
+        (item as any)[attr] === vmodel.value,
+    )
+  }
+  return vmodel.value
+})
 
 const items = shallowRef(props.items)
 const query = ref('')
 const debounced = refDebounced(query, props.filterDebounce)
-const filteredItems = shallowRef<Awaited<ReturnType<typeof props.filterItems>>>(
-  props.dropdown ? props.items : [],
-)
+const filteredItems = shallowRef<
+  Awaited<ReturnType<typeof filterResolved.value>>
+>(props.dropdown ? props.items : [])
 const pendingFilter = ref(false)
 const pendingDebounce = computed(() => query.value !== debounced.value)
 const pending = computed(() => pendingFilter.value || pendingDebounce.value)
+
+const queryCreate = computed(() => {
+  return query.value === '' ? null : query.value
+})
 
 const shapeStyle = {
   straight: '',
@@ -278,7 +416,7 @@ defineExpose({
 watch(debounced, async (value) => {
   pendingFilter.value = true
   try {
-    filteredItems.value = await props.filterItems(value, items.value)
+    filteredItems.value = await filterResolved.value(value, items.value)
   } catch (error: any) {
     if (error?.name === 'AbortError') {
       // Ignore abort errors
@@ -292,7 +430,7 @@ watch(debounced, async (value) => {
 })
 
 function clear() {
-  value.value = props.clearValue ?? []
+  vmodel.value = props.clearValue ?? []
 }
 
 const iconResolved = computed(() => {
@@ -308,40 +446,44 @@ const iconResolved = computed(() => {
   return props.icon
 })
 
-function isAutocompleteItem(
-  item: unknown,
-): item is Record<'name' | 'text' | 'media' | 'icon', string> {
-  if (
-    item &&
-    typeof item === 'object' &&
-    (('name' in item && typeof item.name === 'string') ||
-      ('text' in item && typeof item.text === 'string') ||
-      ('media' in item && typeof item.media === 'string') ||
-      ('icon' in item && typeof item.icon === 'string'))
-  ) {
-    return true
-  }
-  return false
-}
-
 function removeItem(item: any) {
-  if (!Array.isArray(value.value)) {
-    value.value = props.clearValue
+  if (!Array.isArray(vmodel.value)) {
+    vmodel.value = props.clearValue
     return
   }
 
-  for (let i = value.value.length - 1; i >= 0; --i) {
+  for (let i = vmodel.value.length - 1; i >= 0; --i) {
+    if (props.properties?.value) {
+      if (vmodel.value[i] === item) {
+        vmodel.value.splice(i, 1)
+      }
+    }
     // eslint-disable-next-line eqeqeq
-    if (value.value[i] == item) {
-      value.value.splice(i, 1)
+    else if (vmodel.value[i] === item) {
+      vmodel.value.splice(i, 1)
     }
   }
+}
+
+function key(item: T) {
+  if (props.properties == null) return displayValueResolved.value(item)
+  if (typeof props.properties.value === 'string')
+    return (item as any)[props.properties.value]
+  if (typeof props.properties.value === 'function')
+    //@ts-expect-error not sure why properties.value ends up undefined
+    return props.properties.value(item as any)
+  return displayValueResolved.value(item)
 }
 </script>
 
 <template>
   <Combobox
-    v-model="value"
+    v-model="vmodel"
+    :by="
+      props.modelModifiers.prop && props.properties?.value
+        ? undefined
+        : props.properties?.value
+    "
     :multiple="props.multiple"
     :disabled="props.disabled"
     :class="[
@@ -364,7 +506,10 @@ function removeItem(item: any) {
       @hide="query = ''"
       :flip="!props.multiple"
       :offset="5"
-      :z-index="20"
+      :strategy="props.fixed ? 'fixed' : 'absolute'"
+      :placement="props.placement"
+      :adaptive-width="props.fixed"
+      :z-index="200"
     >
       <ComboboxLabel
         v-if="
@@ -381,12 +526,12 @@ function removeItem(item: any) {
 
       <div v-if="props.multiple" class="nui-autocomplete-multiple">
         <ul
-          v-if="Array.isArray(value) && value.length > 0"
+          v-if="Array.isArray(vmodel) && vmodel.length > 0"
           class="nui-autocomplete-multiple-list"
         >
-          <li v-for="item in value" :key="String(item)">
+          <li v-for="item in vmodel" :key="String(item)">
             <div class="nui-autocomplete-multiple-list-item">
-              {{ props.displayValue(item) }}
+              {{ displayValueResolved(item) }}
               <button type="button" @click="removeItem(item)">
                 <slot name="chip-clear-icon">
                   <Icon
@@ -403,9 +548,13 @@ function removeItem(item: any) {
         <div class="nui-autocomplete-outer">
           <ComboboxInput
             class="nui-autocomplete-input"
-            :class="classes?.input"
+            :class="[
+              classes?.input,
+              props.dropdown && !props.clearable && '!pe-12',
+              props.dropdown && props.clearable && '!pe-[4.5rem]',
+            ]"
             :display-value="
-              props.multiple ? undefined : (props.displayValue as any)
+              props.multiple ? undefined : (displayValueResolved as any)
             "
             :placeholder="props.placeholder"
             :disabled="props.disabled"
@@ -433,10 +582,15 @@ function removeItem(item: any) {
             </slot>
           </div>
           <button
-            v-if="props.clearable && value"
+            v-if="
+              props.clearable &&
+              ((Array.isArray(vmodel) && vmodel?.length > 0) ||
+                (!Array.isArray(vmodel) && vmodel != null))
+            "
             type="button"
+            tabindex="-1"
             class="nui-autocomplete-clear"
-            :class="[props.classes?.icon, props.dropdown && 'me-6']"
+            :class="[props.classes?.icon, props.dropdown && 'me-10']"
             @click="clear"
           >
             <slot name="clear-icon">
@@ -449,7 +603,7 @@ function removeItem(item: any) {
           <ComboboxButton
             v-if="props.dropdown"
             v-slot="{ open }: { open: boolean }"
-            class="nui-autocomplete-clear"
+            class="nui-autocomplete-clear nui-autocomplete-chevron"
           >
             <slot name="dropdown-icon">
               <Icon
@@ -475,8 +629,14 @@ function removeItem(item: any) {
       >
         {{ props.error }}
       </span>
-      <FloatContent class="w-full">
-        <ComboboxOptions as="div" class="nui-autocomplete-results">
+      <FloatContent :class="!props.fixed && 'w-full'">
+        <ComboboxOptions
+          as="div"
+          :class="{
+            'nui-autocomplete-results':
+              filteredItems.length > 0 || !allowCreate,
+          }"
+        >
           <!-- Placeholder -->
           <div
             v-if="filteredItems.length === 0 && pending"
@@ -492,7 +652,7 @@ function removeItem(item: any) {
             </slot>
           </div>
           <div
-            v-else-if="filteredItems.length === 0"
+            v-else-if="filteredItems.length === 0 && !allowCreate"
             class="nui-autocomplete-results-placeholder"
           >
             <slot
@@ -520,12 +680,38 @@ function removeItem(item: any) {
               ></slot>
             </div>
             <ComboboxOption
+              v-if="allowCreate && queryCreate"
+              :value="queryCreate"
+              v-slot="{ active, selected }"
+              as="div"
+            >
+              <slot
+                name="create-item"
+                v-bind="{
+                  query,
+                  filteredItems,
+                  pending,
+                  items,
+                  active,
+                  selected,
+                }"
+              >
+                <span class="nui-autocomplete-results-item">
+                  Create {{ query }}
+                </span>
+              </slot>
+            </ComboboxOption>
+            <ComboboxOption
               v-for="item in filteredItems"
               v-slot="{ active, selected }"
-              :key="props.displayValue(item)"
+              :key="key(item)"
               class="nui-autocomplete-results-item"
               as="div"
-              :value="item as any"
+              :value="
+                props.modelModifiers.prop && props.properties?.value
+                  ? (item as any)[props.properties.value]
+                  : (item as any)
+              "
             >
               <slot
                 name="item"
@@ -541,15 +727,16 @@ function removeItem(item: any) {
               >
                 <BaseAutocompleteItem
                   :shape="shape"
-                  :value="
-                    isAutocompleteItem(item)
+                  :item="
+                    properties
                       ? item
-                      : {
-                          name: props.displayValue(item),
-                        }
+                      : ({
+                          label: displayValueResolved(item),
+                        } as T)
                   "
                   :active="active"
                   :selected="selected"
+                  :properties="properties"
                 />
               </slot>
             </ComboboxOption>
@@ -574,7 +761,7 @@ function removeItem(item: any) {
   </Combobox>
 </template>
 
-<style scoped>
+<style>
 .nui-autocomplete .nui-autocomplete-results {
   position: unset;
   margin-top: unset;
