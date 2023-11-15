@@ -172,12 +172,7 @@ const props = withDefaults(
     /**
      * Allow custom entries by the user
      */
-    allowCustom?: boolean
-
-    /**
-     * Hide the create custom prompt (just set the model to the value entered)
-     */
-    hideCustomPrompt?: boolean
+    allowCreate?: boolean
 
     /**
      * Used a fixed strategy to float the component
@@ -260,8 +255,7 @@ const props = withDefaults(
     filterDebounce: 0,
     filterItems: undefined,
     classes: () => ({}),
-    allowCustom: false,
-    hideCustomPrompt: false,
+    allowCreate: false,
     fixed: false,
     placement: 'bottom-start',
     properties: undefined,
@@ -358,7 +352,7 @@ const pendingFilter = ref(false)
 const pendingDebounce = computed(() => query.value !== debounced.value)
 const pending = computed(() => pendingFilter.value || pendingDebounce.value)
 
-const queryCustom = computed(() => {
+const queryCreate = computed(() => {
   return query.value === '' ? null : query.value
 })
 
@@ -640,7 +634,7 @@ function key(item: T) {
           as="div"
           :class="{
             'nui-autocomplete-results':
-              filteredItems.length > 0 || !hideCustomPrompt,
+              filteredItems.length > 0 || !allowCreate,
           }"
         >
           <!-- Placeholder -->
@@ -658,7 +652,7 @@ function key(item: T) {
             </slot>
           </div>
           <div
-            v-else-if="filteredItems.length === 0 && !allowCustom"
+            v-else-if="filteredItems.length === 0 && !allowCreate"
             class="nui-autocomplete-results-placeholder"
           >
             <slot
@@ -686,14 +680,26 @@ function key(item: T) {
               ></slot>
             </div>
             <ComboboxOption
-              v-if="allowCustom && queryCustom"
-              :value="queryCustom"
+              v-if="allowCreate && queryCreate"
+              :value="queryCreate"
+              v-slot="{ active, selected }"
               as="div"
-              :class="
-                hideCustomPrompt ? 'hidden' : 'nui-autocomplete-results-item'
-              "
             >
-              Create {{ query }}
+              <slot
+                name="create-item"
+                v-bind="{
+                  query,
+                  filteredItems,
+                  pending,
+                  items,
+                  active,
+                  selected,
+                }"
+              >
+                <span class="nui-autocomplete-results-item">
+                  Create {{ query }}
+                </span>
+              </slot>
             </ComboboxOption>
             <ComboboxOption
               v-for="item in filteredItems"
@@ -759,18 +765,5 @@ function key(item: T) {
 .nui-autocomplete .nui-autocomplete-results {
   position: unset;
   margin-top: unset;
-}
-
-:is(.dark .nui-autocomplete-chevron) {
-  --tw-border-opacity: 1;
-  border-color: rgb(51 65 85 / 1);
-  border-color: rgb(51 65 85 / var(--tw-border-opacity));
-  border-inline-start-width: 1px;
-}
-.nui-autocomplete-chevron {
-  --tw-border-opacity: 1;
-  border-color: rgb(226 232 240 / 1);
-  border-color: rgb(226 232 240 / var(--tw-border-opacity));
-  border-inline-start-width: 1px;
 }
 </style>
