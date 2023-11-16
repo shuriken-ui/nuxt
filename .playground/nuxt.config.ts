@@ -11,6 +11,7 @@ export default defineNuxtConfig({
       families: ['Roboto Flex', 'Inter', 'Karla'],
     },
   },
+  sourcemap: true,
   tailwindcss: {
     config: {
       content: [],
