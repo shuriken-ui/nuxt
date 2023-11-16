@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/shuriken-ui/nuxt/compare/v1.7.3...v1.8.0) (2023-11-16)
+
+
+### Features
+
+* add portal and more generic BaseAutocompleteItem ([df87117](https://github.com/shuriken-ui/nuxt/commit/df871171f9568a3ab464b2460be677863d4cdb3f))
+* add portal to listbox ([d7720f7](https://github.com/shuriken-ui/nuxt/commit/d7720f7647dcbfbaf2f8f774cc8a3cb8cca5e648))
+* add to dropdown ([1dcc5aa](https://github.com/shuriken-ui/nuxt/commit/1dcc5aa122ee3544950115f2fd5f62ecdfe89228))
+* added some useful defaults for display and filter ([672e120](https://github.com/shuriken-ui/nuxt/commit/672e120b79609da7ed36c8816d0b1febb4ec3eb5))
+* consistency to listbox and autocomplete with better defaults ([4292db6](https://github.com/shuriken-ui/nuxt/commit/4292db6180654aa3aaddfcac7a7445535e8d91ad))
+
+
+### Bug Fixes
+
+* accidentally removed dropdown condition ([3c38804](https://github.com/shuriken-ui/nuxt/commit/3c388049a0746a2ef9a4cad9ef844e0d8ebd1e23))
+* added back in custom ([c123d5d](https://github.com/shuriken-ui/nuxt/commit/c123d5d7a81103950f07e79d5d3361f18d1dfe38))
+* page jumping to top ([b5abee9](https://github.com/shuriken-ui/nuxt/commit/b5abee9499fc760b7062809e0a474c860b125fb8))
+* properties should be undefined unless user specifies ([0e678e9](https://github.com/shuriken-ui/nuxt/commit/0e678e9d9710049dbbdb56178e2918510990ec2f))
+* spacing and visibility of clearable icon ([7832c77](https://github.com/shuriken-ui/nuxt/commit/7832c77fa32e734abb82a9ae7f4c8ec58a985c9c))
+* switched portal to fixed ([2f1a93f](https://github.com/shuriken-ui/nuxt/commit/2f1a93fc42621c809b2acf0e6fe6bdea3b8e2f43))
+
 ### [1.7.3](https://github.com/shuriken-ui/nuxt/compare/v1.7.2...v1.7.3) (2023-10-23)
 
 
