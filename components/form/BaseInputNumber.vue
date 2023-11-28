@@ -101,6 +101,11 @@ const props = withDefaults(
     loading?: boolean
 
     /**
+     * Whether the input is in a disabled state.
+     */
+    disabled?: boolean
+
+    /**
      * An error message or boolean value indicating whether the input is in an error state.
      */
     error?: string | boolean
@@ -378,6 +383,7 @@ if (process.dev) {
           :class="props.classes.input"
           :placeholder="placeholder"
           :inputmode="props.inputmode"
+          :disabled="props.disabled"
         />
         <input
           v-else
@@ -390,6 +396,7 @@ if (process.dev) {
           :class="props.classes.input"
           :placeholder="placeholder"
           :inputmode="props.inputmode"
+          :disabled="props.disabled"
         />
         <label
           v-if="
@@ -421,6 +428,7 @@ if (process.dev) {
             @pointerdown="startDecrement"
             @pointerout="stopDecrement"
             @pointerup="stopDecrement"
+            :disabled="props.disabled"
           >
             <Icon :name="props.iconDecrement" />
           </button>
@@ -430,6 +438,7 @@ if (process.dev) {
             @pointerdown="startIncrement"
             @pointerout="stopIncrement"
             @pointerup="stopIncrement"
+            :disabled="props.disabled"
           >
             <Icon :name="props.iconIncrement" />
           </button>
