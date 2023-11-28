@@ -183,7 +183,7 @@ const placementValue = computed(() => {
             <button
               v-else-if="props.flavor === 'context'"
               type="button"
-              class="nui-context-button"
+              class="nui-context-button nui-focus"
             >
               <span class="nui-context-button-inner">
                 <Icon
@@ -196,7 +196,7 @@ const placementValue = computed(() => {
             <button
               v-else-if="props.flavor === 'text'"
               type="button"
-              class="nui-text-button"
+              class="nui-text-button nui-focus"
             >
               <slot name="label" v-bind="{ open, close }">
                 <span class="nui-text-button-inner">{{ props.label }}</span>
