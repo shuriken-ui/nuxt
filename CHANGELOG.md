@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/shuriken-ui/nuxt/compare/v1.8.0...v1.9.0) (2023-11-28)
+
+
+### Features
+
+* **BaseBreadcrumb:** add label slot + support custom icon classes ([56a1b61](https://github.com/shuriken-ui/nuxt/commit/56a1b6190ece40b43d7a7413eb0a3ef43b8a8956))
+* **BaseInputNumber:** add disabled prop ([0fcc1b6](https://github.com/shuriken-ui/nuxt/commit/0fcc1b6d3cfa62c029b0e010f0e349c6fcfc260e))
+
+
+### Bug Fixes
+
+* **BaseDropdown:** add nui-focus on button ([28259d5](https://github.com/shuriken-ui/nuxt/commit/28259d51fa9acff00b3317afd9b5c5d173686b85))
+
 ## [1.8.0](https://github.com/shuriken-ui/nuxt/compare/v1.7.3...v1.8.0) (2023-11-16)
 
 
