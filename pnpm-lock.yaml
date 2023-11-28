@@ -21,8 +21,8 @@ dependencies:
     specifier: ^6.9.4
     version: 6.9.4
   '@shuriken-ui/tailwind':
-    specifier: ^1.5.2
-    version: 1.5.2
+    specifier: ^1.5.3
+    version: 1.5.3
   '@vueuse/nuxt':
     specifier: ^10.6.1
     version: 10.6.1(nuxt@3.8.1)
@@ -1905,8 +1905,8 @@ packages:
       picomatch: 2.3.1
       rollup: 3.29.4
 
-  /@shuriken-ui/tailwind@1.5.2:
-    resolution: {integrity: sha512-Q8bKf3kScifQjSCs8djGQFV2waVFNO2K67CiDHPP1W9PVe4XU0hwdFCHgSH3T8WSfJaN3Pi5znfY+q6vvg40Dg==}
+  /@shuriken-ui/tailwind@1.5.3:
+    resolution: {integrity: sha512-qVL63VahXfgLDxzREdZJZPEFWy9ootI74ZPHycRgE3h58Tn9PjuU7SXIzNqB5CaJeR2ShGy3pWyph6yTfqZUjA==}
     dependencies:
       '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.3.5)
       '@tailwindcss/typography': 0.5.10(tailwindcss@3.3.5)
