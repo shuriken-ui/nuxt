@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.1](https://github.com/shuriken-ui/nuxt/compare/v1.9.0...v1.9.1) (2023-11-28)
+
+
+### Bug Fixes
+
+* **BaseInputNumber:** disabled state bug ([35c2ecf](https://github.com/shuriken-ui/nuxt/commit/35c2ecf49dfc445c75476c1619b24098c2df3fa3))
+
 ## [1.9.0](https://github.com/shuriken-ui/nuxt/compare/v1.8.0...v1.9.0) (2023-11-28)
 
 
