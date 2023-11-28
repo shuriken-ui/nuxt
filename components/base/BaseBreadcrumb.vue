@@ -25,6 +25,11 @@ const props = defineProps<{
     icon?: string
 
     /**
+     * CSS classes to apply to the icon.
+     */
+    iconClasses?: string | string[]
+
+    /**
      * The route to navigate to when the item is clicked.
      */
     to?: RouteLocationRaw
@@ -97,16 +102,27 @@ const items = computed(() => {
           class="nui-breadcrumb-item"
           :class="index !== items.length - 1 ? 'hidden sm:flex' : 'flex'"
         >
-          <NuxtLink
-            :to="item.to"
-            class="nui-item-inner"
-            :class="[item.to && 'nui-has-link']"
-          >
-            <slot name="icon" :icon-name="item.icon">
-              <Icon v-if="item.icon" :name="item.icon" class="nui-item-icon" />
-            </slot>
-            <span :class="[item.hideLabel && 'sr-only']">{{ item.label }}</span>
-          </NuxtLink>
+          <slot name="link" v-bind="{ item, index }">
+            <NuxtLink
+              :to="item.to"
+              class="nui-item-inner"
+              :class="[item.to && 'nui-has-link']"
+            >
+              <slot name="icon" v-bind="{ item, index }">
+                <Icon
+                  v-if="item.icon"
+                  :name="item.icon"
+                  class="nui-item-icon"
+                  :class="item.iconClasses"
+                />
+              </slot>
+              <slot name="label" v-bind="{ item, index }">
+                <span :class="[item.hideLabel && 'sr-only']">
+                  {{ item.label }}
+                </span>
+              </slot>
+            </NuxtLink>
+          </slot>
         </li>
         <li class="nui-breadcrumb-item">
           <div class="nui-item-inner">
