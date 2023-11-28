@@ -21,8 +21,8 @@ dependencies:
     specifier: ^6.9.4
     version: 6.9.4
   '@shuriken-ui/tailwind':
-    specifier: ^1.5.1
-    version: 1.5.1
+    specifier: ^1.5.2
+    version: 1.5.2
   '@vueuse/nuxt':
     specifier: ^10.6.1
     version: 10.6.1(nuxt@3.8.1)
@@ -1702,6 +1702,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     bundledDependencies:
       - napi-wasm
 
@@ -1904,8 +1905,8 @@ packages:
       picomatch: 2.3.1
       rollup: 3.29.4
 
-  /@shuriken-ui/tailwind@1.5.1:
-    resolution: {integrity: sha512-K0SEsdzAzXo//hhM2Q6z+1Cn9CZx0w6WbjFJEWZagXL53ynGOCSVSU8Kp/bLB1PxNp99svWNv9djz3wwalVksg==}
+  /@shuriken-ui/tailwind@1.5.2:
+    resolution: {integrity: sha512-Q8bKf3kScifQjSCs8djGQFV2waVFNO2K67CiDHPP1W9PVe4XU0hwdFCHgSH3T8WSfJaN3Pi5znfY+q6vvg40Dg==}
     dependencies:
       '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.3.5)
       '@tailwindcss/typography': 0.5.10(tailwindcss@3.3.5)
@@ -6244,6 +6245,9 @@ packages:
     resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
     engines: {node: ^14 || ^16 || >=18}
     hasBin: true
+
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
 
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}

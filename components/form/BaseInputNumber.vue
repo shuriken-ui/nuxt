@@ -271,6 +271,8 @@ function clamp(value: number) {
 }
 
 function increment() {
+  if (props.disabled) return
+
   if (value.value === undefined) {
     value.value = 0
     return
@@ -282,6 +284,8 @@ function increment() {
 }
 
 function decrement() {
+  if (props.disabled) return
+
   if (value.value === undefined) {
     value.value = 0
     return
@@ -294,6 +298,8 @@ function decrement() {
 
 let incrementInterval: any
 function startIncrement() {
+  if (props.disabled) return
+
   increment()
   let i = 0
 
@@ -312,6 +318,8 @@ function stopIncrement() {
 
 let decrementInterval: any
 function startDecrement() {
+  if (props.disabled) return
+
   decrement()
   let i = 0
 
