@@ -22,9 +22,9 @@
   "exports": {
     ".": "./nuxt.config.ts",
     "./component-meta": {
-      "types": "./component-meta.d.ts",
-      "import": "./component-meta.mjs",
-      "require": "./component-meta.cjs"
+      "types": "./.component-meta/component-meta.d.ts",
+      "import": "./.component-meta/component-meta.mjs",
+      "require": "./.component-meta/component-meta.cjs"
     }
   },
   "files": [
@@ -34,9 +34,7 @@
     "app.config.ts",
     "nuxt.config.ts",
     "nuxt.schema.ts",
-    "component-meta.d.ts",
-    "component-meta.mjs",
-    "component-meta.cjs"
+    ".component-meta"
   ],
   "scripts": {
     "dev": "nuxt dev .playground --open",
@@ -52,7 +50,7 @@
     "release:standard-version": "standard-version",
     "release:publish": "git push --follow-tags origin main && npm publish",
     "prepare": "simple-git-hooks && nuxt prepare .playground",
-    "prepack": "nuxt build .playground && npx jiti scripts/copy-meta.ts"
+    "prepack": "nuxt-component-meta --no-schema --outputDir='../.component-meta' .playground"
   },
   "dependencies": {
     "@headlessui-float/vue": "^0.12.0",
@@ -81,7 +79,7 @@
     "lint-staged": "^15.1.0",
     "npm-run-all": "^4.1.5",
     "nuxt": "^3.8.1",
-    "nuxt-component-meta": "^0.5.4",
+    "nuxt-component-meta": "^0.6.0",
     "simple-git-hooks": "^2.9.0",
     "standard-version": "^9.5.0",
     "typescript": "^5.2.2",

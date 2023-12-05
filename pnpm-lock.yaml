@@ -80,8 +80,8 @@ devDependencies:
     specifier: ^3.8.1
     version: 3.8.1(@types/node@18.15.11)(eslint@8.53.0)(typescript@5.2.2)(vue-tsc@1.8.22)
   nuxt-component-meta:
-    specifier: ^0.5.4
-    version: 0.5.4
+    specifier: ^0.6.0
+    version: 0.6.0
   simple-git-hooks:
     specifier: ^2.9.0
     version: 2.9.0
@@ -6551,10 +6551,12 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
 
-  /nuxt-component-meta@0.5.4:
-    resolution: {integrity: sha512-0ou1O5Dky/avUAm6XrO4r4aZiRgP3wCwBlOe49FcyVZo0uAULFw8b3j48BvKWzBdOywf8hJEL4V5o7FWnd1E+A==}
+  /nuxt-component-meta@0.6.0:
+    resolution: {integrity: sha512-QpMZiZ9KMhc0d35yAWmGC8hQuxX3+hFDzIEOU7I0LoePBxp1qcWQO6lmIKjnQ7ddHHVpqIQjtPPL2KHzyFgsrQ==}
+    hasBin: true
     dependencies:
       '@nuxt/kit': 3.8.1
+      citty: 0.1.4
       scule: 1.1.0
       typescript: 5.2.2
       vue-component-meta: 1.8.22(typescript@5.2.2)
