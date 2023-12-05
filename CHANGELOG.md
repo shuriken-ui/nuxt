@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.3](https://github.com/shuriken-ui/nuxt/compare/v1.9.2...v1.9.3) (2023-12-05)
+
+
+### Bug Fixes
+
+* use nuxt-component-meta export ([7f539c5](https://github.com/shuriken-ui/nuxt/commit/7f539c5ff55815906ef71c972fa6ef226132b148))
+
 ### [1.9.2](https://github.com/shuriken-ui/nuxt/compare/v1.9.1...v1.9.2) (2023-11-28)
 
 
