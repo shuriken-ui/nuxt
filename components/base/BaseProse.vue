@@ -11,9 +11,7 @@ const props = withDefaults(
   },
 )
 const appConfig = useAppConfig()
-const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.progress,
-)
+const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.prose)
 
 const shapeStyle = {
   straight: 'nui-prose-straight',
