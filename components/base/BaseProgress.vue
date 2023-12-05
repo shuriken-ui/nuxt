@@ -78,7 +78,7 @@ const value = computed(() => {
   if (max === 0) {
     return 0
   }
-  return typeof value === 'number' ? (value / max) * 100 : null
+  return typeof value === 'number' ? (value / max) * 100 : undefined
 })
 </script>
 
