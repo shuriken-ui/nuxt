@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.4](https://github.com/shuriken-ui/nuxt/compare/v1.9.3...v1.9.4) (2023-12-05)
+
+
+### Bug Fixes
+
+* **BaseProgress:** aria-valuenow type ([2215979](https://github.com/shuriken-ui/nuxt/commit/2215979706eb77dae926fc5dcc4685a6abb55916))
+* **BaseProse:** use default config ([8170efc](https://github.com/shuriken-ui/nuxt/commit/8170efcc4d6c50617b709dcb0ae78272bf4dc097))
+
 ### [1.9.3](https://github.com/shuriken-ui/nuxt/compare/v1.9.2...v1.9.3) (2023-12-05)
 
 
