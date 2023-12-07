@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.6](https://github.com/shuriken-ui/nuxt/compare/v1.9.5...v1.9.6) (2023-12-07)
+
+
+### Bug Fixes
+
+* **BaseAutocomplete:** reactive items props + add autocomplete-multiple-list-item slot ([fe9b32a](https://github.com/shuriken-ui/nuxt/commit/fe9b32a2dee0dab92db3a8189f46ac9295361326))
+
 ### [1.9.5](https://github.com/shuriken-ui/nuxt/compare/v1.9.4...v1.9.5) (2023-12-07)
 
 
