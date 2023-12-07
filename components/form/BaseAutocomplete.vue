@@ -413,10 +413,10 @@ defineExpose({
    */
   removeItem,
 })
-watch(debounced, async (value) => {
+watch([debounced, items], async ([value, _items]) => {
   pendingFilter.value = true
   try {
-    filteredItems.value = await filterResolved.value(value, items.value)
+    filteredItems.value = await filterResolved.value(value, _items)
   } catch (error: any) {
     if (error?.name === 'AbortError') {
       // Ignore abort errors
@@ -428,6 +428,12 @@ watch(debounced, async (value) => {
     pendingFilter.value = false
   }
 })
+watch(
+  () => props.items,
+  () => {
+    items.value = props.items
+  },
+)
 
 function clear() {
   vmodel.value = props.clearValue ?? []
@@ -530,17 +536,24 @@ function key(item: T) {
           class="nui-autocomplete-multiple-list"
         >
           <li v-for="item in vmodel" :key="String(item)">
-            <div class="nui-autocomplete-multiple-list-item">
-              {{ displayValueResolved(item) }}
-              <button type="button" @click="removeItem(item)">
-                <slot name="chip-clear-icon">
+            <slot
+              name="autocomplete-multiple-list-item"
+              v-bind="{
+                item,
+                displayValue: displayValueResolved(item),
+                removeItem,
+              }"
+            >
+              <div class="nui-autocomplete-multiple-list-item">
+                {{ displayValueResolved(item) }}
+                <button type="button" @click="removeItem(item)">
                   <Icon
                     :name="chipClearIcon"
                     class="nui-autocomplete-multiple-list-item-icon"
                   />
-                </slot>
-              </button>
-            </div>
+                </button>
+              </div>
+            </slot>
           </li>
         </ul>
       </div>
