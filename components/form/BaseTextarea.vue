@@ -109,6 +109,11 @@ export interface TextareaProps {
   autogrow?: boolean
 
   /**
+   * The maximum height of the textarea when autogrow is enabled.
+   */
+  maxHeight?: number
+
+  /**
    * A set of classes to apply to the various elements of the textarea.
    */
   classes?: {
@@ -151,6 +156,7 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   contrast: 'default',
   rows: 4,
   error: false,
+  maxHeight: undefined,
   classes: () => ({}),
 })
 const emits = defineEmits<{
@@ -202,15 +208,27 @@ function fitSize() {
 
   if (props.autogrow) {
     textareaRef.value.style.height = 'auto'
-    textareaRef.value.style.height = textareaRef.value.scrollHeight + 'px'
+    textareaRef.value.style.height =
+      Math.min(
+        props.maxHeight ?? Number.POSITIVE_INFINITY,
+        1 + textareaRef.value.scrollHeight,
+      ) + 'px'
   }
 }
 
 watch(
-  () => props.modelValue,
+  [
+    () => props.modelValue,
+    () => props.autogrow,
+    () => props.maxHeight,
+    textareaRef,
+  ],
   async () => {
     await nextTick()
     fitSize()
+  },
+  {
+    immediate: true,
   },
 )
 
