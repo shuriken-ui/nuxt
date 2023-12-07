@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.5](https://github.com/shuriken-ui/nuxt/compare/v1.9.4...v1.9.5) (2023-12-07)
+
+
+### Bug Fixes
+
+* **BaseTextarea:** improve autogrow and add maxHeight property ([6610084](https://github.com/shuriken-ui/nuxt/commit/6610084e0e936a3c3eeab685ab6593a6cedfee51))
+
 ### [1.9.4](https://github.com/shuriken-ui/nuxt/compare/v1.9.3...v1.9.4) (2023-12-05)
 
 
