@@ -75,7 +75,7 @@ const props = withDefaults(
   },
 )
 const emits = defineEmits<{
-  (e: 'update:modelValue', value: T | T[]): void
+  'update:modelValue': [value?: T | T[]]
 }>()
 const value = useVModel(props, 'modelValue', emits, {
   passive: true,
@@ -95,8 +95,8 @@ const checked = computed(() => {
   return props.value === undefined
     ? false
     : Array.isArray(value.value)
-    ? value.value.includes(props.value)
-    : value.value === props.value
+      ? value.value.includes(props.value)
+      : value.value === props.value
 })
 
 const colorStyle = {

@@ -23,7 +23,7 @@ const props = withDefaults(
   },
 )
 const emits = defineEmits<{
-  (event: 'drop', value: FileList): void
+  drop: [value: FileList]
 }>()
 const isDropping = ref(false)
 

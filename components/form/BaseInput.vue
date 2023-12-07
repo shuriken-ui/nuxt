@@ -148,7 +148,7 @@ const props = withDefaults(
   },
 )
 const emits = defineEmits<{
-  (event: 'update:modelValue', value?: string | number): void
+  'update:modelValue': [value?: string | number]
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)

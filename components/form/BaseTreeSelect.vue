@@ -129,7 +129,7 @@ const props = withDefaults(
   },
 )
 const emits = defineEmits<{
-  (e: 'update:modelValue', value?: any[]): void
+  'update:modelValue': [value?: any[]]
 }>()
 const value = useVModel(props, 'modelValue', emits, {
   passive: true,
@@ -336,8 +336,8 @@ function getChildren(tree?: TreeViewTreeSource) {
   return treeState?.treeMap.has(tree)
     ? treeState?.treeMap.get(tree)?.tree
     : Array.isArray(tree)
-    ? tree
-    : undefined
+      ? tree
+      : undefined
 }
 
 function getNodeChildren(node?: TreeViewItemNode) {

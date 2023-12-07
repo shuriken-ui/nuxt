@@ -263,8 +263,8 @@ const props = withDefaults(
 )
 
 const emits = defineEmits<{
-  (event: 'update:modelValue', value?: T | T[]): void
-  (event: 'keydown', value: KeyboardEvent): void
+  'update:modelValue': [value?: T | T[]]
+  keydown: [event: KeyboardEvent]
 }>()
 
 const defaultDisplayValue = (item: any): any => {

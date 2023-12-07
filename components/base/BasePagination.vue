@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import type { RouteLocationOptions } from 'vue-router'
 
-export interface PaginationEmits {
-  (event: 'update:currentPage', currentPage: number): void
-}
-
 const props = withDefaults(
   defineProps<{
     /**
@@ -67,7 +63,9 @@ const props = withDefaults(
     nextIcon: 'lucide:chevron-right',
   },
 )
-const emits = defineEmits<PaginationEmits>()
+const emits = defineEmits<{
+  'update:currentPage': [currentPage: number]
+}>()
 const appConfig = useAppConfig()
 const shape = computed(
   () => props.shape ?? appConfig.nui.defaultShapes?.pagination,

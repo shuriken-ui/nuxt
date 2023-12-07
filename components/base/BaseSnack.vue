@@ -35,7 +35,9 @@ const props = withDefaults(
   },
 )
 
-const emit = defineEmits(['delete'])
+const emit = defineEmits<{
+  delete: []
+}>()
 const sizeStyle = {
   sm: 'nui-snack-sm',
   md: 'nui-snack-md',

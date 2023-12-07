@@ -78,7 +78,7 @@ const props = withDefaults(
   },
 )
 const emits = defineEmits<{
-  (e: 'update:modelValue', value: T): void
+  'update:modelValue': [value: T]
 }>()
 const inputRef = ref<HTMLInputElement>()
 const value = useVModel(props, 'modelValue', emits, {

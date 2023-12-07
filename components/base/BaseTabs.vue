@@ -47,7 +47,7 @@ const props = withDefaults(
 )
 
 const emit = defineEmits<{
-  (event: 'update:modelValue', value?: string): void
+  'update:modelValue': [value?: string]
 }>()
 const justifyStyle = {
   start: '',

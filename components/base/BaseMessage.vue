@@ -48,7 +48,7 @@ const props = withDefaults(
   },
 )
 const emit = defineEmits<{
-  (event: 'close'): void
+  close: []
 }>()
 const appConfig = useAppConfig()
 const shape = computed(

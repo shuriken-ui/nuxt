@@ -1,8 +1,4 @@
 <script setup lang="ts">
-export interface TextareaEmits {
-  (event: 'update:modelValue', value?: string): void
-}
-
 export interface TextareaProps {
   /**
    * The model value of the textarea.
@@ -157,7 +153,9 @@ const props = withDefaults(defineProps<TextareaProps>(), {
   error: false,
   classes: () => ({}),
 })
-const emits = defineEmits<TextareaEmits>()
+const emits = defineEmits<{
+  'update:modelValue': [value?: string]
+}>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 

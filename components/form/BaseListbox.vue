@@ -184,7 +184,7 @@ const props = withDefaults(
   },
 )
 const emits = defineEmits<{
-  (event: 'update:modelValue', value?: T | T[]): void
+  'update:modelValue': [value?: T | T[]]
 }>()
 const appConfig = useAppConfig()
 const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
@@ -356,8 +356,8 @@ const value = computed(() => {
                           props.properties.label
                             ? (value as any)[props.properties.label]
                             : props.properties.value
-                            ? (value as any)[props.properties.value]
-                            : value
+                              ? (value as any)[props.properties.value]
+                              : value
                         }}
                       </div>
                     </template>
@@ -421,8 +421,8 @@ const value = computed(() => {
                         value: props.properties.label
                           ? (item as any)[props.properties.label]
                           : props.properties.value
-                          ? (item as any)[props.properties.value]
-                          : (item as any),
+                            ? (item as any)[props.properties.value]
+                            : (item as any),
                         label:
                           props.properties.label &&
                           (item as any)[props.properties.label],

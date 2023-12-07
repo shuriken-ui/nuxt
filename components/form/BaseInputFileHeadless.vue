@@ -29,7 +29,7 @@ const props = withDefaults(
   },
 )
 const emits = defineEmits<{
-  (event: 'update:modelValue', value?: FileList | null): void
+  'update:modelValue': [value?: FileList | null]
 }>()
 const inputRef = ref<HTMLInputElement>()
 const value = useVModel(props, 'modelValue', emits, {
