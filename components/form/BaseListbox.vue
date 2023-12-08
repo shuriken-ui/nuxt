@@ -260,9 +260,9 @@ const value = computed(() => {
     >
       <Float
         composable
-        leave-active-class="transition duration-100 ease-in"
-        leave-from-class="opacity-100"
-        leave-to-class="opacity-0"
+        leave="transition duration-100 ease-in"
+        leave-from="opacity-100"
+        leave-to="opacity-0"
         flip
         :offset="5"
         :strategy="props.fixed ? 'fixed' : 'absolute'"
