@@ -45,17 +45,17 @@ export default defineAppConfig({
       rounded: 'sm',
       color: 'default',
     },
-    BaseIconBox: {
-      variant: 'solid',
-      color: 'default',
-      size: 'xs',
-      rounded: 'sm',
-    },
     BaseHeading: {
       as: 'p',
       size: 'xl',
       weight: 'semibold',
       lead: 'normal',
+    },
+    BaseIconBox: {
+      variant: 'solid',
+      color: 'default',
+      size: 'xs',
+      rounded: 'sm',
     },
     defaultShapes: {
       accordion: 'rounded',
