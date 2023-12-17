@@ -3,8 +3,8 @@ export const useNuiDefaultProperty = (
   component: string,
   property: string,
 ): Ref<string> => {
-  const config = (useAppConfig()?.appConfig as any)?.nui
-  return computed(
-    () => properties?.[property] ?? config?.[component]?.[property],
-  )
+  const config = useAppConfig().nui as any
+  return computed(() => {
+    return properties?.[property] ?? config?.[component]?.[property]
+  })
 }
