@@ -4,7 +4,10 @@ const props = withDefaults(
     /** The maximum number of avatars to display. */
     limit?: number
 
-    /** The size of the avatars. */
+    /** The size of the avatars.
+     *
+     * @default 'sm'
+     */
     size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
 
     /** An array of avatar objects. */
