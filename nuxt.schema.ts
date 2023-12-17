@@ -383,6 +383,26 @@ export default defineNuxtSchema({
          */
         justify: 'start',
       },
+      BaseTabSlider: {
+        /**
+         * The alignment of the tabs.
+         *
+         * @type {'start' | 'center' | 'end'}
+         */
+        justify: 'start',
+        /**
+         * The size of the tabs.
+         *
+         * @type {'sm' | 'md'}
+         */
+        size: 'md',
+        /**
+         * The radius of the tabs.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'lg',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component

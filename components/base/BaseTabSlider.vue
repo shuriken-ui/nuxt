@@ -2,6 +2,18 @@
 const props = withDefaults(
   defineProps<{
     /**
+     * Controls the alignment of the tabs. Can be 'start', 'center', or 'end'.
+     */
+    justify?: 'start' | 'center' | 'end'
+    /**
+     * The size of the tabs.
+     */
+    size?: 'sm' | 'md'
+    /**
+     * Controls the radius of the tabs.
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+    /**
      * An array of objects representing each tab. Each object should have a 'label' and a 'value' property.
      */
     tabs: {
@@ -14,54 +26,40 @@ const props = withDefaults(
      * The value of the currently selected tab.
      */
     modelValue?: string
-    /**
-     * Controls the alignment of the tabs. Can be 'start', 'center', or 'end'.
-     */
-    justify?: 'start' | 'center' | 'end'
-    /**
-     * The size of the tabs.
-     */
-    size?: 'sm' | 'md'
-    /**
-     * Controls the shape of the tabs. Can be 'rounded' or 'full'.
-     */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
-    /**
-     * Controls the size of the tabs. Can be condensed or default.
-     */
-    condensed?: boolean
   }>(),
   {
-    modelValue: undefined,
     justify: undefined,
-    size: 'md',
-    shape: undefined,
+    size: undefined,
+    rounded: undefined,
+    modelValue: undefined,
   },
 )
 const emit = defineEmits<{
   'update:modelValue': [value?: string]
 }>()
-const appConfig = useAppConfig()
-const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.tabSlider,
-)
 
-const justifyStyle = {
+const justify = useNuiDefaultProperty(props, 'BaseTabSlider', 'justify')
+const size = useNuiDefaultProperty(props, 'BaseTabSlider', 'size')
+const rounded = useNuiDefaultProperty(props, 'BaseTabSlider', 'rounded')
+
+const justifies = {
   start: '',
   center: 'nui-tabs-centered',
   end: 'nui-tabs-end',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   sm: 'nui-tabs-sm',
   md: 'nui-tabs-md',
-}
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-tabs-rounded',
-  smooth: 'nui-tabs-smooth',
-  curved: 'nui-tabs-curved',
+} as Record<string, string>
+
+const radiuses = {
+  none: '',
+  sm: 'nui-tabs-rounded',
+  md: 'nui-tabs-smooth',
+  lg: 'nui-tabs-curved',
   full: 'nui-tabs-full',
-}
+} as Record<string, string>
 
 const tabsLength = computed(() => Math.min(3, Math.max(2, props.tabs.length)))
 const lengthStyle = computed(() =>
@@ -91,9 +89,9 @@ watch(activeValue, (value) => {
   <div
     class="nui-tab-slider"
     :class="[
-      props.justify && justifyStyle[props.justify],
-      shape && shapeStyle[shape],
-      sizeStyle[props.size],
+      justify && justifies[justify],
+      rounded && radiuses[rounded],
+      size && sizes[size],
       lengthStyle,
     ]"
   >

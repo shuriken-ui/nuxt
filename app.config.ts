@@ -91,6 +91,11 @@ export default defineAppConfig({
       type: 'tabs',
       justify: 'start',
     },
+    BaseTabSlider: {
+      justify: 'start',
+      size: 'md',
+      rounded: 'lg',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',
