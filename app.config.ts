@@ -45,6 +45,12 @@ export default defineAppConfig({
       rounded: 'sm',
       color: 'default',
     },
+    BaseHeading: {
+      as: 'p',
+      size: 'xl',
+      weight: 'semibold',
+      lead: 'normal',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

@@ -207,6 +207,32 @@ export default defineNuxtSchema({
          */
         color: 'default',
       },
+      BaseHeading: {
+        /**
+         * The tag of the heading.
+         *
+         * @type {'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'p'}
+         */
+        as: 'p',
+        /**
+         * The size of the heading.
+         *
+         * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl'}
+         */
+        size: 'xl',
+        /**
+         * The weight of the heading.
+         *
+         * @type {'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'}
+         */
+        weight: 'semibold',
+        /**
+         * The lead of the heading.
+         *
+         * @type {'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'}
+         */
+        lead: 'normal',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component
