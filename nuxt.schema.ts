@@ -95,6 +95,62 @@ export default defineNuxtSchema({
          */
         color: 'white',
       },
+      BaseDropdown: {
+        /**
+         * The variant of the dropdown.
+         *
+         * @type {'button' | 'context' | 'text'}
+         */
+        variant: 'button',
+        /**
+         * The color of the dropdown button.
+         *
+         * @type {'default' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'light' | 'muted' | 'none'}
+         */
+        buttonColor: 'default',
+        /**
+         * The color of the dropdown.
+         *
+         * @type {'white' | 'white-contrast' | 'muted' | 'muted-contrast' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
+         */
+        color: 'white',
+        /**
+         * Default rounded for the BaseDropdown component
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'md',
+        /**
+         * The placement of the dropdown via floating-ui
+         *
+         * @type {'top' | 'top-start' | 'top-end' | 'right' | 'right-start' | 'right-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end'}
+         */
+        placement: undefined,
+        /**
+         * Default size for the BaseDropdown component menu
+         *
+         * @type {'md' | 'lg'}
+         */
+        size: 'md',
+        /**
+         * The label to display for the dropdown.
+         *
+         * @type {string}
+         */
+        label: '',
+        /**
+         * The header label to display for the dropdown.
+         *
+         * @type {string}
+         */
+        headerLabel: undefined,
+        /**
+         * Used a fixed strategy to float the component
+         *
+         * @type {boolean}
+         */
+        fixed: false,
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component

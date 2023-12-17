@@ -20,7 +20,14 @@ export default defineAppConfig({
     },
     BaseCard: {
       rounded: 'sm',
-      color: 'default',
+      color: 'white',
+    },
+    BaseDropdown: {
+      variant: 'button',
+      buttonColor: 'default',
+      color: 'white',
+      rounded: 'sm',
+      size: 'md',
     },
     defaultShapes: {
       accordion: 'rounded',
