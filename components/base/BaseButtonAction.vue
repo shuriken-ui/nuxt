@@ -67,8 +67,6 @@ const props = withDefaults(
     type: undefined,
     color: undefined,
     rounded: undefined,
-    loading: false,
-    disabled: false,
   },
 )
 
