@@ -36,9 +36,26 @@ const props = withDefaults(
     items?: T[]
 
     /**
-     * The shape of the component.
+     * The radius of the component.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the autocomplete component.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * The contrast of autocomplete component.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * The label to display for the component.
@@ -74,31 +91,6 @@ const props = withDefaults(
     error?: string | boolean
 
     /**
-     * The size of the autocomplete component.
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of autocomplete component.
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
-     * Whether the component is in a loading state.
-     */
-    loading?: boolean
-
-    /**
-     * Whether the component is disabled.
-     */
-    disabled?: boolean
-
-    /**
-     * Whether the component can be cleared by the user.
-     */
-    clearable?: boolean
-
-    /**
      * Value used when clearing the component value.
      */
     clearValue?: any
@@ -117,16 +109,6 @@ const props = withDefaults(
      * The icon to show in the dropdown button
      */
     dropdownIcon?: string
-
-    /**
-     * Display a chevron icon to open suggestions
-     */
-    dropdown?: boolean
-
-    /**
-     * Whether the component allows multiple selections.
-     */
-    multiple?: boolean
 
     /**
      * A function used to render the items as strings in either the input or the tag when multiple is true.
@@ -173,6 +155,31 @@ const props = withDefaults(
      * Allow custom entries by the user
      */
     allowCreate?: boolean
+
+    /**
+     * Whether the component is in a loading state.
+     */
+    loading?: boolean
+
+    /**
+     * Whether the component is disabled.
+     */
+    disabled?: boolean
+
+    /**
+     * Whether the component can be cleared by the user.
+     */
+    clearable?: boolean
+
+    /**
+     * Display a chevron icon to open suggestions
+     */
+    dropdown?: boolean
+
+    /**
+     * Whether the component allows multiple selections.
+     */
+    multiple?: boolean
 
     /**
      * Used a fixed strategy to float the component
@@ -231,13 +238,13 @@ const props = withDefaults(
       prop: false,
     }),
     items: () => [],
-    shape: undefined,
+    rounded: undefined,
+    size: undefined,
+    contrast: undefined,
     icon: undefined,
     placeholder: '',
     label: '',
     error: '',
-    size: 'md',
-    contrast: 'default',
     i18n: () => ({
       pending: 'Loading ...',
       empty: 'Nothing found.',
@@ -321,8 +328,9 @@ const displayValueResolved = computed(() => {
   return props.displayValue
 })
 
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
+const rounded = useNuiDefaultProperty(props, 'BaseAutocomplete', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseAutocomplete', 'size')
+const contrast = useNuiDefaultProperty(props, 'BaseAutocomplete', 'contrast')
 
 const vmodel = useVModel(props, 'modelValue', emits, {
   passive: true,
@@ -356,24 +364,26 @@ const queryCreate = computed(() => {
   return query.value === '' ? null : query.value
 })
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-autocomplete-rounded',
-  smooth: 'nui-autocomplete-smooth',
-  curved: 'nui-autocomplete-curved',
+const radiuses = {
+  none: '',
+  sm: 'nui-autocomplete-rounded',
+  md: 'nui-autocomplete-smooth',
+  lg: 'nui-autocomplete-curved',
   full: 'nui-autocomplete-full',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   sm: 'nui-autocomplete-sm',
   md: 'nui-autocomplete-md',
   lg: 'nui-autocomplete-lg',
-}
-const contrastStyle = {
+} as Record<string, string>
+
+const contrasts = {
   default: 'nui-autocomplete-default',
   'default-contrast': 'nui-autocomplete-default-contrast',
   muted: 'nui-autocomplete-muted',
   'muted-contrast': 'nui-autocomplete-muted-contrast',
-}
+} as Record<string, string>
 
 provide(
   'BaseAutocompleteContext',
@@ -495,9 +505,9 @@ function key(item: T) {
     :class="[
       'nui-autocomplete',
       props.classes?.wrapper,
-      sizeStyle[props.size],
-      contrastStyle[props.contrast],
-      shape && shapeStyle[shape],
+      size && sizes[size],
+      contrast && contrasts[contrast],
+      rounded && radiuses[rounded],
       props.icon && 'nui-has-icon',
       props.labelFloat && 'nui-autocomplete-label-float',
       props.loading && 'nui-autocomplete-loading',
@@ -739,7 +749,7 @@ function key(item: T) {
                 }"
               >
                 <BaseAutocompleteItem
-                  :shape="shape"
+                  :rounded="props.rounded ? props.rounded : rounded"
                   :item="
                     properties
                       ? item

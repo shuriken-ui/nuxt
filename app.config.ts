@@ -4,6 +4,14 @@ export default defineAppConfig({
       rounded: 'sm',
       action: 'dot',
     },
+    BaseAutocomplete: {
+      rounded: 'sm',
+      size: 'md',
+      contrast: 'default',
+    },
+    BaseAutocompleteItem: {
+      rounded: 'sm',
+    },
     BaseAvatar: {
       size: 'sm',
       rounded: 'full',

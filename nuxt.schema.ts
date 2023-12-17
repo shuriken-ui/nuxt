@@ -15,6 +15,34 @@ export default defineNuxtSchema({
          */
         action: 'dot',
       },
+      BaseAutocomplete: {
+        /**
+         * The radius of the autocomplete.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * The size of the autocomplete.
+         *
+         * @type {'sm' | 'md' | 'lg'}
+         */
+        size: 'md',
+        /**
+         * The contrast of the autocomplete.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
+         */
+        contrast: 'default',
+      },
+      BaseAutocompleteItem: {
+        /**
+         * The radius of the autocomplete item.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+      },
       BaseAvatar: {
         /**
          * The size of the avatar.
