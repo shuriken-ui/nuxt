@@ -87,6 +87,10 @@ export default defineAppConfig({
       size: 'md',
       color: 'muted',
     },
+    BaseTabs: {
+      type: 'tabs',
+      justify: 'start',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

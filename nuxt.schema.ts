@@ -369,6 +369,20 @@ export default defineNuxtSchema({
          */
         color: 'muted',
       },
+      BaseTabs: {
+        /**
+         * The type of the tabs.
+         *
+         * @type {'tabs' | 'box'}
+         */
+        type: 'tabs',
+        /**
+         * The alignment of the tabs.
+         *
+         * @type {'start' | 'center' | 'end'}
+         */
+        justify: 'start',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component

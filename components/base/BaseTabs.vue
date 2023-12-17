@@ -2,6 +2,20 @@
 const props = withDefaults(
   defineProps<{
     /**
+     * The type of tabs to display..
+     *
+     * @default 'tabs'
+     */
+    type?: 'tabs' | 'box'
+
+    /**
+     * The horizontal alignment of the tabs.
+     *
+     * @default 'start'
+     */
+    justify?: 'start' | 'center' | 'end'
+
+    /**
      * An array of tab objects that contain a label and value
      */
     tabs: {
@@ -18,46 +32,41 @@ const props = withDefaults(
        */
       icon?: string
     }[]
+
     /**
      * The value of the currently selected tab. This should match the value of one of the tabs in the tabs array.
      */
+
     modelValue?: string
-    /**
-     * The type of tabs to display. Can be either "tabs" or "box".
-     */
-    type?: 'tabs' | 'box'
-    /**
-     * The horizontal alignment of the tabs. Can be "start", "center", or "end".
-     */
-    justify?: 'start' | 'center' | 'end'
-    /**
-     * Whether or not to display the tabs as boxes.
-     */
-    boxed?: boolean
     /**
      * Whether or not to hide the label for the tab.
      */
     hideLabel?: boolean
   }>(),
   {
-    modelValue: undefined,
-    type: 'tabs',
+    type: undefined,
     justify: undefined,
+    modelValue: undefined,
   },
 )
 
 const emit = defineEmits<{
   'update:modelValue': [value?: string]
 }>()
-const justifyStyle = {
+
+const justify = useNuiDefaultProperty(props, 'BaseTabs', 'justify')
+const type = useNuiDefaultProperty(props, 'BaseTabs', 'type')
+
+const justifies = {
   start: '',
   center: 'nui-tabs-centered',
   end: 'nui-tabs-end',
-}
-const typeStyle = {
+} as Record<string, string>
+
+const types = {
   tabs: 'nui-tab-item',
   box: 'nui-pill-item',
-}
+} as Record<string, string>
 
 const activeValue = ref(props.modelValue)
 
@@ -77,13 +86,13 @@ watch(activeValue, (value) => {
 </script>
 
 <template>
-  <div class="nui-tabs" :class="props.justify && justifyStyle[props.justify]">
+  <div class="nui-tabs" :class="props.justify && justifies[justify]">
     <div class="nui-tabs-inner">
       <a
         v-for="(tab, key) in tabs"
         :key="key"
         :class="[
-          typeStyle[props.type],
+          type && types[type],
           activeValue === tab.value && 'nui-active',
           tab.icon && 'nui-has-icon',
         ]"
