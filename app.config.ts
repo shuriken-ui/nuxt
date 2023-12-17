@@ -4,6 +4,10 @@ export default defineAppConfig({
       rounded: 'sm',
       action: 'dot',
     },
+    BaseAvatar: {
+      size: 'sm',
+      rounded: 'full',
+    },
     BaseButton: {
       variant: 'solid',
       rounded: 'sm',

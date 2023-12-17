@@ -15,6 +15,20 @@ export default defineNuxtSchema({
          */
         action: 'dot',
       },
+      BaseAvatar: {
+        /**
+         * The size of the avatar.
+         *
+         * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'}
+         */
+        size: 'sm',
+        /**
+         * The radius of the avatar.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'full',
+      },
       BaseButton: {
         /**
          * Default variant for the BaseButton component
