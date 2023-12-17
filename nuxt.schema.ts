@@ -1,6 +1,32 @@
 export default defineNuxtSchema({
   appConfig: {
     nui: {
+      BaseButton: {
+        /**
+         * Default variant for the BaseButton component
+         *
+         * @type {'solid' | 'pastel' | 'outline'}
+         */
+        variant: 'solid',
+        /**
+         * Default rounded for the BaseButton component
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'md',
+        /**
+         * Default color for the BaseButton component
+         *
+         * @type {'default'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'light'| 'muted'| 'none'}
+         */
+        color: 'default',
+        /**
+         * Default size for the BaseButton component
+         *
+         * @type {'sm' | 'md' | 'lg' | 'xl'}
+         */
+        size: 'md',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component

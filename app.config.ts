@@ -1,5 +1,11 @@
 export default defineAppConfig({
   nui: {
+    BaseButton: {
+      variant: 'solid',
+      rounded: 'sm',
+      color: 'default',
+      size: 'md',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',
