@@ -74,6 +74,12 @@ export default defineAppConfig({
     BasePlaceholderPage: {
       imageSize: 'xs',
     },
+    BaseProgress: {
+      size: 'sm',
+      contrast: 'default',
+      color: 'primary',
+      rounded: 'full',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

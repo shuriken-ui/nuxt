@@ -321,6 +321,32 @@ export default defineNuxtSchema({
          */
         imageSize: 'xs',
       },
+      BaseProgress: {
+        /**
+         * The size of the progress.
+         *
+         * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl'}
+         */
+        size: 'sm',
+        /**
+         * The grey shade of the progress.
+         *
+         * @type {'default' | 'contrast'}
+         */
+        contrast: 'default',
+        /**
+         * The color of the progress.
+         *
+         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger'}
+         */
+        color: 'primary',
+        /**
+         * The radius of the progress.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'full',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component
