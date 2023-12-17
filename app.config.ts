@@ -29,6 +29,10 @@ export default defineAppConfig({
       rounded: 'sm',
       size: 'md',
     },
+    BaseDropdownItem: {
+      rounded: 'sm',
+      color: 'default',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

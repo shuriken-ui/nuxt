@@ -151,6 +151,20 @@ export default defineNuxtSchema({
          */
         fixed: false,
       },
+      BaseDropdownItem: {
+        /**
+         * The radius of the dropdown item.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg'}
+         */
+        rounded: 'md',
+        /**
+         * The color of the dropdown item.
+         *
+         * @type {'default' | 'contrast'}
+         */
+        color: 'default',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component
