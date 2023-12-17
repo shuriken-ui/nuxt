@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-next.0](https://github.com/shuriken-ui/nuxt/compare/v1.9.6...v2.0.0-next.0) (2023-12-17)
+
+
+### Features
+
+* add useNuiDefaultProperty composable ([fe8b8bc](https://github.com/shuriken-ui/nuxt/commit/fe8b8bc6035b3bf3aac0123e397fe836c6bc7244))
+* **BaseButton:** update component configuration ([d68edb6](https://github.com/shuriken-ui/nuxt/commit/d68edb659cabb83151a155e563324ff2efb12baf))
+
+
+### Bug Fixes
+
+* headless ui float transition ([d50fad9](https://github.com/shuriken-ui/nuxt/commit/d50fad90c69bcb0fcffe8d20a04df1f833dfa84e))
+
 ### [1.9.6](https://github.com/shuriken-ui/nuxt/compare/v1.9.5...v1.9.6) (2023-12-07)
 
 
