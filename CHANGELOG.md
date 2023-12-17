@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-next.2](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.1...v2.0.0-next.2) (2023-12-17)
+
+
+### Bug Fixes
+
+* update app.config and BaseButton.vue ([1d7467d](https://github.com/shuriken-ui/nuxt/commit/1d7467dfa218b4a5c6edc283c7c5cdf701376de2))
+
 ## [2.0.0-next.1](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.0...v2.0.0-next.1) (2023-12-17)
 
 
