@@ -29,17 +29,37 @@ export default defineNuxtSchema({
       },
       BaseButtonAction: {
         /**
-         * Default rounded for the BaseButton component
+         * Default rounded for the BaseButtonAction component
          *
          * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
          */
         rounded: 'md',
         /**
-         * Default color for the BaseButton component
+         * Default color for the BaseButtonAction component
          *
          * @type {'default'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'light'| 'muted'| 'none'}
          */
         color: 'default',
+      },
+      BaseButtonIcon: {
+        /**
+         * Default rounded for the BaseButtonIcon component
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'md',
+        /**
+         * Default color for the BaseButtonIcon component
+         *
+         * @type {'default'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'light'| 'muted'| 'none'}
+         */
+        color: 'default',
+        /**
+         * Default size for the BaseButton component
+         *
+         * @type {'sm' | 'md' | 'lg' | 'xl'}
+         */
+        size: 'md',
       },
       defaultShapes: {
         /**

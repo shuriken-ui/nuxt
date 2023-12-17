@@ -225,25 +225,25 @@ const app = useAppConfig()
           <small>default</small>
         </div>
         <div class="flex flex-col items-center">
-          <BaseButtonIcon shape="straight">
+          <BaseButtonIcon rounded="straight">
             <Icon name="fluent-mdl2:shapes" />
           </BaseButtonIcon>
           <small>straight</small>
         </div>
         <div class="flex flex-col items-center">
-          <BaseButtonIcon shape="rounded">
+          <BaseButtonIcon rounded="rounded">
             <Icon name="fluent-mdl2:shapes" />
           </BaseButtonIcon>
           <small>rounded</small>
         </div>
         <div class="flex flex-col items-center">
-          <BaseButtonIcon shape="curved">
+          <BaseButtonIcon rounded="curved">
             <Icon name="fluent-mdl2:shapes" />
           </BaseButtonIcon>
           <small>curved</small>
         </div>
         <div class="flex flex-col items-center">
-          <BaseButtonIcon shape="full">
+          <BaseButtonIcon rounded="full">
             <Icon name="fluent-mdl2:shapes" />
           </BaseButtonIcon>
           <small>full</small>

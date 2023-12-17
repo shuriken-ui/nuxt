@@ -16,16 +16,16 @@ definePageMeta({
         Button icon shape
       </BaseHeading>
       <div class="flex gap-2">
-        <BaseButtonIcon shape="straight">
+        <BaseButtonIcon rounded="straight">
           <Icon name="ph:moon-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
-        <BaseButtonIcon shape="rounded">
+        <BaseButtonIcon rounded="rounded">
           <Icon name="ph:github-logo-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
-        <BaseButtonIcon shape="curved">
+        <BaseButtonIcon rounded="curved">
           <Icon name="ph:game-controller-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
-        <BaseButtonIcon shape="full">
+        <BaseButtonIcon rounded="full">
           <Icon name="ph:heart-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
       </div>
@@ -35,28 +35,28 @@ definePageMeta({
         Button icon colors
       </BaseHeading>
       <div class="flex gap-2">
-        <BaseButtonIcon shape="full" color="default">
+        <BaseButtonIcon rounded="full" color="default">
           <Icon name="ph:heart-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
-        <BaseButtonIcon shape="full" color="muted">
+        <BaseButtonIcon rounded="full" color="muted">
           <Icon name="ph:heart-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
-        <BaseButtonIcon shape="full" color="primary">
+        <BaseButtonIcon rounded="full" color="primary">
           <Icon name="ph:heart-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
-        <BaseButtonIcon shape="full" color="info">
+        <BaseButtonIcon rounded="full" color="info">
           <Icon name="ph:heart-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
-        <BaseButtonIcon shape="full" color="success">
+        <BaseButtonIcon rounded="full" color="success">
           <Icon name="ph:heart-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
-        <BaseButtonIcon shape="full" color="warning">
+        <BaseButtonIcon rounded="full" color="warning">
           <Icon name="ph:heart-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
-        <BaseButtonIcon shape="full" color="danger">
+        <BaseButtonIcon rounded="full" color="danger">
           <Icon name="ph:heart-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
-        <BaseButtonIcon shape="full" color="none">
+        <BaseButtonIcon rounded="full" color="none">
           <Icon name="ph:heart-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
       </div>
@@ -66,13 +66,13 @@ definePageMeta({
         Button icon size
       </BaseHeading>
       <div class="flex gap-2">
-        <BaseButtonIcon shape="full" color="primary" size="sm">
+        <BaseButtonIcon rounded="full" color="primary" size="sm">
           <Icon name="ph:heart-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
-        <BaseButtonIcon shape="full" color="primary" size="md">
+        <BaseButtonIcon rounded="full" color="primary" size="md">
           <Icon name="ph:heart-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
-        <BaseButtonIcon shape="full" color="primary" size="lg">
+        <BaseButtonIcon rounded="full" color="primary" size="lg">
           <Icon name="ph:heart-duotone" class="w-5 h-5" />
         </BaseButtonIcon>
       </div>
