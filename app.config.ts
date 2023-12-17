@@ -1,5 +1,9 @@
 export default defineAppConfig({
   nui: {
+    BaseAccordion: {
+      rounded: 'sm',
+      action: 'dot',
+    },
     BaseButton: {
       variant: 'solid',
       rounded: 'sm',

@@ -1,6 +1,20 @@
 export default defineNuxtSchema({
   appConfig: {
     nui: {
+      BaseAccordion: {
+        /**
+         * The radius of the accordion.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg'}
+         */
+        rounded: 'sm',
+        /**
+         * The action icon of the accordion.
+         *
+         * @type {'dot' | 'chevron' | 'plus'}
+         */
+        action: 'dot',
+      },
       BaseButton: {
         /**
          * Default variant for the BaseButton component
