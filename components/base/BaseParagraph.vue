@@ -3,11 +3,15 @@ const props = withDefaults(
   defineProps<{
     /**
      * The HTML element or component name to use for the paragraph.
+     *
+     * @default 'p'
      */
     as?: string
 
     /**
      * The size of the paragraph.
+     *
+     * @default 'md'
      */
     size?:
       | 'xs'
@@ -26,23 +30,31 @@ const props = withDefaults(
 
     /**
      * The weight of the paragraph.
+     *
+     * @default 'normal'
      */
     weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'
 
     /**
      * The lead of the paragraph.
+     *
+     * @default 'normal'
      */
     lead?: 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
   }>(),
   {
-    as: 'p',
-    size: 'md',
-    weight: 'normal',
-    lead: 'normal',
+    as: undefined,
+    size: undefined,
+    weight: undefined,
+    lead: undefined,
   },
 )
 
-const sizeStyle = {
+const size = useNuiDefaultProperty(props, 'BaseParagraph', 'size')
+const weight = useNuiDefaultProperty(props, 'BaseParagraph', 'weight')
+const lead = useNuiDefaultProperty(props, 'BaseParagraph', 'lead')
+
+const sizes = {
   xs: 'nui-paragraph-xs',
   sm: 'nui-paragraph-sm',
   md: 'nui-paragraph-md',
@@ -56,29 +68,31 @@ const sizeStyle = {
   '7xl': 'nui-paragraph-7xl',
   '8xl': 'nui-paragraph-8xl',
   '9xl': 'nui-paragraph-9xl',
-}
-const weightStyle = {
+} as Record<string, string>
+
+const weights = {
   light: 'nui-weight-light',
   normal: 'nui-weight-normal',
   medium: 'nui-weight-medium',
   semibold: 'nui-weight-semibold',
   bold: 'nui-weight-bold',
   extrabold: 'nui-weight-extrabold',
-}
-const leadStyle = {
+} as Record<string, string>
+
+const leads = {
   none: 'nui-lead-none',
   tight: 'nui-lead-tight',
   snug: 'nui-lead-snug',
   normal: 'nui-lead-normal',
   relaxed: 'nui-lead-relaxed',
   loose: 'nui-lead-loose',
-}
+} as Record<string, string>
 
 const classes = computed(() => [
   'nui-paragraph',
-  sizeStyle[props.size],
-  weightStyle[props.weight],
-  leadStyle[props.lead],
+  size.value && sizes[size.value],
+  weight.value && weights[weight.value],
+  lead.value && leads[lead.value],
 ])
 </script>
 

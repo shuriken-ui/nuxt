@@ -65,6 +65,12 @@ export default defineAppConfig({
     BasePagination: {
       rounded: 'sm',
     },
+    BaseParagraph: {
+      as: 'p',
+      size: 'md',
+      weight: 'normal',
+      lead: 'normal',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

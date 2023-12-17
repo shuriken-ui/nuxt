@@ -287,6 +287,32 @@ export default defineNuxtSchema({
          */
         rounded: 'sm',
       },
+      BaseParagraph: {
+        /**
+         * The tag of the paragraph.
+         *
+         * @type {string}
+         */
+        as: 'p',
+        /**
+         * The size of the paragraph.
+         *
+         * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl'}
+         */
+        size: 'md',
+        /**
+         * The weight of the paragraph.
+         *
+         * @type {'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'}
+         */
+        weight: 'normal',
+        /**
+         * The lead of the paragraph.
+         *
+         * @type {'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'}
+         */
+        lead: 'normal',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component
