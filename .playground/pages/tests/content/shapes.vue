@@ -338,22 +338,30 @@ const app = useAppConfig()
         </div>
         <div>
           <BasePagination
-            shape="straight"
+            rounded="straight"
             :item-per-page="1"
             :total-items="3"
           />
           <small>straight</small>
         </div>
         <div>
-          <BasePagination shape="rounded" :item-per-page="1" :total-items="3" />
+          <BasePagination
+            rounded="rounded"
+            :item-per-page="1"
+            :total-items="3"
+          />
           <small>rounded</small>
         </div>
         <div>
-          <BasePagination shape="curved" :item-per-page="1" :total-items="3" />
+          <BasePagination
+            rounded="curved"
+            :item-per-page="1"
+            :total-items="3"
+          />
           <small>curved</small>
         </div>
         <div>
-          <BasePagination shape="full" :item-per-page="1" :total-items="3" />
+          <BasePagination rounded="full" :item-per-page="1" :total-items="3" />
           <small>full</small>
         </div>
       </div>

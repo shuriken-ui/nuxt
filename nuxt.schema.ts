@@ -279,6 +279,14 @@ export default defineNuxtSchema({
          */
         closable: false,
       },
+      BasePagination: {
+        /**
+         * The radius of the pagination.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component

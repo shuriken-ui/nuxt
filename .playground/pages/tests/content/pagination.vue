@@ -21,35 +21,35 @@ definePageMeta({
           :total-items="200"
           :current-page="4"
           :max-links-displayed="2"
-          shape="straight"
+          rounded="straight"
         />
         <BasePagination
           :item-per-page="4"
           :total-items="200"
           :current-page="4"
           :max-links-displayed="2"
-          shape="rounded"
+          rounded="rounded"
         />
         <BasePagination
           :item-per-page="4"
           :total-items="200"
           :current-page="4"
           :max-links-displayed="2"
-          shape="smooth"
+          rounded="smooth"
         />
         <BasePagination
           :item-per-page="4"
           :total-items="200"
           :current-page="4"
           :max-links-displayed="2"
-          shape="curved"
+          rounded="curved"
         />
         <BasePagination
           :item-per-page="4"
           :total-items="200"
           :current-page="4"
           :max-links-displayed="2"
-          shape="full"
+          rounded="full"
         />
       </div>
     </div>

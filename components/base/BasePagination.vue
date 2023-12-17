@@ -4,6 +4,14 @@ import type { RouteLocationOptions } from 'vue-router'
 const props = withDefaults(
   defineProps<{
     /**
+     * The radius of the pagination.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
      * The number of items to display per page.
      */
     itemPerPage: number
@@ -34,11 +42,6 @@ const props = withDefaults(
     routerQueryKey?: string
 
     /**
-     * The shape of the pagination.
-     */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
-
-    /**
      * The icon to show for the previous button.
      */
     previousIcon?: string
@@ -54,30 +57,28 @@ const props = withDefaults(
     ellipsis?: string
   }>(),
   {
+    rounded: undefined,
     currentPage: 1,
     maxLinksDisplayed: 3,
     routerQueryKey: 'page',
-    ellipsis: '…',
-    shape: undefined,
     previousIcon: 'lucide:chevron-left',
     nextIcon: 'lucide:chevron-right',
+    ellipsis: '…',
   },
 )
 const emits = defineEmits<{
   'update:currentPage': [currentPage: number]
 }>()
-const appConfig = useAppConfig()
-const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.pagination,
-)
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-pagination-rounded',
-  smooth: 'nui-pagination-smooth',
-  curved: 'nui-pagination-curved',
+const rounded = useNuiDefaultProperty(props, 'BaseButton', 'rounded')
+
+const radiuses = {
+  none: '',
+  sm: 'nui-pagination-rounded',
+  md: 'nui-pagination-smooth',
+  lg: 'nui-pagination-curved',
   full: 'nui-pagination-full',
-}
+} as Record<string, string>
 
 const route = useRoute()
 const lastPage = computed(
@@ -152,11 +153,14 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
 </script>
 
 <template>
-  <div class="nui-pagination" :class="[props.shape && shapeStyle[props.shape]]">
+  <div
+    class="nui-pagination"
+    :class="[props.rounded ? props.rounded : radiuses[rounded]]"
+  >
     <BaseFocusLoop
       as="ul"
       class="nui-pagination-list"
-      :class="props.shape && shapeStyle[props.shape]"
+      :class="props.rounded ? props.rounded : radiuses[rounded]"
     >
       <slot name="before-pagination"></slot>
       <!-- Link -->
@@ -167,7 +171,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           class="nui-pagination-link"
           :class="[
             currentPage === 1 && 'nui-active',
-            props.shape && shapeStyle[props.shape],
+            props.rounded ? props.rounded : radiuses[rounded],
           ]"
           @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
           @click="(e: any) => handleLinkClick(e, 1)"
@@ -180,7 +184,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
       <li v-if="showLastLink && pages.length > 0 && pages[0] > 2">
         <span
           class="nui-pagination-ellipsis"
-          :class="[props.shape && shapeStyle[props.shape]]"
+          :class="[props.rounded ? props.rounded : radiuses[rounded]]"
         >
           {{ props.ellipsis }}
         </span>
@@ -195,7 +199,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           class="nui-pagination-link"
           :class="[
             currentPage === page && 'nui-active',
-            props.shape && shapeStyle[props.shape],
+            props.rounded ? props.rounded : radiuses[rounded],
           ]"
           @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
           @click="(e: any) => handleLinkClick(e, page)"
@@ -208,7 +212,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
       <li v-if="showLastLink && pages[pages.length - 1] < lastPage - 1">
         <span
           class="nui-pagination-ellipsis"
-          :class="[props.shape && shapeStyle[props.shape]]"
+          :class="[props.rounded ? props.rounded : radiuses[rounded]]"
         >
           {{ props.ellipsis }}
         </span>
@@ -222,7 +226,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           class="nui-pagination-link"
           :class="[
             currentPage === lastPage && 'nui-active',
-            props.shape && shapeStyle[props.shape],
+            props.rounded ? props.rounded : radiuses[rounded],
           ]"
           @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
           @click="(e: any) => handleLinkClick(e, lastPage)"
@@ -235,7 +239,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
 
     <BaseFocusLoop
       class="nui-pagination-buttons"
-      :class="props.shape && shapeStyle[props.shape]"
+      :class="props.rounded ? props.rounded : radiuses[rounded]"
     >
       <slot name="before-navigation"></slot>
 
