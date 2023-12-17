@@ -152,13 +152,17 @@ const masks = {
           v-if="props.src"
           :src="props.src"
           class="nui-avatar-img"
-          :class="[props.srcDark ? 'dark:hidden' : '']"
+          :class="[
+            rounded && radiuses[rounded],
+            props.srcDark ? 'dark:hidden' : '',
+          ]"
         />
 
         <img
           v-if="props.src && props.srcDark"
           :src="props.srcDark"
           class="nui-avatar-img hidden"
+          :class="rounded && radiuses[rounded]"
         />
 
         <span v-if="!props.src" class="nui-avatar-text">

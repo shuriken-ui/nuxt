@@ -14,13 +14,70 @@ definePageMeta({
     class="flex flex-col gap-12 [&>*]:p-8 [&>:nth-child(odd)]:bg-muted-100 dark:[&>:nth-child(odd)]:bg-muted-900 pb-32"
   >
     <div>
+      <div class="flex flex-wrap items-end gap-4">
+        <BaseAvatar size="xxs">
+          <img
+            src="https://tairo.cssninja.io/img/avatars/1.svg"
+            rounded="full"
+          />
+        </BaseAvatar>
+        <BaseAvatar size="xs">
+          <img
+            src="https://tairo.cssninja.io/img/avatars/1.svg"
+            rounded="full"
+          />
+        </BaseAvatar>
+
+        <BaseAvatar
+          src="https://tairo.cssninja.io/img/avatars/5.svg"
+          rounded="full"
+        />
+
+        <BaseAvatar
+          src="https://tairo.cssninja.io/img/avatars/4.svg"
+          rounded="full"
+          size="md"
+        />
+
+        <BaseAvatar
+          src="https://tairo.cssninja.io/img/avatars/3.svg"
+          rounded="full"
+          size="lg"
+        />
+
+        <BaseAvatar
+          src="https://tairo.cssninja.io/img/avatars/8.svg"
+          rounded="full"
+          size="xl"
+        />
+
+        <BaseAvatar
+          src="https://tairo.cssninja.io/img/avatars/16.svg"
+          rounded="full"
+          size="2xl"
+        />
+
+        <BaseAvatar
+          src="https://tairo.cssninja.io/img/avatars/2.svg"
+          rounded="full"
+          size="3xl"
+        />
+
+        <BaseAvatar
+          src="https://tairo.cssninja.io/img/avatars/20.svg"
+          rounded="full"
+          size="4xl"
+        />
+      </div>
+    </div>
+    <div>
       <BaseHeading size="xl" weight="medium" class="mb-10">
-        BaseAvatar Shape
+        BaseAvatar Rounded
       </BaseHeading>
       <div class="grid grid-cols-8 gap-6">
         <div class="flex flex-col items-center">
           <BaseAvatar
-            src="https://source.unsplash.com/random/"
+            src="https://tairo.cssninja.io/img/avatars/2.svg"
             dot
             badgeSrc="https://source.unsplash.com/random/"
           />
@@ -29,7 +86,7 @@ definePageMeta({
         <div class="flex flex-col items-center">
           <BaseAvatar
             src="https://source.unsplash.com/random/"
-            shape="straight"
+            rounded="none"
             dot
             badgeSrc="https://source.unsplash.com/random/"
           />
@@ -38,7 +95,7 @@ definePageMeta({
         <div class="flex flex-col items-center">
           <BaseAvatar
             src="https://source.unsplash.com/random/"
-            shape="rounded"
+            rounded="sm"
             dot
           />
           <small>rounded</small>
@@ -46,7 +103,7 @@ definePageMeta({
         <div class="flex flex-col items-center">
           <BaseAvatar
             src="https://source.unsplash.com/random/"
-            shape="curved"
+            rounded="lg"
             dot
           />
           <small>curved</small>
@@ -54,7 +111,7 @@ definePageMeta({
         <div class="flex flex-col items-center">
           <BaseAvatar
             src="https://source.unsplash.com/random/"
-            shape="full"
+            rounded="full"
             dot="warning"
             ring
           />
@@ -70,7 +127,7 @@ definePageMeta({
         <div class="flex flex-col items-center">
           <BaseAvatar
             src="https://source.unsplash.com/random/"
-            shape="straight"
+            rounded="none"
             mask="hex"
             dot
           />
@@ -79,7 +136,7 @@ definePageMeta({
         <div class="flex flex-col items-center">
           <BaseAvatar
             src="https://source.unsplash.com/random/"
-            shape="straight"
+            rounded="none"
             mask="hexed"
             dot
           />
@@ -88,7 +145,7 @@ definePageMeta({
         <div class="flex flex-col items-center">
           <BaseAvatar
             src="https://source.unsplash.com/random/"
-            shape="straight"
+            rounded="none"
             mask="deca"
             dot
           />
@@ -97,7 +154,7 @@ definePageMeta({
         <div class="flex flex-col items-center">
           <BaseAvatar
             src="https://source.unsplash.com/random/"
-            shape="straight"
+            rounded="none"
             mask="blob"
             dot
           />
@@ -106,7 +163,7 @@ definePageMeta({
         <div class="flex flex-col items-center">
           <BaseAvatar
             src="https://source.unsplash.com/random/"
-            shape="straight"
+            rounded="none"
             mask="diamond"
             dot
           />
