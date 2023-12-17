@@ -18,6 +18,10 @@ export default defineAppConfig({
       color: 'default',
       size: 'md',
     },
+    BaseCard: {
+      rounded: 'sm',
+      color: 'default',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

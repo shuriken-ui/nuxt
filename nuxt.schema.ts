@@ -81,6 +81,20 @@ export default defineNuxtSchema({
          */
         size: 'md',
       },
+      BaseCard: {
+        /**
+         * Default rounded for the BaseCard component
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg'}
+         */
+        rounded: 'md',
+        /**
+         * Default color for the BaseCard component
+         *
+         * @type {'white'| 'white-contrast'| 'muted'| 'muted-contrast'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'none'}
+         */
+        color: 'white',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component
