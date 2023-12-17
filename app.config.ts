@@ -8,6 +8,10 @@ export default defineAppConfig({
       size: 'sm',
       rounded: 'full',
     },
+    BaseAvatarGroup: {
+      limit: 4,
+      size: 'sm',
+    },
     BaseButton: {
       variant: 'solid',
       rounded: 'sm',

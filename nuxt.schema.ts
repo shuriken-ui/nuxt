@@ -29,6 +29,20 @@ export default defineNuxtSchema({
          */
         rounded: 'full',
       },
+      BaseAvatarGroup: {
+        /**
+         * The limit of avatars to display.
+         *
+         * @type {number}
+         */
+        limit: 4,
+        /**
+         * The size of the avatar group.
+         *
+         * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'}
+         */
+        size: 'sm',
+      },
       BaseButton: {
         /**
          * Default variant for the BaseButton component

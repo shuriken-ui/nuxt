@@ -1,5 +1,26 @@
 <script setup lang="ts">
-import IconIndeterminate from '~~/../components/icon/IconIndeterminate.vue'
+const people = [
+  {
+    'data-nui-tooltip': 'Clarissa Perez',
+    src: 'https://tairo.cssninja.io/img/avatars/19.svg',
+  },
+  {
+    'data-nui-tooltip': 'Aaaron Splatter',
+    src: 'https://tairo.cssninja.io/img/avatars/16.svg',
+  },
+  {
+    'data-nui-tooltip': 'Mike Miller',
+    src: 'https://tairo.cssninja.io/img/avatars/3.svg',
+  },
+  {
+    'data-nui-tooltip': 'Benedict Kessler',
+    src: 'https://tairo.cssninja.io/img/avatars/22.svg',
+  },
+  {
+    'data-nui-tooltip': 'Maya Rosselini',
+    src: 'https://tairo.cssninja.io/img/avatars/2.svg',
+  },
+]
 
 definePageMeta({
   title: 'Avatar',
@@ -13,6 +34,11 @@ definePageMeta({
   <div
     class="flex flex-col gap-12 [&>*]:p-8 [&>:nth-child(odd)]:bg-muted-100 dark:[&>:nth-child(odd)]:bg-muted-900 pb-32"
   >
+    <div>
+      <div class="flex flex-wrap items-end gap-4">
+        <BaseAvatarGroup size="sm" :limit="5" :avatars="people" />
+      </div>
+    </div>
     <div>
       <div class="flex flex-wrap items-end gap-4">
         <BaseAvatar size="xxs">
