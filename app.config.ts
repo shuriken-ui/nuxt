@@ -83,6 +83,10 @@ export default defineAppConfig({
     BaseProse: {
       rounded: 'md',
     },
+    BaseSnack: {
+      size: 'md',
+      color: 'muted',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

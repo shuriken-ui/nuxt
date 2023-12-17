@@ -355,6 +355,20 @@ export default defineNuxtSchema({
          */
         rounded: 'none',
       },
+      BaseSnack: {
+        /**
+         * The size of the snack.
+         *
+         * @type {'xs' | 'sm' | 'md'}
+         */
+        size: 'md',
+        /**
+         * The color of the snack.
+         *
+         * @type {'default' | 'muted'}
+         */
+        color: 'muted',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component
