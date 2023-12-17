@@ -102,6 +102,11 @@ export default defineAppConfig({
       size: 'md',
       rounded: 'lg',
     },
+    BaseText: {
+      size: 'md',
+      weight: 'normal',
+      lead: 'normal',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

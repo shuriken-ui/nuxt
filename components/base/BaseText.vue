@@ -3,6 +3,8 @@ const props = withDefaults(
   defineProps<{
     /**
      * The size of the text.
+     *
+     * @default 'md'
      */
     size?:
       | 'xs'
@@ -21,22 +23,30 @@ const props = withDefaults(
 
     /**
      * The weight of the text.
+     *
+     * @default 'normal'
      */
     weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'
 
     /**
      * The lead of the text.
+     *
+     * @default 'normal'
      */
     lead?: 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
   }>(),
   {
-    size: 'md',
-    weight: 'normal',
-    lead: 'normal',
+    size: undefined,
+    weight: undefined,
+    lead: undefined,
   },
 )
 
-const sizeStyle = {
+const size = useNuiDefaultProperty(props, 'BaseText', 'size')
+const weight = useNuiDefaultProperty(props, 'BaseText', 'weight')
+const lead = useNuiDefaultProperty(props, 'BaseText', 'lead')
+
+const sizes = {
   xs: 'nui-content-xs',
   sm: 'nui-content-sm',
   md: 'nui-content-md',
@@ -50,29 +60,31 @@ const sizeStyle = {
   '7xl': 'nui-content-7xl',
   '8xl': 'nui-content-8xl',
   '9xl': 'nui-content-9xl',
-}
-const weightStyle = {
+} as Record<string, string>
+
+const weights = {
   light: 'nui-weight-light',
   normal: 'nui-weight-normal',
   medium: 'nui-weight-medium',
   semibold: 'nui-weight-semibold',
   bold: 'nui-weight-bold',
   extrabold: 'nui-weight-extrabold',
-}
-const leadStyle = {
+} as Record<string, string>
+
+const leads = {
   none: 'nui-lead-none',
   tight: 'nui-lead-tight',
   snug: 'nui-lead-snug',
   normal: 'nui-lead-normal',
   relaxed: 'nui-lead-relaxed',
   loose: 'nui-lead-loose',
-}
+} as Record<string, string>
 
 const classes = computed(() => [
   'nui-text',
-  sizeStyle[props.size],
-  weightStyle[props.weight],
-  leadStyle[props.lead],
+  size.value && sizes[size.value],
+  weight.value && weights[weight.value],
+  lead.value && leads[lead.value],
 ])
 </script>
 

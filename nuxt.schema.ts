@@ -429,6 +429,26 @@ export default defineNuxtSchema({
          */
         size: 'md',
       },
+      BaseText: {
+        /**
+         * The size of the text span.
+         *
+         * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl'}
+         */
+        size: 'md',
+        /**
+         * The weight of the text span.
+         *
+         * @type {'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'}
+         */
+        weight: 'normal',
+        /**
+         * The lead of the text span.
+         *
+         * @type {'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'}
+         */
+        lead: 'normal',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component
