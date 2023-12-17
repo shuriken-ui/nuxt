@@ -23,7 +23,7 @@ export default defineNuxtSchema({
         /**
          * Default size for the BaseButton component
          *
-         * @type {'sm' | 'md' | 'lg' | 'xl'}
+         * @type {'sm' | 'md' | 'lg'}
          */
         size: 'md',
       },
@@ -36,6 +36,26 @@ export default defineNuxtSchema({
         rounded: 'md',
         /**
          * Default color for the BaseButtonAction component
+         *
+         * @type {'default'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'light'| 'muted'| 'none'}
+         */
+        color: 'default',
+      },
+      BaseButtonClose: {
+        /**
+         * Default size for the BaseButtonClose component
+         *
+         * @type {'xs' | 'sm' | 'md' | 'lg'}
+         */
+        size: 'sm',
+        /**
+         * Default rounded for the BaseButtonClose component
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'full',
+        /**
+         * Default color for the BaseButtonClose component
          *
          * @type {'default'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'light'| 'muted'| 'none'}
          */

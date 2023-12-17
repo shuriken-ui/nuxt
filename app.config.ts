@@ -10,6 +10,9 @@ export default defineAppConfig({
       rounded: 'sm',
       color: 'default',
     },
+    BaseButtonClose: {
+      rounded: 'full',
+    },
     BaseButtonIcon: {
       rounded: 'sm',
       color: 'default',

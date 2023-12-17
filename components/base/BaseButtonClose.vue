@@ -2,10 +2,25 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The shape of the button.
+     * The size of the button.
+     *
+     * @default 'sm'
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
-    /** The color of the button. Can be 'default' or 'muted. */
+    size?: 'xs' | 'sm' | 'md' | 'lg'
+
+    /**
+     * The radius of the button.
+     *
+     * @since 2.0.0
+     * @default 'full'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The color of the button.
+     *
+     * @default 'default'
+     */
     color?:
       | 'default'
       | 'muted'
@@ -17,24 +32,32 @@ const props = withDefaults(
       | 'none'
   }>(),
   {
-    shape: undefined,
-    color: 'default',
+    size: undefined,
+    rounded: undefined,
+    color: undefined,
   },
 )
 
-const appConfig = useAppConfig()
-const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.buttonClose,
-)
+const size = useNuiDefaultProperty(props, 'BaseButtonClose', 'size')
+const rounded = useNuiDefaultProperty(props, 'BaseButtonClose', 'rounded')
+const color = useNuiDefaultProperty(props, 'BaseButtonClose', 'color')
 
-const shapeStyle = {
+const sizes = {
+  xs: 'nui-button-xs',
+  sm: 'nui-button-sm',
+  md: 'nui-button-md',
+  lg: 'nui-button-lg',
+} as Record<string, string>
+
+const radiuses = {
   straight: '',
   rounded: 'nui-button-rounded',
   smooth: 'nui-button-smooth',
   curved: 'nui-button-curved',
   full: 'nui-button-full',
-}
-const colorStyle = {
+} as Record<string, string>
+
+const colors = {
   default: 'nui-button-default',
   muted: 'nui-button-muted',
   primary: 'nui-button-primary',
@@ -43,12 +66,13 @@ const colorStyle = {
   warning: 'nui-button-warning',
   danger: 'nui-button-danger',
   none: '',
-}
+} as Record<string, string>
 
 const classes = computed(() => [
   'nui-button-close',
-  shape.value && shapeStyle[shape.value],
-  colorStyle[props.color],
+  size.value && sizes[size.value],
+  rounded.value && radiuses[rounded.value],
+  color.value && colors[color.value],
 ])
 </script>
 
