@@ -96,6 +96,12 @@ export default defineAppConfig({
       size: 'md',
       rounded: 'lg',
     },
+    BaseTag: {
+      variant: 'solid',
+      color: 'default',
+      size: 'md',
+      rounded: 'lg',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

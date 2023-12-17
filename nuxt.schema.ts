@@ -403,6 +403,32 @@ export default defineNuxtSchema({
          */
         rounded: 'lg',
       },
+      BaseTag: {
+        /**
+         * The variant of the tag.
+         *
+         * @type {'solid' | 'pastel' | 'outline'}
+         */
+        variant: 'solid',
+        /**
+         * The color of the tag.
+         *
+         * @type {'default' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'light' | 'muted'}
+         */
+        color: 'default',
+        /**
+         * The radius of the tag.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'lg',
+        /**
+         * The size of the tag.
+         *
+         * @type {'sm' | 'md'}
+         */
+        size: 'md',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component
