@@ -347,6 +347,14 @@ export default defineNuxtSchema({
          */
         rounded: 'full',
       },
+      BaseProse: {
+        /**
+         * The radius of the prose.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg'}
+         */
+        rounded: 'none',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component

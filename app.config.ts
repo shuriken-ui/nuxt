@@ -80,6 +80,9 @@ export default defineAppConfig({
       color: 'primary',
       rounded: 'full',
     },
+    BaseProse: {
+      rounded: 'md',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',
