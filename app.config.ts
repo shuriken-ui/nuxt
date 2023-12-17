@@ -71,6 +71,9 @@ export default defineAppConfig({
       weight: 'normal',
       lead: 'normal',
     },
+    BasePlaceholderPage: {
+      imageSize: 'xs',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

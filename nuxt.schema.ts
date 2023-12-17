@@ -313,6 +313,14 @@ export default defineNuxtSchema({
          */
         lead: 'normal',
       },
+      BasePlaceholderPage: {
+        /**
+         * The size of the placeholder image.
+         *
+         * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl'}
+         */
+        imageSize: 'xs',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component
