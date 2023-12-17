@@ -45,6 +45,12 @@ export default defineAppConfig({
       rounded: 'sm',
       color: 'default',
     },
+    BaseIconBox: {
+      variant: 'solid',
+      color: 'default',
+      size: 'xs',
+      rounded: 'sm',
+    },
     BaseHeading: {
       as: 'p',
       size: 'xl',

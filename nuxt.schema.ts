@@ -233,6 +233,32 @@ export default defineNuxtSchema({
          */
         lead: 'normal',
       },
+      BaseIconBox: {
+        /**
+         * The variant of the icon box.
+         *
+         * @type {'solid' | 'outline' | 'pastel'}
+         */
+        variant: 'solid',
+        /**
+         * The color of the icon box.
+         *
+         * @type {'default' | 'invert' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
+         */
+        color: 'default',
+        /**
+         * The size of the icon box.
+         *
+         * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'}
+         */
+        size: 'xs',
+        /**
+         * The radius of the icon box.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'md',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component
