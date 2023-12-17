@@ -6,6 +6,10 @@ export default defineAppConfig({
       color: 'default',
       size: 'md',
     },
+    BaseButtonAction: {
+      rounded: 'sm',
+      color: 'default',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

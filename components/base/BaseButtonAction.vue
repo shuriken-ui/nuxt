@@ -4,22 +4,12 @@ import type { RouteLocationRaw } from 'vue-router'
 const props = withDefaults(
   defineProps<{
     /**
-     * The type of button.
-     */
-    type?: 'button' | 'submit' | 'reset'
-
-    /**
      * The route to navigate to when the button is clicked.
      */
     to?: RouteLocationRaw
 
     /** Using href instead of to result in a native anchor with no router functionality. */
     href?: string
-
-    /**
-     * Whether the button is disabled.
-     */
-    disabled?: boolean
 
     /**
      * The value for the `rel` attribute on the button.
@@ -32,17 +22,14 @@ const props = withDefaults(
     target?: string
 
     /**
-     * The shape of the button.
+     * The type of button.
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
-
-    /**
-     * Whether the button is in a loading state.
-     */
-    loading?: boolean
+    type?: 'button' | 'submit' | 'reset'
 
     /**
      * The color of the button.
+     *
+     * @default 'default'
      */
     color?:
       | 'default'
@@ -53,35 +40,50 @@ const props = withDefaults(
       | 'warning'
       | 'danger'
       | 'none'
+
+    /**
+     * The radius of the button.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * Whether the button is in a loading state.
+     */
+    loading?: boolean
+
+    /**
+     * Whether the button is disabled.
+     */
+    disabled?: boolean
   }>(),
   {
-    shape: undefined,
     to: undefined,
     href: undefined,
-    target: '',
     rel: '',
-    color: 'default',
+    target: '',
     type: undefined,
-    disabled: false,
+    color: undefined,
+    rounded: undefined,
     loading: false,
-    active: false,
-    muted: false,
+    disabled: false,
   },
 )
 
-const appConfig = useAppConfig()
-const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.buttonAction,
-)
+const rounded = useNuiDefaultProperty(props, 'BaseButtonAction', 'rounded')
+const color = useNuiDefaultProperty(props, 'BaseButtonAction', 'color')
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-button-rounded',
-  smooth: 'nui-button-smooth',
-  curved: 'nui-button-curved',
+const radiuses = {
+  none: '',
+  sm: 'nui-button-rounded',
+  md: 'nui-button-smooth',
+  lg: 'nui-button-curved',
   full: 'nui-button-full',
-}
-const colorStyle = {
+} as Record<string, string>
+
+const colors = {
   default: 'nui-button-default',
   muted: 'nui-button-muted',
   primary: 'nui-button-primary',
@@ -90,13 +92,13 @@ const colorStyle = {
   warning: 'nui-button-warning',
   danger: 'nui-button-danger',
   none: '',
-}
+} as Record<string, string>
 
 const classes = computed(() => [
   'nui-button-action',
   props.loading && 'nui-button-loading',
-  colorStyle[props.color],
-  shape.value && shapeStyle[shape.value],
+  color.value && colors[color.value],
+  rounded.value && radiuses[rounded.value],
 ])
 
 const { attributes, is } = useNinjaButton(props)

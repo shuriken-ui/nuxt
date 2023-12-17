@@ -19,14 +19,16 @@ const value2 = ref('')
         Button shape
       </BaseHeading>
       <div class="flex gap-2">
-        <BaseButtonAction shape="straight">Button</BaseButtonAction>
-        <BaseButtonAction color="muted" shape="rounded">
+        <BaseButtonAction rounded="straight">Button</BaseButtonAction>
+        <BaseButtonAction color="muted" rounded="rounded">
           Button
         </BaseButtonAction>
-        <BaseButtonAction color="primary" shape="curved">
+        <BaseButtonAction color="primary" rounded="curved">
           Button
         </BaseButtonAction>
-        <BaseButtonAction color="success" shape="full">Button</BaseButtonAction>
+        <BaseButtonAction color="success" rounded="full">
+          Button
+        </BaseButtonAction>
       </div>
     </div>
     <div>
