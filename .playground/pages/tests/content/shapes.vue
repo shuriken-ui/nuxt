@@ -208,10 +208,10 @@ const app = useAppConfig()
       </BaseHeading>
       <div class="flex gap-4">
         <BaseButtonAction>default</BaseButtonAction>
-        <BaseButtonAction shape="straight">straight</BaseButtonAction>
-        <BaseButtonAction shape="rounded">rounded</BaseButtonAction>
-        <BaseButtonAction shape="curved">curved</BaseButtonAction>
-        <BaseButtonAction shape="full">full</BaseButtonAction>
+        <BaseButtonAction rounded="straight">straight</BaseButtonAction>
+        <BaseButtonAction rounded="rounded">rounded</BaseButtonAction>
+        <BaseButtonAction rounded="curved">curved</BaseButtonAction>
+        <BaseButtonAction rounded="full">full</BaseButtonAction>
       </div>
     </div>
 

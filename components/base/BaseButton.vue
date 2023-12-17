@@ -35,6 +35,7 @@ const props = withDefaults(
 
     /**
      * The color of the button.
+     *
      * @default 'default'
      */
     color?:
@@ -165,9 +166,6 @@ const { attributes, is } = useNinjaButton(props)
   <component :is="is" v-bind="attributes" :class="classes">
     <slot v-if="!props.loading" />
     <BasePlaceload v-else class="h-4 w-12 rounded" />
-    <!-- <pre>
-      {{ classes }}
-    </pre> -->
     <span v-if="props.badge" :class="badges">
       <span v-if="props.badgePulse" class="nui-button-badge-pulse"></span>
       <span class="nui-button-badge-inner"></span>
