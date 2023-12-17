@@ -57,6 +57,11 @@ export default defineAppConfig({
       size: 'xs',
       rounded: 'sm',
     },
+    BaseMessage: {
+      type: 'success',
+      rounded: 'sm',
+      closable: false,
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

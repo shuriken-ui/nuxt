@@ -259,6 +259,26 @@ export default defineNuxtSchema({
          */
         rounded: 'md',
       },
+      BaseMessage: {
+        /**
+         * The type of the message.
+         *
+         * @type {'default' | 'muted' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
+         */
+        type: 'success',
+        /**
+         * The radius of the message.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * Determines if the message is closable.
+         *
+         * @type {boolean}
+         */
+        closable: false,
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component
