@@ -6,11 +6,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The label to display for the checkbox.
-     */
-    label?: string
-
-    /**
      * Defines the value of the checkbox when it's checked.
      */
     value?: T
@@ -34,14 +29,19 @@ const props = withDefaults(
      * The form input identifier.
      */
     id?: string
+
+    /**
+     * The label to display for the checkbox.
+     */
+    label?: string
   }>(),
   {
     modelValue: undefined,
     value: undefined,
-    id: undefined,
-    label: undefined,
     trueValue: true as any,
     falseValue: false as any,
+    id: undefined,
+    label: undefined,
   },
 )
 const emits = defineEmits<{
