@@ -533,6 +533,14 @@ export default defineNuxtSchema({
          */
         color: 'muted',
       },
+      BaseSwitchBall: {
+        /**
+         * The color of the switch.
+         *
+         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger'}
+         */
+        color: 'primary',
+      },
       BaseTabs: {
         /**
          * The type of the tabs.

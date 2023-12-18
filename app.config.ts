@@ -131,6 +131,9 @@ export default defineAppConfig({
       size: 'md',
       color: 'muted',
     },
+    BaseSwitchBall: {
+      color: 'primary',
+    },
     BaseTabs: {
       type: 'tabs',
       justify: 'start',
