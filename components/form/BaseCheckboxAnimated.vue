@@ -11,11 +11,6 @@ const props = withDefaults(
     value?: T
 
     /**
-     * The form input identifier.
-     */
-    id?: string
-
-    /**
      * The model value of the component.
      */
     modelValue?: T | T[]
@@ -29,6 +24,11 @@ const props = withDefaults(
      * The value to set when the component is unchecked.
      */
     falseValue?: T
+
+    /**
+     * The form input identifier.
+     */
+    id?: string
 
     /** The color of the checkbox.
      *
@@ -64,11 +64,11 @@ const props = withDefaults(
     }
   }>(),
   {
-    id: undefined,
     value: undefined,
+    modelValue: undefined,
     trueValue: true as any,
     falseValue: false as any,
-    modelValue: undefined,
+    id: undefined,
     color: undefined,
     classes: () => ({
       wrapper: [],
