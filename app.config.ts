@@ -77,6 +77,11 @@ export default defineAppConfig({
       size: 'md',
       contrast: 'default',
     },
+    BaseInputFile: {
+      rounded: 'sm',
+      size: 'md',
+      contrast: 'default',
+    },
     BaseMessage: {
       type: 'success',
       rounded: 'sm',
