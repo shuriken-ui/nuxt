@@ -1,9 +1,9 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Typography',
-  icon: 'lucide:text-cursor',
+  icon: 'system-uicons:paragraph-left',
   description: 'Tailwind typography plugin',
-  section: 'base',
+  section: 'authority',
 })
 </script>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'BaseButton',
-  icon: 'mingcute:cursor-fill',
+  icon: 'system-uicons:duplicate-alt',
   description: 'Button component',
   section: 'base',
 })

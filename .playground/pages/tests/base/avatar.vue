@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'BaseAvatar',
-  icon: 'mingcute:look-up-fill',
+  icon: 'system-uicons:user-male',
   description: 'Avatar component',
   section: 'base',
 })

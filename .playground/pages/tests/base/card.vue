@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'BaseCard',
-  icon: 'mingcute:display-fill',
+  icon: 'system-uicons:panel-top',
   description: 'Card component',
   section: 'base',
 })

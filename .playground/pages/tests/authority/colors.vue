@@ -1,9 +1,9 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'Colors',
-  icon: 'lucide:pen-tool',
-  description: 'Basic colors',
-  section: 'base',
+  icon: 'system-uicons:venn',
+  description: 'Color system',
+  section: 'authority',
 })
 </script>
 

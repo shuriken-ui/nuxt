@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'BaseBreadcrumb',
-  icon: 'mingcute:more-1-fill',
+  icon: 'system-uicons:chain',
   description: 'Breadcrumb component',
   section: 'base',
 })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'BaseButtonIcon',
-  icon: 'mingcute:cursor-fill',
+  icon: 'system-uicons:plus-circle',
   description: 'Button icon component',
   section: 'base',
 })

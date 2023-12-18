@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'BaseAccordion',
-  icon: 'mingcute:align-horizontal-center-fill',
+  icon: 'system-uicons:flip-view',
   description: 'Accordion component',
   section: 'base',
 })

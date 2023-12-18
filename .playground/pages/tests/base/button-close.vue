@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'BaseButtonClose',
-  icon: 'mingcute:cursor-fill',
+  icon: 'system-uicons:cross-circle',
   description: 'Button close component',
   section: 'base',
 })

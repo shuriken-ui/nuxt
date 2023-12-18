@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'BaseFocusLoop',
-  icon: 'mingcute:back-fill',
+  icon: 'system-uicons:marquee',
   description: 'Focus Loop component',
   section: 'base',
 })

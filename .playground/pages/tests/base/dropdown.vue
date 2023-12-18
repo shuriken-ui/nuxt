@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   title: 'BaseDropdown',
-  icon: 'mingcute:classify-2-fill',
+  icon: 'system-uicons:maximise',
   description: 'Dropdown component',
   section: 'base',
 })
