@@ -179,6 +179,14 @@ export default defineNuxtSchema({
          */
         color: 'default',
       },
+      BaseCheckboxAnimated: {
+        /**
+         * Default color for the BaseCheckbox component
+         *
+         * @type {'light' | 'muted' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
+         */
+        color: 'primary',
+      },
       BaseDropdown: {
         /**
          * The variant of the dropdown.
