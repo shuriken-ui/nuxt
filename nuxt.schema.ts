@@ -499,6 +499,26 @@ export default defineNuxtSchema({
          */
         color: 'default',
       },
+      BaseSelect: {
+        /**
+         * The radius of the select.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * The size of the select.
+         *
+         * @type {'sm' | 'md' | 'lg'}
+         */
+        size: 'md',
+        /**
+         * The contrast of the select.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
+         */
+        contrast: 'default',
+      },
       BaseSnack: {
         /**
          * The size of the snack.

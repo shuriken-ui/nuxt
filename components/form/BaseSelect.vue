@@ -16,20 +16,31 @@ const props = withDefaults(
     id?: string
 
     /**
-     * The shape of the select input.
-     * Can be one of 'straight', 'rounded', 'curved', or 'full'.
+     * The radius of the select input.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the select input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * The contrast of the select input.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * The label text for the select input.
      */
     label?: string
-
-    /**
-     * Empty option text added to the beginning of the select input.
-     */
-    placeholder?: string
 
     /**
      * If the label should be floating.
@@ -42,6 +53,11 @@ const props = withDefaults(
     icon?: string
 
     /**
+     * The placeholder to display for the select input.
+     */
+    placeholder?: string
+
+    /**
      * Whether the select input is in a loading state.
      */
     loading?: boolean
@@ -52,24 +68,9 @@ const props = withDefaults(
     disabled?: boolean
 
     /**
-     * Whether the select input is read-only.
-     */
-    readonly?: boolean
-
-    /**
      * An error message to display, or a boolean indicating whether there is an error.
      */
     error?: string | boolean
-
-    /**
-     * The size of the select input.
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the select input.
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * Classes to apply to the select input.
@@ -107,12 +108,12 @@ const props = withDefaults(
     }
   }>(),
   {
-    id: undefined,
     modelValue: undefined,
+    id: undefined,
+    rounded: undefined,
+    size: undefined,
+    contrast: undefined,
     label: '',
-    size: 'md',
-    contrast: 'default',
-    shape: undefined,
     icon: undefined,
     placeholder: '',
     error: false,
@@ -122,27 +123,31 @@ const props = withDefaults(
 const emits = defineEmits<{
   'update:modelValue': [value?: any]
 }>()
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-select-rounded',
-  smooth: 'nui-select-smooth',
-  curved: 'nui-select-curved',
+const rounded = useNuiDefaultProperty(props, 'BaseSelect', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseSelect', 'size')
+const contrast = useNuiDefaultProperty(props, 'BaseSelect', 'contrast')
+
+const radiuses = {
+  none: '',
+  sm: 'nui-select-rounded',
+  md: 'nui-select-smooth',
+  lg: 'nui-select-curved',
   full: 'nui-select-full',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   sm: 'nui-select-sm',
   md: 'nui-select-md',
   lg: 'nui-select-lg',
-}
-const contrastStyle = {
+} as Record<string, string>
+
+const contrasts = {
   default: 'nui-select-default',
   'default-contrast': 'nui-select-default-contrast',
   muted: 'nui-select-muted',
   'muted-contrast': 'nui-select-muted-contrast',
-}
+} as Record<string, string>
 
 const selectRef = ref<HTMLSelectElement>()
 const value = useVModel(props, 'modelValue', emits, {
@@ -173,9 +178,9 @@ const placeholder = computed(() => {
   <div
     class="nui-select-wrapper"
     :class="[
-      contrastStyle[props.contrast],
-      sizeStyle[props.size],
-      shape && shapeStyle[shape],
+      contrast && contrasts[contrast],
+      size && sizes[size],
+      rounded && radiuses[rounded],
       props.error && !props.loading && 'nui-select-error',
       props.loading && 'nui-select-loading',
       props.labelFloat && 'nui-select-label-float',
@@ -201,7 +206,6 @@ const placeholder = computed(() => {
         v-model="value"
         v-bind="$attrs"
         :disabled="props.disabled"
-        :readonly="props.readonly"
         class="nui-select"
         :class="props.classes.select"
       >
@@ -233,7 +237,10 @@ const placeholder = computed(() => {
           <Icon class="nui-select-icon-inner" :name="props.icon" />
         </slot>
       </div>
-      <div class="nui-select-chevron" :class="props.classes?.chevron">
+      <div
+        class="nui-select-chevron nui-chevron"
+        :class="props.classes?.chevron"
+      >
         <IconChevronDown class="nui-select-chevron-inner" />
       </div>
       <span

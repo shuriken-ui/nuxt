@@ -122,6 +122,11 @@ export default defineAppConfig({
     BaseRadio: {
       color: 'default',
     },
+    BaseSelect: {
+      rounded: 'sm',
+      size: 'md',
+      contrast: 'default',
+    },
     BaseSnack: {
       size: 'md',
       color: 'muted',
