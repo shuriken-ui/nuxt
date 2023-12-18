@@ -50,6 +50,7 @@ const props = withDefaults(
   },
 )
 
+const as = useNuiDefaultProperty(props, 'BaseParagraph', 'as')
 const size = useNuiDefaultProperty(props, 'BaseParagraph', 'size')
 const weight = useNuiDefaultProperty(props, 'BaseParagraph', 'weight')
 const lead = useNuiDefaultProperty(props, 'BaseParagraph', 'lead')
@@ -97,7 +98,7 @@ const classes = computed(() => [
 </script>
 
 <template>
-  <component :is="props.as" :class="classes">
+  <component :is="props.as ? props.as : as" :class="classes">
     <slot></slot>
   </component>
 </template>
