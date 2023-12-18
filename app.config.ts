@@ -157,6 +157,11 @@ export default defineAppConfig({
       weight: 'normal',
       lead: 'normal',
     },
+    BaseTextarea: {
+      rounded: 'sm',
+      size: 'md',
+      contrast: 'default',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

@@ -629,6 +629,26 @@ export default defineNuxtSchema({
          */
         lead: 'normal',
       },
+      BaseTextarea: {
+        /**
+         * The radius of the textarea.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * The size of the textarea.
+         *
+         * @type {'sm' | 'md' | 'lg'}
+         */
+        size: 'md',
+        /**
+         * The contrast of the textarea.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
+         */
+        contrast: 'default',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component
