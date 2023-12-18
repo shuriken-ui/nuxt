@@ -119,6 +119,9 @@ export default defineAppConfig({
     BaseProse: {
       rounded: 'md',
     },
+    BaseRadio: {
+      color: 'default',
+    },
     BaseSnack: {
       size: 'md',
       color: 'muted',

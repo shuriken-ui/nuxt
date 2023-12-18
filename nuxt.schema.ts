@@ -491,6 +491,14 @@ export default defineNuxtSchema({
          */
         rounded: 'none',
       },
+      BaseRadio: {
+        /**
+         * Default color for the BaseRadio component
+         *
+         * @type {'default' | 'light' | 'muted' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
+         */
+        color: 'default',
+      },
       BaseSnack: {
         /**
          * The size of the snack.
