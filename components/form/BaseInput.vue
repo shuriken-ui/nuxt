@@ -43,9 +43,26 @@ const props = withDefaults(
     type?: string
 
     /**
-     * The shape of the input.
+     * The radius of the input.
+     *
+     * @since 2.0.0
+     * @default 'rounded'
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * The contrast of the input.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * The label to display for the input.
@@ -58,14 +75,19 @@ const props = withDefaults(
     labelFloat?: boolean
 
     /**
+     * The icon to display for the input.
+     */
+    icon?: string
+
+    /**
      * The placeholder to display for the input.
      */
     placeholder?: string
 
     /**
-     * The icon to display for the input.
+     * An error message or boolean value indicating whether the input is in an error state.
      */
-    icon?: string
+    error?: string | boolean
 
     /**
      * Whether the color of the input should change when it is focused.
@@ -76,21 +98,6 @@ const props = withDefaults(
      * Whether the input is in a loading state.
      */
     loading?: boolean
-
-    /**
-     * An error message or boolean value indicating whether the input is in an error state.
-     */
-    error?: string | boolean
-
-    /**
-     * The size of the input.
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the input.
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -133,44 +140,48 @@ const props = withDefaults(
     }
   }>(),
   {
-    id: undefined,
     modelValue: undefined,
     modelModifiers: () => ({}),
+    id: undefined,
     type: 'text',
-    size: 'md',
-    contrast: 'default',
-    shape: undefined,
+    rounded: undefined,
+    size: undefined,
+    contrast: undefined,
     label: undefined,
     icon: undefined,
-    error: false,
     placeholder: undefined,
+    error: false,
     classes: () => ({}),
   },
 )
 const emits = defineEmits<{
   'update:modelValue': [value?: string | number]
 }>()
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-input-rounded',
-  smooth: 'nui-input-smooth',
-  curved: 'nui-input-curved',
+const rounded = useNuiDefaultProperty(props, 'BaseInput', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseInput', 'size')
+const contrast = useNuiDefaultProperty(props, 'BaseInput', 'contrast')
+
+const radiuses = {
+  none: '',
+  sm: 'nui-input-rounded',
+  md: 'nui-input-smooth',
+  lg: 'nui-input-curved',
   full: 'nui-input-full',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   sm: 'nui-input-sm',
   md: 'nui-input-md',
   lg: 'nui-input-lg',
-}
-const contrastStyle = {
+} as Record<string, string>
+
+const contrasts = {
   default: 'nui-input-default',
   'default-contrast': 'nui-input-default-contrast',
   muted: 'nui-input-muted',
   'muted-contrast': 'nui-input-muted-contrast',
-}
+} as Record<string, string>
 
 function looseToNumber(val: any) {
   const n = Number.parseFloat(val)
@@ -229,9 +240,9 @@ if (process.dev) {
   <div
     class="nui-input-wrapper"
     :class="[
-      contrastStyle[props.contrast],
-      sizeStyle[props.size],
-      shape && shapeStyle[shape],
+      contrast && contrasts[contrast],
+      size && sizes[size],
+      rounded && radiuses[rounded],
       props.error && !props.loading && 'nui-input-error',
       props.loading && 'nui-input-loading',
       props.labelFloat && 'nui-input-label-float',

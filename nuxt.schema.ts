@@ -309,6 +309,26 @@ export default defineNuxtSchema({
          */
         rounded: 'md',
       },
+      BaseInput: {
+        /**
+         * The radius of the input.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * The size of the input.
+         *
+         * @type {'sm' | 'md' | 'lg'}
+         */
+        size: 'md',
+        /**
+         * The contrast of the input.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
+         */
+        contrast: 'default',
+      },
       BaseMessage: {
         /**
          * The type of the message.
