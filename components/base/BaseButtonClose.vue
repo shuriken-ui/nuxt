@@ -50,10 +50,10 @@ const sizes = {
 } as Record<string, string>
 
 const radiuses = {
-  straight: '',
-  rounded: 'nui-button-rounded',
-  smooth: 'nui-button-smooth',
-  curved: 'nui-button-curved',
+  none: '',
+  sm: 'nui-button-rounded',
+  md: 'nui-button-smooth',
+  lg: 'nui-button-curved',
   full: 'nui-button-full',
 } as Record<string, string>
 
