@@ -54,10 +54,10 @@ const type = useNuiDefaultProperty(props, 'BaseMessage', 'type')
 const rounded = useNuiDefaultProperty(props, 'BaseMessage', 'rounded')
 
 const radiuses = {
-  straight: '',
-  rounded: 'nui-message-rounded',
-  smooth: 'nui-message-smooth',
-  curved: 'nui-message-curved',
+  none: '',
+  sm: 'nui-message-rounded',
+  md: 'nui-message-smooth',
+  lg: 'nui-message-curved',
   full: 'nui-message-full',
 } as Record<string, string>
 
