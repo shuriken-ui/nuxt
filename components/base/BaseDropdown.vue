@@ -33,17 +33,7 @@ const props = withDefaults(
      *
      * @default 'white'
      */
-    color?:
-      | 'white'
-      | 'white-contrast'
-      | 'muted'
-      | 'muted-contrast'
-      | 'primary'
-      | 'info'
-      | 'success'
-      | 'warning'
-      | 'danger'
-      | 'none'
+    color?: 'white' | 'white-contrast' | 'muted' | 'muted-contrast' | 'none'
 
     /**
      * The radius of the dropdown button.
