@@ -93,6 +93,10 @@ definePageMeta({
           This is a link
         </BaseLink>
       </NuiPreview>
+
+      <NuiPreview title="NuiMark" description="Marked text component">
+        <mark class="nui-mark">Iam a marked text</mark>
+      </NuiPreview>
     </NuiPreviewContainer>
   </div>
 </template>
