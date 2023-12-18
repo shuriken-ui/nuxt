@@ -23,8 +23,8 @@ const props = withDefaults(
     filterFileDropped?: (file: File) => boolean
   }>(),
   {
-    id: undefined,
     modelValue: undefined,
+    id: undefined,
     filterFileDropped: () => true,
   },
 )
