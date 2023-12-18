@@ -70,7 +70,7 @@ const emits = defineEmits<{
   'update:currentPage': [currentPage: number]
 }>()
 
-const rounded = useNuiDefaultProperty(props, 'BaseButton', 'rounded')
+const rounded = useNuiDefaultProperty(props, 'BasePagination', 'rounded')
 
 const radiuses = {
   none: '',
@@ -153,14 +153,11 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
 </script>
 
 <template>
-  <div
-    class="nui-pagination"
-    :class="[props.rounded ? props.rounded : radiuses[rounded]]"
-  >
+  <div class="nui-pagination" :class="[rounded && radiuses[rounded]]">
     <BaseFocusLoop
       as="ul"
       class="nui-pagination-list"
-      :class="props.rounded ? props.rounded : radiuses[rounded]"
+      :class="rounded && radiuses[rounded]"
     >
       <slot name="before-pagination"></slot>
       <!-- Link -->
@@ -171,7 +168,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           class="nui-pagination-link"
           :class="[
             currentPage === 1 && 'nui-active',
-            props.rounded ? props.rounded : radiuses[rounded],
+            rounded && radiuses[rounded],
           ]"
           @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
           @click="(e: any) => handleLinkClick(e, 1)"
@@ -184,7 +181,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
       <li v-if="showLastLink && pages.length > 0 && pages[0] > 2">
         <span
           class="nui-pagination-ellipsis"
-          :class="[props.rounded ? props.rounded : radiuses[rounded]]"
+          :class="[rounded && radiuses[rounded]]"
         >
           {{ props.ellipsis }}
         </span>
@@ -199,7 +196,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           class="nui-pagination-link"
           :class="[
             currentPage === page && 'nui-active',
-            props.rounded ? props.rounded : radiuses[rounded],
+            rounded && radiuses[rounded],
           ]"
           @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
           @click="(e: any) => handleLinkClick(e, page)"
@@ -212,7 +209,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
       <li v-if="showLastLink && pages[pages.length - 1] < lastPage - 1">
         <span
           class="nui-pagination-ellipsis"
-          :class="[props.rounded ? props.rounded : radiuses[rounded]]"
+          :class="[rounded && radiuses[rounded]]"
         >
           {{ props.ellipsis }}
         </span>
@@ -226,7 +223,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           class="nui-pagination-link"
           :class="[
             currentPage === lastPage && 'nui-active',
-            props.rounded ? props.rounded : radiuses[rounded],
+            rounded && radiuses[rounded],
           ]"
           @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
           @click="(e: any) => handleLinkClick(e, lastPage)"
@@ -239,7 +236,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
 
     <BaseFocusLoop
       class="nui-pagination-buttons"
-      :class="props.rounded ? props.rounded : radiuses[rounded]"
+      :class="rounded && radiuses[rounded]"
     >
       <slot name="before-navigation"></slot>
 
