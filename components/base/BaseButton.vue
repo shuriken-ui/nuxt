@@ -146,7 +146,7 @@ const shadows = {
 const badges = computed(() =>
   props.badge && ['default', 'light', 'muted', 'none'].includes(color.value)
     ? ''
-    : `nui-button-badge ${badgeColors[color.value]}`,
+    : `${badgeColors[color.value]}`,
 )
 
 const classes = computed(() => [
@@ -166,7 +166,7 @@ const { attributes, is } = useNinjaButton(props)
   <component :is="is" v-bind="attributes" :class="classes">
     <slot v-if="!props.loading" />
     <BasePlaceload v-else class="h-4 w-12 rounded" />
-    <span v-if="props.badge" :class="badges">
+    <span v-if="props.badge" class="nui-button-badge" :class="badges">
       <span v-if="props.badgePulse" class="nui-button-badge-pulse"></span>
       <span class="nui-button-badge-inner"></span>
     </span>
