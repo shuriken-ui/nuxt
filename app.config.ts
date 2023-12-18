@@ -162,6 +162,9 @@ export default defineAppConfig({
       size: 'md',
       contrast: 'default',
     },
+    BaseTreeSelectItem: {
+      rounded: 'sm',
+    },
     defaultShapes: {
       accordion: 'rounded',
       autocompleteItem: 'rounded',

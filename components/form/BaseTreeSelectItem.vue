@@ -37,22 +37,22 @@ const props = withDefaults(
     toggle?: () => void
 
     /**
-     * The shape of the component.
+     * The radius of the component.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
   }>(),
   {
-    level: 1,
-    shape: undefined,
     value: () => ({}),
+    level: 1,
     toggle: undefined,
+    rounded: undefined,
   },
 )
 
-const appConfig = useAppConfig()
-const shape = computed(
-  () => props.shape ?? appConfig.nui?.defaultShapes?.autocompleteItem,
-)
+const rounded = useNuiDefaultProperty(props, 'BaseTreeSelectItem', 'rounded')
 
 const wrapperTag = computed(() => {
   if (!props.toggle) {
@@ -73,17 +73,17 @@ const wrapperProps = computed(() => {
     class: 'nui-focus',
   }
 })
-
-// shape
 </script>
 
 <template>
   <div
     class="flex items-center p-2 ps-0"
     :class="[
-      shape === 'rounded' && 'rounded-md',
-      shape === 'curved' && 'rounded-lg',
-      shape === 'full' && 'rounded-xl',
+      rounded === 'none' && 'rounded-none',
+      rounded === 'sm' && 'rounded',
+      rounded === 'md' && 'rounded-md',
+      rounded === 'lg' && 'rounded-lg',
+      rounded === 'full' && 'rounded-xl',
     ]"
   >
     <slot></slot>
@@ -106,7 +106,7 @@ const wrapperProps = computed(() => {
       </BaseIconBox>
       <div class="flex flex-col items-start">
         <div
-          class="text-muted-800 font-heading text-sm font-medium leading-none dark:text-white"
+          class="text-muted-800 font-sans text-sm font-medium leading-none dark:text-white"
         >
           {{ props.value.name }}
         </div>

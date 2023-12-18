@@ -649,6 +649,14 @@ export default defineNuxtSchema({
          */
         contrast: 'default',
       },
+      BaseTreeSelectItem: {
+        /**
+         * The radius of the tree select item.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg'}
+         */
+        rounded: 'sm',
+      },
       defaultShapes: {
         /**
          * Default shape for the BaseAccordion component
