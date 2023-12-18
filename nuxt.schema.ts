@@ -653,7 +653,7 @@ export default defineNuxtSchema({
         /**
          * The radius of the tree select item.
          *
-         * @type {'none' | 'sm' | 'md' | 'lg'}
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
          */
         rounded: 'sm',
       },
