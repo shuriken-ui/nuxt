@@ -349,6 +349,32 @@ export default defineNuxtSchema({
          */
         contrast: 'default',
       },
+      BaseInputNumber: {
+        /**
+         * The inputmode to use for the input, usually for mobile devices.
+         *
+         * @type {'decimal' | 'numeric'}
+         */
+        inputmode: 'numeric',
+        /**
+         * The radius of the input.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * The size of the input.
+         *
+         * @type {'sm' | 'md' | 'lg'}
+         */
+        size: 'md',
+        /**
+         * The contrast of the input.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
+         */
+        contrast: 'default',
+      },
       BaseMessage: {
         /**
          * The type of the message.

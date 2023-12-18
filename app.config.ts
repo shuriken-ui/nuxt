@@ -82,6 +82,12 @@ export default defineAppConfig({
       size: 'md',
       contrast: 'default',
     },
+    BaseInputNumber: {
+      inputmode: 'numeric',
+      rounded: 'sm',
+      size: 'md',
+      contrast: 'default',
+    },
     BaseMessage: {
       type: 'success',
       rounded: 'sm',

@@ -49,9 +49,31 @@ const props = withDefaults(
     type?: string
 
     /**
-     * The shape of the input.
+     * The inputmode to use for the input, usually for mobile devices.
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    inputmode?: 'numeric' | 'decimal'
+
+    /**
+     * The radius of the input.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * The contrast of the input.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * The label to display for the input.
@@ -64,14 +86,19 @@ const props = withDefaults(
     labelFloat?: boolean
 
     /**
+     * The icon to display for the input.
+     */
+    icon?: string
+
+    /**
      * The placeholder to display for the input.
      */
     placeholder?: string
 
     /**
-     * The icon to display for the input.
+     * An error message or boolean value indicating whether the input is in an error state.
      */
-    icon?: string
+    error?: string | boolean
 
     /**
      * The icon to display for the decrement button.
@@ -82,11 +109,6 @@ const props = withDefaults(
      * The icon to display for the increment button.
      */
     iconIncrement?: string
-
-    /**
-     * The inputmode to use for the input, usually for mobile devices.
-     */
-    inputmode?: 'numeric' | 'decimal'
 
     /**
      * Whether the color of the input should change when it is focused.
@@ -102,22 +124,6 @@ const props = withDefaults(
      * Whether the input is in a disabled state.
      */
     disabled?: boolean
-
-    /**
-     * An error message or boolean value indicating whether the input is in an error state.
-     */
-    error?: string | boolean
-
-    /**
-     * The size of the input.
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the input.
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
      */
@@ -164,50 +170,55 @@ const props = withDefaults(
     }
   }>(),
   {
-    id: undefined,
     modelValue: undefined,
     modelModifiers: () => ({}),
     min: undefined,
     max: undefined,
     step: 1,
+    id: undefined,
     type: 'text',
-    size: 'md',
-    contrast: 'default',
-    inputmode: 'numeric',
-    shape: undefined,
+    inputmode: undefined,
+    rounded: undefined,
+    size: undefined,
+    contrast: undefined,
     label: undefined,
     icon: undefined,
+    placeholder: undefined,
+    error: false,
     iconDecrement: 'lucide:minus',
     iconIncrement: 'lucide:plus',
-    error: false,
-    placeholder: undefined,
     classes: () => ({}),
   },
 )
 const emits = defineEmits<{
   'update:modelValue': [value?: number]
 }>()
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-input-number-rounded',
-  smooth: 'nui-input-number-smooth',
-  curved: 'nui-input-number-curved',
+const inputmode = useNuiDefaultProperty(props, 'BaseInputNumber', 'inputmode')
+const rounded = useNuiDefaultProperty(props, 'BaseInputNumber', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseInputNumber', 'size')
+const contrast = useNuiDefaultProperty(props, 'BaseInputNumber', 'contrast')
+
+const radiuses = {
+  none: '',
+  sm: 'nui-input-number-rounded',
+  md: 'nui-input-number-smooth',
+  lg: 'nui-input-number-curved',
   full: 'nui-input-number-full',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   sm: 'nui-input-number-sm',
   md: 'nui-input-number-md',
   lg: 'nui-input-number-lg',
-}
-const contrastStyle = {
+} as Record<string, string>
+
+const contrasts = {
   default: 'nui-input-number-default',
   'default-contrast': 'nui-input-number-default-contrast',
   muted: 'nui-input-number-muted',
   'muted-contrast': 'nui-input-number-muted-contrast',
-}
+} as Record<string, string>
 
 function looseToNumber(val: any) {
   const n = Number.parseFloat(val)
@@ -354,9 +365,9 @@ if (process.dev) {
   <div
     class="nui-input-number-wrapper"
     :class="[
-      contrastStyle[props.contrast],
-      sizeStyle[props.size],
-      shape && shapeStyle[shape],
+      contrast && contrasts[contrast],
+      size && sizes[size],
+      rounded && radiuses[rounded],
       props.error && !props.loading && 'nui-input-number-error',
       props.loading && 'nui-input-number-loading',
       props.labelFloat && 'nui-input-number-label-float',
@@ -388,7 +399,7 @@ if (process.dev) {
           class="nui-input-number"
           :class="props.classes.input"
           :placeholder="placeholder"
-          :inputmode="props.inputmode"
+          :inputmode="props.inputmode ? props.inputmode : inputmode"
           :disabled="props.disabled"
         />
         <input
@@ -401,7 +412,7 @@ if (process.dev) {
           class="nui-input-number"
           :class="props.classes.input"
           :placeholder="placeholder"
-          :inputmode="props.inputmode"
+          :inputmode="props.inputmode ? props.inputmode : inputmode"
           :disabled="props.disabled"
         />
         <label
