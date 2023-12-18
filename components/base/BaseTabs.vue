@@ -105,6 +105,7 @@ watch(activeValue, (value) => {
         <span
           :class="[
             props.type === 'box' && tab.icon && 'text-[.85rem]',
+            props.type === 'box' && !tab.icon && 'text-sm',
             props.type === 'tabs' && 'text-sm',
           ]"
         >
