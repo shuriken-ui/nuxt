@@ -36,9 +36,26 @@ const props = withDefaults(
     }
 
     /**
-     * The shape of the multiselect.
+     * The radius of the multiselect.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the listbox.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * The contrast of the listbox.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * The label to display for the multiselect.
@@ -51,21 +68,6 @@ const props = withDefaults(
     labelFloat?: boolean
 
     /**
-     * Whether the multiselect is in a loading state.
-     */
-    loading?: boolean
-
-    /**
-     * An error message or boolean value indicating whether the input is in an error state.
-     */
-    error?: string | boolean
-
-    /**
-     * Whether the multiselect is disabled.
-     */
-    disabled?: boolean
-
-    /**
      * The icon to display for the multiselect.
      */
     icon?: string
@@ -76,6 +78,26 @@ const props = withDefaults(
     selectedIcon?: string
 
     /**
+     * The placeholder text to display when no selection has been made.
+     */
+    placeholder?: string
+
+    /**
+     * An error message or boolean value indicating whether the input is in an error state.
+     */
+    error?: string | boolean
+
+    /**
+     * Whether the multiselect is in a loading state.
+     */
+    loading?: boolean
+
+    /**
+     * Whether the multiselect is disabled.
+     */
+    disabled?: boolean
+
+    /**
      * Whether the multiselect allows multiple selections.
      */
     multiple?: boolean
@@ -84,21 +106,6 @@ const props = withDefaults(
      * The label to display for multiple selections, or a function that returns the label.
      */
     multipleLabel?: string | ((value: T[], labelProperty?: string) => string)
-
-    /**
-     * The placeholder text to display when no selection has been made.
-     */
-    placeholder?: string
-
-    /**
-     * The size of the listbox.
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the listbox.
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * Used a fixed strategy to float the component
@@ -153,15 +160,15 @@ const props = withDefaults(
     }
   }>(),
   {
-    icon: '',
     modelValue: undefined,
     modelModifiers: () => ({}),
-    selectedIcon: 'lucide:check',
+    rounded: undefined,
+    size: undefined,
+    contrast: undefined,
     label: '',
+    icon: '',
+    selectedIcon: 'lucide:check',
     placeholder: '',
-    size: 'md',
-    contrast: 'default',
-    shape: undefined,
     error: false,
     multipleLabel: () => {
       return (value: T[], labelProperty?: string): string => {
@@ -175,38 +182,38 @@ const props = withDefaults(
           : String(value?.[0])
       }
     },
-    multiple: false,
-    loading: false,
-    disabled: false,
     properties: () => ({}),
-    fixed: false,
     placement: 'bottom-start',
   },
 )
 const emits = defineEmits<{
   'update:modelValue': [value?: T | T[]]
 }>()
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-listbox-rounded',
-  smooth: 'nui-listbox-smooth',
-  curved: 'nui-listbox-curved',
+const rounded = useNuiDefaultProperty(props, 'BaseListbox', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseListbox', 'size')
+const contrast = useNuiDefaultProperty(props, 'BaseListbox', 'contrast')
+
+const radiuses = {
+  none: '',
+  sm: 'nui-listbox-rounded',
+  md: 'nui-listbox-smooth',
+  lg: 'nui-listbox-curved',
   full: 'nui-listbox-full',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   sm: 'nui-listbox-sm',
   md: 'nui-listbox-md',
   lg: 'nui-listbox-lg',
-}
-const contrastStyle = {
+} as Record<string, string>
+
+const contrasts = {
   default: 'nui-listbox-default',
   'default-contrast': 'nui-listbox-default-contrast',
   muted: 'nui-listbox-muted',
   'muted-contrast': 'nui-listbox-muted-contrast',
-}
+} as Record<string, string>
 
 const vmodel = useVModel(props, 'modelValue', emits, {
   passive: true,
@@ -242,9 +249,9 @@ const value = computed(() => {
   <div
     class="nui-listbox"
     :class="[
-      contrastStyle[props.contrast],
-      sizeStyle[props.size],
-      shape && shapeStyle[shape],
+      contrast && contrasts[contrast],
+      size && sizes[size],
+      rounded && radiuses[rounded],
       props.error && !props.loading && 'nui-listbox-error',
       props.loading && 'nui-listbox-loading',
       props.labelFloat && 'nui-listbox-label-float',
@@ -371,7 +378,7 @@ const value = computed(() => {
                       </div>
                     </template>
 
-                    <span class="nui-listbox-chevron">
+                    <span class="nui-listbox-chevron nui-chevron">
                       <Icon
                         name="lucide:chevron-down"
                         class="nui-listbox-chevron-inner"

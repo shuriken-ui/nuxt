@@ -88,6 +88,11 @@ export default defineAppConfig({
       size: 'md',
       contrast: 'default',
     },
+    BaseListbox: {
+      rounded: 'sm',
+      size: 'md',
+      contrast: 'default',
+    },
     BaseMessage: {
       type: 'success',
       rounded: 'sm',
