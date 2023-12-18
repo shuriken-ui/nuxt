@@ -43,11 +43,11 @@ const emit = defineEmits<{
   delete: []
 }>()
 
-const size = useNuiDefaultProperty(props, 'BaseSncak', 'size')
-const color = useNuiDefaultProperty(props, 'BaseSncak', 'color')
+const size = useNuiDefaultProperty(props, 'BaseSnack', 'size')
+const color = useNuiDefaultProperty(props, 'BaseSnack', 'color')
 
 const sizes = {
-  xs: 'nui-snack-sm',
+  xs: 'nui-snack-xs',
   sm: 'nui-snack-sm',
   md: 'nui-snack-md',
 } as Record<string, string>
