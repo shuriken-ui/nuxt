@@ -165,6 +165,20 @@ export default defineNuxtSchema({
          */
         color: 'white',
       },
+      BaseCheckbox: {
+        /**
+         * Default rounded for the BaseCheckbox component
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * Default color for the BaseCheckbox component
+         *
+         * @type {'default' | 'light' | 'muted' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
+         */
+        color: 'default',
+      },
       BaseDropdown: {
         /**
          * The variant of the dropdown.

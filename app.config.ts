@@ -42,6 +42,10 @@ export default defineAppConfig({
       rounded: 'sm',
       color: 'white',
     },
+    BaseCheckbox: {
+      rounded: 'sm',
+      color: 'default',
+    },
     BaseDropdown: {
       variant: 'button',
       buttonColor: 'default',
