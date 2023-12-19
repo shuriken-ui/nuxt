@@ -260,6 +260,49 @@ const people = ref([
         </div>
       </NuiPreview>
 
+      <NuiPreview
+        title="Disabled"
+        description="Autocomplete component disabled"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.first"
+              :items="frameworks"
+              size="sm"
+              rounded="md"
+              label="Size: sm"
+              placeholder="Ex: javascript"
+              disabled
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.second"
+              :items="frameworks"
+              size="md"
+              rounded="md"
+              label="Size: md"
+              placeholder="Ex: javascript"
+              disabled
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.third"
+              :items="frameworks"
+              size="lg"
+              rounded="md"
+              label="Size: lg"
+              placeholder="Ex: javascript"
+              disabled
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
       <NuiPreview title="Icon" description="Autocomplete component icon">
         <div class="flex flex-wrap items-end gap-5 max-w-3xl">
           <div class="flex-1">
@@ -348,7 +391,7 @@ const people = ref([
         <div class="max-w-sm">
           <BaseAutocomplete
             v-model="hobbyValue"
-            :items="frameworks"
+            :items="hobbies"
             rounded="md"
             icon="lucide:list-filter"
             placeholder="Search..."
