@@ -375,6 +375,26 @@ export default defineNuxtSchema({
          */
         contrast: 'default',
       },
+      BaseKbd: {
+        /**
+         * The radius of the kbd.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * The size of the kbd.
+         *
+         * @type {'xs' | 'sm' | 'md' | 'lg'}
+         */
+        size: 'sm',
+        /**
+         * The color of the kbd.
+         *
+         * @type {'default' | 'muted' | 'none'}
+         */
+        color: 'default',
+      },
       BaseListbox: {
         /**
          * The radius of the input.
