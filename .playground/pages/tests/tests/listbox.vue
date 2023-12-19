@@ -19,13 +19,8 @@ const model = ref({
 </script>
 
 <template>
-  <div
-    class="flex flex-col gap-12 [&>*]:p-8 [&>:nth-child(odd)]:bg-muted-100 dark:[&>:nth-child(odd)]:bg-muted-900 pb-32"
-  >
-    <div>
-      <BaseHeading size="xl" weight="medium" class="mb-10">
-        Default Listbox
-      </BaseHeading>
+  <NuiPreviewContainer title="Input models">
+    <NuiPreview title="Default Listbox" description="Listbox test">
       <div class="grid grid-cols-3 gap-4">
         <BaseListbox
           v-model="model.framework"
@@ -40,12 +35,9 @@ const model = ref({
           Set Framework to Vue
         </BaseButton>
       </div>
-    </div>
+    </NuiPreview>
 
-    <div>
-      <BaseHeading size="xl" weight="medium" class="mb-10">
-        Listbox with Object Key
-      </BaseHeading>
+    <NuiPreview title="Listbox with Object Key" description="Listbox test">
       <div class="grid grid-cols-3 gap-4">
         <BaseListbox
           v-model.prop="model.frameworkId"
@@ -60,6 +52,6 @@ const model = ref({
           Set Framework to Vue
         </BaseButton>
       </div>
-    </div>
-  </div>
+    </NuiPreview>
+  </NuiPreviewContainer>
 </template>
