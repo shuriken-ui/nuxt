@@ -158,7 +158,7 @@ const uploadedFiles = ref<FileList | null>(null)
                         <img
                           v-else
                           class="h-14 w-14 rounded-xl object-cover object-center"
-                          src="/img/avatars/placeholder-file.png"
+                          src="https://tairo.cssninja.io/img/avatars/placeholder-file.png"
                           alt="Image preview"
                         />
                       </div>
