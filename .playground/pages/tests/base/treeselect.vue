@@ -3,7 +3,7 @@ import { MenuItem } from '@headlessui/vue'
 
 definePageMeta({
   title: 'BaseTreeSelect',
-  icon: 'system-uicons:drag-vertical',
+  icon: 'system-uicons:hierarchy',
   description: 'Tree select component',
   section: 'base',
 })

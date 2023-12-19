@@ -3,7 +3,7 @@ definePageMeta({
   title: 'Input v-model',
   icon: 'lucide:wrench',
   description: 'Check how v-model works with components',
-  section: 'form',
+  section: 'tests',
 })
 
 const autocomplete1 = ref<string>()

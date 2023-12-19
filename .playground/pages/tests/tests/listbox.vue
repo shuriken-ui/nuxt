@@ -4,7 +4,7 @@ definePageMeta({
   icon: 'ic:round-menu-open',
   description:
     'Test use of both objects and object value props in listbox models',
-  section: 'form',
+  section: 'tests',
 })
 const frameworks = [
   { label: 'React', value: 'react' },
