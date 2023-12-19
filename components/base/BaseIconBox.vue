@@ -20,6 +20,7 @@ const props = withDefaults(
       | 'success'
       | 'warning'
       | 'danger'
+      | 'none'
 
     /**
      * The size of the icon.
@@ -92,6 +93,7 @@ const colors = {
   success: 'nui-box-success',
   warning: 'nui-box-warning',
   danger: 'nui-box-danger',
+  none: '',
 } as Record<string, string>
 
 const masks = {
