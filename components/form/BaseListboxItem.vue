@@ -55,7 +55,12 @@ const props = withDefaults(
 
 <template>
   <BaseAvatar v-if="props.value.media" :src="props.value.media" size="xs" />
-  <BaseIconBox v-else-if="props.value.icon" size="sm" shape="rounded">
+  <BaseIconBox
+    v-else-if="props.value.icon"
+    size="sm"
+    shape="rounded"
+    class="!me-0 !bg-transparent"
+  >
     <Icon
       :name="props.value.icon"
       class="text-muted-400 group-hover/nui-listbox-option:text-primary-500 h-5 w-5 transition-colors duration-200"

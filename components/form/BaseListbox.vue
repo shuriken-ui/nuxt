@@ -300,6 +300,7 @@ const value = computed(() => {
                       v-if="props.icon"
                       size="xs"
                       shape="rounded"
+                      color="none"
                       class="nui-icon-box"
                     >
                       <slot name="icon">
@@ -338,8 +339,9 @@ const value = computed(() => {
                           (value as any)[props.properties.media]
                         "
                         :src="(value as any)[props.properties.media]"
-                        size="xs"
-                        class="-ms-2 me-2"
+                        :size="size === 'sm' ? 'xxs' : 'xs'"
+                        class="me-2"
+                        :class="size === 'sm' ? '-ms-1' : '-ms-2'"
                       />
                       <BaseIconBox
                         v-else-if="
@@ -348,6 +350,7 @@ const value = computed(() => {
                         "
                         size="xs"
                         shape="rounded"
+                        color="none"
                         class="-ms-2 me-2"
                       >
                         <Icon
@@ -385,13 +388,40 @@ const value = computed(() => {
                         :class="[open && 'rotate-180']"
                       />
                     </span>
-
-                    <div v-if="props.loading" class="nui-listbox-placeload">
-                      <BasePlaceload class="nui-placeload" />
-                    </div>
                   </div>
                 </slot>
               </ListboxButton>
+              <ListboxLabel
+                v-if="
+                  ('label' in $slots && props.labelFloat) ||
+                  (props.label && props.labelFloat)
+                "
+                class="nui-label-float"
+                :class="open ? 'nui-label-float-active' : ''"
+              >
+                <slot name="label">{{ props.label }}</slot>
+              </ListboxLabel>
+
+              <div
+                v-if="props.loading"
+                class="nui-listbox-placeload nui-loading-placeload"
+                :class="[
+                  (properties.media && size === 'sm') ||
+                  (properties.icon && size === 'sm')
+                    ? 'ms-5'
+                    : '',
+                  (properties.media && size === 'md') ||
+                  (properties.icon && size === 'md')
+                    ? 'ms-6'
+                    : '',
+                  (properties.media && size === 'lg') ||
+                  (properties.icon && size === 'lg')
+                    ? 'ms-7'
+                    : '',
+                ]"
+              >
+                <BasePlaceload class="nui-placeload" />
+              </div>
             </div>
           </FloatReference>
 
@@ -452,16 +482,6 @@ const value = computed(() => {
               </ListboxOption>
             </ListboxOptions>
           </FloatContent>
-
-          <ListboxLabel
-            v-if="
-              ('label' in $slots && props.labelFloat) ||
-              (props.label && props.labelFloat)
-            "
-            class="nui-label-float"
-          >
-            <slot name="label">{{ props.label }}</slot>
-          </ListboxLabel>
 
           <span
             v-if="props.error && typeof props.error === 'string'"
