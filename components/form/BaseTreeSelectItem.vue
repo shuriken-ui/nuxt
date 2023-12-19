@@ -98,7 +98,8 @@ const wrapperProps = computed(() => {
       <BaseIconBox
         v-else-if="props.value.icon && !props.value.media"
         size="xs"
-        shape="full"
+        rounded="full"
+        class="me-2"
       >
         <slot name="item-icon">
           <Icon :name="props.value.icon" class="h-4 w-4" />
