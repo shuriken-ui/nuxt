@@ -710,6 +710,7 @@ function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
                   getNodeChildren(child)?.length === 0
                 "
                 :classes="checkboxClasses"
+                color="default"
                 @click="(event: Event) => toggleNodeSelection(child, event)"
               />
               <BaseCheckbox
@@ -718,6 +719,7 @@ function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
                 :disabled="subtreeState.pending"
                 :value="child"
                 :classes="checkboxClasses"
+                color="default"
                 @click="(event: Event) => toggleNodeSelection(child, event)"
               />
             </slot>
