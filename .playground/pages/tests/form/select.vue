@@ -124,6 +124,177 @@ const options = reactive({
       </NuiPreview>
 
       <NuiPreview
+        title="Contrast: default-contrast"
+        description="Select component default contrast"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.first"
+              contrast="default-contrast"
+              size="sm"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.second"
+              contrast="default-contrast"
+              size="md"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.third"
+              contrast="default-contrast"
+              size="lg"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview title="Contrast: muted" description="Select component muted">
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.first"
+              contrast="muted"
+              size="sm"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.second"
+              contrast="muted"
+              size="md"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.third"
+              contrast="muted"
+              size="lg"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Contrast: muted-contrast"
+        description="Select component muted contrast"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.first"
+              contrast="muted-contrast"
+              size="sm"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.second"
+              contrast="muted-contrast"
+              size="md"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.third"
+              contrast="muted-contrast"
+              size="lg"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
         title="Option group"
         description="Select component option groups"
       >

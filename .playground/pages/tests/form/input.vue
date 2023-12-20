@@ -91,6 +91,123 @@ const taxes = ref('With taxes')
         </div>
       </NuiPreview>
 
+      <NuiPreview
+        title="Contrast: default-contrast"
+        description="Input component default contrast"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.first"
+              contrast="default-contrast"
+              size="sm"
+              rounded="md"
+              label="Size: sm"
+              placeholder="Ex: username"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.second"
+              contrast="default-contrast"
+              size="md"
+              rounded="md"
+              label="Size: md"
+              placeholder="Ex: username"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.third"
+              contrast="default-contrast"
+              size="lg"
+              rounded="md"
+              label="Size: lg"
+              placeholder="Ex: username"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview title="Contrast: muted" description="Input component muted">
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.first"
+              contrast="muted"
+              size="sm"
+              rounded="md"
+              label="Size: sm"
+              placeholder="Ex: username"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.second"
+              contrast="muted"
+              size="md"
+              rounded="md"
+              label="Size: md"
+              placeholder="Ex: username"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.third"
+              contrast="muted"
+              size="lg"
+              rounded="md"
+              label="Size: lg"
+              placeholder="Ex: username"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Contrast: muted-contrast"
+        description="Input component muted contrast"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.first"
+              contrast="muted-contrast"
+              size="sm"
+              rounded="md"
+              label="Size: sm"
+              placeholder="Ex: username"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.second"
+              contrast="muted-contrast"
+              size="md"
+              rounded="md"
+              label="Size: md"
+              placeholder="Ex: username"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.third"
+              contrast="muted-contrast"
+              size="lg"
+              rounded="md"
+              label="Size: lg"
+              placeholder="Ex: username"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
       <NuiPreview title="Icon" description="Input component icons">
         <div class="flex flex-wrap items-end gap-3 max-w-3xl">
           <div class="flex-1">

@@ -461,7 +461,7 @@ function selectAll2() {
             :classes="{
               treeline: 'border-muted-300 dark:border-muted-700',
               checkbox: {
-                wrapper: 'text-red-500 mx-2',
+                wrapper: '!text-success-500 mx-2',
               },
             }"
             treeline
@@ -496,7 +496,7 @@ function selectAll2() {
             v-model="selection3"
             :classes="{
               checkbox: {
-                wrapper: 'text-red-500 mx-2',
+                wrapper: '!text-success-500 mx-2',
               },
             }"
           >

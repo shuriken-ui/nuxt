@@ -25,31 +25,31 @@ const persons = ref<Person[]>([
     id: 1,
     name: 'Clarissa Perez',
     text: 'Sales Manager',
-    media: '/img/avatars/19.svg',
+    media: 'https://tairo.cssninja.io/img/avatars/19.svg',
   },
   {
     id: 2,
     name: 'Aaron Splatter',
     text: 'Project Manager',
-    media: '/img/avatars/16.svg',
+    media: 'https://tairo.cssninja.io/img/avatars/16.svg',
   },
   {
     id: 3,
     name: 'Mike Miller',
     text: 'UI/UX Designer',
-    media: '/img/avatars/3.svg',
+    media: 'https://tairo.cssninja.io/img/avatars/3.svg',
   },
   {
     id: 4,
     name: 'Benedict Kessler',
     text: 'Mobile Developer',
-    media: '/img/avatars/22.svg',
+    media: 'https://tairo.cssninja.io/img/avatars/22.svg',
   },
   {
     id: 5,
     name: 'Maya Rosselini',
     text: 'Product Manager',
-    media: '/img/avatars/2.svg',
+    media: 'https://tairo.cssninja.io/img/avatars/2.svg',
   },
 ])
 const personValue = ref<Person>()
@@ -211,6 +211,135 @@ const people = ref([
             <BaseAutocomplete
               v-model="fields.third"
               :items="frameworks"
+              size="lg"
+              rounded="md"
+              label="Size: lg"
+              placeholder="Ex: javascript"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Contrast: default-contrast"
+        description="Autocomplete component default contrast"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.first"
+              :items="frameworks"
+              contrast="default-contrast"
+              size="sm"
+              rounded="md"
+              label="Size: sm"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.second"
+              :items="frameworks"
+              contrast="default-contrast"
+              size="md"
+              rounded="md"
+              label="Size: md"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.third"
+              :items="frameworks"
+              contrast="default-contrast"
+              size="lg"
+              rounded="md"
+              label="Size: lg"
+              placeholder="Ex: javascript"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Contrast: muted"
+        description="Autocomplete component muted"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.first"
+              :items="frameworks"
+              contrast="muted"
+              size="sm"
+              rounded="md"
+              label="Size: sm"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.second"
+              :items="frameworks"
+              contrast="muted"
+              size="md"
+              rounded="md"
+              label="Size: md"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.third"
+              :items="frameworks"
+              contrast="muted"
+              size="lg"
+              rounded="md"
+              label="Size: lg"
+              placeholder="Ex: javascript"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Contrast: muted-contrast"
+        description="Autocomplete component muted contrast"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.first"
+              :items="frameworks"
+              contrast="muted-contrast"
+              size="sm"
+              rounded="md"
+              label="Size: sm"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.second"
+              :items="frameworks"
+              contrast="muted-contrast"
+              size="md"
+              rounded="md"
+              label="Size: md"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.third"
+              :items="frameworks"
+              contrast="muted-contrast"
               size="lg"
               rounded="md"
               label="Size: lg"
@@ -390,8 +519,8 @@ const people = ref([
       >
         <div class="max-w-sm">
           <BaseAutocomplete
-            v-model="hobbyValue"
-            :items="hobbies"
+            v-model="value"
+            :items="frameworks"
             rounded="md"
             icon="lucide:list-filter"
             placeholder="Search..."
@@ -546,6 +675,12 @@ const people = ref([
             placeholder="Select a hobby"
             label="Company"
             clearable
+            :properties="{
+              value: 'id',
+              label: 'name',
+              sublabel: 'text',
+              icon: 'icon',
+            }"
           />
         </div>
       </NuiPreview>
@@ -565,6 +700,12 @@ const people = ref([
             placeholder="Search..."
             label="Assignee"
             clearable
+            :properties="{
+              value: 'id',
+              label: 'name',
+              sublabel: 'text',
+              media: 'media',
+            }"
           />
         </div>
       </NuiPreview>

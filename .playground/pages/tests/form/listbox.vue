@@ -174,6 +174,132 @@ const multipleValues = ref([])
         </div>
       </NuiPreview>
 
+      <NuiPreview
+        title="Contrast: default-contrast"
+        description="Listbox component default contrast"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              contrast="default-contrast"
+              label="Rounded: md"
+              size="sm"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              contrast="default-contrast"
+              label="Rounded: md"
+              size="md"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              contrast="default-contrast"
+              label="Rounded: md"
+              size="lg"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview title="Contrast: muted" description="Listbox component muted">
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              contrast="muted"
+              label="Rounded: md"
+              size="sm"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              contrast="muted"
+              label="Rounded: md"
+              size="md"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              contrast="muted"
+              label="Rounded: md"
+              size="lg"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Contrast: muted-contrast"
+        description="Listbox component muted contrast"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              contrast="muted-contrast"
+              label="Rounded: md"
+              size="sm"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              contrast="muted-contrast"
+              label="Rounded: md"
+              size="md"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              contrast="muted-contrast"
+              label="Rounded: md"
+              size="lg"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
       <NuiPreview title="Error" description="Listbox component errors">
         <div class="flex flex-wrap items-end gap-3 max-w-3xl">
           <div class="flex-1">

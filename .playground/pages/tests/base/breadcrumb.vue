@@ -55,9 +55,9 @@ const demoBreadcrumbTwo = [
         description="Breadcrumb component with dot separator"
       >
         <div class="flex flex-col gap-4 pt-4">
-          <BaseBreadcrumb :items="demoBreadcrumbOne" separator="dot" />
+          <BaseBreadcrumb :items="demoBreadcrumbOne" />
 
-          <BaseBreadcrumb :items="demoBreadcrumbTwo" separator="dot" />
+          <BaseBreadcrumb :items="demoBreadcrumbTwo" />
         </div>
       </NuiPreview>
 
@@ -66,9 +66,13 @@ const demoBreadcrumbTwo = [
         description="Breadcrumb component with slash separator"
       >
         <div class="flex flex-col gap-4 pt-4">
-          <BaseBreadcrumb :items="demoBreadcrumbOne" separator="slash" />
+          <BaseBreadcrumb :items="demoBreadcrumbOne" separator="slash">
+            /
+          </BaseBreadcrumb>
 
-          <BaseBreadcrumb :items="demoBreadcrumbTwo" separator="slash" />
+          <BaseBreadcrumb :items="demoBreadcrumbTwo" separator="slash">
+            /
+          </BaseBreadcrumb>
         </div>
       </NuiPreview>
 
@@ -77,9 +81,13 @@ const demoBreadcrumbTwo = [
         description="Breadcrumb component with chevron separator"
       >
         <div class="flex flex-col gap-4 pt-4">
-          <BaseBreadcrumb :items="demoBreadcrumbOne" separator="chevron" />
+          <BaseBreadcrumb :items="demoBreadcrumbOne" separator="chevron">
+            <Icon name="lucide:chevron-right" class="w-4 h-4" />
+          </BaseBreadcrumb>
 
-          <BaseBreadcrumb :items="demoBreadcrumbTwo" separator="chevron" />
+          <BaseBreadcrumb :items="demoBreadcrumbTwo" separator="chevron">
+            <Icon name="lucide:chevron-right" class="w-4 h-4" />
+          </BaseBreadcrumb>
         </div>
       </NuiPreview>
 
@@ -88,9 +96,13 @@ const demoBreadcrumbTwo = [
         description="Breadcrumb component with arrow separator"
       >
         <div class="flex flex-col gap-4 pt-4">
-          <BaseBreadcrumb :items="demoBreadcrumbOne" separator="arrow" />
+          <BaseBreadcrumb :items="demoBreadcrumbOne" separator="arrow">
+            <Icon name="lucide:arrow-right" class="w-4 h-4" />
+          </BaseBreadcrumb>
 
-          <BaseBreadcrumb :items="demoBreadcrumbTwo" separator="arrow" />
+          <BaseBreadcrumb :items="demoBreadcrumbTwo" separator="arrow">
+            <Icon name="lucide:arrow-right" class="w-4 h-4" />
+          </BaseBreadcrumb>
         </div>
       </NuiPreview>
     </NuiPreviewContainer>

@@ -38,7 +38,7 @@ const uploadedFiles = ref<FileList | null>(null)
                   v-else
                   :src="currentAvatar"
                   alt="Upload preview"
-                  class="bg-muted-200 dark:bg-muted-700/60 h-20 w-20 rounded-full object-cover object-center dark:invert"
+                  class="bg-muted-200 dark:bg-muted-700/60 h-20 w-20 rounded-full object-cover object-center"
                 />
 
                 <div

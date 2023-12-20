@@ -58,6 +58,81 @@ const value = ref('')
       </NuiPreview>
 
       <NuiPreview
+        title="Contrast: default-contrast"
+        description="Textarea component default contrast"
+      >
+        <div class="grid gap-6 md:max-w-4xl md:grid-cols-3 mt-10">
+          <BaseTextarea
+            v-model="value"
+            contrast="default-contrast"
+            size="sm"
+            label="Message"
+            rounded="md"
+            placeholder="Write a message..."
+            color-focus
+          />
+          <BaseTextarea
+            v-model="value"
+            contrast="default-contrast"
+            label="Message"
+            rounded="md"
+            placeholder="Write a message..."
+            color-focus
+          />
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Contrast: muted"
+        description="Textarea component muted"
+      >
+        <div class="grid gap-6 md:max-w-4xl md:grid-cols-3 mt-10">
+          <BaseTextarea
+            v-model="value"
+            contrast="muted"
+            size="sm"
+            label="Message"
+            rounded="md"
+            placeholder="Write a message..."
+            color-focus
+          />
+          <BaseTextarea
+            v-model="value"
+            contrast="muted"
+            label="Message"
+            rounded="md"
+            placeholder="Write a message..."
+            color-focus
+          />
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Contrast: muted-contrast"
+        description="Textarea component muted contrast"
+      >
+        <div class="grid gap-6 md:max-w-4xl md:grid-cols-3 mt-10">
+          <BaseTextarea
+            v-model="value"
+            contrast="muted-contrast"
+            size="sm"
+            label="Message"
+            rounded="md"
+            placeholder="Write a message..."
+            color-focus
+          />
+          <BaseTextarea
+            v-model="value"
+            contrast="muted-contrast"
+            label="Message"
+            rounded="md"
+            placeholder="Write a message..."
+            color-focus
+          />
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
         title="Label: float"
         description="Textarea component label float"
       >
