@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-next.5](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.4...v2.0.0-next.5) (2023-12-20)
+
+
+### Features
+
+* add new playground demos ([8cef965](https://github.com/shuriken-ui/nuxt/commit/8cef9655208ab55cf3c15a6aade29f78aaf582e2))
+* **BaseTreeSelect:** add default color to checkboxes in component ([7e20d9a](https://github.com/shuriken-ui/nuxt/commit/7e20d9a3146c32c52fc083ead4537a24bc0350e8))
+
+
+### Bug Fixes
+
+* **BaseAutocompleteItem:** refactor component: updated icon shape and color ([2736618](https://github.com/shuriken-ui/nuxt/commit/27366183891f676f470f466ff400a66ff143be1f))
+
 ## [2.0.0-next.4](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.3...v2.0.0-next.4) (2023-12-20)
 
 ## [2.0.0-next.3](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.2...v2.0.0-next.3) (2023-12-19)
