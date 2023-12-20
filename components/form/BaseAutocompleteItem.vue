@@ -141,7 +141,8 @@ const markedSublabel = useNinjaMark(() => sublabel.value, query, mark)
     <BaseIconBox
       v-else-if="icon && !media"
       size="sm"
-      shape="rounded"
+      rounded="sm"
+      color="none"
       class="me-1"
     >
       <Icon
