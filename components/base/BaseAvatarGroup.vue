@@ -60,7 +60,7 @@ const limit = useNuiDefaultProperty(props, 'BaseAvatarGroup', 'limit')
         <BaseAvatar
           v-bind="typeof avatar === 'string' ? { src: avatar } : avatar"
           :size="props.size"
-          shape="full"
+          rounded="full"
           tabindex="0"
           class="bg-primary-500/20 text-primary-500 !scale-90"
         />
