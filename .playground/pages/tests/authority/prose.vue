@@ -10,7 +10,7 @@ definePageMeta({
 <template>
   <div>
     <div class="max-w-3xl mx-auto py-20">
-      <BaseProse shape="rounded" class="prose-md">
+      <BaseProse rounded="sm" class="prose-md">
         <h1>Typography plugin</h1>
         <p class="lead">
           Until now, trying to style an article, document, or blog post with

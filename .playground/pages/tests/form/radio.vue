@@ -183,7 +183,7 @@ const headlessValue = ref('value_1')
                   value="value_1"
                 >
                   <BaseCard
-                    shape="curved"
+                    rounded="lg"
                     class="peer-checked:!border-success-500 peer-checked:!bg-success-500/10 relative border-2 p-5 peer-checked:[&_.child]:!opacity-100"
                   >
                     <div class="flex flex-col">
@@ -225,7 +225,7 @@ const headlessValue = ref('value_1')
                   value="value_2"
                 >
                   <BaseCard
-                    shape="curved"
+                    rounded="lg"
                     class="peer-checked:!border-success-500 peer-checked:!bg-success-500/10 relative border-2 p-5 peer-checked:[&_.child]:!opacity-100"
                   >
                     <div class="flex flex-col">
@@ -267,7 +267,7 @@ const headlessValue = ref('value_1')
                   value="value_3"
                 >
                   <BaseCard
-                    shape="curved"
+                    rounded="lg"
                     class="peer-checked:!border-success-500 peer-checked:!bg-success-500/10 relative border-2 p-5 peer-checked:[&_.child]:!opacity-100"
                   >
                     <div class="flex flex-col">
@@ -309,7 +309,7 @@ const headlessValue = ref('value_1')
                   value="value_4"
                 >
                   <BaseCard
-                    shape="curved"
+                    rounded="lg"
                     class="peer-checked:!border-success-500 peer-checked:!bg-success-500/10 relative border-2 p-5 peer-checked:[&_.child]:!opacity-100"
                   >
                     <div class="flex flex-col">

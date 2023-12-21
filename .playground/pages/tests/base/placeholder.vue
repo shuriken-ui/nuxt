@@ -23,7 +23,7 @@ definePageMeta({
           </template>
 
           <div class="mt-2 flex justify-center gap-2">
-            <BaseButton color="primary" shape="curved" class="h-11 w-40">
+            <BaseButton color="primary" rounded="md" class="h-11 w-40">
               Take some action
             </BaseButton>
           </div>
