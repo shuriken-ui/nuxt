@@ -299,7 +299,7 @@ const value = computed(() => {
                     <BaseIconBox
                       v-if="props.icon"
                       size="xs"
-                      shape="rounded"
+                      rounded="sm"
                       color="none"
                       class="nui-icon-box"
                     >
@@ -349,7 +349,7 @@ const value = computed(() => {
                           (value as any)[props.properties.icon]
                         "
                         size="xs"
-                        shape="rounded"
+                        rounded="sm"
                         color="none"
                         class="-ms-2 me-2"
                       >

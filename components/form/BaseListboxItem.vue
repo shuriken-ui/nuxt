@@ -58,7 +58,7 @@ const props = withDefaults(
   <BaseIconBox
     v-else-if="props.value.icon"
     size="sm"
-    shape="rounded"
+    rounded="sm"
     class="!me-0 !bg-transparent"
   >
     <Icon
