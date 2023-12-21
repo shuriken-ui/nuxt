@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-next.6](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.5...v2.0.0-next.6) (2023-12-21)
+
+
+### Features
+
+* refactor playground component shapes ([8ee1d7f](https://github.com/shuriken-ui/nuxt/commit/8ee1d7f2c74de5d2432177686a776802131bc9c4))
+
+
+### Bug Fixes
+
+* **BaseAvatarGroup:** update avatar shape to rounded ([b698244](https://github.com/shuriken-ui/nuxt/commit/b698244494cad4eb954a4b1cf74cef24fea63159))
+* **BaseListbox:** update icon shape to rounded ([aa04d96](https://github.com/shuriken-ui/nuxt/commit/aa04d96a9e07d950b16d74dc7d0f603f86fd01ca))
+
 ## [2.0.0-next.5](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.4...v2.0.0-next.5) (2023-12-20)
 
 
