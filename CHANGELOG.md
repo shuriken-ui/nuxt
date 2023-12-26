@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-next.7](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.6...v2.0.0-next.7) (2023-12-26)
+
 ## [2.0.0-next.6](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.5...v2.0.0-next.6) (2023-12-21)
 
 
