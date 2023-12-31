@@ -80,6 +80,31 @@ function remove(file?: File) {
   value.value = inputRef.value.files
 }
 
+function handleFileChange(event: Event) {
+  const newFiles = (event.target as HTMLInputElement).files;
+  if (newFiles && value.value) {
+    const existingFiles = Array.from(value.value);
+    const updatedFiles = new DataTransfer();
+
+    // Add all existing files
+    for (const file of existingFiles) {
+      updatedFiles.items.add(file);
+    }
+
+    // Add new files, optionally check for duplicates
+    for (const newFile of newFiles) {
+      if (!existingFiles.some(existingFile => existingFile.name === newFile.name)) {
+        updatedFiles.items.add(newFile);
+      }
+    }
+
+    inputRef.value.files = updatedFiles.files;
+    value.value = updatedFiles.files;
+  } else if (newFiles) {
+    value.value = newFiles;
+  }
+}
+
 provide(
   'BaseInputFileHeadlessContext',
   reactive({
@@ -142,7 +167,7 @@ defineExpose({
       type="file"
       v-bind="$attrs"
       class="hidden"
-      @change="(event) => (value = (event.target as HTMLInputElement).files)"
+      @change="handleFileChange"
     />
   </div>
 </template>
