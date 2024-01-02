@@ -18,6 +18,11 @@ const props = withDefaults(
     id?: string
 
     /**
+     * Allows multiple files to be selected.
+     */
+     multiple?: boolean
+
+    /**
      * Allows to filter files when dropped.
      */
     filterFileDropped?: (file: File) => boolean
@@ -25,6 +30,7 @@ const props = withDefaults(
   {
     id: undefined,
     modelValue: undefined,
+    multiple: false,
     filterFileDropped: () => true,
   },
 )
@@ -82,7 +88,10 @@ function remove(file?: File) {
 
 function handleFileChange(event: Event) {
   const newFiles = (event.target as HTMLInputElement).files;
-  if (newFiles && value.value) {
+  if (!newFiles) return;
+
+  if (props.multiple && value.value) {
+    // When multiple is true, append new files to existing ones
     const existingFiles = Array.from(value.value);
     const updatedFiles = new DataTransfer();
 
@@ -97,10 +106,12 @@ function handleFileChange(event: Event) {
         updatedFiles.items.add(newFile);
       }
     }
+    if (!inputRef.value) return
 
     inputRef.value.files = updatedFiles.files;
     value.value = updatedFiles.files;
-  } else if (newFiles) {
+  } else {
+    // When multiple is false, replace current files with new selection
     value.value = newFiles;
   }
 }
@@ -167,6 +178,7 @@ defineExpose({
       type="file"
       v-bind="$attrs"
       class="hidden"
+      :multiple="props.multiple"
       @change="handleFileChange"
     />
   </div>
