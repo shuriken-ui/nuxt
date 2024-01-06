@@ -185,7 +185,9 @@ const openMap = ref<Record<number, boolean>>(getDefaultOpenMap(props.children))
 const _children = computed<TreeViewItemNode[] | undefined>(
   () => subtreeState.value?.tree,
 )
-watch(() => props.children, initChildren)
+watch(() => props.children, initChildren, {
+  immediate: true,
+})
 
 defineExpose({
   /**
@@ -246,11 +248,19 @@ defineExpose({
   unselectAllChildren,
 })
 
-await initChildren()
-
 // api
 
 async function initChildren() {
+  // clear the treeMap if the children prop change
+  treeState.treeMap = new WeakMap()
+  if (props.children) {
+    treeState.treeMap.set(props.children, {
+      tree: [],
+      pending: false,
+      loaded: false,
+    })
+  }
+
   await loadTree(props.children)
   openMap.value = getDefaultOpenMap(props.children)
 }
@@ -266,14 +276,6 @@ function useTreeState() {
       treeMap: new WeakMap<TreeViewTreeSource, TreeViewSubtreeState>(),
     })
     provide(treeSymbol, treeState)
-  }
-
-  if (props.children && !treeState.treeMap.has(props.children)) {
-    treeState.treeMap.set(props.children, {
-      tree: [],
-      pending: false,
-      loaded: false,
-    })
   }
 
   return treeState
