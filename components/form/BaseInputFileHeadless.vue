@@ -18,6 +18,11 @@ const props = withDefaults(
     id?: string
 
     /**
+     * Allows multiple files to be selected.
+     */
+     multiple?: boolean
+
+    /**
      * Allows to filter files when dropped.
      */
     filterFileDropped?: (file: File) => boolean
@@ -25,6 +30,7 @@ const props = withDefaults(
   {
     id: undefined,
     modelValue: undefined,
+    multiple: false,
     filterFileDropped: () => true,
   },
 )
@@ -78,6 +84,36 @@ function remove(file?: File) {
 
   inputRef.value.files = filtered.files
   value.value = inputRef.value.files
+}
+
+function handleFileChange(event: Event) {
+  const newFiles = (event.target as HTMLInputElement).files;
+  if (!newFiles) return;
+
+  if (props.multiple && value.value) {
+    // When multiple is true, append new files to existing ones
+    const existingFiles = Array.from(value.value);
+    const updatedFiles = new DataTransfer();
+
+    // Add all existing files
+    for (const file of existingFiles) {
+      updatedFiles.items.add(file);
+    }
+
+    // Add new files, optionally check for duplicates
+    for (const newFile of newFiles) {
+      if (!existingFiles.some(existingFile => existingFile.name === newFile.name)) {
+        updatedFiles.items.add(newFile);
+      }
+    }
+    if (!inputRef.value) return
+
+    inputRef.value.files = updatedFiles.files;
+    value.value = updatedFiles.files;
+  } else {
+    // When multiple is false, replace current files with new selection
+    value.value = newFiles;
+  }
 }
 
 provide(
@@ -142,7 +178,8 @@ defineExpose({
       type="file"
       v-bind="$attrs"
       class="hidden"
-      @change="(event) => (value = (event.target as HTMLInputElement).files)"
+      :multiple="props.multiple"
+      @change="handleFileChange"
     />
   </div>
 </template>
