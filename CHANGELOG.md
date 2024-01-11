@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.7...v2.0.0) (2024-01-11)
+
+
+### Features
+
+* use new defineModel in components ([5695a45](https://github.com/shuriken-ui/nuxt/commit/5695a451cd6643d2a40848fb2c5887bad631d9bb))
+
+
+### Bug Fixes
+
+* **BaseTreeSelect:** update tree when children props updates ([426c310](https://github.com/shuriken-ui/nuxt/commit/426c310aa4a64efffe295dd7cfc25b7e5254c777))
+
 ## [2.0.0-next.7](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.6...v2.0.0-next.7) (2023-12-26)
 
 ## [2.0.0-next.6](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.5...v2.0.0-next.6) (2023-12-21)

@@ -41,7 +41,6 @@ const props = withDefaults(
   {
     type: undefined,
     justify: undefined,
-    modelValue: undefined,
   },
 )
 

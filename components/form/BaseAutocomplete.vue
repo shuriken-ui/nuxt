@@ -466,11 +466,13 @@ function key(item: T) {
     return props.properties.value(item as any)
   return displayValueResolved.value(item)
 }
+
+const internal = ref<any>(modelValue)
 </script>
 
 <template>
   <Combobox
-    v-model="modelValue as any"
+    v-model="internal"
     :by="
       modelModifiers.prop && props.properties?.value
         ? undefined

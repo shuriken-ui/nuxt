@@ -217,6 +217,8 @@ const placeholder = computed(() => {
 
   return props.placeholder
 })
+
+const internal = ref<any>(modelValue)
 </script>
 
 <template>
@@ -234,7 +236,7 @@ const placeholder = computed(() => {
   >
     <Listbox
       v-slot="{ open }: { open: boolean }"
-      v-model="modelValue as any"
+      v-model="internal"
       :by="modelModifiers.prop ? undefined : props.properties.value"
       :multiple="props.multiple"
       :disabled="props.disabled"
