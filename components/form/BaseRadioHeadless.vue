@@ -6,19 +6,14 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The form input identifier.
-     */
-    id?: string
-
-    /**
      * The value of the radio input.
      */
     value?: T
 
     /**
-     * The model value of the radio input.
+     * The form input identifier.
      */
-    modelValue?: T
+    id?: string
 
     /**
      * The name of the radio input.
@@ -31,29 +26,29 @@ const props = withDefaults(
     label?: string
   }>(),
   {
-    id: undefined,
-    modelValue: undefined,
     value: undefined,
-    label: undefined,
+    id: undefined,
     name: undefined,
+    label: undefined,
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value: T]
-}>()
-const value = useVModel(props, 'modelValue', emits, {
-  passive: true,
-})
+
+const [modelValue] = defineModel<T>()
 
 const inputRef = ref<HTMLInputElement>()
+const id = useNinjaId(() => props.id)
+
 defineExpose({
   /**
    * The underlying HTMLInputElement element.
    */
   el: inputRef,
-})
 
-const id = useNinjaId(() => props.id)
+  /**
+   * The internal id of the radio input.
+   */
+  id,
+})
 </script>
 
 <template>
@@ -69,14 +64,14 @@ const id = useNinjaId(() => props.id)
       <input
         :id="id"
         ref="inputRef"
-        v-model="value"
+        v-model="modelValue"
         v-bind="$attrs"
         type="radio"
         :value="props.value"
         :name="props.name"
         class="peer absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0"
       />
-      <slot v-bind="{ value }"></slot>
+      <slot v-bind="{ value: modelValue }"></slot>
     </div>
   </div>
 </template>

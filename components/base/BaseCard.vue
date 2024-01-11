@@ -2,22 +2,17 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The shape of the card.
+     * The radius of the card.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved'
-
-    /**
-     * Whether the card is elevated.
-     */
-    elevated?: boolean
-
-    /**
-     * Whether the card is elevated on hover.
-     */
-    elevatedHover?: boolean
+    rounded?: 'none' | 'sm' | 'md' | 'lg'
 
     /**
      * The color of the card.
+     *
+     * @default 'white'
      */
     color?:
       | 'white'
@@ -30,24 +25,30 @@ const props = withDefaults(
       | 'warning'
       | 'danger'
       | 'none'
+
+    /**
+     * Adds a flat or a on hover shadow to the card.
+     */
+    shadow?: 'flat' | 'hover'
   }>(),
   {
-    shape: undefined,
-    elevated: false,
-    elevatedHover: false,
-    color: 'white',
+    rounded: undefined,
+    shadow: undefined,
+    color: undefined,
   },
 )
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.card)
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-card-rounded',
-  smooth: 'nui-card-smooth',
-  curved: 'nui-card-curved',
-}
-const colorStyle = {
+const rounded = useNuiDefaultProperty(props, 'BaseCard', 'rounded')
+const color = useNuiDefaultProperty(props, 'BaseCard', 'color')
+
+const radiuses = {
+  none: '',
+  sm: 'nui-card-rounded',
+  md: 'nui-card-smooth',
+  lg: 'nui-card-curved',
+} as Record<string, string>
+
+const colors = {
   white: 'nui-card-white',
   'white-contrast': 'nui-card-white-contrast',
   muted: 'nui-card-muted',
@@ -58,14 +59,18 @@ const colorStyle = {
   warning: 'nui-card-warning',
   danger: 'nui-card-danger',
   none: '',
+} as Record<string, string>
+
+const shadows = {
+  flat: 'nui-card-shadow',
+  hover: 'nui-card-shadow-hover',
 }
 
 const classes = computed(() => [
   'nui-card',
-  shape.value && shapeStyle[shape.value],
-  colorStyle[props.color],
-  props.elevated && 'nui-card-shadow',
-  props.elevatedHover && 'nui-card-shadow-hover',
+  rounded.value && radiuses[rounded.value],
+  color.value && colors[color.value],
+  props.shadow && shadows[props.shadow],
 ])
 </script>
 

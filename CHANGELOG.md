@@ -2,6 +2,184 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.7...v2.0.0) (2024-01-11)
+
+
+### Features
+
+* use new defineModel in components ([5695a45](https://github.com/shuriken-ui/nuxt/commit/5695a451cd6643d2a40848fb2c5887bad631d9bb))
+
+
+### Bug Fixes
+
+* **BaseTreeSelect:** update tree when children props updates ([426c310](https://github.com/shuriken-ui/nuxt/commit/426c310aa4a64efffe295dd7cfc25b7e5254c777))
+
+## [2.0.0-next.7](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.6...v2.0.0-next.7) (2023-12-26)
+
+## [2.0.0-next.6](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.5...v2.0.0-next.6) (2023-12-21)
+
+
+### Features
+
+* refactor playground component shapes ([8ee1d7f](https://github.com/shuriken-ui/nuxt/commit/8ee1d7f2c74de5d2432177686a776802131bc9c4))
+
+
+### Bug Fixes
+
+* **BaseAvatarGroup:** update avatar shape to rounded ([b698244](https://github.com/shuriken-ui/nuxt/commit/b698244494cad4eb954a4b1cf74cef24fea63159))
+* **BaseListbox:** update icon shape to rounded ([aa04d96](https://github.com/shuriken-ui/nuxt/commit/aa04d96a9e07d950b16d74dc7d0f603f86fd01ca))
+
+## [2.0.0-next.5](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.4...v2.0.0-next.5) (2023-12-20)
+
+
+### Features
+
+* add new playground demos ([8cef965](https://github.com/shuriken-ui/nuxt/commit/8cef9655208ab55cf3c15a6aade29f78aaf582e2))
+* **BaseTreeSelect:** add default color to checkboxes in component ([7e20d9a](https://github.com/shuriken-ui/nuxt/commit/7e20d9a3146c32c52fc083ead4537a24bc0350e8))
+
+
+### Bug Fixes
+
+* **BaseAutocompleteItem:** refactor component: updated icon shape and color ([2736618](https://github.com/shuriken-ui/nuxt/commit/27366183891f676f470f466ff400a66ff143be1f))
+
+## [2.0.0-next.4](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.3...v2.0.0-next.4) (2023-12-20)
+
+## [2.0.0-next.3](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.2...v2.0.0-next.3) (2023-12-19)
+
+
+### Features
+
+* add and reorder demos on playground ([8c2e048](https://github.com/shuriken-ui/nuxt/commit/8c2e048b82c57afbcff1a1aa50a48edcc84a05c1))
+* add autocomplete demos ([d4d1e81](https://github.com/shuriken-ui/nuxt/commit/d4d1e810f9671b597d55c358cdacde206655162f))
+* add BaseAccordion demos and variations ([45ff793](https://github.com/shuriken-ui/nuxt/commit/45ff793e60ef4e8d6db9e5d9e2cd18ee8d7f8f06))
+* add BaseAutocomplete demos ([1d468e8](https://github.com/shuriken-ui/nuxt/commit/1d468e83ef68ef8fd469a87ead16c731d6553557))
+* add BaseAvatar and BaseAvatarGroup demos with different variations ([a522124](https://github.com/shuriken-ui/nuxt/commit/a5221248837562f2231d8138e469cf1362d740b1))
+* add BaseBreadcrumb demos with different separators ([a3ce0d8](https://github.com/shuriken-ui/nuxt/commit/a3ce0d8f1e099b9e6c53f472707e9f58fbdb9222))
+* add BaseButton demo with various variants and states ([2d6ab53](https://github.com/shuriken-ui/nuxt/commit/2d6ab53a6f41ed6cbc16e781f45672c2ccb699ae))
+* add BaseButtonAction demos with various styles and states ([f3c0396](https://github.com/shuriken-ui/nuxt/commit/f3c0396bab0e94d1c1d47517f4c87353567a020b))
+* add BaseButtonClose demos with different sizes and colors ([eb100cd](https://github.com/shuriken-ui/nuxt/commit/eb100cd4da2b8234c2aa7515fcd324cfe94046fd))
+* add BaseButtonIcon demos and variations ([0537c1d](https://github.com/shuriken-ui/nuxt/commit/0537c1d3bb6ab394f632303d503f3b7255e15873))
+* add BaseCard demos and variations ([70a4e4c](https://github.com/shuriken-ui/nuxt/commit/70a4e4c0cafb0fe63dd11bda3b1f211007bb5fcc))
+* add BaseCheckbox demos ([43de104](https://github.com/shuriken-ui/nuxt/commit/43de104b6a4254c749178e81dd36708b6a49ebb7))
+* add BaseCheckboxAnimated demos ([8f0384c](https://github.com/shuriken-ui/nuxt/commit/8f0384cd4e0fd01be57182ef010acad30df4d909))
+* add BaseFocusLoop demos to playground ([d52ab4b](https://github.com/shuriken-ui/nuxt/commit/d52ab4b01cbdb1f25a69d71b7763d899a68c6347))
+* add BaseInput demos ([44cf341](https://github.com/shuriken-ui/nuxt/commit/44cf3415545d839534dda5641baf2a6ad2ee19d0))
+* add BaseInputFile demos ([652ab18](https://github.com/shuriken-ui/nuxt/commit/652ab180d563cc7cd51535e606be419e28a3a016))
+* add BaseInputFileHeadless demos ([0cd535f](https://github.com/shuriken-ui/nuxt/commit/0cd535fe5a8ae682e6cb3ee3190c84d873fec549))
+* add BaseList demos with various previews ([46882d9](https://github.com/shuriken-ui/nuxt/commit/46882d98c2143284a9c66d3930e68a0eb0f8766b))
+* add BaseMessage demos and variations ([c65d888](https://github.com/shuriken-ui/nuxt/commit/c65d888f55320e64ec28849de6ee456005bc01e8))
+* add BasePagination demos with different rounded styles ([b43cc31](https://github.com/shuriken-ui/nuxt/commit/b43cc317a33f641bd5e5159ffb0c5ddaf2bc5f59))
+* add BasePlaceholderPage and BasePlaceload demos ([015561f](https://github.com/shuriken-ui/nuxt/commit/015561ff651f3cf01483ebc5679a921412164376))
+* add BaseProgress demos to playground ([297cd2a](https://github.com/shuriken-ui/nuxt/commit/297cd2ab7ea38ca96028c6052490c16168fba2f3))
+* add BaseSnack demos to playground tests ([c3df1c3](https://github.com/shuriken-ui/nuxt/commit/c3df1c3851e4fad6f43abb24dd226e06eb7253db))
+* add BaseTag demos with different variants and styles ([a36889d](https://github.com/shuriken-ui/nuxt/commit/a36889d5ed25d91dc2621a94c7238ddabeeee535))
+* add BaseThemeToggle demos to playground tests ([a3ace62](https://github.com/shuriken-ui/nuxt/commit/a3ace6235999e3d4a87da0c887ff4451289753f7))
+* add BaseTreeSelect demos ([225e17f](https://github.com/shuriken-ui/nuxt/commit/225e17f4c8f945d2e154eb0d2c678bfeb8af47cf))
+* add disabled autocomplete examples ([c2a97b7](https://github.com/shuriken-ui/nuxt/commit/c2a97b7f9b2583c8b95ff07cd2f0dee49c62fe83))
+* add dropdown demos and variations ([be1c41d](https://github.com/shuriken-ui/nuxt/commit/be1c41d062944c787088ba410c788914cc843e93))
+* add fullscreen-dropfile demo ([fe882e6](https://github.com/shuriken-ui/nuxt/commit/fe882e6b22e30a6725164cb35b7aed4a7fea2d46))
+* add NuiPreview and NuiPreviewContainer components for playground ([272464a](https://github.com/shuriken-ui/nuxt/commit/272464a7f8901425e988ed21c6e2064f9d0ca7eb))
+* add NuiTooltip demos and remove unused components ([893e1f5](https://github.com/shuriken-ui/nuxt/commit/893e1f57fad36dd3c96730af2eda2b5856b0044e))
+* add Tab slider demos in playground ([2479eb3](https://github.com/shuriken-ui/nuxt/commit/2479eb367153e1b47bd746059582ea4120ce1911))
+* add tabs demos to playground ([eb3efe2](https://github.com/shuriken-ui/nuxt/commit/eb3efe2cd5a6ef5108c98508ab95700796c6dd2a))
+* add typography demos ([720a6bd](https://github.com/shuriken-ui/nuxt/commit/720a6bdbd891c629379ab43881d6bafa515710fd))
+* **BaseAccordion:** update app.config.ts and BaseAccordion.vue ([fb0dad0](https://github.com/shuriken-ui/nuxt/commit/fb0dad0890ec2ba6b7b22f29fd4a743709f5258c))
+* **BaseAutocomplete:** update app.config.ts and BaseAutocomplete.vue ([f1b28a8](https://github.com/shuriken-ui/nuxt/commit/f1b28a891873006dc2e7d4df32fc7e33b3b2ecb3))
+* **BaseAvatarGroup:** refactor avatar group component and update app configuration ([210b5f9](https://github.com/shuriken-ui/nuxt/commit/210b5f9851bbb6faf1bec3fe05cdfbf04406167a))
+* **BaseAvatar:** refactor BaseAvatar component and config ([debbe8f](https://github.com/shuriken-ui/nuxt/commit/debbe8f28b43542a9f8b546e780ac19f78dfb539))
+* **BaseAvatar:** update app.config.ts and BaseAvatar.vue ([40ed93d](https://github.com/shuriken-ui/nuxt/commit/40ed93dba10696ea6d9b3c1a3eac66ed81c5a6a1))
+* **BaseBreadcrumb:** refactor BaseBreadcrumb.vue component ([3adf994](https://github.com/shuriken-ui/nuxt/commit/3adf994cbc29b220c411af8248e957edce2eada5))
+* **BaseButtonAction:** remove loading and disabled props from BaseButtonAction.vue ([9485f1c](https://github.com/shuriken-ui/nuxt/commit/9485f1c4be2cc251a1b28e1c78bb0e357b3dc5ef))
+* **BaseButtonClose:** update BaseButtonClose component styles and default values ([e4ea740](https://github.com/shuriken-ui/nuxt/commit/e4ea740543859f5d32e1cd6b56c5cd069c5dca6c))
+* **BaseButtonIcon:** update app.config.ts, nuxt.schema.ts, and button-icon.vue ([4ae77fa](https://github.com/shuriken-ui/nuxt/commit/4ae77fadf6a328071920efc61572582a050a98f8))
+* **BaseButton:** update button shapes and color attribute ([ec5a63a](https://github.com/shuriken-ui/nuxt/commit/ec5a63ac26ed65bb5fbb8d9b765b8828ebd1946d))
+* **BaseCard:** refactor BaseCard component configuration ([423e719](https://github.com/shuriken-ui/nuxt/commit/423e719afa2d786617c413a89c1cc36b418d33e2))
+* **BaseCheckboxAnimated:** update app.config.ts and BaseCheckboxAnimated.vue ([23158c8](https://github.com/shuriken-ui/nuxt/commit/23158c813d00028c23ed7be17639fce9eb973855))
+* **BaseCheckbox:** update BaseCheckbox component configuration ([45e06dd](https://github.com/shuriken-ui/nuxt/commit/45e06dd33a11a3261f869e526ada7c31fbd0233d))
+* **BaseDropdownItem:** update app.config.ts and BaseDropdownItem.vue ([bfd6f36](https://github.com/shuriken-ui/nuxt/commit/bfd6f36e833a8857467b5fa26423cb485bf6ba35))
+* **BaseDropdown:** update BaseDropdown component configuration ([23fdd57](https://github.com/shuriken-ui/nuxt/commit/23fdd57bc34420ea674f7898adff6487f6e3b473))
+* **BaseHeading:** update BaseHeading component configuration ([87c068a](https://github.com/shuriken-ui/nuxt/commit/87c068a076b9d85f4fb7347bf40d4609d4054c2e))
+* **BaseIconBox:** add 'none' color option to BaseIconBox ([65ccf30](https://github.com/shuriken-ui/nuxt/commit/65ccf30949c830ca7003687090ed97a7a0e17f59))
+* **BaseIconBox:** update BaseIconBox component configuration ([9ae35b4](https://github.com/shuriken-ui/nuxt/commit/9ae35b41744a7e7ae4b20d2ad8299a430c58febf))
+* **BaseInputFile:** update app.config.ts and BaseInputFile.vue ([dc46a21](https://github.com/shuriken-ui/nuxt/commit/dc46a21db7f8c75957192ef9b75a50d7f0ed636c))
+* **BaseInputNumber:** update app.config.ts and BaseInputNumber.vue ([8b2a281](https://github.com/shuriken-ui/nuxt/commit/8b2a28118211311f71bad59ce9ed9b06aa32eb91))
+* **BaseInput:** update app.config.ts and BaseInput.vue ([94b7952](https://github.com/shuriken-ui/nuxt/commit/94b7952e16f32c90bf4ce4fae321ee1cbdcc80cc))
+* **BaseKbd:** add new BaseKbd component and update nuxt.config.ts and nuxt.schema.ts ([0b65a03](https://github.com/shuriken-ui/nuxt/commit/0b65a039c2b9608d8802866c7002cc0898234a9f))
+* **BaseListbox:** update BaseListbox styling in app.config.ts and BaseListbox.vue ([7d199d0](https://github.com/shuriken-ui/nuxt/commit/7d199d082dd31099d40f1c2dff7451531b8360ab))
+* **BaseMessage:** update BaseMessage configuration ([c825138](https://github.com/shuriken-ui/nuxt/commit/c82513867a29bc1a7409772e3dad6f14c3708326))
+* **BasePagination:** update pagination component rounded property ([dfcd79b](https://github.com/shuriken-ui/nuxt/commit/dfcd79b5fa40a38fe5eee9d5e1621269900b5ee1))
+* **BaseParagraph:** update BaseParagraph component configuration ([3bcbab5](https://github.com/shuriken-ui/nuxt/commit/3bcbab5af9b981ee4e55d021b73ed3be81d24171))
+* **BasePlaceholderPage:** update app.config.ts and BasePlaceholderPage.vue ([6d1d1b4](https://github.com/shuriken-ui/nuxt/commit/6d1d1b45605f37c1660eda9502496754ad9b440e))
+* **BaseProgress:** update BaseProgress component configuration ([480f600](https://github.com/shuriken-ui/nuxt/commit/480f6006d971ded4821dfd09a10dabd3fb0cc2cc))
+* **BaseProse:** refactor BaseProse component to use rounded prop ([9e4eff4](https://github.com/shuriken-ui/nuxt/commit/9e4eff4e69bea00ed4e51e0c86ea81dabf8ee71d))
+* **BaseRadio:** update BaseRadio color in app.config.ts and BaseRadio.vue ([bc4945c](https://github.com/shuriken-ui/nuxt/commit/bc4945c2247fac8561114185f4f77c1398b0b717))
+* **BaseSelect:** update app.config.ts and BaseSelect.vue ([15d711d](https://github.com/shuriken-ui/nuxt/commit/15d711db78d826b2b72a02590e60e6fc274537f8))
+* **BaseSnack:** update BaseSnack component configuration ([3581737](https://github.com/shuriken-ui/nuxt/commit/35817372df261455a33b92894ed2300237532870))
+* **BaseSwitchBall:** update app.config.ts and BaseSwitchBall.vue ([a3ef45b](https://github.com/shuriken-ui/nuxt/commit/a3ef45b004243813af996b5882092c8a2dfd2e97))
+* **BaseSwitchThin:** update BaseSwitchThin component, app.config.ts and nuxt.schema.ts ([6067a7c](https://github.com/shuriken-ui/nuxt/commit/6067a7c8cf6fd4edeaec622f8214560791dc5f7d))
+* **BaseTabSlider:** update BaseTabSlider component configuration ([772a800](https://github.com/shuriken-ui/nuxt/commit/772a800616880c88e3f30af61155eb291408501f))
+* **BaseTabs:** update BaseTabs component with type and justify props ([d0edfe4](https://github.com/shuriken-ui/nuxt/commit/d0edfe42b48db93a55ab7ff798bffd0fdced9522))
+* **BaseTag:** refactor BaseTag component configuration ([1111105](https://github.com/shuriken-ui/nuxt/commit/11111053410d7861bc0e8d8863e72b7c4d691520))
+* **BaseTextarea:** update BaseTextarea configuration ([5bd8f5a](https://github.com/shuriken-ui/nuxt/commit/5bd8f5a4ac5e71c1737f02240e9a7703547982dc))
+* **BaseText:** update BaseText component styles ([deccb74](https://github.com/shuriken-ui/nuxt/commit/deccb746cc1504e2f3252a19b8395e8923d62d8d))
+* **BaseTreeSelectItem:** update app.config.ts and BaseTreeSelectItem.vue ([9dfdc99](https://github.com/shuriken-ui/nuxt/commit/9dfdc9981a7ea17111665a5229dc1532d0bc9e7a))
+* **ButtonAction:** update button styles and configurations ([e0704e8](https://github.com/shuriken-ui/nuxt/commit/e0704e853be46029e15b479e8c7283adaa1c9662))
+* dd headless checkbox component with options ([ae22421](https://github.com/shuriken-ui/nuxt/commit/ae2242124760814a9bba46c96c915c05109f93c5))
+* improve playground layout ([95a82b5](https://github.com/shuriken-ui/nuxt/commit/95a82b57f3fd00814d27bd0aaae1154aee8e8b60))
+* refactor app.config.ts: Update BaseHeading styles ([3e2e9b1](https://github.com/shuriken-ui/nuxt/commit/3e2e9b1f8ae3fdf40cdeee091a4ba6db7e01e206))
+* refactor BaseCheckboxHeadless.vue props ([f33c3bb](https://github.com/shuriken-ui/nuxt/commit/f33c3bb617cd5acbd028360537c90f7b337f9083))
+* refactor BaseInputFileHeadless.vue: update props initialization ([3c2023f](https://github.com/shuriken-ui/nuxt/commit/3c2023fd651dd325f4115bf56c99854c5d6d26c0))
+* refactor BaseRadioHeadless.vue props ([cdb4829](https://github.com/shuriken-ui/nuxt/commit/cdb4829457dd728f6f3db4d7d7dcf9a446e65dbd))
+* refactor form/BaseCheckboxAnimated.vue props ([2f6dfb8](https://github.com/shuriken-ui/nuxt/commit/2f6dfb8c2923723084a06b6feb6bc0373582fc83))
+* rework prop order in BaseFullscreenDropfile.vue ([39d3ea1](https://github.com/shuriken-ui/nuxt/commit/39d3ea1e22cb52764727da87730158b73af8c85b))
+* update @shuriken-ui/tailwind version to 2.0.0-next.1 ([f219099](https://github.com/shuriken-ui/nuxt/commit/f2190990f774a93e2a6ec836bb5e6bf1f6386d33))
+* update font and color styles in nuxt.config.ts ([ef4f8cb](https://github.com/shuriken-ui/nuxt/commit/ef4f8cb5f38857982d3c98dcdf92ebab033b8374))
+* update playground and remove unused components ([09a5f9d](https://github.com/shuriken-ui/nuxt/commit/09a5f9d90ba065ba2e2d03ae306eb2fbed470a09))
+* update snack.vue component playground ([c7e0b95](https://github.com/shuriken-ui/nuxt/commit/c7e0b950d604efea34e88141b965650e1f8dc106))
+
+
+### Bug Fixes
+
+* **BaseAvatarGroup:** update size prop documentation in BaseAvatarGroup.vue ([5c92951](https://github.com/shuriken-ui/nuxt/commit/5c92951132f53c658c3c5484300e5f4c3aeaa410))
+* **BaseButtonClose:** update button radius styles ([e766d9e](https://github.com/shuriken-ui/nuxt/commit/e766d9ebf65921546c72915591e505a33b8b794a))
+* **BaseButton:** refactor badge class in BaseButton.vue ([95c568a](https://github.com/shuriken-ui/nuxt/commit/95c568ac54fc2bc42ea9b986a40f53cfb6743662))
+* **BaseDropdown:** fix color prop in BaseDropdown.vue ([222eba0](https://github.com/shuriken-ui/nuxt/commit/222eba088b11777bc75ecf4ea4a0743f1c64ff25))
+* **BaseHeading:** fix dynamic component rendering in BaseHeading.vue ([3c534ea](https://github.com/shuriken-ui/nuxt/commit/3c534ea26254523032dc9f00ac28dc9a3a5c18d8))
+* **BaseListbox:** refactor listbox component to improve label float and loading behavior ([5c0baa5](https://github.com/shuriken-ui/nuxt/commit/5c0baa5d44dac74bc84e89b73a929cb8a68769aa))
+* **BaseMessage:** refactor radiuses object in BaseMessage.vue ([b9bd847](https://github.com/shuriken-ui/nuxt/commit/b9bd84768247ba94b78b640defe7152d18649119))
+* **BasePagination:** update rounded property in BasePagination.vue ([829d89b](https://github.com/shuriken-ui/nuxt/commit/829d89b70db946f04cc3098619439ad121ebe64e))
+* **BaseParagraph:** fix dynamic component rendering in BaseParagraph.vue ([ce384fe](https://github.com/shuriken-ui/nuxt/commit/ce384feba1da0b49e1f036402ba9dcef5f437223))
+* **BaseSnack:** fix typo in BaseSnack component ([97055e8](https://github.com/shuriken-ui/nuxt/commit/97055e84082e81df681776294e5fbf7a9308b94c))
+* **BaseTabs:** add text-sm class to tabs without icons in BaseTabs.vue ([92fce32](https://github.com/shuriken-ui/nuxt/commit/92fce328794621bd7061431fa1ffbb41739581d3))
+* **BaseTreeSelectItem:** add 'full' option to the 'rounded' property ([f3e4fea](https://github.com/shuriken-ui/nuxt/commit/f3e4feaf0542efcf9f289d9a410b6f18744aedd1))
+
+## [2.0.0-next.2](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.1...v2.0.0-next.2) (2023-12-17)
+
+
+### Bug Fixes
+
+* update app.config and BaseButton.vue ([1d7467d](https://github.com/shuriken-ui/nuxt/commit/1d7467dfa218b4a5c6edc283c7c5cdf701376de2))
+
+## [2.0.0-next.1](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.0...v2.0.0-next.1) (2023-12-17)
+
+
+### Bug Fixes
+
+* refactor computed property to handle optional chaining ([e5e492b](https://github.com/shuriken-ui/nuxt/commit/e5e492b5bcc9d09452285eb63d9d3b6bbfd0bd75))
+
+## [2.0.0-next.0](https://github.com/shuriken-ui/nuxt/compare/v1.9.6...v2.0.0-next.0) (2023-12-17)
+
+
+### Features
+
+* add useNuiDefaultProperty composable ([fe8b8bc](https://github.com/shuriken-ui/nuxt/commit/fe8b8bc6035b3bf3aac0123e397fe836c6bc7244))
+* **BaseButton:** update component configuration ([d68edb6](https://github.com/shuriken-ui/nuxt/commit/d68edb659cabb83151a155e563324ff2efb12baf))
+
+
+### Bug Fixes
+
+* headless ui float transition ([d50fad9](https://github.com/shuriken-ui/nuxt/commit/d50fad90c69bcb0fcffe8d20a04df1f833dfa84e))
+
 ### [1.9.6](https://github.com/shuriken-ui/nuxt/compare/v1.9.5...v1.9.6) (2023-12-07)
 
 

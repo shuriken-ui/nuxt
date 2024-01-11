@@ -4,12 +4,6 @@ import type { RouteLocationRaw } from 'vue-router'
 const props = withDefaults(
   defineProps<{
     /**
-     * The type of button.
-     * If this is not set and the `to` property is set, the component will be treated as a link.
-     */
-    type?: 'button' | 'submit' | 'reset'
-
-    /**
      * The route to navigate to when the button or link is clicked.
      * If this is set and the `type` property is not set, the component will be treated as a link.
      */
@@ -17,11 +11,6 @@ const props = withDefaults(
 
     /** Using href instead of to result in a native anchor with no router functionality. */
     href?: string
-
-    /**
-     * Whether the button or link is disabled.
-     */
-    disabled?: boolean
 
     /**
      * The value for the `rel` attribute on the button or link.
@@ -36,12 +25,22 @@ const props = withDefaults(
     target?: string
 
     /**
-     * The shape of the button or link.
+     * The type of button.
+     * If this is not set and the `to` property is set, the component will be treated as a link.
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    type?: 'button' | 'submit' | 'reset'
+
+    /**
+     * The size of the button.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
 
     /**
      * The color of the button.
+     *
+     * @default 'default'
      */
     color?:
       | 'default'
@@ -54,46 +53,54 @@ const props = withDefaults(
       | 'none'
 
     /**
-     * The size of the button.
+     * The radius of the button or link.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    size?: 'sm' | 'md' | 'lg'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
      * Whether the button or link is in a loading state.
      */
     loading?: boolean
+
+    /**
+     * Whether the button or link is disabled.
+     */
+    disabled?: boolean
   }>(),
   {
-    color: 'default',
-    shape: undefined,
     to: undefined,
     href: undefined,
-    type: undefined,
     rel: '',
     target: '',
-    loading: false,
-    condensed: false,
-    size: 'md',
+    type: undefined,
+    size: undefined,
+    color: undefined,
+    rounded: undefined,
   },
 )
-const appConfig = useAppConfig()
-const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.buttonIcon,
-)
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-button-rounded',
-  smooth: 'nui-button-smooth',
-  curved: 'nui-button-curved',
+const rounded = useNuiDefaultProperty(props, 'BaseButtonIcon', 'rounded')
+const color = useNuiDefaultProperty(props, 'BaseButtonIcon', 'color')
+const size = useNuiDefaultProperty(props, 'BaseButtonIcon', 'size')
+
+const radiuses = {
+  none: '',
+  sm: 'nui-button-rounded',
+  md: 'nui-button-smooth',
+  lg: 'nui-button-curved',
   full: 'nui-button-full',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   sm: 'nui-button-small',
   md: 'nui-button-medium',
   lg: 'nui-button-large',
-}
-const colorStyle = {
+} as Record<string, string>
+
+const colors = {
   default: 'nui-button-default',
   muted: 'nui-button-muted',
   primary: 'nui-button-primary',
@@ -102,14 +109,14 @@ const colorStyle = {
   warning: 'nui-button-warning',
   danger: 'nui-button-danger',
   none: '',
-}
+} as Record<string, string>
 
 const classes = computed(() => [
   'nui-button-icon',
   props.loading && 'nui-button-loading',
-  shape.value && shapeStyle[shape.value],
-  sizeStyle[props.size],
-  colorStyle[props.color],
+  rounded.value && radiuses[rounded.value],
+  size.value && sizes[size.value],
+  color.value && colors[color.value],
 ])
 
 const { attributes, is } = useNinjaButton(props)

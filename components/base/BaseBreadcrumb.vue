@@ -10,6 +10,11 @@ const props = defineProps<{
    */
   items?: {
     /**
+     * The route to navigate to when the item is clicked.
+     */
+    to?: RouteLocationRaw
+
+    /**
      * The label to display for the item.
      */
     label?: string
@@ -28,11 +33,6 @@ const props = defineProps<{
      * CSS classes to apply to the icon.
      */
     iconClasses?: string | string[]
-
-    /**
-     * The route to navigate to when the item is clicked.
-     */
-    to?: RouteLocationRaw
   }[]
 }>()
 const route = useRoute()
@@ -86,7 +86,7 @@ const items = computed(() => {
   <nav class="nui-breadcrumb">
     <ul class="nui-breadcrumb-list">
       <li class="nui-breadcrumb-item-mobile">
-        <BaseDropdown flavor="context" compact>
+        <BaseDropdown variant="context" size="md">
           <BaseDropdownItem
             v-for="(item, index) in items.slice(0, items.length - 1)"
             :key="index"

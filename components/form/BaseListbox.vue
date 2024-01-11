@@ -17,28 +17,26 @@ const props = withDefaults(
     items: T[]
 
     /**
-     * The model value of the multiselect.
+     * The radius of the multiselect.
      *
-     * @modifiers
-     * `v-model="value"`
-     *
-     * @modifiers
-     * the value property of an object (as defined in properties.value) rather than the object itself
-     * `v-model.prop="value"`
+     * @since 2.0.0
+     * @default 'sm'
      */
-    modelValue?: T | T[]
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
-     * Used internaly to allow .prop v-model modifier
+     * The size of the listbox.
+     *
+     * @default 'md'
      */
-    modelModifiers?: {
-      prop?: boolean
-    }
+    size?: 'sm' | 'md' | 'lg'
 
     /**
-     * The shape of the multiselect.
+     * The contrast of the listbox.
+     *
+     * @default 'default'
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * The label to display for the multiselect.
@@ -51,21 +49,6 @@ const props = withDefaults(
     labelFloat?: boolean
 
     /**
-     * Whether the multiselect is in a loading state.
-     */
-    loading?: boolean
-
-    /**
-     * An error message or boolean value indicating whether the input is in an error state.
-     */
-    error?: string | boolean
-
-    /**
-     * Whether the multiselect is disabled.
-     */
-    disabled?: boolean
-
-    /**
      * The icon to display for the multiselect.
      */
     icon?: string
@@ -76,6 +59,26 @@ const props = withDefaults(
     selectedIcon?: string
 
     /**
+     * The placeholder text to display when no selection has been made.
+     */
+    placeholder?: string
+
+    /**
+     * An error message or boolean value indicating whether the input is in an error state.
+     */
+    error?: string | boolean
+
+    /**
+     * Whether the multiselect is in a loading state.
+     */
+    loading?: boolean
+
+    /**
+     * Whether the multiselect is disabled.
+     */
+    disabled?: boolean
+
+    /**
      * Whether the multiselect allows multiple selections.
      */
     multiple?: boolean
@@ -84,21 +87,6 @@ const props = withDefaults(
      * The label to display for multiple selections, or a function that returns the label.
      */
     multipleLabel?: string | ((value: T[], labelProperty?: string) => string)
-
-    /**
-     * The placeholder text to display when no selection has been made.
-     */
-    placeholder?: string
-
-    /**
-     * The size of the listbox.
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the listbox.
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * Used a fixed strategy to float the component
@@ -153,15 +141,13 @@ const props = withDefaults(
     }
   }>(),
   {
-    icon: '',
-    modelValue: undefined,
-    modelModifiers: () => ({}),
-    selectedIcon: 'lucide:check',
+    rounded: undefined,
+    size: undefined,
+    contrast: undefined,
     label: '',
+    icon: '',
+    selectedIcon: 'lucide:check',
     placeholder: '',
-    size: 'md',
-    contrast: 'default',
-    shape: undefined,
     error: false,
     multipleLabel: () => {
       return (value: T[], labelProperty?: string): string => {
@@ -175,42 +161,51 @@ const props = withDefaults(
           : String(value?.[0])
       }
     },
-    multiple: false,
-    loading: false,
-    disabled: false,
     properties: () => ({}),
-    fixed: false,
     placement: 'bottom-start',
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value?: T | T[]]
-}>()
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-listbox-rounded',
-  smooth: 'nui-listbox-smooth',
-  curved: 'nui-listbox-curved',
+const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
+  set(value) {
+    if (modelModifiers.prop && props.properties.value) {
+      const attr = props.properties.value
+      return props.items.find(
+        (item) =>
+          item &&
+          typeof item === 'object' &&
+          attr in item &&
+          (item as any)[attr] === value,
+      )
+    }
+    return value
+  },
+})
+
+const rounded = useNuiDefaultProperty(props, 'BaseListbox', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseListbox', 'size')
+const contrast = useNuiDefaultProperty(props, 'BaseListbox', 'contrast')
+
+const radiuses = {
+  none: '',
+  sm: 'nui-listbox-rounded',
+  md: 'nui-listbox-smooth',
+  lg: 'nui-listbox-curved',
   full: 'nui-listbox-full',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   sm: 'nui-listbox-sm',
   md: 'nui-listbox-md',
   lg: 'nui-listbox-lg',
-}
-const contrastStyle = {
+} as Record<string, string>
+
+const contrasts = {
   default: 'nui-listbox-default',
   'default-contrast': 'nui-listbox-default-contrast',
   muted: 'nui-listbox-muted',
   'muted-contrast': 'nui-listbox-muted-contrast',
-}
-
-const vmodel = useVModel(props, 'modelValue', emits, {
-  passive: true,
-})
+} as Record<string, string>
 
 const placeholder = computed(() => {
   if (props.loading) {
@@ -223,28 +218,16 @@ const placeholder = computed(() => {
   return props.placeholder
 })
 
-const value = computed(() => {
-  if (props.modelModifiers.prop && props.properties.value) {
-    const attr = props.properties.value
-    return props.items.find(
-      (item) =>
-        item &&
-        typeof item === 'object' &&
-        attr in item &&
-        (item as any)[attr] === vmodel.value,
-    )
-  }
-  return vmodel.value
-})
+const internal = ref<any>(modelValue)
 </script>
 
 <template>
   <div
     class="nui-listbox"
     :class="[
-      contrastStyle[props.contrast],
-      sizeStyle[props.size],
-      shape && shapeStyle[shape],
+      contrast && contrasts[contrast],
+      size && sizes[size],
+      rounded && radiuses[rounded],
       props.error && !props.loading && 'nui-listbox-error',
       props.loading && 'nui-listbox-loading',
       props.labelFloat && 'nui-listbox-label-float',
@@ -253,8 +236,8 @@ const value = computed(() => {
   >
     <Listbox
       v-slot="{ open }: { open: boolean }"
-      v-model="vmodel"
-      :by="props.modelModifiers.prop ? undefined : props.properties.value"
+      v-model="internal"
+      :by="modelModifiers.prop ? undefined : props.properties.value"
       :multiple="props.multiple"
       :disabled="props.disabled"
     >
@@ -287,12 +270,13 @@ const value = computed(() => {
                 :disabled="props.disabled"
                 class="nui-listbox-button"
               >
-                <slot name="listbox-button" :value="value" :open="open">
+                <slot name="listbox-button" :value="modelValue" :open="open">
                   <div class="nui-listbox-button-inner">
                     <BaseIconBox
                       v-if="props.icon"
                       size="xs"
-                      shape="rounded"
+                      rounded="sm"
+                      color="none"
                       class="nui-icon-box"
                     >
                       <slot name="icon">
@@ -300,9 +284,9 @@ const value = computed(() => {
                       </slot>
                     </BaseIconBox>
 
-                    <template v-if="Array.isArray(value)">
+                    <template v-if="Array.isArray(modelValue)">
                       <div
-                        v-if="value.length === 0 && placeholder"
+                        v-if="modelValue.length === 0 && placeholder"
                         class="nui-listbox-placeholder"
                         :class="props.loading && 'select-none text-transparent'"
                       >
@@ -312,39 +296,44 @@ const value = computed(() => {
                         class="block truncate text-left"
                         :class="[
                           props.loading && 'select-none text-transparent',
-                          value.length === 0 &&
+                          modelValue.length === 0 &&
                             'text-muted-300 dark:text-muted-500',
                         ]"
                       >
                         {{
                           typeof props.multipleLabel === 'function'
-                            ? props.multipleLabel(value, props.properties.label)
+                            ? props.multipleLabel(
+                                modelValue,
+                                props.properties.label,
+                              )
                             : props.multipleLabel
                         }}
                       </div>
                     </template>
 
-                    <template v-else-if="value">
+                    <template v-else-if="modelValue">
                       <BaseAvatar
                         v-if="
                           props.properties.media &&
-                          (value as any)[props.properties.media]
+                          (modelValue as any)[props.properties.media]
                         "
-                        :src="(value as any)[props.properties.media]"
-                        size="xs"
-                        class="-ms-2 me-2"
+                        :src="(modelValue as any)[props.properties.media]"
+                        :size="size === 'sm' ? 'xxs' : 'xs'"
+                        class="me-2"
+                        :class="size === 'sm' ? '-ms-1' : '-ms-2'"
                       />
                       <BaseIconBox
                         v-else-if="
                           props.properties.icon &&
-                          (value as any)[props.properties.icon]
+                          (modelValue as any)[props.properties.icon]
                         "
                         size="xs"
-                        shape="rounded"
+                        rounded="sm"
+                        color="none"
                         class="-ms-2 me-2"
                       >
                         <Icon
-                          :name="(value as any)[props.properties.icon]"
+                          :name="(modelValue as any)[props.properties.icon]"
                           class="h-4 w-4"
                         />
                       </BaseIconBox>
@@ -354,10 +343,10 @@ const value = computed(() => {
                       >
                         {{
                           props.properties.label
-                            ? (value as any)[props.properties.label]
+                            ? (modelValue as any)[props.properties.label]
                             : props.properties.value
-                              ? (value as any)[props.properties.value]
-                              : value
+                              ? (modelValue as any)[props.properties.value]
+                              : modelValue
                         }}
                       </div>
                     </template>
@@ -371,20 +360,47 @@ const value = computed(() => {
                       </div>
                     </template>
 
-                    <span class="nui-listbox-chevron">
+                    <span class="nui-listbox-chevron nui-chevron">
                       <Icon
                         name="lucide:chevron-down"
                         class="nui-listbox-chevron-inner"
                         :class="[open && 'rotate-180']"
                       />
                     </span>
-
-                    <div v-if="props.loading" class="nui-listbox-placeload">
-                      <BasePlaceload class="nui-placeload" />
-                    </div>
                   </div>
                 </slot>
               </ListboxButton>
+              <ListboxLabel
+                v-if="
+                  ('label' in $slots && props.labelFloat) ||
+                  (props.label && props.labelFloat)
+                "
+                class="nui-label-float"
+                :class="open ? 'nui-label-float-active' : ''"
+              >
+                <slot name="label">{{ props.label }}</slot>
+              </ListboxLabel>
+
+              <div
+                v-if="props.loading"
+                class="nui-listbox-placeload nui-loading-placeload"
+                :class="[
+                  (properties.media && size === 'sm') ||
+                  (properties.icon && size === 'sm')
+                    ? 'ms-5'
+                    : '',
+                  (properties.media && size === 'md') ||
+                  (properties.icon && size === 'md')
+                    ? 'ms-6'
+                    : '',
+                  (properties.media && size === 'lg') ||
+                  (properties.icon && size === 'lg')
+                    ? 'ms-7'
+                    : '',
+                ]"
+              >
+                <BasePlaceload class="nui-placeload" />
+              </div>
             </div>
           </FloatReference>
 
@@ -399,7 +415,7 @@ const value = computed(() => {
                     : item
                 "
                 :value="
-                  props.modelModifiers.prop && props.properties.value
+                  modelModifiers.prop && props.properties.value
                     ? (item as any)[props.properties.value]
                     : item
                 "
@@ -445,16 +461,6 @@ const value = computed(() => {
               </ListboxOption>
             </ListboxOptions>
           </FloatContent>
-
-          <ListboxLabel
-            v-if="
-              ('label' in $slots && props.labelFloat) ||
-              (props.label && props.labelFloat)
-            "
-            class="nui-label-float"
-          >
-            <slot name="label">{{ props.label }}</slot>
-          </ListboxLabel>
 
           <span
             v-if="props.error && typeof props.error === 'string'"

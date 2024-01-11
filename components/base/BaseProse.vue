@@ -3,25 +3,29 @@ const props = withDefaults(
   defineProps<{
     /**
      * Inner elements shapes.
+     *
+     * @since 2.0.0
+     * @default 'none'
      */
-    shape?: 'straight' | 'rounded' | 'curved'
+    rounded?: 'none' | 'sm' | 'md' | 'lg'
   }>(),
   {
-    shape: undefined,
+    rounded: undefined,
   },
 )
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.prose)
 
-const shapeStyle = {
-  straight: 'nui-prose-straight',
-  rounded: 'nui-prose-rounded',
-  curved: 'nui-prose-curved',
-}
+const rounded = useNuiDefaultProperty(props, 'BaseProse', 'rounded')
+
+const radiuses = {
+  none: 'nui-prose-straight',
+  sm: 'nui-prose-rounded',
+  md: 'nui-prose-smooth',
+  lg: 'nui-prose-curved',
+} as Record<string, string>
 </script>
 
 <template>
-  <div class="nui-prose" :class="shape && shapeStyle[shape]">
+  <div class="nui-prose" :class="rounded && radiuses[rounded]">
     <slot></slot>
   </div>
 </template>

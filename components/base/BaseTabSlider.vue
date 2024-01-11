@@ -2,19 +2,6 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * An array of objects representing each tab. Each object should have a 'label' and a 'value' property.
-     */
-    tabs: {
-      /** The label displayed for the tab. */
-      label?: string
-      /** The value associated with the tab. */
-      value: string
-    }[]
-    /**
-     * The value of the currently selected tab.
-     */
-    modelValue?: string
-    /**
      * Controls the alignment of the tabs. Can be 'start', 'center', or 'end'.
      */
     justify?: 'start' | 'center' | 'end'
@@ -23,77 +10,70 @@ const props = withDefaults(
      */
     size?: 'sm' | 'md'
     /**
-     * Controls the shape of the tabs. Can be 'rounded' or 'full'.
+     * Controls the radius of the tabs.
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
     /**
-     * Controls the size of the tabs. Can be condensed or default.
+     * An array of objects representing each tab. Each object should have a 'label' and a 'value' property.
      */
-    condensed?: boolean
+    tabs: {
+      /** The label displayed for the tab. */
+      label?: string
+      /** The value associated with the tab. */
+      value: string
+    }[]
   }>(),
   {
-    modelValue: undefined,
     justify: undefined,
-    size: 'md',
-    shape: undefined,
+    size: undefined,
+    rounded: undefined,
   },
 )
-const emit = defineEmits<{
-  'update:modelValue': [value?: string]
-}>()
-const appConfig = useAppConfig()
-const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.tabSlider,
-)
 
-const justifyStyle = {
+const [modelValue] = defineModel<string>({
+  default: () => props.tabs[0]?.value,
+})
+
+const justify = useNuiDefaultProperty(props, 'BaseTabSlider', 'justify')
+const size = useNuiDefaultProperty(props, 'BaseTabSlider', 'size')
+const rounded = useNuiDefaultProperty(props, 'BaseTabSlider', 'rounded')
+
+const justifies = {
   start: '',
   center: 'nui-tabs-centered',
   end: 'nui-tabs-end',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   sm: 'nui-tabs-sm',
   md: 'nui-tabs-md',
-}
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-tabs-rounded',
-  smooth: 'nui-tabs-smooth',
-  curved: 'nui-tabs-curved',
+} as Record<string, string>
+
+const radiuses = {
+  none: '',
+  sm: 'nui-tabs-rounded',
+  md: 'nui-tabs-smooth',
+  lg: 'nui-tabs-curved',
   full: 'nui-tabs-full',
-}
+} as Record<string, string>
 
 const tabsLength = computed(() => Math.min(3, Math.max(2, props.tabs.length)))
 const lengthStyle = computed(() =>
   tabsLength.value === 2 ? 'nui-tabs-two-slots' : 'nui-tabs-three-slots',
 )
 
-const activeValue = ref<string | undefined>(
-  props.modelValue ?? props.tabs[0]?.value,
-)
-
 function toggle(value: string) {
-  activeValue.value = value
+  modelValue.value = value
 }
-
-watch(
-  () => props.modelValue,
-  (value) => {
-    activeValue.value = value
-  },
-)
-watch(activeValue, (value) => {
-  emit('update:modelValue', value)
-})
 </script>
 
 <template>
   <div
     class="nui-tab-slider"
     :class="[
-      props.justify && justifyStyle[props.justify],
-      shape && shapeStyle[shape],
-      sizeStyle[props.size],
+      justify && justifies[justify],
+      rounded && radiuses[rounded],
+      size && sizes[size],
       lengthStyle,
     ]"
   >
@@ -104,18 +84,18 @@ watch(activeValue, (value) => {
           :key="index"
           type="button"
           class="nui-tab-slider-item"
-          :class="[activeValue === tab.value && 'nui-active']"
+          :class="[modelValue === tab.value && 'nui-active']"
           @keydown.space="toggle(tab?.value)"
           @click="toggle(tab?.value)"
         >
           {{ tab?.label ?? tab?.value }}
         </button>
-        <div v-show="activeValue" class="nui-tab-slider-naver"></div>
+        <div v-show="modelValue" class="nui-tab-slider-naver"></div>
       </div>
     </div>
 
     <div class="nui-tab-content">
-      <slot :active-value="activeValue"></slot>
+      <slot :active-value="modelValue" :toggle="toggle"></slot>
     </div>
   </div>
 </template>

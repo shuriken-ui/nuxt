@@ -12,33 +12,31 @@ import {
 const props = withDefaults(
   defineProps<{
     /**
-     * The model value of the multiselect.
-     *
-     * @modifiers
-     * `v-model="value"`
-     *
-     * @modifiers
-     * the value property of an object (as defined in properties.value) rather than the object itself
-     * `v-model.prop="value"`
-     */
-    modelValue?: T | T[]
-
-    /**
-     * Used internaly to allow .prop v-model modifier
-     */
-    modelModifiers?: {
-      prop?: boolean
-    }
-
-    /**
      * The items to display in the component.
      */
     items?: T[]
 
     /**
-     * The shape of the component.
+     * The radius of the component.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the autocomplete component.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * The contrast of autocomplete component.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * The label to display for the component.
@@ -74,31 +72,6 @@ const props = withDefaults(
     error?: string | boolean
 
     /**
-     * The size of the autocomplete component.
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of autocomplete component.
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
-     * Whether the component is in a loading state.
-     */
-    loading?: boolean
-
-    /**
-     * Whether the component is disabled.
-     */
-    disabled?: boolean
-
-    /**
-     * Whether the component can be cleared by the user.
-     */
-    clearable?: boolean
-
-    /**
      * Value used when clearing the component value.
      */
     clearValue?: any
@@ -117,16 +90,6 @@ const props = withDefaults(
      * The icon to show in the dropdown button
      */
     dropdownIcon?: string
-
-    /**
-     * Display a chevron icon to open suggestions
-     */
-    dropdown?: boolean
-
-    /**
-     * Whether the component allows multiple selections.
-     */
-    multiple?: boolean
 
     /**
      * A function used to render the items as strings in either the input or the tag when multiple is true.
@@ -173,6 +136,31 @@ const props = withDefaults(
      * Allow custom entries by the user
      */
     allowCreate?: boolean
+
+    /**
+     * Whether the component is in a loading state.
+     */
+    loading?: boolean
+
+    /**
+     * Whether the component is disabled.
+     */
+    disabled?: boolean
+
+    /**
+     * Whether the component can be cleared by the user.
+     */
+    clearable?: boolean
+
+    /**
+     * Display a chevron icon to open suggestions
+     */
+    dropdown?: boolean
+
+    /**
+     * Whether the component allows multiple selections.
+     */
+    multiple?: boolean
 
     /**
      * Used a fixed strategy to float the component
@@ -226,18 +214,14 @@ const props = withDefaults(
     }
   }>(),
   {
-    modelValue: undefined,
-    modelModifiers: () => ({
-      prop: false,
-    }),
     items: () => [],
-    shape: undefined,
+    rounded: undefined,
+    size: undefined,
+    contrast: undefined,
     icon: undefined,
     placeholder: '',
     label: '',
     error: '',
-    size: 'md',
-    contrast: 'default',
     i18n: () => ({
       pending: 'Loading ...',
       empty: 'Nothing found.',
@@ -263,12 +247,33 @@ const props = withDefaults(
 )
 
 const emits = defineEmits<{
-  'update:modelValue': [value?: T | T[]]
   keydown: [event: KeyboardEvent]
 }>()
 
+const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
+  set(value) {
+    if (modelModifiers.prop && props.properties?.value) {
+      const attr = props.properties.value
+
+      return items.value.find(
+        (item) =>
+          item &&
+          typeof item === 'object' &&
+          attr in item &&
+          (item as any)[attr] === value,
+      )
+    }
+
+    return value
+  },
+})
+
+const rounded = useNuiDefaultProperty(props, 'BaseAutocomplete', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseAutocomplete', 'size')
+const contrast = useNuiDefaultProperty(props, 'BaseAutocomplete', 'contrast')
+
 const defaultDisplayValue = (item: any): any => {
-  if (props.modelModifiers.prop && props.properties?.value) {
+  if (modelModifiers.prop && props.properties?.value) {
     const attr = props.properties.value
     const result = items.value.find(
       (i) =>
@@ -321,27 +326,6 @@ const displayValueResolved = computed(() => {
   return props.displayValue
 })
 
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
-
-const vmodel = useVModel(props, 'modelValue', emits, {
-  passive: true,
-}) as Ref<any>
-
-const value = computed(() => {
-  if (props.modelModifiers.prop && props.properties?.value) {
-    const attr = props.properties.value
-    return items.value.find(
-      (item) =>
-        item &&
-        typeof item === 'object' &&
-        attr in item &&
-        (item as any)[attr] === vmodel.value,
-    )
-  }
-  return vmodel.value
-})
-
 const items = shallowRef(props.items)
 const query = ref('')
 const debounced = refDebounced(query, props.filterDebounce)
@@ -356,29 +340,31 @@ const queryCreate = computed(() => {
   return query.value === '' ? null : query.value
 })
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-autocomplete-rounded',
-  smooth: 'nui-autocomplete-smooth',
-  curved: 'nui-autocomplete-curved',
+const radiuses = {
+  none: '',
+  sm: 'nui-autocomplete-rounded',
+  md: 'nui-autocomplete-smooth',
+  lg: 'nui-autocomplete-curved',
   full: 'nui-autocomplete-full',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   sm: 'nui-autocomplete-sm',
   md: 'nui-autocomplete-md',
   lg: 'nui-autocomplete-lg',
-}
-const contrastStyle = {
+} as Record<string, string>
+
+const contrasts = {
   default: 'nui-autocomplete-default',
   'default-contrast': 'nui-autocomplete-default-contrast',
   muted: 'nui-autocomplete-muted',
   'muted-contrast': 'nui-autocomplete-muted-contrast',
-}
+} as Record<string, string>
 
 provide(
   'BaseAutocompleteContext',
   reactive({
-    selected: value,
+    selected: modelValue,
     items,
     filteredItems,
     query,
@@ -391,7 +377,7 @@ defineExpose({
   /**
    * Current selected value.
    */
-  selected: value,
+  selected: modelValue,
   /**
    * Resolved items list.
    */
@@ -436,37 +422,37 @@ watch(
 )
 
 function clear() {
-  vmodel.value = props.clearValue ?? []
+  modelValue.value = props.clearValue ?? []
 }
 
 const iconResolved = computed(() => {
   if (
-    value.value &&
-    typeof value.value === 'object' &&
-    !Array.isArray(value.value) &&
-    'icon' in value.value &&
-    typeof value.value.icon === 'string'
+    modelValue.value &&
+    typeof modelValue.value === 'object' &&
+    !Array.isArray(modelValue.value) &&
+    'icon' in modelValue.value &&
+    typeof modelValue.value.icon === 'string'
   ) {
-    return value.value.icon
+    return modelValue.value.icon
   }
   return props.icon
 })
 
 function removeItem(item: any) {
-  if (!Array.isArray(vmodel.value)) {
-    vmodel.value = props.clearValue
+  if (!Array.isArray(modelValue.value)) {
+    modelValue.value = props.clearValue
     return
   }
 
-  for (let i = vmodel.value.length - 1; i >= 0; --i) {
+  for (let i = modelValue.value.length - 1; i >= 0; --i) {
     if (props.properties?.value) {
-      if (vmodel.value[i] === item) {
-        vmodel.value.splice(i, 1)
+      if (modelValue.value[i] === item) {
+        modelValue.value.splice(i, 1)
       }
     }
     // eslint-disable-next-line eqeqeq
-    else if (vmodel.value[i] === item) {
-      vmodel.value.splice(i, 1)
+    else if (modelValue.value[i] === item) {
+      modelValue.value.splice(i, 1)
     }
   }
 }
@@ -480,13 +466,15 @@ function key(item: T) {
     return props.properties.value(item as any)
   return displayValueResolved.value(item)
 }
+
+const internal = ref<any>(modelValue)
 </script>
 
 <template>
   <Combobox
-    v-model="vmodel"
+    v-model="internal"
     :by="
-      props.modelModifiers.prop && props.properties?.value
+      modelModifiers.prop && props.properties?.value
         ? undefined
         : props.properties?.value
     "
@@ -495,9 +483,9 @@ function key(item: T) {
     :class="[
       'nui-autocomplete',
       props.classes?.wrapper,
-      sizeStyle[props.size],
-      contrastStyle[props.contrast],
-      shape && shapeStyle[shape],
+      size && sizes[size],
+      contrast && contrasts[contrast],
+      rounded && radiuses[rounded],
       props.icon && 'nui-has-icon',
       props.labelFloat && 'nui-autocomplete-label-float',
       props.loading && 'nui-autocomplete-loading',
@@ -532,10 +520,10 @@ function key(item: T) {
 
       <div v-if="props.multiple" class="nui-autocomplete-multiple">
         <ul
-          v-if="Array.isArray(vmodel) && vmodel.length > 0"
+          v-if="Array.isArray(modelValue) && modelValue.length > 0"
           class="nui-autocomplete-multiple-list"
         >
-          <li v-for="item in vmodel" :key="String(item)">
+          <li v-for="item in modelValue" :key="String(item)">
             <slot
               name="autocomplete-multiple-list-item"
               v-bind="{
@@ -597,8 +585,8 @@ function key(item: T) {
           <button
             v-if="
               props.clearable &&
-              ((Array.isArray(vmodel) && vmodel?.length > 0) ||
-                (!Array.isArray(vmodel) && vmodel != null))
+              ((Array.isArray(modelValue) && modelValue?.length > 0) ||
+                (!Array.isArray(modelValue) && modelValue != null))
             "
             type="button"
             tabindex="-1"
@@ -721,7 +709,7 @@ function key(item: T) {
               class="nui-autocomplete-results-item"
               as="div"
               :value="
-                props.modelModifiers.prop && props.properties?.value
+                modelModifiers.prop && props.properties?.value
                   ? (item as any)[props.properties.value]
                   : (item as any)
               "
@@ -739,7 +727,7 @@ function key(item: T) {
                 }"
               >
                 <BaseAutocompleteItem
-                  :shape="shape"
+                  :rounded="props.rounded ? props.rounded : rounded"
                   :item="
                     properties
                       ? item

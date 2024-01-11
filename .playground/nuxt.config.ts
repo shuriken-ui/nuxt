@@ -17,7 +17,7 @@ export default defineNuxtConfig({
       content: [],
       theme: {
         fontFamily: {
-          heading: ['Roboto Flex', 'sans-serif'],
+          heading: ['Inter', 'sans-serif'],
           sans: ['Inter', 'sans-serif'],
           alt: ['Karla', 'sans-serif'],
           mono: [
@@ -33,9 +33,8 @@ export default defineNuxtConfig({
         },
         extend: {
           colors: {
-            primary: colors?.sky,
-            success: colors?.lime,
-            // muted: colors?.stone,
+            primary: colors?.violet,
+            muted: colors?.stone,
           },
         },
       },

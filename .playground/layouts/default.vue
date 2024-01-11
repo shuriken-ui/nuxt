@@ -26,30 +26,30 @@ const routes = computed(() =>
     <div class="flex min-h-screen">
       <div class="w-2/12">
         <nav class="fixed w-2/12 max-h-screen overflow-y-scroll nui-slimscroll">
-          <NuxtLink to="/" class="inline-block px-2 py-4">
-            <img alt="Shuriken UI logo" class="h-8" :src="logo" />
+          <NuxtLink to="/" class="inline-block px-6 py-4">
+            <NuiLogoText class="h-8 w-auto text-muted-600" />
           </NuxtLink>
 
-          <ul class="flex flex-col gap-6">
+          <ul class="flex flex-col gap-10 pt-6">
             <div v-for="(routeGroup, id) in Object.entries(routes)" :key="id">
               <h3
-                class="capitalize text-sm text-muted-400 font-medium border-b border-muted-300 mx-4 pb-2 mb-4"
+                class="uppercase text-xs tracking-wider text-muted-400 font-semibold mx-4 px-3 pb-2"
               >
                 {{ routeGroup[0] }}
               </h3>
-              <ul>
+              <ul class="px-3">
                 <li
                   v-for="route in routeGroup[1]"
                   :key="(route as RouteRecordNormalized).path"
                 >
                   <NuxtLink
                     active-class="text-primary-500"
-                    class="py-2 px-4 hover:bg-muted-50 dark:hover:bg-muted-900 flex flex-col"
+                    class="py-2 px-4 hover:bg-muted-100 dark:hover:bg-muted-900 rounded-lg flex flex-col"
                     :to="(route as RouteRecordNormalized).path"
                   >
-                    <span class="flex gap-1 items-center">
+                    <span class="flex gap-4 items-center">
                       <Icon
-                        class="text-muted-600"
+                        class="text-sm text-muted-400 w-6 h-6"
                         v-if="
                           typeof (route as RouteRecordNormalized).meta?.icon ===
                             'string' &&
@@ -59,15 +59,23 @@ const routes = computed(() =>
                           (route as RouteRecordNormalized).meta?.icon as string
                         "
                       />
-                      <span class="inline-bloc">
-                        {{ (route as RouteRecordNormalized).meta?.title }}
+                      <span class="block">
+                        <span
+                          class="block text-sm font-sans text-muted-800 dark:text-muted-100"
+                        >
+                          {{ (route as RouteRecordNormalized).meta?.title }}
+                        </span>
+                        <span
+                          class="block text-xs text-muted-500"
+                          v-if="
+                            (route as RouteRecordNormalized).meta?.description
+                          "
+                        >
+                          {{
+                            (route as RouteRecordNormalized).meta?.description
+                          }}
+                        </span>
                       </span>
-                    </span>
-                    <span
-                      class="italic text-xs text-muted-500"
-                      v-if="(route as RouteRecordNormalized).meta?.description"
-                    >
-                      {{ (route as RouteRecordNormalized).meta?.description }}
                     </span>
                   </NuxtLink>
                 </li>

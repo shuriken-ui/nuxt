@@ -11,16 +11,6 @@ const props = withDefaults(
     value?: T
 
     /**
-     * The form input identifier.
-     */
-    id?: string
-
-    /**
-     * The model value of the component.
-     */
-    modelValue?: T | T[]
-
-    /**
      * The value to set when the component is checked.
      */
     trueValue?: T
@@ -30,7 +20,15 @@ const props = withDefaults(
      */
     falseValue?: T
 
-    /** The color of the checkbox. Can be 'default', 'primary', 'info', 'success', 'warning', or 'danger' */
+    /**
+     * The form input identifier.
+     */
+    id?: string
+
+    /** The color of the checkbox.
+     *
+     * @default 'primary'
+     */
     color?:
       | 'primary'
       | 'info'
@@ -61,11 +59,10 @@ const props = withDefaults(
     }
   }>(),
   {
-    id: undefined,
     value: undefined,
     trueValue: true as any,
     falseValue: false as any,
-    modelValue: undefined,
+    id: undefined,
     color: undefined,
     classes: () => ({
       wrapper: [],
@@ -74,32 +71,32 @@ const props = withDefaults(
     }),
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value?: T | T[]]
-}>()
-const value = useVModel(props, 'modelValue', emits, {
-  passive: true,
-}) as any
+
+const [modelValue] = defineModel<T | T[]>()
+
+const id = useNinjaId(() => props.id)
+
+const color = useNuiDefaultProperty(props, 'BaseCheckboxAnimated', 'color')
 
 const element = ref<HTMLElement>()
 const inputRef = ref<HTMLInputElement>()
 const innerElement = ref<HTMLElement>()
 const checked = computed(() => {
-  if (value.value === props.trueValue) {
+  if (modelValue.value === props.trueValue) {
     return true
   }
-  if (value.value === props.falseValue) {
+  if (modelValue.value === props.falseValue) {
     return false
   }
 
   return props.value === undefined
     ? false
-    : Array.isArray(value.value)
-      ? value.value.includes(props.value)
-      : value.value === props.value
+    : Array.isArray(modelValue.value)
+      ? modelValue.value.includes(props.value)
+      : modelValue.value === props.value
 })
 
-const colorStyle = {
+const colors = {
   primary: 'text-primary-500',
   info: 'text-info-500',
   success: 'text-success-500',
@@ -107,7 +104,7 @@ const colorStyle = {
   danger: 'text-danger-500',
   light: 'text-light-100',
   muted: 'text-muted-400',
-}
+} as Record<string, string>
 
 const updateCheckbox = () => {
   if (element.value && innerElement.value) {
@@ -128,28 +125,32 @@ const updateCheckbox = () => {
 }
 
 function change() {
-  if (Array.isArray(value.value)) {
-    const values = [...value.value]
-    if (checked.value) {
-      values.splice(values.indexOf(props.value ?? props.trueValue), 1)
-    } else {
-      values.push(props.value ?? props.trueValue)
+  if (Array.isArray(modelValue.value)) {
+    const values = [...modelValue.value]
+    const trueValue = props.value ?? props.trueValue
+    if (trueValue === undefined) {
+      return
     }
-    value.value = values
+
+    if (checked.value) {
+      values.splice(values.indexOf(trueValue), 1)
+    } else {
+      values.push(trueValue)
+    }
+
+    modelValue.value = values
     return
   }
 
-  if (value.value === props.trueValue) {
-    value.value = props.falseValue
+  if (modelValue.value === props.trueValue) {
+    modelValue.value = props.falseValue
     return
   }
 
-  value.value = props.trueValue
+  modelValue.value = props.trueValue
 }
 
 watchEffect(updateCheckbox)
-
-const id = useNinjaId(() => props.id)
 </script>
 
 <template>
@@ -174,7 +175,7 @@ const id = useNinjaId(() => props.id)
     <label
       class="peer-disabled:opacity-75"
       :for="id"
-      :class="[props.color && colorStyle[props.color], props.classes?.label]"
+      :class="[color && colors[color], props.classes?.label]"
     >
       <div ref="innerElement"></div>
       <IconCheckCircle />

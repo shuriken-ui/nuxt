@@ -1,214 +1,714 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Autocomplete',
-  icon: 'mdi:auto-fix',
-  description: 'SVG icons',
+  title: 'BaseAutocomplete',
+  icon: 'system-uicons:zoom-reset',
+  description: 'Autocomplete component',
   section: 'form',
 })
 
-const selection = ref('')
-const multiple = ref<string[]>([])
-const items = ref(['Javascript', 'Vue.js', 'React.js', 'Angular'])
+interface Hobby {
+  id: number
+  name: string
+  text: string
+  icon: string
+}
 
-const objectSelection = ref({ name: '' })
-const itemsObject = ref([
+interface Person {
+  id: number
+  name: string
+  text: string
+  media: string
+}
+
+const persons = ref<Person[]>([
   {
-    name: 'Javascript',
+    id: 1,
+    name: 'Clarissa Perez',
+    text: 'Sales Manager',
+    media: 'https://tairo.cssninja.io/img/avatars/19.svg',
   },
   {
-    name: 'Vue.js',
+    id: 2,
+    name: 'Aaron Splatter',
+    text: 'Project Manager',
+    media: 'https://tairo.cssninja.io/img/avatars/16.svg',
   },
   {
-    name: 'React.js',
+    id: 3,
+    name: 'Mike Miller',
+    text: 'UI/UX Designer',
+    media: 'https://tairo.cssninja.io/img/avatars/3.svg',
   },
   {
-    name: 'Angular',
+    id: 4,
+    name: 'Benedict Kessler',
+    text: 'Mobile Developer',
+    media: 'https://tairo.cssninja.io/img/avatars/22.svg',
   },
+  {
+    id: 5,
+    name: 'Maya Rosselini',
+    text: 'Product Manager',
+    media: 'https://tairo.cssninja.io/img/avatars/2.svg',
+  },
+])
+const personValue = ref<Person>()
+
+const hobbyValue = ref<Hobby>()
+const hobbies = ref<Hobby[]>([
+  {
+    id: 1,
+    name: 'Movies',
+    text: 'Cinema & shows',
+    icon: 'ph:sword-duotone',
+  },
+  {
+    id: 2,
+    name: 'Travel',
+    text: 'Tourism & travel',
+    icon: 'ph:airplane-duotone',
+  },
+  {
+    id: 3,
+    name: 'Drinks',
+    text: 'Wines & fine drinks',
+    icon: 'ph:brandy-duotone',
+  },
+  {
+    id: 4,
+    name: 'Arts',
+    text: 'Paintings & scultpure',
+    icon: 'ph:paint-brush-duotone',
+  },
+  {
+    id: 5,
+    name: 'Karaoke',
+    text: 'singing with friends',
+    icon: 'ph:microphone-stage-duotone',
+  },
+])
+
+function filterItems(query?: string, items?: any[]) {
+  if (!query || !items) {
+    return items ?? []
+  }
+
+  // search by name or text
+  return items.filter((item) => {
+    const nameMatches = item?.name?.toLowerCase().includes(query.toLowerCase())
+    const textMatches = item?.text?.toLowerCase().includes(query.toLowerCase())
+    return nameMatches || textMatches
+  })
+}
+
+const fields = reactive({
+  first: '',
+  second: '',
+  third: '',
+  fourth: '',
+  fifth: '',
+  sixth: '',
+  seventh: '',
+  eighth: '',
+  ninth: '',
+  tenth: '',
+  eleventh: '',
+  twelfth: '',
+})
+
+const value = ref<string[]>(['Nuxt', 'Vue.js'])
+
+const frameworks = ref([
+  'Javascript',
+  'Nuxt',
+  'Vue.js',
+  'React.js',
+  'Angular',
+  'Alpine.js',
+])
+
+const people = ref([
+  'Clarissa Perez',
+  'Aaron Splatter',
+  'Mike Miller',
+  'Benedict Kessler',
+  'Maya Rosselini',
 ])
 </script>
 
 <template>
-  <div
-    class="flex flex-col gap-12 [&>*]:p-8 [&>:nth-child(odd)]:bg-muted-100 dark:[&>:nth-child(odd)]:bg-muted-900 pb-32"
-  >
-    <div>
-      <BaseHeading size="xl" weight="medium" class="mb-10">
-        Autocomplete shape
-      </BaseHeading>
-      <div class="grid grid-cols-5 gap-4">
-        <BaseAutocomplete
-          :items="items"
-          label="Test"
-          placeholder="Let's test autocomplete"
-          error="This is an error message"
-          shape="straight"
-          label-float
-          clearable
-        />
-        <BaseAutocomplete
-          :items="items"
-          label="Test"
-          placeholder="Let's test autocomplete"
-          error="This is an error message"
-          shape="rounded"
-          label-float
-          clearable
-          multiple
-        />
-        <BaseAutocomplete
-          v-model="multiple"
-          :items="items"
-          :display-value="
-            (item: string) => {
-              return item || ''
-            }
-          "
-          label="Test"
-          placeholder="Let's test autocomplete"
-          error="This is an error message"
-          shape="smooth"
-          label-float
-          clearable
-          multiple
-        />
-        <BaseAutocomplete
-          v-model="selection"
-          :items="items"
-          :display-value="
-            (item: string) => {
-              return item || ''
-            }
-          "
-          :filter-items="
-            (query, items) => {
-              if (!query) return items || []
-              return (
-                items?.filter(
-                  (item: any) =>
-                    item.toLowerCase().indexOf(query.toLowerCase()) > -1,
-                ) || []
-              )
-            }
-          "
-          label="Test"
-          placeholder="Let's test autocomplete"
-          error="This is an error message"
-          shape="curved"
-          label-float
-          clearable
-        />
-        <BaseAutocomplete
-          v-model="objectSelection"
-          :items="itemsObject"
-          :filter-items="
-            (query, items) => {
-              if (!query) return items || []
-              return (
-                items?.filter(
-                  (item: any) =>
-                    item.name.toLowerCase().indexOf(query.toLowerCase()) > -1,
-                ) || []
-              )
-            }
-          "
-          :display-value="
-            (item: any) => {
-              return item?.name || ''
-            }
-          "
-          label="Test"
-          placeholder="Let's test autocomplete"
-          error="This is an error message"
-          shape="full"
-          label-float
-          clearable
-        />
-      </div>
-    </div>
-    <div>
-      <BaseHeading size="xl" weight="medium" class="mb-10">
-        Autocomplete Size
-      </BaseHeading>
-      <div class="grid grid-cols-3 gap-4">
-        <BaseAutocomplete
-          :items="items"
-          label="Test"
-          placeholder="Let's test autocomplete"
-          error="This is an error message"
-          size="sm"
-          label-float
-          clearable
-          multiple
-        />
-        <BaseAutocomplete
-          :items="items"
-          label="Test"
-          placeholder="Let's test autocomplete"
-          error="This is an error message"
-          size="md"
-          label-float
-          clearable
-          multiple
-        />
-        <BaseAutocomplete
-          :items="items"
-          label="Test"
-          placeholder="Let's test autocomplete"
-          error="This is an error message"
-          size="lg"
-          label-float
-          clearable
-        />
-      </div>
-    </div>
-    <div>
-      <BaseHeading size="xl" weight="medium" class="mb-10">
-        Autocomplete as Combobox
-      </BaseHeading>
-      <div class="grid grid-cols-3 gap-4">
-        <BaseAutocomplete
-          :items="items"
-          label="Test"
-          placeholder="Let's test autocomplete"
-          size="sm"
-          dropdown
-          label-float
-          clearable
-          multiple
-        />
-        <BaseAutocomplete
-          :items="items"
-          label="Test"
-          placeholder="Let's test autocomplete"
-          size="md"
-          dropdown
-          label-float
-          clearable
-          multiple
-        />
-        <div>
+  <div>
+    <NuiPreviewContainer title="BaseAutocomplete">
+      <NuiPreview title="Radius" description="Autocomplete component radiuses">
+        <div class="grid gap-6 md:max-w-3xl md:grid-cols-3">
           <BaseAutocomplete
-            :items="items"
-            label="Test"
-            placeholder="Let's test autocomplete"
-            size="lg"
-            :classes="{ icon: 'text-red-500' }"
-            dropdown
-            label-float
-            clearable
+            v-model="fields.first"
+            :items="frameworks"
+            rounded="none"
+            label="Rounded: none"
+            placeholder="Ex: javascript"
           />
+
           <BaseAutocomplete
-            :items="items"
-            label="Test"
-            placeholder="Let's test autocomplete"
-            size="lg"
-            :classes="{ icon: 'text-red-500' }"
-            dropdown
-            label-float
-            clearable
+            v-model="fields.second"
+            :items="frameworks"
+            rounded="sm"
+            label="Rounded: sm"
+            placeholder="Ex: javascript"
+          />
+
+          <BaseAutocomplete
+            v-model="fields.third"
+            :items="frameworks"
+            rounded="md"
+            label="Rounded: md"
+            placeholder="Ex: javascript"
+          />
+
+          <BaseAutocomplete
+            v-model="fields.fourth"
+            :items="frameworks"
+            rounded="lg"
+            label="Rounded: lg"
+            placeholder="Ex: javascript"
+          />
+
+          <BaseAutocomplete
+            v-model="fields.fifth"
+            :items="frameworks"
+            rounded="full"
+            label="Rounded: full"
+            placeholder="Ex: javascript"
           />
         </div>
-      </div>
-    </div>
+      </NuiPreview>
+
+      <NuiPreview title="Size" description="Autocomplete component sizes">
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.first"
+              :items="frameworks"
+              size="sm"
+              rounded="md"
+              label="Size: sm"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.second"
+              :items="frameworks"
+              size="md"
+              rounded="md"
+              label="Size: md"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.third"
+              :items="frameworks"
+              size="lg"
+              rounded="md"
+              label="Size: lg"
+              placeholder="Ex: javascript"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Contrast: default-contrast"
+        description="Autocomplete component default contrast"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.first"
+              :items="frameworks"
+              contrast="default-contrast"
+              size="sm"
+              rounded="md"
+              label="Size: sm"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.second"
+              :items="frameworks"
+              contrast="default-contrast"
+              size="md"
+              rounded="md"
+              label="Size: md"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.third"
+              :items="frameworks"
+              contrast="default-contrast"
+              size="lg"
+              rounded="md"
+              label="Size: lg"
+              placeholder="Ex: javascript"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Contrast: muted"
+        description="Autocomplete component muted"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.first"
+              :items="frameworks"
+              contrast="muted"
+              size="sm"
+              rounded="md"
+              label="Size: sm"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.second"
+              :items="frameworks"
+              contrast="muted"
+              size="md"
+              rounded="md"
+              label="Size: md"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.third"
+              :items="frameworks"
+              contrast="muted"
+              size="lg"
+              rounded="md"
+              label="Size: lg"
+              placeholder="Ex: javascript"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Contrast: muted-contrast"
+        description="Autocomplete component muted contrast"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.first"
+              :items="frameworks"
+              contrast="muted-contrast"
+              size="sm"
+              rounded="md"
+              label="Size: sm"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.second"
+              :items="frameworks"
+              contrast="muted-contrast"
+              size="md"
+              rounded="md"
+              label="Size: md"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.third"
+              :items="frameworks"
+              contrast="muted-contrast"
+              size="lg"
+              rounded="md"
+              label="Size: lg"
+              placeholder="Ex: javascript"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview title="Error" description="Autocomplete component error">
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.first"
+              :items="frameworks"
+              size="sm"
+              rounded="md"
+              label="Size: sm"
+              placeholder="Ex: javascript"
+              error="Please select a framework"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.second"
+              :items="frameworks"
+              size="md"
+              rounded="md"
+              label="Size: md"
+              placeholder="Ex: javascript"
+              error="Please select a framework"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.third"
+              :items="frameworks"
+              size="lg"
+              rounded="md"
+              label="Size: lg"
+              placeholder="Ex: javascript"
+              error="Please select a framework"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Disabled"
+        description="Autocomplete component disabled"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.first"
+              :items="frameworks"
+              size="sm"
+              rounded="md"
+              label="Size: sm"
+              placeholder="Ex: javascript"
+              disabled
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.second"
+              :items="frameworks"
+              size="md"
+              rounded="md"
+              label="Size: md"
+              placeholder="Ex: javascript"
+              disabled
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.third"
+              :items="frameworks"
+              size="lg"
+              rounded="md"
+              label="Size: lg"
+              placeholder="Ex: javascript"
+              disabled
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview title="Icon" description="Autocomplete component icon">
+        <div class="flex flex-wrap items-end gap-5 max-w-3xl">
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.sixth"
+              :items="frameworks"
+              icon="lucide:search"
+              size="sm"
+              rounded="md"
+              placeholder="e.g. Nuxt"
+              label="Framework"
+            />
+          </div>
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.sixth"
+              :items="frameworks"
+              icon="lucide:search"
+              rounded="md"
+              placeholder="e.g. Nuxt"
+              label="Framework"
+            />
+          </div>
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.sixth"
+              :items="frameworks"
+              icon="lucide:search"
+              size="lg"
+              rounded="md"
+              placeholder="e.g. Nuxt"
+              label="Framework"
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Clearable"
+        description="Autocomplete component clear button"
+      >
+        <div class="flex flex-wrap items-end gap-5 max-w-3xl">
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.seventh"
+              :items="frameworks"
+              icon="lucide:search"
+              size="sm"
+              rounded="md"
+              placeholder="e.g. Nuxt"
+              label="Framework"
+              clearable
+            />
+          </div>
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.seventh"
+              :items="frameworks"
+              icon="lucide:search"
+              size="md"
+              rounded="md"
+              placeholder="e.g. Nuxt"
+              label="Framework"
+              clearable
+            />
+          </div>
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.seventh"
+              :items="frameworks"
+              icon="lucide:search"
+              size="lg"
+              rounded="md"
+              placeholder="e.g. Nuxt"
+              label="Framework"
+              clearable
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Multiple"
+        description="Autocomplete component multiple selection"
+      >
+        <div class="max-w-sm">
+          <BaseAutocomplete
+            v-model="value"
+            :items="frameworks"
+            rounded="md"
+            icon="lucide:list-filter"
+            placeholder="Search..."
+            label="Assignee"
+            multiple
+          />
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Label: float"
+        description="Autocomplete component label float"
+      >
+        <div class="grid gap-6 md:max-w-lg md:grid-cols-2">
+          <BaseAutocomplete
+            v-model="fields.tenth"
+            :items="frameworks"
+            size="sm"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            label-float
+          />
+          <BaseAutocomplete
+            v-model="fields.eleventh"
+            :items="frameworks"
+            size="sm"
+            icon="lucide:search"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            label-float
+          />
+          <BaseAutocomplete
+            v-model="fields.tenth"
+            :items="frameworks"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            label-float
+          />
+
+          <BaseAutocomplete
+            v-model="fields.eleventh"
+            :items="frameworks"
+            icon="lucide:search"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            label-float
+          />
+          <BaseAutocomplete
+            v-model="fields.tenth"
+            :items="frameworks"
+            size="lg"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            label-float
+          />
+
+          <BaseAutocomplete
+            v-model="fields.eleventh"
+            :items="frameworks"
+            icon="lucide:search"
+            size="lg"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            label-float
+          />
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Loading"
+        description="Autocomplete component loading state"
+      >
+        <div class="grid gap-6 md:max-w-lg md:grid-cols-2">
+          <BaseAutocomplete
+            v-model="fields.tenth"
+            :items="frameworks"
+            size="sm"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            loading
+          />
+          <BaseAutocomplete
+            v-model="fields.eleventh"
+            :items="frameworks"
+            size="sm"
+            icon="lucide:search"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            loading
+          />
+          <BaseAutocomplete
+            v-model="fields.tenth"
+            :items="frameworks"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            loading
+          />
+
+          <BaseAutocomplete
+            v-model="fields.eleventh"
+            :items="frameworks"
+            icon="lucide:search"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            loading
+          />
+          <BaseAutocomplete
+            v-model="fields.tenth"
+            :items="frameworks"
+            size="lg"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            loading
+          />
+
+          <BaseAutocomplete
+            v-model="fields.eleventh"
+            :items="frameworks"
+            icon="lucide:search"
+            size="lg"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            loading
+          />
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Result: icons"
+        description="Autocomplete component icon results"
+      >
+        <div class="max-w-sm">
+          <BaseAutocomplete
+            v-model="hobbyValue"
+            :items="hobbies"
+            :display-value="(item: Hobby) => item.name"
+            :filter-items="filterItems"
+            icon="ph:buildings"
+            rounded="md"
+            placeholder="Select a hobby"
+            label="Company"
+            clearable
+            :properties="{
+              value: 'id',
+              label: 'name',
+              sublabel: 'text',
+              icon: 'icon',
+            }"
+          />
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Result: images"
+        description="Autocomplete component icon results"
+      >
+        <div class="max-w-sm">
+          <BaseAutocomplete
+            v-model="value"
+            :items="persons"
+            :display-value="(item: Person) => item.name"
+            :filter-items="filterItems"
+            icon="ph:users-three"
+            rounded="md"
+            placeholder="Search..."
+            label="Assignee"
+            clearable
+            :properties="{
+              value: 'id',
+              label: 'name',
+              sublabel: 'text',
+              media: 'media',
+            }"
+          />
+        </div>
+      </NuiPreview>
+    </NuiPreviewContainer>
   </div>
 </template>

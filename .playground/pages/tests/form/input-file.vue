@@ -1,20 +1,30 @@
 <script setup lang="ts">
 definePageMeta({
-  title: 'Input File',
-  icon: 'solar:cloud-upload-linear',
-  description: 'SVG icons',
+  title: 'BaseInputFile',
+  icon: 'system-uicons:cloud-upload',
+  description: 'Input file component',
   section: 'form',
 })
+
+const first = ref<FileList | null>(null)
+const second = ref<FileList | null>(null)
+const third = ref<FileList | null>(null)
+const fourth = ref<FileList | null>(null)
+const fifth = ref<FileList | null>(null)
 </script>
 
 <template>
-  <div
-    class="flex flex-col gap-12 [&>*]:p-8 [&>:nth-child(odd)]:bg-muted-100 dark:[&>:nth-child(odd)]:bg-muted-900 pb-32"
-  >
-    <div>
-      <BaseHeading size="xl" weight="medium" class="mb-10">
-        Input File
-      </BaseHeading>
-    </div>
+  <div>
+    <NuiPreviewContainer title="BaseInputFile">
+      <NuiPreview title="Radius" description="File inputs radiuses">
+        <div class="grid gap-6 md:max-w-4xl md:grid-cols-3">
+          <BaseInputFile v-model="first" rounded="none" label="Rounded: none" />
+          <BaseInputFile v-model="second" rounded="sm" label="Rounded: sm" />
+          <BaseInputFile v-model="third" rounded="md" label="Rounded: md" />
+          <BaseInputFile v-model="fourth" rounded="lg" label="Rounded: lg" />
+          <BaseInputFile v-model="fifth" rounded="full" label="Rounded: full" />
+        </div>
+      </NuiPreview>
+    </NuiPreviewContainer>
   </div>
 </template>

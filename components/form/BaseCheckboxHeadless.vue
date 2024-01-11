@@ -6,11 +6,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The label to display for the checkbox.
-     */
-    label?: string
-
-    /**
      * Defines the value of the checkbox when it's checked.
      */
     value?: T
@@ -26,40 +21,40 @@ const props = withDefaults(
     falseValue?: T
 
     /**
-     * The model value of the checkbox.
-     */
-    modelValue?: T | T[]
-
-    /**
      * The form input identifier.
      */
     id?: string
+
+    /**
+     * The label to display for the checkbox.
+     */
+    label?: string
   }>(),
   {
-    modelValue: undefined,
     value: undefined,
-    id: undefined,
-    label: undefined,
     trueValue: true as any,
     falseValue: false as any,
+    id: undefined,
+    label: undefined,
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value?: T | T[]]
-}>()
+
+const [modelValue] = defineModel<T | T[]>()
+
 const inputRef = ref<HTMLInputElement>()
-const internal = useVModel(props, 'modelValue', emits, {
-  passive: true,
-}) as any
+const id = useNinjaId(() => props.id)
 
 defineExpose({
   /**
    * The underlying HTMLInputElement element.
    */
   el: inputRef,
-})
 
-const id = useNinjaId(() => props.id)
+  /**
+   * The internal id of the radio input.
+   */
+  id,
+})
 </script>
 
 <template>
@@ -75,7 +70,7 @@ const id = useNinjaId(() => props.id)
       <input
         :id="id"
         ref="inputRef"
-        v-model="internal"
+        v-model="modelValue"
         :value="props.value"
         :true-value="props.trueValue"
         :false-value="props.falseValue"
@@ -83,7 +78,7 @@ const id = useNinjaId(() => props.id)
         class="peer absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0"
         type="checkbox"
       />
-      <slot v-bind="{ value: internal }"></slot>
+      <slot v-bind="{ value: modelValue }"></slot>
     </div>
   </div>
 </template>

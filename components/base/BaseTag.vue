@@ -2,12 +2,17 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The flavor of the tag.
+     * The variant of the tag.
+     *
+     * @since 2.0.0
+     * @default 'solid'
      */
-    flavor?: 'solid' | 'outline' | 'pastel'
+    variant?: 'solid' | 'outline' | 'pastel'
 
     /**
      * The color of the tag.
+     *
+     * @default 'default'
      */
     color?:
       | 'default'
@@ -19,12 +24,17 @@ const props = withDefaults(
       | 'danger'
 
     /**
-     * The shape of the tag.
+     * The radius of the tag.
+     *
+     * @since 2.0.0
+     * @default 'lg'
      */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
      * The size of the tag.
+     *
+     * @default 'md'
      */
     size?: 'sm' | 'md'
 
@@ -34,29 +44,34 @@ const props = withDefaults(
     shadow?: 'flat' | 'hover'
   }>(),
   {
-    flavor: 'solid',
-    color: 'default',
-    shape: undefined,
+    variant: undefined,
+    color: undefined,
+    rounded: undefined,
+    size: undefined,
     shadow: undefined,
-    size: 'md',
   },
 )
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.tag)
 
-const flavorStyle = {
+const variant = useNuiDefaultProperty(props, 'BaseTag', 'variant')
+const rounded = useNuiDefaultProperty(props, 'BaseTag', 'rounded')
+const color = useNuiDefaultProperty(props, 'BaseTag', 'color')
+const size = useNuiDefaultProperty(props, 'BaseTag', 'size')
+
+const variants = {
   solid: 'nui-tag-solid',
   pastel: 'nui-tag-pastel',
   outline: 'nui-tag-outline',
-}
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-tag-rounded',
-  smooth: 'nui-tag-smooth',
-  curved: 'nui-tag-curved',
+} as Record<string, string>
+
+const radiuses = {
+  none: '',
+  sm: 'nui-tag-rounded',
+  md: 'nui-tag-smooth',
+  lg: 'nui-tag-curved',
   full: 'nui-tag-full',
-}
-const colorStyle = {
+} as Record<string, string>
+
+const colors = {
   default: 'nui-tag-default',
   muted: 'nui-tag-muted',
   primary: 'nui-tag-primary',
@@ -64,23 +79,25 @@ const colorStyle = {
   success: 'nui-tag-success',
   warning: 'nui-tag-warning',
   danger: 'nui-tag-danger',
-}
-const shadowStyle = {
-  flat: 'nui-tag-shadow',
-  hover: 'nui-tag-shadow-hover',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   sm: 'nui-tag-sm',
   md: 'nui-tag-md',
-}
+} as Record<string, string>
+
+const shadows = {
+  flat: 'nui-tag-shadow',
+  hover: 'nui-tag-shadow-hover',
+} as Record<string, string>
 
 const classes = computed(() => [
   'nui-tag',
-  sizeStyle[props.size],
-  flavorStyle[props.flavor],
-  colorStyle[props.color],
-  shape.value && shapeStyle[shape.value],
-  props.shadow && props.flavor === 'solid' && shadowStyle[props.shadow],
+  size.value && sizes[size.value],
+  rounded.value && radiuses[rounded.value],
+  variant.value && variants[variant.value],
+  color.value && colors[color.value],
+  props.shadow && shadows[props.shadow],
 ])
 </script>
 

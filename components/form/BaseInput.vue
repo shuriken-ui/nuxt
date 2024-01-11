@@ -6,33 +6,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The model value of the input.
-     *
-     * @modifiers
-     * `v-model="value"`
-     *
-     * @modifiers
-     * `v-model.number="value"`
-     *
-     * @modifiers
-     * `v-model.trim="value"`
-     *
-     * @modifiers
-     * `v-model.lazy="value"`
-     */
-    modelValue?: string | number
-
-    /**
-     * Used internaly to allow .number, .trim
-     * and .lazy v-model modifiers.
-     */
-    modelModifiers?: {
-      number?: boolean
-      trim?: boolean
-      lazy?: boolean
-    }
-
-    /**
      * The form input identifier.
      */
     id?: string
@@ -43,9 +16,26 @@ const props = withDefaults(
     type?: string
 
     /**
-     * The shape of the input.
+     * The radius of the input.
+     *
+     * @since 2.0.0
+     * @default 'rounded'
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * The contrast of the input.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * The label to display for the input.
@@ -58,14 +48,19 @@ const props = withDefaults(
     labelFloat?: boolean
 
     /**
+     * The icon to display for the input.
+     */
+    icon?: string
+
+    /**
      * The placeholder to display for the input.
      */
     placeholder?: string
 
     /**
-     * The icon to display for the input.
+     * An error message or boolean value indicating whether the input is in an error state.
      */
-    icon?: string
+    error?: string | boolean
 
     /**
      * Whether the color of the input should change when it is focused.
@@ -76,21 +71,6 @@ const props = withDefaults(
      * Whether the input is in a loading state.
      */
     loading?: boolean
-
-    /**
-     * An error message or boolean value indicating whether the input is in an error state.
-     */
-    error?: string | boolean
-
-    /**
-     * The size of the input.
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the input.
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -134,75 +114,78 @@ const props = withDefaults(
   }>(),
   {
     id: undefined,
-    modelValue: undefined,
-    modelModifiers: () => ({}),
     type: 'text',
-    size: 'md',
-    contrast: 'default',
-    shape: undefined,
+    rounded: undefined,
+    size: undefined,
+    contrast: undefined,
     label: undefined,
     icon: undefined,
-    error: false,
     placeholder: undefined,
+    error: false,
     classes: () => ({}),
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value?: string | number]
-}>()
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
-
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-input-rounded',
-  smooth: 'nui-input-smooth',
-  curved: 'nui-input-curved',
-  full: 'nui-input-full',
-}
-const sizeStyle = {
-  sm: 'nui-input-sm',
-  md: 'nui-input-md',
-  lg: 'nui-input-lg',
-}
-const contrastStyle = {
-  default: 'nui-input-default',
-  'default-contrast': 'nui-input-default-contrast',
-  muted: 'nui-input-muted',
-  'muted-contrast': 'nui-input-muted-contrast',
-}
 
 function looseToNumber(val: any) {
   const n = Number.parseFloat(val)
   return Number.isNaN(n) ? val : n
 }
 
-const value = useVModel(
-  props,
-  'modelValue',
-  (_, val) => {
-    if (props.modelModifiers.number) {
-      emits('update:modelValue', looseToNumber(val))
-    } else if (props.modelModifiers.trim) {
-      emits('update:modelValue', typeof val === 'string' ? val.trim() : val)
-    } else {
-      emits('update:modelValue', val)
+const [modelValue, modelModifiers] = defineModel<
+  string | number,
+  'lazy' | 'trim' | 'number'
+>({
+  set(value) {
+    if (modelModifiers.number) {
+      return looseToNumber(value)
+    } else if (modelModifiers.trim && typeof value === 'string') {
+      return value.trim()
     }
+
+    return value
   },
-  {
-    passive: true,
-  },
-)
+})
+
+const rounded = useNuiDefaultProperty(props, 'BaseInput', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseInput', 'size')
+const contrast = useNuiDefaultProperty(props, 'BaseInput', 'contrast')
 
 const inputRef = ref<HTMLInputElement>()
+const id = useNinjaId(() => props.id)
+
+const radiuses = {
+  none: '',
+  sm: 'nui-input-rounded',
+  md: 'nui-input-smooth',
+  lg: 'nui-input-curved',
+  full: 'nui-input-full',
+} as Record<string, string>
+
+const sizes = {
+  sm: 'nui-input-sm',
+  md: 'nui-input-md',
+  lg: 'nui-input-lg',
+} as Record<string, string>
+
+const contrasts = {
+  default: 'nui-input-default',
+  'default-contrast': 'nui-input-default-contrast',
+  muted: 'nui-input-muted',
+  'muted-contrast': 'nui-input-muted-contrast',
+} as Record<string, string>
+
 defineExpose({
   /**
    * The underlying HTMLInputElement element.
    */
   el: inputRef,
+
+  /**
+   * The internal id of the radio input.
+   */
+  id,
 })
 
-const id = useNinjaId(() => props.id)
 const placeholder = computed(() => {
   if (props.loading) {
     return
@@ -229,9 +212,9 @@ if (process.dev) {
   <div
     class="nui-input-wrapper"
     :class="[
-      contrastStyle[props.contrast],
-      sizeStyle[props.size],
-      shape && shapeStyle[shape],
+      contrast && contrasts[contrast],
+      size && sizes[size],
+      rounded && radiuses[rounded],
       props.error && !props.loading && 'nui-input-error',
       props.loading && 'nui-input-loading',
       props.labelFloat && 'nui-input-label-float',
@@ -254,10 +237,10 @@ if (process.dev) {
     <div class="nui-input-outer" :class="props.classes?.outer">
       <div>
         <input
-          v-if="props.modelModifiers.lazy"
+          v-if="modelModifiers.lazy"
           :id="id"
           ref="inputRef"
-          v-model.lazy="value"
+          v-model.lazy="modelValue"
           :type="props.type"
           v-bind="$attrs"
           class="nui-input"
@@ -268,7 +251,7 @@ if (process.dev) {
           v-else
           :id="id"
           ref="inputRef"
-          v-model="value"
+          v-model="modelValue"
           :type="props.type"
           v-bind="$attrs"
           class="nui-input"

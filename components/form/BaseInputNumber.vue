@@ -6,24 +6,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The model value of the input.
-     *
-     * @modifiers
-     * `v-model="value"`
-     *
-     * @modifiers
-     * `v-model.lazy="value"`
-     */
-    modelValue?: number
-
-    /**
-     * Used internaly to allow .lazy v-model modifiers.
-     */
-    modelModifiers?: {
-      lazy?: boolean
-    }
-
-    /**
      * Minimum value allowed when decrementing
      */
     min?: number
@@ -49,9 +31,31 @@ const props = withDefaults(
     type?: string
 
     /**
-     * The shape of the input.
+     * The inputmode to use for the input, usually for mobile devices.
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    inputmode?: 'numeric' | 'decimal'
+
+    /**
+     * The radius of the input.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * The contrast of the input.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
      * The label to display for the input.
@@ -64,14 +68,19 @@ const props = withDefaults(
     labelFloat?: boolean
 
     /**
+     * The icon to display for the input.
+     */
+    icon?: string
+
+    /**
      * The placeholder to display for the input.
      */
     placeholder?: string
 
     /**
-     * The icon to display for the input.
+     * An error message or boolean value indicating whether the input is in an error state.
      */
-    icon?: string
+    error?: string | boolean
 
     /**
      * The icon to display for the decrement button.
@@ -82,11 +91,6 @@ const props = withDefaults(
      * The icon to display for the increment button.
      */
     iconIncrement?: string
-
-    /**
-     * The inputmode to use for the input, usually for mobile devices.
-     */
-    inputmode?: 'numeric' | 'decimal'
 
     /**
      * Whether the color of the input should change when it is focused.
@@ -102,22 +106,6 @@ const props = withDefaults(
      * Whether the input is in a disabled state.
      */
     disabled?: boolean
-
-    /**
-     * An error message or boolean value indicating whether the input is in an error state.
-     */
-    error?: string | boolean
-
-    /**
-     * The size of the input.
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the input.
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
      */
@@ -164,76 +152,77 @@ const props = withDefaults(
     }
   }>(),
   {
-    id: undefined,
-    modelValue: undefined,
-    modelModifiers: () => ({}),
     min: undefined,
     max: undefined,
     step: 1,
+    id: undefined,
     type: 'text',
-    size: 'md',
-    contrast: 'default',
-    inputmode: 'numeric',
-    shape: undefined,
+    inputmode: undefined,
+    rounded: undefined,
+    size: undefined,
+    contrast: undefined,
     label: undefined,
     icon: undefined,
+    placeholder: undefined,
+    error: false,
     iconDecrement: 'lucide:minus',
     iconIncrement: 'lucide:plus',
-    error: false,
-    placeholder: undefined,
     classes: () => ({}),
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value?: number]
-}>()
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
-
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-input-number-rounded',
-  smooth: 'nui-input-number-smooth',
-  curved: 'nui-input-number-curved',
-  full: 'nui-input-number-full',
-}
-const sizeStyle = {
-  sm: 'nui-input-number-sm',
-  md: 'nui-input-number-md',
-  lg: 'nui-input-number-lg',
-}
-const contrastStyle = {
-  default: 'nui-input-number-default',
-  'default-contrast': 'nui-input-number-default-contrast',
-  muted: 'nui-input-number-muted',
-  'muted-contrast': 'nui-input-number-muted-contrast',
-}
 
 function looseToNumber(val: any) {
   const n = Number.parseFloat(val)
   return Number.isNaN(n) ? val : n
 }
 
-const value = useVModel(
-  props,
-  'modelValue',
-  (_, val) => {
-    emits('update:modelValue', looseToNumber(val))
+const [modelValue, modelModifiers] = defineModel<number, 'lazy'>({
+  set(value) {
+    return looseToNumber(value)
   },
-  {
-    passive: true,
-  },
-)
+})
+
+const inputmode = useNuiDefaultProperty(props, 'BaseInputNumber', 'inputmode')
+const rounded = useNuiDefaultProperty(props, 'BaseInputNumber', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseInputNumber', 'size')
+const contrast = useNuiDefaultProperty(props, 'BaseInputNumber', 'contrast')
+
+const radiuses = {
+  none: '',
+  sm: 'nui-input-number-rounded',
+  md: 'nui-input-number-smooth',
+  lg: 'nui-input-number-curved',
+  full: 'nui-input-number-full',
+} as Record<string, string>
+
+const sizes = {
+  sm: 'nui-input-number-sm',
+  md: 'nui-input-number-md',
+  lg: 'nui-input-number-lg',
+} as Record<string, string>
+
+const contrasts = {
+  default: 'nui-input-number-default',
+  'default-contrast': 'nui-input-number-default-contrast',
+  muted: 'nui-input-number-muted',
+  'muted-contrast': 'nui-input-number-muted-contrast',
+} as Record<string, string>
 
 const inputRef = ref<HTMLInputElement>()
+const id = useNinjaId(() => props.id)
+
 defineExpose({
   /**
    * The underlying HTMLInputElement element.
    */
   el: inputRef,
+
+  /**
+   * The internal id of the radio input.
+   */
+  id,
 })
 
-const id = useNinjaId(() => props.id)
 const placeholder = computed(() => {
   if (props.loading) {
     return
@@ -271,26 +260,26 @@ function clamp(value: number) {
 function increment() {
   if (props.disabled) return
 
-  if (value.value === undefined) {
-    value.value = 0
+  if (modelValue.value === undefined) {
+    modelValue.value = 0
     return
   }
 
-  if (typeof value.value === 'number') {
-    value.value = clamp(value.value + stepAbs.value)
+  if (typeof modelValue.value === 'number') {
+    modelValue.value = clamp(modelValue.value + stepAbs.value)
   }
 }
 
 function decrement() {
   if (props.disabled) return
 
-  if (value.value === undefined) {
-    value.value = 0
+  if (modelValue.value === undefined) {
+    modelValue.value = 0
     return
   }
 
-  if (typeof value.value === 'number') {
-    value.value = clamp(value.value - stepAbs.value)
+  if (typeof modelValue.value === 'number') {
+    modelValue.value = clamp(modelValue.value - stepAbs.value)
   }
 }
 
@@ -354,9 +343,9 @@ if (process.dev) {
   <div
     class="nui-input-number-wrapper"
     :class="[
-      contrastStyle[props.contrast],
-      sizeStyle[props.size],
-      shape && shapeStyle[shape],
+      contrast && contrasts[contrast],
+      size && sizes[size],
+      rounded && radiuses[rounded],
       props.error && !props.loading && 'nui-input-number-error',
       props.loading && 'nui-input-number-loading',
       props.labelFloat && 'nui-input-number-label-float',
@@ -379,29 +368,29 @@ if (process.dev) {
     <div class="nui-input-number-outer" :class="props.classes?.outer">
       <div>
         <input
-          v-if="props.modelModifiers.lazy"
+          v-if="modelModifiers.lazy"
           :id="id"
           ref="inputRef"
-          v-model.lazy="value"
+          v-model.lazy="modelValue"
           :type="props.type"
           v-bind="$attrs"
           class="nui-input-number"
           :class="props.classes.input"
           :placeholder="placeholder"
-          :inputmode="props.inputmode"
+          :inputmode="props.inputmode ? props.inputmode : inputmode"
           :disabled="props.disabled"
         />
         <input
           v-else
           :id="id"
           ref="inputRef"
-          v-model="value"
+          v-model="modelValue"
           :type="props.type"
           v-bind="$attrs"
           class="nui-input-number"
           :class="props.classes.input"
           :placeholder="placeholder"
-          :inputmode="props.inputmode"
+          :inputmode="props.inputmode ? props.inputmode : inputmode"
           :disabled="props.disabled"
         />
         <label

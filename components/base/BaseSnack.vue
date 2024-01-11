@@ -2,6 +2,20 @@
 const props = withDefaults(
   defineProps<{
     /**
+     * The size of the snack.
+     *
+     * @default 'md'
+     */
+    size?: 'xs' | 'sm' | 'md'
+
+    /**
+     * The color of snack.
+     *
+     * @default 'muted'
+     */
+    color?: 'default' | 'muted'
+
+    /**
      * The text to display in the snackbar.
      */
     label?: string
@@ -15,45 +29,58 @@ const props = withDefaults(
      * An optional image to display in the snackbar.
      */
     image?: string
-
-    /**
-     * The size of the snack.
-     */
-    size?: 'sm' | 'md'
-
-    /**
-     * The color of snack, might be 'default' or 'muted'.
-     */
-    color?: 'default' | 'muted'
   }>(),
   {
+    size: undefined,
+    color: undefined,
     label: '',
     icon: undefined,
     image: undefined,
-    size: 'md',
-    color: 'default',
   },
 )
 
 const emit = defineEmits<{
   delete: []
 }>()
-const sizeStyle = {
+
+const size = useNuiDefaultProperty(props, 'BaseSnack', 'size')
+const color = useNuiDefaultProperty(props, 'BaseSnack', 'color')
+
+const sizes = {
+  xs: 'nui-snack-xs',
   sm: 'nui-snack-sm',
   md: 'nui-snack-md',
-}
-const colorStyle = {
+} as Record<string, string>
+
+const colors = {
   default: 'nui-snack-default',
   muted: 'nui-snack-muted',
-}
+} as Record<string, string>
+
+const closeSize = computed(() => {
+  switch (size.value) {
+    case 'xs': {
+      return 'xs'
+    }
+    case 'sm': {
+      return 'sm'
+    }
+    case 'md': {
+      return 'md'
+    }
+    default: {
+      return 'md'
+    }
+  }
+})
 </script>
 
 <template>
   <div
     class="nui-snack"
     :class="[
-      sizeStyle[props.size],
-      colorStyle[props.color],
+      size && sizes[size],
+      color && colors[color],
       props.icon || props.image ? 'nui-has-media' : '',
     ]"
   >
@@ -70,7 +97,8 @@ const colorStyle = {
     </span>
     <BaseButtonClose
       class="nui-snack-button"
-      shape="full"
+      rounded="full"
+      :size="closeSize"
       @click="emit('delete')"
     />
   </div>

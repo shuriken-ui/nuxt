@@ -5,32 +5,12 @@ import type { RouteLocationRaw } from 'vue-router'
 const props = withDefaults(
   defineProps<{
     /**
-     * The type of button.
-     */
-    type?: 'button' | 'submit' | 'reset'
-
-    /**
      * The route to navigate to when the button is clicked.
      */
     to?: RouteLocationRaw
 
     /** Using href instead of to result in a native anchor with no router functionality. */
     href?: string
-
-    /**
-     * Whether the button is disabled.
-     */
-    disabled?: boolean
-
-    /**
-     * The shape of the dropdown-item.
-     */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved'
-
-    /**
-     * The color of the dropdown-item.
-     */
-    color?: 'default' | 'contrast'
 
     /**
      * The value for the `rel` attribute on the button.
@@ -43,6 +23,26 @@ const props = withDefaults(
     target?: string
 
     /**
+     * The type of button.
+     */
+    type?: 'button' | 'submit' | 'reset'
+
+    /**
+     * The radius of the dropdown-item.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg'
+
+    /**
+     * The color of the dropdown-item.
+     *
+     * @default 'default'
+     */
+    color?: 'default' | 'contrast'
+
+    /**
      * The title to display for the dropdown item.
      */
     title?: string
@@ -51,25 +51,30 @@ const props = withDefaults(
      * The text to display for the dropdown item.
      */
     text?: string
+
     /**
-     * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
+     * Optional CSS classes to apply to the wrapper and inner elements.
      */
     classes?: {
       title?: string | string[]
       text?: string | string[]
     }
+
+    /**
+     * Whether the button is disabled.
+     */
+    disabled?: boolean
   }>(),
   {
-    type: undefined,
     to: undefined,
     href: undefined,
     rel: undefined,
     target: undefined,
+    type: undefined,
+    rounded: undefined,
+    color: undefined,
     title: undefined,
     text: undefined,
-    shape: undefined,
-    color: 'default',
-    disabled: false,
     classes: () => ({
       title:
         'font-heading text-muted-800 text-xs font-semibold leading-tight dark:text-white',
@@ -78,16 +83,17 @@ const props = withDefaults(
   },
 )
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-item-rounded',
-  smooth: 'nui-item-smooth',
-  curved: 'nui-item-curved',
-}
-const colorStyle = {
+const radiuses = {
+  none: '',
+  sm: 'nui-item-rounded',
+  md: 'nui-item-smooth',
+  lg: 'nui-item-curved',
+} as Record<string, string>
+
+const colors = {
   default: 'nui-item-default',
   contrast: 'nui-item-contrast',
-}
+} as Record<string, string>
 
 const { is, attributes } = useNinjaButton(props)
 </script>
@@ -103,8 +109,8 @@ const { is, attributes } = useNinjaButton(props)
       class="nui-dropdown-item"
       :class="[
         active && 'nui-active',
-        props.shape && shapeStyle[props.shape],
-        colorStyle[props.color],
+        props.rounded && radiuses[props.rounded],
+        props.color && colors[props.color],
       ]"
       @click.passive="close"
     >

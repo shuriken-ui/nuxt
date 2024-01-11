@@ -11,11 +11,6 @@ const props = withDefaults(
     id?: string
 
     /**
-     * The model value of the switch.
-     */
-    modelValue?: boolean
-
-    /**
      * Accessible label of the switch.
      */
     label?: string
@@ -27,54 +22,58 @@ const props = withDefaults(
 
     /**
      * Main color of the switch.
+     *
+     * @default 'primary'
      */
     color?: 'primary' | 'info' | 'success' | 'warning' | 'danger'
   }>(),
   {
     id: undefined,
-    modelValue: undefined,
     label: undefined,
     sublabel: undefined,
-    color: 'primary',
+    color: undefined,
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value: boolean]
-}>()
-const value = useVModel(props, 'modelValue', emits, {
-  passive: true,
-})
 
+const [modelValue] = defineModel<boolean>()
+
+const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)
 
-const colorStyle = {
+const color = useNuiDefaultProperty(props, 'BaseSwitchThin', 'color')
+
+const colors = {
   primary: 'nui-switch-thin-primary',
   info: 'nui-switch-thin-info',
   success: 'nui-switch-thin-success',
   warning: 'nui-switch-thin-warning',
   danger: 'nui-switch-thin-danger',
-}
+} as Record<string, string>
 
-const inputRef = ref<HTMLInputElement>()
 defineExpose({
   /**
    * The underlying HTMLInputElement element.
    */
   el: inputRef,
+
+  /**
+   * The internal id of the radio input.
+   */
+  id,
 })
 </script>
 
 <template>
-  <label :for="id" class="nui-switch-thin" :class="colorStyle[props.color]">
+  <label :for="id" class="nui-switch-thin" :class="color && colors[color]">
     <span class="nui-switch-thin-outer">
       <input
         :id="id"
         ref="inputRef"
-        :checked="value"
+        :checked="modelValue"
         v-bind="$attrs"
         type="checkbox"
         class="nui-switch-thin-input peer"
-        @change="value = !value"
+        @change="modelValue = !modelValue"
       />
       <span class="nui-switch-thin-handle"></span>
       <span class="nui-switch-thin-track"></span>
