@@ -1,8 +1,8 @@
-<p align="center">
+<p align="center" style="width: 100%; max-width: 440px; margin: 0 auto; padding: 0 4rem;">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/3911343/232132279-8d8bf0ad-b1d7-4802-984e-a696763dc6cd.png">
-    <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/3911343/232132309-62971744-dcdb-429c-aa93-6ba0c1caac42.png">
-    <img alt="Shuriken UI logo" src="https://user-images.githubusercontent.com/3911343/232132309-62971744-dcdb-429c-aa93-6ba0c1caac42.png">
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/shuriken-ui/.github/assets/86636408/278e3026-1997-4e01-9457-20772adbce31">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/shuriken-ui/.github/assets/86636408/06f9d8e2-38aa-45b2-b91e-1c891a20e271">
+    <img alt="Shuriken UI logo" src="https://github.com/shuriken-ui/.github/assets/86636408/06f9d8e2-38aa-45b2-b91e-1c891a20e271">
   </picture>
 </p>
 
@@ -61,122 +61,14 @@ export default defineAppConfig({
    */
   nui: {
     /**
-     * Default shape for components
-     * 
-     * This allows to not have to specify the shape prop on every component.
-     * Define only the ones you want to override.
+     * Set default properties for BaseButton component
      */
-    defaultShapes: {
-      /**
-       * Default shape for the BaseAccordion component
-       *
-       * @type {'straight' | 'rounded' | 'curved'}
-       */
-      accordion: 'rounded',
-      /**
-       * Default shape for the BaseAutocompleteItem component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      autocompleteItem: 'rounded',
-      /**
-       * Default shape for the BaseAvatar component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      avatar: 'full',
-      /**
-       * Default shape for the BaseButton component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      button: 'rounded',
-      /**
-       * Default shape for the BaseButtonAction component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      buttonAction: 'rounded',
-      /**
-       * Default shape for the BaseButtonIcon component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      buttonIcon: 'rounded',
-      /**
-       * Default shape for the BaseButtonIcon component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      buttonClose: 'full',
-      /**
-       * Default shape for the BaseCard component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      card: 'rounded',
-      /**
-       * Default shape for the BaseDropdown component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      dropdown: 'rounded',
-      /**
-       * Default shape for the BaseIconBox component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      iconBox: 'rounded',
-      /**
-       * Default shape for all input components component
-       * - BaseAutocomplete
-       * - BaseCheckbox
-       * - BaseInput
-       * - BaseInputFile
-       * - BaseInputListbox
-       * - BaseInputSelect
-       * - BaseInputTextarea
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      input: 'rounded',
-      /**
-       * Default shape for the BaseMessage component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      message: 'curved',
-      /**
-       * Default shape for the BasePagination component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      pagination: 'rounded',
-      /**
-       * Default shape for the BaseProgress component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      progress: 'full',
-      /**
-       * Default shape for the BaseProse component
-       *
-       * @type {'straight' | 'rounded' | 'curved'}
-       */
-      prose: 'rounded',
-      /**
-       * Default shape for the BaseTabSlider component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      tabSlider: 'rounded',
-      /**
-       * Default shape for the BaseTag component
-       *
-       * @type {'straight' | 'rounded' | 'curved' | 'full'}
-       */
-      tag: 'rounded',
+    BaseButton: {
+      variant: 'pastel',
+      rounded: 'md',
     },
+
+    // ...
   },
 })
 ```
@@ -228,7 +120,7 @@ export default withShurikenUI({
        * 
        * @see https://github.com/shuriken-ui/tailwind
        */
-      shurikenUi: {
+      nui: {
         // ...
       }
     },
