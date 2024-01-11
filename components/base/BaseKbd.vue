@@ -83,9 +83,10 @@ const colors = {
       props.classes?.wrapper,
     ]"
   >
-    <slot />
-    <span v-if="props.icon" class="nui-kbd-icon-outer">
-      <Icon :name="props.icon" class="nui-kbd-icon-inner" />
-    </span>
+    <slot>
+      <span v-if="props.icon" class="nui-kbd-icon-outer">
+        <Icon :name="props.icon" class="nui-kbd-icon-inner" />
+      </span>
+    </slot>
   </kbd>
 </template>
