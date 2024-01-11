@@ -21,11 +21,6 @@ const props = withDefaults(
     falseValue?: T
 
     /**
-     * The model value of the checkbox.
-     */
-    modelValue?: T | T[]
-
-    /**
      * The form input identifier.
      */
     id?: string
@@ -93,7 +88,6 @@ const props = withDefaults(
     }
   }>(),
   {
-    modelValue: undefined,
     value: undefined,
     trueValue: true as any,
     falseValue: false as any,
@@ -105,17 +99,14 @@ const props = withDefaults(
     classes: () => ({}),
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value?: T | T[]]
-}>()
+
+const [modelValue] = defineModel<T | T[]>()
 
 const rounded = useNuiDefaultProperty(props, 'BaseCheckbox', 'rounded')
 const color = useNuiDefaultProperty(props, 'BaseCheckbox', 'color')
 
 const inputRef = ref<HTMLInputElement>()
-const value = useVModel(props, 'modelValue', emits, {
-  passive: true,
-})
+const id = useNinjaId(() => props.id)
 
 const radiuses = {
   none: '',
@@ -147,9 +138,12 @@ defineExpose({
    * The underlying HTMLInputElement element.
    */
   el: inputRef,
-})
 
-const id = useNinjaId(() => props.id)
+  /**
+   * The internal id of the radio input.
+   */
+  id,
+})
 </script>
 
 <template>
@@ -166,7 +160,7 @@ const id = useNinjaId(() => props.id)
       <input
         :id="id"
         ref="inputRef"
-        v-model="value"
+        v-model="modelValue"
         :value="props.value"
         :true-value="props.trueValue"
         :false-value="props.falseValue"

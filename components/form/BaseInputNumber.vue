@@ -6,24 +6,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The model value of the input.
-     *
-     * @modifiers
-     * `v-model="value"`
-     *
-     * @modifiers
-     * `v-model.lazy="value"`
-     */
-    modelValue?: number
-
-    /**
-     * Used internaly to allow .lazy v-model modifiers.
-     */
-    modelModifiers?: {
-      lazy?: boolean
-    }
-
-    /**
      * Minimum value allowed when decrementing
      */
     min?: number
@@ -170,8 +152,6 @@ const props = withDefaults(
     }
   }>(),
   {
-    modelValue: undefined,
-    modelModifiers: () => ({}),
     min: undefined,
     max: undefined,
     step: 1,
@@ -190,9 +170,17 @@ const props = withDefaults(
     classes: () => ({}),
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value?: number]
-}>()
+
+function looseToNumber(val: any) {
+  const n = Number.parseFloat(val)
+  return Number.isNaN(n) ? val : n
+}
+
+const [modelValue, modelModifiers] = defineModel<number, 'lazy'>({
+  set(value) {
+    return looseToNumber(value)
+  },
+})
 
 const inputmode = useNuiDefaultProperty(props, 'BaseInputNumber', 'inputmode')
 const rounded = useNuiDefaultProperty(props, 'BaseInputNumber', 'rounded')
@@ -220,31 +208,21 @@ const contrasts = {
   'muted-contrast': 'nui-input-number-muted-contrast',
 } as Record<string, string>
 
-function looseToNumber(val: any) {
-  const n = Number.parseFloat(val)
-  return Number.isNaN(n) ? val : n
-}
-
-const value = useVModel(
-  props,
-  'modelValue',
-  (_, val) => {
-    emits('update:modelValue', looseToNumber(val))
-  },
-  {
-    passive: true,
-  },
-)
-
 const inputRef = ref<HTMLInputElement>()
+const id = useNinjaId(() => props.id)
+
 defineExpose({
   /**
    * The underlying HTMLInputElement element.
    */
   el: inputRef,
+
+  /**
+   * The internal id of the radio input.
+   */
+  id,
 })
 
-const id = useNinjaId(() => props.id)
 const placeholder = computed(() => {
   if (props.loading) {
     return
@@ -282,26 +260,26 @@ function clamp(value: number) {
 function increment() {
   if (props.disabled) return
 
-  if (value.value === undefined) {
-    value.value = 0
+  if (modelValue.value === undefined) {
+    modelValue.value = 0
     return
   }
 
-  if (typeof value.value === 'number') {
-    value.value = clamp(value.value + stepAbs.value)
+  if (typeof modelValue.value === 'number') {
+    modelValue.value = clamp(modelValue.value + stepAbs.value)
   }
 }
 
 function decrement() {
   if (props.disabled) return
 
-  if (value.value === undefined) {
-    value.value = 0
+  if (modelValue.value === undefined) {
+    modelValue.value = 0
     return
   }
 
-  if (typeof value.value === 'number') {
-    value.value = clamp(value.value - stepAbs.value)
+  if (typeof modelValue.value === 'number') {
+    modelValue.value = clamp(modelValue.value - stepAbs.value)
   }
 }
 
@@ -390,10 +368,10 @@ if (process.dev) {
     <div class="nui-input-number-outer" :class="props.classes?.outer">
       <div>
         <input
-          v-if="props.modelModifiers.lazy"
+          v-if="modelModifiers.lazy"
           :id="id"
           ref="inputRef"
-          v-model.lazy="value"
+          v-model.lazy="modelValue"
           :type="props.type"
           v-bind="$attrs"
           class="nui-input-number"
@@ -406,7 +384,7 @@ if (process.dev) {
           v-else
           :id="id"
           ref="inputRef"
-          v-model="value"
+          v-model="modelValue"
           :type="props.type"
           v-bind="$attrs"
           class="nui-input-number"

@@ -65,6 +65,7 @@ module.exports = {
     'vue/no-ref-object-destructure': 'error',
     'vue/no-required-prop-with-default': 'error',
     'vue/require-prop-comment': 'error',
+    'vue/valid-v-model': 'off',
 
     // 'vue/require-expose': 'error',
 

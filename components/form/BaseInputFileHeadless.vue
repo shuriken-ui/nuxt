@@ -8,11 +8,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The model value of the file input.
-     */
-    modelValue?: FileList | null
-
-    /**
      * The form input identifier.
      */
     id?: string
@@ -28,14 +23,9 @@ const props = withDefaults(
     filterFileDropped: () => true,
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value?: FileList | null]
-}>()
-const inputRef = ref<HTMLInputElement>()
-const value = useVModel(props, 'modelValue', emits, {
-  passive: true,
-})
+const [modelValue] = defineModel<FileList | null>()
 
+const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)
 
 const previewMap = new WeakMap<File, Ref<string | undefined>>()
@@ -56,12 +46,12 @@ function drop(event: DragEvent) {
       }
     }
     inputRef.value.files = filtered.files
-    value.value = inputRef.value.files
+    modelValue.value = inputRef.value.files
   }
 }
 function remove(file?: File) {
   if (!file) return
-  if (!value.value) return
+  if (!modelValue.value) return
   if (!inputRef.value) return
 
   const filtered = new DataTransfer()
@@ -70,14 +60,14 @@ function remove(file?: File) {
     previewMap.delete(file)
   }
 
-  for (const f of value.value) {
+  for (const f of modelValue.value) {
     if (f !== file) {
       filtered.items.add(f)
     }
   }
 
   inputRef.value.files = filtered.files
-  value.value = inputRef.value.files
+  modelValue.value = inputRef.value.files
 }
 
 provide(
@@ -85,7 +75,7 @@ provide(
   reactive({
     el: inputRef,
     id,
-    files: value,
+    files: modelValue,
     open,
     remove,
     preview: useNinjaFilePreview,
@@ -105,7 +95,7 @@ defineExpose({
   /**
    * The model value of the file input.
    */
-  files: value,
+  files: modelValue,
   /**
    * Opens the native file input selector.
    */
@@ -130,7 +120,7 @@ defineExpose({
     <slot
       :id="id"
       :el="inputRef"
-      :files="value"
+      :files="modelValue"
       :open="open"
       :remove="remove"
       :preview="useNinjaFilePreview"
@@ -142,7 +132,9 @@ defineExpose({
       type="file"
       v-bind="$attrs"
       class="hidden"
-      @change="(event) => (value = (event.target as HTMLInputElement).files)"
+      @change="
+        (event) => (modelValue = (event.target as HTMLInputElement).files)
+      "
     />
   </div>
 </template>

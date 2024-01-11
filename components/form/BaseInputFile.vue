@@ -6,11 +6,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The model value of the file input.
-     */
-    modelValue?: FileList | null
-
-    /**
      * The form input identifier.
      */
     id?: string
@@ -109,7 +104,6 @@ const props = withDefaults(
     }
   }>(),
   {
-    modelValue: undefined,
     id: undefined,
     rounded: undefined,
     size: undefined,
@@ -130,13 +124,15 @@ const props = withDefaults(
     classes: () => ({}),
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value?: FileList | null]
-}>()
+
+const [modelValue] = defineModel<FileList | null>()
 
 const rounded = useNuiDefaultProperty(props, 'BaseInputFile', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseInputFile', 'size')
 const contrast = useNuiDefaultProperty(props, 'BaseInputFile', 'contrast')
+
+const inputRef = ref<HTMLInputElement>()
+const id = useNinjaId(() => props.id)
 
 const radiuses = {
   none: '',
@@ -157,14 +153,8 @@ const contrasts = {
   'default-contrast': 'nui-input-white-contrast',
 } as Record<string, string>
 
-// const value = ref(props.modelValue)
-const inputRef = ref<HTMLInputElement>()
-const value = useVModel(props, 'modelValue', emits, {
-  passive: true,
-})
-
 const textValue = computed(() => {
-  return props.textValue?.(value.value)
+  return props.textValue?.(modelValue.value)
 })
 
 defineExpose({
@@ -172,9 +162,12 @@ defineExpose({
    * The underlying HTMLInputElement element.
    */
   el: inputRef,
-})
 
-const id = useNinjaId(() => props.id)
+  /**
+   * The internal id of the radio input.
+   */
+  id,
+})
 </script>
 
 <template>
@@ -226,7 +219,7 @@ const id = useNinjaId(() => props.id)
           v-bind="$attrs"
           class="hidden"
           @change="
-            (event) => (value = (event.target as HTMLInputElement).files)
+            (event) => (modelValue = (event.target as HTMLInputElement).files)
           "
         />
       </label>

@@ -17,25 +17,6 @@ const props = withDefaults(
     items: T[]
 
     /**
-     * The model value of the multiselect.
-     *
-     * @modifiers
-     * `v-model="value"`
-     *
-     * @modifiers
-     * the value property of an object (as defined in properties.value) rather than the object itself
-     * `v-model.prop="value"`
-     */
-    modelValue?: T | T[]
-
-    /**
-     * Used internaly to allow .prop v-model modifier
-     */
-    modelModifiers?: {
-      prop?: boolean
-    }
-
-    /**
      * The radius of the multiselect.
      *
      * @since 2.0.0
@@ -160,8 +141,6 @@ const props = withDefaults(
     }
   }>(),
   {
-    modelValue: undefined,
-    modelModifiers: () => ({}),
     rounded: undefined,
     size: undefined,
     contrast: undefined,
@@ -186,9 +165,22 @@ const props = withDefaults(
     placement: 'bottom-start',
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value?: T | T[]]
-}>()
+
+const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
+  set(value) {
+    if (modelModifiers.prop && props.properties.value) {
+      const attr = props.properties.value
+      return props.items.find(
+        (item) =>
+          item &&
+          typeof item === 'object' &&
+          attr in item &&
+          (item as any)[attr] === value,
+      )
+    }
+    return value
+  },
+})
 
 const rounded = useNuiDefaultProperty(props, 'BaseListbox', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseListbox', 'size')
@@ -215,10 +207,6 @@ const contrasts = {
   'muted-contrast': 'nui-listbox-muted-contrast',
 } as Record<string, string>
 
-const vmodel = useVModel(props, 'modelValue', emits, {
-  passive: true,
-})
-
 const placeholder = computed(() => {
   if (props.loading) {
     return
@@ -228,20 +216,6 @@ const placeholder = computed(() => {
   }
 
   return props.placeholder
-})
-
-const value = computed(() => {
-  if (props.modelModifiers.prop && props.properties.value) {
-    const attr = props.properties.value
-    return props.items.find(
-      (item) =>
-        item &&
-        typeof item === 'object' &&
-        attr in item &&
-        (item as any)[attr] === vmodel.value,
-    )
-  }
-  return vmodel.value
 })
 </script>
 
@@ -260,8 +234,8 @@ const value = computed(() => {
   >
     <Listbox
       v-slot="{ open }: { open: boolean }"
-      v-model="vmodel"
-      :by="props.modelModifiers.prop ? undefined : props.properties.value"
+      v-model="modelValue as any"
+      :by="modelModifiers.prop ? undefined : props.properties.value"
       :multiple="props.multiple"
       :disabled="props.disabled"
     >
@@ -294,7 +268,7 @@ const value = computed(() => {
                 :disabled="props.disabled"
                 class="nui-listbox-button"
               >
-                <slot name="listbox-button" :value="value" :open="open">
+                <slot name="listbox-button" :value="modelValue" :open="open">
                   <div class="nui-listbox-button-inner">
                     <BaseIconBox
                       v-if="props.icon"
@@ -308,9 +282,9 @@ const value = computed(() => {
                       </slot>
                     </BaseIconBox>
 
-                    <template v-if="Array.isArray(value)">
+                    <template v-if="Array.isArray(modelValue)">
                       <div
-                        v-if="value.length === 0 && placeholder"
+                        v-if="modelValue.length === 0 && placeholder"
                         class="nui-listbox-placeholder"
                         :class="props.loading && 'select-none text-transparent'"
                       >
@@ -320,25 +294,28 @@ const value = computed(() => {
                         class="block truncate text-left"
                         :class="[
                           props.loading && 'select-none text-transparent',
-                          value.length === 0 &&
+                          modelValue.length === 0 &&
                             'text-muted-300 dark:text-muted-500',
                         ]"
                       >
                         {{
                           typeof props.multipleLabel === 'function'
-                            ? props.multipleLabel(value, props.properties.label)
+                            ? props.multipleLabel(
+                                modelValue,
+                                props.properties.label,
+                              )
                             : props.multipleLabel
                         }}
                       </div>
                     </template>
 
-                    <template v-else-if="value">
+                    <template v-else-if="modelValue">
                       <BaseAvatar
                         v-if="
                           props.properties.media &&
-                          (value as any)[props.properties.media]
+                          (modelValue as any)[props.properties.media]
                         "
-                        :src="(value as any)[props.properties.media]"
+                        :src="(modelValue as any)[props.properties.media]"
                         :size="size === 'sm' ? 'xxs' : 'xs'"
                         class="me-2"
                         :class="size === 'sm' ? '-ms-1' : '-ms-2'"
@@ -346,7 +323,7 @@ const value = computed(() => {
                       <BaseIconBox
                         v-else-if="
                           props.properties.icon &&
-                          (value as any)[props.properties.icon]
+                          (modelValue as any)[props.properties.icon]
                         "
                         size="xs"
                         rounded="sm"
@@ -354,7 +331,7 @@ const value = computed(() => {
                         class="-ms-2 me-2"
                       >
                         <Icon
-                          :name="(value as any)[props.properties.icon]"
+                          :name="(modelValue as any)[props.properties.icon]"
                           class="h-4 w-4"
                         />
                       </BaseIconBox>
@@ -364,10 +341,10 @@ const value = computed(() => {
                       >
                         {{
                           props.properties.label
-                            ? (value as any)[props.properties.label]
+                            ? (modelValue as any)[props.properties.label]
                             : props.properties.value
-                              ? (value as any)[props.properties.value]
-                              : value
+                              ? (modelValue as any)[props.properties.value]
+                              : modelValue
                         }}
                       </div>
                     </template>
@@ -436,7 +413,7 @@ const value = computed(() => {
                     : item
                 "
                 :value="
-                  props.modelModifiers.prop && props.properties.value
+                  modelModifiers.prop && props.properties.value
                     ? (item as any)[props.properties.value]
                     : item
                 "

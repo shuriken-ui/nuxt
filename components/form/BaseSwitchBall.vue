@@ -6,11 +6,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The model value of the switch.
-     */
-    modelValue?: boolean
-
-    /**
      * The form input identifier.
      */
     id?: string
@@ -33,20 +28,16 @@ const props = withDefaults(
     color?: 'primary' | 'info' | 'success' | 'warning' | 'danger'
   }>(),
   {
-    modelValue: undefined,
     id: undefined,
     label: undefined,
     sublabel: undefined,
     color: undefined,
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value: boolean]
-}>()
-const value = useVModel(props, 'modelValue', emits, {
-  passive: true,
-})
 
+const [modelValue] = defineModel<boolean>()
+
+const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)
 
 const color = useNuiDefaultProperty(props, 'BaseSwitchBall', 'color')
@@ -59,12 +50,16 @@ const colors = {
   danger: 'nui-switch-ball-danger',
 } as Record<string, string>
 
-const inputRef = ref<HTMLInputElement>()
 defineExpose({
   /**
    * The underlying HTMLInputElement element.
    */
   el: inputRef,
+
+  /**
+   * The internal id of the radio input.
+   */
+  id,
 })
 </script>
 
@@ -74,11 +69,11 @@ defineExpose({
       <input
         :id="id"
         ref="inputRef"
-        :checked="value"
+        :checked="modelValue"
         v-bind="$attrs"
         type="checkbox"
         class="nui-switch-ball-input peer"
-        @change="value = !value"
+        @change="modelValue = !modelValue"
       />
       <span class="nui-switch-ball-handle"></span>
       <span class="nui-switch-ball-track"></span>

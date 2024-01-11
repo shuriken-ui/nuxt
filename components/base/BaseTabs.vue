@@ -34,11 +34,6 @@ const props = withDefaults(
     }[]
 
     /**
-     * The value of the currently selected tab. This should match the value of one of the tabs in the tabs array.
-     */
-
-    modelValue?: string
-    /**
      * Whether or not to hide the label for the tab.
      */
     hideLabel?: boolean
@@ -50,9 +45,7 @@ const props = withDefaults(
   },
 )
 
-const emit = defineEmits<{
-  'update:modelValue': [value?: string]
-}>()
+const [modelValue] = defineModel<string>()
 
 const justify = useNuiDefaultProperty(props, 'BaseTabs', 'justify')
 const type = useNuiDefaultProperty(props, 'BaseTabs', 'type')
@@ -68,38 +61,31 @@ const types = {
   box: 'nui-pill-item',
 } as Record<string, string>
 
-const activeValue = ref(props.modelValue)
-
 function toggle(value: string) {
-  activeValue.value = value
+  modelValue.value = value
 }
-
-watch(
-  () => props.modelValue,
-  (value) => {
-    activeValue.value = value
-  },
-)
-watch(activeValue, (value) => {
-  emit('update:modelValue', value)
-})
 </script>
 
 <template>
-  <div class="nui-tabs" :class="props.justify && justifies[justify]">
+  <div class="nui-tabs" :class="justify && justifies[justify]">
     <div class="nui-tabs-inner">
       <a
         v-for="(tab, key) in tabs"
         :key="key"
         :class="[
           type && types[type],
-          activeValue === tab.value && 'nui-active',
+          modelValue === tab.value && 'nui-active',
           tab.icon && 'nui-has-icon',
         ]"
         tabindex="0"
         @click="toggle(tab.value)"
       >
-        <slot v-if="tab.icon" name="icon" :icon-name="tab.icon">
+        <slot
+          v-if="tab.icon"
+          name="icon"
+          :icon-name="tab.icon"
+          :toggle="toggle"
+        >
           <Icon :name="tab.icon" class="me-1 block h-5 w-5" />
         </slot>
         <span
@@ -115,7 +101,7 @@ watch(activeValue, (value) => {
     </div>
 
     <div class="relative block">
-      <slot name="tab" :active-value="activeValue"></slot>
+      <slot name="tab" :active-value="modelValue" :toggle="toggle"></slot>
     </div>
   </div>
 </template>

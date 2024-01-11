@@ -22,21 +22,17 @@ const props = withDefaults(
       /** The value associated with the tab. */
       value: string
     }[]
-    /**
-     * The value of the currently selected tab.
-     */
-    modelValue?: string
   }>(),
   {
     justify: undefined,
     size: undefined,
     rounded: undefined,
-    modelValue: undefined,
   },
 )
-const emit = defineEmits<{
-  'update:modelValue': [value?: string]
-}>()
+
+const [modelValue] = defineModel<string>({
+  default: () => props.tabs[0]?.value,
+})
 
 const justify = useNuiDefaultProperty(props, 'BaseTabSlider', 'justify')
 const size = useNuiDefaultProperty(props, 'BaseTabSlider', 'size')
@@ -66,23 +62,9 @@ const lengthStyle = computed(() =>
   tabsLength.value === 2 ? 'nui-tabs-two-slots' : 'nui-tabs-three-slots',
 )
 
-const activeValue = ref<string | undefined>(
-  props.modelValue ?? props.tabs[0]?.value,
-)
-
 function toggle(value: string) {
-  activeValue.value = value
+  modelValue.value = value
 }
-
-watch(
-  () => props.modelValue,
-  (value) => {
-    activeValue.value = value
-  },
-)
-watch(activeValue, (value) => {
-  emit('update:modelValue', value)
-})
 </script>
 
 <template>
@@ -102,18 +84,18 @@ watch(activeValue, (value) => {
           :key="index"
           type="button"
           class="nui-tab-slider-item"
-          :class="[activeValue === tab.value && 'nui-active']"
+          :class="[modelValue === tab.value && 'nui-active']"
           @keydown.space="toggle(tab?.value)"
           @click="toggle(tab?.value)"
         >
           {{ tab?.label ?? tab?.value }}
         </button>
-        <div v-show="activeValue" class="nui-tab-slider-naver"></div>
+        <div v-show="modelValue" class="nui-tab-slider-naver"></div>
       </div>
     </div>
 
     <div class="nui-tab-content">
-      <slot :active-value="activeValue"></slot>
+      <slot :active-value="modelValue" :toggle="toggle"></slot>
     </div>
   </div>
 </template>

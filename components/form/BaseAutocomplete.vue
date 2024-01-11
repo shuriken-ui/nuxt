@@ -12,25 +12,6 @@ import {
 const props = withDefaults(
   defineProps<{
     /**
-     * The model value of the multiselect.
-     *
-     * @modifiers
-     * `v-model="value"`
-     *
-     * @modifiers
-     * the value property of an object (as defined in properties.value) rather than the object itself
-     * `v-model.prop="value"`
-     */
-    modelValue?: T | T[]
-
-    /**
-     * Used internaly to allow .prop v-model modifier
-     */
-    modelModifiers?: {
-      prop?: boolean
-    }
-
-    /**
      * The items to display in the component.
      */
     items?: T[]
@@ -233,10 +214,6 @@ const props = withDefaults(
     }
   }>(),
   {
-    modelValue: undefined,
-    modelModifiers: () => ({
-      prop: false,
-    }),
     items: () => [],
     rounded: undefined,
     size: undefined,
@@ -270,12 +247,33 @@ const props = withDefaults(
 )
 
 const emits = defineEmits<{
-  'update:modelValue': [value?: T | T[]]
   keydown: [event: KeyboardEvent]
 }>()
 
+const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
+  set(value) {
+    if (modelModifiers.prop && props.properties?.value) {
+      const attr = props.properties.value
+
+      return items.value.find(
+        (item) =>
+          item &&
+          typeof item === 'object' &&
+          attr in item &&
+          (item as any)[attr] === value,
+      )
+    }
+
+    return value
+  },
+})
+
+const rounded = useNuiDefaultProperty(props, 'BaseAutocomplete', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseAutocomplete', 'size')
+const contrast = useNuiDefaultProperty(props, 'BaseAutocomplete', 'contrast')
+
 const defaultDisplayValue = (item: any): any => {
-  if (props.modelModifiers.prop && props.properties?.value) {
+  if (modelModifiers.prop && props.properties?.value) {
     const attr = props.properties.value
     const result = items.value.find(
       (i) =>
@@ -328,28 +326,6 @@ const displayValueResolved = computed(() => {
   return props.displayValue
 })
 
-const rounded = useNuiDefaultProperty(props, 'BaseAutocomplete', 'rounded')
-const size = useNuiDefaultProperty(props, 'BaseAutocomplete', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseAutocomplete', 'contrast')
-
-const vmodel = useVModel(props, 'modelValue', emits, {
-  passive: true,
-}) as Ref<any>
-
-const value = computed(() => {
-  if (props.modelModifiers.prop && props.properties?.value) {
-    const attr = props.properties.value
-    return items.value.find(
-      (item) =>
-        item &&
-        typeof item === 'object' &&
-        attr in item &&
-        (item as any)[attr] === vmodel.value,
-    )
-  }
-  return vmodel.value
-})
-
 const items = shallowRef(props.items)
 const query = ref('')
 const debounced = refDebounced(query, props.filterDebounce)
@@ -388,7 +364,7 @@ const contrasts = {
 provide(
   'BaseAutocompleteContext',
   reactive({
-    selected: value,
+    selected: modelValue,
     items,
     filteredItems,
     query,
@@ -401,7 +377,7 @@ defineExpose({
   /**
    * Current selected value.
    */
-  selected: value,
+  selected: modelValue,
   /**
    * Resolved items list.
    */
@@ -446,37 +422,37 @@ watch(
 )
 
 function clear() {
-  vmodel.value = props.clearValue ?? []
+  modelValue.value = props.clearValue ?? []
 }
 
 const iconResolved = computed(() => {
   if (
-    value.value &&
-    typeof value.value === 'object' &&
-    !Array.isArray(value.value) &&
-    'icon' in value.value &&
-    typeof value.value.icon === 'string'
+    modelValue.value &&
+    typeof modelValue.value === 'object' &&
+    !Array.isArray(modelValue.value) &&
+    'icon' in modelValue.value &&
+    typeof modelValue.value.icon === 'string'
   ) {
-    return value.value.icon
+    return modelValue.value.icon
   }
   return props.icon
 })
 
 function removeItem(item: any) {
-  if (!Array.isArray(vmodel.value)) {
-    vmodel.value = props.clearValue
+  if (!Array.isArray(modelValue.value)) {
+    modelValue.value = props.clearValue
     return
   }
 
-  for (let i = vmodel.value.length - 1; i >= 0; --i) {
+  for (let i = modelValue.value.length - 1; i >= 0; --i) {
     if (props.properties?.value) {
-      if (vmodel.value[i] === item) {
-        vmodel.value.splice(i, 1)
+      if (modelValue.value[i] === item) {
+        modelValue.value.splice(i, 1)
       }
     }
     // eslint-disable-next-line eqeqeq
-    else if (vmodel.value[i] === item) {
-      vmodel.value.splice(i, 1)
+    else if (modelValue.value[i] === item) {
+      modelValue.value.splice(i, 1)
     }
   }
 }
@@ -494,9 +470,9 @@ function key(item: T) {
 
 <template>
   <Combobox
-    v-model="vmodel"
+    v-model="modelValue as any"
     :by="
-      props.modelModifiers.prop && props.properties?.value
+      modelModifiers.prop && props.properties?.value
         ? undefined
         : props.properties?.value
     "
@@ -542,10 +518,10 @@ function key(item: T) {
 
       <div v-if="props.multiple" class="nui-autocomplete-multiple">
         <ul
-          v-if="Array.isArray(vmodel) && vmodel.length > 0"
+          v-if="Array.isArray(modelValue) && modelValue.length > 0"
           class="nui-autocomplete-multiple-list"
         >
-          <li v-for="item in vmodel" :key="String(item)">
+          <li v-for="item in modelValue" :key="String(item)">
             <slot
               name="autocomplete-multiple-list-item"
               v-bind="{
@@ -607,8 +583,8 @@ function key(item: T) {
           <button
             v-if="
               props.clearable &&
-              ((Array.isArray(vmodel) && vmodel?.length > 0) ||
-                (!Array.isArray(vmodel) && vmodel != null))
+              ((Array.isArray(modelValue) && modelValue?.length > 0) ||
+                (!Array.isArray(modelValue) && modelValue != null))
             "
             type="button"
             tabindex="-1"
@@ -731,7 +707,7 @@ function key(item: T) {
               class="nui-autocomplete-results-item"
               as="div"
               :value="
-                props.modelModifiers.prop && props.properties?.value
+                modelModifiers.prop && props.properties?.value
                   ? (item as any)[props.properties.value]
                   : (item as any)
               "

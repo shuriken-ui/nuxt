@@ -69,6 +69,9 @@ autocomplete1: {{ autocomplete1 }}({{ typeof autocomplete1 }})</pre
           <BaseButtonAction @click="autocomplete1 = undefined">
             reset
           </BaseButtonAction>
+          <BaseButtonAction @click="autocomplete1 = 'hello'">
+            set
+          </BaseButtonAction>
         </BaseCard>
       </div>
     </NuiPreview>

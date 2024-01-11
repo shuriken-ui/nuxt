@@ -28,11 +28,6 @@ const props = withDefaults(
      */
     children?: TreeViewTreeSource
     /**
-     * When set, the component will be in treeselect mode.
-     * Only items without children can be selected.
-     */
-    modelValue?: any[]
-    /**
      * Custom icons to use for the component.
      */
     icons?: {
@@ -100,7 +95,6 @@ const props = withDefaults(
     parent?: any
   }>(),
   {
-    modelValue: undefined,
     icons: () => ({
       open: 'lucide:minus',
       closed: 'lucide:plus',
@@ -128,12 +122,8 @@ const props = withDefaults(
     level: 1,
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value?: any[]]
-}>()
-const value = useVModel(props, 'modelValue', emits, {
-  passive: true,
-})
+
+const [modelValue] = defineModel<any[]>()
 
 const defaultIcons = {
   open: 'lucide:minus',
@@ -349,7 +339,7 @@ function getNodeChildren(node?: TreeViewItemNode) {
 }
 
 function areAllChildSelected(node?: TreeViewItemNode): boolean {
-  const _value = value.value
+  const _value = modelValue.value
   if (!_value) return false
   if (!node) return false
   const children = getNodeChildren(node)
@@ -375,7 +365,7 @@ function areAllChildSelected(node?: TreeViewItemNode): boolean {
 }
 
 function areSomeChildSelected(node?: TreeViewItemNode): boolean {
-  const _value = value.value
+  const _value = modelValue.value
   if (!_value) return false
   if (!node) return false
   const children = getNodeChildren(node)
@@ -407,7 +397,7 @@ function isUndeterminate(node?: TreeViewItemNode) {
 }
 
 function selectAllNode(node?: TreeViewItemNode) {
-  const _value = value.value
+  const _value = modelValue.value
   if (!_value) return
   if (!node) return
 
@@ -448,7 +438,7 @@ function selectAllChildren(tree?: TreeViewItemNode[]) {
 }
 
 function unselectAllNode(node?: TreeViewItemNode) {
-  const _value = value.value
+  const _value = modelValue.value
   if (!_value) return
   if (!node) return
   if (!('children' in node) || !node.children) {
@@ -488,7 +478,7 @@ function unselectAllChildren(tree?: TreeViewItemNode[]) {
 }
 
 function toggleNodeSelection(node?: TreeViewItemNode, event?: Event) {
-  const _value = value.value
+  const _value = modelValue.value
   if (!_value) return
   if (!node) return
 
@@ -681,7 +671,7 @@ function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
               </span>
             </slot>
             <slot
-              v-if="value !== undefined"
+              v-if="modelValue !== undefined"
               name="item-select"
               v-bind="{
                 index,
@@ -717,7 +707,7 @@ function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
               />
               <BaseCheckbox
                 v-else
-                v-model="value"
+                v-model="modelValue"
                 :disabled="subtreeState.pending"
                 :value="child"
                 :classes="checkboxClasses"
@@ -759,7 +749,7 @@ function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
             ></div>
             <slot name="children" v-bind="{ index, level, child, parent }">
               <BaseTreeSelect
-                v-model="value"
+                v-model="modelValue"
                 :level="level + 1"
                 :children="child.children"
                 :i18n="props.i18n"

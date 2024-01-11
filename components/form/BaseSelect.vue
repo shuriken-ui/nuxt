@@ -6,11 +6,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The value of the selected option.
-     */
-    modelValue?: any
-
-    /**
      * The form input identifier.
      */
     id?: string
@@ -108,7 +103,6 @@ const props = withDefaults(
     }
   }>(),
   {
-    modelValue: undefined,
     id: undefined,
     rounded: undefined,
     size: undefined,
@@ -120,13 +114,15 @@ const props = withDefaults(
     classes: () => ({}),
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value?: any]
-}>()
+
+const [modelValue] = defineModel<any>()
 
 const rounded = useNuiDefaultProperty(props, 'BaseSelect', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseSelect', 'size')
 const contrast = useNuiDefaultProperty(props, 'BaseSelect', 'contrast')
+
+const selectRef = ref<HTMLSelectElement>()
+const id = useNinjaId(() => props.id)
 
 const radiuses = {
   none: '',
@@ -149,19 +145,18 @@ const contrasts = {
   'muted-contrast': 'nui-select-muted-contrast',
 } as Record<string, string>
 
-const selectRef = ref<HTMLSelectElement>()
-const value = useVModel(props, 'modelValue', emits, {
-  passive: true,
-})
-
 defineExpose({
   /**
    * The underlying HTMLInputElement element.
    */
   el: selectRef,
+
+  /**
+   * The internal id of the radio input.
+   */
+  id,
 })
 
-const id = useNinjaId(() => props.id)
 const placeholder = computed(() => {
   if (props.loading) {
     return
@@ -203,7 +198,7 @@ const placeholder = computed(() => {
       <select
         :id="id"
         ref="selectRef"
-        v-model="value"
+        v-model="modelValue"
         v-bind="$attrs"
         :disabled="props.disabled"
         class="nui-select"

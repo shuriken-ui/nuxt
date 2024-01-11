@@ -1,178 +1,164 @@
 <script setup lang="ts">
-export interface TextareaProps {
-  /**
-   * The model value of the textarea.
-   *
-   * @example
-   * `v-model="value"`
-   *
-   * @example
-   * `v-model.trim="value"`
-   *
-   * @modifiers
-   * `v-model.lazy="value"`
-   */
-  modelValue?: string
-
-  /**
-   * Used internaly to allow .trim
-   * and .lazy v-model modifiers.
-   */
-  modelModifiers?: {
-    trim?: boolean
-    lazy?: boolean
-  }
-
-  /**
-   * The form input identifier.
-   */
-  id?: string
-
-  /**
-   * The name of the textarea.
-   */
-  name?: string
-
-  /**
-   * The radius of the textarea.
-   *
-   * @since 2.0.0
-   * @default 'sm'
-   */
-  rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-  /**
-   * The size of the textarea.
-   *
-   * @default 'md'
-   */
-  size?: 'sm' | 'md' | 'lg'
-
-  /**
-   * The contrast of the textarea.
-   *
-   * @default 'default'
-   */
-  contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-  /**
-   * The label for the textarea.
-   */
-  label?: string
-
-  /**
-   * If the label should be floating.
-   */
-  labelFloat?: boolean
-
-  /**
-   * The placeholder text for the textarea.
-   */
-  placeholder?: string
-
-  /**
-   * Whether to apply the focus color to the textarea.
-   */
-  colorFocus?: boolean
-
-  /**
-   * Whether the textarea is in a loading state.
-   */
-  loading?: boolean
-
-  /**
-   * Whether the textarea is disabled.
-   */
-  disabled?: boolean
-
-  /**
-   * Whether the textarea is read-only.
-   */
-  readonly?: boolean
-
-  /**
-   * The error message for the textarea, or whether it is in an error state.
-   */
-  error?: string | boolean
-
-  /**
-   * Whether to display an addon element in the textarea.
-   */
-  addon?: boolean
-
-  /**
-   * The number of rows to display in the textarea.
-   */
-  rows?: number | string
-
-  /**
-   * Whether to allow the user to resize the textarea.
-   */
-  resize?: boolean
-
-  /**
-   * Whether to automatically grow the textarea as text is entered.
-   */
-  autogrow?: boolean
-
-  /**
-   * The maximum height of the textarea when autogrow is enabled.
-   */
-  maxHeight?: number
-
-  /**
-   * A set of classes to apply to the various elements of the textarea.
-   */
-  classes?: {
-    /**
-     * A class or list of classes to be applied to the textarea wrapper element.
-     */
-    wrapper?: string | string[]
-    /**
-     * A class or list of classes to be applied to the label element.
-     */
-    label?: string | string[]
-    /**
-     * A class or list of classes to be applied to the textarea element.
-     */
-    textarea?: string | string[]
-    /**
-     * A class or list of classes to be applied to the addon element.
-     */
-    addon?: string | string[]
-    /**
-     * A class or list of classes to be applied to the error element.
-     */
-    error?: string | string[]
-  }
-}
-
 defineOptions({
   inheritAttrs: false,
 })
 
-const props = withDefaults(defineProps<TextareaProps>(), {
-  modelValue: undefined,
-  modelModifiers: () => ({}),
-  id: undefined,
-  name: undefined,
-  rounded: undefined,
-  size: undefined,
-  contrast: undefined,
-  label: undefined,
-  placeholder: '',
-  error: false,
-  rows: 4,
-  maxHeight: undefined,
-  classes: () => ({}),
+const props = withDefaults(
+  defineProps<{
+    /**
+     * The form input identifier.
+     */
+    id?: string
+
+    /**
+     * The name of the textarea.
+     */
+    name?: string
+
+    /**
+     * The radius of the textarea.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the textarea.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * The contrast of the textarea.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * The label for the textarea.
+     */
+    label?: string
+
+    /**
+     * If the label should be floating.
+     */
+    labelFloat?: boolean
+
+    /**
+     * The placeholder text for the textarea.
+     */
+    placeholder?: string
+
+    /**
+     * Whether to apply the focus color to the textarea.
+     */
+    colorFocus?: boolean
+
+    /**
+     * Whether the textarea is in a loading state.
+     */
+    loading?: boolean
+
+    /**
+     * Whether the textarea is disabled.
+     */
+    disabled?: boolean
+
+    /**
+     * Whether the textarea is read-only.
+     */
+    readonly?: boolean
+
+    /**
+     * The error message for the textarea, or whether it is in an error state.
+     */
+    error?: string | boolean
+
+    /**
+     * Whether to display an addon element in the textarea.
+     */
+    addon?: boolean
+
+    /**
+     * The number of rows to display in the textarea.
+     */
+    rows?: number | string
+
+    /**
+     * Whether to allow the user to resize the textarea.
+     */
+    resize?: boolean
+
+    /**
+     * Whether to automatically grow the textarea as text is entered.
+     */
+    autogrow?: boolean
+
+    /**
+     * The maximum height of the textarea when autogrow is enabled.
+     */
+    maxHeight?: number
+
+    /**
+     * A set of classes to apply to the various elements of the textarea.
+     */
+    classes?: {
+      /**
+       * A class or list of classes to be applied to the textarea wrapper element.
+       */
+      wrapper?: string | string[]
+      /**
+       * A class or list of classes to be applied to the label element.
+       */
+      label?: string | string[]
+      /**
+       * A class or list of classes to be applied to the textarea element.
+       */
+      textarea?: string | string[]
+      /**
+       * A class or list of classes to be applied to the addon element.
+       */
+      addon?: string | string[]
+      /**
+       * A class or list of classes to be applied to the error element.
+       */
+      error?: string | string[]
+    }
+  }>(),
+  {
+    id: undefined,
+    name: undefined,
+    rounded: undefined,
+    size: undefined,
+    contrast: undefined,
+    label: undefined,
+    placeholder: '',
+    error: false,
+    rows: 4,
+    maxHeight: undefined,
+    classes: () => ({}),
+  },
+)
+
+const [modelValue, modelModifiers] = defineModel<string, 'lazy' | 'trim'>({
+  set(value) {
+    if (modelModifiers.trim && typeof value === 'string') {
+      return value.trim()
+    }
+
+    return value
+  },
 })
-const emits = defineEmits<{
-  'update:modelValue': [value?: string]
-}>()
 
 const rounded = useNuiDefaultProperty(props, 'BaseTextarea', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseTextarea', 'size')
 const contrast = useNuiDefaultProperty(props, 'BaseTextarea', 'contrast')
+
+const textareaRef = ref<HTMLTextAreaElement>()
+const id = useNinjaId(() => props.id)
 
 const radiuses = {
   none: '',
@@ -195,23 +181,6 @@ const contrasts = {
   'muted-contrast': 'nui-textarea-muted-contrast',
 } as Record<string, string>
 
-const value = useVModel(
-  props,
-  'modelValue',
-  (_, val) => {
-    if (props.modelModifiers.trim) {
-      emits('update:modelValue', typeof val === 'string' ? val.trim() : val)
-    } else {
-      emits('update:modelValue', val)
-    }
-  },
-  {
-    passive: true,
-  },
-)
-
-const textareaRef = ref<HTMLTextAreaElement>()
-
 function fitSize() {
   if (!textareaRef.value) {
     return
@@ -228,12 +197,7 @@ function fitSize() {
 }
 
 watch(
-  [
-    () => props.modelValue,
-    () => props.autogrow,
-    () => props.maxHeight,
-    textareaRef,
-  ],
+  [() => props.autogrow, () => props.maxHeight, textareaRef, modelValue],
   async () => {
     await nextTick()
     fitSize()
@@ -250,12 +214,15 @@ defineExpose({
   el: textareaRef,
 
   /**
+   * The internal id of the radio input.
+   */
+  id,
+
+  /**
    * A method to resize the textarea to fit its content.
    */
   fitSize,
 })
-
-const id = useNinjaId(() => props.id)
 </script>
 
 <template>
@@ -283,10 +250,10 @@ const id = useNinjaId(() => props.id)
     </label>
     <div class="nui-textarea-outer">
       <textarea
-        v-if="props.modelModifiers.lazy"
+        v-if="modelModifiers.lazy"
         :id="id"
         ref="textareaRef"
-        v-model.lazy="value"
+        v-model.lazy="modelValue"
         v-bind="$attrs"
         class="nui-textarea"
         :class="[
@@ -303,7 +270,7 @@ const id = useNinjaId(() => props.id)
         v-else
         :id="id"
         ref="textareaRef"
-        v-model="value"
+        v-model="modelValue"
         v-bind="$attrs"
         class="nui-textarea"
         :class="[

@@ -6,33 +6,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The model value of the input.
-     *
-     * @modifiers
-     * `v-model="value"`
-     *
-     * @modifiers
-     * `v-model.number="value"`
-     *
-     * @modifiers
-     * `v-model.trim="value"`
-     *
-     * @modifiers
-     * `v-model.lazy="value"`
-     */
-    modelValue?: string | number
-
-    /**
-     * Used internaly to allow .number, .trim
-     * and .lazy v-model modifiers.
-     */
-    modelModifiers?: {
-      number?: boolean
-      trim?: boolean
-      lazy?: boolean
-    }
-
-    /**
      * The form input identifier.
      */
     id?: string
@@ -140,8 +113,6 @@ const props = withDefaults(
     }
   }>(),
   {
-    modelValue: undefined,
-    modelModifiers: () => ({}),
     id: undefined,
     type: 'text',
     rounded: undefined,
@@ -154,13 +125,33 @@ const props = withDefaults(
     classes: () => ({}),
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value?: string | number]
-}>()
+
+function looseToNumber(val: any) {
+  const n = Number.parseFloat(val)
+  return Number.isNaN(n) ? val : n
+}
+
+const [modelValue, modelModifiers] = defineModel<
+  string | number,
+  'lazy' | 'trim' | 'number'
+>({
+  set(value) {
+    if (modelModifiers.number) {
+      return looseToNumber(value)
+    } else if (modelModifiers.trim && typeof value === 'string') {
+      return value.trim()
+    }
+
+    return value
+  },
+})
 
 const rounded = useNuiDefaultProperty(props, 'BaseInput', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseInput', 'size')
 const contrast = useNuiDefaultProperty(props, 'BaseInput', 'contrast')
+
+const inputRef = ref<HTMLInputElement>()
+const id = useNinjaId(() => props.id)
 
 const radiuses = {
   none: '',
@@ -183,37 +174,18 @@ const contrasts = {
   'muted-contrast': 'nui-input-muted-contrast',
 } as Record<string, string>
 
-function looseToNumber(val: any) {
-  const n = Number.parseFloat(val)
-  return Number.isNaN(n) ? val : n
-}
-
-const value = useVModel(
-  props,
-  'modelValue',
-  (_, val) => {
-    if (props.modelModifiers.number) {
-      emits('update:modelValue', looseToNumber(val))
-    } else if (props.modelModifiers.trim) {
-      emits('update:modelValue', typeof val === 'string' ? val.trim() : val)
-    } else {
-      emits('update:modelValue', val)
-    }
-  },
-  {
-    passive: true,
-  },
-)
-
-const inputRef = ref<HTMLInputElement>()
 defineExpose({
   /**
    * The underlying HTMLInputElement element.
    */
   el: inputRef,
+
+  /**
+   * The internal id of the radio input.
+   */
+  id,
 })
 
-const id = useNinjaId(() => props.id)
 const placeholder = computed(() => {
   if (props.loading) {
     return
@@ -265,10 +237,10 @@ if (process.dev) {
     <div class="nui-input-outer" :class="props.classes?.outer">
       <div>
         <input
-          v-if="props.modelModifiers.lazy"
+          v-if="modelModifiers.lazy"
           :id="id"
           ref="inputRef"
-          v-model.lazy="value"
+          v-model.lazy="modelValue"
           :type="props.type"
           v-bind="$attrs"
           class="nui-input"
@@ -279,7 +251,7 @@ if (process.dev) {
           v-else
           :id="id"
           ref="inputRef"
-          v-model="value"
+          v-model="modelValue"
           :type="props.type"
           v-bind="$attrs"
           class="nui-input"

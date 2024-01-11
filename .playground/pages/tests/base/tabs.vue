@@ -5,6 +5,8 @@ definePageMeta({
   description: 'Tabs component',
   section: 'base',
 })
+
+const selectedTab = ref('team')
 </script>
 
 <template>
@@ -13,7 +15,7 @@ definePageMeta({
       <NuiPreview title="Align: start" description="Tabs component start align">
         <div class="w-full max-w-sm">
           <BaseTabs
-            model-value="team"
+            v-model="selectedTab"
             :tabs="[
               { label: 'Team', value: 'team' },
               { label: 'Projects', value: 'projects' },

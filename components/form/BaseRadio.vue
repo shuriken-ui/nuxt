@@ -11,11 +11,6 @@ const props = withDefaults(
     value?: T
 
     /**
-     * The model value of the radio input.
-     */
-    modelValue?: T
-
-    /**
      * The form input identifier.
      */
     id?: string
@@ -67,7 +62,6 @@ const props = withDefaults(
     }
   }>(),
   {
-    modelValue: undefined,
     value: undefined,
     id: undefined,
     label: undefined,
@@ -76,15 +70,12 @@ const props = withDefaults(
     classes: () => ({}),
   },
 )
-const emits = defineEmits<{
-  'update:modelValue': [value: T]
-}>()
-const inputRef = ref<HTMLInputElement>()
-const value = useVModel(props, 'modelValue', emits, {
-  passive: true,
-})
+const [modelValue] = defineModel<T>()
 
 const color = useNuiDefaultProperty(props, 'BaseRadio', 'color')
+
+const inputRef = ref<HTMLInputElement>()
+const id = useNinjaId(() => props.id)
 
 const colors = {
   default: 'nui-radio-default',
@@ -102,9 +93,12 @@ defineExpose({
    * The underlying HTMLInputElement element.
    */
   el: inputRef,
-})
 
-const id = useNinjaId(() => props.id)
+  /**
+   * The internal id of the radio input.
+   */
+  id,
+})
 </script>
 
 <template>
@@ -116,7 +110,7 @@ const id = useNinjaId(() => props.id)
       <input
         :id="id"
         ref="inputRef"
-        v-model="value"
+        v-model="modelValue"
         v-bind="$attrs"
         type="radio"
         :value="props.value"
