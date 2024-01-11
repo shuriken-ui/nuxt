@@ -127,7 +127,7 @@ const uploadedFiles = ref<FileList | null>(null)
                         </span>
 
                         <span class="text-muted-400 block text-xs">
-                          {{ formatFileSize(file.size) }}
+                          {{ file.size }}
                         </span>
                       </div>
                     </div>

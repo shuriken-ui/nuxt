@@ -143,11 +143,14 @@ const shadows = {
   hover: 'nui-button-shadow-hover',
 }
 
-const badges = computed(() =>
-  props.badge && ['default', 'light', 'muted', 'none'].includes(color.value)
+const badges = computed(() => {
+  const value = toValue(color)
+  if (!value) return ''
+
+  return props.badge && ['default', 'light', 'muted', 'none'].includes(value)
     ? ''
-    : `${badgeColors[color.value]}`,
-)
+    : `${badgeColors[value]}`
+})
 
 const classes = computed(() => [
   'nui-button',

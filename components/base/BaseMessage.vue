@@ -82,7 +82,11 @@ const iconTypes = {
 } as Record<string, string>
 
 const icon = computed(() =>
-  typeof props.icon === 'string' ? props.icon : iconTypes[type.value],
+  typeof props.icon === 'string'
+    ? props.icon
+    : type.value
+      ? iconTypes[type.value]
+      : '',
 )
 </script>
 

@@ -42,18 +42,24 @@ const sizes = {
 
 const size = useNuiDefaultProperty(props, 'BaseAvatarGroup', 'size')
 const limit = useNuiDefaultProperty(props, 'BaseAvatarGroup', 'limit')
+
+const avatarDisplay = computed(() => {
+  if (
+    props.avatars &&
+    limit.value !== undefined &&
+    props.avatars.length > limit.value
+  ) {
+    return props.avatars.slice(0, limit.value - 1)
+  }
+  return props.avatars
+})
 </script>
 
 <template>
-  <div
-    class="nui-avatar-group"
-    :class="[props.size !== undefined ? sizes[props.size] : sizes[size]]"
-  >
+  <div class="nui-avatar-group" :class="[size && sizes[size]]">
     <slot>
       <div
-        v-for="avatar in avatars.length <= limit
-          ? avatars
-          : avatars.slice(0, props.limit ? props.limit - 1 : limit - 1)"
+        v-for="avatar in avatarDisplay"
         :key="typeof avatar === 'string' ? avatar : avatar.src"
         class="nui-avatar-outer"
       >
@@ -66,12 +72,12 @@ const limit = useNuiDefaultProperty(props, 'BaseAvatarGroup', 'limit')
         />
       </div>
       <div
-        v-if="avatars.length > (props.limit || limit)"
+        v-if="limit !== undefined && avatars.length > limit"
         class="nui-avatar-count"
       >
         <div class="nui-avatar-count-inner">
           <span class="nui-avatar-count-text">
-            +{{ avatars.length - (props.limit || limit) + 1 }}
+            +{{ avatars.length - limit + 1 }}
           </span>
         </div>
       </div>
