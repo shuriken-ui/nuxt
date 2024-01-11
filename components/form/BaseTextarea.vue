@@ -34,9 +34,26 @@ export interface TextareaProps {
   name?: string
 
   /**
-   * The shape of the textarea.
+   * The radius of the textarea.
+   *
+   * @since 2.0.0
+   * @default 'sm'
    */
-  shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+  rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+  /**
+   * The size of the textarea.
+   *
+   * @default 'md'
+   */
+  size?: 'sm' | 'md' | 'lg'
+
+  /**
+   * The contrast of the textarea.
+   *
+   * @default 'default'
+   */
+  contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
   /**
    * The label for the textarea.
@@ -49,14 +66,14 @@ export interface TextareaProps {
   labelFloat?: boolean
 
   /**
-   * Whether to apply the focus color to the textarea.
-   */
-  colorFocus?: boolean
-
-  /**
    * The placeholder text for the textarea.
    */
   placeholder?: string
+
+  /**
+   * Whether to apply the focus color to the textarea.
+   */
+  colorFocus?: boolean
 
   /**
    * Whether the textarea is in a loading state.
@@ -67,16 +84,6 @@ export interface TextareaProps {
    * Whether the textarea is disabled.
    */
   disabled?: boolean
-
-  /**
-   * The size of the textarea.
-   */
-  size?: 'sm' | 'md' | 'lg'
-
-  /**
-   * The contrast of the textarea.
-   */
-  contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
   /**
    * Whether the textarea is read-only.
@@ -145,44 +152,48 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<TextareaProps>(), {
-  id: undefined,
   modelValue: undefined,
   modelModifiers: () => ({}),
-  label: undefined,
+  id: undefined,
   name: undefined,
-  shape: undefined,
+  rounded: undefined,
+  size: undefined,
+  contrast: undefined,
+  label: undefined,
   placeholder: '',
-  size: 'md',
-  contrast: 'default',
-  rows: 4,
   error: false,
+  rows: 4,
   maxHeight: undefined,
   classes: () => ({}),
 })
 const emits = defineEmits<{
   'update:modelValue': [value?: string]
 }>()
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-textarea-rounded',
-  smooth: 'nui-textarea-smooth',
-  curved: 'nui-textarea-curved',
+const rounded = useNuiDefaultProperty(props, 'BaseTextarea', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseTextarea', 'size')
+const contrast = useNuiDefaultProperty(props, 'BaseTextarea', 'contrast')
+
+const radiuses = {
+  none: '',
+  sm: 'nui-textarea-rounded',
+  md: 'nui-textarea-smooth',
+  lg: 'nui-textarea-curved',
   full: 'nui-textarea-full',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   sm: 'nui-textarea-sm',
   md: 'nui-textarea-md',
   lg: 'nui-textarea-lg',
-}
-const contrastStyle = {
+} as Record<string, string>
+
+const contrasts = {
   default: 'nui-textarea-default',
   'default-contrast': 'nui-textarea-default-contrast',
   muted: 'nui-textarea-muted',
   'muted-contrast': 'nui-textarea-muted-contrast',
-}
+} as Record<string, string>
 
 const value = useVModel(
   props,
@@ -251,9 +262,9 @@ const id = useNinjaId(() => props.id)
   <div
     class="nui-textarea-wrapper"
     :class="[
-      contrastStyle[props.contrast],
-      sizeStyle[props.size],
-      shape && shapeStyle[shape],
+      contrast && contrasts[contrast],
+      size && sizes[size],
+      rounded && radiuses[rounded],
       props.error && !props.loading && 'nui-textarea-error',
       props.loading && 'nui-textarea-loading',
       props.labelFloat && 'nui-textarea-label-float',

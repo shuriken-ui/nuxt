@@ -6,14 +6,14 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The form input identifier.
-     */
-    id?: string
-
-    /**
      * The model value of the switch.
      */
     modelValue?: boolean
+
+    /**
+     * The form input identifier.
+     */
+    id?: string
 
     /**
      * Accessible label for the switch.
@@ -27,15 +27,17 @@ const props = withDefaults(
 
     /**
      * Main color of the switch.
+     *
+     * @default 'primary'
      */
     color?: 'primary' | 'info' | 'success' | 'warning' | 'danger'
   }>(),
   {
-    id: undefined,
     modelValue: undefined,
+    id: undefined,
     label: undefined,
     sublabel: undefined,
-    color: 'primary',
+    color: undefined,
   },
 )
 const emits = defineEmits<{
@@ -47,13 +49,15 @@ const value = useVModel(props, 'modelValue', emits, {
 
 const id = useNinjaId(() => props.id)
 
-const colorStyle = {
+const color = useNuiDefaultProperty(props, 'BaseSwitchBall', 'color')
+
+const colors = {
   primary: 'nui-switch-ball-primary',
   info: 'nui-switch-ball-info',
   success: 'nui-switch-ball-success',
   warning: 'nui-switch-ball-warning',
   danger: 'nui-switch-ball-danger',
-}
+} as Record<string, string>
 
 const inputRef = ref<HTMLInputElement>()
 defineExpose({
@@ -65,7 +69,7 @@ defineExpose({
 </script>
 
 <template>
-  <label :for="id" class="nui-switch-ball" :class="colorStyle[props.color]">
+  <label :for="id" class="nui-switch-ball" :class="color && colors[color]">
     <span class="nui-switch-ball-outer">
       <input
         :id="id"

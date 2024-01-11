@@ -6,11 +6,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The label to display for the checkbox.
-     */
-    label?: string
-
-    /**
      * Defines the value of the checkbox when it's checked.
      */
     value?: T
@@ -36,6 +31,11 @@ const props = withDefaults(
     id?: string
 
     /**
+     * The label to display for the checkbox.
+     */
+    label?: string
+
+    /**
      * An error message to display below the checkbox label.
      */
     error?: string | boolean
@@ -51,11 +51,17 @@ const props = withDefaults(
     indeterminate?: boolean
 
     /**
-     * The shape of the checkbox.
+     * The radius of the checkbox.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
-    /** The color of the checkbox. Can be 'default', 'primary', 'info', 'success', 'warning', or 'danger' */
+    /** The color of the checkbox.
+     *
+     * @default 'default'
+     */
     color?:
       | 'default'
       | 'light'
@@ -89,12 +95,12 @@ const props = withDefaults(
   {
     modelValue: undefined,
     value: undefined,
+    trueValue: true as any,
+    falseValue: false as any,
     id: undefined,
     label: undefined,
     error: '',
-    trueValue: true as any,
-    falseValue: false as any,
-    shape: undefined,
+    rounded: undefined,
     color: undefined,
     classes: () => ({}),
   },
@@ -102,22 +108,24 @@ const props = withDefaults(
 const emits = defineEmits<{
   'update:modelValue': [value?: T | T[]]
 }>()
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
+
+const rounded = useNuiDefaultProperty(props, 'BaseCheckbox', 'rounded')
+const color = useNuiDefaultProperty(props, 'BaseCheckbox', 'color')
 
 const inputRef = ref<HTMLInputElement>()
 const value = useVModel(props, 'modelValue', emits, {
   passive: true,
 })
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-checkbox-rounded',
-  smooth: 'nui-checkbox-smooth',
-  curved: 'nui-checkbox-curved',
+const radiuses = {
+  none: '',
+  sm: 'nui-checkbox-rounded',
+  md: 'nui-checkbox-smooth',
+  lg: 'nui-checkbox-curved',
   full: 'nui-checkbox-full',
-}
-const colorStyle = {
+} as Record<string, string>
+
+const colors = {
   default: 'nui-checkbox-default',
   light: 'nui-checkbox-light',
   muted: 'nui-checkbox-muted',
@@ -126,7 +134,7 @@ const colorStyle = {
   success: 'nui-checkbox-success',
   warning: 'nui-checkbox-warning',
   danger: 'nui-checkbox-danger',
-}
+} as Record<string, string>
 
 watchEffect(() => {
   if (inputRef.value) {
@@ -149,8 +157,8 @@ const id = useNinjaId(() => props.id)
     class="nui-checkbox"
     :class="[
       props.disabled && 'opacity-50',
-      shape && shapeStyle[shape],
-      props.color && colorStyle[props.color],
+      rounded && radiuses[rounded],
+      color && colors[color],
       props.classes?.wrapper,
     ]"
   >

@@ -4,7 +4,10 @@ const props = withDefaults(
     /** The maximum number of avatars to display. */
     limit?: number
 
-    /** The size of the avatars. */
+    /** The size of the avatars.
+     *
+     * @default 'sm'
+     */
     size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
 
     /** An array of avatar objects. */
@@ -20,12 +23,12 @@ const props = withDefaults(
     }[]
   }>(),
   {
-    limit: 4,
-    size: 'sm',
+    limit: undefined,
+    size: undefined,
   },
 )
 
-const sizeStyle = {
+const sizes = {
   xxs: 'nui-avatar-group-xxs',
   xs: 'nui-avatar-group-xs',
   sm: 'nui-avatar-group-sm',
@@ -35,31 +38,40 @@ const sizeStyle = {
   '2xl': 'nui-avatar-group-lg',
   '3xl': 'nui-avatar-group-lg',
   '4xl': 'nui-avatar-group-lg',
-}
+} as Record<string, string>
+
+const size = useNuiDefaultProperty(props, 'BaseAvatarGroup', 'size')
+const limit = useNuiDefaultProperty(props, 'BaseAvatarGroup', 'limit')
 </script>
 
 <template>
-  <div class="nui-avatar-group" :class="[sizeStyle[props.size]]">
+  <div
+    class="nui-avatar-group"
+    :class="[props.size !== undefined ? sizes[props.size] : sizes[size]]"
+  >
     <slot>
       <div
         v-for="avatar in avatars.length <= limit
           ? avatars
-          : avatars.slice(0, props.limit - 1)"
+          : avatars.slice(0, props.limit ? props.limit - 1 : limit - 1)"
         :key="typeof avatar === 'string' ? avatar : avatar.src"
         class="nui-avatar-outer"
       >
         <BaseAvatar
           v-bind="typeof avatar === 'string' ? { src: avatar } : avatar"
           :size="props.size"
-          shape="full"
+          rounded="full"
           tabindex="0"
           class="bg-primary-500/20 text-primary-500 !scale-90"
         />
       </div>
-      <div v-if="avatars.length > props.limit" class="nui-avatar-count">
+      <div
+        v-if="avatars.length > (props.limit || limit)"
+        class="nui-avatar-count"
+      >
         <div class="nui-avatar-count-inner">
           <span class="nui-avatar-count-text">
-            +{{ avatars.length - props.limit + 1 }}
+            +{{ avatars.length - (props.limit || limit) + 1 }}
           </span>
         </div>
       </div>

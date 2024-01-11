@@ -6,11 +6,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The form input identifier.
-     */
-    id?: string
-
-    /**
      * The value of the radio input.
      */
     value?: T
@@ -21,16 +16,16 @@ const props = withDefaults(
     modelValue?: T
 
     /**
+     * The form input identifier.
+     */
+    id?: string
+
+    /**
      * The label for the radio input.
      */
     label?: string
 
-    /**
-     * An error message to display below the radio label.
-     */
-    error?: string | boolean
-
-    /** The color of the radio. Can be 'default', 'primary', 'info', 'success', 'warning', or 'danger' */
+    /** The color of the radio.*/
     color?:
       | 'default'
       | 'light'
@@ -40,6 +35,11 @@ const props = withDefaults(
       | 'success'
       | 'warning'
       | 'danger'
+
+    /**
+     * An error message to display below the radio label.
+     */
+    error?: string | boolean
 
     /**
      * Classes to apply to the various parts of the radio input.
@@ -67,13 +67,12 @@ const props = withDefaults(
     }
   }>(),
   {
-    id: undefined,
     modelValue: undefined,
     value: undefined,
+    id: undefined,
     label: undefined,
-    error: undefined,
-    name: undefined,
     color: undefined,
+    error: undefined,
     classes: () => ({}),
   },
 )
@@ -85,7 +84,9 @@ const value = useVModel(props, 'modelValue', emits, {
   passive: true,
 })
 
-const colorStyle = {
+const color = useNuiDefaultProperty(props, 'BaseRadio', 'color')
+
+const colors = {
   default: 'nui-radio-default',
   light: 'nui-radio-light',
   muted: 'nui-radio-muted',
@@ -94,7 +95,7 @@ const colorStyle = {
   success: 'nui-radio-success',
   warning: 'nui-radio-warning',
   danger: 'nui-radio-danger',
-}
+} as Record<string, string>
 
 defineExpose({
   /**
@@ -109,7 +110,7 @@ const id = useNinjaId(() => props.id)
 <template>
   <div
     class="nui-radio"
-    :class="[props.color && colorStyle[props.color], props.classes?.wrapper]"
+    :class="[color && colors[color], props.classes?.wrapper]"
   >
     <div class="nui-radio-outer">
       <input

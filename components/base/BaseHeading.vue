@@ -2,12 +2,16 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The heading element to use (e.g. `h1`, `h2`, etc.).
+     * The HTML tag to use (e.g. `h1`, `h2`, etc.).
+     *
+     * @default 'p'
      */
     as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'p'
 
     /**
      * The size of the heading.
+     *
+     * @default 'xl'
      */
     size?:
       | 'xs'
@@ -26,23 +30,32 @@ const props = withDefaults(
 
     /**
      * The weight of the heading.
+     *
+     * @default 'semibold'
      */
     weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'
 
     /**
      * The spacing below the heading.
+     *
+     * @default 'normal'
      */
     lead?: 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
   }>(),
   {
-    as: 'p',
-    size: 'xl',
-    weight: 'semibold',
-    lead: 'normal',
+    as: undefined,
+    size: undefined,
+    weight: undefined,
+    lead: undefined,
   },
 )
 
-const sizeStyle = {
+const as = useNuiDefaultProperty(props, 'BaseHeading', 'as')
+const size = useNuiDefaultProperty(props, 'BaseHeading', 'size')
+const weight = useNuiDefaultProperty(props, 'BaseHeading', 'weight')
+const lead = useNuiDefaultProperty(props, 'BaseHeading', 'lead')
+
+const sizes = {
   xs: 'nui-heading-xs',
   sm: 'nui-heading-sm',
   md: 'nui-heading-md',
@@ -56,34 +69,36 @@ const sizeStyle = {
   '7xl': 'nui-heading-7xl',
   '8xl': 'nui-heading-8xl',
   '9xl': 'nui-heading-9xl',
-}
-const weightStyle = {
+} as Record<string, string>
+
+const weights = {
   light: 'nui-weight-light',
   normal: 'nui-weight-normal',
   medium: 'nui-weight-medium',
   semibold: 'nui-weight-semibold',
   bold: 'nui-weight-bold',
   extrabold: 'nui-weight-extrabold',
-}
-const leadStyle = {
+} as Record<string, string>
+
+const leads = {
   none: 'nui-lead-none',
   tight: 'nui-lead-tight',
   snug: 'nui-lead-snug',
   normal: 'nui-lead-normal',
   relaxed: 'nui-lead-relaxed',
   loose: 'nui-lead-loose',
-}
+} as Record<string, string>
 
 const classes = computed(() => [
   'nui-heading',
-  sizeStyle[props.size],
-  weightStyle[props.weight],
-  leadStyle[props.lead],
+  size.value && sizes[size.value],
+  weight.value && weights[weight.value],
+  lead.value && leads[lead.value],
 ])
 </script>
 
 <template>
-  <component :is="props.as" :class="classes">
+  <component :is="props.as ? props.as : as" :class="classes">
     <slot></slot>
   </component>
 </template>

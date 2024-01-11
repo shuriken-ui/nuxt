@@ -2,24 +2,33 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The color of the progress bar.
+     * The size of the progress bar.
+     *
+     * @default 'sm'
      */
-    color?: 'primary' | 'info' | 'success' | 'warning' | 'danger'
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
     /**
      * The contrast ot the progress bar.
+     *
+     * @default 'default'
      */
     contrast?: 'default' | 'contrast'
 
     /**
-     * The shape of the progress bar.
+     * The color of the progress bar.
+     *
+     * @default 'primary'
      */
-    shape?: 'straight' | 'rounded' | 'curved' | 'full'
+    color?: 'primary' | 'info' | 'success' | 'warning' | 'danger'
 
     /**
-     * The size of the progress bar.
+     * The radius of the progress bar.
+     *
+     * @since 2.0.0
+     * @default 'full'
      */
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
      * The current value of the progress bar.
@@ -33,44 +42,48 @@ const props = withDefaults(
     max?: number
   }>(),
   {
-    color: 'primary',
-    contrast: 'default',
-    shape: undefined,
-    size: 'sm',
+    size: undefined,
+    contrast: undefined,
+    color: undefined,
+    rounded: undefined,
     value: undefined,
     max: 100,
   },
 )
 
-const appConfig = useAppConfig()
-const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.progress,
-)
+const size = useNuiDefaultProperty(props, 'BaseProgress', 'size')
+const contrast = useNuiDefaultProperty(props, 'BaseProgress', 'contrast')
+const color = useNuiDefaultProperty(props, 'BaseProgress', 'color')
+const rounded = useNuiDefaultProperty(props, 'BaseProgress', 'rounded')
 
-const colorStyle = {
+const colors = {
   primary: 'nui-progress-primary',
   info: 'nui-progress-info',
   success: 'nui-progress-success',
   warning: 'nui-progress-warning',
   danger: 'nui-progress-danger',
-}
-const contrastStyle = {
+} as Record<string, string>
+
+const contrasts = {
   default: 'nui-progress-default',
   contrast: 'nui-progress-contrast',
-}
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-progress-rounded',
-  curved: 'nui-progress-curved',
+} as Record<string, string>
+
+const radiuses = {
+  none: '',
+  sm: 'nui-progress-rounded',
+  md: 'nui-progress-smooth',
+  lg: 'nui-progress-curved',
   full: 'nui-progress-full',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   xs: 'nui-progress-xs',
   sm: 'nui-progress-sm',
   md: 'nui-progress-md',
   lg: 'nui-progress-lg',
   xl: 'nui-progress-xl',
-}
+} as Record<string, string>
 
 const value = computed(() => {
   const { value, max } = props
@@ -89,10 +102,10 @@ const value = computed(() => {
     :aria-valuemax="props.max"
     class="nui-progress"
     :class="[
-      contrastStyle[props.contrast],
-      colorStyle[props.color],
-      sizeStyle[props.size],
-      shape && shapeStyle[shape],
+      size && sizes[size],
+      contrast && contrasts[contrast],
+      color && colors[color],
+      rounded && radiuses[rounded],
     ]"
   >
     <div

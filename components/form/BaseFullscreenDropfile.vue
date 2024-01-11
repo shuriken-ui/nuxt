@@ -17,8 +17,8 @@ const props = withDefaults(
     filterFileDropped?: (file: File) => boolean
   }>(),
   {
-    icon: '',
     label: 'Drop your files',
+    icon: '',
     filterFileDropped: () => true,
   },
 )

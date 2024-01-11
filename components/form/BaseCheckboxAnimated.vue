@@ -11,11 +11,6 @@ const props = withDefaults(
     value?: T
 
     /**
-     * The form input identifier.
-     */
-    id?: string
-
-    /**
      * The model value of the component.
      */
     modelValue?: T | T[]
@@ -30,7 +25,15 @@ const props = withDefaults(
      */
     falseValue?: T
 
-    /** The color of the checkbox. Can be 'default', 'primary', 'info', 'success', 'warning', or 'danger' */
+    /**
+     * The form input identifier.
+     */
+    id?: string
+
+    /** The color of the checkbox.
+     *
+     * @default 'primary'
+     */
     color?:
       | 'primary'
       | 'info'
@@ -61,11 +64,11 @@ const props = withDefaults(
     }
   }>(),
   {
-    id: undefined,
     value: undefined,
+    modelValue: undefined,
     trueValue: true as any,
     falseValue: false as any,
-    modelValue: undefined,
+    id: undefined,
     color: undefined,
     classes: () => ({
       wrapper: [],
@@ -99,7 +102,9 @@ const checked = computed(() => {
       : value.value === props.value
 })
 
-const colorStyle = {
+const color = useNuiDefaultProperty(props, 'BaseCheckboxAnimated', 'color')
+
+const colors = {
   primary: 'text-primary-500',
   info: 'text-info-500',
   success: 'text-success-500',
@@ -107,7 +112,7 @@ const colorStyle = {
   danger: 'text-danger-500',
   light: 'text-light-100',
   muted: 'text-muted-400',
-}
+} as Record<string, string>
 
 const updateCheckbox = () => {
   if (element.value && innerElement.value) {
@@ -174,7 +179,7 @@ const id = useNinjaId(() => props.id)
     <label
       class="peer-disabled:opacity-75"
       :for="id"
-      :class="[props.color && colorStyle[props.color], props.classes?.label]"
+      :class="[color && colors[color], props.classes?.label]"
     >
       <div ref="innerElement"></div>
       <IconCheckCircle />

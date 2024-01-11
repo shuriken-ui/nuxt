@@ -16,9 +16,27 @@ const props = withDefaults(
     id?: string
 
     /**
-     * The shape of the file input.
+     * The radius of the file input.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * The contrast of the input.
+     *
+     * @since 2.0.0
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast'
 
     /**
      * The label to display for the file input.
@@ -26,14 +44,19 @@ const props = withDefaults(
     label?: string
 
     /**
+     * The icon to display for the file input.
+     */
+    icon?: string
+
+    /**
      * The placeholder to display for the file input.
      */
     placeholder?: string
 
     /**
-     * The icon to display for the file input.
+     * An error message or boolean value indicating whether the file input is in an error state.
      */
-    icon?: string
+    error?: string | boolean
 
     /**
      * Whether the color of the file input should change when it is focused.
@@ -44,21 +67,6 @@ const props = withDefaults(
      * Whether the file input is in a loading state.
      */
     loading?: boolean
-
-    /**
-     * The size of the input.
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the input.
-     */
-    contrast?: 'white' | 'white-contrast'
-
-    /**
-     * An error message or boolean value indicating whether the file input is in an error state.
-     */
-    error?: string | boolean
 
     /**
      * Method to return the text value of the file input.
@@ -101,15 +109,14 @@ const props = withDefaults(
     }
   }>(),
   {
-    id: undefined,
     modelValue: undefined,
-    type: 'text',
-    size: 'md',
-    contrast: 'white',
-    shape: undefined,
-    placeholder: 'Choose file',
+    id: undefined,
+    rounded: undefined,
+    size: undefined,
+    contrast: undefined,
     label: undefined,
     icon: undefined,
+    placeholder: 'Choose file',
     error: false,
     textValue: (fileList?: FileList | null) => {
       if (!fileList?.item?.length) {
@@ -126,25 +133,29 @@ const props = withDefaults(
 const emits = defineEmits<{
   'update:modelValue': [value?: FileList | null]
 }>()
-const appConfig = useAppConfig()
-const shape = computed(() => props.shape ?? appConfig.nui.defaultShapes?.input)
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-input-rounded',
-  smooth: 'nui-input-smooth',
-  curved: 'nui-input-curved',
+const rounded = useNuiDefaultProperty(props, 'BaseInputFile', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseInputFile', 'size')
+const contrast = useNuiDefaultProperty(props, 'BaseInputFile', 'contrast')
+
+const radiuses = {
+  none: '',
+  sm: 'nui-input-rounded',
+  md: 'nui-input-smooth',
+  lg: 'nui-input-curved',
   full: 'nui-input-full',
-}
-const sizeStyle = {
+} as Record<string, string>
+
+const sizes = {
   sm: 'nui-input-sm',
   md: 'nui-input-md',
   lg: 'nui-input-lg',
-}
-const contrastStyle = {
-  white: 'nui-input-white',
-  'white-contrast': 'nui-input-white-contrast',
-}
+} as Record<string, string>
+
+const contrasts = {
+  default: 'nui-input-white',
+  'default-contrast': 'nui-input-white-contrast',
+} as Record<string, string>
 
 // const value = ref(props.modelValue)
 const inputRef = ref<HTMLInputElement>()
@@ -170,9 +181,9 @@ const id = useNinjaId(() => props.id)
   <div
     class="nui-input-file-regular"
     :class="[
-      contrastStyle[props.contrast],
-      sizeStyle[props.size],
-      shape && shapeStyle[shape],
+      contrast && contrasts[contrast],
+      size && sizes[size],
+      rounded && radiuses[rounded],
       props.error && !props.loading && 'nui-input-file-error',
       props.loading && 'nui-input-file-loading',
       props.icon && 'nui-has-icon',

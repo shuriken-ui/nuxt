@@ -2,7 +2,22 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The items to display in accordion.
+     * Define the radius of the accordion
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg'
+
+    /**
+     * Define the icon used for accordion item toggle action
+     *
+     * @default 'dot'
+     */
+    action?: 'dot' | 'chevron' | 'plus'
+
+    /**
+     * The items to display in the accordion.
      */
     items: {
       /**
@@ -14,28 +29,21 @@ const props = withDefaults(
        */
       content: string
     }[]
+
     /**
      * Indexes of the items that should be opened by default.
      */
     openItems?: number[]
+
     /**
      * Whether if multiple elements in the accordion can be opened at same time or not.
      */
     exclusive?: boolean
-    /**
-     * Define the shape of the accordion
-     */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved'
-    /**
-     * Define the icon used for accordion item toggle action
-     */
-    action?: 'dot' | 'chevron' | 'plus'
   }>(),
   {
     openItems: () => [],
-    shape: undefined,
+    rounded: undefined,
     action: 'dot',
-    exclusive: false,
   },
 )
 const emits = defineEmits<{
@@ -53,22 +61,21 @@ const emits = defineEmits<{
     },
   ): void
 }>()
-const appConfig = useAppConfig()
-const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.accordion,
-)
+const rounded = useNuiDefaultProperty(props, 'BaseAccordion', 'rounded')
+const action = useNuiDefaultProperty(props, 'BaseAccordion', 'action')
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-accordion-rounded',
-  smooth: 'nui-accordion-smooth',
-  curved: 'nui-accordion-curved',
-}
-const actionStyle = {
+const radiuses = {
+  none: '',
+  sm: 'nui-accordion-rounded',
+  md: 'nui-accordion-smooth',
+  lg: 'nui-accordion-curved',
+} as Record<string, string>
+
+const actions = {
   dot: 'nui-accordion-dot',
   chevron: 'nui-accordion-chevron',
   plus: 'nui-accordion-plus',
-}
+} as Record<string, string>
 
 const internalOpenItems = ref(props.openItems)
 const toggle = (key: number) => {
@@ -100,7 +107,7 @@ const toggle = (key: number) => {
       v-for="(item, key) in items"
       :key="key"
       class="nui-accordion"
-      :class="[actionStyle[props.action], shape && shapeStyle[shape]]"
+      :class="[rounded && radiuses[rounded], action && actions[action]]"
     >
       <details
         :open="internalOpenItems?.includes(key) ?? undefined"
@@ -122,7 +129,7 @@ const toggle = (key: number) => {
                 <BaseHeading
                   as="h4"
                   size="sm"
-                  weight="semibold"
+                  weight="medium"
                   lead="none"
                   class="nui-accordion-header-inner"
                 >
@@ -130,16 +137,19 @@ const toggle = (key: number) => {
                 </BaseHeading>
 
                 <div
-                  v-if="props.action === 'dot'"
+                  v-if="props.action === 'dot' || action === 'dot'"
                   class="nui-accordion-dot"
                 ></div>
                 <div
-                  v-else-if="props.action === 'chevron'"
+                  v-else-if="props.action === 'chevron' || action === 'chevron'"
                   class="nui-icon-outer"
                 >
                   <IconChevronDown class="nui-chevron-icon" />
                 </div>
-                <div v-else-if="props.action === 'plus'" class="nui-icon-outer">
+                <div
+                  v-else-if="props.action === 'plus' || action === 'plus'"
+                  class="nui-icon-outer"
+                >
                   <IconPlus class="nui-plus-icon" />
                 </div>
               </div>
@@ -152,7 +162,7 @@ const toggle = (key: number) => {
               :index="key"
               :toggle="toggle"
             >
-              <BaseParagraph size="md" lead="tight">
+              <BaseParagraph size="sm" lead="tight">
                 {{ item.content }}
               </BaseParagraph>
             </slot>

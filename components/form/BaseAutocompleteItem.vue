@@ -7,9 +7,12 @@ const props = withDefaults(
     item?: T
 
     /**
-     * The shape of the component.
+     * The radius of the component.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
      * The icon to show when the component is selected.
@@ -56,10 +59,10 @@ const props = withDefaults(
     }
   }>(),
   {
-    shape: undefined,
+    item: undefined,
+    rounded: undefined,
     mark: 'nui-mark',
     selectedIcon: 'lucide:check',
-    item: undefined,
     properties: () =>
       ({
         label: 'label',
@@ -70,18 +73,15 @@ const props = withDefaults(
   },
 )
 
-const appConfig = useAppConfig()
-const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.autocompleteItem,
-)
+const rounded = useNuiDefaultProperty(props, 'BaseAutocompleteItem', 'rounded')
 
-const shapeStyle = {
-  straight: '',
-  rounded: 'rounded-md',
-  smooth: 'rounded-lg',
-  curved: 'rounded-xl',
+const radiuses = {
+  none: '',
+  sm: 'rounded-md',
+  md: 'rounded-lg',
+  lg: 'rounded-xl',
   full: 'rounded-xl',
-}
+} as Record<string, string>
 
 const inputContext = inject('BaseAutocompleteContext', {
   query: '',
@@ -134,14 +134,15 @@ const markedSublabel = useNinjaMark(() => sublabel.value, query, mark)
     class="flex cursor-pointer items-center p-2 transition-colors duration-300"
     :class="[
       props.active ? 'bg-muted-100 dark:bg-muted-700' : '',
-      shape && shapeStyle[shape],
+      rounded && radiuses[rounded],
     ]"
   >
     <BaseAvatar v-if="media && !icon" :src="media" size="xs" class="me-3" />
     <BaseIconBox
       v-else-if="icon && !media"
       size="sm"
-      shape="rounded"
+      rounded="sm"
+      color="none"
       class="me-1"
     >
       <Icon

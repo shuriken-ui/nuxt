@@ -6,11 +6,6 @@ defineOptions({
 const props = withDefaults(
   defineProps<{
     /**
-     * The form input identifier.
-     */
-    id?: string
-
-    /**
      * The value of the radio input.
      */
     value?: T
@@ -19,6 +14,11 @@ const props = withDefaults(
      * The model value of the radio input.
      */
     modelValue?: T
+
+    /**
+     * The form input identifier.
+     */
+    id?: string
 
     /**
      * The name of the radio input.
@@ -31,11 +31,11 @@ const props = withDefaults(
     label?: string
   }>(),
   {
-    id: undefined,
     modelValue: undefined,
     value: undefined,
-    label: undefined,
+    id: undefined,
     name: undefined,
+    label: undefined,
   },
 )
 const emits = defineEmits<{

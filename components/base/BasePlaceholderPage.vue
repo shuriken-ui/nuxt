@@ -13,26 +13,34 @@ const props = withDefaults(
 
     /**
      * The size of the featured image.
+     *
+     * @default 'xs'
      */
     imageSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   }>(),
   {
     subtitle: undefined,
-    imageSize: 'xs',
+    imageSize: undefined,
   },
 )
 
-const sizeStyle = {
+const imageSize = useNuiDefaultProperty(
+  props,
+  'BasePlaceholderPage',
+  'imageSize',
+)
+
+const sizes = {
   xs: 'nui-placeholder-xs',
   sm: 'nui-placeholder-sm',
   md: 'nui-placeholder-md',
   lg: 'nui-placeholder-lg',
   xl: 'nui-placeholder-xl',
-}
+} as Record<string, string>
 </script>
 
 <template>
-  <div class="nui-placeholder-page" :class="sizeStyle[props.imageSize]">
+  <div class="nui-placeholder-page" :class="imageSize && sizes[imageSize]">
     <div class="nui-placeholder-page-inner">
       <div v-if="'image' in $slots" class="nui-placeholder-page-img">
         <slot name="image"></slot>

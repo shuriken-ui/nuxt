@@ -5,12 +5,17 @@ import { Float } from '@headlessui-float/vue'
 const props = withDefaults(
   defineProps<{
     /**
-     * The flavor of the dropdown.
+     * The variant of the dropdown.
+     *
+     * @since 2.0.0
+     * @default 'button'
      */
-    flavor?: 'button' | 'context' | 'text'
+    variant?: 'button' | 'context' | 'text'
 
     /**
      * The color of the button.
+     *
+     * @default 'default'
      */
     buttonColor?:
       | 'default'
@@ -25,23 +30,18 @@ const props = withDefaults(
 
     /**
      * The color of the dropdown.
+     *
+     * @default 'white'
      */
-    color?:
-      | 'white'
-      | 'white-contrast'
-      | 'muted'
-      | 'muted-contrast'
-      | 'primary'
-      | 'info'
-      | 'success'
-      | 'warning'
-      | 'danger'
-      | 'none'
+    color?: 'white' | 'white-contrast' | 'muted' | 'muted-contrast' | 'none'
 
     /**
-     * The shape of the dropdown.
+     * The radius of the dropdown button.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    shape?: 'straight' | 'rounded' | 'smooth' | 'curved' | 'full'
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
      * The orientation of the dropdown.
@@ -49,10 +49,6 @@ const props = withDefaults(
      * @deprecated use placement instead
      */
     orientation?: 'start' | 'end'
-    /**
-     * Used a fixed strategy to float the component
-     */
-    fixed?: boolean
 
     /**
      * The placement of the dropdown via floating-ui.
@@ -73,6 +69,8 @@ const props = withDefaults(
 
     /**
      * The size of the dropdown.
+     *
+     * @default 'md'
      */
     size?: 'md' | 'lg'
 
@@ -85,38 +83,59 @@ const props = withDefaults(
      * The header label to display for the dropdown.
      */
     headerLabel?: string
+
+    /**
+     * Used a fixed strategy to float the component
+     */
+    fixed?: boolean
   }>(),
   {
-    flavor: 'button',
-    buttonColor: 'default',
-    shape: undefined,
-    orientation: 'start',
+    variant: undefined,
+    buttonColor: undefined,
+    color: undefined,
+    rounded: undefined,
+    orientation: undefined,
     placement: undefined,
-    size: 'md',
-    color: 'white',
+    size: undefined,
     label: '',
     headerLabel: undefined,
     fixed: false,
   },
 )
 
-const appConfig = useAppConfig()
-const shape = computed(
-  () => props.shape ?? appConfig.nui.defaultShapes?.dropdown,
-)
+const variant = useNuiDefaultProperty(props, 'BaseDropdown', 'variant')
+const buttonColor = useNuiDefaultProperty(props, 'BaseDropdown', 'buttonColor')
+const color = useNuiDefaultProperty(props, 'BaseDropdown', 'color')
+const rounded = useNuiDefaultProperty(props, 'BaseDropdown', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseDropdown', 'size')
+const orientation = useNuiDefaultProperty(props, 'BaseDropdown', 'orientation')
 
-const sizeStyle = {
+const sizes = {
   md: 'nui-menu-md',
   lg: 'nui-menu-lg',
-}
-const shapeStyle = {
-  straight: '',
-  rounded: 'nui-menu-rounded',
-  smooth: 'nui-menu-smooth',
-  curved: 'nui-menu-curved',
+} as Record<string, string>
+
+const radiuses = {
+  none: '',
+  sm: 'nui-menu-rounded',
+  md: 'nui-menu-smooth',
+  lg: 'nui-menu-curved',
   full: 'nui-menu-curved',
-}
-const colorStyle = {
+} as Record<string, string>
+
+const buttonColors = {
+  none: '',
+  default: 'nui-button-default',
+  primary: 'nui-button-primary',
+  info: 'nui-button-info',
+  success: 'nui-button-success',
+  warning: 'nui-button-warning',
+  danger: 'nui-button-danger',
+  light: 'nui-button-light',
+  muted: 'nui-button-muted',
+} as Record<string, string>
+
+const colors = {
   white: 'nui-menu-white',
   'white-contrast': 'nui-menu-white-contrast',
   muted: 'nui-menu-muted',
@@ -127,7 +146,7 @@ const colorStyle = {
   warning: 'nui-menu-warning',
   danger: 'nui-menu-danger',
   none: '',
-}
+} as Record<string, string>
 
 /**
  * fallback placement with old orientation value
@@ -157,7 +176,7 @@ const placementValue = computed(() => {
         leave-from="transform scale-100 opacity-100"
         leave-to="transform scale-95 opacity-0"
         flip
-        :offset="props.flavor === 'context' ? 6 : 4"
+        :offset="props.variant === 'context' ? 6 : 4"
         :strategy="props.fixed ? 'fixed' : 'absolute'"
         :placement="placementValue"
         :adaptive-width="props.fixed"
@@ -166,9 +185,9 @@ const placementValue = computed(() => {
         <MenuButton as="template">
           <slot name="button" v-bind="{ open, close }">
             <BaseButton
-              v-if="props.flavor === 'button'"
-              :color="props.buttonColor"
-              :shape="shape"
+              v-if="variant === 'button' || props.variant === 'button'"
+              :color="props.buttonColor ? props.buttonColor : buttonColor"
+              :rounded="props.rounded ? props.rounded : rounded"
               class="!pe-3 !ps-4"
             >
               <slot name="label" v-bind="{ open, close }">
@@ -181,7 +200,7 @@ const placementValue = computed(() => {
               />
             </BaseButton>
             <button
-              v-else-if="props.flavor === 'context'"
+              v-else-if="props.variant === 'context'"
               type="button"
               class="nui-context-button nui-focus"
             >
@@ -194,7 +213,7 @@ const placementValue = computed(() => {
               </span>
             </button>
             <button
-              v-else-if="props.flavor === 'text'"
+              v-else-if="props.variant === 'text'"
               type="button"
               class="nui-text-button nui-focus"
             >
@@ -214,9 +233,9 @@ const placementValue = computed(() => {
         <MenuItems
           class="nui-dropdown-menu"
           :class="[
-            shape && shapeStyle[shape],
-            sizeStyle[props.size],
-            colorStyle[props.color],
+            size && sizes[size],
+            rounded && radiuses[rounded],
+            color && colors[color],
           ]"
         >
           <div v-if="props.headerLabel" class="nui-menu-header">
