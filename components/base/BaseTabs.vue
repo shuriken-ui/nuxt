@@ -44,7 +44,15 @@ const props = withDefaults(
   },
 )
 
-const [modelValue] = defineModel<string>()
+const [modelValue] = defineModel<string>({
+  default: null,
+})
+
+onBeforeMount(() => {
+  if (modelValue.value === null) {
+    modelValue.value = props.tabs[0]?.value
+  }
+})
 
 const justify = useNuiDefaultProperty(props, 'BaseTabs', 'justify')
 const type = useNuiDefaultProperty(props, 'BaseTabs', 'type')
