@@ -31,7 +31,13 @@ const props = withDefaults(
 )
 
 const [modelValue] = defineModel<string>({
-  default: () => props.tabs[0]?.value,
+  default: null,
+})
+
+onBeforeMount(() => {
+  if (modelValue.value === null) {
+    modelValue.value = props.tabs[0]?.value
+  }
 })
 
 const justify = useNuiDefaultProperty(props, 'BaseTabSlider', 'justify')
