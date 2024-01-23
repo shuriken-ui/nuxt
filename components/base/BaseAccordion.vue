@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends any">
 const props = withDefaults(
   defineProps<{
     /**
@@ -27,7 +27,7 @@ const props = withDefaults(
       /**
        * The content of the accordion item.
        */
-      content: string
+      content: T
     }[]
 
     /**
@@ -57,7 +57,7 @@ const emits = defineEmits<{
       /**
        * The content of the accordion item.
        */
-      content: string
+      content: T
     },
   ): void
 }>()
