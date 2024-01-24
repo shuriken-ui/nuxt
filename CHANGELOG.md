@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/shuriken-ui/nuxt/compare/v2.0.0...v2.0.1) (2024-01-24)
+
+
+### Bug Fixes
+
+* **BaseAccordion:** use ts generic for items content ([5ce4d84](https://github.com/shuriken-ui/nuxt/commit/5ce4d8425761bb1e78cfd6e61d128cc3e97e4180))
+* **BaseTabs:** default tab detection on before mount ([0ad76af](https://github.com/shuriken-ui/nuxt/commit/0ad76afa7fbe01320213f5c2fc056af0158398f1))
+* **BaseTabSlider:** default tab detection on before mount ([3740d4a](https://github.com/shuriken-ui/nuxt/commit/3740d4ac7ec2b139aaa49c84ba1af206711f2dac))
+* use defineSlots in generic components ([f50e03b](https://github.com/shuriken-ui/nuxt/commit/f50e03b42b6b36d5688169a3c541cdb41311e0da))
+
 ## [2.0.0](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.7...v2.0.0) (2024-01-11)
 
 
