@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T extends any = boolean">
+<script setup lang="ts" generic="T extends unknown = boolean">
 defineOptions({
   inheritAttrs: false,
 })
@@ -71,6 +71,10 @@ const props = withDefaults(
   },
 )
 const [modelValue] = defineModel<T>()
+
+defineSlots<{
+  default(): any
+}>()
 
 const color = useNuiDefaultProperty(props, 'BaseRadio', 'color')
 

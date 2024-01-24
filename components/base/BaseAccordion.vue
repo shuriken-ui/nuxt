@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T extends any">
+<script setup lang="ts" generic="T extends unknown">
 const props = withDefaults(
   defineProps<{
     /**
@@ -61,6 +61,25 @@ const emits = defineEmits<{
     },
   ): void
 }>()
+
+defineSlots<{
+  'accordion-item'(props: {
+    index: number
+    item: { title: string; content: T }
+    toggle: (index: number) => void
+  }): any
+  'accordion-item-summary'(props: {
+    index: number
+    item: { title: string; content: T }
+    toggle: (index: number) => void
+  }): any
+  'accordion-item-content'(props: {
+    index: number
+    item: { title: string; content: T }
+    toggle: (index: number) => void
+  }): any
+}>()
+
 const rounded = useNuiDefaultProperty(props, 'BaseAccordion', 'rounded')
 const action = useNuiDefaultProperty(props, 'BaseAccordion', 'action')
 

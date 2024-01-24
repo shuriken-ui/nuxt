@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T extends any = boolean">
+<script setup lang="ts" generic="T extends unknown = boolean">
 defineOptions({
   inheritAttrs: false,
 })
@@ -99,6 +99,10 @@ const props = withDefaults(
     classes: () => ({}),
   },
 )
+
+defineSlots<{
+  default(): any
+}>()
 
 const [modelValue] = defineModel<T | T[]>()
 

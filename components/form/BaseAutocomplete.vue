@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T extends any = string">
+<script setup lang="ts" generic="T extends unknown = string">
 import { Float, FloatContent, FloatReference } from '@headlessui-float/vue'
 import {
   Combobox,
@@ -248,6 +248,64 @@ const props = withDefaults(
 
 const emits = defineEmits<{
   keydown: [event: KeyboardEvent]
+}>()
+
+defineSlots<{
+  item(props: {
+    query: string
+    filteredItems: T[]
+    pending: boolean
+    items: T[]
+    item: T
+    active: boolean
+    selected: boolean
+  }): any
+  label(props: {
+    query: string
+    filteredItems: T[]
+    pending: boolean
+    items: T[]
+  }): any
+  pending(props: {
+    query: string
+    filteredItems: T[]
+    pending: boolean
+    items: T[]
+  }): any
+  empty(props: {
+    query: string
+    filteredItems: T[]
+    pending: boolean
+    items: T[]
+  }): any
+  'start-item'(props: {
+    query: string
+    filteredItems: T[]
+    pending: boolean
+    items: T[]
+  }): any
+  'end-item'(props: {
+    query: string
+    filteredItems: T[]
+    pending: boolean
+    items: T[]
+  }): any
+  'create-item'(props: {
+    query: string
+    filteredItems: T[]
+    pending: boolean
+    items: T[]
+    active: boolean
+    selected: boolean
+  }): any
+  'autocomplete-multiple-list-item'(props: {
+    item: T
+    displayValue: string
+    removeItem: (item: T) => void
+  }): any
+  'icon'(props: { iconName: string }): any
+  'clear-icon'(): any
+  'dropdown-icon'(): any
 }>()
 
 const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({

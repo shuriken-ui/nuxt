@@ -73,6 +73,10 @@ const props = withDefaults(
   },
 )
 
+defineSlots<{
+  'selected-icon'(): any
+}>()
+
 const rounded = useNuiDefaultProperty(props, 'BaseAutocompleteItem', 'rounded')
 
 const radiuses = {
