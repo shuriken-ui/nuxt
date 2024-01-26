@@ -93,7 +93,7 @@ function toggle(value: string) {
           :icon-name="tab.icon"
           :toggle="toggle"
         >
-          <Icon :name="tab.icon" class="me-1 block h-5 w-5" />
+          <Icon :name="tab.icon" class="me-1 block size-5" />
         </slot>
         <span
           :class="[

@@ -79,7 +79,7 @@ defineExpose({
         :true-value="props.trueValue"
         :false-value="props.falseValue"
         v-bind="$attrs"
-        class="peer absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0"
+        class="peer absolute inset-0 z-20 size-full cursor-pointer opacity-0"
         type="checkbox"
       />
       <slot v-bind="{ value: modelValue }"></slot>

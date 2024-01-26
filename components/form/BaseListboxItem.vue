@@ -63,7 +63,7 @@ const props = withDefaults(
   >
     <Icon
       :name="props.value.icon"
-      class="text-muted-400 group-hover/nui-listbox-option:text-primary-500 h-5 w-5 transition-colors duration-200"
+      class="text-muted-400 group-hover/nui-listbox-option:text-primary-500 size-5 transition-colors duration-200"
     />
   </BaseIconBox>
 

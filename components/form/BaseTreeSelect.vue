@@ -544,12 +544,12 @@ function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
             }"
           >
             <span
-              class="text-muted-400 flex h-5 w-5 items-center justify-center"
+              class="text-muted-400 flex size-5 items-center justify-center"
             >
               <Icon
                 v-if="icons.pending"
                 :name="icons.pending"
-                class="h-4 w-4"
+                class="size-4"
                 :class="props.classes?.pendingIcon"
               />
             </span>
@@ -585,13 +585,13 @@ function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
             }"
           >
             <span
-              class="text-muted-400 flex h-5 w-5 items-center justify-center"
+              class="text-muted-400 flex size-5 items-center justify-center"
             >
               <Icon
                 v-if="icons.empty"
                 :name="icons.empty"
                 :class="props.classes?.emptyIcon"
-                class="h-4 w-4"
+                class="size-4"
               />
             </span>
           </slot>
@@ -625,19 +625,19 @@ function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
           >
             <button
               v-if="'children' in child"
-              class="text-muted-400 nui-focus me-1 flex h-5 w-5 items-center justify-center rounded"
+              class="text-muted-400 nui-focus me-1 flex size-5 items-center justify-center rounded"
               @click="openMap[index] = !openMap[index]"
             >
               <Icon
                 v-if="openMap[index] && icons.open"
                 :name="icons.open"
-                class="h-4 w-4"
+                class="size-4"
                 :class="props.classes?.treeIcon"
               />
               <Icon
                 v-else-if="!openMap[index] && icons.closed"
                 :name="icons.closed"
-                class="h-4 w-4"
+                class="size-4"
                 :class="props.classes?.treeIcon"
               />
             </button>
@@ -660,13 +660,13 @@ function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
               }"
             >
               <span
-                class="text-muted-400 me-1 flex h-5 w-5 items-center justify-center"
+                class="text-muted-400 me-1 flex size-5 items-center justify-center"
               >
                 <Icon
                   v-if="icons.item"
                   :name="icons.item"
                   :class="props.classes?.itemIcon"
-                  class="h-4 w-4"
+                  class="size-4"
                 />
               </span>
             </slot>

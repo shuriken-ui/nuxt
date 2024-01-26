@@ -346,7 +346,7 @@ const internal = ref<any>(modelValue)
                       >
                         <Icon
                           :name="(modelValue as any)[props.properties.icon]"
-                          class="h-4 w-4"
+                          class="size-4"
                         />
                       </BaseIconBox>
                       <div

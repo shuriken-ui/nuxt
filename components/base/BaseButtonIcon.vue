@@ -125,6 +125,6 @@ const { attributes, is } = useNinjaButton(props)
 <template>
   <component :is="is" v-bind="attributes" :class="classes">
     <slot v-if="!props.loading"></slot>
-    <BasePlaceload v-else class="h-4 w-4 rounded-md" />
+    <BasePlaceload v-else class="size-4 rounded-md" />
   </component>
 </template>
