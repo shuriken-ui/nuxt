@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/shuriken-ui/nuxt/compare/v2.0.1...v2.0.2) (2024-01-26)
+
+
+### Bug Fixes
+
+* **BaseDropdown:** use default props from app config ([7887ce5](https://github.com/shuriken-ui/nuxt/commit/7887ce568eb265f9c93aba370d9553d204ab6aff))
+* **BaseThemeToggle:** add disableTransitions in app config ([fc84339](https://github.com/shuriken-ui/nuxt/commit/fc84339b619a98f592fd5cc309374423129353f5))
+
 ### [2.0.1](https://github.com/shuriken-ui/nuxt/compare/v2.0.0...v2.0.1) (2024-01-24)
 
 
