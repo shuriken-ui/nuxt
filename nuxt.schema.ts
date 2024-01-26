@@ -677,6 +677,22 @@ export default defineNuxtSchema({
          */
         rounded: 'sm',
       },
+      BaseThemeSwitch: {
+        /**
+         * Disables transitions when toggling between light and dark mode.
+         *
+         * @type {boolean}
+         */
+        disableTransitions: false,
+      },
+      BaseThemeToggle: {
+        /**
+         * Disables transitions when toggling between light and dark mode.
+         *
+         * @type {boolean}
+         */
+        disableTransitions: false,
+      },
     },
   },
 })
