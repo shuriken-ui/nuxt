@@ -58,7 +58,7 @@
     "@iconify/vue": "^4.1.1",
     "@nuxtjs/color-mode": "^3.3.2",
     "@nuxtjs/tailwindcss": "^6.11.0",
-    "@shuriken-ui/tailwind": "^2.0.1",
+    "@shuriken-ui/tailwind": "^2.0.3",
     "@vueuse/nuxt": "^10.7.2",
     "autoprefixer": "^10.4.17",
     "nuxt-icon": "^0.6.8"
