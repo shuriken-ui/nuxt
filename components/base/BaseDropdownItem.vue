@@ -83,6 +83,9 @@ const props = withDefaults(
   },
 )
 
+const rounded = useNuiDefaultProperty(props, 'BaseDropdownItem', 'rounded')
+const color = useNuiDefaultProperty(props, 'BaseDropdownItem', 'color')
+
 const radiuses = {
   none: '',
   sm: 'nui-item-rounded',
@@ -109,8 +112,8 @@ const { is, attributes } = useNinjaButton(props)
       class="nui-dropdown-item"
       :class="[
         active && 'nui-active',
-        props.rounded && radiuses[props.rounded],
-        props.color && colors[props.color],
+        rounded && radiuses[rounded],
+        color && colors[color],
       ]"
       @click.passive="close"
     >

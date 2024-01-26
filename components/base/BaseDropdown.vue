@@ -108,7 +108,7 @@ const buttonColor = useNuiDefaultProperty(props, 'BaseDropdown', 'buttonColor')
 const color = useNuiDefaultProperty(props, 'BaseDropdown', 'color')
 const rounded = useNuiDefaultProperty(props, 'BaseDropdown', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseDropdown', 'size')
-const orientation = useNuiDefaultProperty(props, 'BaseDropdown', 'orientation')
+const placement = useNuiDefaultProperty(props, 'BaseDropdown', 'placement')
 
 const sizes = {
   md: 'nui-menu-md',
@@ -153,8 +153,8 @@ const colors = {
  * @todo remove this on next major version
  */
 const placementValue = computed(() => {
-  if (props.placement) {
-    return props.placement
+  if (placement.value) {
+    return placement.value
   }
 
   return props.orientation === 'end' ? 'bottom-end' : 'bottom-start'
