@@ -309,8 +309,8 @@ defineSlots<{
 }>()
 
 const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
-  set(value) {
-    if (modelModifiers.prop && props.properties?.value) {
+  get(value) {
+    if (!props.multiple && modelModifiers.prop && props.properties?.value) {
       const attr = props.properties.value
 
       return items.value.find(
@@ -480,7 +480,7 @@ watch(
 )
 
 function clear() {
-  modelValue.value = props.clearValue ?? []
+  modelValue.value = props.clearValue ?? (props.multiple ? [] : null)
 }
 
 const iconResolved = computed(() => {
