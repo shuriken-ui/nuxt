@@ -163,6 +163,11 @@ const props = withDefaults(
     multiple?: boolean
 
     /**
+     * Hide the create custom prompt (just set the model to the value entered)
+     */
+    hideCreatePrompt?: boolean
+
+    /**
      * Used a fixed strategy to float the component
      */
     fixed?: boolean
@@ -240,6 +245,7 @@ const props = withDefaults(
     filterItems: undefined,
     classes: () => ({}),
     allowCreate: false,
+    hideCreatePrompt: false,
     fixed: false,
     placement: 'bottom-start',
     properties: undefined,
@@ -693,7 +699,7 @@ const internal = ref<any>(modelValue)
           as="div"
           :class="{
             'nui-autocomplete-results':
-              filteredItems.length > 0 || !allowCreate,
+              filteredItems.length > 0 || !hideCreatePrompt,
           }"
         >
           <!-- Placeholder -->
@@ -743,6 +749,9 @@ const internal = ref<any>(modelValue)
               :value="queryCreate"
               v-slot="{ active, selected }"
               as="div"
+              :class="
+                hideCreatePrompt ? 'hidden' : 'nui-autocomplete-results-item'
+              "
             >
               <slot
                 name="create-item"
@@ -755,9 +764,7 @@ const internal = ref<any>(modelValue)
                   selected,
                 }"
               >
-                <span class="nui-autocomplete-results-item">
-                  Create {{ query }}
-                </span>
+                <span>Create {{ query }}</span>
               </slot>
             </ComboboxOption>
             <ComboboxOption
