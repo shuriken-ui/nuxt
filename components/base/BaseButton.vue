@@ -40,13 +40,17 @@ const props = withDefaults(
      */
     color?:
       | 'default'
+      | 'default-contrast'
+      | 'muted'
+      | 'muted-contrast'
+      | 'light'
+      | 'dark'
+      | 'black'
       | 'primary'
       | 'info'
       | 'success'
       | 'warning'
       | 'danger'
-      | 'light'
-      | 'muted'
       | 'none'
 
     /**
@@ -114,10 +118,10 @@ const sizes = {
 
 const radiuses = {
   none: '',
-  sm: 'nui-button-rounded',
-  md: 'nui-button-smooth',
-  lg: 'nui-button-curved',
-  full: 'nui-button-full',
+  sm: 'nui-button-rounded-sm',
+  md: 'nui-button-rounded-md',
+  lg: 'nui-button-rounded-lg',
+  full: 'nui-button-rounded-full',
 } as Record<string, string>
 
 const variants = {
@@ -129,13 +133,17 @@ const variants = {
 const colors = {
   none: '',
   default: 'nui-button-default',
+  'default-contrast': 'nui-button-default-contrast',
   primary: 'nui-button-primary',
   info: 'nui-button-info',
   success: 'nui-button-success',
   warning: 'nui-button-warning',
   danger: 'nui-button-danger',
-  light: 'nui-button-light',
   muted: 'nui-button-muted',
+  'muted-contrast': 'nui-button-muted-contrast',
+  light: 'nui-button-light',
+  dark: 'nui-button-dark',
+  black: 'nui-button-black',
 } as Record<string, string>
 
 const shadows = {
