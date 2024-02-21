@@ -18,7 +18,7 @@ const props = withDefaults(
     color?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
 
     /**
-     * Define the icon used for accordion item toggle action
+     * Defines the icon used for accordion item toggle action
      *
      * @default 'dot'
      */
