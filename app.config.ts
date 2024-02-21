@@ -1,8 +1,10 @@
 export default defineAppConfig({
   nui: {
     BaseAccordion: {
+      color: 'default',
       rounded: 'sm',
       action: 'dot',
+      dotColor: 'primary',
     },
     BaseAutocomplete: {
       rounded: 'sm',

@@ -49,6 +49,15 @@ const accordion = ref([
         </div>
       </NuiPreview>
 
+      <NuiPreview title="Dot color" description="Accordion dot color options">
+        <div class="grid gap-4 md:grid-cols-2 max-w-4xl">
+          <BaseAccordion :items="accordion" exclusive dot-color="primary" />
+          <BaseAccordion :items="accordion" exclusive dot-color="success" />
+          <BaseAccordion :items="accordion" exclusive dot-color="info" />
+          <BaseAccordion :items="accordion" exclusive dot-color="dark" />
+        </div>
+      </NuiPreview>
+
       <NuiPreview title="Chevron" description="Chevron accordion style">
         <div class="md:max-w-lg">
           <BaseAccordion :items="accordion" exclusive action="chevron" />
