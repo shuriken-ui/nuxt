@@ -86,7 +86,7 @@ const props = withDefaults(
       | 'yellow'
 
     /**
-     * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
+     * Optional CSS classes to apply to the component inner elements.
      */
     classes?: {
       /**
