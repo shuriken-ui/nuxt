@@ -41,6 +41,25 @@ const props = withDefaults(
     mask?: 'hex' | 'hexed' | 'deca' | 'blob' | 'diamond'
 
     /**
+     * Defines the color of the avatar
+     *
+     * @since 3.0.0
+     * @default 'default'
+     */
+    color?:
+      | 'white'
+      | 'muted'
+      | 'primary'
+      | 'success'
+      | 'info'
+      | 'warning'
+      | 'danger'
+      | 'pink'
+      | 'yellow'
+      | 'indigo'
+      | 'violet'
+
+    /**
      * Whether to display a dot on top of the image, or the color of the dot.
      */
     dot?:
@@ -65,6 +84,36 @@ const props = withDefaults(
       | 'danger'
       | 'pink'
       | 'yellow'
+
+    /**
+     * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the inner element.
+       */
+      inner?: string | string[]
+
+      /**
+       * CSS classes to apply to the img element.
+       */
+      img?: string | string[]
+
+      /**
+       * CSS classes to apply to the badge element.
+       */
+      badge?: string | string[]
+
+      /**
+       * CSS classes to apply to the dot element.
+       */
+      dot?: string | string[]
+    }
   }>(),
   {
     src: undefined,
@@ -72,15 +121,32 @@ const props = withDefaults(
     badgeSrc: undefined,
     text: '?',
     size: undefined,
+    color: undefined,
     rounded: undefined,
     mask: undefined,
     dot: false,
     ring: false,
+    classes: () => ({}),
   },
 )
 
+const color = useNuiDefaultProperty(props, 'BaseAvatar', 'color')
 const rounded = useNuiDefaultProperty(props, 'BaseAvatar', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseAvatar', 'size')
+
+const colors = {
+  white: 'bg-white dark:bg-muted-800 text-muted-600 dark:text-muted-200',
+  muted: 'bg-muted-100 dark:bg-muted-800 text-muted-600 dark:text-muted-200',
+  primary: 'bg-primary-500/20 text-primary-500',
+  info: 'bg-info-500/20 text-info-500',
+  success: 'bg-success-500/20 text-success-500',
+  warning: 'bg-warning-500/20 text-warning-500',
+  danger: 'bg-danger-500/20 text-danger-500',
+  yellow: 'bg-yellow-500/20 text-yellow-400',
+  pink: 'bg-pink-500/20 text-pink-400',
+  indigo: 'bg-indigo-500/20 text-indigo-500',
+  violet: 'bg-violet-500/20 text-violet-500',
+}
 
 const dots = {
   success: 'nui-dot-success',
@@ -115,11 +181,11 @@ const sizes = {
 } as Record<string, string>
 
 const radiuses = {
-  none: 'nui-avatar-straight',
-  sm: 'nui-avatar-rounded',
-  md: 'nui-avatar-smooth',
-  lg: 'nui-avatar-curved',
-  full: 'nui-avatar-full',
+  none: 'nui-avatar-rounded-none',
+  sm: 'nui-avatar-rounded-sm',
+  md: 'nui-avatar-rounded-md',
+  lg: 'nui-avatar-rounded-lg',
+  full: 'nui-avatar-rounded-full',
 } as Record<string, string>
 
 const masks = {
@@ -137,6 +203,7 @@ const masks = {
     :class="[
       size && sizes[size],
       rounded && radiuses[rounded],
+      !props.src && color && colors[color],
       props.mask &&
         (props.rounded === 'none' || rounded === 'none') &&
         `nui-avatar-mask ${masks[props.mask]}`,
@@ -144,9 +211,10 @@ const masks = {
         (props.ring === true
           ? `nui-avatar-ring ${rings['primary']}`
           : `nui-avatar-ring ${rings[props.ring]}`),
+      props.classes?.wrapper,
     ]"
   >
-    <div class="nui-avatar-inner">
+    <div class="nui-avatar-inner" :class="$props.classes?.inner">
       <slot>
         <img
           v-if="props.src"
@@ -162,7 +230,7 @@ const masks = {
           v-if="props.src && props.srcDark"
           :src="props.srcDark"
           class="nui-avatar-img hidden"
-          :class="rounded && radiuses[rounded]"
+          :class="[rounded && radiuses[rounded], props.classes?.img]"
         />
 
         <span v-if="!props.src" class="nui-avatar-text">
@@ -171,7 +239,11 @@ const masks = {
       </slot>
     </div>
 
-    <div v-if="'badge' in $slots || props.badgeSrc" class="nui-avatar-badge">
+    <div
+      v-if="'badge' in $slots || props.badgeSrc"
+      class="nui-avatar-badge"
+      :class="$props.classes?.badge"
+    >
       <slot name="badge">
         <img
           v-if="props.badgeSrc"
@@ -185,7 +257,10 @@ const masks = {
     <span
       v-if="props.dot"
       class="nui-avatar-dot"
-      :class="[props.dot === true ? dots['primary'] : dots[props.dot]]"
+      :class="[
+        props.dot === true ? dots['primary'] : dots[props.dot],
+        props.classes?.dot,
+      ]"
     ></span>
   </div>
 </template>

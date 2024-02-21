@@ -17,6 +17,7 @@ export default defineAppConfig({
     BaseAvatar: {
       size: 'sm',
       rounded: 'full',
+      color: 'muted',
     },
     BaseAvatarGroup: {
       limit: 4,
