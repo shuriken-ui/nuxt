@@ -21,10 +21,33 @@ const props = withDefaults(
       /** The text to display as the avatar. */
       text?: string
     }[]
+
+    /**
+     * Optional CSS classes to apply to the component inner elements.
+     *
+     * @since 3.0.0
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the outer element.
+       */
+      outer?: string | string[]
+
+      /**
+       * CSS classes to apply to the count element.
+       */
+      count?: string | string[]
+    }
   }>(),
   {
     limit: undefined,
     size: undefined,
+    classes: () => ({}),
   },
 )
 
@@ -56,12 +79,16 @@ const avatarDisplay = computed(() => {
 </script>
 
 <template>
-  <div class="nui-avatar-group" :class="[size && sizes[size]]">
+  <div
+    class="nui-avatar-group"
+    :class="[size && sizes[size], props.classes?.wrapper]"
+  >
     <slot>
       <div
         v-for="avatar in avatarDisplay"
         :key="typeof avatar === 'string' ? avatar : avatar.src"
         class="nui-avatar-outer"
+        :class="props.classes?.outer"
       >
         <BaseAvatar
           v-bind="typeof avatar === 'string' ? { src: avatar } : avatar"
@@ -74,6 +101,7 @@ const avatarDisplay = computed(() => {
       <div
         v-if="limit !== undefined && avatars.length > limit"
         class="nui-avatar-count"
+        :class="props.classes?.count"
       >
         <div class="nui-avatar-count-inner">
           <span class="nui-avatar-count-text">
