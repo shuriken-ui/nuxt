@@ -14,6 +14,18 @@ export default defineNuxtSchema({
          * @type {'dot' | 'chevron' | 'plus'}
          */
         action: 'dot',
+        /**
+         * The color of the accordion.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
+         */
+        color: 'default',
+        /**
+         * Default color for the accordion dot
+         *
+         * @type {'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'black'}
+         */
+        dotColor: 'primary',
       },
       BaseAutocomplete: {
         /**
@@ -56,6 +68,12 @@ export default defineNuxtSchema({
          * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
          */
         rounded: 'full',
+        /**
+         * Default color for the avatar
+         *
+         * @type {'white' | 'muted' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'pink' | 'yellow' | 'indigo' | 'violet'}
+         */
+        color: 'muted',
       },
       BaseAvatarGroup: {
         /**
@@ -161,9 +179,9 @@ export default defineNuxtSchema({
         /**
          * Default color for the BaseCard component
          *
-         * @type {'white'| 'white-contrast'| 'muted'| 'muted-contrast'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'none'}
+         * @type {'default'| 'default-contrast'| 'muted'| 'muted-contrast'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'none'}
          */
-        color: 'white',
+        color: 'default',
       },
       BaseCheckbox: {
         /**
@@ -197,15 +215,15 @@ export default defineNuxtSchema({
         /**
          * The color of the dropdown button.
          *
-         * @type {'default' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'light' | 'muted' | 'none'}
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'light' | 'dark' | 'black' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
          */
         buttonColor: 'default',
         /**
          * The color of the dropdown.
          *
-         * @type {'white' | 'white-contrast' | 'muted' | 'muted-contrast' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
          */
-        color: 'white',
+        color: 'default',
         /**
          * Default rounded for the BaseDropdown component
          *
