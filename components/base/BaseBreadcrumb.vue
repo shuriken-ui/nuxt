@@ -59,7 +59,7 @@ const props = withDefaults(
       list?: string | string[]
 
       /**
-       * CSS classes to apply to the dropdowm element.
+       * CSS classes to apply to the dropdown element.
        */
       dropdown?: string | string[]
 
