@@ -58,7 +58,7 @@ export default defineAppConfig({
     BaseDropdown: {
       variant: 'button',
       buttonColor: 'default',
-      color: 'white',
+      color: 'default',
       rounded: 'sm',
       size: 'md',
     },

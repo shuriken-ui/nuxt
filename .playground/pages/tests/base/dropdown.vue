@@ -91,7 +91,7 @@ definePageMeta({
             variant="button"
             label="Dropdown"
             orientation="start"
-            color="white"
+            color="default"
           >
             <BaseDropdownItem
               to="#"
@@ -126,7 +126,7 @@ definePageMeta({
             variant="button"
             label="Dropdown"
             orientation="start"
-            color="white-contrast"
+            color="default-contrast"
           >
             <BaseDropdownItem
               to="#"
