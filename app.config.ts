@@ -23,6 +23,9 @@ export default defineAppConfig({
       limit: 4,
       size: 'sm',
     },
+    BaseBreadcrumb: {
+      color: 'primary',
+    },
     BaseButton: {
       variant: 'solid',
       rounded: 'sm',
