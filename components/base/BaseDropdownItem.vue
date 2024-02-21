@@ -56,7 +56,19 @@ const props = withDefaults(
      * Optional CSS classes to apply to the wrapper and inner elements.
      */
     classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the title element.
+       */
       title?: string | string[]
+
+      /**
+       * CSS classes to apply to the text element.
+       */
       text?: string | string[]
     }
 
@@ -85,9 +97,9 @@ const props = withDefaults(
 
 const radiuses = {
   none: '',
-  sm: 'nui-item-rounded',
-  md: 'nui-item-smooth',
-  lg: 'nui-item-curved',
+  sm: 'nui-item-rounded-sm',
+  md: 'nui-item-rounded-md',
+  lg: 'nui-item-rounded-lg',
 } as Record<string, string>
 
 const colors = {
@@ -116,12 +128,13 @@ const { is, attributes } = useNinjaButton(props)
     >
       <slot name="start"></slot>
       <div class="nui-item-content">
-        <div :class="props.classes.title">
+        <div :class="props.classes?.title">
           <slot>{{ props.title }}</slot>
         </div>
         <p
           v-if="'text' in $slots || props.text"
           class="text-muted-400 font-sans text-xs"
+          :class="props.classes?.text"
         >
           <slot name="text">{{ props.text }}</slot>
         </p>
