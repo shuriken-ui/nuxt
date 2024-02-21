@@ -12,13 +12,15 @@ const props = withDefaults(
     /**
      * The color of the card.
      *
-     * @default 'white'
+     * @default 'default'
      */
     color?:
-      | 'white'
-      | 'white-contrast'
+      | 'default'
+      | 'default-contrast'
       | 'muted'
       | 'muted-contrast'
+      | 'dark'
+      | 'black'
       | 'primary'
       | 'info'
       | 'success'
@@ -43,16 +45,18 @@ const color = useNuiDefaultProperty(props, 'BaseCard', 'color')
 
 const radiuses = {
   none: '',
-  sm: 'nui-card-rounded',
-  md: 'nui-card-smooth',
-  lg: 'nui-card-curved',
+  sm: 'nui-card-rounded-sm',
+  md: 'nui-card-rounded-md',
+  lg: 'nui-card-rounded-lg',
 } as Record<string, string>
 
 const colors = {
-  white: 'nui-card-white',
-  'white-contrast': 'nui-card-white-contrast',
+  default: 'nui-card-default',
+  'default-contrast': 'nui-card-default-contrast',
   muted: 'nui-card-muted',
   'muted-contrast': 'nui-card-muted-contrast',
+  dark: 'nui-card-dark',
+  black: 'nui-card-black',
   primary: 'nui-card-primary',
   info: 'nui-card-info',
   success: 'nui-card-success',

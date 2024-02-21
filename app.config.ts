@@ -46,7 +46,7 @@ export default defineAppConfig({
     },
     BaseCard: {
       rounded: 'sm',
-      color: 'white',
+      color: 'default',
     },
     BaseCheckbox: {
       rounded: 'sm',
