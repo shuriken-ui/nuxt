@@ -150,6 +150,57 @@ definePageMeta({
       </NuiPreview>
 
       <NuiPreview
+        title="Color: light"
+        description="Button action component light color"
+      >
+        <div class="flex flex-wrap items-end gap-2">
+          <BaseButtonAction rounded="none" color="light">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="sm" color="light">Action</BaseButtonAction>
+          <BaseButtonAction rounded="md" color="light">Action</BaseButtonAction>
+          <BaseButtonAction rounded="lg" color="light">Action</BaseButtonAction>
+          <BaseButtonAction rounded="full" color="light">
+            Action
+          </BaseButtonAction>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Color: dark"
+        description="Button action component dark color"
+      >
+        <div class="flex flex-wrap items-end gap-2">
+          <BaseButtonAction rounded="none" color="dark">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="sm" color="dark">Action</BaseButtonAction>
+          <BaseButtonAction rounded="md" color="dark">Action</BaseButtonAction>
+          <BaseButtonAction rounded="lg" color="dark">Action</BaseButtonAction>
+          <BaseButtonAction rounded="full" color="dark">
+            Action
+          </BaseButtonAction>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Color: black"
+        description="Button action component black color"
+      >
+        <div class="flex flex-wrap items-end gap-2">
+          <BaseButtonAction rounded="none" color="black">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="sm" color="black">Action</BaseButtonAction>
+          <BaseButtonAction rounded="md" color="black">Action</BaseButtonAction>
+          <BaseButtonAction rounded="lg" color="black">Action</BaseButtonAction>
+          <BaseButtonAction rounded="full" color="black">
+            Action
+          </BaseButtonAction>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
         title="State: loading"
         description="Button action component in loading state"
       >
