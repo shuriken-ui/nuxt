@@ -49,7 +49,7 @@ const routes = computed(() =>
                   >
                     <span class="flex gap-4 items-center">
                       <Icon
-                        class="text-sm text-muted-400 w-6 h-6"
+                        class="text-sm text-muted-400 w-6 h-6 shrink-0"
                         v-if="
                           typeof (route as RouteRecordNormalized).meta?.icon ===
                             'string' &&
