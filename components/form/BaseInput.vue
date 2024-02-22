@@ -230,7 +230,7 @@ if (process.dev) {
       "
       class="nui-input-label"
       :for="id"
-      :class="props.classes.label"
+      :class="props.classes?.label"
     >
       <slot name="label">{{ props.label }}</slot>
     </label>
@@ -244,7 +244,7 @@ if (process.dev) {
           :type="props.type"
           v-bind="$attrs"
           class="nui-input"
-          :class="props.classes.input"
+          :class="props.classes?.input"
           :placeholder="placeholder"
         />
         <input
@@ -255,7 +255,7 @@ if (process.dev) {
           :type="props.type"
           v-bind="$attrs"
           class="nui-input"
-          :class="props.classes.input"
+          :class="props.classes?.input"
           :placeholder="placeholder"
         />
         <label
@@ -265,7 +265,7 @@ if (process.dev) {
           "
           class="nui-label-float"
           :for="id"
-          :class="props.classes.label"
+          :class="props.classes?.label"
         >
           <slot name="label">{{ props.label }}</slot>
         </label>
@@ -275,7 +275,7 @@ if (process.dev) {
         <div
           v-if="props.icon"
           class="nui-input-icon"
-          :class="props.classes.icon"
+          :class="props.classes?.icon"
         >
           <slot name="icon">
             <Icon :name="props.icon" class="nui-input-icon-inner" />
