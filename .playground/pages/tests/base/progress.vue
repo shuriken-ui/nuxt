@@ -194,6 +194,18 @@ const progressCircle = ref(25)
             :value="78"
             color="danger"
           />
+          <BaseProgress
+            title="dark progress bar"
+            size="sm"
+            :value="78"
+            color="dark"
+          />
+          <BaseProgress
+            title="black progress bar"
+            size="sm"
+            :value="78"
+            color="black"
+          />
         </div>
       </NuiPreview>
 
