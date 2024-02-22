@@ -12,6 +12,8 @@ const thinValues = reactive({
   success: true,
   warning: true,
   danger: true,
+  dark: true,
+  black: true,
 })
 
 const ballValues = reactive({
@@ -20,6 +22,8 @@ const ballValues = reactive({
   success: true,
   warning: true,
   danger: true,
+  dark: true,
+  black: true,
 })
 
 const thinSublabelValue = ref(true)
@@ -53,6 +57,12 @@ const ballSublabelValue = ref(true)
             v-model="thinValues.danger"
             label="Danger"
             color="danger"
+          />
+          <BaseSwitchThin v-model="thinValues.dark" label="Dark" color="dark" />
+          <BaseSwitchThin
+            v-model="thinValues.black"
+            label="Black"
+            color="black"
           />
         </BaseFocusLoop>
       </NuiPreview>
@@ -92,6 +102,16 @@ const ballSublabelValue = ref(true)
             v-model="ballValues.danger"
             label="Danger"
             color="danger"
+          />
+          <BaseSwitchBall
+            v-model="ballValues.dark"
+            label="Darning"
+            color="dark"
+          />
+          <BaseSwitchBall
+            v-model="ballValues.black"
+            label="Black"
+            color="black"
           />
         </BaseFocusLoop>
       </NuiPreview>
