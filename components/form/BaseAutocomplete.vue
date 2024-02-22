@@ -131,6 +131,11 @@ const props = withDefaults(
        * CSS classes to apply to the icon element.
        */
       icon?: string | string[]
+
+      /**
+       * CSS classes to apply to the error element.
+       */
+      error?: string | string[]
     }
     /**
      * Allow custom entries by the user
@@ -342,10 +347,10 @@ const queryCreate = computed(() => {
 
 const radiuses = {
   none: '',
-  sm: 'nui-autocomplete-rounded',
-  md: 'nui-autocomplete-smooth',
-  lg: 'nui-autocomplete-curved',
-  full: 'nui-autocomplete-full',
+  sm: 'nui-autocomplete-rounded-sm',
+  md: 'nui-autocomplete-rounded-md',
+  lg: 'nui-autocomplete-rounded-lg',
+  full: 'nui-autocomplete-rounded-full',
 } as Record<string, string>
 
 const sizes = {
@@ -627,6 +632,7 @@ const internal = ref<any>(modelValue)
       <span
         v-if="props.error && typeof props.error === 'string'"
         class="nui-autocomplete-error-text"
+        :class="props.classes?.error"
       >
         {{ props.error }}
       </span>
