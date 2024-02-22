@@ -64,7 +64,8 @@ export default defineAppConfig({
     },
     BaseDropdownItem: {
       rounded: 'sm',
-      color: 'default',
+      contrast: 'default',
+      color: 'primary',
     },
     BaseFullscreenDropfile: {
       color: 'primary',

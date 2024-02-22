@@ -36,11 +36,26 @@ const props = withDefaults(
     rounded?: 'none' | 'sm' | 'md' | 'lg'
 
     /**
-     * The color of the dropdown-item.
+     * The contrast of the dropdown-item.
      *
      * @default 'default'
      */
-    color?: 'default' | 'contrast'
+    contrast?: 'default' | 'contrast'
+
+    /**
+     * The hover color of the dropdown-item inner elements.
+     *
+     * @since 3.0.0
+     * @default 'primary'
+     */
+    color?:
+      | 'primary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'danger'
+      | 'dark'
+      | 'black'
 
     /**
      * The title to display for the dropdown item.
@@ -84,6 +99,7 @@ const props = withDefaults(
     target: undefined,
     type: undefined,
     rounded: undefined,
+    contrast: undefined,
     color: undefined,
     title: undefined,
     text: undefined,
@@ -102,10 +118,24 @@ const radiuses = {
   lg: 'nui-item-rounded-lg',
 } as Record<string, string>
 
-const colors = {
+const contrasts = {
   default: 'nui-item-default',
   contrast: 'nui-item-contrast',
 } as Record<string, string>
+
+const colors = {
+  primary: 'nui-item-primary',
+  info: 'nui-item-info',
+  success: 'nui-item-success',
+  warning: 'nui-item-warning',
+  danger: 'nui-item-danger',
+  dark: 'nui-item-dark',
+  black: 'nui-item-black',
+} as Record<string, string>
+
+const rounded = useNuiDefaultProperty(props, 'BaseDropdownItem', 'rounded')
+const contrast = useNuiDefaultProperty(props, 'BaseDropdownItem', 'contrast')
+const color = useNuiDefaultProperty(props, 'BaseDropdownItem', 'color')
 
 const { is, attributes } = useNinjaButton(props)
 </script>
@@ -121,8 +151,9 @@ const { is, attributes } = useNinjaButton(props)
       class="nui-dropdown-item"
       :class="[
         active && 'nui-active',
-        props.rounded && radiuses[props.rounded],
-        props.color && colors[props.color],
+        rounded && radiuses[rounded],
+        contrast && contrasts[contrast],
+        color && colors[color],
       ]"
       @click.passive="close"
     >

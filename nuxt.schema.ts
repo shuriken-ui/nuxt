@@ -269,11 +269,17 @@ export default defineNuxtSchema({
          */
         rounded: 'md',
         /**
-         * The color of the dropdown item.
+         * The contrast of the dropdown item.
          *
          * @type {'default' | 'contrast'}
          */
-        color: 'default',
+        contrast: 'default',
+        /**
+         * The hover color of the dropdown item inner elements.
+         *
+         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger' | 'dark' | 'black'}
+         */
+        color: 'primary',
       },
       BaseFullscreenDropfile: {
         /**
@@ -319,7 +325,7 @@ export default defineNuxtSchema({
         /**
          * The color of the icon box.
          *
-         * @type {'default' | 'invert' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
+         * @type {'default' | 'default-contrast' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none' | 'light' | 'dark' | 'black'}
          */
         color: 'default',
         /**
