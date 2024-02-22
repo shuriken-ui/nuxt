@@ -275,6 +275,14 @@ export default defineNuxtSchema({
          */
         color: 'default',
       },
+      BaseFullscreenDropfile: {
+        /**
+         * The color of the icon.
+         *
+         * @type {'primary' | 'dark' | 'black'}
+         */
+        color: 'primary',
+      },
       BaseHeading: {
         /**
          * The tag of the heading.

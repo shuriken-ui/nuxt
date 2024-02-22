@@ -66,6 +66,9 @@ export default defineAppConfig({
       rounded: 'sm',
       color: 'default',
     },
+    BaseFullscreenDropfile: {
+      color: 'primary',
+    },
     BaseHeading: {
       as: 'p',
       size: 'xl',
