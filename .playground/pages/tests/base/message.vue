@@ -16,6 +16,8 @@ definePageMeta({
           <BaseMessage type="info">An information message.</BaseMessage>
           <BaseMessage type="warning">A warning message.</BaseMessage>
           <BaseMessage type="danger">A destructive message.</BaseMessage>
+          <BaseMessage type="default">A default message.</BaseMessage>
+          <BaseMessage type="muted">A muted message.</BaseMessage>
         </div>
       </NuiPreview>
 
@@ -25,6 +27,12 @@ definePageMeta({
           <BaseMessage type="info" icon>An information message.</BaseMessage>
           <BaseMessage type="warning" icon>A warning message.</BaseMessage>
           <BaseMessage type="danger" icon>A destructive message.</BaseMessage>
+          <BaseMessage type="default" icon="mingcute:avalanche-avax-fill">
+            A default message.
+          </BaseMessage>
+          <BaseMessage type="muted" icon="mingcute:desk-lamp-fill">
+            A muted message.
+          </BaseMessage>
         </div>
       </NuiPreview>
 

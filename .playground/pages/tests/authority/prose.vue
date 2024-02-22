@@ -2,7 +2,7 @@
 definePageMeta({
   title: 'BaseProse',
   icon: 'system-uicons:paragraph-left',
-  description: 'Tailwind typography plugin',
+  description: 'Tailwind typography',
   section: 'authority',
 })
 </script>

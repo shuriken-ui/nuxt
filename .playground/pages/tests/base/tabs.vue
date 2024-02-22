@@ -232,6 +232,7 @@ const selectedTab = ref('team')
           <BaseTabs
             type="box"
             model-value="team"
+            color="black"
             :tabs="[
               {
                 label: 'Team',
