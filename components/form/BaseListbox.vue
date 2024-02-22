@@ -79,6 +79,11 @@ const props = withDefaults(
     disabled?: boolean
 
     /**
+     * Wether the border should change color when focused
+     */
+    colorFocus?: boolean
+
+    /**
      * Whether the multiselect allows multiple selections.
      */
     multiple?: boolean
@@ -139,6 +144,36 @@ const props = withDefaults(
        */
       icon?: T extends object ? keyof T : string
     }
+
+    /**
+     * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the label element.
+       */
+      label?: string | string[]
+
+      /**
+       * CSS classes to apply to the button element.
+       */
+      button?: string | string[]
+
+      /**
+       * CSS classes to apply to the icon element.
+       */
+      icon?: string | string[]
+
+      /**
+       * CSS classes to apply to the error element.
+       */
+      error?: string | string[]
+    }
   }>(),
   {
     rounded: undefined,
@@ -163,6 +198,7 @@ const props = withDefaults(
     },
     properties: () => ({}),
     placement: 'bottom-start',
+    classes: () => ({}),
   },
 )
 
@@ -188,10 +224,10 @@ const contrast = useNuiDefaultProperty(props, 'BaseListbox', 'contrast')
 
 const radiuses = {
   none: '',
-  sm: 'nui-listbox-rounded',
-  md: 'nui-listbox-smooth',
-  lg: 'nui-listbox-curved',
-  full: 'nui-listbox-full',
+  sm: 'nui-listbox-rounded-sm',
+  md: 'nui-listbox-rounded-md',
+  lg: 'nui-listbox-rounded-lg',
+  full: 'nui-listbox-rounded-full',
 } as Record<string, string>
 
 const sizes = {
@@ -232,6 +268,8 @@ const internal = ref<any>(modelValue)
       props.loading && 'nui-listbox-loading',
       props.labelFloat && 'nui-listbox-label-float',
       props.icon && 'nui-has-icon',
+      props.colorFocus && 'nui-listbox-focus',
+      props.classes?.wrapper,
     ]"
   >
     <Listbox
@@ -259,6 +297,7 @@ const internal = ref<any>(modelValue)
             (props.label && !props.labelFloat)
           "
           class="nui-listbox-label"
+          :class="props.classes?.label"
         >
           <slot name="label">{{ props.label }}</slot>
         </ListboxLabel>
@@ -269,6 +308,7 @@ const internal = ref<any>(modelValue)
               <ListboxButton
                 :disabled="props.disabled"
                 class="nui-listbox-button"
+                :class="props.classes?.button"
               >
                 <slot name="listbox-button" :value="modelValue" :open="open">
                   <div class="nui-listbox-button-inner">
@@ -278,6 +318,7 @@ const internal = ref<any>(modelValue)
                       rounded="sm"
                       color="none"
                       class="nui-icon-box"
+                      :class="props.classes?.icon"
                     >
                       <slot name="icon">
                         <Icon :name="props.icon" class="nui-icon-box-inner" />
@@ -465,6 +506,7 @@ const internal = ref<any>(modelValue)
           <span
             v-if="props.error && typeof props.error === 'string'"
             class="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none"
+            :class="props.classes?.error"
           >
             {{ props.error }}
           </span>
