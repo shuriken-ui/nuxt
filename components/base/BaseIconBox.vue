@@ -17,7 +17,7 @@ const props = withDefaults(
       | 'default-contrast'
       | 'dark'
       | 'black'
-      | 'invert'
+      | 'light'
       | 'primary'
       | 'info'
       | 'success'
@@ -91,7 +91,7 @@ const variants = {
 const colors = {
   default: 'nui-box-default',
   'default-contrast': 'nui-box-default-contrast',
-  invert: 'nui-box-invert',
+  light: 'nui-box-light',
   dark: 'nui-box-dark',
   black: 'nui-box-black',
   primary: 'nui-box-primary',
