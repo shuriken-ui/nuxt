@@ -136,10 +136,10 @@ const id = useNinjaId(() => props.id)
 
 const radiuses = {
   none: '',
-  sm: 'nui-input-rounded',
-  md: 'nui-input-smooth',
-  lg: 'nui-input-curved',
-  full: 'nui-input-full',
+  sm: 'nui-input-rounded-sm',
+  md: 'nui-input-rounded-md',
+  lg: 'nui-input-rounded-lg',
+  full: 'nui-input-rounded-full',
 } as Record<string, string>
 
 const sizes = {
@@ -149,8 +149,8 @@ const sizes = {
 } as Record<string, string>
 
 const contrasts = {
-  default: 'nui-input-white',
-  'default-contrast': 'nui-input-white-contrast',
+  default: 'nui-input-default',
+  'default-contrast': 'nui-input-default-contrast',
 } as Record<string, string>
 
 const textValue = computed(() => {
@@ -180,14 +180,15 @@ defineExpose({
       props.error && !props.loading && 'nui-input-file-error',
       props.loading && 'nui-input-file-loading',
       props.icon && 'nui-has-icon',
-      props.classes.wrapper,
+      props.colorFocus && 'nui-input-file-color-focus',
+      props.classes?.wrapper,
     ]"
   >
     <label
       v-if="'label' in $slots || props.label"
       class="nui-input-file-label"
       :for="id"
-      :class="props.classes.label"
+      :class="props.classes?.label"
     >
       <slot name="label">{{ props.label }}</slot>
     </label>
@@ -196,15 +197,15 @@ defineExpose({
         tabindex="0"
         class="nui-input-file-inner"
         :for="id"
-        :class="[props.colorFocus && 'nui-color-focus', props.classes.input]"
+        :class="[props.classes?.input]"
       >
-        <div class="nui-input-file-addon" :class="props.classes.text">
+        <div class="nui-input-file-addon" :class="props.classes?.text">
           <span class="text-xs">{{ props.placeholder }}</span>
           <slot name="icon">
             <Icon
               v-if="props.icon"
               :name="props.icon"
-              :class="props.classes.icon"
+              :class="props.classes?.icon"
             />
           </slot>
         </div>
