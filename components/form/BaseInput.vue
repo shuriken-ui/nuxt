@@ -155,10 +155,10 @@ const id = useNinjaId(() => props.id)
 
 const radiuses = {
   none: '',
-  sm: 'nui-input-rounded',
-  md: 'nui-input-smooth',
-  lg: 'nui-input-curved',
-  full: 'nui-input-full',
+  sm: 'nui-input-rounded-sm',
+  md: 'nui-input-rounded-md',
+  lg: 'nui-input-rounded-lg',
+  full: 'nui-input-rounded-full',
 } as Record<string, string>
 
 const sizes = {
