@@ -158,6 +158,11 @@ const props = withDefaults(
     clearable?: boolean
 
     /**
+     * Wether the border should change color when focused
+     */
+    colorFocus?: boolean
+
+    /**
      * Display a chevron icon to open suggestions
      */
     dropdown?: boolean
@@ -234,6 +239,7 @@ const props = withDefaults(
     loading: false,
     disabled: false,
     clearable: false,
+    colorFocus: false,
     clearValue: undefined,
     clearIcon: 'lucide:x',
     chipClearIcon: 'lucide:x',
@@ -494,6 +500,7 @@ const internal = ref<any>(modelValue)
       props.icon && 'nui-has-icon',
       props.labelFloat && 'nui-autocomplete-label-float',
       props.loading && 'nui-autocomplete-loading',
+      props.colorFocus && 'nui-autocomplete-focus',
     ]"
     as="div"
   >
