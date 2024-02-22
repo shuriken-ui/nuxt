@@ -6,7 +6,9 @@ const props = withDefaults(
      */
     type?:
       | 'default'
+      | 'default-contrast'
       | 'muted'
+      | 'muted-contrast'
       | 'primary'
       | 'info'
       | 'success'
@@ -37,6 +39,26 @@ const props = withDefaults(
      * Whether to show a close button.
      */
     closable?: boolean
+
+    /**
+     * Optional CSS classes to apply to the component inner elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the icon element.
+       */
+      icon?: string | string[]
+
+      /**
+       * CSS classes to apply to the text element.
+       */
+      text?: string | string[]
+    }
   }>(),
   {
     type: undefined,
@@ -44,6 +66,7 @@ const props = withDefaults(
     message: '',
     icon: false,
     closeIcon: 'lucide:x',
+    classes: () => ({}),
   },
 )
 const emit = defineEmits<{
@@ -55,15 +78,17 @@ const rounded = useNuiDefaultProperty(props, 'BaseMessage', 'rounded')
 
 const radiuses = {
   none: '',
-  sm: 'nui-message-rounded',
-  md: 'nui-message-smooth',
-  lg: 'nui-message-curved',
-  full: 'nui-message-full',
+  sm: 'nui-message-rounded-sm',
+  md: 'nui-message-rounded-md',
+  lg: 'nui-message-rounded-lg',
+  full: 'nui-message-rounded-full',
 } as Record<string, string>
 
 const types = {
   default: 'nui-message-default',
+  'default-contrast': 'nui-message-default-contrast',
   muted: 'nui-message-muted',
+  'muted-contrast': 'nui-message-muted-contrast',
   primary: 'nui-message-primary',
   info: 'nui-message-info',
   success: 'nui-message-success',
@@ -93,14 +118,22 @@ const icon = computed(() =>
 <template>
   <div
     class="nui-message"
-    :class="[rounded && radiuses[rounded], type && types[type]]"
+    :class="[
+      rounded && radiuses[rounded],
+      type && types[type],
+      classes?.wrapper,
+    ]"
   >
-    <div v-if="props.icon" class="nui-message-icon-outer">
+    <div
+      v-if="props.icon"
+      class="nui-message-icon-outer"
+      :class="classes?.icon"
+    >
       <slot name="icon" icon-name="icon">
         <Icon v-if="icon" :name="icon" class="nui-message-icon" />
       </slot>
     </div>
-    <span class="nui-message-inner-text">
+    <span class="nui-message-inner-text" :class="classes?.text">
       <slot>{{ props.message }}</slot>
     </span>
     <button
