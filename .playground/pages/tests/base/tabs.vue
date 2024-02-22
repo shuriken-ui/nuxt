@@ -53,6 +53,7 @@ const selectedTab = ref('team')
           <BaseTabs
             model-value="team"
             justify="center"
+            color="dark"
             :tabs="[
               { label: 'Team', value: 'team' },
               { label: 'Projects', value: 'projects' },
@@ -87,6 +88,7 @@ const selectedTab = ref('team')
           <BaseTabs
             model-value="team"
             justify="end"
+            color="black"
             :tabs="[
               { label: 'Team', value: 'team' },
               { label: 'Projects', value: 'projects' },
@@ -120,6 +122,7 @@ const selectedTab = ref('team')
         <div class="w-full max-w-sm">
           <BaseTabs
             model-value="team"
+            color="default"
             :tabs="[
               {
                 label: 'Team',

@@ -150,6 +150,7 @@ export default defineAppConfig({
     BaseTabs: {
       type: 'tabs',
       justify: 'start',
+      color: 'primary',
     },
     BaseTabSlider: {
       justify: 'start',

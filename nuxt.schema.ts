@@ -603,6 +603,12 @@ export default defineNuxtSchema({
       },
       BaseTabs: {
         /**
+         * The color of the active tab.
+         *
+         * @type {'default' | 'primary' | 'light' | 'dark' | 'black'}
+         */
+        color: 'primary',
+        /**
          * The type of the tabs.
          *
          * @type {'tabs' | 'box'}
