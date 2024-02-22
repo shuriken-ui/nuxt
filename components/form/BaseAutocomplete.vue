@@ -501,6 +501,7 @@ const internal = ref<any>(modelValue)
       props.labelFloat && 'nui-autocomplete-label-float',
       props.loading && 'nui-autocomplete-loading',
       props.colorFocus && 'nui-autocomplete-focus',
+      props.error && 'nui-autocomplete-error',
     ]"
     as="div"
   >
