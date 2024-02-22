@@ -105,6 +105,7 @@ export default defineAppConfig({
       closable: false,
     },
     BasePagination: {
+      color: 'primary',
       rounded: 'sm',
     },
     BaseParagraph: {

@@ -455,6 +455,12 @@ export default defineNuxtSchema({
       },
       BasePagination: {
         /**
+         * The color of the pagination.
+         *
+         * @type {'primary' | 'dark' | 'black'}
+         */
+        type: 'primary',
+        /**
          * The radius of the pagination.
          *
          * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
