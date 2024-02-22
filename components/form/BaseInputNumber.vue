@@ -189,10 +189,10 @@ const contrast = useNuiDefaultProperty(props, 'BaseInputNumber', 'contrast')
 
 const radiuses = {
   none: '',
-  sm: 'nui-input-number-rounded',
-  md: 'nui-input-number-smooth',
-  lg: 'nui-input-number-curved',
-  full: 'nui-input-number-full',
+  sm: 'nui-input-number-rounded-sm',
+  md: 'nui-input-number-rounded-md',
+  lg: 'nui-input-number-rounded-lg',
+  full: 'nui-input-number-rounded-full',
 } as Record<string, string>
 
 const sizes = {
