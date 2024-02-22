@@ -501,6 +501,14 @@ export default defineNuxtSchema({
          */
         imageSize: 'xs',
       },
+      BaseProgressCircle: {
+        /**
+         * The color of the progress circle.
+         *
+         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'black'}
+         */
+        color: 'primary',
+      },
       BaseProgress: {
         /**
          * The size of the progress.

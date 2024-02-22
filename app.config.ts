@@ -123,6 +123,9 @@ export default defineAppConfig({
       color: 'primary',
       rounded: 'full',
     },
+    BaseProgressCircle: {
+      color: 'primary',
+    },
     BaseProse: {
       rounded: 'md',
     },
