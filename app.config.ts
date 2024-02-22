@@ -153,6 +153,7 @@ export default defineAppConfig({
       color: 'primary',
     },
     BaseTabSlider: {
+      color: 'primary',
       justify: 'start',
       size: 'md',
       rounded: 'lg',

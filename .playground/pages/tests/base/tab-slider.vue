@@ -60,6 +60,7 @@ definePageMeta({
         <div class="w-full max-w-sm">
           <BaseTabSlider
             rounded="sm"
+            color="dark"
             model-value="team"
             :tabs="[
               { label: 'Team', value: 'team' },
@@ -103,6 +104,7 @@ definePageMeta({
         <div class="w-full max-w-sm">
           <BaseTabSlider
             rounded="md"
+            color="black"
             model-value="team"
             :tabs="[
               { label: 'Team', value: 'team' },
@@ -146,6 +148,7 @@ definePageMeta({
         <div class="w-full max-w-sm">
           <BaseTabSlider
             rounded="lg"
+            color="light"
             model-value="team"
             :tabs="[
               { label: 'Team', value: 'team' },

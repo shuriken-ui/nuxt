@@ -623,6 +623,12 @@ export default defineNuxtSchema({
       },
       BaseTabSlider: {
         /**
+         * The color of the active tab.
+         *
+         * @type {'default' | 'default-contrast' | 'primary' | 'light' | 'dark' | 'black'}
+         */
+        color: 'primary',
+        /**
          * The alignment of the tabs.
          *
          * @type {'start' | 'center' | 'end'}
