@@ -37,6 +37,8 @@ const props = withDefaults(
       | 'danger'
       | 'muted'
       | 'light'
+      | 'dark'
+      | 'black'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, and input elements.
@@ -104,6 +106,8 @@ const colors = {
   danger: 'text-danger-500',
   light: 'text-light-100',
   muted: 'text-muted-400',
+  dark: 'text-muted-900 dark:text-muted-100',
+  black: 'text-black dark:text-white',
 } as Record<string, string>
 
 const updateCheckbox = () => {
