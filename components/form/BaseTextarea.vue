@@ -162,10 +162,10 @@ const id = useNinjaId(() => props.id)
 
 const radiuses = {
   none: '',
-  sm: 'nui-textarea-rounded',
-  md: 'nui-textarea-smooth',
-  lg: 'nui-textarea-curved',
-  full: 'nui-textarea-full',
+  sm: 'nui-textarea-rounded-sm',
+  md: 'nui-textarea-rounded-md',
+  lg: 'nui-textarea-rounded-lg',
+  full: 'nui-textarea-rounded-lg',
 } as Record<string, string>
 
 const sizes = {
@@ -237,6 +237,7 @@ defineExpose({
       props.labelFloat && 'nui-textarea-label-float',
       !props.resize && 'nui-textarea-not-resize',
       props.addon && 'nui-has-addon',
+      props.colorFocus && 'nui-textarea-focus',
       props.classes?.wrapper,
     ]"
   >
@@ -244,7 +245,7 @@ defineExpose({
       v-if="props.label && !props.labelFloat"
       :for="id"
       class="nui-textarea-label"
-      :class="props.classes.label"
+      :class="props.classes?.label"
     >
       {{ props.label }}
     </label>
@@ -256,10 +257,7 @@ defineExpose({
         v-model.lazy="modelValue"
         v-bind="$attrs"
         class="nui-textarea"
-        :class="[
-          props.colorFocus && 'nui-textarea-focus',
-          props.classes.textarea,
-        ]"
+        :class="[props.classes?.textarea]"
         :name="props.name"
         :placeholder="props.placeholder"
         :readonly="props.readonly"
@@ -275,7 +273,7 @@ defineExpose({
         class="nui-textarea"
         :class="[
           props.colorFocus && 'nui-textarea-focus',
-          props.classes.textarea,
+          props.classes?.textarea,
         ]"
         :name="props.name"
         :placeholder="props.placeholder"
@@ -287,7 +285,7 @@ defineExpose({
         v-if="props.label && props.labelFloat"
         class="nui-label-float"
         :for="id"
-        :class="props.classes.label"
+        :class="props.classes?.label"
       >
         <slot name="label">{{ props.label }}</slot>
       </label>
@@ -299,7 +297,7 @@ defineExpose({
       <div
         v-if="props.addon"
         class="nui-textarea-addon"
-        :class="props.classes.addon"
+        :class="props.classes?.addon"
       >
         <slot name="addon"></slot>
       </div>

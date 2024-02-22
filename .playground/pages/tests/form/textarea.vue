@@ -27,7 +27,7 @@ const value = ref('')
             label="Rounded: none"
             rounded="none"
             placeholder="Write a message..."
-            rows="1"
+            rows="3"
             autogrow
           />
           <BaseTextarea
@@ -35,7 +35,7 @@ const value = ref('')
             label="Rounded: sm"
             rounded="sm"
             placeholder="Write a message..."
-            rows="1"
+            rows="3"
             autogrow
           />
           <BaseTextarea
@@ -43,7 +43,7 @@ const value = ref('')
             label="Rounded: md"
             rounded="md"
             placeholder="Write a message..."
-            rows="1"
+            rows="3"
             autogrow
           />
           <BaseTextarea
@@ -51,7 +51,7 @@ const value = ref('')
             label="Rounded: lg"
             rounded="lg"
             placeholder="Write a message..."
-            rows="1"
+            rows="3"
             autogrow
           />
         </div>
