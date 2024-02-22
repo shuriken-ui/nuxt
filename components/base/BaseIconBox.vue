@@ -23,6 +23,7 @@ const props = withDefaults(
       | 'success'
       | 'warning'
       | 'danger'
+      | 'none'
 
     /**
      * The size of the icon.
