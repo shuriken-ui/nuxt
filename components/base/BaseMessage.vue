@@ -2,9 +2,9 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The type of the message.
+     * The color of the message.
      */
-    type?:
+    color?:
       | 'default'
       | 'default-contrast'
       | 'muted'
@@ -61,7 +61,7 @@ const props = withDefaults(
     }
   }>(),
   {
-    type: undefined,
+    color: undefined,
     rounded: undefined,
     message: '',
     icon: false,
@@ -73,7 +73,7 @@ const emit = defineEmits<{
   close: []
 }>()
 
-const type = useNuiDefaultProperty(props, 'BaseMessage', 'type')
+const color = useNuiDefaultProperty(props, 'BaseMessage', 'color')
 const rounded = useNuiDefaultProperty(props, 'BaseMessage', 'rounded')
 
 const radiuses = {
@@ -84,7 +84,7 @@ const radiuses = {
   full: 'nui-message-rounded-full',
 } as Record<string, string>
 
-const types = {
+const colors = {
   default: 'nui-message-default',
   'default-contrast': 'nui-message-default-contrast',
   muted: 'nui-message-muted',
@@ -109,8 +109,8 @@ const iconTypes = {
 const icon = computed(() =>
   typeof props.icon === 'string'
     ? props.icon
-    : type.value
-      ? iconTypes[type.value]
+    : color.value
+      ? iconTypes[color.value]
       : '',
 )
 </script>
@@ -120,7 +120,7 @@ const icon = computed(() =>
     class="nui-message"
     :class="[
       rounded && radiuses[rounded],
-      type && types[type],
+      color && colors[color],
       classes?.wrapper,
     ]"
   >

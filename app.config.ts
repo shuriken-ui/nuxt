@@ -104,7 +104,7 @@ export default defineAppConfig({
       contrast: 'default',
     },
     BaseMessage: {
-      type: 'success',
+      color: 'success',
       rounded: 'sm',
       closable: false,
     },

@@ -449,11 +449,11 @@ export default defineNuxtSchema({
       },
       BaseMessage: {
         /**
-         * The type of the message.
+         * The color of the message.
          *
          * @type {'default' | 'muted' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
          */
-        type: 'success',
+        color: 'success',
         /**
          * The radius of the message.
          *
