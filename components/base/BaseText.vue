@@ -89,7 +89,7 @@ const classes = computed(() => [
 </script>
 
 <template>
-  <p :class="classes">
+  <span :class="classes">
     <slot></slot>
-  </p>
+  </span>
 </template>

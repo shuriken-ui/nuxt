@@ -283,6 +283,15 @@ definePageMeta({
           <BaseIconBox size="lg" rounded="full" variant="solid" color="danger">
             <Icon name="ph:cookie-duotone" class="h-6 w-6" />
           </BaseIconBox>
+          <BaseIconBox size="lg" rounded="full" variant="solid" color="light">
+            <Icon name="ph:cactus-duotone" class="h-6 w-6" />
+          </BaseIconBox>
+          <BaseIconBox size="lg" rounded="full" variant="solid" color="dark">
+            <Icon name="ph:shield-duotone" class="h-6 w-6" />
+          </BaseIconBox>
+          <BaseIconBox size="lg" rounded="full" variant="solid" color="black">
+            <Icon name="ph:robot-duotone" class="h-6 w-6" />
+          </BaseIconBox>
         </div>
       </NuiPreview>
 
@@ -328,6 +337,15 @@ definePageMeta({
           </BaseIconBox>
           <BaseIconBox size="lg" rounded="full" variant="pastel" color="danger">
             <Icon name="ph:cookie-duotone" class="h-6 w-6" />
+          </BaseIconBox>
+          <BaseIconBox size="lg" rounded="full" variant="pastel" color="light">
+            <Icon name="ph:cactus-duotone" class="h-6 w-6" />
+          </BaseIconBox>
+          <BaseIconBox size="lg" rounded="full" variant="pastel" color="dark">
+            <Icon name="ph:shield-duotone" class="h-6 w-6" />
+          </BaseIconBox>
+          <BaseIconBox size="lg" rounded="full" variant="pastel" color="black">
+            <Icon name="ph:robot-duotone" class="h-6 w-6" />
           </BaseIconBox>
         </div>
       </NuiPreview>
@@ -379,6 +397,15 @@ definePageMeta({
             color="danger"
           >
             <Icon name="ph:cookie-duotone" class="h-6 w-6" />
+          </BaseIconBox>
+          <BaseIconBox size="lg" rounded="full" variant="outline" color="light">
+            <Icon name="ph:cactus-duotone" class="h-6 w-6" />
+          </BaseIconBox>
+          <BaseIconBox size="lg" rounded="full" variant="outline" color="dark">
+            <Icon name="ph:shield-duotone" class="h-6 w-6" />
+          </BaseIconBox>
+          <BaseIconBox size="lg" rounded="full" variant="outline" color="black">
+            <Icon name="ph:robot-duotone" class="h-6 w-6" />
           </BaseIconBox>
         </div>
       </NuiPreview>

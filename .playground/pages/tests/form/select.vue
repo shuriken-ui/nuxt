@@ -78,7 +78,8 @@ const options = reactive({
               v-model="options.first"
               size="sm"
               rounded="md"
-              label="Rounded: md"
+              label="Size: sm"
+              color-focus
             >
               <option value="">Select a hero</option>
               <option value="Superman">Superman</option>
@@ -94,7 +95,8 @@ const options = reactive({
               v-model="options.second"
               size="md"
               rounded="md"
-              label="Rounded: md"
+              label="Size: md"
+              color-focus
             >
               <option value="">Select a hero</option>
               <option value="Superman">Superman</option>
@@ -110,7 +112,8 @@ const options = reactive({
               v-model="options.third"
               size="lg"
               rounded="md"
-              label="Rounded: md"
+              label="Size: lg"
+              color-focus
             >
               <option value="">Select a hero</option>
               <option value="Superman">Superman</option>

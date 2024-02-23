@@ -147,6 +147,7 @@ const multipleValues = ref([])
               :items="frameworks"
               placeholder="Select a framework"
               rounded="md"
+              color-focus
             />
           </div>
 
@@ -158,6 +159,7 @@ const multipleValues = ref([])
               :items="frameworks"
               placeholder="Select a framework"
               rounded="md"
+              color-focus
             />
           </div>
 
@@ -169,6 +171,7 @@ const multipleValues = ref([])
               :items="frameworks"
               placeholder="Select a framework"
               rounded="md"
+              color-focus
             />
           </div>
         </div>

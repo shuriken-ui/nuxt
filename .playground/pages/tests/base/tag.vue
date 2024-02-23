@@ -39,6 +39,9 @@ definePageMeta({
           <BaseTag rounded="md" variant="solid" color="info">Label</BaseTag>
           <BaseTag rounded="md" variant="solid" color="warning">Label</BaseTag>
           <BaseTag rounded="md" variant="solid" color="danger">Label</BaseTag>
+          <BaseTag rounded="md" variant="solid" color="light">Label</BaseTag>
+          <BaseTag rounded="md" variant="solid" color="dark">Label</BaseTag>
+          <BaseTag rounded="md" variant="solid" color="black">Label</BaseTag>
         </div>
       </NuiPreview>
 
@@ -54,6 +57,9 @@ definePageMeta({
           <BaseTag rounded="md" variant="pastel" color="info">Label</BaseTag>
           <BaseTag rounded="md" variant="pastel" color="warning">Label</BaseTag>
           <BaseTag rounded="md" variant="pastel" color="danger">Label</BaseTag>
+          <BaseTag rounded="md" variant="pastel" color="light">Label</BaseTag>
+          <BaseTag rounded="md" variant="pastel" color="dark">Label</BaseTag>
+          <BaseTag rounded="md" variant="pastel" color="black">Label</BaseTag>
         </div>
       </NuiPreview>
 
@@ -77,6 +83,9 @@ definePageMeta({
             Label
           </BaseTag>
           <BaseTag rounded="md" variant="outline" color="danger">Label</BaseTag>
+          <BaseTag rounded="md" variant="outline" color="light">Label</BaseTag>
+          <BaseTag rounded="md" variant="outline" color="dark">Label</BaseTag>
+          <BaseTag rounded="md" variant="outline" color="black">Label</BaseTag>
         </div>
       </NuiPreview>
 

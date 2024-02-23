@@ -443,6 +443,7 @@ const people = ref([
               rounded="md"
               placeholder="e.g. Nuxt"
               label="Framework"
+              color-focus
             />
           </div>
           <div class="flex-1">
@@ -453,6 +454,7 @@ const people = ref([
               rounded="md"
               placeholder="e.g. Nuxt"
               label="Framework"
+              color-focus
             />
           </div>
           <div class="flex-1">
@@ -464,6 +466,7 @@ const people = ref([
               rounded="md"
               placeholder="e.g. Nuxt"
               label="Framework"
+              color-focus
             />
           </div>
         </div>

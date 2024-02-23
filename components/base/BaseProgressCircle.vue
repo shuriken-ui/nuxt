@@ -17,6 +17,22 @@ const props = withDefaults(
     size?: number
 
     /**
+     * Defines the color of the progress circle
+     *
+     * @since 3.0.0
+     * @default 'primary'
+     */
+    color?:
+      | 'primary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'danger'
+      | 'light'
+      | 'dark'
+      | 'black'
+
+    /**
      * The thickness of the progress circle.
      */
     thickness?: number
@@ -25,6 +41,26 @@ const props = withDefaults(
      * Enable/disable animation, or set the animation duration (in seconds).
      */
     animation?: boolean | number
+
+    /**
+     * Optional CSS classes to apply to the component inner elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the track element.
+       */
+      track?: string | string[]
+
+      /**
+       * CSS classes to apply to the progress element.
+       */
+      progress?: string | string[]
+    }
   }>(),
   {
     value: 0,
@@ -32,6 +68,8 @@ const props = withDefaults(
     size: 60,
     thickness: 4,
     animation: 2,
+    color: undefined,
+    classes: () => ({}),
   },
 )
 
@@ -56,6 +94,19 @@ const duration = computed(() => {
   const ratio = percent.value / 100
   return ratio ? `${Math.round(maxDuration * ratio * 10) / 10}s` : '0s'
 })
+
+const colors = {
+  light: 'text-muted-500 dark:text-muted-400',
+  dark: 'text-muted-900 dark:text-muted-100',
+  black: 'text-black dark:text-white',
+  primary: 'text-primary-500',
+  info: 'text-info-500',
+  success: 'text-success-500',
+  warning: 'text-warning-500',
+  danger: 'text-danger-500',
+}
+
+const color = useNuiDefaultProperty(props, 'BaseProgressCircle', 'color')
 </script>
 
 <template>
@@ -64,12 +115,14 @@ const duration = computed(() => {
     :aria-valuenow="props.value"
     :aria-valuemax="props.max"
     class="block"
+    :class="props.classes?.wrapper"
     viewBox="0 0 45 45"
     :width="props.size"
     :height="props.size"
   >
     <circle
       class="text-muted-200 dark:text-muted-700 stroke-current"
+      :class="props.classes?.track"
       :stroke-width="props.thickness"
       fill="none"
       cx="50%"
@@ -78,6 +131,7 @@ const duration = computed(() => {
     />
     <circle
       class="circle-value stroke-current transition-all duration-500"
+      :class="[color && colors[color], props.classes?.progress]"
       :stroke-width="props.thickness"
       :stroke-dasharray="`${percent},100`"
       stroke-linecap="round"

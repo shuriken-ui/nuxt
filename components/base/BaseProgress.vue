@@ -20,7 +20,15 @@ const props = withDefaults(
      *
      * @default 'primary'
      */
-    color?: 'primary' | 'info' | 'success' | 'warning' | 'danger'
+    color?:
+      | 'primary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'danger'
+      | 'light'
+      | 'dark'
+      | 'black'
 
     /**
      * The radius of the progress bar.
@@ -40,6 +48,21 @@ const props = withDefaults(
      * The maximum value of the progress bar.
      */
     max?: number
+
+    /**
+     * Optional CSS classes to apply to the component inner elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the progress element.
+       */
+      progress?: string | string[]
+    }
   }>(),
   {
     size: undefined,
@@ -48,6 +71,7 @@ const props = withDefaults(
     rounded: undefined,
     value: undefined,
     max: 100,
+    classes: () => ({}),
   },
 )
 
@@ -62,6 +86,9 @@ const colors = {
   success: 'nui-progress-success',
   warning: 'nui-progress-warning',
   danger: 'nui-progress-danger',
+  light: 'nui-progress-light',
+  dark: 'nui-progress-dark',
+  black: 'nui-progress-black',
 } as Record<string, string>
 
 const contrasts = {
@@ -71,10 +98,10 @@ const contrasts = {
 
 const radiuses = {
   none: '',
-  sm: 'nui-progress-rounded',
-  md: 'nui-progress-smooth',
-  lg: 'nui-progress-curved',
-  full: 'nui-progress-full',
+  sm: 'nui-progress-rounded-sm',
+  md: 'nui-progress-rounded-md',
+  lg: 'nui-progress-rounded-lg',
+  full: 'nui-progress-rounded-full',
 } as Record<string, string>
 
 const sizes = {
@@ -106,6 +133,7 @@ const value = computed(() => {
       contrast && contrasts[contrast],
       color && colors[color],
       rounded && radiuses[rounded],
+      props.classes?.wrapper,
     ]"
   >
     <div
@@ -113,6 +141,7 @@ const value = computed(() => {
       :class="[
         value === null &&
           'nui-progress-indeterminate animate-nui-progress-indeterminate',
+        props.classes?.progress,
       ]"
       :style="value !== null ? `width: ${value}%` : 'width: 100%'"
     ></div>

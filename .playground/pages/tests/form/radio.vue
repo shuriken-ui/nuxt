@@ -64,6 +64,27 @@ const headlessValue = ref('value_1')
             label="danger"
             color="danger"
           />
+          <BaseRadio
+            v-model="value"
+            name="checkbox_base"
+            value="light"
+            label="light"
+            color="light"
+          />
+          <BaseRadio
+            v-model="value"
+            name="checkbox_base"
+            value="dark"
+            label="dark"
+            color="dark"
+          />
+          <BaseRadio
+            v-model="value"
+            name="checkbox_base"
+            value="black"
+            label="black"
+            color="black"
+          />
         </div>
       </NuiPreview>
 

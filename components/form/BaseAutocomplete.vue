@@ -131,6 +131,11 @@ const props = withDefaults(
        * CSS classes to apply to the icon element.
        */
       icon?: string | string[]
+
+      /**
+       * CSS classes to apply to the error element.
+       */
+      error?: string | string[]
     }
     /**
      * Allow custom entries by the user
@@ -151,6 +156,11 @@ const props = withDefaults(
      * Whether the component can be cleared by the user.
      */
     clearable?: boolean
+
+    /**
+     * Wether the border should change color when focused
+     */
+    colorFocus?: boolean
 
     /**
      * Display a chevron icon to open suggestions
@@ -229,6 +239,7 @@ const props = withDefaults(
     loading: false,
     disabled: false,
     clearable: false,
+    colorFocus: false,
     clearValue: undefined,
     clearIcon: 'lucide:x',
     chipClearIcon: 'lucide:x',
@@ -342,10 +353,10 @@ const queryCreate = computed(() => {
 
 const radiuses = {
   none: '',
-  sm: 'nui-autocomplete-rounded',
-  md: 'nui-autocomplete-smooth',
-  lg: 'nui-autocomplete-curved',
-  full: 'nui-autocomplete-full',
+  sm: 'nui-autocomplete-rounded-sm',
+  md: 'nui-autocomplete-rounded-md',
+  lg: 'nui-autocomplete-rounded-lg',
+  full: 'nui-autocomplete-rounded-full',
 } as Record<string, string>
 
 const sizes = {
@@ -489,6 +500,8 @@ const internal = ref<any>(modelValue)
       props.icon && 'nui-has-icon',
       props.labelFloat && 'nui-autocomplete-label-float',
       props.loading && 'nui-autocomplete-loading',
+      props.colorFocus && 'nui-autocomplete-focus',
+      props.error && 'nui-autocomplete-error',
     ]"
     as="div"
   >
@@ -627,6 +640,7 @@ const internal = ref<any>(modelValue)
       <span
         v-if="props.error && typeof props.error === 'string'"
         class="nui-autocomplete-error-text"
+        :class="props.classes?.error"
       >
         {{ props.error }}
       </span>

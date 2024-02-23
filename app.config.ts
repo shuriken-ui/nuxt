@@ -1,8 +1,10 @@
 export default defineAppConfig({
   nui: {
     BaseAccordion: {
+      color: 'default',
       rounded: 'sm',
       action: 'dot',
+      dotColor: 'primary',
     },
     BaseAutocomplete: {
       rounded: 'sm',
@@ -15,10 +17,14 @@ export default defineAppConfig({
     BaseAvatar: {
       size: 'sm',
       rounded: 'full',
+      color: 'muted',
     },
     BaseAvatarGroup: {
       limit: 4,
       size: 'sm',
+    },
+    BaseBreadcrumb: {
+      color: 'primary',
     },
     BaseButton: {
       variant: 'solid',
@@ -40,7 +46,7 @@ export default defineAppConfig({
     },
     BaseCard: {
       rounded: 'sm',
-      color: 'white',
+      color: 'default',
     },
     BaseCheckbox: {
       rounded: 'sm',
@@ -52,13 +58,17 @@ export default defineAppConfig({
     BaseDropdown: {
       variant: 'button',
       buttonColor: 'default',
-      color: 'white',
+      color: 'default',
       rounded: 'sm',
       size: 'md',
     },
     BaseDropdownItem: {
       rounded: 'sm',
-      color: 'default',
+      contrast: 'default',
+      color: 'primary',
+    },
+    BaseFullscreenDropfile: {
+      color: 'primary',
     },
     BaseHeading: {
       as: 'p',
@@ -94,11 +104,12 @@ export default defineAppConfig({
       contrast: 'default',
     },
     BaseMessage: {
-      type: 'success',
+      color: 'success',
       rounded: 'sm',
       closable: false,
     },
     BasePagination: {
+      color: 'primary',
       rounded: 'sm',
     },
     BaseParagraph: {
@@ -115,6 +126,9 @@ export default defineAppConfig({
       contrast: 'default',
       color: 'primary',
       rounded: 'full',
+    },
+    BaseProgressCircle: {
+      color: 'primary',
     },
     BaseProse: {
       rounded: 'md',
@@ -140,8 +154,10 @@ export default defineAppConfig({
     BaseTabs: {
       type: 'tabs',
       justify: 'start',
+      color: 'primary',
     },
     BaseTabSlider: {
+      color: 'primary',
       justify: 'start',
       size: 'md',
       rounded: 'lg',

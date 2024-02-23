@@ -19,21 +19,25 @@ const props = withDefaults(
      */
     buttonColor?:
       | 'default'
+      | 'default-contrast'
+      | 'muted'
+      | 'muted-contrast'
+      | 'light'
+      | 'dark'
+      | 'black'
       | 'primary'
       | 'info'
       | 'success'
       | 'warning'
       | 'danger'
-      | 'light'
-      | 'muted'
       | 'none'
 
     /**
      * The color of the dropdown.
      *
-     * @default 'white'
+     * @default 'default'
      */
-    color?: 'white' | 'white-contrast' | 'muted' | 'muted-contrast' | 'none'
+    color?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'none'
 
     /**
      * The radius of the dropdown button.
@@ -88,6 +92,31 @@ const props = withDefaults(
      * Used a fixed strategy to float the component
      */
     fixed?: boolean
+
+    /**
+     * Optional CSS classes to apply to the component inner elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the menu element.
+       */
+      menu?: string | string[]
+
+      /**
+       * CSS classes to apply to the header element.
+       */
+      header?: string | string[]
+
+      /**
+       * CSS classes to apply to the content element.
+       */
+      content?: string | string[]
+    }
   }>(),
   {
     variant: undefined,
@@ -100,6 +129,7 @@ const props = withDefaults(
     label: '',
     headerLabel: undefined,
     fixed: false,
+    classes: () => ({}),
   },
 )
 
@@ -117,27 +147,31 @@ const sizes = {
 
 const radiuses = {
   none: '',
-  sm: 'nui-menu-rounded',
-  md: 'nui-menu-smooth',
-  lg: 'nui-menu-curved',
-  full: 'nui-menu-curved',
+  sm: 'nui-menu-rounded-sm',
+  md: 'nui-menu-rounded-md',
+  lg: 'nui-menu-rounded-lg',
+  full: 'nui-menu-rounded-lg',
 } as Record<string, string>
 
 const buttonColors = {
   none: '',
   default: 'nui-button-default',
+  'default-contrast': 'nui-button-default-contrast',
   primary: 'nui-button-primary',
   info: 'nui-button-info',
   success: 'nui-button-success',
   warning: 'nui-button-warning',
   danger: 'nui-button-danger',
-  light: 'nui-button-light',
   muted: 'nui-button-muted',
+  'muted-contrast': 'nui-button-muted-contrast',
+  light: 'nui-button-light',
+  dark: 'nui-button-dark',
+  black: 'nui-button-black',
 } as Record<string, string>
 
 const colors = {
-  white: 'nui-menu-white',
-  'white-contrast': 'nui-menu-white-contrast',
+  default: 'nui-menu-default',
+  'default-contrast': 'nui-menu-default-contrast',
   muted: 'nui-menu-muted',
   'muted-contrast': 'nui-menu-muted-contrast',
   primary: 'nui-menu-primary',
@@ -162,7 +196,7 @@ const placementValue = computed(() => {
 </script>
 
 <template>
-  <div class="nui-dropdown">
+  <div class="nui-dropdown" :class="props.classes?.wrapper">
     <Menu
       v-slot="{ open, close }: { open: boolean; close: () => void }"
       as="div"
@@ -236,16 +270,21 @@ const placementValue = computed(() => {
             size && sizes[size],
             rounded && radiuses[rounded],
             color && colors[color],
+            props.classes?.menu,
           ]"
         >
-          <div v-if="props.headerLabel" class="nui-menu-header">
+          <div
+            v-if="props.headerLabel"
+            class="nui-menu-header"
+            :class="props.classes?.header"
+          >
             <div class="nui-menu-header-inner">
               <h4 class="nui-menu-header-title">
                 {{ props.headerLabel }}
               </h4>
             </div>
           </div>
-          <div class="nui-menu-content">
+          <div class="nui-menu-content" :class="props.classes?.content">
             <slot v-bind="{ open, close }"></slot>
           </div>
         </MenuItems>

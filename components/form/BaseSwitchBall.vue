@@ -25,13 +25,56 @@ const props = withDefaults(
      *
      * @default 'primary'
      */
-    color?: 'primary' | 'info' | 'success' | 'warning' | 'danger'
+    color?:
+      | 'primary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'danger'
+      | 'dark'
+      | 'black'
+
+    /**
+     * Optional CSS classes to apply to the component inner elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the outer element.
+       */
+      outer?: string | string[]
+
+      /**
+       * CSS classes to apply to the input element.
+       */
+      input?: string | string[]
+
+      /**
+       * CSS classes to apply to the handle element.
+       */
+      handle?: string | string[]
+
+      /**
+       * CSS classes to apply to the track element.
+       */
+      track?: string | string[]
+
+      /**
+       * CSS classes to apply to the icon element.
+       */
+      icon?: string | string[]
+    }
   }>(),
   {
     id: undefined,
     label: undefined,
     sublabel: undefined,
     color: undefined,
+    classes: () => ({}),
   },
 )
 
@@ -48,6 +91,8 @@ const colors = {
   success: 'nui-switch-ball-success',
   warning: 'nui-switch-ball-warning',
   danger: 'nui-switch-ball-danger',
+  dark: 'nui-switch-ball-dark',
+  black: 'nui-switch-ball-black',
 } as Record<string, string>
 
 defineExpose({
@@ -64,8 +109,12 @@ defineExpose({
 </script>
 
 <template>
-  <label :for="id" class="nui-switch-ball" :class="color && colors[color]">
-    <span class="nui-switch-ball-outer">
+  <label
+    :for="id"
+    class="nui-switch-ball"
+    :class="[color && colors[color], props.classes?.wrapper]"
+  >
+    <span class="nui-switch-ball-outer" :class="props.classes?.outer">
       <input
         :id="id"
         ref="inputRef"
@@ -73,11 +122,15 @@ defineExpose({
         v-bind="$attrs"
         type="checkbox"
         class="nui-switch-ball-input peer"
+        :class="props.classes?.input"
         @change="modelValue = !modelValue"
       />
-      <span class="nui-switch-ball-handle"></span>
-      <span class="nui-switch-ball-track"></span>
-      <IconCheck class="nui-switch-ball-icon" />
+      <span
+        class="nui-switch-ball-handle"
+        :class="props.classes?.handle"
+      ></span>
+      <span class="nui-switch-ball-track" :class="props.classes?.track"></span>
+      <IconCheck class="nui-switch-ball-icon" :class="props.classes?.icon" />
     </span>
     <span v-if="!props.sublabel" class="nui-switch-ball-single-label">
       {{ props.label }}

@@ -14,7 +14,10 @@ const props = withDefaults(
      */
     color?:
       | 'default'
-      | 'invert'
+      | 'default-contrast'
+      | 'dark'
+      | 'black'
+      | 'light'
       | 'primary'
       | 'info'
       | 'success'
@@ -64,10 +67,10 @@ const rounded = useNuiDefaultProperty(props, 'BaseIconBox', 'rounded')
 
 const radiuses = {
   none: '',
-  sm: 'nui-box-rounded',
-  md: 'nui-box-smooth',
-  lg: 'nui-box-curved',
-  full: 'nui-box-full',
+  sm: 'nui-box-rounded-sm',
+  md: 'nui-box-rounded-md',
+  lg: 'nui-box-rounded-lg',
+  full: 'nui-box-rounded-full',
 } as Record<string, string>
 
 const sizes = {
@@ -87,13 +90,15 @@ const variants = {
 
 const colors = {
   default: 'nui-box-default',
-  invert: 'nui-box-invert',
+  'default-contrast': 'nui-box-default-contrast',
+  light: 'nui-box-light',
+  dark: 'nui-box-dark',
+  black: 'nui-box-black',
   primary: 'nui-box-primary',
   info: 'nui-box-info',
   success: 'nui-box-success',
   warning: 'nui-box-warning',
   danger: 'nui-box-danger',
-  none: '',
 } as Record<string, string>
 
 const masks = {

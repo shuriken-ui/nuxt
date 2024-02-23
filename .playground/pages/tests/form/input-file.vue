@@ -18,11 +18,36 @@ const fifth = ref<FileList | null>(null)
     <NuiPreviewContainer title="BaseInputFile">
       <NuiPreview title="Radius" description="File inputs radiuses">
         <div class="grid gap-6 md:max-w-4xl md:grid-cols-3">
-          <BaseInputFile v-model="first" rounded="none" label="Rounded: none" />
-          <BaseInputFile v-model="second" rounded="sm" label="Rounded: sm" />
-          <BaseInputFile v-model="third" rounded="md" label="Rounded: md" />
-          <BaseInputFile v-model="fourth" rounded="lg" label="Rounded: lg" />
-          <BaseInputFile v-model="fifth" rounded="full" label="Rounded: full" />
+          <BaseInputFile
+            v-model="first"
+            rounded="none"
+            label="Rounded: none"
+            color-focus
+          />
+          <BaseInputFile
+            v-model="second"
+            rounded="sm"
+            label="Rounded: sm"
+            color-focus
+          />
+          <BaseInputFile
+            v-model="third"
+            rounded="md"
+            label="Rounded: md"
+            color-focus
+          />
+          <BaseInputFile
+            v-model="fourth"
+            rounded="lg"
+            label="Rounded: lg"
+            color-focus
+          />
+          <BaseInputFile
+            v-model="fifth"
+            rounded="full"
+            label="Rounded: full"
+            color-focus
+          />
         </div>
       </NuiPreview>
     </NuiPreviewContainer>

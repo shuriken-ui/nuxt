@@ -49,25 +49,25 @@ definePageMeta({
         <div class="flex flex-wrap items-end gap-3">
           <BaseKbd
             size="xs"
-            color="default"
+            color="default-contrast"
             rounded="sm"
             icon="ri:command-line"
           />
           <BaseKbd
             size="sm"
-            color="default"
+            color="default-contrast"
             rounded="sm"
             icon="ri:command-line"
           />
           <BaseKbd
             size="md"
-            color="default"
+            color="default-contrast"
             rounded="sm"
             icon="ri:command-line"
           />
           <BaseKbd
             size="lg"
-            color="default"
+            color="default-contrast"
             rounded="sm"
             icon="ri:command-line"
           />

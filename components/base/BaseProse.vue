@@ -17,10 +17,10 @@ const props = withDefaults(
 const rounded = useNuiDefaultProperty(props, 'BaseProse', 'rounded')
 
 const radiuses = {
-  none: 'nui-prose-straight',
-  sm: 'nui-prose-rounded',
-  md: 'nui-prose-smooth',
-  lg: 'nui-prose-curved',
+  none: 'nui-prose-rounded-none',
+  sm: 'nui-prose-rounded-sm',
+  md: 'nui-prose-rounded-md',
+  lg: 'nui-prose-rounded-lg',
 } as Record<string, string>
 </script>
 

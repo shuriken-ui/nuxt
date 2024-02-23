@@ -12,6 +12,14 @@ const props = withDefaults(
     icon?: string
 
     /**
+     * Defines the color of the icon
+     *
+     * @since 3.0.0
+     * @default 'default'
+     */
+    color?: 'primary' | 'dark' | 'black'
+
+    /**
      * Allows to filter files when dropped.
      */
     filterFileDropped?: (file: File) => boolean
@@ -19,6 +27,7 @@ const props = withDefaults(
   {
     label: 'Drop your files',
     icon: '',
+    color: undefined,
     filterFileDropped: () => true,
   },
 )
@@ -82,10 +91,18 @@ onBeforeUnmount(() => {
   document.documentElement.removeEventListener('dragover', onDragover)
   document.documentElement.removeEventListener('drop', onDrop)
 })
+
+const colors = {
+  primary: 'nui-dropfile-primary',
+  dark: 'nui-dropfile-dark',
+  black: 'nui-dropfile-black',
+}
+
+const color = useNuiDefaultProperty(props, 'BaseFullscreenDropfile', 'color')
 </script>
 
 <template>
-  <div class="nui-fullscreen-dropfile">
+  <div class="nui-fullscreen-dropfile" :class="color && colors[color]">
     <div v-if="isDropping" class="nui-fullscreen-dropfile-outer" />
     <div v-show="isDropping" class="nui-fullscreen-dropfile-inner">
       <Transition

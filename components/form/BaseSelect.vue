@@ -63,6 +63,11 @@ const props = withDefaults(
     disabled?: boolean
 
     /**
+     * Whether the color of the input should change when it is focused.
+     */
+    colorFocus?: boolean
+
+    /**
      * An error message to display, or a boolean indicating whether there is an error.
      */
     error?: string | boolean
@@ -126,10 +131,10 @@ const id = useNinjaId(() => props.id)
 
 const radiuses = {
   none: '',
-  sm: 'nui-select-rounded',
-  md: 'nui-select-smooth',
-  lg: 'nui-select-curved',
-  full: 'nui-select-full',
+  sm: 'nui-select-rounded-sm',
+  md: 'nui-select-rounded-md',
+  lg: 'nui-select-rounded-lg',
+  full: 'nui-select-rounded-full',
 } as Record<string, string>
 
 const sizes = {
@@ -180,6 +185,7 @@ const placeholder = computed(() => {
       props.loading && 'nui-select-loading',
       props.labelFloat && 'nui-select-label-float',
       props.icon && 'nui-has-icon',
+      props.colorFocus && 'nui-select-focus',
       props.classes?.wrapper,
     ]"
   >
@@ -190,7 +196,7 @@ const placeholder = computed(() => {
       "
       class="nui-select-label"
       :for="id"
-      :class="props.classes.label"
+      :class="props.classes?.label"
     >
       <slot name="label">{{ props.label }}</slot>
     </label>
@@ -202,7 +208,7 @@ const placeholder = computed(() => {
         v-bind="$attrs"
         :disabled="props.disabled"
         class="nui-select"
-        :class="props.classes.select"
+        :class="props.classes?.select"
       >
         <option v-if="placeholder" value="" disabled hidden>
           {{ placeholder }}
@@ -216,7 +222,7 @@ const placeholder = computed(() => {
         "
         :for="id"
         class="nui-label-float"
-        :class="props.classes.label"
+        :class="props.classes?.label"
       >
         <slot name="label">{{ props.label }}</slot>
       </label>
@@ -226,7 +232,7 @@ const placeholder = computed(() => {
       <div
         v-if="props.icon"
         class="nui-select-icon"
-        :class="props.classes.icon"
+        :class="props.classes?.icon"
       >
         <slot name="icon">
           <Icon class="nui-select-icon-inner" :name="props.icon" />

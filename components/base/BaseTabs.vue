@@ -16,6 +16,14 @@ const props = withDefaults(
     justify?: 'start' | 'center' | 'end'
 
     /**
+     * Defines the hover color of the active tab
+     *
+     * @since 3.0.0
+     * @default 'default'
+     */
+    color?: 'default' | 'primary' | 'light' | 'dark' | 'black'
+
+    /**
      * An array of tab objects that contain a label and value
      */
     tabs: {
@@ -37,10 +45,37 @@ const props = withDefaults(
      * Whether or not to hide the label for the tab.
      */
     hideLabel?: boolean
+
+    /**
+     * Optional CSS classes to apply to the component inner elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the inner element.
+       */
+      inner?: string | string[]
+
+      /**
+       * CSS classes to apply to the item element.
+       */
+      item?: string | string[]
+
+      /**
+       * CSS classes to apply to the content element.
+       */
+      content?: string | string[]
+    }
   }>(),
   {
     type: undefined,
     justify: undefined,
+    color: undefined,
+    classes: () => ({}),
   },
 )
 
@@ -48,6 +83,7 @@ const [modelValue] = defineModel<string>()
 
 const justify = useNuiDefaultProperty(props, 'BaseTabs', 'justify')
 const type = useNuiDefaultProperty(props, 'BaseTabs', 'type')
+const color = useNuiDefaultProperty(props, 'BaseTabs', 'color')
 
 const justifies = {
   start: '',
@@ -60,21 +96,39 @@ const types = {
   box: 'nui-pill-item',
 } as Record<string, string>
 
+const colors = {
+  default: 'nui-tabs-default',
+  primary: 'nui-tabs-primary',
+  light: 'nui-tabs-light',
+  dark: 'nui-tabs-dark',
+  black: 'nui-tabs-black',
+} as Record<string, string>
+
 function toggle(value: string) {
   modelValue.value = value
 }
 </script>
 
 <template>
-  <div class="nui-tabs" :class="justify && justifies[justify]">
-    <div class="nui-tabs-inner">
+  <div
+    class="nui-tabs"
+    :class="[
+      justify && justifies[justify],
+      color && colors[color],
+      props.type === 'tabs' && 'nui-tabs-bordered',
+      props.classes?.wrapper,
+    ]"
+  >
+    <div class="nui-tabs-inner" :class="props.classes?.inner">
       <a
         v-for="(tab, key) in tabs"
         :key="key"
+        class="nui-tabs"
         :class="[
           type && types[type],
           modelValue === tab.value && 'nui-active',
           tab.icon && 'nui-has-icon',
+          props.classes?.item,
         ]"
         tabindex="0"
         @click="toggle(tab.value)"
@@ -99,7 +153,7 @@ function toggle(value: string) {
       </a>
     </div>
 
-    <div class="relative block">
+    <div class="relative block" :class="props.classes?.content">
       <slot name="tab" :active-value="modelValue" :toggle="toggle"></slot>
     </div>
   </div>

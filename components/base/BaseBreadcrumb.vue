@@ -1,40 +1,81 @@
 <script setup lang="ts">
 import type { RouteLocationRaw } from 'vue-router'
 
-const props = defineProps<{
-  /**
-   * The items to display in the breadcrumb.
-   *
-   * If not provided, the breadcrumb will be generated
-   * from the current route using page meta under `breadcrumb` key.
-   */
-  items?: {
+const props = withDefaults(
+  defineProps<{
     /**
-     * The route to navigate to when the item is clicked.
+     * Defines the hover color of the breadcrumb links
+     *
+     * @since 3.0.0
+     * @default 'default'
      */
-    to?: RouteLocationRaw
+    color?: 'primary' | 'dark' | 'black'
 
     /**
-     * The label to display for the item.
+     * The items to display in the breadcrumb.
+     *
+     * If not provided, the breadcrumb will be generated
+     * from the current route using page meta under `breadcrumb` key.
      */
-    label?: string
+    items?: {
+      /**
+       * The route to navigate to when the item is clicked.
+       */
+      to?: RouteLocationRaw
+
+      /**
+       * The label to display for the item.
+       */
+      label?: string
+
+      /**
+       * Whether to hide the label for the item.
+       */
+      hideLabel?: boolean
+
+      /**
+       * An icon to display for the item.
+       */
+      icon?: string
+
+      /**
+       * CSS classes to apply to the icon.
+       */
+      iconClasses?: string | string[]
+    }[]
 
     /**
-     * Whether to hide the label for the item.
+     * Optional CSS classes to apply to the component inner elements.
      */
-    hideLabel?: boolean
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
 
-    /**
-     * An icon to display for the item.
-     */
-    icon?: string
+      /**
+       * CSS classes to apply to the list element.
+       */
+      list?: string | string[]
 
-    /**
-     * CSS classes to apply to the icon.
-     */
-    iconClasses?: string | string[]
-  }[]
-}>()
+      /**
+       * CSS classes to apply to the dropdown element.
+       */
+      dropdown?: string | string[]
+
+      /**
+       * CSS classes to apply to the item element.
+       */
+      item?: string | string[]
+    }
+  }>(),
+  {
+    items: undefined,
+    color: undefined,
+    classes: () => ({}),
+  },
+)
+
 const route = useRoute()
 const router = useRouter()
 
@@ -80,13 +121,28 @@ const items = computed(() => {
 
   return breadcrumbItems
 })
+
+const colors = {
+  primary: 'nui-breadcrumb-primary',
+  dark: 'nui-breadcrumb-dark',
+  black: 'nui-breadcrumb-black',
+}
+
+const color = useNuiDefaultProperty(props, 'BaseBreadcrumb', 'color')
 </script>
 
 <template>
-  <nav class="nui-breadcrumb">
-    <ul class="nui-breadcrumb-list">
+  <nav
+    class="nui-breadcrumb"
+    :class="[color && colors[color], props.classes?.wrapper]"
+  >
+    <ul class="nui-breadcrumb-list" :class="props.classes?.list">
       <li class="nui-breadcrumb-item-mobile">
-        <BaseDropdown variant="context" size="md">
+        <BaseDropdown
+          variant="context"
+          size="md"
+          :class="props.classes?.dropdown"
+        >
           <BaseDropdownItem
             v-for="(item, index) in items.slice(0, items.length - 1)"
             :key="index"
@@ -100,7 +156,10 @@ const items = computed(() => {
       <template v-for="(item, index) in items" :key="index">
         <li
           class="nui-breadcrumb-item"
-          :class="index !== items.length - 1 ? 'hidden sm:flex' : 'flex'"
+          :class="[
+            index !== items.length - 1 ? 'hidden sm:flex' : 'flex',
+            props.classes?.item,
+          ]"
         >
           <slot name="link" v-bind="{ item, index }">
             <NuxtLink

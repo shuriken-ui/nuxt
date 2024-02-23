@@ -22,28 +22,28 @@ definePageMeta({
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Team"
               text="Manage your team"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
           </BaseDropdown>
@@ -57,28 +57,28 @@ definePageMeta({
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Team"
               text="Manage your team"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
           </BaseDropdown>
@@ -91,34 +91,34 @@ definePageMeta({
             variant="button"
             label="Dropdown"
             orientation="start"
-            color="white"
+            contrast="default"
           >
             <BaseDropdownItem
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Team"
               text="Manage your team"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
           </BaseDropdown>
@@ -126,34 +126,34 @@ definePageMeta({
             variant="button"
             label="Dropdown"
             orientation="start"
-            color="white-contrast"
+            color="default-contrast"
           >
             <BaseDropdownItem
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Team"
               text="Manage your team"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
           </BaseDropdown>
@@ -166,34 +166,34 @@ definePageMeta({
             variant="button"
             label="Dropdown"
             orientation="start"
-            buttonColor="default"
+            buttonContrast="default"
           >
             <BaseDropdownItem
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Team"
               text="Manage your team"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
           </BaseDropdown>
@@ -208,28 +208,28 @@ definePageMeta({
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Team"
               text="Manage your team"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
           </BaseDropdown>
@@ -244,28 +244,28 @@ definePageMeta({
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Team"
               text="Manage your team"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
           </BaseDropdown>
@@ -282,28 +282,28 @@ definePageMeta({
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Team"
               text="Manage your team"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
           </BaseDropdown>
@@ -320,28 +320,28 @@ definePageMeta({
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Team"
               text="Manage your team"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
           </BaseDropdown>
@@ -358,28 +358,28 @@ definePageMeta({
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Team"
               text="Manage your team"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
           </BaseDropdown>
@@ -396,28 +396,28 @@ definePageMeta({
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Team"
               text="Manage your team"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
           </BaseDropdown>
@@ -434,14 +434,14 @@ definePageMeta({
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem to="#" title="Team" text="Manage your team" />
@@ -449,7 +449,7 @@ definePageMeta({
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
           </BaseDropdown>
@@ -463,28 +463,28 @@ definePageMeta({
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Team"
               text="Manage your team"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
             <BaseDropdownItem
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
               rounded="sm"
             />
           </BaseDropdown>
@@ -492,13 +492,13 @@ definePageMeta({
       </NuiPreview>
 
       <NuiPreview title="Slot: icon" description="Dropdown icon slot">
-        <div class="flex justify-start w-full">
+        <div class="flex justify-start gap-6 w-full">
           <BaseDropdown variant="button" label="Dropdown" orientation="start">
             <BaseDropdownItem
               to="#"
               title="Profile"
               text="View your profile"
-              color="default"
+              contrast="default"
               rounded="sm"
             >
               <template #start>
@@ -509,7 +509,7 @@ definePageMeta({
               to="#"
               title="Projects"
               text="View your projects"
-              color="default"
+              contrast="default"
               rounded="sm"
             >
               <template #start>
@@ -520,7 +520,7 @@ definePageMeta({
               to="#"
               title="Team"
               text="Manage your team"
-              color="default"
+              contrast="default"
               rounded="sm"
             >
               <template #start>
@@ -532,7 +532,59 @@ definePageMeta({
               to="#"
               title="Settings"
               text="Set your preferences"
-              color="default"
+              contrast="default"
+              rounded="sm"
+            >
+              <template #start>
+                <Icon name="ph:gear-six-duotone" class="me-2 block h-5 w-5" />
+              </template>
+            </BaseDropdownItem>
+          </BaseDropdown>
+
+          <BaseDropdown variant="button" label="Dropdown" orientation="start">
+            <BaseDropdownItem
+              to="#"
+              title="Profile"
+              text="View your profile"
+              contrast="default"
+              color="dark"
+              rounded="sm"
+            >
+              <template #start>
+                <Icon name="ph:user-duotone" class="me-2 block h-5 w-5" />
+              </template>
+            </BaseDropdownItem>
+            <BaseDropdownItem
+              to="#"
+              title="Projects"
+              text="View your projects"
+              contrast="default"
+              color="dark"
+              rounded="sm"
+            >
+              <template #start>
+                <Icon name="ph:briefcase-duotone" class="me-2 block h-5 w-5" />
+              </template>
+            </BaseDropdownItem>
+            <BaseDropdownItem
+              to="#"
+              title="Team"
+              text="Manage your team"
+              contrast="default"
+              color="dark"
+              rounded="sm"
+            >
+              <template #start>
+                <Icon name="ph:users-four-duotone" class="me-2 block h-5 w-5" />
+              </template>
+            </BaseDropdownItem>
+            <BaseDropdownDivider />
+            <BaseDropdownItem
+              to="#"
+              title="Settings"
+              text="Set your preferences"
+              contrast="default"
+              color="dark"
               rounded="sm"
             >
               <template #start>
@@ -550,7 +602,7 @@ definePageMeta({
               to="#"
               title="Lana Jensen"
               text="Software Engineer"
-              color="default"
+              contrast="default"
               rounded="sm"
             >
               <template #start>
@@ -565,7 +617,7 @@ definePageMeta({
               to="#"
               title="Shawn Miller"
               text="Product Manager"
-              color="default"
+              contrast="default"
               rounded="sm"
             >
               <template #start>
@@ -580,7 +632,7 @@ definePageMeta({
               to="#"
               title="John Marynski"
               text="Sales Manager"
-              color="default"
+              contrast="default"
               rounded="sm"
             >
               <template #start>
@@ -597,7 +649,7 @@ definePageMeta({
               to="#"
               title="Garry Porter"
               text="CEO - Founder"
-              color="default"
+              contrast="default"
               rounded="sm"
             >
               <template #start>
@@ -623,7 +675,7 @@ definePageMeta({
               to="#"
               title="Lana Jensen"
               text="Software Engineer"
-              color="default"
+              contrast="default"
               rounded="sm"
             >
               <template #start>
@@ -638,7 +690,7 @@ definePageMeta({
               to="#"
               title="Shawn Miller"
               text="Product Manager"
-              color="default"
+              contrast="default"
               rounded="sm"
             >
               <template #start>
@@ -653,7 +705,7 @@ definePageMeta({
               to="#"
               title="John Marynski"
               text="Sales Manager"
-              color="default"
+              contrast="default"
               rounded="sm"
             >
               <template #start>
@@ -670,7 +722,7 @@ definePageMeta({
               to="#"
               title="Garry Porter"
               text="CEO - Founder"
-              color="default"
+              contrast="default"
               rounded="sm"
             >
               <template #start>

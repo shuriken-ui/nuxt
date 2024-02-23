@@ -41,6 +41,7 @@ const currentPage = computed(() => {
           :current-page="currentPage"
           :max-links-displayed="5"
           rounded="sm"
+          color="dark"
         />
       </NuiPreview>
 
@@ -54,6 +55,7 @@ const currentPage = computed(() => {
           :current-page="currentPage"
           :max-links-displayed="5"
           rounded="md"
+          color="black"
         />
       </NuiPreview>
 

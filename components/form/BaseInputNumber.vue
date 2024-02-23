@@ -189,10 +189,10 @@ const contrast = useNuiDefaultProperty(props, 'BaseInputNumber', 'contrast')
 
 const radiuses = {
   none: '',
-  sm: 'nui-input-number-rounded',
-  md: 'nui-input-number-smooth',
-  lg: 'nui-input-number-curved',
-  full: 'nui-input-number-full',
+  sm: 'nui-input-number-rounded-sm',
+  md: 'nui-input-number-rounded-md',
+  lg: 'nui-input-number-rounded-lg',
+  full: 'nui-input-number-rounded-full',
 } as Record<string, string>
 
 const sizes = {
@@ -361,7 +361,7 @@ if (process.dev) {
       "
       class="nui-input-number-label"
       :for="id"
-      :class="props.classes.label"
+      :class="props.classes?.label"
     >
       <slot name="label">{{ props.label }}</slot>
     </label>
@@ -375,7 +375,7 @@ if (process.dev) {
           :type="props.type"
           v-bind="$attrs"
           class="nui-input-number"
-          :class="props.classes.input"
+          :class="props.classes?.input"
           :placeholder="placeholder"
           :inputmode="props.inputmode ? props.inputmode : inputmode"
           :disabled="props.disabled"
@@ -388,7 +388,7 @@ if (process.dev) {
           :type="props.type"
           v-bind="$attrs"
           class="nui-input-number"
-          :class="props.classes.input"
+          :class="props.classes?.input"
           :placeholder="placeholder"
           :inputmode="props.inputmode ? props.inputmode : inputmode"
           :disabled="props.disabled"
@@ -400,7 +400,7 @@ if (process.dev) {
           "
           class="nui-label-float"
           :for="id"
-          :class="props.classes.label"
+          :class="props.classes?.label"
         >
           <slot name="label">{{ props.label }}</slot>
         </label>
@@ -410,13 +410,13 @@ if (process.dev) {
         <div
           v-if="props.icon"
           class="nui-input-number-icon"
-          :class="props.classes.icon"
+          :class="props.classes?.icon"
         >
           <slot name="icon">
             <Icon :name="props.icon" class="nui-input-number-icon-inner" />
           </slot>
         </div>
-        <div class="nui-input-number-buttons" :class="props.classes.buttons">
+        <div class="nui-input-number-buttons" :class="props.classes?.buttons">
           <button
             type="button"
             aria-label="Decrement"

@@ -62,12 +62,14 @@ definePageMeta({
         <div class="flex flex-wrap items-end gap-4">
           <BaseButton variant="solid">Button</BaseButton>
           <BaseButton variant="solid" color="muted">Button</BaseButton>
-          <BaseButton variant="solid" color="light">Button</BaseButton>
           <BaseButton variant="solid" color="primary">Button</BaseButton>
           <BaseButton variant="solid" color="success">Button</BaseButton>
           <BaseButton variant="solid" color="info">Button</BaseButton>
           <BaseButton variant="solid" color="warning">Button</BaseButton>
           <BaseButton variant="solid" color="danger">Button</BaseButton>
+          <BaseButton variant="solid" color="light">Button</BaseButton>
+          <BaseButton variant="solid" color="dark">Button</BaseButton>
+          <BaseButton variant="solid" color="black">Button</BaseButton>
         </div>
       </NuiPreview>
 
@@ -83,6 +85,9 @@ definePageMeta({
           <BaseButton variant="pastel" color="info">Button</BaseButton>
           <BaseButton variant="pastel" color="warning">Button</BaseButton>
           <BaseButton variant="pastel" color="danger">Button</BaseButton>
+          <BaseButton variant="pastel" color="light">Button</BaseButton>
+          <BaseButton variant="pastel" color="dark">Button</BaseButton>
+          <BaseButton variant="pastel" color="black">Button</BaseButton>
         </div>
       </NuiPreview>
 
@@ -98,6 +103,9 @@ definePageMeta({
           <BaseButton variant="outline" color="info">Button</BaseButton>
           <BaseButton variant="outline" color="warning">Button</BaseButton>
           <BaseButton variant="outline" color="danger">Button</BaseButton>
+          <BaseButton variant="outline" color="light">Button</BaseButton>
+          <BaseButton variant="outline" color="dark">Button</BaseButton>
+          <BaseButton variant="outline" color="black">Button</BaseButton>
         </div>
       </NuiPreview>
 
