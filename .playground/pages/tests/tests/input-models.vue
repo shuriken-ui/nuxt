@@ -84,7 +84,7 @@ autocomplete1: {{ autocomplete1 }}({{ typeof autocomplete1 }})</pre
         <div class="col-span-2">
           <BaseAutocomplete
             v-model="autocomplete2"
-            :display-value="(item) => item.name"
+            :display-value="(item) => item?.name"
             clearable
             :items="[
               {

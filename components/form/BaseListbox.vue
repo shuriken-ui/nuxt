@@ -184,18 +184,7 @@ const props = withDefaults(
     selectedIcon: 'lucide:check',
     placeholder: '',
     error: false,
-    multipleLabel: () => {
-      return (value: T[], labelProperty?: string): string => {
-        if (value.length === 0) {
-          return 'No elements selected'
-        } else if (value.length > 1) {
-          return `${value.length} elements selected`
-        }
-        return labelProperty && typeof value?.[0] === 'object'
-          ? String((value?.[0] as any)?.[labelProperty])
-          : String(value?.[0])
-      }
-    },
+    multipleLabel: undefined,
     properties: () => ({}),
     placement: 'bottom-start',
     classes: () => ({}),
@@ -204,7 +193,7 @@ const props = withDefaults(
 
 const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
   set(value) {
-    if (modelModifiers.prop && props.properties.value) {
+    if (!props.multiple && modelModifiers.prop && props.properties.value) {
       const attr = props.properties.value
       return props.items.find(
         (item) =>
@@ -265,6 +254,39 @@ const placeholder = computed(() => {
 
   return props.placeholder
 })
+
+function multipleLabelResolved(value: T[], labelProperty?: string): string {
+  if (typeof props.multipleLabel === 'function') {
+    return props.multipleLabel(value, props.properties.label)
+  }
+  if (props.multipleLabel) {
+    return props.multipleLabel
+  }
+  if (value.length === 0 && props.placeholder) {
+    return ''
+  } else if (value.length === 0) {
+    return 'No elements selected'
+  } else if (value.length > 1) {
+    return `${value.length} elements selected`
+  }
+
+  if (modelModifiers.prop && props.properties.label) {
+    const item = props.items.find(
+      (item) =>
+        item &&
+        typeof item === 'object' &&
+        props.properties.value &&
+        (item as any)[props.properties.value] === value[0],
+    )
+    return labelProperty && typeof item === 'object'
+      ? String((item as any)?.[labelProperty])
+      : String(item)
+  }
+
+  return labelProperty && typeof value?.[0] === 'object'
+    ? String((value?.[0] as any)?.[labelProperty])
+    : String(value?.[0])
+}
 
 const internal = ref<any>(modelValue)
 </script>
@@ -354,12 +376,10 @@ const internal = ref<any>(modelValue)
                         ]"
                       >
                         {{
-                          typeof props.multipleLabel === 'function'
-                            ? props.multipleLabel(
-                                modelValue,
-                                props.properties.label,
-                              )
-                            : props.multipleLabel
+                          multipleLabelResolved(
+                            modelValue as T[],
+                            props.properties.label,
+                          )
                         }}
                       </div>
                     </template>

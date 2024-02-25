@@ -137,10 +137,16 @@ const props = withDefaults(
        */
       error?: string | string[]
     }
+
     /**
      * Allow custom entries by the user
      */
     allowCreate?: boolean
+
+    /**
+     * Hide the create custom prompt (just set the model to the value entered)
+     */
+    hideCreatePrompt?: boolean
 
     /**
      * Whether the component is in a loading state.
@@ -251,6 +257,7 @@ const props = withDefaults(
     filterItems: undefined,
     classes: () => ({}),
     allowCreate: false,
+    hideCreatePrompt: false,
     fixed: false,
     placement: 'bottom-start',
     properties: undefined,
@@ -321,7 +328,7 @@ defineSlots<{
 
 const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
   set(value) {
-    if (modelModifiers.prop && props.properties?.value) {
+    if (!props.multiple && modelModifiers.prop && props.properties?.value) {
       const attr = props.properties.value
 
       return items.value.find(
@@ -491,7 +498,7 @@ watch(
 )
 
 function clear() {
-  modelValue.value = props.clearValue ?? []
+  modelValue.value = props.clearValue ?? (props.multiple ? [] : null)
 }
 
 const iconResolved = computed(() => {
@@ -707,7 +714,7 @@ const internal = ref<any>(modelValue)
           as="div"
           :class="{
             'nui-autocomplete-results':
-              filteredItems.length > 0 || !allowCreate,
+              filteredItems.length > 0 || !hideCreatePrompt,
           }"
         >
           <!-- Placeholder -->
@@ -756,6 +763,9 @@ const internal = ref<any>(modelValue)
               v-if="allowCreate && queryCreate"
               :value="queryCreate"
               v-slot="{ active, selected }"
+              :class="
+                hideCreatePrompt ? 'hidden' : 'nui-autocomplete-results-item'
+              "
               as="div"
             >
               <slot
@@ -769,9 +779,15 @@ const internal = ref<any>(modelValue)
                   selected,
                 }"
               >
-                <span class="nui-autocomplete-results-item">
-                  Create {{ query }}
-                </span>
+                <BaseAutocompleteItem
+                  :rounded="rounded"
+                  :item="{
+                    label: `Create '${query}'`,
+                    value: query,
+                  }"
+                  :active="active"
+                  :selected="selected"
+                />
               </slot>
             </ComboboxOption>
             <ComboboxOption
@@ -799,7 +815,7 @@ const internal = ref<any>(modelValue)
                 }"
               >
                 <BaseAutocompleteItem
-                  :rounded="props.rounded ? props.rounded : rounded"
+                  :rounded="rounded"
                   :item="
                     properties
                       ? item

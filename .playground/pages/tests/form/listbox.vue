@@ -92,6 +92,7 @@ const people = [
 
 // the v-model should be an array
 const multipleValues = ref([])
+const multipleProps = ref([])
 </script>
 
 <template>
@@ -688,8 +689,8 @@ const multipleValues = ref([])
       </NuiPreview>
 
       <NuiPreview
-        title="Multiple"
-        description="Listbox component multiple selection"
+        title="Multiple: Objects"
+        description="Listbox component multiple selection with object values"
       >
         <div class="flex flex-wrap items-end gap-3 max-w-3xl">
           <div class="flex-1">
@@ -729,6 +730,64 @@ const multipleValues = ref([])
           <div class="flex-1">
             <BaseListbox
               v-model="multipleValues"
+              size="lg"
+              rounded="md"
+              label="Hobbies"
+              :items="people"
+              :properties="{
+                value: 'id',
+                label: 'name',
+                sublabel: 'text',
+                media: 'media',
+              }"
+              multiple
+            />
+          </div>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Multiple: Objects /w prop modifier"
+        description="Listbox component multiple selection"
+      >
+        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+          <div class="flex-1">
+            <BaseListbox
+              v-model.prop="multipleProps"
+              size="sm"
+              rounded="md"
+              label="Hobbies"
+              :items="people"
+              :properties="{
+                value: 'id',
+                label: 'name',
+                sublabel: 'text',
+                media: 'media',
+              }"
+              multiple
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model.prop="multipleProps"
+              size="md"
+              rounded="md"
+              label="Hobbies"
+              :items="people"
+              :properties="{
+                value: 'id',
+                label: 'name',
+                sublabel: 'text',
+                media: 'media',
+              }"
+              multiple
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model.prop="multipleProps"
               size="lg"
               rounded="md"
               label="Hobbies"
