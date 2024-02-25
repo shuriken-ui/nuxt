@@ -7,8 +7,14 @@ const props = withDefaults(
     disableTransitions?: boolean
   }>(),
   {
-    disableTransitions: false,
+    disableTransitions: undefined,
   },
+)
+
+const disableTransitions = useNuiDefaultProperty(
+  props,
+  'BaseThemeSwitch',
+  'disableTransitions',
 )
 
 const colorMode = useColorMode()
@@ -18,14 +24,14 @@ const isDark = computed({
   },
   set(value) {
     // disable transitions
-    if (process.client && props.disableTransitions) {
+    if (process.client && disableTransitions.value) {
       document.documentElement.classList.add('nui-no-transition')
     }
 
     colorMode.preference = value ? 'dark' : 'light'
 
     // re-enable transitions
-    if (process.client && props.disableTransitions) {
+    if (process.client && disableTransitions.value) {
       setTimeout(() => {
         document.documentElement.classList.remove('nui-no-transition')
       }, 0)

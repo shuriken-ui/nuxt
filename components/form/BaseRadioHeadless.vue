@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T extends any = boolean">
+<script setup lang="ts" generic="T extends unknown = boolean">
 defineOptions({
   inheritAttrs: false,
 })
@@ -35,6 +35,10 @@ const props = withDefaults(
 
 const [modelValue] = defineModel<T>()
 
+defineSlots<{
+  default(props: { value: T | undefined }): any
+}>()
+
 const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)
 
@@ -69,7 +73,7 @@ defineExpose({
         type="radio"
         :value="props.value"
         :name="props.name"
-        class="peer absolute inset-0 z-20 h-full w-full cursor-pointer opacity-0"
+        class="peer absolute inset-0 z-20 size-full cursor-pointer opacity-0"
       />
       <slot v-bind="{ value: modelValue }"></slot>
     </div>

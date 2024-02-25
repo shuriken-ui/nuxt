@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends unknown">
 const props = withDefaults(
   defineProps<{
     /**
@@ -51,7 +51,7 @@ const props = withDefaults(
       /**
        * The content of the accordion item.
        */
-      content: string
+      content: T
     }[]
 
     /**
@@ -114,14 +114,33 @@ const emits = defineEmits<{
       /**
        * The content of the accordion item.
        */
-      content: string
+      content: T
     },
   ): void
 }>()
+
 const color = useNuiDefaultProperty(props, 'BaseAccordion', 'color')
 const dotColor = useNuiDefaultProperty(props, 'BaseAccordion', 'dotColor')
 const rounded = useNuiDefaultProperty(props, 'BaseAccordion', 'rounded')
 const action = useNuiDefaultProperty(props, 'BaseAccordion', 'action')
+
+defineSlots<{
+  'accordion-item'(props: {
+    index: number
+    item: { title: string; content: T }
+    toggle: (index: number) => void
+  }): any
+  'accordion-item-summary'(props: {
+    index: number
+    item: { title: string; content: T }
+    toggle: (index: number) => void
+  }): any
+  'accordion-item-content'(props: {
+    index: number
+    item: { title: string; content: T }
+    toggle: (index: number) => void
+  }): any
+}>()
 
 const colors = {
   default: 'nui-accordion-default',

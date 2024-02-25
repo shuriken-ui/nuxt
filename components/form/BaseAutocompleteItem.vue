@@ -73,6 +73,10 @@ const props = withDefaults(
   },
 )
 
+defineSlots<{
+  'selected-icon'(): any
+}>()
+
 const rounded = useNuiDefaultProperty(props, 'BaseAutocompleteItem', 'rounded')
 
 const radiuses = {
@@ -147,7 +151,7 @@ const markedSublabel = useNinjaMark(() => sublabel.value, query, mark)
     >
       <Icon
         :name="icon"
-        class="h-4 w-4"
+        class="size-4"
         :class="[props.selected ? 'text-primary-500' : 'text-muted-500']"
       />
     </BaseIconBox>
@@ -169,10 +173,10 @@ const markedSublabel = useNinjaMark(() => sublabel.value, query, mark)
     <div
       v-show="props.selected"
       class="ms-auto flex items-center justify-center"
-      :class="[media && 'h-8 w-8', icon && 'h-8 w-8']"
+      :class="[media && 'size-8', icon && 'size-8']"
     >
       <slot name="selected-icon">
-        <Icon :name="selectedIcon" class="text-success-500 block h-4 w-4" />
+        <Icon :name="selectedIcon" class="text-success-500 block size-4" />
       </slot>
     </div>
   </div>

@@ -44,6 +44,7 @@ All notable changes to this project will be documented in this file. See [standa
 * **InputNumber:** update class bindings ([a7a551e](https://github.com/shuriken-ui/nuxt/commit/a7a551eb3256a7bd570216d5440799ab7a446acc))
 * update playground demos ([8458d86](https://github.com/shuriken-ui/nuxt/commit/8458d866d5388e9c03f760f47f443f32dd510d35))
 
+### [2.0.2](https://github.com/shuriken-ui/nuxt/compare/v2.0.1...v2.0.2) (2024-01-26)
 
 ### Bug Fixes
 
@@ -55,6 +56,18 @@ All notable changes to this project will be documented in this file. See [standa
 * **BaseListbox:** update class bindings, add classes prop ([1f50da1](https://github.com/shuriken-ui/nuxt/commit/1f50da1d8de01349172adef13db9d5fc417c4af7))
 * **BaseMessage:** rename type prop to color, update schema and config ([6c7a20c](https://github.com/shuriken-ui/nuxt/commit/6c7a20c6a3664cf141fffa5eab8c3ee8dac057cc))
 * **BaseText:** replace p with span ([7cd8e4c](https://github.com/shuriken-ui/nuxt/commit/7cd8e4cc11ec82f6eaad13b4cd55857a2788594e))
+* **BaseDropdown:** use default props from app config ([7887ce5](https://github.com/shuriken-ui/nuxt/commit/7887ce568eb265f9c93aba370d9553d204ab6aff))
+* **BaseThemeToggle:** add disableTransitions in app config ([fc84339](https://github.com/shuriken-ui/nuxt/commit/fc84339b619a98f592fd5cc309374423129353f5))
+
+### [2.0.1](https://github.com/shuriken-ui/nuxt/compare/v2.0.0...v2.0.1) (2024-01-24)
+
+
+### Bug Fixes
+
+* **BaseAccordion:** use ts generic for items content ([5ce4d84](https://github.com/shuriken-ui/nuxt/commit/5ce4d8425761bb1e78cfd6e61d128cc3e97e4180))
+* **BaseTabs:** default tab detection on before mount ([0ad76af](https://github.com/shuriken-ui/nuxt/commit/0ad76afa7fbe01320213f5c2fc056af0158398f1))
+* **BaseTabSlider:** default tab detection on before mount ([3740d4a](https://github.com/shuriken-ui/nuxt/commit/3740d4ac7ec2b139aaa49c84ba1af206711f2dac))
+* use defineSlots in generic components ([f50e03b](https://github.com/shuriken-ui/nuxt/commit/f50e03b42b6b36d5688169a3c541cdb41311e0da))
 
 ## [2.0.0](https://github.com/shuriken-ui/nuxt/compare/v2.0.0-next.7...v2.0.0) (2024-01-11)
 

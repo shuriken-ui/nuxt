@@ -79,7 +79,15 @@ const props = withDefaults(
   },
 )
 
-const [modelValue] = defineModel<string>()
+const [modelValue] = defineModel<string>({
+  default: null,
+})
+
+onBeforeMount(() => {
+  if (modelValue.value === null) {
+    modelValue.value = props.tabs[0]?.value
+  }
+})
 
 const justify = useNuiDefaultProperty(props, 'BaseTabs', 'justify')
 const type = useNuiDefaultProperty(props, 'BaseTabs', 'type')
@@ -139,7 +147,7 @@ function toggle(value: string) {
           :icon-name="tab.icon"
           :toggle="toggle"
         >
-          <Icon :name="tab.icon" class="me-1 block h-5 w-5" />
+          <Icon :name="tab.icon" class="me-1 block size-5" />
         </slot>
         <span
           :class="[

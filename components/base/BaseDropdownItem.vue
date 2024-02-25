@@ -111,6 +111,10 @@ const props = withDefaults(
   },
 )
 
+const rounded = useNuiDefaultProperty(props, 'BaseDropdownItem', 'rounded')
+const contrast = useNuiDefaultProperty(props, 'BaseDropdownItem', 'contrast')
+const color = useNuiDefaultProperty(props, 'BaseDropdownItem', 'color')
+
 const radiuses = {
   none: '',
   sm: 'nui-item-rounded-sm',
@@ -132,10 +136,6 @@ const colors = {
   dark: 'nui-item-dark',
   black: 'nui-item-black',
 } as Record<string, string>
-
-const rounded = useNuiDefaultProperty(props, 'BaseDropdownItem', 'rounded')
-const contrast = useNuiDefaultProperty(props, 'BaseDropdownItem', 'contrast')
-const color = useNuiDefaultProperty(props, 'BaseDropdownItem', 'color')
 
 const { is, attributes } = useNinjaButton(props)
 </script>

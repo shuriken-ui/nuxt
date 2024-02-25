@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T extends any = string">
+<script setup lang="ts" generic="T extends unknown = string">
 import {
   Listbox,
   ListboxButton,
@@ -218,6 +218,18 @@ const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
   },
 })
 
+defineSlots<{
+  label(): any
+  icon(): any
+  'listbox-button'(props: { value: T | T[] | undefined; open: boolean }): any
+  'listbox-item'(props: {
+    item: T | T[] | undefined
+    open: boolean
+    active: boolean
+    selected: boolean
+  }): any
+}>()
+
 const rounded = useNuiDefaultProperty(props, 'BaseListbox', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseListbox', 'size')
 const contrast = useNuiDefaultProperty(props, 'BaseListbox', 'contrast')
@@ -375,7 +387,7 @@ const internal = ref<any>(modelValue)
                       >
                         <Icon
                           :name="(modelValue as any)[props.properties.icon]"
-                          class="h-4 w-4"
+                          class="size-4"
                         />
                       </BaseIconBox>
                       <div

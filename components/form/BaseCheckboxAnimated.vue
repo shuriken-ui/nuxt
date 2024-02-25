@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T extends any = boolean">
+<script setup lang="ts" generic="T extends unknown = boolean">
 defineOptions({
   inheritAttrs: false,
 })
