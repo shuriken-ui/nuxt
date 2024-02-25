@@ -120,6 +120,8 @@ const value = computed(() => {
   }
   return typeof value === 'number' ? (value / max) * 100 : undefined
 })
+
+const isIndeterminate = computed(() => typeof value.value !== 'number')
 </script>
 
 <template>
@@ -139,11 +141,11 @@ const value = computed(() => {
     <div
       class="nui-progress-bar"
       :class="[
-        value === null &&
+        isIndeterminate &&
           'nui-progress-indeterminate animate-nui-progress-indeterminate',
         props.classes?.progress,
       ]"
-      :style="value !== null ? `width: ${value}%` : 'width: 100%'"
+      :style="!isIndeterminate ? `width: ${value}%` : 'width: 100%'"
     ></div>
   </div>
 </template>
