@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-next.1](https://github.com/shuriken-ui/nuxt/compare/v3.0.0-next.0...v3.0.0-next.1) (2024-03-04)
+
+
+### Features
+
+* allow hiding create prompt + fix multiple selection with objects ([21cadd8](https://github.com/shuriken-ui/nuxt/commit/21cadd8bf917b31adc5ec9f904077a9e62803ee6)), closes [#111](https://github.com/shuriken-ui/nuxt/issues/111) [#110](https://github.com/shuriken-ui/nuxt/issues/110)
+
+
+### Bug Fixes
+
+* **BaseProgress:** indeterminate state not working ([06a4365](https://github.com/shuriken-ui/nuxt/commit/06a4365fe83dbf459854dd37987cee03e23dbe68)), closes [#112](https://github.com/shuriken-ui/nuxt/issues/112)
+
+### [2.0.2](https://github.com/shuriken-ui/nuxt/compare/v2.0.1...v2.0.2) (2024-01-26)
+
+
+### Bug Fixes
+
+* **BaseDropdown:** use default props from app config ([7887ce5](https://github.com/shuriken-ui/nuxt/commit/7887ce568eb265f9c93aba370d9553d204ab6aff))
+* **BaseThemeToggle:** add disableTransitions in app config ([fc84339](https://github.com/shuriken-ui/nuxt/commit/fc84339b619a98f592fd5cc309374423129353f5))
+
+### [2.0.1](https://github.com/shuriken-ui/nuxt/compare/v2.0.0...v2.0.1) (2024-01-24)
+
+
+### Bug Fixes
+
+* **BaseAccordion:** use ts generic for items content ([5ce4d84](https://github.com/shuriken-ui/nuxt/commit/5ce4d8425761bb1e78cfd6e61d128cc3e97e4180))
+* **BaseTabs:** default tab detection on before mount ([0ad76af](https://github.com/shuriken-ui/nuxt/commit/0ad76afa7fbe01320213f5c2fc056af0158398f1))
+* **BaseTabSlider:** default tab detection on before mount ([3740d4a](https://github.com/shuriken-ui/nuxt/commit/3740d4ac7ec2b139aaa49c84ba1af206711f2dac))
+* use defineSlots in generic components ([f50e03b](https://github.com/shuriken-ui/nuxt/commit/f50e03b42b6b36d5688169a3c541cdb41311e0da))
+
 ## [3.0.0-next.0](https://github.com/shuriken-ui/nuxt/compare/v2.0.0...v3.0.0-next.0) (2024-02-23)
 
 
