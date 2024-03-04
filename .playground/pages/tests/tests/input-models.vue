@@ -84,7 +84,7 @@ autocomplete1: {{ autocomplete1 }}({{ typeof autocomplete1 }})</pre
         <div class="col-span-2">
           <BaseAutocomplete
             v-model="autocomplete2"
-            :display-value="(item) => item.name"
+            :display-value="(item) => item?.name"
             clearable
             :items="[
               {
@@ -383,7 +383,12 @@ animatedCheckbox2: {{ animatedCheckbox2 }}({{ typeof animatedCheckbox2 }})</pre
     <NuiPreview title="BaseInputNumber" description="BaseInputNumber test">
       <div class="grid grid-cols-4 gap-6">
         <div class="col-span-2">
-          <BaseInputNumber v-model="inputNumber1" :min="-2" :max="5" />
+          <BaseInputNumber
+            v-model="inputNumber1"
+            :min="-2"
+            :max="5"
+            color-focus
+          />
         </div>
         <BaseCard class="col-span-2 p-2">
           <pre>inputNumber1: {{ inputNumber1 }}({{ typeof inputNumber1 }})</pre>

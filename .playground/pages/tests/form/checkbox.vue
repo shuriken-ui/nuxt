@@ -15,6 +15,9 @@ const options = reactive({
   sixth: true,
   seventh: true,
   eighth: true,
+  nineth: true,
+  tenth: true,
+  eleventh: true,
 })
 
 const disabledValue = ref(true)
@@ -79,6 +82,24 @@ function reset() {
             rounded="none"
             color="danger"
           />
+          <BaseCheckbox
+            v-model="options.eighth"
+            label="Light"
+            rounded="none"
+            color="light"
+          />
+          <BaseCheckbox
+            v-model="options.nineth"
+            label="Dark"
+            rounded="none"
+            color="dark"
+          />
+          <BaseCheckbox
+            v-model="options.tenth"
+            label="Black"
+            rounded="none"
+            color="black"
+          />
         </BaseFocusLoop>
       </NuiPreview>
 
@@ -125,6 +146,24 @@ function reset() {
             label="Danger"
             rounded="sm"
             color="danger"
+          />
+          <BaseCheckbox
+            v-model="options.eighth"
+            label="Light"
+            rounded="sm"
+            color="light"
+          />
+          <BaseCheckbox
+            v-model="options.nineth"
+            label="Dark"
+            rounded="sm"
+            color="dark"
+          />
+          <BaseCheckbox
+            v-model="options.tenth"
+            label="Black"
+            rounded="sm"
+            color="black"
           />
         </BaseFocusLoop>
       </NuiPreview>
@@ -173,6 +212,24 @@ function reset() {
             rounded="md"
             color="danger"
           />
+          <BaseCheckbox
+            v-model="options.eighth"
+            label="Light"
+            rounded="md"
+            color="light"
+          />
+          <BaseCheckbox
+            v-model="options.nineth"
+            label="Dark"
+            rounded="md"
+            color="dark"
+          />
+          <BaseCheckbox
+            v-model="options.tenth"
+            label="Black"
+            rounded="md"
+            color="black"
+          />
         </BaseFocusLoop>
       </NuiPreview>
 
@@ -219,6 +276,24 @@ function reset() {
             label="Danger"
             rounded="lg"
             color="danger"
+          />
+          <BaseCheckbox
+            v-model="options.eighth"
+            label="Light"
+            rounded="lg"
+            color="light"
+          />
+          <BaseCheckbox
+            v-model="options.nineth"
+            label="Dark"
+            rounded="lg"
+            color="dark"
+          />
+          <BaseCheckbox
+            v-model="options.tenth"
+            label="Black"
+            rounded="lg"
+            color="black"
           />
         </BaseFocusLoop>
       </NuiPreview>
@@ -270,6 +345,24 @@ function reset() {
             label="Danger"
             rounded="full"
             color="danger"
+          />
+          <BaseCheckbox
+            v-model="options.eighth"
+            label="Light"
+            rounded="full"
+            color="light"
+          />
+          <BaseCheckbox
+            v-model="options.nineth"
+            label="Dark"
+            rounded="full"
+            color="dark"
+          />
+          <BaseCheckbox
+            v-model="options.tenth"
+            label="Black"
+            rounded="full"
+            color="black"
           />
         </BaseFocusLoop>
       </NuiPreview>

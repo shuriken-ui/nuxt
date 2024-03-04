@@ -79,6 +79,11 @@ const props = withDefaults(
     disabled?: boolean
 
     /**
+     * Wether the border should change color when focused
+     */
+    colorFocus?: boolean
+
+    /**
      * Whether the multiselect allows multiple selections.
      */
     multiple?: boolean
@@ -139,6 +144,36 @@ const props = withDefaults(
        */
       icon?: T extends object ? keyof T : string
     }
+
+    /**
+     * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the label element.
+       */
+      label?: string | string[]
+
+      /**
+       * CSS classes to apply to the button element.
+       */
+      button?: string | string[]
+
+      /**
+       * CSS classes to apply to the icon element.
+       */
+      icon?: string | string[]
+
+      /**
+       * CSS classes to apply to the error element.
+       */
+      error?: string | string[]
+    }
   }>(),
   {
     rounded: undefined,
@@ -149,26 +184,16 @@ const props = withDefaults(
     selectedIcon: 'lucide:check',
     placeholder: '',
     error: false,
-    multipleLabel: () => {
-      return (value: T[], labelProperty?: string): string => {
-        if (value.length === 0) {
-          return 'No elements selected'
-        } else if (value.length > 1) {
-          return `${value.length} elements selected`
-        }
-        return labelProperty && typeof value?.[0] === 'object'
-          ? String((value?.[0] as any)?.[labelProperty])
-          : String(value?.[0])
-      }
-    },
+    multipleLabel: undefined,
     properties: () => ({}),
     placement: 'bottom-start',
+    classes: () => ({}),
   },
 )
 
 const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
   set(value) {
-    if (modelModifiers.prop && props.properties.value) {
+    if (!props.multiple && modelModifiers.prop && props.properties.value) {
       const attr = props.properties.value
       return props.items.find(
         (item) =>
@@ -200,10 +225,10 @@ const contrast = useNuiDefaultProperty(props, 'BaseListbox', 'contrast')
 
 const radiuses = {
   none: '',
-  sm: 'nui-listbox-rounded',
-  md: 'nui-listbox-smooth',
-  lg: 'nui-listbox-curved',
-  full: 'nui-listbox-full',
+  sm: 'nui-listbox-rounded-sm',
+  md: 'nui-listbox-rounded-md',
+  lg: 'nui-listbox-rounded-lg',
+  full: 'nui-listbox-rounded-full',
 } as Record<string, string>
 
 const sizes = {
@@ -230,6 +255,39 @@ const placeholder = computed(() => {
   return props.placeholder
 })
 
+function multipleLabelResolved(value: T[], labelProperty?: string): string {
+  if (typeof props.multipleLabel === 'function') {
+    return props.multipleLabel(value, props.properties.label)
+  }
+  if (props.multipleLabel) {
+    return props.multipleLabel
+  }
+  if (value.length === 0 && props.placeholder) {
+    return ''
+  } else if (value.length === 0) {
+    return 'No elements selected'
+  } else if (value.length > 1) {
+    return `${value.length} elements selected`
+  }
+
+  if (modelModifiers.prop && props.properties.label) {
+    const item = props.items.find(
+      (item) =>
+        item &&
+        typeof item === 'object' &&
+        props.properties.value &&
+        (item as any)[props.properties.value] === value[0],
+    )
+    return labelProperty && typeof item === 'object'
+      ? String((item as any)?.[labelProperty])
+      : String(item)
+  }
+
+  return labelProperty && typeof value?.[0] === 'object'
+    ? String((value?.[0] as any)?.[labelProperty])
+    : String(value?.[0])
+}
+
 const internal = ref<any>(modelValue)
 </script>
 
@@ -244,6 +302,8 @@ const internal = ref<any>(modelValue)
       props.loading && 'nui-listbox-loading',
       props.labelFloat && 'nui-listbox-label-float',
       props.icon && 'nui-has-icon',
+      props.colorFocus && 'nui-listbox-focus',
+      props.classes?.wrapper,
     ]"
   >
     <Listbox
@@ -271,6 +331,7 @@ const internal = ref<any>(modelValue)
             (props.label && !props.labelFloat)
           "
           class="nui-listbox-label"
+          :class="props.classes?.label"
         >
           <slot name="label">{{ props.label }}</slot>
         </ListboxLabel>
@@ -281,6 +342,7 @@ const internal = ref<any>(modelValue)
               <ListboxButton
                 :disabled="props.disabled"
                 class="nui-listbox-button"
+                :class="props.classes?.button"
               >
                 <slot name="listbox-button" :value="modelValue" :open="open">
                   <div class="nui-listbox-button-inner">
@@ -290,6 +352,7 @@ const internal = ref<any>(modelValue)
                       rounded="sm"
                       color="none"
                       class="nui-icon-box"
+                      :class="props.classes?.icon"
                     >
                       <slot name="icon">
                         <Icon :name="props.icon" class="nui-icon-box-inner" />
@@ -313,12 +376,10 @@ const internal = ref<any>(modelValue)
                         ]"
                       >
                         {{
-                          typeof props.multipleLabel === 'function'
-                            ? props.multipleLabel(
-                                modelValue,
-                                props.properties.label,
-                              )
-                            : props.multipleLabel
+                          multipleLabelResolved(
+                            modelValue as T[],
+                            props.properties.label,
+                          )
                         }}
                       </div>
                     </template>
@@ -477,6 +538,7 @@ const internal = ref<any>(modelValue)
           <span
             v-if="props.error && typeof props.error === 'string'"
             class="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none"
+            :class="props.classes?.error"
           >
             {{ props.error }}
           </span>

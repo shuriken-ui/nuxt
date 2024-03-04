@@ -206,6 +206,75 @@ definePageMeta({
       </NuiPreview>
 
       <NuiPreview
+        title="Color: light"
+        description="Button icon component light color"
+      >
+        <div class="flex flex-wrap items-end gap-2">
+          <BaseButtonIcon rounded="none" color="light">
+            <Icon name="ph:moon-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+          <BaseButtonIcon rounded="sm" color="light">
+            <Icon name="ph:github-logo-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+          <BaseButtonIcon rounded="md" color="light">
+            <Icon name="ph:game-controller-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+          <BaseButtonIcon rounded="lg" color="light">
+            <Icon name="ph:alien-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+          <BaseButtonIcon rounded="full" color="light">
+            <Icon name="ph:heart-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Color: dark"
+        description="Button icon component dark color"
+      >
+        <div class="flex flex-wrap items-end gap-2">
+          <BaseButtonIcon rounded="none" color="dark">
+            <Icon name="ph:moon-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+          <BaseButtonIcon rounded="sm" color="dark">
+            <Icon name="ph:github-logo-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+          <BaseButtonIcon rounded="md" color="dark">
+            <Icon name="ph:game-controller-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+          <BaseButtonIcon rounded="lg" color="dark">
+            <Icon name="ph:alien-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+          <BaseButtonIcon rounded="full" color="dark">
+            <Icon name="ph:heart-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Color: black"
+        description="Button icon component black color"
+      >
+        <div class="flex flex-wrap items-end gap-2">
+          <BaseButtonIcon rounded="none" color="black">
+            <Icon name="ph:moon-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+          <BaseButtonIcon rounded="sm" color="black">
+            <Icon name="ph:github-logo-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+          <BaseButtonIcon rounded="md" color="black">
+            <Icon name="ph:game-controller-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+          <BaseButtonIcon rounded="lg" color="black">
+            <Icon name="ph:alien-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+          <BaseButtonIcon rounded="full" color="black">
+            <Icon name="ph:heart-duotone" class="h-5 w-5" />
+          </BaseButtonIcon>
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
         title="State: loading"
         description="Button icon component in loading state"
       >

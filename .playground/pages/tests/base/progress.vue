@@ -63,6 +63,12 @@ const progressCircle = ref(25)
           <div class="flex items-end gap-2">
             <BaseProgressCircle
               title="Primary circle progress bar"
+              :size="35"
+              :value="progressCircle"
+              color="dark"
+            />
+            <BaseProgressCircle
+              title="Primary circle progress bar"
               :size="45"
               :value="progressCircle"
               class="text-primary-500"
@@ -84,6 +90,12 @@ const progressCircle = ref(25)
               :size="85"
               :value="progressCircle"
               class="text-indigo-400"
+            />
+            <BaseProgressCircle
+              title="Primary circle progress bar"
+              :size="95"
+              :value="progressCircle"
+              color="black"
             />
           </div>
           <div class="flex justify-between gap-2">
@@ -193,6 +205,18 @@ const progressCircle = ref(25)
             size="sm"
             :value="78"
             color="danger"
+          />
+          <BaseProgress
+            title="dark progress bar"
+            size="sm"
+            :value="78"
+            color="dark"
+          />
+          <BaseProgress
+            title="black progress bar"
+            size="sm"
+            :value="78"
+            color="black"
           />
         </div>
       </NuiPreview>

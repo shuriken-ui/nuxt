@@ -12,6 +12,14 @@ const props = withDefaults(
     rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
+     * The color of the pagination active button.
+     *
+     * @since 3.0.0
+     * @default 'primary'
+     */
+    color?: 'primary' | 'dark' | 'black'
+
+    /**
      * The number of items to display per page.
      */
     itemPerPage: number
@@ -55,15 +63,52 @@ const props = withDefaults(
      * The ellipsis to show when there are too many links.
      */
     ellipsis?: string
+
+    /**
+     * Optional CSS classes to apply to the component inner elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the list element.
+       */
+      list?: string | string[]
+
+      /**
+       * CSS classes to apply to the link element.
+       */
+      link?: string | string[]
+
+      /**
+       * CSS classes to apply to the ellipsis element.
+       */
+      ellipsis?: string | string[]
+
+      /**
+       * CSS classes to apply to the buttons element.
+       */
+      buttons?: string | string[]
+
+      /**
+       * CSS classes to apply to the button element.
+       */
+      button?: string | string[]
+    }
   }>(),
   {
     rounded: undefined,
+    color: undefined,
     currentPage: 1,
     maxLinksDisplayed: 3,
     routerQueryKey: 'page',
     previousIcon: 'lucide:chevron-left',
     nextIcon: 'lucide:chevron-right',
     ellipsis: '…',
+    classes: () => ({}),
   },
 )
 const emits = defineEmits<{
@@ -71,13 +116,20 @@ const emits = defineEmits<{
 }>()
 
 const rounded = useNuiDefaultProperty(props, 'BasePagination', 'rounded')
+const color = useNuiDefaultProperty(props, 'BasePagination', 'color')
 
 const radiuses = {
   none: '',
-  sm: 'nui-pagination-rounded',
-  md: 'nui-pagination-smooth',
-  lg: 'nui-pagination-curved',
-  full: 'nui-pagination-full',
+  sm: 'nui-pagination-rounded-sm',
+  md: 'nui-pagination-rounded-md',
+  lg: 'nui-pagination-rounded-lg',
+  full: 'nui-pagination-rounded-full',
+} as Record<string, string>
+
+const colors = {
+  primary: 'nui-pagination-primary',
+  dark: 'nui-pagination-dark',
+  black: 'nui-pagination-black',
 } as Record<string, string>
 
 const route = useRoute()
@@ -153,11 +205,18 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
 </script>
 
 <template>
-  <div class="nui-pagination" :class="[rounded && radiuses[rounded]]">
+  <div
+    class="nui-pagination"
+    :class="[
+      rounded && radiuses[rounded],
+      color && colors[color],
+      props.classes?.wrapper,
+    ]"
+  >
     <BaseFocusLoop
       as="ul"
       class="nui-pagination-list"
-      :class="rounded && radiuses[rounded]"
+      :class="[rounded && radiuses[rounded], props.classes?.list]"
     >
       <slot name="before-pagination"></slot>
       <!-- Link -->
@@ -169,6 +228,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           :class="[
             currentPage === 1 && 'nui-active',
             rounded && radiuses[rounded],
+            props.classes?.link,
           ]"
           @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
           @click="(e: any) => handleLinkClick(e, 1)"
@@ -181,7 +241,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
       <li v-if="showLastLink && pages.length > 0 && pages[0] > 2">
         <span
           class="nui-pagination-ellipsis"
-          :class="[rounded && radiuses[rounded]]"
+          :class="[rounded && radiuses[rounded], props.classes?.ellipsis]"
         >
           {{ props.ellipsis }}
         </span>
@@ -197,6 +257,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           :class="[
             currentPage === page && 'nui-active',
             rounded && radiuses[rounded],
+            props.classes?.link,
           ]"
           @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
           @click="(e: any) => handleLinkClick(e, page)"
@@ -209,7 +270,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
       <li v-if="showLastLink && pages[pages.length - 1] < lastPage - 1">
         <span
           class="nui-pagination-ellipsis"
-          :class="[rounded && radiuses[rounded]]"
+          :class="[rounded && radiuses[rounded], props.classes?.ellipsis]"
         >
           {{ props.ellipsis }}
         </span>
@@ -224,6 +285,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           :class="[
             currentPage === lastPage && 'nui-active',
             rounded && radiuses[rounded],
+            props.classes?.link,
           ]"
           @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
           @click="(e: any) => handleLinkClick(e, lastPage)"
@@ -236,7 +298,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
 
     <BaseFocusLoop
       class="nui-pagination-buttons"
-      :class="rounded && radiuses[rounded]"
+      :class="[rounded && radiuses[rounded], props.classes?.buttons]"
     >
       <slot name="before-navigation"></slot>
 
@@ -245,6 +307,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
         :to="paginatedLink(currentPage - 1)"
         tabindex="0"
         class="nui-pagination-button"
+        :class="props.classes?.button"
         @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
         @click="(e: any) => handleLinkClick(e, currentPage - 1)"
       >
@@ -258,6 +321,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
         :to="paginatedLink(currentPage + 1)"
         tabindex="0"
         class="nui-pagination-button"
+        :class="props.classes?.button"
         @keydown.space="(e: any) => (e.target as HTMLAnchorElement).click()"
         @click="(e: any) => handleLinkClick(e, currentPage + 1)"
       >

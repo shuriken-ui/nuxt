@@ -16,7 +16,12 @@ const props = withDefaults(
      */
     color?:
       | 'default'
+      | 'default-contrast'
       | 'muted'
+      | 'muted-contrast'
+      | 'light'
+      | 'dark'
+      | 'black'
       | 'primary'
       | 'info'
       | 'success'
@@ -65,15 +70,20 @@ const variants = {
 
 const radiuses = {
   none: '',
-  sm: 'nui-tag-rounded',
-  md: 'nui-tag-smooth',
-  lg: 'nui-tag-curved',
-  full: 'nui-tag-full',
+  sm: 'nui-tag-rounded-sm',
+  md: 'nui-tag-rounded-md',
+  lg: 'nui-tag-rounded-lg',
+  full: 'nui-tag-rounded-full',
 } as Record<string, string>
 
 const colors = {
   default: 'nui-tag-default',
+  'default-contrast': 'nui-tag-default-contrast',
   muted: 'nui-tag-muted',
+  'muted-contrast': 'nui-tag-muted-contrast',
+  light: 'nui-tag-light',
+  dark: 'nui-tag-dark',
+  black: 'nui-tag-black',
   primary: 'nui-tag-primary',
   info: 'nui-tag-info',
   success: 'nui-tag-success',

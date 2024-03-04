@@ -6,6 +6,24 @@ definePageMeta({
   section: 'base',
 })
 
+const demoBreadcrumb = [
+  {
+    label: 'Home',
+    hideLabel: false,
+    to: '#',
+  },
+  {
+    label: 'Products',
+    hideLabel: false,
+    to: '#',
+  },
+  {
+    label: 'Laptops',
+    hideLabel: false,
+    to: '#',
+  },
+]
+
 const demoBreadcrumbOne = [
   {
     label: 'Home',
@@ -50,6 +68,14 @@ const demoBreadcrumbTwo = [
 <template>
   <div>
     <NuiPreviewContainer title="BaseBreadcrumb">
+      <NuiPreview title="Colors" description="Breadcrumb component colors">
+        <div class="flex flex-col gap-4 pt-4">
+          <BaseBreadcrumb :items="demoBreadcrumb" color="dark" />
+
+          <BaseBreadcrumb :items="demoBreadcrumb" color="black" />
+        </div>
+      </NuiPreview>
+
       <NuiPreview
         title="Separator: dot"
         description="Breadcrumb component with dot separator"

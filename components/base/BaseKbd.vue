@@ -22,29 +22,18 @@ const props = withDefaults(
      *
      * @default 'default'
      */
-    color?: 'default' | 'muted' | 'none'
+    color?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'none'
 
     /**
      * The icon to display for the kbd.
      */
     icon?: string
-
-    /**
-     * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
-     */
-    classes?: {
-      /**
-       * CSS classes to apply to the wrapper element.
-       */
-      wrapper?: string | string[]
-    }
   }>(),
   {
     rounded: undefined,
     size: undefined,
     color: undefined,
     icon: undefined,
-    classes: () => ({}),
   },
 )
 
@@ -69,7 +58,9 @@ const sizes = {
 
 const colors = {
   default: 'nui-kbd-default',
+  'default-contrast': 'nui-kbd-default-contrast',
   muted: 'nui-kbd-muted',
+  'muted-contrast': 'nui-kbd-muted-contrast',
 } as Record<string, string>
 </script>
 
@@ -80,7 +71,6 @@ const colors = {
       color && colors[color],
       size && sizes[size],
       rounded && radiuses[rounded],
-      props.classes?.wrapper,
     ]"
   >
     <slot>

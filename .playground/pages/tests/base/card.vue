@@ -80,7 +80,7 @@ definePageMeta({
 
       <NuiPreview title="Contrast" description="Card component contrasts">
         <div class="grid gap-4 md:grid-cols-2 max-w-3xl">
-          <BaseCard color="white" rounded="md" class="p-6">
+          <BaseCard color="default" rounded="md" class="p-6">
             <BaseHeading
               as="h4"
               size="sm"
@@ -96,7 +96,7 @@ definePageMeta({
             </BaseParagraph>
           </BaseCard>
 
-          <BaseCard color="white-contrast" rounded="md" class="p-6">
+          <BaseCard color="default-contrast" rounded="md" class="p-6">
             <BaseHeading
               as="h4"
               size="sm"
@@ -148,7 +148,7 @@ definePageMeta({
 
       <NuiPreview title="Color" description="Card component colors">
         <div class="grid gap-4 md:grid-cols-2 max-w-3xl">
-          <BaseCard color="white" rounded="md" class="p-6">
+          <BaseCard color="default" rounded="md" class="p-6">
             <BaseHeading
               as="h4"
               size="sm"
@@ -235,6 +235,38 @@ definePageMeta({
               weight="semibold"
               lead="tight"
               class="text-muted-800 mb-2 dark:text-white"
+            >
+              Iam a card
+            </BaseHeading>
+
+            <BaseParagraph size="sm" lead="tight" class="text-muted-400">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </BaseParagraph>
+          </BaseCard>
+
+          <BaseCard color="dark" rounded="md" class="p-6">
+            <BaseHeading
+              as="h4"
+              size="sm"
+              weight="semibold"
+              lead="tight"
+              class="dark:text-muted-800 mb-2 text-white"
+            >
+              Iam a card
+            </BaseHeading>
+
+            <BaseParagraph size="sm" lead="tight" class="text-muted-400">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </BaseParagraph>
+          </BaseCard>
+
+          <BaseCard color="black" rounded="md" class="p-6">
+            <BaseHeading
+              as="h4"
+              size="sm"
+              weight="semibold"
+              lead="tight"
+              class="dark:text-muted-800 mb-2 text-white"
             >
               Iam a card
             </BaseHeading>

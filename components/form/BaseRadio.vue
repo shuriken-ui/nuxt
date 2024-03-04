@@ -23,8 +23,10 @@ const props = withDefaults(
     /** The color of the radio.*/
     color?:
       | 'default'
-      | 'light'
       | 'muted'
+      | 'light'
+      | 'dark'
+      | 'black'
       | 'primary'
       | 'info'
       | 'success'
@@ -83,8 +85,10 @@ const id = useNinjaId(() => props.id)
 
 const colors = {
   default: 'nui-radio-default',
-  light: 'nui-radio-light',
   muted: 'nui-radio-muted',
+  light: 'nui-radio-light',
+  dark: 'nui-radio-dark',
+  black: 'nui-radio-black',
   primary: 'nui-radio-primary',
   info: 'nui-radio-info',
   success: 'nui-radio-success',

@@ -53,8 +53,10 @@ const persons = ref<Person[]>([
   },
 ])
 const personValue = ref<Person>()
+const personSelection = ref<Person[]>([persons.value[1]])
+const personSelectionProp = ref<number[]>([2])
 
-const hobbyValue = ref<Hobby>()
+const hobbyValue = ref<Hobby | null>(null)
 const hobbies = ref<Hobby[]>([
   {
     id: 1,
@@ -114,6 +116,7 @@ const fields = reactive({
   tenth: '',
   eleventh: '',
   twelfth: '',
+  thirteenth: '',
 })
 
 const value = ref<string[]>(['Nuxt', 'Vue.js'])
@@ -125,14 +128,6 @@ const frameworks = ref([
   'React.js',
   'Angular',
   'Alpine.js',
-])
-
-const people = ref([
-  'Clarissa Perez',
-  'Aaron Splatter',
-  'Mike Miller',
-  'Benedict Kessler',
-  'Maya Rosselini',
 ])
 </script>
 
@@ -443,6 +438,7 @@ const people = ref([
               rounded="md"
               placeholder="e.g. Nuxt"
               label="Framework"
+              color-focus
             />
           </div>
           <div class="flex-1">
@@ -453,6 +449,7 @@ const people = ref([
               rounded="md"
               placeholder="e.g. Nuxt"
               label="Framework"
+              color-focus
             />
           </div>
           <div class="flex-1">
@@ -464,6 +461,7 @@ const people = ref([
               rounded="md"
               placeholder="e.g. Nuxt"
               label="Framework"
+              color-focus
             />
           </div>
         </div>
@@ -514,7 +512,7 @@ const people = ref([
       </NuiPreview>
 
       <NuiPreview
-        title="Multiple"
+        title="Multiple: Scalar"
         description="Autocomplete component multiple selection"
       >
         <div class="max-w-sm">
@@ -526,6 +524,49 @@ const people = ref([
             placeholder="Search..."
             label="Assignee"
             multiple
+          />
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Multiple: Objects"
+        description="Autocomplete component multiple object selection"
+      >
+        <div class="max-w-sm">
+          <BaseAutocomplete
+            v-model="personSelection"
+            :items="persons"
+            :display-value="(item: Person) => item?.name"
+            :filter-items="filterItems"
+            rounded="md"
+            icon="lucide:list-filter"
+            placeholder="Search..."
+            label="Assignee"
+            multiple
+          />
+        </div>
+      </NuiPreview>
+
+      <NuiPreview
+        title="Multiple: Objects /w prop modifier"
+        description="Autocomplete component multiple object selection"
+      >
+        <div class="max-w-sm">
+          <BaseAutocomplete
+            v-model.prop="personSelectionProp"
+            :items="persons"
+            :filter-items="filterItems"
+            rounded="md"
+            icon="lucide:list-filter"
+            placeholder="Search..."
+            label="Assignee"
+            multiple
+            :properties="{
+              value: 'id',
+              label: 'name',
+              sublabel: 'text',
+              media: 'media',
+            }"
           />
         </div>
       </NuiPreview>
@@ -668,13 +709,14 @@ const people = ref([
           <BaseAutocomplete
             v-model="hobbyValue"
             :items="hobbies"
-            :display-value="(item: Hobby) => item.name"
+            :display-value="(item: Hobby) => item?.name"
             :filter-items="filterItems"
             icon="ph:buildings"
             rounded="md"
             placeholder="Select a hobby"
             label="Company"
             clearable
+            :clear-value="null"
             :properties="{
               value: 'id',
               label: 'name',
@@ -691,9 +733,9 @@ const people = ref([
       >
         <div class="max-w-sm">
           <BaseAutocomplete
-            v-model="value"
+            v-model="personValue"
             :items="persons"
-            :display-value="(item: Person) => item.name"
+            :display-value="(item: Person) => item?.name"
             :filter-items="filterItems"
             icon="ph:users-three"
             rounded="md"
@@ -706,6 +748,24 @@ const people = ref([
               sublabel: 'text',
               media: 'media',
             }"
+          />
+        </div>
+      </NuiPreview>
+
+      <NuiPreview title="Allow create" description="Allow to create new items">
+        <div class="grid gap-6 md:max-w-3xl md:grid-cols-3">
+          <BaseAutocomplete
+            v-model="fields.thirteenth"
+            :items="frameworks"
+            label="With prompt (default)"
+            allow-create
+          />
+          <BaseAutocomplete
+            v-model="fields.thirteenth"
+            :items="frameworks"
+            label="Hidden prompt"
+            allow-create
+            hide-create-prompt
           />
         </div>
       </NuiPreview>

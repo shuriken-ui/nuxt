@@ -2,11 +2,90 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0-next.1](https://github.com/shuriken-ui/nuxt/compare/v3.0.0-next.0...v3.0.0-next.1) (2024-03-04)
+
+
+### Features
+
+* allow hiding create prompt + fix multiple selection with objects ([21cadd8](https://github.com/shuriken-ui/nuxt/commit/21cadd8bf917b31adc5ec9f904077a9e62803ee6)), closes [#111](https://github.com/shuriken-ui/nuxt/issues/111) [#110](https://github.com/shuriken-ui/nuxt/issues/110)
+
+
+### Bug Fixes
+
+* **BaseProgress:** indeterminate state not working ([06a4365](https://github.com/shuriken-ui/nuxt/commit/06a4365fe83dbf459854dd37987cee03e23dbe68)), closes [#112](https://github.com/shuriken-ui/nuxt/issues/112)
+
 ### [2.0.2](https://github.com/shuriken-ui/nuxt/compare/v2.0.1...v2.0.2) (2024-01-26)
 
 
 ### Bug Fixes
 
+* **BaseDropdown:** use default props from app config ([7887ce5](https://github.com/shuriken-ui/nuxt/commit/7887ce568eb265f9c93aba370d9553d204ab6aff))
+* **BaseThemeToggle:** add disableTransitions in app config ([fc84339](https://github.com/shuriken-ui/nuxt/commit/fc84339b619a98f592fd5cc309374423129353f5))
+
+### [2.0.1](https://github.com/shuriken-ui/nuxt/compare/v2.0.0...v2.0.1) (2024-01-24)
+
+
+### Bug Fixes
+
+* **BaseAccordion:** use ts generic for items content ([5ce4d84](https://github.com/shuriken-ui/nuxt/commit/5ce4d8425761bb1e78cfd6e61d128cc3e97e4180))
+* **BaseTabs:** default tab detection on before mount ([0ad76af](https://github.com/shuriken-ui/nuxt/commit/0ad76afa7fbe01320213f5c2fc056af0158398f1))
+* **BaseTabSlider:** default tab detection on before mount ([3740d4a](https://github.com/shuriken-ui/nuxt/commit/3740d4ac7ec2b139aaa49c84ba1af206711f2dac))
+* use defineSlots in generic components ([f50e03b](https://github.com/shuriken-ui/nuxt/commit/f50e03b42b6b36d5688169a3c541cdb41311e0da))
+
+## [3.0.0-next.0](https://github.com/shuriken-ui/nuxt/compare/v2.0.0...v3.0.0-next.0) (2024-02-23)
+
+
+### Features
+
+* add missing types in schema ([d352461](https://github.com/shuriken-ui/nuxt/commit/d352461210d11f751c13b9a6ce3a26ab56ad1f0c))
+* **BaseAccordion:** add color, dotColor and classes props, update app config ([6cf13f7](https://github.com/shuriken-ui/nuxt/commit/6cf13f75b187873a70db0695e1b31f4fbf636846))
+* **BaseAutocomplete:** update class bindings ([2c45109](https://github.com/shuriken-ui/nuxt/commit/2c4510978275a47ef8c00e64e079e779699c611e))
+* **BaseAutocomplete:** update class bindings, add color-focus prop ([8cff245](https://github.com/shuriken-ui/nuxt/commit/8cff2451d65a58742c3527a3fe90fcadcb6564c4))
+* **BaseAvatar:** add color and classes props, update app config ([aeb3014](https://github.com/shuriken-ui/nuxt/commit/aeb30147b28df35817332e432b956d2e9628ee00))
+* **BaseAvatarGroup:** add classes prop ([b61e307](https://github.com/shuriken-ui/nuxt/commit/b61e3079b77d30541db808c6272b2fa723a85224))
+* **BaseBreadcrumb:** add color and classes prop, add to app.config, add default prop values ([9931fb0](https://github.com/shuriken-ui/nuxt/commit/9931fb08b5c31e5e8d5f1adc7413fc801db1239f))
+* **BaseButtonAction:** add colors, add contrast colors, update classes naming ([215ef45](https://github.com/shuriken-ui/nuxt/commit/215ef45175bd0a115aad35b753ce50eceaaf7073))
+* **BaseButtonClose:** add contrast colors, update class bindings ([007f08d](https://github.com/shuriken-ui/nuxt/commit/007f08d5c018ca4f4ff47ccc05ed3f4e3b86bfa5))
+* **BaseButtonIcon:** add colors, add contrast colors, update class bindings ([d6d5853](https://github.com/shuriken-ui/nuxt/commit/d6d5853b12e44b17b7e36e29c858a0810b360625))
+* **BaseButton:** update prop names, add new colors, add contrast colors ([f1ad68c](https://github.com/shuriken-ui/nuxt/commit/f1ad68c4f73ced789f8d03789b528bd113ee92ca))
+* **BaseCard:** add colors, update class bindings ([022a6cb](https://github.com/shuriken-ui/nuxt/commit/022a6cbbebc8957fb182d3df961bbab99340d627))
+* **BaseCheckbox:** add colors, update class bindings ([e9dd164](https://github.com/shuriken-ui/nuxt/commit/e9dd1643a83559e4f569b2a3efd37ddc2adf3fea))
+* **BaseCheckboxAnimated:** add new colors, update class bindings ([0f0e4cc](https://github.com/shuriken-ui/nuxt/commit/0f0e4cc51b9263a2d4fb0c96142d5f28ee6e17b5))
+* **BaseDropdownItem:** rename color prop to contrast, add new color prop, update class bindings ([7937d74](https://github.com/shuriken-ui/nuxt/commit/7937d745d6bb8f442eb3e46e05170d0485e1156b))
+* **BaseDropdownItem:** update jsdocs, update class bindings ([88606fc](https://github.com/shuriken-ui/nuxt/commit/88606fc03ff9703fbf9354af73e6d484bf597146))
+* **BaseFullscreenDropfile:** add color prop ([ec8ed33](https://github.com/shuriken-ui/nuxt/commit/ec8ed3348f19991ce47cc48cce45071590b71369))
+* **BaseIconBox:** add colors, update class bindings ([2dcb105](https://github.com/shuriken-ui/nuxt/commit/2dcb1051f9141c90dfb94aedde67bd51e5108c85))
+* **BaseInputFile:** update class bindings, fix color focus ([552ac8e](https://github.com/shuriken-ui/nuxt/commit/552ac8e03caa8387357c4ffa7437c9170a79256b))
+* **BaseInput:** update class bindings ([fe6f9d3](https://github.com/shuriken-ui/nuxt/commit/fe6f9d320172adcd93754668cdb8827803d46dc9))
+* **BaseKbd:** update props, update class bindings ([491312b](https://github.com/shuriken-ui/nuxt/commit/491312bab7b4f7c895f755ed4e8f8560db1417e3))
+* **BaseMessage:** add classes prop, update class bindings ([1fb534a](https://github.com/shuriken-ui/nuxt/commit/1fb534a4b496b3f34548493b3fea553f0a2ec9cc))
+* **BasePagination:** add classes prop, update class bindings ([8daab5e](https://github.com/shuriken-ui/nuxt/commit/8daab5e2d8550811141ee81e748aecb640f685ca))
+* **BaseProgress:** add colors, add classes prop, update class bindings ([0ba373b](https://github.com/shuriken-ui/nuxt/commit/0ba373bde57e3c9a02a47048b6c473d5a6892df6))
+* **BaseProgressCircle:** add color and classes props, update schema and config ([a32c02c](https://github.com/shuriken-ui/nuxt/commit/a32c02c100b5f6c3b7d51553f14144c869d09d91))
+* **BaseProse:** update class bindings ([068c8ae](https://github.com/shuriken-ui/nuxt/commit/068c8aea9027d86628d4b9e23b685c66548f2de5))
+* **BaseRadio:** add colors, update class bindings ([f342e8b](https://github.com/shuriken-ui/nuxt/commit/f342e8bef844e59d0b4fcba3d3e6a0165c6b7633))
+* **BaseSelect:** add color focus prop, update class bindings ([a494e2b](https://github.com/shuriken-ui/nuxt/commit/a494e2b722584eb70cbc24be82105fe65b03e258))
+* **BaseSwitch:** add colors, update class bindings ([ee8bc1c](https://github.com/shuriken-ui/nuxt/commit/ee8bc1c77c9470335ed19e17e497c46425bc39c5))
+* **BaseTabs:** add color and classes prop, update class bindings ([ff449ae](https://github.com/shuriken-ui/nuxt/commit/ff449ae659451a211ebeb495f62c527c18f80581))
+* **BaseTabSlider:** add color and classes prop, update class bindings, update schema and config ([7809472](https://github.com/shuriken-ui/nuxt/commit/780947225d7c5d272c42a9862fb2f10c0fa6a6b6))
+* **BaseTag:** add colors, update class bindings ([5d7bcf6](https://github.com/shuriken-ui/nuxt/commit/5d7bcf6de4f44dec77ca2b17e2079bfb8e178aa9))
+* **BaseTextarea:** update class bindings, fix color focus ([6e955ff](https://github.com/shuriken-ui/nuxt/commit/6e955ff94db799e60c6f7ad560fad189cce753da))
+* **Dropdown:** add colors, update class bindings ([68bbfe6](https://github.com/shuriken-ui/nuxt/commit/68bbfe6090feba606c73bd314574842db21499d1))
+* **InputNumber:** update class bindings ([a7a551e](https://github.com/shuriken-ui/nuxt/commit/a7a551eb3256a7bd570216d5440799ab7a446acc))
+* update playground demos ([8458d86](https://github.com/shuriken-ui/nuxt/commit/8458d866d5388e9c03f760f47f443f32dd510d35))
+
+### [2.0.2](https://github.com/shuriken-ui/nuxt/compare/v2.0.1...v2.0.2) (2024-01-26)
+
+### Bug Fixes
+
+* **BaseAutocomplete:** fix error border color ([b46d4ff](https://github.com/shuriken-ui/nuxt/commit/b46d4ff2bfa5dad5bc49dbb19ff69cec76fc42a7))
+* **BaseIconBox:** add non option to colors ([df70df6](https://github.com/shuriken-ui/nuxt/commit/df70df678488b5b74d825a304c6820647169f2cf))
+* **BaseIconBox:** renamed invert color to light ([6efdbb1](https://github.com/shuriken-ui/nuxt/commit/6efdbb1570f215b28da3bc8f73da7f1624a9b557))
+* **BaseInput:** fix classes bindings ([79d93f6](https://github.com/shuriken-ui/nuxt/commit/79d93f64eb4fd6a28ffaa0a8ee8b160d186cae2e))
+* **BaseInputNumber:** update class bindings ([3d8b082](https://github.com/shuriken-ui/nuxt/commit/3d8b08215cd2f0153354afe0de7c7a29328cbd76))
+* **BaseListbox:** update class bindings, add classes prop ([1f50da1](https://github.com/shuriken-ui/nuxt/commit/1f50da1d8de01349172adef13db9d5fc417c4af7))
+* **BaseMessage:** rename type prop to color, update schema and config ([6c7a20c](https://github.com/shuriken-ui/nuxt/commit/6c7a20c6a3664cf141fffa5eab8c3ee8dac057cc))
+* **BaseText:** replace p with span ([7cd8e4c](https://github.com/shuriken-ui/nuxt/commit/7cd8e4cc11ec82f6eaad13b4cd55857a2788594e))
 * **BaseDropdown:** use default props from app config ([7887ce5](https://github.com/shuriken-ui/nuxt/commit/7887ce568eb265f9c93aba370d9553d204ab6aff))
 * **BaseThemeToggle:** add disableTransitions in app config ([fc84339](https://github.com/shuriken-ui/nuxt/commit/fc84339b619a98f592fd5cc309374423129353f5))
 

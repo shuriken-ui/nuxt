@@ -14,6 +14,18 @@ export default defineNuxtSchema({
          * @type {'dot' | 'chevron' | 'plus'}
          */
         action: 'dot',
+        /**
+         * The color of the accordion.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
+         */
+        color: 'default',
+        /**
+         * Default color for the accordion dot
+         *
+         * @type {'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'black'}
+         */
+        dotColor: 'primary',
       },
       BaseAutocomplete: {
         /**
@@ -56,6 +68,12 @@ export default defineNuxtSchema({
          * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
          */
         rounded: 'full',
+        /**
+         * Default color for the avatar
+         *
+         * @type {'white' | 'muted' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'pink' | 'yellow' | 'indigo' | 'violet'}
+         */
+        color: 'muted',
       },
       BaseAvatarGroup: {
         /**
@@ -161,9 +179,9 @@ export default defineNuxtSchema({
         /**
          * Default color for the BaseCard component
          *
-         * @type {'white'| 'white-contrast'| 'muted'| 'muted-contrast'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'none'}
+         * @type {'default'| 'default-contrast'| 'muted'| 'muted-contrast'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'none'}
          */
-        color: 'white',
+        color: 'default',
       },
       BaseCheckbox: {
         /**
@@ -197,15 +215,15 @@ export default defineNuxtSchema({
         /**
          * The color of the dropdown button.
          *
-         * @type {'default' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'light' | 'muted' | 'none'}
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'light' | 'dark' | 'black' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
          */
         buttonColor: 'default',
         /**
          * The color of the dropdown.
          *
-         * @type {'white' | 'white-contrast' | 'muted' | 'muted-contrast' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
          */
-        color: 'white',
+        color: 'default',
         /**
          * Default rounded for the BaseDropdown component
          *
@@ -251,11 +269,25 @@ export default defineNuxtSchema({
          */
         rounded: 'md',
         /**
-         * The color of the dropdown item.
+         * The contrast of the dropdown item.
          *
          * @type {'default' | 'contrast'}
          */
-        color: 'default',
+        contrast: 'default',
+        /**
+         * The hover color of the dropdown item inner elements.
+         *
+         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger' | 'dark' | 'black'}
+         */
+        color: 'primary',
+      },
+      BaseFullscreenDropfile: {
+        /**
+         * The color of the icon.
+         *
+         * @type {'primary' | 'dark' | 'black'}
+         */
+        color: 'primary',
       },
       BaseHeading: {
         /**
@@ -293,7 +325,7 @@ export default defineNuxtSchema({
         /**
          * The color of the icon box.
          *
-         * @type {'default' | 'invert' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
+         * @type {'default' | 'default-contrast' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none' | 'light' | 'dark' | 'black'}
          */
         color: 'default',
         /**
@@ -417,11 +449,11 @@ export default defineNuxtSchema({
       },
       BaseMessage: {
         /**
-         * The type of the message.
+         * The color of the message.
          *
          * @type {'default' | 'muted' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
          */
-        type: 'success',
+        color: 'success',
         /**
          * The radius of the message.
          *
@@ -436,6 +468,12 @@ export default defineNuxtSchema({
         closable: false,
       },
       BasePagination: {
+        /**
+         * The color of the pagination.
+         *
+         * @type {'primary' | 'dark' | 'black'}
+         */
+        type: 'primary',
         /**
          * The radius of the pagination.
          *
@@ -476,6 +514,14 @@ export default defineNuxtSchema({
          * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl'}
          */
         imageSize: 'xs',
+      },
+      BaseProgressCircle: {
+        /**
+         * The color of the progress circle.
+         *
+         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'black'}
+         */
+        color: 'primary',
       },
       BaseProgress: {
         /**
@@ -571,6 +617,12 @@ export default defineNuxtSchema({
       },
       BaseTabs: {
         /**
+         * The color of the active tab.
+         *
+         * @type {'default' | 'primary' | 'light' | 'dark' | 'black'}
+         */
+        color: 'primary',
+        /**
          * The type of the tabs.
          *
          * @type {'tabs' | 'box'}
@@ -584,6 +636,12 @@ export default defineNuxtSchema({
         justify: 'start',
       },
       BaseTabSlider: {
+        /**
+         * The color of the active tab.
+         *
+         * @type {'default' | 'default-contrast' | 'primary' | 'light' | 'dark' | 'black'}
+         */
+        color: 'primary',
         /**
          * The alignment of the tabs.
          *
