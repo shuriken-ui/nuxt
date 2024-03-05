@@ -330,8 +330,22 @@ const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
   set(value) {
     if (!props.multiple && modelModifiers.prop && props.properties?.value) {
       const attr = props.properties.value
-
-      return items.value.find(
+      return (
+        props.items.find(
+          (item) =>
+            item &&
+            typeof item === 'object' &&
+            attr in item &&
+            (item as any)[attr] === value,
+        ) as any
+      )?.[attr]
+    }
+    return value
+  },
+  get(value) {
+    if (!props.multiple && modelModifiers.prop && props.properties?.value) {
+      const attr = props.properties.value
+      return props.items.find(
         (item) =>
           item &&
           typeof item === 'object' &&
@@ -339,7 +353,6 @@ const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
           (item as any)[attr] === value,
       )
     }
-
     return value
   },
 })
@@ -355,8 +368,14 @@ const defaultDisplayValue = (item: any): any => {
       (i) =>
         i && typeof i === 'object' && attr in i && (i as any)[attr] === item,
     )
-    // @ts-expect-error not sure what the issue is here
-    if (result && props.properties.label) return result[props.properties.label]
+    if (
+      typeof result === 'object' &&
+      result &&
+      props.properties.label &&
+      props.properties.label in result
+    ) {
+      return result[props.properties.label as keyof typeof result]
+    }
   }
   if (item == null || typeof item === 'string') return item
   if (

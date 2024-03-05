@@ -193,7 +193,22 @@ const props = withDefaults(
 
 const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
   set(value) {
-    if (!props.multiple && modelModifiers.prop && props.properties.value) {
+    if (!props.multiple && modelModifiers.prop && props.properties?.value) {
+      const attr = props.properties.value
+      return (
+        props.items.find(
+          (item) =>
+            item &&
+            typeof item === 'object' &&
+            attr in item &&
+            (item as any)[attr] === value,
+        ) as any
+      )?.[attr]
+    }
+    return value
+  },
+  get(value) {
+    if (!props.multiple && modelModifiers.prop && props.properties?.value) {
       const attr = props.properties.value
       return props.items.find(
         (item) =>
