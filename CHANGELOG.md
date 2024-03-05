@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/shuriken-ui/nuxt/compare/v3.0.0-next.1...v3.0.0) (2024-03-05)
+
 ## [3.0.0-next.1](https://github.com/shuriken-ui/nuxt/compare/v3.0.0-next.0...v3.0.0-next.1) (2024-03-04)
 
 
