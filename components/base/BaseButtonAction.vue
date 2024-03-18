@@ -27,6 +27,16 @@ const props = withDefaults(
     type?: 'button' | 'submit' | 'reset'
 
     /**
+     * Whether the button is in a loading state.
+     */
+    loading?: boolean
+
+    /**
+     * Whether the button is disabled.
+     */
+    disabled?: boolean
+
+    /**
      * The color of the button.
      *
      * @default 'default'
@@ -53,16 +63,6 @@ const props = withDefaults(
      * @default 'sm'
      */
     rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * Whether the button is in a loading state.
-     */
-    loading?: boolean
-
-    /**
-     * Whether the button is disabled.
-     */
-    disabled?: boolean
   }>(),
   {
     to: undefined,
@@ -75,8 +75,8 @@ const props = withDefaults(
   },
 )
 
-const rounded = useNuiDefaultProperty(props, 'BaseButtonAction', 'rounded')
 const color = useNuiDefaultProperty(props, 'BaseButtonAction', 'color')
+const rounded = useNuiDefaultProperty(props, 'BaseButtonAction', 'rounded')
 
 const radiuses = {
   none: '',

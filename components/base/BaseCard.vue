@@ -2,12 +2,9 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The radius of the card.
-     *
-     * @since 2.0.0
-     * @default 'sm'
+     * Adds a flat or a on hover shadow to the card.
      */
-    rounded?: 'none' | 'sm' | 'md' | 'lg'
+    shadow?: 'flat' | 'hover'
 
     /**
      * The color of the card.
@@ -29,9 +26,12 @@ const props = withDefaults(
       | 'none'
 
     /**
-     * Adds a flat or a on hover shadow to the card.
+     * The radius of the card.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    shadow?: 'flat' | 'hover'
+    rounded?: 'none' | 'sm' | 'md' | 'lg'
   }>(),
   {
     rounded: undefined,
@@ -40,8 +40,8 @@ const props = withDefaults(
   },
 )
 
-const rounded = useNuiDefaultProperty(props, 'BaseCard', 'rounded')
 const color = useNuiDefaultProperty(props, 'BaseCard', 'color')
+const rounded = useNuiDefaultProperty(props, 'BaseCard', 'rounded')
 
 const radiuses = {
   none: '',

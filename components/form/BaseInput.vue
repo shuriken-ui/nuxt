@@ -16,28 +16,6 @@ const props = withDefaults(
     type?: string
 
     /**
-     * The radius of the input.
-     *
-     * @since 2.0.0
-     * @default 'rounded'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the input.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the input.
-     *
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
      * The label to display for the input.
      */
     label?: string
@@ -71,6 +49,28 @@ const props = withDefaults(
      * Whether the input is in a loading state.
      */
     loading?: boolean
+
+    /**
+     * The contrast of the input.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * The radius of the input.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -146,9 +146,9 @@ const [modelValue, modelModifiers] = defineModel<
   },
 })
 
+const contrast = useNuiDefaultProperty(props, 'BaseInput', 'contrast')
 const rounded = useNuiDefaultProperty(props, 'BaseInput', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseInput', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseInput', 'contrast')
 
 const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)

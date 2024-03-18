@@ -7,6 +7,8 @@ const props = withDefaults(
     inverted?: boolean
     /**
      * Disables transitions when toggling between light and dark mode.
+     *
+     * @default false
      */
     disableTransitions?: boolean
   }>(),

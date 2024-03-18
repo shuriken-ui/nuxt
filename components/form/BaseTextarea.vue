@@ -16,28 +16,6 @@ const props = withDefaults(
     name?: string
 
     /**
-     * The radius of the textarea.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the textarea.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the textarea.
-     *
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
      * The label for the textarea.
      */
     label?: string
@@ -103,6 +81,28 @@ const props = withDefaults(
     maxHeight?: number
 
     /**
+     * The contrast of the textarea.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * The radius of the textarea.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the textarea.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
      * A set of classes to apply to the various elements of the textarea.
      */
     classes?: {
@@ -153,9 +153,9 @@ const [modelValue, modelModifiers] = defineModel<string, 'lazy' | 'trim'>({
   },
 })
 
+const contrast = useNuiDefaultProperty(props, 'BaseTextarea', 'contrast')
 const rounded = useNuiDefaultProperty(props, 'BaseTextarea', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseTextarea', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseTextarea', 'contrast')
 
 const textareaRef = ref<HTMLTextAreaElement>()
 const id = useNinjaId(() => props.id)

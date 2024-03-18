@@ -2,45 +2,6 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * Defines the radius of the accordion
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg'
-
-    /**
-     * Defines the color of the accordion
-     *
-     * @since 3.0.0
-     * @default 'default'
-     */
-    color?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
-     * Defines the icon used for accordion item toggle action
-     *
-     * @default 'dot'
-     */
-    action?: 'dot' | 'chevron' | 'plus'
-
-    /**
-     * Defines the color of the accordion dot
-     *
-     * @since 3.0.0
-     * @default 'primary'
-     */
-    dotColor?:
-      | 'default'
-      | 'primary'
-      | 'info'
-      | 'success'
-      | 'warning'
-      | 'danger'
-      | 'dark'
-      | 'black'
-
-    /**
      * The items to display in the accordion.
      */
     items: {
@@ -63,6 +24,45 @@ const props = withDefaults(
      * Whether if multiple elements in the accordion can be opened at same time or not.
      */
     exclusive?: boolean
+
+    /**
+     * Defines the icon used for accordion item toggle action
+     *
+     * @default 'dot'
+     */
+    action?: 'dot' | 'chevron' | 'plus'
+
+    /**
+     * Defines the color of the accordion
+     *
+     * @since 3.0.0
+     * @default 'default'
+     */
+    color?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * Defines the color of the accordion dot
+     *
+     * @since 3.0.0
+     * @default 'primary'
+     */
+    dotColor?:
+      | 'default'
+      | 'primary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'danger'
+      | 'dark'
+      | 'black'
+
+    /**
+     * Defines the radius of the accordion
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -119,10 +119,10 @@ const emits = defineEmits<{
   ): void
 }>()
 
+const action = useNuiDefaultProperty(props, 'BaseAccordion', 'action')
 const color = useNuiDefaultProperty(props, 'BaseAccordion', 'color')
 const dotColor = useNuiDefaultProperty(props, 'BaseAccordion', 'dotColor')
 const rounded = useNuiDefaultProperty(props, 'BaseAccordion', 'rounded')
-const action = useNuiDefaultProperty(props, 'BaseAccordion', 'action')
 
 defineSlots<{
   'accordion-item'(props: {

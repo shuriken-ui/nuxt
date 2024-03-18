@@ -24,7 +24,7 @@ const NuxtLink = defineNuxtLink({})
 </script>
 
 <template>
-  <component :is="NuxtLink" class="nui-link" v-bind="props">
+  <component :is="NuxtLink" class="nui-link" v-bind="props as any">
     <slot />
   </component>
 </template>

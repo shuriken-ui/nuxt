@@ -20,7 +20,16 @@ const props = withDefaults(
      */
     label?: string
 
-    /** The color of the radio.*/
+    /**
+     * An error message to display below the radio label.
+     */
+    error?: string | boolean
+
+    /**
+     * The color of the radio.
+     *
+     * @default 'default'
+     */
     color?:
       | 'default'
       | 'muted'
@@ -32,11 +41,6 @@ const props = withDefaults(
       | 'success'
       | 'warning'
       | 'danger'
-
-    /**
-     * An error message to display below the radio label.
-     */
-    error?: string | boolean
 
     /**
      * Classes to apply to the various parts of the radio input.

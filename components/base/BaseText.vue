@@ -2,6 +2,13 @@
 const props = withDefaults(
   defineProps<{
     /**
+     * The lead of the text.
+     *
+     * @default 'normal'
+     */
+    lead?: 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
+
+    /**
      * The size of the text.
      *
      * @default 'md'
@@ -27,13 +34,6 @@ const props = withDefaults(
      * @default 'normal'
      */
     weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'
-
-    /**
-     * The lead of the text.
-     *
-     * @default 'normal'
-     */
-    lead?: 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
   }>(),
   {
     size: undefined,
@@ -42,9 +42,9 @@ const props = withDefaults(
   },
 )
 
+const lead = useNuiDefaultProperty(props, 'BaseText', 'lead')
 const size = useNuiDefaultProperty(props, 'BaseText', 'size')
 const weight = useNuiDefaultProperty(props, 'BaseText', 'weight')
-const lead = useNuiDefaultProperty(props, 'BaseText', 'lead')
 
 const sizes = {
   xs: 'nui-content-xs',

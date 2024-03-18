@@ -2,25 +2,6 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The color of the message.
-     */
-    color?:
-      | 'default'
-      | 'default-contrast'
-      | 'muted'
-      | 'muted-contrast'
-      | 'primary'
-      | 'info'
-      | 'success'
-      | 'warning'
-      | 'danger'
-
-    /**
-     * The radius of the message.
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
      * The message to display.
      */
     message?: string
@@ -39,6 +20,29 @@ const props = withDefaults(
      * Whether to show a close button.
      */
     closable?: boolean
+
+    /**
+     * The color of the message.
+     *
+     * @default 'default'
+     */
+    color?:
+      | 'default'
+      | 'default-contrast'
+      | 'muted'
+      | 'muted-contrast'
+      | 'primary'
+      | 'info'
+      | 'success'
+      | 'warning'
+      | 'danger'
+
+    /**
+     * The radius of the message.
+     *
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
      * Optional CSS classes to apply to the component inner elements.

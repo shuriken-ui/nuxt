@@ -4,22 +4,6 @@ import type { RouteLocationOptions } from 'vue-router'
 const props = withDefaults(
   defineProps<{
     /**
-     * The radius of the pagination.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The color of the pagination active button.
-     *
-     * @since 3.0.0
-     * @default 'primary'
-     */
-    color?: 'primary' | 'dark' | 'black'
-
-    /**
      * The number of items to display per page.
      */
     itemPerPage: number
@@ -63,6 +47,22 @@ const props = withDefaults(
      * The ellipsis to show when there are too many links.
      */
     ellipsis?: string
+
+    /**
+     * The color of the pagination active button.
+     *
+     * @since 3.0.0
+     * @default 'primary'
+     */
+    color?: 'primary' | 'dark' | 'black'
+
+    /**
+     * The radius of the pagination.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
      * Optional CSS classes to apply to the component inner elements.
@@ -115,8 +115,8 @@ const emits = defineEmits<{
   'update:currentPage': [currentPage: number]
 }>()
 
-const rounded = useNuiDefaultProperty(props, 'BasePagination', 'rounded')
 const color = useNuiDefaultProperty(props, 'BasePagination', 'color')
+const rounded = useNuiDefaultProperty(props, 'BasePagination', 'rounded')
 
 const radiuses = {
   none: '',

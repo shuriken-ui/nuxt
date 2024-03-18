@@ -2,20 +2,6 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The size of the snack.
-     *
-     * @default 'md'
-     */
-    size?: 'xs' | 'sm' | 'md'
-
-    /**
-     * The color of snack.
-     *
-     * @default 'muted'
-     */
-    color?: 'default' | 'muted'
-
-    /**
      * The text to display in the snackbar.
      */
     label?: string
@@ -29,6 +15,20 @@ const props = withDefaults(
      * An optional image to display in the snackbar.
      */
     image?: string
+
+    /**
+     * The color of snack.
+     *
+     * @default 'default'
+     */
+    color?: 'default' | 'muted'
+
+    /**
+     * The size of the snack.
+     *
+     * @default 'md'
+     */
+    size?: 'xs' | 'sm' | 'md'
   }>(),
   {
     size: undefined,
@@ -43,8 +43,8 @@ const emit = defineEmits<{
   delete: []
 }>()
 
-const size = useNuiDefaultProperty(props, 'BaseSnack', 'size')
 const color = useNuiDefaultProperty(props, 'BaseSnack', 'color')
+const size = useNuiDefaultProperty(props, 'BaseSnack', 'size')
 
 const sizes = {
   xs: 'nui-snack-xs',

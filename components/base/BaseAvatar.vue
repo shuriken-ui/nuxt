@@ -22,42 +22,9 @@ const props = withDefaults(
     text?: string
 
     /**
-     * The size of the image.
-     *
-     * @default 'sm'
-     */
-    size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
-
-    /**
-     * The radius of the image.
-     *
-     * @default 'full'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
      * Applies an svg mask from the available presets. (needs rounded to be set to `none`).
      */
     mask?: 'hex' | 'hexed' | 'deca' | 'blob' | 'diamond'
-
-    /**
-     * Defines the color of the avatar
-     *
-     * @since 3.0.0
-     * @default 'default'
-     */
-    color?:
-      | 'white'
-      | 'muted'
-      | 'primary'
-      | 'success'
-      | 'info'
-      | 'warning'
-      | 'danger'
-      | 'pink'
-      | 'yellow'
-      | 'indigo'
-      | 'violet'
 
     /**
      * Whether to display a dot on top of the image, or the color of the dot.
@@ -84,6 +51,39 @@ const props = withDefaults(
       | 'danger'
       | 'pink'
       | 'yellow'
+
+    /**
+     * Defines the color of the avatar
+     *
+     * @since 3.0.0
+     * @default 'default'
+     */
+    color?:
+      | 'white'
+      | 'muted'
+      | 'primary'
+      | 'success'
+      | 'info'
+      | 'warning'
+      | 'danger'
+      | 'pink'
+      | 'yellow'
+      | 'indigo'
+      | 'violet'
+
+    /**
+     * The radius of the image.
+     *
+     * @default 'full'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the image.
+     *
+     * @default 'sm'
+     */
+    size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
 
     /**
      * Optional CSS classes to apply to the component inner elements.

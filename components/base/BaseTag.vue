@@ -2,12 +2,9 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The variant of the tag.
-     *
-     * @since 2.0.0
-     * @default 'solid'
+     * Determines when the tag should have a shadow.
      */
-    variant?: 'solid' | 'outline' | 'pastel'
+    shadow?: 'flat' | 'hover'
 
     /**
      * The color of the tag.
@@ -44,9 +41,12 @@ const props = withDefaults(
     size?: 'sm' | 'md'
 
     /**
-     * Determines when the tag should have a shadow.
+     * The variant of the tag.
+     *
+     * @since 2.0.0
+     * @default 'solid'
      */
-    shadow?: 'flat' | 'hover'
+    variant?: 'solid' | 'outline' | 'pastel'
   }>(),
   {
     variant: undefined,
@@ -57,10 +57,10 @@ const props = withDefaults(
   },
 )
 
-const variant = useNuiDefaultProperty(props, 'BaseTag', 'variant')
-const rounded = useNuiDefaultProperty(props, 'BaseTag', 'rounded')
 const color = useNuiDefaultProperty(props, 'BaseTag', 'color')
+const rounded = useNuiDefaultProperty(props, 'BaseTag', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseTag', 'size')
+const variant = useNuiDefaultProperty(props, 'BaseTag', 'variant')
 
 const variants = {
   solid: 'nui-tag-solid',

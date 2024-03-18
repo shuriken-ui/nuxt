@@ -2,18 +2,15 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The size of the progress bar.
-     *
-     * @default 'sm'
+     * The current value of the progress bar.
+     * If `value` is not provided, the progress bar will be in an indeterminate state.
      */
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+    value?: number
 
     /**
-     * The contrast ot the progress bar.
-     *
-     * @default 'default'
+     * The maximum value of the progress bar.
      */
-    contrast?: 'default' | 'contrast'
+    max?: number
 
     /**
      * The color of the progress bar.
@@ -31,6 +28,13 @@ const props = withDefaults(
       | 'black'
 
     /**
+     * The contrast ot the progress bar.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'contrast'
+
+    /**
      * The radius of the progress bar.
      *
      * @since 2.0.0
@@ -39,15 +43,11 @@ const props = withDefaults(
     rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
-     * The current value of the progress bar.
-     * If `value` is not provided, the progress bar will be in an indeterminate state.
+     * The size of the progress bar.
+     *
+     * @default 'sm'
      */
-    value?: number
-
-    /**
-     * The maximum value of the progress bar.
-     */
-    max?: number
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
     /**
      * Optional CSS classes to apply to the component inner elements.
@@ -75,10 +75,10 @@ const props = withDefaults(
   },
 )
 
-const size = useNuiDefaultProperty(props, 'BaseProgress', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseProgress', 'contrast')
 const color = useNuiDefaultProperty(props, 'BaseProgress', 'color')
+const contrast = useNuiDefaultProperty(props, 'BaseProgress', 'contrast')
 const rounded = useNuiDefaultProperty(props, 'BaseProgress', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseProgress', 'size')
 
 const colors = {
   primary: 'nui-progress-primary',

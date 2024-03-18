@@ -1,23 +1,16 @@
 export default defineAppConfig({
   nui: {
+    // #region base
     BaseAccordion: {
-      color: 'default',
-      rounded: 'sm',
       action: 'dot',
+      color: 'default',
       dotColor: 'primary',
-    },
-    BaseAutocomplete: {
-      rounded: 'sm',
-      size: 'md',
-      contrast: 'default',
-    },
-    BaseAutocompleteItem: {
       rounded: 'sm',
     },
     BaseAvatar: {
-      size: 'sm',
-      rounded: 'full',
       color: 'muted',
+      rounded: 'full',
+      size: 'sm',
     },
     BaseAvatarGroup: {
       limit: 4,
@@ -27,86 +20,67 @@ export default defineAppConfig({
       color: 'primary',
     },
     BaseButton: {
-      variant: 'solid',
-      rounded: 'sm',
       color: 'default',
+      rounded: 'sm',
       size: 'md',
+      variant: 'solid',
     },
     BaseButtonAction: {
-      rounded: 'sm',
       color: 'default',
+      rounded: 'sm',
     },
     BaseButtonClose: {
-      rounded: 'full',
-    },
-    BaseButtonIcon: {
-      rounded: 'sm',
       color: 'default',
+      rounded: 'full',
+      size: 'sm',
+    },
+    BaseButtonGroup: {},
+    BaseButtonIcon: {
+      color: 'default',
+      rounded: 'sm',
       size: 'md',
     },
     BaseCard: {
-      rounded: 'sm',
       color: 'default',
-    },
-    BaseCheckbox: {
       rounded: 'sm',
-      color: 'default',
-    },
-    BaseCheckboxAnimated: {
-      color: 'primary',
     },
     BaseDropdown: {
-      variant: 'button',
       buttonColor: 'default',
       color: 'default',
+      placement: 'bottom-start',
       rounded: 'sm',
       size: 'md',
+      variant: 'button',
     },
+    BaseDropdownDivider: {},
     BaseDropdownItem: {
-      rounded: 'sm',
+      color: 'primary',
       contrast: 'default',
-      color: 'primary',
-    },
-    BaseFullscreenDropfile: {
-      color: 'primary',
+      rounded: 'sm',
     },
     BaseHeading: {
       as: 'p',
+      lead: 'normal',
       size: 'xl',
       weight: 'semibold',
-      lead: 'normal',
     },
     BaseIconBox: {
-      variant: 'solid',
       color: 'default',
+      rounded: 'sm',
       size: 'xs',
-      rounded: 'sm',
+      variant: 'solid',
     },
-    BaseInput: {
+    BaseKbd: {
+      color: 'default',
       rounded: 'sm',
-      size: 'md',
-      contrast: 'default',
+      size: 'sm',
     },
-    BaseInputFile: {
-      rounded: 'sm',
-      size: 'md',
-      contrast: 'default',
-    },
-    BaseInputNumber: {
-      inputmode: 'numeric',
-      rounded: 'sm',
-      size: 'md',
-      contrast: 'default',
-    },
-    BaseListbox: {
-      rounded: 'sm',
-      size: 'md',
-      contrast: 'default',
-    },
+    BaseLink: {},
+    BaseList: {},
+    BaseListItem: {},
     BaseMessage: {
-      color: 'success',
+      color: 'default',
       rounded: 'sm',
-      closable: false,
     },
     BasePagination: {
       color: 'primary',
@@ -114,36 +88,115 @@ export default defineAppConfig({
     },
     BaseParagraph: {
       as: 'p',
+      lead: 'normal',
       size: 'md',
       weight: 'normal',
-      lead: 'normal',
     },
     BasePlaceholderPage: {
       imageSize: 'xs',
     },
+    BasePlaceload: {},
     BaseProgress: {
-      size: 'sm',
-      contrast: 'default',
       color: 'primary',
+      contrast: 'default',
       rounded: 'full',
+      size: 'sm',
     },
     BaseProgressCircle: {
       color: 'primary',
     },
     BaseProse: {
-      rounded: 'md',
+      rounded: 'none',
     },
+    BaseSnack: {
+      color: 'default',
+      size: 'md',
+    },
+    BaseTabs: {
+      color: 'primary',
+      justify: 'start',
+      type: 'tabs',
+    },
+    BaseTabSlider: {
+      color: 'default',
+      justify: 'start',
+      rounded: 'lg',
+      size: 'md',
+    },
+    BaseTag: {
+      color: 'default',
+      rounded: 'lg',
+      size: 'md',
+      variant: 'solid',
+    },
+    BaseText: {
+      lead: 'normal',
+      size: 'md',
+      weight: 'normal',
+    },
+    BaseThemeSwitch: {
+      disableTransitions: false,
+    },
+    BaseThemeToggle: {
+      disableTransitions: false,
+    },
+    // #endregion
+
+    // #region form
+    BaseAutocomplete: {
+      contrast: 'default',
+      i18n: {
+        empty: 'Nothing found.',
+        pending: 'Loading ...',
+      },
+      rounded: 'sm',
+      size: 'md',
+    },
+    BaseAutocompleteItem: {
+      rounded: 'sm',
+    },
+    BaseCheckbox: {
+      color: 'default',
+      rounded: 'sm',
+    },
+    BaseCheckboxAnimated: {
+      color: 'primary',
+    },
+    BaseCheckboxHeadless: {},
+    BaseFullscreenDropfile: {
+      color: 'primary',
+    },
+    BaseInput: {
+      contrast: 'default',
+      rounded: 'sm',
+      size: 'md',
+    },
+    BaseInputFile: {
+      contrast: 'default',
+      rounded: 'sm',
+      size: 'md',
+    },
+    BaseInputFileHeadless: {},
+    BaseInputNumber: {
+      contrast: 'default',
+      rounded: 'sm',
+      size: 'md',
+    },
+    BaseListbox: {
+      contrast: 'default',
+      placement: 'bottom-start',
+      rounded: 'sm',
+      size: 'md',
+    },
+    BaseListboxItem: {},
     BaseRadio: {
       color: 'default',
     },
+    BaseRadioHeadless: {},
     BaseSelect: {
+      contrast: 'default',
       rounded: 'sm',
       size: 'md',
-      contrast: 'default',
-    },
-    BaseSnack: {
-      size: 'md',
-      color: 'muted',
     },
     BaseSwitchBall: {
       color: 'primary',
@@ -151,54 +204,15 @@ export default defineAppConfig({
     BaseSwitchThin: {
       color: 'primary',
     },
-    BaseTabs: {
-      type: 'tabs',
-      justify: 'start',
-      color: 'primary',
-    },
-    BaseTabSlider: {
-      color: 'primary',
-      justify: 'start',
-      size: 'md',
-      rounded: 'lg',
-    },
-    BaseTag: {
-      variant: 'solid',
-      color: 'default',
-      size: 'md',
-      rounded: 'lg',
-    },
-    BaseText: {
-      size: 'md',
-      weight: 'normal',
-      lead: 'normal',
-    },
     BaseTextarea: {
+      contrast: 'default',
       rounded: 'sm',
       size: 'md',
-      contrast: 'default',
     },
+    BaseTreeSelect: {},
     BaseTreeSelectItem: {
       rounded: 'sm',
     },
-    defaultShapes: {
-      accordion: 'rounded',
-      autocompleteItem: 'rounded',
-      avatar: 'full',
-      button: 'rounded',
-      buttonAction: 'rounded',
-      buttonIcon: 'rounded',
-      buttonClose: 'full',
-      card: 'rounded',
-      dropdown: 'rounded',
-      iconBox: 'rounded',
-      input: 'rounded',
-      message: 'curved',
-      pagination: 'rounded',
-      progress: 'full',
-      prose: 'rounded',
-      tabSlider: 'rounded',
-      tag: 'rounded',
-    },
+    // #endregion
   },
 })

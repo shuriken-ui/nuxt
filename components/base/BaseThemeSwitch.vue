@@ -3,6 +3,8 @@ const props = withDefaults(
   defineProps<{
     /**
      * Disables transitions when toggling between light and dark mode.
+     *
+     * @default false
      */
     disableTransitions?: boolean
   }>(),

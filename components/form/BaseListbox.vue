@@ -17,28 +17,6 @@ const props = withDefaults(
     items: T[]
 
     /**
-     * The radius of the multiselect.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the listbox.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the listbox.
-     *
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
      * The label to display for the multiselect.
      */
     label?: string
@@ -99,23 +77,6 @@ const props = withDefaults(
     fixed?: boolean
 
     /**
-     * The placement of the component via floating-ui.
-     */
-    placement?:
-      | 'top'
-      | 'top-start'
-      | 'top-end'
-      | 'right'
-      | 'right-start'
-      | 'right-end'
-      | 'bottom'
-      | 'bottom-start'
-      | 'bottom-end'
-      | 'left'
-      | 'left-start'
-      | 'left-end'
-
-    /**
      * The properties to use for the value, label, sublabel, media, and icon of the options items.
      */
     properties?: {
@@ -144,6 +105,47 @@ const props = withDefaults(
        */
       icon?: T extends object ? keyof T : string
     }
+
+    /**
+     * The contrast of the listbox.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * The placement of the component via floating-ui.
+     *
+     * @default 'bottom-start'
+     */
+    placement?:
+      | 'top'
+      | 'top-start'
+      | 'top-end'
+      | 'right'
+      | 'right-start'
+      | 'right-end'
+      | 'bottom'
+      | 'bottom-start'
+      | 'bottom-end'
+      | 'left'
+      | 'left-start'
+      | 'left-end'
+
+    /**
+     * The radius of the multiselect.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the listbox.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -186,7 +188,7 @@ const props = withDefaults(
     error: false,
     multipleLabel: undefined,
     properties: () => ({}),
-    placement: 'bottom-start',
+    placement: undefined,
     classes: () => ({}),
   },
 )
@@ -234,9 +236,10 @@ defineSlots<{
   }): any
 }>()
 
+const contrast = useNuiDefaultProperty(props, 'BaseListbox', 'contrast')
+const placement = useNuiDefaultProperty(props, 'BaseListbox', 'placement')
 const rounded = useNuiDefaultProperty(props, 'BaseListbox', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseListbox', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseListbox', 'contrast')
 
 const radiuses = {
   none: '',
@@ -336,7 +339,7 @@ const internal = ref<any>(modelValue)
         flip
         :offset="5"
         :strategy="props.fixed ? 'fixed' : 'absolute'"
-        :placement="props.placement"
+        :placement="placement"
         :adaptive-width="props.fixed"
         :z-index="20"
       >

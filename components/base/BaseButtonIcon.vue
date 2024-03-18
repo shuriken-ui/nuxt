@@ -31,11 +31,14 @@ const props = withDefaults(
     type?: 'button' | 'submit' | 'reset'
 
     /**
-     * The size of the button.
-     *
-     * @default 'md'
+     * Whether the button or link is in a loading state.
      */
-    size?: 'sm' | 'md' | 'lg'
+    loading?: boolean
+
+    /**
+     * Whether the button or link is disabled.
+     */
+    disabled?: boolean
 
     /**
      * The color of the button.
@@ -66,14 +69,11 @@ const props = withDefaults(
     rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
-     * Whether the button or link is in a loading state.
+     * The size of the button.
+     *
+     * @default 'md'
      */
-    loading?: boolean
-
-    /**
-     * Whether the button or link is disabled.
-     */
-    disabled?: boolean
+    size?: 'sm' | 'md' | 'lg'
   }>(),
   {
     to: undefined,
@@ -87,8 +87,8 @@ const props = withDefaults(
   },
 )
 
-const rounded = useNuiDefaultProperty(props, 'BaseButtonIcon', 'rounded')
 const color = useNuiDefaultProperty(props, 'BaseButtonIcon', 'color')
+const rounded = useNuiDefaultProperty(props, 'BaseButtonIcon', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseButtonIcon', 'size')
 
 const radiuses = {

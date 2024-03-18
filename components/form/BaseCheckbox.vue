@@ -45,14 +45,6 @@ const props = withDefaults(
      */
     indeterminate?: boolean
 
-    /**
-     * The radius of the checkbox.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
     /** The color of the checkbox.
      *
      * @default 'default'
@@ -68,6 +60,14 @@ const props = withDefaults(
       | 'success'
       | 'warning'
       | 'danger'
+
+    /**
+     * The radius of the checkbox.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, and input elements.
@@ -108,8 +108,8 @@ defineSlots<{
 
 const [modelValue] = defineModel<T | T[]>()
 
-const rounded = useNuiDefaultProperty(props, 'BaseCheckbox', 'rounded')
 const color = useNuiDefaultProperty(props, 'BaseCheckbox', 'color')
+const rounded = useNuiDefaultProperty(props, 'BaseCheckbox', 'rounded')
 
 const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)

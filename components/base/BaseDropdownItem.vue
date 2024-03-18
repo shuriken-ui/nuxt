@@ -28,19 +28,19 @@ const props = withDefaults(
     type?: 'button' | 'submit' | 'reset'
 
     /**
-     * The radius of the dropdown-item.
-     *
-     * @since 2.0.0
-     * @default 'sm'
+     * The title to display for the dropdown item.
      */
-    rounded?: 'none' | 'sm' | 'md' | 'lg'
+    title?: string
 
     /**
-     * The contrast of the dropdown-item.
-     *
-     * @default 'default'
+     * The text to display for the dropdown item.
      */
-    contrast?: 'default' | 'contrast'
+    text?: string
+
+    /**
+     * Whether the button is disabled.
+     */
+    disabled?: boolean
 
     /**
      * The hover color of the dropdown-item inner elements.
@@ -58,14 +58,19 @@ const props = withDefaults(
       | 'black'
 
     /**
-     * The title to display for the dropdown item.
+     * The contrast of the dropdown-item.
+     *
+     * @default 'default'
      */
-    title?: string
+    contrast?: 'default' | 'contrast'
 
     /**
-     * The text to display for the dropdown item.
+     * The radius of the dropdown-item.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    text?: string
+    rounded?: 'none' | 'sm' | 'md' | 'lg'
 
     /**
      * Optional CSS classes to apply to the wrapper and inner elements.
@@ -86,11 +91,6 @@ const props = withDefaults(
        */
       text?: string | string[]
     }
-
-    /**
-     * Whether the button is disabled.
-     */
-    disabled?: boolean
   }>(),
   {
     to: undefined,
@@ -111,9 +111,9 @@ const props = withDefaults(
   },
 )
 
-const rounded = useNuiDefaultProperty(props, 'BaseDropdownItem', 'rounded')
-const contrast = useNuiDefaultProperty(props, 'BaseDropdownItem', 'contrast')
 const color = useNuiDefaultProperty(props, 'BaseDropdownItem', 'color')
+const contrast = useNuiDefaultProperty(props, 'BaseDropdownItem', 'contrast')
+const rounded = useNuiDefaultProperty(props, 'BaseDropdownItem', 'rounded')
 
 const radiuses = {
   none: '',

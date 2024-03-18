@@ -17,28 +17,6 @@ const props = withDefaults(
     items?: T[]
 
     /**
-     * The radius of the component.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the autocomplete component.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of autocomplete component.
-     *
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
      * The label to display for the component.
      */
     label?: string
@@ -52,14 +30,6 @@ const props = withDefaults(
      * An icon to display for the component.
      */
     icon?: string
-
-    /**
-     * Translation strings.
-     */
-    i18n?: {
-      pending: string
-      empty: string
-    }
 
     /**
      * Placeholder text to display when the component is empty.
@@ -107,36 +77,6 @@ const props = withDefaults(
      * You can use this method to implement your own filtering logic or to fetch items from an API.
      */
     filterItems?: (query?: string, items?: T[]) => Promise<T[]> | T[]
-
-    /**
-     * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
-     */
-    classes?: {
-      /**
-       * CSS classes to apply to the wrapper element.
-       */
-      wrapper?: string | string[]
-
-      /**
-       * CSS classes to apply to the label element.
-       */
-      label?: string | string[]
-
-      /**
-       * CSS classes to apply to the input element.
-       */
-      input?: string | string[]
-
-      /**
-       * CSS classes to apply to the icon element.
-       */
-      icon?: string | string[]
-
-      /**
-       * CSS classes to apply to the error element.
-       */
-      error?: string | string[]
-    }
 
     /**
      * Allow custom entries by the user
@@ -228,6 +168,68 @@ const props = withDefaults(
        */
       icon?: T extends object ? keyof T | ((arg: T) => string) : string
     }
+
+    /**
+     * The contrast of autocomplete component.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * Translation strings.
+     *
+     * @default { empty: 'Nothing found.', pending: 'Loading ...' }
+     */
+    i18n?: {
+      empty: string
+      pending: string
+    }
+
+    /**
+     * The radius of the component.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the autocomplete component.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the label element.
+       */
+      label?: string | string[]
+
+      /**
+       * CSS classes to apply to the input element.
+       */
+      input?: string | string[]
+
+      /**
+       * CSS classes to apply to the icon element.
+       */
+      icon?: string | string[]
+
+      /**
+       * CSS classes to apply to the error element.
+       */
+      error?: string | string[]
+    }
   }>(),
   {
     items: () => [],
@@ -238,10 +240,7 @@ const props = withDefaults(
     placeholder: '',
     label: '',
     error: '',
-    i18n: () => ({
-      pending: 'Loading ...',
-      empty: 'Nothing found.',
-    }),
+    i18n: undefined,
     loading: false,
     disabled: false,
     clearable: false,
@@ -357,9 +356,10 @@ const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
   },
 })
 
+const contrast = useNuiDefaultProperty(props, 'BaseAutocomplete', 'contrast')
+const i18n = useNuiDefaultProperty(props, 'BaseAutocomplete', 'i18n')
 const rounded = useNuiDefaultProperty(props, 'BaseAutocomplete', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseAutocomplete', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseAutocomplete', 'contrast')
 
 const defaultDisplayValue = (item: any): any => {
   if (modelModifiers.prop && props.properties?.value) {
@@ -746,7 +746,7 @@ const internal = ref<any>(modelValue)
               v-bind="{ query, filteredItems, pending, items }"
             >
               <span class="nui-autocomplete-results-placeholder-text">
-                {{ props.i18n.pending }}
+                {{ i18n.pending }}
               </span>
             </slot>
           </div>
@@ -759,7 +759,7 @@ const internal = ref<any>(modelValue)
               v-bind="{ query, filteredItems, pending, items }"
             >
               <span class="nui-autocomplete-results-placeholder-text">
-                {{ props.i18n.empty }}
+                {{ i18n.empty }}
               </span>
             </slot>
           </div>

@@ -6,7 +6,7 @@ const props = withDefaults(
      *
      * @default 'p'
      */
-    as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'p'
+    as?: string
 
     /**
      * The size of the heading.
@@ -29,18 +29,18 @@ const props = withDefaults(
       | '9xl'
 
     /**
-     * The weight of the heading.
-     *
-     * @default 'semibold'
-     */
-    weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'
-
-    /**
      * The spacing below the heading.
      *
      * @default 'normal'
      */
     lead?: 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
+
+    /**
+     * The weight of the heading.
+     *
+     * @default 'semibold'
+     */
+    weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'
   }>(),
   {
     as: undefined,
@@ -51,9 +51,9 @@ const props = withDefaults(
 )
 
 const as = useNuiDefaultProperty(props, 'BaseHeading', 'as')
+const lead = useNuiDefaultProperty(props, 'BaseHeading', 'lead')
 const size = useNuiDefaultProperty(props, 'BaseHeading', 'size')
 const weight = useNuiDefaultProperty(props, 'BaseHeading', 'weight')
-const lead = useNuiDefaultProperty(props, 'BaseHeading', 'lead')
 
 const sizes = {
   xs: 'nui-heading-xs',

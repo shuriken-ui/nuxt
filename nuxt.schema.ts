@@ -1,13 +1,8 @@
 export default defineNuxtSchema({
   appConfig: {
     nui: {
+      // #region base
       BaseAccordion: {
-        /**
-         * The radius of the accordion.
-         *
-         * @type {'none' | 'sm' | 'md' | 'lg'}
-         */
-        rounded: 'sm',
         /**
          * The action icon of the accordion.
          *
@@ -15,53 +10,31 @@ export default defineNuxtSchema({
          */
         action: 'dot',
         /**
+         * Default color for the accordion dot
+         *
+         * @type {'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'black'}
+         */
+        dotColor: 'primary',
+        /**
          * The color of the accordion.
          *
          * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
          */
         color: 'default',
         /**
-         * Default color for the accordion dot
+         * The radius of the accordion.
          *
-         * @type {'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'dark' | 'black'}
-         */
-        dotColor: 'primary',
-      },
-      BaseAutocomplete: {
-        /**
-         * The radius of the autocomplete.
-         *
-         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
-         */
-        rounded: 'sm',
-        /**
-         * The size of the autocomplete.
-         *
-         * @type {'sm' | 'md' | 'lg'}
-         */
-        size: 'md',
-        /**
-         * The contrast of the autocomplete.
-         *
-         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
-         */
-        contrast: 'default',
-      },
-      BaseAutocompleteItem: {
-        /**
-         * The radius of the autocomplete item.
-         *
-         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         * @type {'none' | 'sm' | 'md' | 'lg'}
          */
         rounded: 'sm',
       },
       BaseAvatar: {
         /**
-         * The size of the avatar.
+         * Default color for the avatar
          *
-         * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'}
+         * @type {'white' | 'muted' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'pink' | 'yellow' | 'indigo' | 'violet'}
          */
-        size: 'sm',
+        color: 'muted',
         /**
          * The radius of the avatar.
          *
@@ -69,11 +42,11 @@ export default defineNuxtSchema({
          */
         rounded: 'full',
         /**
-         * Default color for the avatar
+         * The size of the avatar.
          *
-         * @type {'white' | 'muted' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'pink' | 'yellow' | 'indigo' | 'violet'}
+         * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'}
          */
-        color: 'muted',
+        size: 'sm',
       },
       BaseAvatarGroup: {
         /**
@@ -89,13 +62,21 @@ export default defineNuxtSchema({
          */
         size: 'sm',
       },
+      BaseBreadcrumb: {
+        /**
+         * Defines the hover color of the breadcrumb links
+         *
+         * @type {'primary' | 'dark' | 'black'}
+         */
+        color: 'primary',
+      },
       BaseButton: {
         /**
-         * Default variant for the BaseButton component
+         * Default color for the BaseButton component
          *
-         * @type {'solid' | 'pastel' | 'outline'}
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'light' | 'dark' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
          */
-        variant: 'solid',
+        color: 'default',
         /**
          * Default rounded for the BaseButton component
          *
@@ -103,39 +84,39 @@ export default defineNuxtSchema({
          */
         rounded: 'md',
         /**
-         * Default color for the BaseButton component
-         *
-         * @type {'default'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'light'| 'muted'| 'none'}
-         */
-        color: 'default',
-        /**
          * Default size for the BaseButton component
          *
          * @type {'sm' | 'md' | 'lg'}
          */
         size: 'md',
+        /**
+         * Default variant for the BaseButton component
+         *
+         * @type {'solid' | 'pastel' | 'outline'}
+         */
+        variant: 'solid',
       },
       BaseButtonAction: {
+        /**
+         * Default color for the BaseButtonAction component
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'light' | 'dark' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
+         */
+        color: 'default',
         /**
          * Default rounded for the BaseButtonAction component
          *
          * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
          */
         rounded: 'md',
-        /**
-         * Default color for the BaseButtonAction component
-         *
-         * @type {'default'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'light'| 'muted'| 'none'}
-         */
-        color: 'default',
       },
       BaseButtonClose: {
         /**
-         * Default size for the BaseButtonClose component
+         * Default color for the BaseButtonClose component
          *
-         * @type {'xs' | 'sm' | 'md' | 'lg'}
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
          */
-        size: 'sm',
+        color: 'default',
         /**
          * Default rounded for the BaseButtonClose component
          *
@@ -143,25 +124,26 @@ export default defineNuxtSchema({
          */
         rounded: 'full',
         /**
-         * Default color for the BaseButtonClose component
+         * Default size for the BaseButtonClose component
          *
-         * @type {'default'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'light'| 'muted'| 'none'}
+         * @type {'xs' | 'sm' | 'md' | 'lg'}
+         */
+        size: 'sm',
+      },
+      BaseButtonGroup: {},
+      BaseButtonIcon: {
+        /**
+         * Default color for the BaseButtonIcon component
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'light' | 'dark' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
          */
         color: 'default',
-      },
-      BaseButtonIcon: {
         /**
          * Default rounded for the BaseButtonIcon component
          *
          * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
          */
         rounded: 'md',
-        /**
-         * Default color for the BaseButtonIcon component
-         *
-         * @type {'default'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'light'| 'muted'| 'none'}
-         */
-        color: 'default',
         /**
          * Default size for the BaseButton component
          *
@@ -171,47 +153,19 @@ export default defineNuxtSchema({
       },
       BaseCard: {
         /**
+         * Default color for the BaseCard component
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'dark' | 'black' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
+         */
+        color: 'default',
+        /**
          * Default rounded for the BaseCard component
          *
          * @type {'none' | 'sm' | 'md' | 'lg'}
          */
-        rounded: 'md',
-        /**
-         * Default color for the BaseCard component
-         *
-         * @type {'default'| 'default-contrast'| 'muted'| 'muted-contrast'| 'primary'| 'info'| 'success'| 'warning'| 'danger'| 'none'}
-         */
-        color: 'default',
-      },
-      BaseCheckbox: {
-        /**
-         * Default rounded for the BaseCheckbox component
-         *
-         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
-         */
         rounded: 'sm',
-        /**
-         * Default color for the BaseCheckbox component
-         *
-         * @type {'default' | 'light' | 'muted' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
-         */
-        color: 'default',
-      },
-      BaseCheckboxAnimated: {
-        /**
-         * Default color for the BaseCheckbox component
-         *
-         * @type {'light' | 'muted' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
-         */
-        color: 'primary',
       },
       BaseDropdown: {
-        /**
-         * The variant of the dropdown.
-         *
-         * @type {'button' | 'context' | 'text'}
-         */
-        variant: 'button',
         /**
          * The color of the dropdown button.
          *
@@ -221,21 +175,21 @@ export default defineNuxtSchema({
         /**
          * The color of the dropdown.
          *
-         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'none'}
          */
         color: 'default',
-        /**
-         * Default rounded for the BaseDropdown component
-         *
-         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
-         */
-        rounded: 'md',
         /**
          * The placement of the dropdown via floating-ui
          *
          * @type {'top' | 'top-start' | 'top-end' | 'right' | 'right-start' | 'right-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end'}
          */
-        placement: undefined,
+        placement: 'bottom-start',
+        /**
+         * Default rounded for the BaseDropdown component
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
         /**
          * Default size for the BaseDropdown component menu
          *
@@ -243,31 +197,20 @@ export default defineNuxtSchema({
          */
         size: 'md',
         /**
-         * The label to display for the dropdown.
+         * The variant of the dropdown.
          *
-         * @type {string}
+         * @type {'button' | 'context' | 'text'}
          */
-        label: '',
-        /**
-         * The header label to display for the dropdown.
-         *
-         * @type {string}
-         */
-        headerLabel: undefined,
-        /**
-         * Used a fixed strategy to float the component
-         *
-         * @type {boolean}
-         */
-        fixed: false,
+        variant: 'button',
       },
+      BaseDropdownDivider: {},
       BaseDropdownItem: {
         /**
-         * The radius of the dropdown item.
+         * The hover color of the dropdown item inner elements.
          *
-         * @type {'none' | 'sm' | 'md' | 'lg'}
+         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger' | 'dark' | 'black'}
          */
-        rounded: 'md',
+        color: 'primary',
         /**
          * The contrast of the dropdown item.
          *
@@ -275,27 +218,25 @@ export default defineNuxtSchema({
          */
         contrast: 'default',
         /**
-         * The hover color of the dropdown item inner elements.
+         * The radius of the dropdown item.
          *
-         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger' | 'dark' | 'black'}
+         * @type {'none' | 'sm' | 'md' | 'lg'}
          */
-        color: 'primary',
-      },
-      BaseFullscreenDropfile: {
-        /**
-         * The color of the icon.
-         *
-         * @type {'primary' | 'dark' | 'black'}
-         */
-        color: 'primary',
+        rounded: 'sm',
       },
       BaseHeading: {
         /**
          * The tag of the heading.
          *
-         * @type {'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'p'}
+         * @type {string}
          */
         as: 'p',
+        /**
+         * The lead of the heading.
+         *
+         * @type {'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'}
+         */
+        lead: 'normal',
         /**
          * The size of the heading.
          *
@@ -308,26 +249,20 @@ export default defineNuxtSchema({
          * @type {'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'}
          */
         weight: 'semibold',
-        /**
-         * The lead of the heading.
-         *
-         * @type {'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'}
-         */
-        lead: 'normal',
       },
       BaseIconBox: {
         /**
-         * The variant of the icon box.
-         *
-         * @type {'solid' | 'outline' | 'pastel'}
-         */
-        variant: 'solid',
-        /**
          * The color of the icon box.
          *
-         * @type {'default' | 'default-contrast' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none' | 'light' | 'dark' | 'black'}
+         * @type {'default' | 'default-contrast' | 'dark' | 'light' | 'black' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
          */
         color: 'default',
+        /**
+         * The radius of the icon box.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
         /**
          * The size of the icon box.
          *
@@ -335,79 +270,19 @@ export default defineNuxtSchema({
          */
         size: 'xs',
         /**
-         * The radius of the icon box.
+         * The variant of the icon box.
          *
-         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         * @type {'solid' | 'outline' | 'pastel'}
          */
-        rounded: 'md',
-      },
-      BaseInput: {
-        /**
-         * The radius of the input.
-         *
-         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
-         */
-        rounded: 'sm',
-        /**
-         * The size of the input.
-         *
-         * @type {'sm' | 'md' | 'lg'}
-         */
-        size: 'md',
-        /**
-         * The contrast of the input.
-         *
-         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
-         */
-        contrast: 'default',
-      },
-      BaseInputFile: {
-        /**
-         * The radius of the input.
-         *
-         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
-         */
-        rounded: 'sm',
-        /**
-         * The size of the input.
-         *
-         * @type {'sm' | 'md' | 'lg'}
-         */
-        size: 'md',
-        /**
-         * The contrast of the input.
-         *
-         * @type {'default' | 'default-contrast'}
-         */
-        contrast: 'default',
-      },
-      BaseInputNumber: {
-        /**
-         * The inputmode to use for the input, usually for mobile devices.
-         *
-         * @type {'decimal' | 'numeric'}
-         */
-        inputmode: 'numeric',
-        /**
-         * The radius of the input.
-         *
-         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
-         */
-        rounded: 'sm',
-        /**
-         * The size of the input.
-         *
-         * @type {'sm' | 'md' | 'lg'}
-         */
-        size: 'md',
-        /**
-         * The contrast of the input.
-         *
-         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
-         */
-        contrast: 'default',
+        variant: 'solid',
       },
       BaseKbd: {
+        /**
+         * The color of the kbd.
+         *
+         * @type {'default' | 'muted' | 'none'}
+         */
+        color: 'default',
         /**
          * The radius of the kbd.
          *
@@ -420,52 +295,23 @@ export default defineNuxtSchema({
          * @type {'xs' | 'sm' | 'md' | 'lg'}
          */
         size: 'sm',
-        /**
-         * The color of the kbd.
-         *
-         * @type {'default' | 'muted' | 'none'}
-         */
-        color: 'default',
       },
-      BaseListbox: {
-        /**
-         * The radius of the input.
-         *
-         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
-         */
-        rounded: 'sm',
-        /**
-         * The size of the input.
-         *
-         * @type {'sm' | 'md' | 'lg'}
-         */
-        size: 'md',
-        /**
-         * The contrast of the input.
-         *
-         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
-         */
-        contrast: 'default',
-      },
+      BaseLink: {},
+      BaseList: {},
+      BaseListItem: {},
       BaseMessage: {
         /**
          * The color of the message.
          *
-         * @type {'default' | 'muted' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-muted' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
          */
-        color: 'success',
+        color: 'default',
         /**
          * The radius of the message.
          *
          * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
          */
         rounded: 'sm',
-        /**
-         * Determines if the message is closable.
-         *
-         * @type {boolean}
-         */
-        closable: false,
       },
       BasePagination: {
         /**
@@ -489,6 +335,12 @@ export default defineNuxtSchema({
          */
         as: 'p',
         /**
+         * The lead of the paragraph.
+         *
+         * @type {'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'}
+         */
+        lead: 'normal',
+        /**
          * The size of the paragraph.
          *
          * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl'}
@@ -500,12 +352,6 @@ export default defineNuxtSchema({
          * @type {'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'}
          */
         weight: 'normal',
-        /**
-         * The lead of the paragraph.
-         *
-         * @type {'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'}
-         */
-        lead: 'normal',
       },
       BasePlaceholderPage: {
         /**
@@ -515,21 +361,14 @@ export default defineNuxtSchema({
          */
         imageSize: 'xs',
       },
-      BaseProgressCircle: {
+      BasePlaceload: {},
+      BaseProgress: {
         /**
-         * The color of the progress circle.
+         * The color of the progress.
          *
          * @type {'primary' | 'info' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'black'}
          */
         color: 'primary',
-      },
-      BaseProgress: {
-        /**
-         * The size of the progress.
-         *
-         * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl'}
-         */
-        size: 'sm',
         /**
          * The grey shade of the progress.
          *
@@ -537,17 +376,25 @@ export default defineNuxtSchema({
          */
         contrast: 'default',
         /**
-         * The color of the progress.
-         *
-         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger'}
-         */
-        color: 'primary',
-        /**
          * The radius of the progress.
          *
          * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
          */
         rounded: 'full',
+        /**
+         * The size of the progress.
+         *
+         * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl'}
+         */
+        size: 'sm',
+      },
+      BaseProgressCircle: {
+        /**
+         * The color of the progress circle.
+         *
+         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger' | 'light' | 'dark' | 'black'}
+         */
+        color: 'primary',
       },
       BaseProse: {
         /**
@@ -557,63 +404,19 @@ export default defineNuxtSchema({
          */
         rounded: 'none',
       },
-      BaseRadio: {
+      BaseSnack: {
         /**
-         * Default color for the BaseRadio component
+         * The color of the snack.
          *
-         * @type {'default' | 'light' | 'muted' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
+         * @type {'default' | 'muted'}
          */
         color: 'default',
-      },
-      BaseSelect: {
-        /**
-         * The radius of the select.
-         *
-         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
-         */
-        rounded: 'sm',
-        /**
-         * The size of the select.
-         *
-         * @type {'sm' | 'md' | 'lg'}
-         */
-        size: 'md',
-        /**
-         * The contrast of the select.
-         *
-         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
-         */
-        contrast: 'default',
-      },
-      BaseSnack: {
         /**
          * The size of the snack.
          *
          * @type {'xs' | 'sm' | 'md'}
          */
         size: 'md',
-        /**
-         * The color of the snack.
-         *
-         * @type {'default' | 'muted'}
-         */
-        color: 'muted',
-      },
-      BaseSwitchBall: {
-        /**
-         * The color of the switch.
-         *
-         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger'}
-         */
-        color: 'primary',
-      },
-      BaseSwitchThin: {
-        /**
-         * The color of the switch.
-         *
-         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger'}
-         */
-        color: 'primary',
       },
       BaseTabs: {
         /**
@@ -623,17 +426,17 @@ export default defineNuxtSchema({
          */
         color: 'primary',
         /**
-         * The type of the tabs.
-         *
-         * @type {'tabs' | 'box'}
-         */
-        type: 'tabs',
-        /**
          * The alignment of the tabs.
          *
          * @type {'start' | 'center' | 'end'}
          */
         justify: 'start',
+        /**
+         * The type of the tabs.
+         *
+         * @type {'tabs' | 'box'}
+         */
+        type: 'tabs',
       },
       BaseTabSlider: {
         /**
@@ -641,7 +444,7 @@ export default defineNuxtSchema({
          *
          * @type {'default' | 'default-contrast' | 'primary' | 'light' | 'dark' | 'black'}
          */
-        color: 'primary',
+        color: 'default',
         /**
          * The alignment of the tabs.
          *
@@ -649,29 +452,23 @@ export default defineNuxtSchema({
          */
         justify: 'start',
         /**
-         * The size of the tabs.
-         *
-         * @type {'sm' | 'md'}
-         */
-        size: 'md',
-        /**
          * The radius of the tabs.
          *
          * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
          */
         rounded: 'lg',
+        /**
+         * The size of the tabs.
+         *
+         * @type {'sm' | 'md'}
+         */
+        size: 'md',
       },
       BaseTag: {
         /**
-         * The variant of the tag.
-         *
-         * @type {'solid' | 'pastel' | 'outline'}
-         */
-        variant: 'solid',
-        /**
          * The color of the tag.
          *
-         * @type {'default' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'light' | 'muted'}
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'light' | 'dark' | 'black' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
          */
         color: 'default',
         /**
@@ -686,8 +483,20 @@ export default defineNuxtSchema({
          * @type {'sm' | 'md'}
          */
         size: 'md',
+        /**
+         * The variant of the tag.
+         *
+         * @type {'solid' | 'pastel' | 'outline'}
+         */
+        variant: 'solid',
       },
       BaseText: {
+        /**
+         * The lead of the text span.
+         *
+         * @type {'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'}
+         */
+        lead: 'normal',
         /**
          * The size of the text span.
          *
@@ -700,40 +509,6 @@ export default defineNuxtSchema({
          * @type {'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'}
          */
         weight: 'normal',
-        /**
-         * The lead of the text span.
-         *
-         * @type {'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'}
-         */
-        lead: 'normal',
-      },
-      BaseTextarea: {
-        /**
-         * The radius of the textarea.
-         *
-         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
-         */
-        rounded: 'sm',
-        /**
-         * The size of the textarea.
-         *
-         * @type {'sm' | 'md' | 'lg'}
-         */
-        size: 'md',
-        /**
-         * The contrast of the textarea.
-         *
-         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
-         */
-        contrast: 'default',
-      },
-      BaseTreeSelectItem: {
-        /**
-         * The radius of the tree select item.
-         *
-         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
-         */
-        rounded: 'sm',
       },
       BaseThemeSwitch: {
         /**
@@ -750,6 +525,238 @@ export default defineNuxtSchema({
          * @type {boolean}
          */
         disableTransitions: false,
+      },
+      // #endregion
+
+      // #region form
+      BaseAutocomplete: {
+        /**
+         * The contrast of the autocomplete.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
+         */
+        contrast: 'default',
+        /**
+         * Translation strings.
+         *
+         * @type {Record<'empty' | 'pending', string>}
+         */
+        i18n: {
+          empty: 'Nothing found.',
+          pending: 'Loading ...',
+        },
+        /**
+         * The radius of the autocomplete.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * The size of the autocomplete.
+         *
+         * @type {'sm' | 'md' | 'lg'}
+         */
+        size: 'md',
+      },
+      BaseAutocompleteItem: {
+        /**
+         * The radius of the autocomplete item.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+      },
+      BaseCheckbox: {
+        /**
+         * Default color for the BaseCheckbox component
+         *
+         * @type {'default' | 'muted' | 'light' | 'dark' | 'black' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
+         */
+        color: 'default',
+        /**
+         * Default rounded for the BaseCheckbox component
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+      },
+      BaseCheckboxAnimated: {
+        /**
+         * Default color for the BaseCheckbox component
+         *
+         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger' | 'light' | 'muted' | 'dark' | 'black'}
+         */
+        color: 'primary',
+      },
+      BaseCheckboxHeadless: {},
+      BaseFullscreenDropfile: {
+        /**
+         * The color of the icon.
+         *
+         * @type {'primary' | 'dark' | 'black'}
+         */
+        color: 'primary',
+      },
+      BaseInput: {
+        /**
+         * The contrast of the input.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
+         */
+        contrast: 'default',
+        /**
+         * The radius of the input.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * The size of the input.
+         *
+         * @type {'sm' | 'md' | 'lg'}
+         */
+        size: 'md',
+      },
+      BaseInputFile: {
+        /**
+         * The contrast of the input.
+         *
+         * @type {'default' | 'default-contrast'}
+         */
+        contrast: 'default',
+        /**
+         * The radius of the input.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * The size of the input.
+         *
+         * @type {'sm' | 'md' | 'lg'}
+         */
+        size: 'md',
+      },
+      BaseInputFileHeadless: {},
+      BaseInputNumber: {
+        /**
+         * The contrast of the input.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
+         */
+        contrast: 'default',
+        /**
+         * The radius of the input.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * The size of the input.
+         *
+         * @type {'sm' | 'md' | 'lg'}
+         */
+        size: 'md',
+      },
+      BaseListbox: {
+        /**
+         * The contrast of the input.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
+         */
+        contrast: 'default',
+        /**
+         * The placement of the dropdown via floating-ui
+         *
+         * @type {'top' | 'top-start' | 'top-end' | 'right' | 'right-start' | 'right-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end'}
+         */
+        placement: 'bottom-start',
+        /**
+         * The radius of the input.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * The size of the input.
+         *
+         * @type {'sm' | 'md' | 'lg'}
+         */
+        size: 'md',
+      },
+      BaseListboxItem: {},
+      BaseRadio: {
+        /**
+         * Default color for the BaseRadio component
+         *
+         * @type {'default' | 'light' | 'muted' | 'dark' | 'black' | 'primary' | 'info' | 'success' | 'warning' | 'danger'}
+         */
+        color: 'default',
+      },
+      BaseRadioHeadless: {},
+      BaseSelect: {
+        /**
+         * The contrast of the select.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
+         */
+        contrast: 'default',
+        /**
+         * The radius of the select.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * The size of the select.
+         *
+         * @type {'sm' | 'md' | 'lg'}
+         */
+        size: 'md',
+      },
+      BaseSwitchBall: {
+        /**
+         * The color of the switch.
+         *
+         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger' | 'dark' | 'black'}
+         */
+        color: 'primary',
+      },
+      BaseSwitchThin: {
+        /**
+         * The color of the switch.
+         *
+         * @type {'primary' | 'info' | 'success' | 'warning' | 'danger' | 'dark' | 'black'}
+         */
+        color: 'primary',
+      },
+      BaseTextarea: {
+        /**
+         * The contrast of the textarea.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
+         */
+        contrast: 'default',
+        /**
+         * The radius of the textarea.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
+        /**
+         * The size of the textarea.
+         *
+         * @type {'sm' | 'md' | 'lg'}
+         */
+        size: 'md',
+      },
+      BaseTreeSelectItem: {
+        /**
+         * The radius of the tree select item.
+         *
+         * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
+         */
+        rounded: 'sm',
       },
     },
   },

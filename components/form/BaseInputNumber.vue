@@ -36,28 +36,6 @@ const props = withDefaults(
     inputmode?: 'numeric' | 'decimal'
 
     /**
-     * The radius of the input.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the input.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the input.
-     *
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
      * The label to display for the input.
      */
     label?: string
@@ -106,6 +84,29 @@ const props = withDefaults(
      * Whether the input is in a disabled state.
      */
     disabled?: boolean
+
+    /**
+     * The contrast of the input.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * The radius of the input.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
      */
@@ -182,10 +183,9 @@ const [modelValue, modelModifiers] = defineModel<number, 'lazy'>({
   },
 })
 
-const inputmode = useNuiDefaultProperty(props, 'BaseInputNumber', 'inputmode')
+const contrast = useNuiDefaultProperty(props, 'BaseInputNumber', 'contrast')
 const rounded = useNuiDefaultProperty(props, 'BaseInputNumber', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseInputNumber', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseInputNumber', 'contrast')
 
 const radiuses = {
   none: '',
@@ -377,7 +377,7 @@ if (process.dev) {
           class="nui-input-number"
           :class="props.classes?.input"
           :placeholder="placeholder"
-          :inputmode="props.inputmode ? props.inputmode : inputmode"
+          :inputmode="props.inputmode"
           :disabled="props.disabled"
         />
         <input
@@ -390,7 +390,7 @@ if (process.dev) {
           class="nui-input-number"
           :class="props.classes?.input"
           :placeholder="placeholder"
-          :inputmode="props.inputmode ? props.inputmode : inputmode"
+          :inputmode="props.inputmode"
           :disabled="props.disabled"
         />
         <label

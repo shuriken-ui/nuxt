@@ -1,12 +1,15 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    /** The variant of the box.
-     *
-     * @since 2.0.0
-     * default 'solid'
+    /**
+     * Applies an svg mask from the available presets. (needs rounded to be set to `none`).
      */
-    variant?: 'solid' | 'outline' | 'pastel'
+    mask?: 'hex' | 'hexed' | 'deca' | 'blob' | 'diamond'
+
+    /**
+     * Whether the icon is bordered.
+     */
+    bordered?: boolean
 
     /** The color of the box.
      *
@@ -26,13 +29,6 @@ const props = withDefaults(
       | 'none'
 
     /**
-     * The size of the icon.
-     *
-     * @default 'xs'
-     */
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
-
-    /**
      * The radius of the icon.
      *
      * @since 2.0.0
@@ -41,14 +37,18 @@ const props = withDefaults(
     rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
-     * Applies an svg mask from the available presets. (needs rounded to be set to `none`).
+     * The size of the icon.
+     *
+     * @default 'xs'
      */
-    mask?: 'hex' | 'hexed' | 'deca' | 'blob' | 'diamond'
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 
-    /**
-     * Whether the icon is bordered.
+    /** The variant of the box.
+     *
+     * @since 2.0.0
+     * @default 'solid'
      */
-    bordered?: boolean
+    variant?: 'solid' | 'outline' | 'pastel'
   }>(),
   {
     variant: undefined,
@@ -60,10 +60,10 @@ const props = withDefaults(
   },
 )
 
-const variant = useNuiDefaultProperty(props, 'BaseIconBox', 'variant')
 const color = useNuiDefaultProperty(props, 'BaseIconBox', 'color')
-const size = useNuiDefaultProperty(props, 'BaseIconBox', 'size')
 const rounded = useNuiDefaultProperty(props, 'BaseIconBox', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseIconBox', 'size')
+const variant = useNuiDefaultProperty(props, 'BaseIconBox', 'variant')
 
 const radiuses = {
   none: '',

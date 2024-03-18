@@ -11,29 +11,6 @@ const props = withDefaults(
     id?: string
 
     /**
-     * The radius of the file input.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the input.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the input.
-     *
-     * @since 2.0.0
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast'
-
-    /**
      * The label to display for the file input.
      */
     label?: string
@@ -67,6 +44,29 @@ const props = withDefaults(
      * Method to return the text value of the file input.
      */
     textValue?: (fileList?: FileList | null) => string
+
+    /**
+     * The contrast of the input.
+     *
+     * @since 2.0.0
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast'
+
+    /**
+     * The radius of the file input.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, text, error, and icon elements.
@@ -127,9 +127,9 @@ const props = withDefaults(
 
 const [modelValue] = defineModel<FileList | null>()
 
+const contrast = useNuiDefaultProperty(props, 'BaseInputFile', 'contrast')
 const rounded = useNuiDefaultProperty(props, 'BaseInputFile', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseInputFile', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseInputFile', 'contrast')
 
 const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)

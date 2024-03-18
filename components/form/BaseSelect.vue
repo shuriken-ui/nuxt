@@ -11,28 +11,6 @@ const props = withDefaults(
     id?: string
 
     /**
-     * The radius of the select input.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the select input.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the select input.
-     *
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
      * The label text for the select input.
      */
     label?: string
@@ -71,6 +49,28 @@ const props = withDefaults(
      * An error message to display, or a boolean indicating whether there is an error.
      */
     error?: string | boolean
+
+    /**
+     * The contrast of the select input.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * The radius of the select input.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the select input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
 
     /**
      * Classes to apply to the select input.
@@ -122,9 +122,9 @@ const props = withDefaults(
 
 const [modelValue] = defineModel<any>()
 
+const contrast = useNuiDefaultProperty(props, 'BaseSelect', 'contrast')
 const rounded = useNuiDefaultProperty(props, 'BaseSelect', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseSelect', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseSelect', 'contrast')
 
 const selectRef = ref<HTMLSelectElement>()
 const id = useNinjaId(() => props.id)

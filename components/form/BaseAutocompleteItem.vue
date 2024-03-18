@@ -7,14 +7,6 @@ const props = withDefaults(
     item?: T
 
     /**
-     * The radius of the component.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
      * The icon to show when the component is selected.
      */
     selectedIcon?: string
@@ -33,6 +25,15 @@ const props = withDefaults(
      * CSS Class applied to the matching part of the text.
      */
     mark?: string
+
+    /**
+     * The radius of the component.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
     /**
      * The properties to use for the value, label, sublabel, media, and icon of the options items.
      */
