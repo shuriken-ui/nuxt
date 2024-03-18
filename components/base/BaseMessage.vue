@@ -103,7 +103,9 @@ const iconTypes = {
   success: 'carbon:checkmark-filled',
   primary: '',
   muted: '',
+  'muted-contrast': '',
   default: '',
+  'default-contrast': '',
 } as Record<string, string>
 
 const icon = computed(() =>
