@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.2](https://github.com/shuriken-ui/nuxt/compare/v3.0.1...v3.0.2) (2024-03-18)
+
+
+### Bug Fixes
+
+* **BaseMessage:** missing default icon for contrast colors ([e2cc7d8](https://github.com/shuriken-ui/nuxt/commit/e2cc7d89d23536f71c68b0b0fbd2ae952771df89))
+* **config:** ensure all types match components ([b1e13b3](https://github.com/shuriken-ui/nuxt/commit/b1e13b353a840181d3f441b20531b25a7672b10c)), closes [#116](https://github.com/shuriken-ui/nuxt/issues/116)
+
 ### [3.0.1](https://github.com/shuriken-ui/nuxt/compare/v3.0.0...v3.0.1) (2024-03-05)
 
 
