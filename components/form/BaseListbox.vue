@@ -225,8 +225,8 @@ const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
 })
 
 defineSlots<{
-  label(): any
-  icon(): any
+  label(props: Record<string, never>): any
+  icon(props: Record<string, never>): any
   'listbox-button'(props: { value: T | T[] | undefined; open: boolean }): any
   'listbox-item'(props: {
     item: T | T[] | undefined
