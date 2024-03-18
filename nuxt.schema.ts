@@ -319,7 +319,7 @@ export default defineNuxtSchema({
          *
          * @type {'primary' | 'dark' | 'black'}
          */
-        type: 'primary',
+        color: 'primary',
         /**
          * The radius of the pagination.
          *
