@@ -108,7 +108,7 @@ const colors = {
   muted: 'text-muted-400',
   dark: 'text-muted-900 dark:text-muted-100',
   black: 'text-black dark:text-white',
-} as Record<string, string>
+}
 
 const updateCheckbox = () => {
   if (element.value && innerElement.value) {

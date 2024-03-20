@@ -165,13 +165,13 @@ const radiuses = {
   sm: 'nui-accordion-rounded-sm',
   md: 'nui-accordion-rounded-md',
   lg: 'nui-accordion-rounded-lg',
-} as Record<string, string>
+}
 
 const actions = {
   dot: 'nui-accordion-dot',
   chevron: 'nui-accordion-chevron',
   plus: 'nui-accordion-plus',
-} as Record<string, string>
+}
 
 const internalOpenItems = ref(props.openItems)
 const toggle = (key: number) => {

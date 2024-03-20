@@ -98,7 +98,7 @@ const colors = {
   success: 'nui-radio-success',
   warning: 'nui-radio-warning',
   danger: 'nui-radio-danger',
-} as Record<string, string>
+}
 
 defineExpose({
   /**

@@ -86,7 +86,7 @@ const radiuses = {
   md: 'rounded-lg',
   lg: 'rounded-xl',
   full: 'rounded-xl',
-} as Record<string, string>
+}
 
 const inputContext = inject('BaseAutocompleteContext', {
   query: '',

@@ -97,13 +97,13 @@ const radiuses = {
   md: 'nui-button-rounded-md',
   lg: 'nui-button-rounded-lg',
   full: 'nui-button-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-button-small',
   md: 'nui-button-medium',
   lg: 'nui-button-large',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-button-default',
@@ -119,7 +119,7 @@ const colors = {
   warning: 'nui-button-warning',
   danger: 'nui-button-danger',
   none: '',
-} as Record<string, string>
+}
 
 const classes = computed(() => [
   'nui-button-icon',

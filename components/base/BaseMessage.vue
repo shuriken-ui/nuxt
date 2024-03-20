@@ -86,7 +86,7 @@ const radiuses = {
   md: 'nui-message-rounded-md',
   lg: 'nui-message-rounded-lg',
   full: 'nui-message-rounded-full',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-message-default',
@@ -98,7 +98,7 @@ const colors = {
   success: 'nui-message-success',
   warning: 'nui-message-warning',
   danger: 'nui-message-danger',
-} as Record<string, string>
+}
 
 const iconTypes = {
   info: 'akar-icons:info-fill',
@@ -110,7 +110,7 @@ const iconTypes = {
   'muted-contrast': '',
   default: '',
   'default-contrast': '',
-} as Record<string, string>
+}
 
 const icon = computed(() =>
   typeof props.icon === 'string'
@@ -131,7 +131,7 @@ const icon = computed(() =>
     ]"
   >
     <div
-      v-if="props.icon"
+      v-if="props.icon && icon"
       class="nui-message-icon-outer"
       :class="classes?.icon"
     >

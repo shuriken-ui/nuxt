@@ -5,13 +5,6 @@ import { Float } from '@headlessui-float/vue'
 const props = withDefaults(
   defineProps<{
     /**
-     * The orientation of the dropdown.
-     *
-     * @deprecated use placement instead
-     */
-    orientation?: 'start' | 'end'
-
-    /**
      * The label to display for the dropdown.
      */
     label?: string
@@ -145,7 +138,7 @@ const variant = useNuiDefaultProperty(props, 'BaseDropdown', 'variant')
 const sizes = {
   md: 'nui-menu-md',
   lg: 'nui-menu-lg',
-} as Record<string, string>
+}
 
 const radiuses = {
   none: '',
@@ -153,7 +146,7 @@ const radiuses = {
   md: 'nui-menu-rounded-md',
   lg: 'nui-menu-rounded-lg',
   full: 'nui-menu-rounded-lg',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-menu-default',
@@ -166,19 +159,7 @@ const colors = {
   warning: 'nui-menu-warning',
   danger: 'nui-menu-danger',
   none: '',
-} as Record<string, string>
-
-/**
- * fallback placement with old orientation value
- * @todo remove this on next major version
- */
-const placementValue = computed(() => {
-  if (placement.value) {
-    return placement.value
-  }
-
-  return props.orientation === 'end' ? 'bottom-end' : 'bottom-start'
-})
+}
 </script>
 
 <template>
@@ -198,7 +179,7 @@ const placementValue = computed(() => {
         flip
         :offset="props.variant === 'context' ? 6 : 4"
         :strategy="props.fixed ? 'fixed' : 'absolute'"
-        :placement="placementValue"
+        :placement="placement"
         :adaptive-width="props.fixed"
         :z-index="20"
       >

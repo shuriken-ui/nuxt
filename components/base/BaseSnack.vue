@@ -50,29 +50,12 @@ const sizes = {
   xs: 'nui-snack-xs',
   sm: 'nui-snack-sm',
   md: 'nui-snack-md',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-snack-default',
   muted: 'nui-snack-muted',
-} as Record<string, string>
-
-const closeSize = computed(() => {
-  switch (size.value) {
-    case 'xs': {
-      return 'xs'
-    }
-    case 'sm': {
-      return 'sm'
-    }
-    case 'md': {
-      return 'md'
-    }
-    default: {
-      return 'md'
-    }
-  }
-})
+}
 </script>
 
 <template>
@@ -98,7 +81,7 @@ const closeSize = computed(() => {
     <BaseButtonClose
       class="nui-snack-button"
       rounded="full"
-      :size="closeSize"
+      :size="size"
       @click="emit('delete')"
     />
   </div>

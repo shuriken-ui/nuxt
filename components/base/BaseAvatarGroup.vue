@@ -65,7 +65,7 @@ const sizes = {
   '2xl': 'nui-avatar-group-lg',
   '3xl': 'nui-avatar-group-lg',
   '4xl': 'nui-avatar-group-lg',
-} as Record<string, string>
+}
 
 const size = useNuiDefaultProperty(props, 'BaseAvatarGroup', 'size')
 const limit = useNuiDefaultProperty(props, 'BaseAvatarGroup', 'limit')

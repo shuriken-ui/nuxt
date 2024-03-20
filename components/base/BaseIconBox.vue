@@ -71,7 +71,7 @@ const radiuses = {
   md: 'nui-box-rounded-md',
   lg: 'nui-box-rounded-lg',
   full: 'nui-box-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   xs: 'nui-box-xs',
@@ -80,15 +80,16 @@ const sizes = {
   lg: 'nui-box-lg',
   xl: 'nui-box-xl',
   '2xl': 'nui-box-2xl',
-} as Record<string, string>
+}
 
 const variants = {
   solid: 'nui-box-solid',
   pastel: 'nui-box-pastel',
   outline: 'nui-box-outline',
-} as Record<string, string>
+}
 
 const colors = {
+  none: '',
   default: 'nui-box-default',
   'default-contrast': 'nui-box-default-contrast',
   light: 'nui-box-light',
@@ -99,7 +100,7 @@ const colors = {
   success: 'nui-box-success',
   warning: 'nui-box-warning',
   danger: 'nui-box-danger',
-} as Record<string, string>
+}
 
 const masks = {
   hex: 'nui-mask nui-mask-hex',
@@ -107,7 +108,7 @@ const masks = {
   deca: 'nui-mask nui-mask-deca',
   blob: 'nui-mask nui-mask-blob',
   diamond: 'nui-mask nui-mask-diamond',
-} as Record<string, string>
+}
 
 const classes = computed(() => [
   'nui-icon-box',
@@ -116,9 +117,7 @@ const classes = computed(() => [
   size.value && sizes[size.value],
   variant.value && variants[variant.value],
   color.value && colors[color.value],
-  (props.rounded === 'none' || rounded.value === 'none') &&
-    props.mask &&
-    masks[props.mask],
+  rounded.value === 'none' && props.mask && masks[props.mask],
 ])
 </script>
 

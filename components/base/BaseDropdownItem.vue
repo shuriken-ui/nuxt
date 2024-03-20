@@ -120,12 +120,12 @@ const radiuses = {
   sm: 'nui-item-rounded-sm',
   md: 'nui-item-rounded-md',
   lg: 'nui-item-rounded-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-item-default',
   contrast: 'nui-item-contrast',
-} as Record<string, string>
+}
 
 const colors = {
   primary: 'nui-item-primary',
@@ -135,7 +135,7 @@ const colors = {
   danger: 'nui-item-danger',
   dark: 'nui-item-dark',
   black: 'nui-item-black',
-} as Record<string, string>
+}
 
 const { is, attributes } = useNinjaButton(props)
 </script>
@@ -154,6 +154,7 @@ const { is, attributes } = useNinjaButton(props)
         rounded && radiuses[rounded],
         contrast && contrasts[contrast],
         color && colors[color],
+        props.classes?.wrapper,
       ]"
       @click.passive="close"
     >

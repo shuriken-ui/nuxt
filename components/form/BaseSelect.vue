@@ -82,6 +82,11 @@ const props = withDefaults(
       wrapper?: string | string[]
 
       /**
+       * A class or classes to apply to the outer element.
+       */
+      outer?: string | string[]
+
+      /**
        * A class or classes to apply to the label element.
        */
       label?: string | string[]
@@ -135,20 +140,20 @@ const radiuses = {
   md: 'nui-select-rounded-md',
   lg: 'nui-select-rounded-lg',
   full: 'nui-select-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-select-sm',
   md: 'nui-select-md',
   lg: 'nui-select-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-select-default',
   'default-contrast': 'nui-select-default-contrast',
   muted: 'nui-select-muted',
   'muted-contrast': 'nui-select-muted-contrast',
-} as Record<string, string>
+}
 
 defineExpose({
   /**
@@ -200,7 +205,7 @@ const placeholder = computed(() => {
     >
       <slot name="label">{{ props.label }}</slot>
     </label>
-    <div class="nui-select-outer">
+    <div class="nui-select-outer" :class="props.classes?.outer">
       <select
         :id="id"
         ref="selectRef"

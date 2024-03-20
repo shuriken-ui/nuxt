@@ -124,13 +124,13 @@ const radiuses = {
   md: 'nui-pagination-rounded-md',
   lg: 'nui-pagination-rounded-lg',
   full: 'nui-pagination-rounded-full',
-} as Record<string, string>
+}
 
 const colors = {
   primary: 'nui-pagination-primary',
   dark: 'nui-pagination-dark',
   black: 'nui-pagination-black',
-} as Record<string, string>
+}
 
 const route = useRoute()
 const lastPage = computed(

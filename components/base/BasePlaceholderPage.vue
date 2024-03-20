@@ -36,7 +36,7 @@ const sizes = {
   md: 'nui-placeholder-md',
   lg: 'nui-placeholder-lg',
   xl: 'nui-placeholder-xl',
-} as Record<string, string>
+}
 </script>
 
 <template>

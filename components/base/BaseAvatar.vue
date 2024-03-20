@@ -156,7 +156,7 @@ const dots = {
   danger: 'nui-dot-danger',
   pink: 'nui-dot-pink',
   yellow: 'nui-dot-yellow',
-} as Record<string, string>
+}
 
 const rings = {
   success: 'nui-ring-success',
@@ -166,7 +166,7 @@ const rings = {
   danger: 'nui-ring-danger',
   pink: 'nui-ring-pink',
   yellow: 'nui-ring-yellow',
-} as Record<string, string>
+}
 
 const sizes = {
   xxs: 'nui-avatar-xxs',
@@ -178,7 +178,7 @@ const sizes = {
   '2xl': 'nui-avatar-2xl',
   '3xl': 'nui-avatar-3xl',
   '4xl': 'nui-avatar-4xl',
-} as Record<string, string>
+}
 
 const radiuses = {
   none: 'nui-avatar-rounded-none',
@@ -186,7 +186,7 @@ const radiuses = {
   md: 'nui-avatar-rounded-md',
   lg: 'nui-avatar-rounded-lg',
   full: 'nui-avatar-rounded-full',
-} as Record<string, string>
+}
 
 const masks = {
   hex: 'nui-mask-hex',
@@ -194,7 +194,7 @@ const masks = {
   deca: 'nui-mask-deca',
   blob: 'nui-mask-blob',
   diamond: 'nui-mask-diamond',
-} as Record<string, string>
+}
 </script>
 
 <template>
@@ -214,7 +214,7 @@ const masks = {
       props.classes?.wrapper,
     ]"
   >
-    <div class="nui-avatar-inner" :class="$props.classes?.inner">
+    <div class="nui-avatar-inner" :class="props.classes?.inner">
       <slot>
         <img
           v-if="props.src"
@@ -223,13 +223,14 @@ const masks = {
           :class="[
             rounded && radiuses[rounded],
             props.srcDark ? 'dark:hidden' : '',
+            props.classes?.img,
           ]"
         />
 
         <img
           v-if="props.src && props.srcDark"
           :src="props.srcDark"
-          class="nui-avatar-img hidden"
+          class="nui-avatar-img hidden dark:block"
           :class="[rounded && radiuses[rounded], props.classes?.img]"
         />
 
@@ -242,7 +243,7 @@ const masks = {
     <div
       v-if="'badge' in $slots || props.badgeSrc"
       class="nui-avatar-badge"
-      :class="$props.classes?.badge"
+      :class="props.classes?.badge"
     >
       <slot name="badge">
         <img

@@ -166,20 +166,20 @@ const radiuses = {
   md: 'nui-textarea-rounded-md',
   lg: 'nui-textarea-rounded-lg',
   full: 'nui-textarea-rounded-lg',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-textarea-sm',
   md: 'nui-textarea-md',
   lg: 'nui-textarea-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-textarea-default',
   'default-contrast': 'nui-textarea-default-contrast',
   muted: 'nui-textarea-muted',
   'muted-contrast': 'nui-textarea-muted-contrast',
-} as Record<string, string>
+}
 
 function fitSize() {
   if (!textareaRef.value) {

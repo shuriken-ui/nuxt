@@ -66,7 +66,7 @@ const variants = {
   solid: 'nui-tag-solid',
   pastel: 'nui-tag-pastel',
   outline: 'nui-tag-outline',
-} as Record<string, string>
+}
 
 const radiuses = {
   none: '',
@@ -74,7 +74,7 @@ const radiuses = {
   md: 'nui-tag-rounded-md',
   lg: 'nui-tag-rounded-lg',
   full: 'nui-tag-rounded-full',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-tag-default',
@@ -89,17 +89,17 @@ const colors = {
   success: 'nui-tag-success',
   warning: 'nui-tag-warning',
   danger: 'nui-tag-danger',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-tag-sm',
   md: 'nui-tag-md',
-} as Record<string, string>
+}
 
 const shadows = {
   flat: 'nui-tag-shadow',
   hover: 'nui-tag-shadow-hover',
-} as Record<string, string>
+}
 
 const classes = computed(() => [
   'nui-tag',

@@ -88,7 +88,7 @@ const colors = {
   danger: 'nui-switch-thin-danger',
   dark: 'nui-switch-thin-dark',
   black: 'nui-switch-thin-black',
-} as Record<string, string>
+}
 
 defineExpose({
   /**

@@ -97,12 +97,12 @@ const justifies = {
   start: '',
   center: 'nui-tabs-centered',
   end: 'nui-tabs-end',
-} as Record<string, string>
+}
 
 const types = {
   tabs: 'nui-tab-item',
   box: 'nui-pill-item',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-tabs-default',
@@ -110,7 +110,7 @@ const colors = {
   light: 'nui-tabs-light',
   dark: 'nui-tabs-dark',
   black: 'nui-tabs-black',
-} as Record<string, string>
+}
 
 function toggle(value: string) {
   modelValue.value = value

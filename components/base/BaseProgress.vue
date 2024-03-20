@@ -89,12 +89,12 @@ const colors = {
   light: 'nui-progress-light',
   dark: 'nui-progress-dark',
   black: 'nui-progress-black',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-progress-default',
   contrast: 'nui-progress-contrast',
-} as Record<string, string>
+}
 
 const radiuses = {
   none: '',
@@ -102,7 +102,7 @@ const radiuses = {
   md: 'nui-progress-rounded-md',
   lg: 'nui-progress-rounded-lg',
   full: 'nui-progress-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   xs: 'nui-progress-xs',
@@ -110,7 +110,7 @@ const sizes = {
   md: 'nui-progress-md',
   lg: 'nui-progress-lg',
   xl: 'nui-progress-xl',
-} as Record<string, string>
+}
 
 const value = computed(() => {
   const { value, max } = props

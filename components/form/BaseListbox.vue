@@ -157,6 +157,11 @@ const props = withDefaults(
       wrapper?: string | string[]
 
       /**
+       * CSS classes to apply to the outer element.
+       */
+      outer?: string | string[]
+
+      /**
        * CSS classes to apply to the label element.
        */
       label?: string | string[]
@@ -247,20 +252,20 @@ const radiuses = {
   md: 'nui-listbox-rounded-md',
   lg: 'nui-listbox-rounded-lg',
   full: 'nui-listbox-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-listbox-sm',
   md: 'nui-listbox-md',
   lg: 'nui-listbox-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-listbox-default',
   'default-contrast': 'nui-listbox-default-contrast',
   muted: 'nui-listbox-muted',
   'muted-contrast': 'nui-listbox-muted-contrast',
-} as Record<string, string>
+}
 
 const placeholder = computed(() => {
   if (props.loading) {
@@ -354,7 +359,7 @@ const internal = ref<any>(modelValue)
           <slot name="label">{{ props.label }}</slot>
         </ListboxLabel>
 
-        <div class="nui-listbox-outer">
+        <div class="nui-listbox-outer" :class="props.classes?.outer">
           <FloatReference>
             <div>
               <ListboxButton

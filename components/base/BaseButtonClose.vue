@@ -49,7 +49,7 @@ const sizes = {
   sm: 'nui-button-sm',
   md: 'nui-button-md',
   lg: 'nui-button-lg',
-} as Record<string, string>
+}
 
 const radiuses = {
   none: '',
@@ -57,7 +57,7 @@ const radiuses = {
   md: 'nui-button-rounded-md',
   lg: 'nui-button-rounded-lg',
   full: 'nui-button-rounded-full',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-button-default',
@@ -70,7 +70,7 @@ const colors = {
   warning: 'nui-button-warning',
   danger: 'nui-button-danger',
   none: '',
-} as Record<string, string>
+}
 
 const classes = computed(() => [
   'nui-button-close',
@@ -82,6 +82,8 @@ const classes = computed(() => [
 
 <template>
   <button type="button" :class="classes">
-    <IconClose class="nui-button-icon" />
+    <slot>
+      <IconClose class="nui-button-icon" />
+    </slot>
   </button>
 </template>

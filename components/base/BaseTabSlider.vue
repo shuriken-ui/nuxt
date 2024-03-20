@@ -109,12 +109,12 @@ const justifies = {
   start: '',
   center: 'nui-tabs-centered',
   end: 'nui-tabs-end',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-tabs-sm',
   md: 'nui-tabs-md',
-} as Record<string, string>
+}
 
 const radiuses = {
   none: '',
@@ -122,7 +122,7 @@ const radiuses = {
   md: 'nui-tabs-rounded-md',
   lg: 'nui-tabs-rounded-lg',
   full: 'nui-tabs-rounded-full',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-tabs-default',
@@ -131,7 +131,7 @@ const colors = {
   light: 'nui-tabs-light',
   dark: 'nui-tabs-dark',
   black: 'nui-tabs-black',
-} as Record<string, string>
+}
 
 const tabsLength = computed(() => Math.min(3, Math.max(2, props.tabs.length)))
 const lengthStyle = computed(() =>

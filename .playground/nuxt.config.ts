@@ -13,32 +13,32 @@ export default defineNuxtConfig({
   },
   sourcemap: true,
   tailwindcss: {
-    config: {
-      content: [],
-      theme: {
-        fontFamily: {
-          heading: ['Inter', 'sans-serif'],
-          sans: ['Inter', 'sans-serif'],
-          alt: ['Karla', 'sans-serif'],
-          mono: [
-            'ui-monospace',
-            'SFMono-Regular',
-            'Menlo',
-            'Monaco',
-            'Consolas',
-            '"Liberation Mono"',
-            '"Courier New"',
-            'monospace',
-          ],
-        },
-        extend: {
-          colors: {
-            primary: colors?.violet,
-            muted: colors?.stone,
-          },
-        },
-      },
-    },
+    // config: {
+    //   content: [],
+    //   theme: {
+    //     fontFamily: {
+    //       heading: ['Inter', 'sans-serif'],
+    //       sans: ['Inter', 'sans-serif'],
+    //       alt: ['Karla', 'sans-serif'],
+    //       mono: [
+    //         'ui-monospace',
+    //         'SFMono-Regular',
+    //         'Menlo',
+    //         'Monaco',
+    //         'Consolas',
+    //         '"Liberation Mono"',
+    //         '"Courier New"',
+    //         'monospace',
+    //       ],
+    //     },
+    //     extend: {
+    //       colors: {
+    //         primary: colors?.violet,
+    //         muted: colors?.stone,
+    //       },
+    //     },
+    //   },
+    // },
   },
   componentMeta: {
     globalsOnly: false,

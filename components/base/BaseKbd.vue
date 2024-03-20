@@ -47,21 +47,22 @@ const radiuses = {
   md: 'nui-kbd-rounded-md',
   lg: 'nui-kbd-rounded-lg',
   full: 'nui-kbd-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   xs: 'nui-kbd-xs',
   sm: 'nui-kbd-sm',
   md: 'nui-kbd-md',
   lg: 'nui-kbd-lg',
-} as Record<string, string>
+}
 
 const colors = {
+  none: '',
   default: 'nui-kbd-default',
   'default-contrast': 'nui-kbd-default-contrast',
   muted: 'nui-kbd-muted',
   'muted-contrast': 'nui-kbd-muted-contrast',
-} as Record<string, string>
+}
 </script>
 
 <template>

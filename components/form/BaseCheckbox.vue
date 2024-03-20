@@ -120,7 +120,7 @@ const radiuses = {
   md: 'nui-checkbox-rounded-md',
   lg: 'nui-checkbox-rounded-lg',
   full: 'nui-checkbox-rounded-full',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-checkbox-default',
@@ -133,7 +133,7 @@ const colors = {
   success: 'nui-checkbox-success',
   warning: 'nui-checkbox-warning',
   danger: 'nui-checkbox-danger',
-} as Record<string, string>
+}
 
 watchEffect(() => {
   if (inputRef.value) {

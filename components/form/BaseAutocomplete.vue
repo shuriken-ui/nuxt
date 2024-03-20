@@ -441,20 +441,20 @@ const radiuses = {
   md: 'nui-autocomplete-rounded-md',
   lg: 'nui-autocomplete-rounded-lg',
   full: 'nui-autocomplete-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-autocomplete-sm',
   md: 'nui-autocomplete-md',
   lg: 'nui-autocomplete-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-autocomplete-default',
   'default-contrast': 'nui-autocomplete-default-contrast',
   muted: 'nui-autocomplete-muted',
   'muted-contrast': 'nui-autocomplete-muted-contrast',
-} as Record<string, string>
+}
 
 provide(
   'BaseAutocompleteContext',

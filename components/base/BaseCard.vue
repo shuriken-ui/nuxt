@@ -48,7 +48,7 @@ const radiuses = {
   sm: 'nui-card-rounded-sm',
   md: 'nui-card-rounded-md',
   lg: 'nui-card-rounded-lg',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-card-default',
@@ -63,7 +63,7 @@ const colors = {
   warning: 'nui-card-warning',
   danger: 'nui-card-danger',
   none: '',
-} as Record<string, string>
+}
 
 const shadows = {
   flat: 'nui-card-shadow',

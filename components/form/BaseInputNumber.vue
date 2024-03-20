@@ -193,20 +193,20 @@ const radiuses = {
   md: 'nui-input-number-rounded-md',
   lg: 'nui-input-number-rounded-lg',
   full: 'nui-input-number-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-input-number-sm',
   md: 'nui-input-number-md',
   lg: 'nui-input-number-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-input-number-default',
   'default-contrast': 'nui-input-number-default-contrast',
   muted: 'nui-input-number-muted',
   'muted-contrast': 'nui-input-number-muted-contrast',
-} as Record<string, string>
+}
 
 const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)
