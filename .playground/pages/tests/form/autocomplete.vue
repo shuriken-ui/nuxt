@@ -110,9 +110,9 @@ const fields = reactive({
   fourth: '',
   fifth: '',
   sixth: '',
-  seventh: '',
+  seventh: undefined,
   eighth: '',
-  ninth: '',
+  ninth: 'Nuxt',
   tenth: '',
   eleventh: '',
   twelfth: '',
@@ -486,7 +486,7 @@ const frameworks = ref([
           </div>
           <div class="flex-1">
             <BaseAutocomplete
-              v-model="fields.seventh"
+              v-model="fields.eighth"
               :items="frameworks"
               icon="lucide:search"
               size="md"
@@ -494,11 +494,12 @@ const frameworks = ref([
               placeholder="e.g. Nuxt"
               label="Framework"
               clearable
+              clear-value=""
             />
           </div>
           <div class="flex-1">
             <BaseAutocomplete
-              v-model="fields.seventh"
+              v-model="fields.ninth"
               :items="frameworks"
               icon="lucide:search"
               size="lg"
@@ -506,6 +507,7 @@ const frameworks = ref([
               placeholder="e.g. Nuxt"
               label="Framework"
               clearable
+              clear-value="Nuxt"
             />
           </div>
         </div>

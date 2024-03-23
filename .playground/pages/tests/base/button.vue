@@ -144,11 +144,15 @@ definePageMeta({
       >
         <div class="flex flex-wrap items-end gap-4">
           <BaseButton shadow="flat">Button</BaseButton>
-          <BaseButton color="primary" shadow="flat">Button</BaseButton>
-          <BaseButton color="success" shadow="flat">Button</BaseButton>
-          <BaseButton color="info" shadow="flat">Button</BaseButton>
-          <BaseButton color="warning" shadow="flat">Button</BaseButton>
-          <BaseButton color="danger" shadow="flat">Button</BaseButton>
+          <BaseButton shadow="flat" color="muted">Button</BaseButton>
+          <BaseButton shadow="flat" color="primary">Button</BaseButton>
+          <BaseButton shadow="flat" color="success">Button</BaseButton>
+          <BaseButton shadow="flat" color="info">Button</BaseButton>
+          <BaseButton shadow="flat" color="warning">Button</BaseButton>
+          <BaseButton shadow="flat" color="danger">Button</BaseButton>
+          <BaseButton shadow="flat" color="light">Button</BaseButton>
+          <BaseButton shadow="flat" color="dark">Button</BaseButton>
+          <BaseButton shadow="flat" color="black">Button</BaseButton>
         </div>
       </NuiPreview>
 
@@ -158,11 +162,15 @@ definePageMeta({
       >
         <div class="flex flex-wrap items-end gap-4">
           <BaseButton shadow="hover">Button</BaseButton>
-          <BaseButton color="primary" shadow="hover">Button</BaseButton>
-          <BaseButton color="success" shadow="hover">Button</BaseButton>
-          <BaseButton color="info" shadow="hover">Button</BaseButton>
-          <BaseButton color="warning" shadow="hover">Button</BaseButton>
-          <BaseButton color="danger" shadow="hover">Button</BaseButton>
+          <BaseButton shadow="hover" color="muted">Button</BaseButton>
+          <BaseButton shadow="hover" color="primary">Button</BaseButton>
+          <BaseButton shadow="hover" color="success">Button</BaseButton>
+          <BaseButton shadow="hover" color="info">Button</BaseButton>
+          <BaseButton shadow="hover" color="warning">Button</BaseButton>
+          <BaseButton shadow="hover" color="danger">Button</BaseButton>
+          <BaseButton shadow="hover" color="light">Button</BaseButton>
+          <BaseButton shadow="hover" color="dark">Button</BaseButton>
+          <BaseButton shadow="hover" color="black">Button</BaseButton>
         </div>
       </NuiPreview>
 
@@ -173,12 +181,14 @@ definePageMeta({
         <div class="flex flex-wrap items-end gap-4">
           <BaseButton loading>Button</BaseButton>
           <BaseButton loading color="muted">Button</BaseButton>
-          <BaseButton loading color="light">Button</BaseButton>
           <BaseButton loading color="primary">Button</BaseButton>
           <BaseButton loading color="success">Button</BaseButton>
           <BaseButton loading color="info">Button</BaseButton>
           <BaseButton loading color="warning">Button</BaseButton>
           <BaseButton loading color="danger">Button</BaseButton>
+          <BaseButton loading color="light">Button</BaseButton>
+          <BaseButton loading color="dark">Button</BaseButton>
+          <BaseButton loading color="black">Button</BaseButton>
         </div>
       </NuiPreview>
 
@@ -189,12 +199,14 @@ definePageMeta({
         <div class="flex flex-wrap items-end gap-4">
           <BaseButton disabled>Button</BaseButton>
           <BaseButton disabled color="muted">Button</BaseButton>
-          <BaseButton disabled color="light">Button</BaseButton>
           <BaseButton disabled color="primary">Button</BaseButton>
           <BaseButton disabled color="success">Button</BaseButton>
           <BaseButton disabled color="info">Button</BaseButton>
           <BaseButton disabled color="warning">Button</BaseButton>
           <BaseButton disabled color="danger">Button</BaseButton>
+          <BaseButton disabled color="light">Button</BaseButton>
+          <BaseButton disabled color="dark">Button</BaseButton>
+          <BaseButton disabled color="black">Button</BaseButton>
         </div>
       </NuiPreview>
 

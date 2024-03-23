@@ -35,7 +35,7 @@ export const useNinjaButton = (
     } else if (
       typeof properties.to === 'object' &&
       'path' in properties.to &&
-      properties.to.path.startsWith('http')
+      properties.to.path?.startsWith('http')
     ) {
       return true
     }
