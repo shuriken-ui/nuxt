@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.4](https://github.com/shuriken-ui/nuxt/compare/v3.0.3...v3.0.4) (2024-03-23)
+
+
+### Bug Fixes
+
+* **BaseAutocomplete:** fix clearable with custom clearValue ([2a2a9f2](https://github.com/shuriken-ui/nuxt/commit/2a2a9f25d2f5cbfa8aa28a4f0566c7e113e178a4))
+* **BaseDropdownItem:** expose active and close to all slots ([765b972](https://github.com/shuriken-ui/nuxt/commit/765b972c4366df828e72943788490df34e999c04))
+* **config:** base pagination type to color ([08f07a1](https://github.com/shuriken-ui/nuxt/commit/08f07a17f34c534ef918125a6742ad1448b2ae43))
+
 ### [3.0.3](https://github.com/shuriken-ui/nuxt/compare/v3.0.2...v3.0.3) (2024-03-18)
 
 
