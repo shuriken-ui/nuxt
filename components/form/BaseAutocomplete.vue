@@ -516,6 +516,15 @@ watch(
   },
 )
 
+const canClear = computed(() => {
+  if (!props.clearable) return false
+
+  if (Array.isArray(modelValue.value)) {
+    return modelValue.value.length > 0
+  }
+
+  return modelValue.value !== props.clearValue
+})
 function clear() {
   modelValue.value = props.clearValue ?? (props.multiple ? [] : null)
 }
@@ -557,7 +566,6 @@ function key(item: T) {
   if (typeof props.properties.value === 'string')
     return (item as any)[props.properties.value]
   if (typeof props.properties.value === 'function')
-    //@ts-expect-error not sure why properties.value ends up undefined
     return props.properties.value(item as any)
   return displayValueResolved.value(item)
 }
@@ -648,8 +656,8 @@ const internal = ref<any>(modelValue)
             class="nui-autocomplete-input"
             :class="[
               classes?.input,
-              props.dropdown && !props.clearable && '!pe-12',
-              props.dropdown && props.clearable && '!pe-[4.5rem]',
+              props.dropdown && !canClear && '!pe-12',
+              props.dropdown && canClear && '!pe-[4.5rem]',
             ]"
             :display-value="
               props.multiple ? undefined : (displayValueResolved as any)
@@ -681,7 +689,7 @@ const internal = ref<any>(modelValue)
           </div>
           <button
             v-if="
-              props.clearable &&
+              canClear &&
               ((Array.isArray(modelValue) && modelValue?.length > 0) ||
                 (!Array.isArray(modelValue) && modelValue != null))
             "
