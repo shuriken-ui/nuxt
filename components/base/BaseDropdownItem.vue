@@ -161,17 +161,17 @@ const { is, attributes } = useNinjaButton(props)
       <slot name="start"></slot>
       <div class="nui-item-content">
         <div :class="props.classes?.title">
-          <slot>{{ props.title }}</slot>
+          <slot v-bind="{ active, close }">{{ props.title }}</slot>
         </div>
         <p
           v-if="'text' in $slots || props.text"
           class="text-muted-400 font-sans text-xs"
           :class="props.classes?.text"
         >
-          <slot name="text">{{ props.text }}</slot>
+          <slot name="text" v-bind="{ active, close }">{{ props.text }}</slot>
         </p>
       </div>
-      <slot name="end"></slot>
+      <slot name="end" v-bind="{ active, close }"></slot>
     </component>
   </MenuItem>
 </template>
