@@ -117,7 +117,7 @@ const sizes = {
   sm: 'nui-button-small',
   md: 'nui-button-medium',
   lg: 'nui-button-large',
-  xl: 'nui-button-big',
+  xl: 'nui-button-xlarge',
 }
 
 const radiuses = {
