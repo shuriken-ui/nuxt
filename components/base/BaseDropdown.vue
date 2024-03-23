@@ -98,7 +98,12 @@ const props = withDefaults(
       wrapper?: string | string[]
 
       /**
-       * CSS classes to apply to the menu element.
+       * CSS classes to apply to the headless ui menu element.
+       */
+      menuWrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the dropdown menu element.
        */
       menu?: string | string[]
 
@@ -168,6 +173,7 @@ const colors = {
       v-slot="{ open, close }: { open: boolean; close: () => void }"
       as="div"
       class="nui-menu"
+      :class="props.classes?.menuWrapper"
     >
       <Float
         enter="transition duration-100 ease-out"
