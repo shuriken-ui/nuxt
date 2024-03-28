@@ -46,7 +46,7 @@ export const useNinjaScrollspy = (
   })
 
   // Watch for selectors
-  if (process.client) {
+  if (import.meta.browser) {
     watch(
       [() => route.path, selectors],
       () => {

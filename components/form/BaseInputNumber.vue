@@ -328,7 +328,7 @@ onBeforeUnmount(() => {
   clearInterval(decrementInterval)
 })
 
-if (process.dev) {
+if (import.meta.dev) {
   const slots = useSlots()
   if (props.labelFloat && 'label' in slots) {
     // eslint-disable-next-line no-console

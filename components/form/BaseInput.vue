@@ -197,7 +197,7 @@ const placeholder = computed(() => {
   return props.placeholder
 })
 
-if (process.dev) {
+if (import.meta.dev) {
   const slots = useSlots()
   if (props.labelFloat && 'label' in slots) {
     // eslint-disable-next-line no-console

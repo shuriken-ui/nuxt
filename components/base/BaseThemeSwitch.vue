@@ -26,14 +26,14 @@ const isDark = computed({
   },
   set(value) {
     // disable transitions
-    if (process.client && disableTransitions.value) {
+    if (import.meta.browser && disableTransitions.value) {
       document.documentElement.classList.add('nui-no-transition')
     }
 
     colorMode.preference = value ? 'dark' : 'light'
 
     // re-enable transitions
-    if (process.client && disableTransitions.value) {
+    if (import.meta.browser && disableTransitions.value) {
       setTimeout(() => {
         document.documentElement.classList.remove('nui-no-transition')
       }, 0)
