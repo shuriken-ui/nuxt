@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.5](https://github.com/shuriken-ui/nuxt/compare/v3.0.4...v3.0.5) (2024-03-28)
+
+
+### Bug Fixes
+
+* **BaseButton:** update xll version ([57d849c](https://github.com/shuriken-ui/nuxt/commit/57d849cf0fa8e940c8aecd409a87755f7d0269e8))
+* **BaseCheckboxAnimated:** remove usage of dom access in script ([89778d5](https://github.com/shuriken-ui/nuxt/commit/89778d59f65806e7d16d8bee32e53d5459c17d72))
+* **BaseDropdown:** add menu wrapper in classes ([dbbd4f1](https://github.com/shuriken-ui/nuxt/commit/dbbd4f18be6ae293a00e46a9ff8d05da1f9964db))
+
 ### [3.0.4](https://github.com/shuriken-ui/nuxt/compare/v3.0.3...v3.0.4) (2024-03-23)
 
 
