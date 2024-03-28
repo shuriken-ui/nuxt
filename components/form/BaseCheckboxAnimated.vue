@@ -110,23 +110,9 @@ const colors = {
   black: 'text-black dark:text-white',
 }
 
-const updateCheckbox = () => {
-  if (element.value && innerElement.value) {
-    if (checked.value) {
-      element.value.classList.add('is-checked')
-      innerElement.value.classList.add('is-opaque')
-      setTimeout(() => {
-        element.value?.classList.remove('is-unchecked')
-      }, 150)
-    } else {
-      element.value.classList.add('is-unchecked')
-      element.value.classList.remove('is-checked')
-      setTimeout(() => {
-        innerElement.value?.classList.remove('is-opaque')
-      }, 150)
-    }
-  }
-}
+const isChecked = ref(false)
+const isUnchecked = ref(true)
+const isOpaque = ref(false)
 
 function change() {
   if (Array.isArray(modelValue.value)) {
@@ -154,14 +140,44 @@ function change() {
   modelValue.value = props.trueValue
 }
 
-watchEffect(updateCheckbox)
+watchEffect(() => {
+  let timeout: ReturnType<typeof setTimeout>
+
+  if (checked.value) {
+    isChecked.value = true
+    isOpaque.value = true
+
+    if (import.meta.browser) {
+      timeout = setTimeout(() => {
+        isUnchecked.value = false
+      }, 150)
+    }
+  } else {
+    isUnchecked.value = true
+    isChecked.value = false
+
+    if (import.meta.browser) {
+      timeout = setTimeout(() => {
+        isOpaque.value = false
+      }, 150)
+    }
+  }
+
+  onScopeDispose(() => {
+    if (timeout) clearTimeout(timeout)
+  })
+})
 </script>
 
 <template>
   <div
     ref="element"
     class="nui-focus block focus-within:outline-current"
-    :class="props.classes?.wrapper"
+    :class="[
+      isChecked ? 'is-checked' : '',
+      isUnchecked ? 'is-unchecked' : '',
+      props.classes?.wrapper,
+    ]"
   >
     <input
       :id="id"
@@ -181,7 +197,7 @@ watchEffect(updateCheckbox)
       :for="id"
       :class="[color && colors[color], props.classes?.label]"
     >
-      <div ref="innerElement"></div>
+      <div ref="innerElement" :class="[isOpaque ? 'is-opaque' : '']"></div>
       <IconCheckCircle />
     </label>
   </div>

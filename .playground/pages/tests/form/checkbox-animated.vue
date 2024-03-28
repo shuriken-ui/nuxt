@@ -29,7 +29,7 @@ const options = ref([
 ])
 
 const checked = ref(false)
-const customValue = ref()
+const customValue = ref('not-checked')
 </script>
 
 <template>
@@ -143,6 +143,7 @@ const customValue = ref()
               color="black"
             />
           </BaseFocusLoop>
+          <pre>{{ options }}</pre>
         </div>
       </NuiPreview>
 
@@ -156,6 +157,7 @@ const customValue = ref()
               v-model="checked"
               :classes="{ label: 'text-primary-500' }"
             />
+            <pre>{{ checked }}</pre>
           </div>
         </div>
       </NuiPreview>
@@ -172,6 +174,7 @@ const customValue = ref()
               :false-value="'not-checked'"
               :classes="{ label: 'text-primary-500' }"
             />
+            <pre>{{ customValue }}</pre>
           </div>
         </div>
       </NuiPreview>

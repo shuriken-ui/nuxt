@@ -20,7 +20,7 @@ interface Person {
   media: string
 }
 
-const persons = ref<Person[]>([
+const persons = [
   {
     id: 1,
     name: 'Clarissa Perez',
@@ -51,13 +51,13 @@ const persons = ref<Person[]>([
     text: 'Product Manager',
     media: 'https://tairo.cssninja.io/img/avatars/2.svg',
   },
-])
+]
 const personValue = ref<Person>()
-const personSelection = ref<Person[]>([persons.value[1]])
+const personSelection = ref<Person[]>([persons[1]])
 const personSelectionProp = ref<number[]>([2])
 
 const hobbyValue = ref<Hobby | null>(null)
-const hobbies = ref<Hobby[]>([
+const hobbies: Hobby[] = [
   {
     id: 1,
     name: 'Movies',
@@ -88,7 +88,7 @@ const hobbies = ref<Hobby[]>([
     text: 'singing with friends',
     icon: 'ph:microphone-stage-duotone',
   },
-])
+]
 
 function filterItems(query?: string, items?: any[]) {
   if (!query || !items) {
@@ -119,16 +119,16 @@ const fields = reactive({
   thirteenth: '',
 })
 
-const value = ref<string[]>(['Nuxt', 'Vue.js'])
+const multipleValue = ref<string[]>(['Nuxt', 'Vue.js'])
 
-const frameworks = ref([
+const frameworks = [
   'Javascript',
   'Nuxt',
   'Vue.js',
   'React.js',
   'Angular',
   'Alpine.js',
-])
+]
 </script>
 
 <template>
@@ -185,7 +185,6 @@ const frameworks = ref([
               v-model="fields.first"
               :items="frameworks"
               size="sm"
-              rounded="md"
               label="Size: sm"
               placeholder="Ex: javascript"
             />
@@ -196,7 +195,6 @@ const frameworks = ref([
               v-model="fields.second"
               :items="frameworks"
               size="md"
-              rounded="md"
               label="Size: md"
               placeholder="Ex: javascript"
             />
@@ -207,7 +205,6 @@ const frameworks = ref([
               v-model="fields.third"
               :items="frameworks"
               size="lg"
-              rounded="md"
               label="Size: lg"
               placeholder="Ex: javascript"
             />
@@ -226,7 +223,6 @@ const frameworks = ref([
               :items="frameworks"
               contrast="default-contrast"
               size="sm"
-              rounded="md"
               label="Size: sm"
               placeholder="Ex: javascript"
             />
@@ -238,7 +234,6 @@ const frameworks = ref([
               :items="frameworks"
               contrast="default-contrast"
               size="md"
-              rounded="md"
               label="Size: md"
               placeholder="Ex: javascript"
             />
@@ -250,7 +245,6 @@ const frameworks = ref([
               :items="frameworks"
               contrast="default-contrast"
               size="lg"
-              rounded="md"
               label="Size: lg"
               placeholder="Ex: javascript"
             />
@@ -269,7 +263,6 @@ const frameworks = ref([
               :items="frameworks"
               contrast="muted"
               size="sm"
-              rounded="md"
               label="Size: sm"
               placeholder="Ex: javascript"
             />
@@ -281,7 +274,6 @@ const frameworks = ref([
               :items="frameworks"
               contrast="muted"
               size="md"
-              rounded="md"
               label="Size: md"
               placeholder="Ex: javascript"
             />
@@ -293,7 +285,6 @@ const frameworks = ref([
               :items="frameworks"
               contrast="muted"
               size="lg"
-              rounded="md"
               label="Size: lg"
               placeholder="Ex: javascript"
             />
@@ -312,7 +303,6 @@ const frameworks = ref([
               :items="frameworks"
               contrast="muted-contrast"
               size="sm"
-              rounded="md"
               label="Size: sm"
               placeholder="Ex: javascript"
             />
@@ -324,7 +314,6 @@ const frameworks = ref([
               :items="frameworks"
               contrast="muted-contrast"
               size="md"
-              rounded="md"
               label="Size: md"
               placeholder="Ex: javascript"
             />
@@ -336,7 +325,6 @@ const frameworks = ref([
               :items="frameworks"
               contrast="muted-contrast"
               size="lg"
-              rounded="md"
               label="Size: lg"
               placeholder="Ex: javascript"
             />
@@ -351,7 +339,6 @@ const frameworks = ref([
               v-model="fields.first"
               :items="frameworks"
               size="sm"
-              rounded="md"
               label="Size: sm"
               placeholder="Ex: javascript"
               error="Please select a framework"
@@ -363,7 +350,6 @@ const frameworks = ref([
               v-model="fields.second"
               :items="frameworks"
               size="md"
-              rounded="md"
               label="Size: md"
               placeholder="Ex: javascript"
               error="Please select a framework"
@@ -375,7 +361,6 @@ const frameworks = ref([
               v-model="fields.third"
               :items="frameworks"
               size="lg"
-              rounded="md"
               label="Size: lg"
               placeholder="Ex: javascript"
               error="Please select a framework"
@@ -394,7 +379,6 @@ const frameworks = ref([
               v-model="fields.first"
               :items="frameworks"
               size="sm"
-              rounded="md"
               label="Size: sm"
               placeholder="Ex: javascript"
               disabled
@@ -406,7 +390,6 @@ const frameworks = ref([
               v-model="fields.second"
               :items="frameworks"
               size="md"
-              rounded="md"
               label="Size: md"
               placeholder="Ex: javascript"
               disabled
@@ -418,7 +401,6 @@ const frameworks = ref([
               v-model="fields.third"
               :items="frameworks"
               size="lg"
-              rounded="md"
               label="Size: lg"
               placeholder="Ex: javascript"
               disabled
@@ -435,7 +417,6 @@ const frameworks = ref([
               :items="frameworks"
               icon="lucide:search"
               size="sm"
-              rounded="md"
               placeholder="e.g. Nuxt"
               label="Framework"
               color-focus
@@ -446,7 +427,6 @@ const frameworks = ref([
               v-model="fields.sixth"
               :items="frameworks"
               icon="lucide:search"
-              rounded="md"
               placeholder="e.g. Nuxt"
               label="Framework"
               color-focus
@@ -458,7 +438,6 @@ const frameworks = ref([
               :items="frameworks"
               icon="lucide:search"
               size="lg"
-              rounded="md"
               placeholder="e.g. Nuxt"
               label="Framework"
               color-focus
@@ -478,7 +457,6 @@ const frameworks = ref([
               :items="frameworks"
               icon="lucide:search"
               size="sm"
-              rounded="md"
               placeholder="e.g. Nuxt"
               label="Framework"
               clearable
@@ -490,7 +468,6 @@ const frameworks = ref([
               :items="frameworks"
               icon="lucide:search"
               size="md"
-              rounded="md"
               placeholder="e.g. Nuxt"
               label="Framework"
               clearable
@@ -503,7 +480,6 @@ const frameworks = ref([
               :items="frameworks"
               icon="lucide:search"
               size="lg"
-              rounded="md"
               placeholder="e.g. Nuxt"
               label="Framework"
               clearable
@@ -519,7 +495,7 @@ const frameworks = ref([
       >
         <div class="max-w-sm">
           <BaseAutocomplete
-            v-model="value"
+            v-model="multipleValue"
             :items="frameworks"
             rounded="md"
             icon="lucide:list-filter"
