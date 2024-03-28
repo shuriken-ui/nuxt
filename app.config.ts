@@ -1,4 +1,6 @@
-export default defineAppConfig({
+// @todo: usage of defineAppConfig break installation with giget and remote layers
+
+export default {
   nui: {
     // #region base
     BaseAccordion: {
@@ -215,4 +217,4 @@ export default defineAppConfig({
     },
     // #endregion
   },
-})
+}
