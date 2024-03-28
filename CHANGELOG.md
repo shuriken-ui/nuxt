@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.6](https://github.com/shuriken-ui/nuxt/compare/v3.0.5...v3.0.6) (2024-03-28)
+
+
+### Bug Fixes
+
+* remove usage of defineAppConfig in default app config ([fac786a](https://github.com/shuriken-ui/nuxt/commit/fac786a28f386182beefb36c515a393216ac7b72))
+
 ### [3.0.5](https://github.com/shuriken-ui/nuxt/compare/v3.0.4...v3.0.5) (2024-03-28)
 
 
