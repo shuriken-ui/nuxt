@@ -408,7 +408,7 @@ export default defineNuxtSchema({
         /**
          * The color of the snack.
          *
-         * @type {'default' | 'muted'}
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
          */
         color: 'default',
         /**
