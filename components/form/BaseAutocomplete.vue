@@ -753,7 +753,7 @@ const internal = ref<any>(modelValue)
               name="pending"
               v-bind="{ query, filteredItems, pending, items }"
             >
-              <span class="nui-autocomplete-results-placeholder-text">
+              <span class="nui-autocomplete-results-placeholder-text text-sm">
                 {{ i18n.pending }}
               </span>
             </slot>
@@ -766,7 +766,7 @@ const internal = ref<any>(modelValue)
               name="empty"
               v-bind="{ query, filteredItems, pending, items }"
             >
-              <span class="nui-autocomplete-results-placeholder-text">
+              <span class="nui-autocomplete-results-placeholder-text text-sm">
                 {{ i18n.empty }}
               </span>
             </slot>
