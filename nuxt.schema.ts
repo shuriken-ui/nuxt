@@ -254,7 +254,7 @@ export default defineNuxtSchema({
         /**
          * The color of the icon box.
          *
-         * @type {'default' | 'default-contrast' | 'dark' | 'light' | 'black' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'dark' | 'light' | 'black' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
          */
         color: 'default',
         /**
