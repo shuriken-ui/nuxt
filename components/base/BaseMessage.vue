@@ -12,6 +12,56 @@ const props = withDefaults(
     icon?: boolean | string
 
     /**
+     * Default icons to apply to the messages, when the icon is active.
+     */
+    defaultIcons?: {
+      /**
+       * The default default icon
+       */
+      default?: string
+
+      /**
+       * The default default contrast icon
+       */
+      'default-contrast'?: string
+
+      /**
+       * The default muted icon
+       */
+      muted?: string
+
+      /**
+       * The default muted contrast icon
+       */
+      'muted-contrast'?: string
+
+      /**
+       * The default info icon
+       */
+      info?: string
+
+      /**
+       * The default success icon
+       */
+      success?: string
+
+      /**
+       * The default warning icon
+       */
+      warning?: string
+
+      /**
+       * The default danger icon
+       */
+      danger?: string
+
+      /**
+       * The default primary icon
+       */
+      primary?: string
+    }
+
+    /**
      * The icon to show in the close button
      */
     closeIcon?: string
@@ -71,6 +121,7 @@ const props = withDefaults(
     icon: false,
     closeIcon: 'lucide:x',
     classes: () => ({}),
+    defaultIcons: undefined,
   },
 )
 const emit = defineEmits<{
@@ -79,6 +130,7 @@ const emit = defineEmits<{
 
 const color = useNuiDefaultProperty(props, 'BaseMessage', 'color')
 const rounded = useNuiDefaultProperty(props, 'BaseMessage', 'rounded')
+const icons = useNuiDefaultProperty(props, 'BaseMessage', 'defaultIcons')
 
 const radiuses = {
   none: '',
@@ -100,23 +152,11 @@ const colors = {
   danger: 'nui-message-danger',
 }
 
-const iconTypes = {
-  info: 'akar-icons:info-fill',
-  warning: 'ci:warning',
-  danger: 'ph:warning-octagon-fill',
-  success: 'carbon:checkmark-filled',
-  primary: '',
-  muted: '',
-  'muted-contrast': '',
-  default: '',
-  'default-contrast': '',
-}
-
 const icon = computed(() =>
   typeof props.icon === 'string'
     ? props.icon
     : color.value
-      ? iconTypes[color.value]
+      ? icons.value[color.value]
       : '',
 )
 </script>

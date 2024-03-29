@@ -312,6 +312,32 @@ export default defineNuxtSchema({
          * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
          */
         rounded: 'sm',
+        /**
+         * The default icons of the message.
+         *
+         * @type {{
+            default?: string
+            'default-contrast'?: string
+            muted?: string
+            'muted-contrast'?: string
+            info?: string
+            success?: string
+            warning?: string
+            danger?: string
+            primary?: string
+          }}
+         */
+        defaultIcons: {
+          muted: 'akar-icons:info-fill',
+          'muted-contrast': 'akar-icons:info-fill',
+          default: 'akar-icons:info-fill',
+          'default-contrast': 'akar-icons:info-fill',
+          info: 'akar-icons:info-fill',
+          success: 'carbon:checkmark-filled',
+          warning: 'ci:warning',
+          danger: 'ph:warning-octagon-fill',
+          primary: 'akar-icons:info-fill',
+        },
       },
       BasePagination: {
         /**
