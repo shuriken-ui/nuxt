@@ -177,6 +177,11 @@ export default {
       contrast: 'default',
       rounded: 'sm',
       size: 'md',
+      i18n: {
+        empty: 'No file chosen',
+        invalid: 'Invalid file selected',
+        multiple: '{count} files selected',
+      },
     },
     BaseInputFileHeadless: {},
     BaseInputNumber: {

@@ -636,6 +636,16 @@ export default defineNuxtSchema({
          * @type {'sm' | 'md' | 'lg'}
          */
         size: 'md',
+        /**
+         * The size of the input.
+         *
+         * @type {{ empty: string; invalid: string; multiple: string }}
+         */
+        i18n: {
+          empty: 'No file chosen',
+          invalid: 'Invalid file selected',
+          multiple: '{count} files selected',
+        },
       },
       BaseInputFileHeadless: {},
       BaseInputNumber: {
