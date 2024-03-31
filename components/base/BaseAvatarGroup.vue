@@ -1,15 +1,6 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    /** The maximum number of avatars to display. */
-    limit?: number
-
-    /** The size of the avatars.
-     *
-     * @default 'sm'
-     */
-    size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
-
     /** An array of avatar objects. */
     avatars: {
       /** The source URL for the avatar image. */
@@ -21,6 +12,19 @@ const props = withDefaults(
       /** The text to display as the avatar. */
       text?: string
     }[]
+
+    /**
+     * The maximum number of avatars to display.
+     *
+     * @default 4
+     */
+    limit?: number
+
+    /** The size of the avatars.
+     *
+     * @default 'sm'
+     */
+    size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
 
     /**
      * Optional CSS classes to apply to the component inner elements.
@@ -61,7 +65,7 @@ const sizes = {
   '2xl': 'nui-avatar-group-lg',
   '3xl': 'nui-avatar-group-lg',
   '4xl': 'nui-avatar-group-lg',
-} as Record<string, string>
+}
 
 const size = useNuiDefaultProperty(props, 'BaseAvatarGroup', 'size')
 const limit = useNuiDefaultProperty(props, 'BaseAvatarGroup', 'limit')

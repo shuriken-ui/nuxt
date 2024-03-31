@@ -2,6 +2,16 @@
 const props = withDefaults(
   defineProps<{
     /**
+     * An array of objects representing each tab. Each object should have a 'label' and a 'value' property.
+     */
+    tabs: {
+      /** The label displayed for the tab. */
+      label?: string
+      /** The value associated with the tab. */
+      value: string
+    }[]
+
+    /**
      * Defines the color of the active tab
      *
      * @since 3.0.0
@@ -17,25 +27,24 @@ const props = withDefaults(
 
     /**
      * Controls the alignment of the tabs. Can be 'start', 'center', or 'end'.
+     *
+     * @default 'start'
      */
     justify?: 'start' | 'center' | 'end'
-    /**
-     * The size of the tabs.
-     */
-    size?: 'sm' | 'md'
+
     /**
      * Controls the radius of the tabs.
+     *
+     * @default 'lg'
      */
     rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
     /**
-     * An array of objects representing each tab. Each object should have a 'label' and a 'value' property.
+     * The size of the tabs.
+     *
+     * @default 'md'
      */
-    tabs: {
-      /** The label displayed for the tab. */
-      label?: string
-      /** The value associated with the tab. */
-      value: string
-    }[]
+    size?: 'sm' | 'md'
 
     /**
      * Optional CSS classes to apply to the component inner elements.
@@ -93,19 +102,19 @@ onBeforeMount(() => {
 
 const color = useNuiDefaultProperty(props, 'BaseTabSlider', 'color')
 const justify = useNuiDefaultProperty(props, 'BaseTabSlider', 'justify')
-const size = useNuiDefaultProperty(props, 'BaseTabSlider', 'size')
 const rounded = useNuiDefaultProperty(props, 'BaseTabSlider', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseTabSlider', 'size')
 
 const justifies = {
   start: '',
   center: 'nui-tabs-centered',
   end: 'nui-tabs-end',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-tabs-sm',
   md: 'nui-tabs-md',
-} as Record<string, string>
+}
 
 const radiuses = {
   none: '',
@@ -113,7 +122,7 @@ const radiuses = {
   md: 'nui-tabs-rounded-md',
   lg: 'nui-tabs-rounded-lg',
   full: 'nui-tabs-rounded-full',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-tabs-default',
@@ -122,7 +131,7 @@ const colors = {
   light: 'nui-tabs-light',
   dark: 'nui-tabs-dark',
   black: 'nui-tabs-black',
-} as Record<string, string>
+}
 
 const tabsLength = computed(() => Math.min(3, Math.max(2, props.tabs.length)))
 const lengthStyle = computed(() =>

@@ -7,6 +7,9 @@ useHead(() => ({
       ? `${titleChunk} - @shuriken-ui/nuxt`
       : '@shuriken-ui/nuxt'
   },
+  bodyAttrs: {
+    class: 'bg-white dark:bg-muted-950',
+  },
 }))
 </script>
 

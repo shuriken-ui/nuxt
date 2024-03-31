@@ -9,6 +9,13 @@ const props = withDefaults(
     as?: string
 
     /**
+     * The lead of the paragraph.
+     *
+     * @default 'normal'
+     */
+    lead?: 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
+
+    /**
      * The size of the paragraph.
      *
      * @default 'md'
@@ -34,13 +41,6 @@ const props = withDefaults(
      * @default 'normal'
      */
     weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'
-
-    /**
-     * The lead of the paragraph.
-     *
-     * @default 'normal'
-     */
-    lead?: 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
   }>(),
   {
     as: undefined,
@@ -51,9 +51,9 @@ const props = withDefaults(
 )
 
 const as = useNuiDefaultProperty(props, 'BaseParagraph', 'as')
+const lead = useNuiDefaultProperty(props, 'BaseParagraph', 'lead')
 const size = useNuiDefaultProperty(props, 'BaseParagraph', 'size')
 const weight = useNuiDefaultProperty(props, 'BaseParagraph', 'weight')
-const lead = useNuiDefaultProperty(props, 'BaseParagraph', 'lead')
 
 const sizes = {
   xs: 'nui-paragraph-xs',
@@ -69,7 +69,7 @@ const sizes = {
   '7xl': 'nui-paragraph-7xl',
   '8xl': 'nui-paragraph-8xl',
   '9xl': 'nui-paragraph-9xl',
-} as Record<string, string>
+}
 
 const weights = {
   light: 'nui-weight-light',
@@ -78,7 +78,7 @@ const weights = {
   semibold: 'nui-weight-semibold',
   bold: 'nui-weight-bold',
   extrabold: 'nui-weight-extrabold',
-} as Record<string, string>
+}
 
 const leads = {
   none: 'nui-lead-none',
@@ -87,7 +87,7 @@ const leads = {
   normal: 'nui-lead-normal',
   relaxed: 'nui-lead-relaxed',
   loose: 'nui-lead-loose',
-} as Record<string, string>
+}
 
 const classes = computed(() => [
   'nui-paragraph',

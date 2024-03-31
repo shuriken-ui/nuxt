@@ -2,12 +2,9 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The variant of the tag.
-     *
-     * @since 2.0.0
-     * @default 'solid'
+     * Determines when the tag should have a shadow.
      */
-    variant?: 'solid' | 'outline' | 'pastel'
+    shadow?: 'flat' | 'hover'
 
     /**
      * The color of the tag.
@@ -44,9 +41,12 @@ const props = withDefaults(
     size?: 'sm' | 'md'
 
     /**
-     * Determines when the tag should have a shadow.
+     * The variant of the tag.
+     *
+     * @since 2.0.0
+     * @default 'solid'
      */
-    shadow?: 'flat' | 'hover'
+    variant?: 'solid' | 'outline' | 'pastel'
   }>(),
   {
     variant: undefined,
@@ -57,16 +57,16 @@ const props = withDefaults(
   },
 )
 
-const variant = useNuiDefaultProperty(props, 'BaseTag', 'variant')
-const rounded = useNuiDefaultProperty(props, 'BaseTag', 'rounded')
 const color = useNuiDefaultProperty(props, 'BaseTag', 'color')
+const rounded = useNuiDefaultProperty(props, 'BaseTag', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseTag', 'size')
+const variant = useNuiDefaultProperty(props, 'BaseTag', 'variant')
 
 const variants = {
   solid: 'nui-tag-solid',
   pastel: 'nui-tag-pastel',
   outline: 'nui-tag-outline',
-} as Record<string, string>
+}
 
 const radiuses = {
   none: '',
@@ -74,7 +74,7 @@ const radiuses = {
   md: 'nui-tag-rounded-md',
   lg: 'nui-tag-rounded-lg',
   full: 'nui-tag-rounded-full',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-tag-default',
@@ -89,17 +89,17 @@ const colors = {
   success: 'nui-tag-success',
   warning: 'nui-tag-warning',
   danger: 'nui-tag-danger',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-tag-sm',
   md: 'nui-tag-md',
-} as Record<string, string>
+}
 
 const shadows = {
   flat: 'nui-tag-shadow',
   hover: 'nui-tag-shadow-hover',
-} as Record<string, string>
+}
 
 const classes = computed(() => [
   'nui-tag',

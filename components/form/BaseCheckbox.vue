@@ -45,14 +45,6 @@ const props = withDefaults(
      */
     indeterminate?: boolean
 
-    /**
-     * The radius of the checkbox.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
     /** The color of the checkbox.
      *
      * @default 'default'
@@ -68,6 +60,14 @@ const props = withDefaults(
       | 'success'
       | 'warning'
       | 'danger'
+
+    /**
+     * The radius of the checkbox.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, and input elements.
@@ -103,13 +103,13 @@ const props = withDefaults(
 )
 
 defineSlots<{
-  default(): any
+  default(props: Record<string, never>): any
 }>()
 
 const [modelValue] = defineModel<T | T[]>()
 
-const rounded = useNuiDefaultProperty(props, 'BaseCheckbox', 'rounded')
 const color = useNuiDefaultProperty(props, 'BaseCheckbox', 'color')
+const rounded = useNuiDefaultProperty(props, 'BaseCheckbox', 'rounded')
 
 const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)
@@ -120,7 +120,7 @@ const radiuses = {
   md: 'nui-checkbox-rounded-md',
   lg: 'nui-checkbox-rounded-lg',
   full: 'nui-checkbox-rounded-full',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-checkbox-default',
@@ -133,7 +133,7 @@ const colors = {
   success: 'nui-checkbox-success',
   warning: 'nui-checkbox-warning',
   danger: 'nui-checkbox-danger',
-} as Record<string, string>
+}
 
 watchEffect(() => {
   if (inputRef.value) {
@@ -195,7 +195,9 @@ defineExpose({
         v-if="props.error && typeof props.error === 'string'"
         class="nui-checkbox-error"
       >
-        {{ props.error }}
+        <BaseInputHelpText color="danger">
+          {{ props.error }}
+        </BaseInputHelpText>
       </div>
     </div>
   </div>

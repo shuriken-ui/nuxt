@@ -28,19 +28,19 @@ const props = withDefaults(
     type?: 'button' | 'submit' | 'reset'
 
     /**
-     * The radius of the dropdown-item.
-     *
-     * @since 2.0.0
-     * @default 'sm'
+     * The title to display for the dropdown item.
      */
-    rounded?: 'none' | 'sm' | 'md' | 'lg'
+    title?: string
 
     /**
-     * The contrast of the dropdown-item.
-     *
-     * @default 'default'
+     * The text to display for the dropdown item.
      */
-    contrast?: 'default' | 'contrast'
+    text?: string
+
+    /**
+     * Whether the button is disabled.
+     */
+    disabled?: boolean
 
     /**
      * The hover color of the dropdown-item inner elements.
@@ -58,14 +58,19 @@ const props = withDefaults(
       | 'black'
 
     /**
-     * The title to display for the dropdown item.
+     * The contrast of the dropdown-item.
+     *
+     * @default 'default'
      */
-    title?: string
+    contrast?: 'default' | 'contrast'
 
     /**
-     * The text to display for the dropdown item.
+     * The radius of the dropdown-item.
+     *
+     * @since 2.0.0
+     * @default 'sm'
      */
-    text?: string
+    rounded?: 'none' | 'sm' | 'md' | 'lg'
 
     /**
      * Optional CSS classes to apply to the wrapper and inner elements.
@@ -86,11 +91,6 @@ const props = withDefaults(
        */
       text?: string | string[]
     }
-
-    /**
-     * Whether the button is disabled.
-     */
-    disabled?: boolean
   }>(),
   {
     to: undefined,
@@ -111,21 +111,21 @@ const props = withDefaults(
   },
 )
 
-const rounded = useNuiDefaultProperty(props, 'BaseDropdownItem', 'rounded')
-const contrast = useNuiDefaultProperty(props, 'BaseDropdownItem', 'contrast')
 const color = useNuiDefaultProperty(props, 'BaseDropdownItem', 'color')
+const contrast = useNuiDefaultProperty(props, 'BaseDropdownItem', 'contrast')
+const rounded = useNuiDefaultProperty(props, 'BaseDropdownItem', 'rounded')
 
 const radiuses = {
   none: '',
   sm: 'nui-item-rounded-sm',
   md: 'nui-item-rounded-md',
   lg: 'nui-item-rounded-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-item-default',
   contrast: 'nui-item-contrast',
-} as Record<string, string>
+}
 
 const colors = {
   primary: 'nui-item-primary',
@@ -135,7 +135,7 @@ const colors = {
   danger: 'nui-item-danger',
   dark: 'nui-item-dark',
   black: 'nui-item-black',
-} as Record<string, string>
+}
 
 const { is, attributes } = useNinjaButton(props)
 </script>
@@ -154,23 +154,25 @@ const { is, attributes } = useNinjaButton(props)
         rounded && radiuses[rounded],
         contrast && contrasts[contrast],
         color && colors[color],
+        props.disabled && 'nui-item-disabled',
+        props.classes?.wrapper,
       ]"
       @click.passive="close"
     >
       <slot name="start"></slot>
       <div class="nui-item-content">
         <div :class="props.classes?.title">
-          <slot>{{ props.title }}</slot>
+          <slot v-bind="{ active, close }">{{ props.title }}</slot>
         </div>
         <p
           v-if="'text' in $slots || props.text"
           class="text-muted-400 font-sans text-xs"
           :class="props.classes?.text"
         >
-          <slot name="text">{{ props.text }}</slot>
+          <slot name="text" v-bind="{ active, close }">{{ props.text }}</slot>
         </p>
       </div>
-      <slot name="end"></slot>
+      <slot name="end" v-bind="{ active, close }"></slot>
     </component>
   </MenuItem>
 </template>

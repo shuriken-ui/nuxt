@@ -19,19 +19,21 @@ const props = withDefaults(
     type?: 'button' | 'submit' | 'reset'
 
     /**
-     * The size of the button
-     *
-     * @default 'md'
+     * Adds a flat or a on hover shadow to the button.
      */
-    size?: 'sm' | 'md' | 'lg' | 'xl'
+    shadow?: 'flat' | 'hover'
 
-    /**
-     * The variant of the button..
-     *
-     * @since 2.0.0
-     * @default 'solid'
-     */
-    variant?: 'solid' | 'outline' | 'pastel'
+    /** The button badge indicator */
+    badge?: boolean
+
+    /** Add a pulse animation on the badge */
+    badgePulse?: boolean
+
+    /** Whether the button is in a loading state. */
+    loading?: boolean
+
+    /** Whether the button should be disabled. */
+    disabled?: boolean
 
     /**
      * The color of the button.
@@ -62,21 +64,19 @@ const props = withDefaults(
     rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
-     * Adds a flat or a on hover shadow to the button.
+     * The size of the button
+     *
+     * @default 'md'
      */
-    shadow?: 'flat' | 'hover'
+    size?: 'sm' | 'md' | 'lg' | 'xl'
 
-    /** The button badge indicator */
-    badge?: boolean
-
-    /** Add a pulse animation on the badge */
-    badgePulse?: boolean
-
-    /** Whether the button is in a loading state. */
-    loading?: boolean
-
-    /** Whether the button should be disabled. */
-    disabled?: boolean
+    /**
+     * The variant of the button..
+     *
+     * @since 2.0.0
+     * @default 'solid'
+     */
+    variant?: 'solid' | 'outline' | 'pastel'
   }>(),
   {
     to: undefined,
@@ -92,10 +92,10 @@ const props = withDefaults(
   },
 )
 
-const variant = useNuiDefaultProperty(props, 'BaseButton', 'variant')
-const rounded = useNuiDefaultProperty(props, 'BaseButton', 'rounded')
 const color = useNuiDefaultProperty(props, 'BaseButton', 'color')
+const rounded = useNuiDefaultProperty(props, 'BaseButton', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseButton', 'size')
+const variant = useNuiDefaultProperty(props, 'BaseButton', 'variant')
 
 const badgeColors = {
   primary: 'nui-badge-primary',
@@ -105,16 +105,20 @@ const badgeColors = {
   danger: 'nui-badge-danger',
   none: '',
   default: '',
+  'default-contrast': '',
   light: '',
+  dark: '',
+  black: '',
   muted: '',
-} as Record<string, string>
+  'muted-contrast': '',
+}
 
 const sizes = {
   sm: 'nui-button-small',
   md: 'nui-button-medium',
   lg: 'nui-button-large',
-  xl: 'nui-button-big',
-} as Record<string, string>
+  xl: 'nui-button-xlarge',
+}
 
 const radiuses = {
   none: '',
@@ -122,13 +126,13 @@ const radiuses = {
   md: 'nui-button-rounded-md',
   lg: 'nui-button-rounded-lg',
   full: 'nui-button-rounded-full',
-} as Record<string, string>
+}
 
 const variants = {
   solid: 'nui-button-solid',
   pastel: 'nui-button-pastel',
   outline: 'nui-button-outline',
-} as Record<string, string>
+}
 
 const colors = {
   none: '',
@@ -144,21 +148,12 @@ const colors = {
   light: 'nui-button-light',
   dark: 'nui-button-dark',
   black: 'nui-button-black',
-} as Record<string, string>
+}
 
 const shadows = {
   flat: 'nui-button-shadow',
   hover: 'nui-button-shadow-hover',
 }
-
-const badges = computed(() => {
-  const value = toValue(color)
-  if (!value) return ''
-
-  return props.badge && ['default', 'light', 'muted', 'none'].includes(value)
-    ? ''
-    : `${badgeColors[value]}`
-})
 
 const classes = computed(() => [
   'nui-button',
@@ -177,7 +172,11 @@ const { attributes, is } = useNinjaButton(props)
   <component :is="is" v-bind="attributes" :class="classes">
     <slot v-if="!props.loading" />
     <BasePlaceload v-else class="h-4 w-12 rounded" />
-    <span v-if="props.badge" class="nui-button-badge" :class="badges">
+    <span
+      v-if="props.badge"
+      class="nui-button-badge"
+      :class="badgeColors[color]"
+    >
       <span v-if="props.badgePulse" class="nui-button-badge-pulse"></span>
       <span class="nui-button-badge-inner"></span>
     </span>

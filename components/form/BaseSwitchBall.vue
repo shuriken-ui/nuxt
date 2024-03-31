@@ -93,7 +93,7 @@ const colors = {
   danger: 'nui-switch-ball-danger',
   dark: 'nui-switch-ball-dark',
   black: 'nui-switch-ball-black',
-} as Record<string, string>
+}
 
 defineExpose({
   /**

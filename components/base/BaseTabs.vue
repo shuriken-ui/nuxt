@@ -2,28 +2,6 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The type of tabs to display..
-     *
-     * @default 'tabs'
-     */
-    type?: 'tabs' | 'box'
-
-    /**
-     * The horizontal alignment of the tabs.
-     *
-     * @default 'start'
-     */
-    justify?: 'start' | 'center' | 'end'
-
-    /**
-     * Defines the hover color of the active tab
-     *
-     * @since 3.0.0
-     * @default 'default'
-     */
-    color?: 'default' | 'primary' | 'light' | 'dark' | 'black'
-
-    /**
      * An array of tab objects that contain a label and value
      */
     tabs: {
@@ -45,6 +23,28 @@ const props = withDefaults(
      * Whether or not to hide the label for the tab.
      */
     hideLabel?: boolean
+
+    /**
+     * Defines the hover color of the active tab
+     *
+     * @since 3.0.0
+     * @default 'default'
+     */
+    color?: 'default' | 'primary' | 'light' | 'dark' | 'black'
+
+    /**
+     * The horizontal alignment of the tabs.
+     *
+     * @default 'start'
+     */
+    justify?: 'start' | 'center' | 'end'
+
+    /**
+     * The type of tabs to display..
+     *
+     * @default 'tabs'
+     */
+    type?: 'tabs' | 'box'
 
     /**
      * Optional CSS classes to apply to the component inner elements.
@@ -83,26 +83,26 @@ const [modelValue] = defineModel<string>({
   default: null,
 })
 
+const color = useNuiDefaultProperty(props, 'BaseTabs', 'color')
+const justify = useNuiDefaultProperty(props, 'BaseTabs', 'justify')
+const type = useNuiDefaultProperty(props, 'BaseTabs', 'type')
+
 onBeforeMount(() => {
   if (modelValue.value === null) {
     modelValue.value = props.tabs[0]?.value
   }
 })
 
-const justify = useNuiDefaultProperty(props, 'BaseTabs', 'justify')
-const type = useNuiDefaultProperty(props, 'BaseTabs', 'type')
-const color = useNuiDefaultProperty(props, 'BaseTabs', 'color')
-
 const justifies = {
   start: '',
   center: 'nui-tabs-centered',
   end: 'nui-tabs-end',
-} as Record<string, string>
+}
 
 const types = {
   tabs: 'nui-tab-item',
   box: 'nui-pill-item',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-tabs-default',
@@ -110,7 +110,7 @@ const colors = {
   light: 'nui-tabs-light',
   dark: 'nui-tabs-dark',
   black: 'nui-tabs-black',
-} as Record<string, string>
+}
 
 function toggle(value: string) {
   modelValue.value = value

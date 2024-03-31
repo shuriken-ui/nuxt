@@ -1,8 +1,10 @@
+import { useEventListener } from '@vueuse/core'
+
 export function useNinjaWindowScroll() {
   const x = ref(0)
   const y = ref(0)
 
-  if (process.client) {
+  if (import.meta.browser) {
     useEventListener(
       window,
       'scroll',

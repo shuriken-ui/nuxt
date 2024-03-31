@@ -21,7 +21,7 @@ const radiuses = {
   sm: 'nui-prose-rounded-sm',
   md: 'nui-prose-rounded-md',
   lg: 'nui-prose-rounded-lg',
-} as Record<string, string>
+}
 </script>
 
 <template>

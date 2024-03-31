@@ -6,7 +6,7 @@ const props = withDefaults(
      *
      * @default 'p'
      */
-    as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'p'
+    as?: string
 
     /**
      * The size of the heading.
@@ -29,18 +29,18 @@ const props = withDefaults(
       | '9xl'
 
     /**
-     * The weight of the heading.
-     *
-     * @default 'semibold'
-     */
-    weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'
-
-    /**
      * The spacing below the heading.
      *
      * @default 'normal'
      */
     lead?: 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose'
+
+    /**
+     * The weight of the heading.
+     *
+     * @default 'semibold'
+     */
+    weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'
   }>(),
   {
     as: undefined,
@@ -51,9 +51,9 @@ const props = withDefaults(
 )
 
 const as = useNuiDefaultProperty(props, 'BaseHeading', 'as')
+const lead = useNuiDefaultProperty(props, 'BaseHeading', 'lead')
 const size = useNuiDefaultProperty(props, 'BaseHeading', 'size')
 const weight = useNuiDefaultProperty(props, 'BaseHeading', 'weight')
-const lead = useNuiDefaultProperty(props, 'BaseHeading', 'lead')
 
 const sizes = {
   xs: 'nui-heading-xs',
@@ -69,7 +69,7 @@ const sizes = {
   '7xl': 'nui-heading-7xl',
   '8xl': 'nui-heading-8xl',
   '9xl': 'nui-heading-9xl',
-} as Record<string, string>
+}
 
 const weights = {
   light: 'nui-weight-light',
@@ -78,7 +78,7 @@ const weights = {
   semibold: 'nui-weight-semibold',
   bold: 'nui-weight-bold',
   extrabold: 'nui-weight-extrabold',
-} as Record<string, string>
+}
 
 const leads = {
   none: 'nui-lead-none',
@@ -87,7 +87,7 @@ const leads = {
   normal: 'nui-lead-normal',
   relaxed: 'nui-lead-relaxed',
   loose: 'nui-lead-loose',
-} as Record<string, string>
+}
 
 const classes = computed(() => [
   'nui-heading',

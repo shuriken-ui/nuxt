@@ -1,12 +1,15 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    /** The variant of the box.
-     *
-     * @since 2.0.0
-     * default 'solid'
+    /**
+     * Applies an svg mask from the available presets. (needs rounded to be set to `none`).
      */
-    variant?: 'solid' | 'outline' | 'pastel'
+    mask?: 'hex' | 'hexed' | 'deca' | 'blob' | 'diamond'
+
+    /**
+     * Whether the icon is bordered.
+     */
+    bordered?: boolean
 
     /** The color of the box.
      *
@@ -15,6 +18,8 @@ const props = withDefaults(
     color?:
       | 'default'
       | 'default-contrast'
+      | 'muted'
+      | 'muted-contrast'
       | 'dark'
       | 'black'
       | 'light'
@@ -26,13 +31,6 @@ const props = withDefaults(
       | 'none'
 
     /**
-     * The size of the icon.
-     *
-     * @default 'xs'
-     */
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
-
-    /**
      * The radius of the icon.
      *
      * @since 2.0.0
@@ -41,14 +39,18 @@ const props = withDefaults(
     rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
-     * Applies an svg mask from the available presets. (needs rounded to be set to `none`).
+     * The size of the icon.
+     *
+     * @default 'xs'
      */
-    mask?: 'hex' | 'hexed' | 'deca' | 'blob' | 'diamond'
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 
-    /**
-     * Whether the icon is bordered.
+    /** The variant of the box.
+     *
+     * @since 2.0.0
+     * @default 'solid'
      */
-    bordered?: boolean
+    variant?: 'solid' | 'outline' | 'pastel'
   }>(),
   {
     variant: undefined,
@@ -60,10 +62,10 @@ const props = withDefaults(
   },
 )
 
-const variant = useNuiDefaultProperty(props, 'BaseIconBox', 'variant')
 const color = useNuiDefaultProperty(props, 'BaseIconBox', 'color')
-const size = useNuiDefaultProperty(props, 'BaseIconBox', 'size')
 const rounded = useNuiDefaultProperty(props, 'BaseIconBox', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseIconBox', 'size')
+const variant = useNuiDefaultProperty(props, 'BaseIconBox', 'variant')
 
 const radiuses = {
   none: '',
@@ -71,7 +73,7 @@ const radiuses = {
   md: 'nui-box-rounded-md',
   lg: 'nui-box-rounded-lg',
   full: 'nui-box-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   xs: 'nui-box-xs',
@@ -80,17 +82,20 @@ const sizes = {
   lg: 'nui-box-lg',
   xl: 'nui-box-xl',
   '2xl': 'nui-box-2xl',
-} as Record<string, string>
+}
 
 const variants = {
   solid: 'nui-box-solid',
   pastel: 'nui-box-pastel',
   outline: 'nui-box-outline',
-} as Record<string, string>
+}
 
 const colors = {
+  none: '',
   default: 'nui-box-default',
   'default-contrast': 'nui-box-default-contrast',
+  muted: 'nui-box-muted',
+  'muted-contrast': 'nui-box-muted-contrast',
   light: 'nui-box-light',
   dark: 'nui-box-dark',
   black: 'nui-box-black',
@@ -99,7 +104,7 @@ const colors = {
   success: 'nui-box-success',
   warning: 'nui-box-warning',
   danger: 'nui-box-danger',
-} as Record<string, string>
+}
 
 const masks = {
   hex: 'nui-mask nui-mask-hex',
@@ -107,7 +112,7 @@ const masks = {
   deca: 'nui-mask nui-mask-deca',
   blob: 'nui-mask nui-mask-blob',
   diamond: 'nui-mask nui-mask-diamond',
-} as Record<string, string>
+}
 
 const classes = computed(() => [
   'nui-icon-box',
@@ -116,9 +121,7 @@ const classes = computed(() => [
   size.value && sizes[size.value],
   variant.value && variants[variant.value],
   color.value && colors[color.value],
-  (props.rounded === 'none' || rounded.value === 'none') &&
-    props.mask &&
-    masks[props.mask],
+  rounded.value === 'none' && props.mask && masks[props.mask],
 ])
 </script>
 

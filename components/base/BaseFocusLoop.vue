@@ -17,7 +17,6 @@ export default defineComponent({
     /**
      * Keys to trigger the next focusable element
      *
-     * @default PageUp
      * @see https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values
      */
     nextKeys: {
@@ -26,8 +25,6 @@ export default defineComponent({
     },
     /**
      * Keys to trigger the previous focusable element
-     *
-     * @default PageDown
      */
     prevKeys: {
       type: [Array, String] as PropType<string | string[]>,

@@ -17,6 +17,16 @@ const props = withDefaults(
     size?: number
 
     /**
+     * The thickness of the progress circle.
+     */
+    thickness?: number
+
+    /**
+     * Enable/disable animation, or set the animation duration (in seconds).
+     */
+    animation?: boolean | number
+
+    /**
      * Defines the color of the progress circle
      *
      * @since 3.0.0
@@ -31,16 +41,6 @@ const props = withDefaults(
       | 'light'
       | 'dark'
       | 'black'
-
-    /**
-     * The thickness of the progress circle.
-     */
-    thickness?: number
-
-    /**
-     * Enable/disable animation, or set the animation duration (in seconds).
-     */
-    animation?: boolean | number
 
     /**
      * Optional CSS classes to apply to the component inner elements.
@@ -72,6 +72,8 @@ const props = withDefaults(
     classes: () => ({}),
   },
 )
+
+const color = useNuiDefaultProperty(props, 'BaseProgressCircle', 'color')
 
 const percent = computed(() => {
   const { value, max } = props
@@ -105,8 +107,6 @@ const colors = {
   warning: 'text-warning-500',
   danger: 'text-danger-500',
 }
-
-const color = useNuiDefaultProperty(props, 'BaseProgressCircle', 'color')
 </script>
 
 <template>

@@ -12,17 +12,17 @@ const props = withDefaults(
     icon?: string
 
     /**
+     * Allows to filter files when dropped.
+     */
+    filterFileDropped?: (file: File) => boolean
+
+    /**
      * Defines the color of the icon
      *
      * @since 3.0.0
      * @default 'default'
      */
     color?: 'primary' | 'dark' | 'black'
-
-    /**
-     * Allows to filter files when dropped.
-     */
-    filterFileDropped?: (file: File) => boolean
   }>(),
   {
     label: 'Drop your files',
@@ -34,6 +34,9 @@ const props = withDefaults(
 const emits = defineEmits<{
   drop: [value: FileList]
 }>()
+
+const color = useNuiDefaultProperty(props, 'BaseFullscreenDropfile', 'color')
+
 const isDropping = ref(false)
 
 // drag file over app handlers, to show drop placeholder
@@ -97,8 +100,6 @@ const colors = {
   dark: 'nui-dropfile-dark',
   black: 'nui-dropfile-black',
 }
-
-const color = useNuiDefaultProperty(props, 'BaseFullscreenDropfile', 'color')
 </script>
 
 <template>

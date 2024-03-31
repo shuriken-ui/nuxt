@@ -11,28 +11,6 @@ const props = withDefaults(
     id?: string
 
     /**
-     * The radius of the select input.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the select input.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the select input.
-     *
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
      * The label text for the select input.
      */
     label?: string
@@ -73,6 +51,28 @@ const props = withDefaults(
     error?: string | boolean
 
     /**
+     * The contrast of the select input.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * The radius of the select input.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the select input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
      * Classes to apply to the select input.
      */
     classes?: {
@@ -80,6 +80,11 @@ const props = withDefaults(
        * A class or classes to apply to the wrapper element.
        */
       wrapper?: string | string[]
+
+      /**
+       * A class or classes to apply to the outer element.
+       */
+      outer?: string | string[]
 
       /**
        * A class or classes to apply to the label element.
@@ -122,9 +127,9 @@ const props = withDefaults(
 
 const [modelValue] = defineModel<any>()
 
+const contrast = useNuiDefaultProperty(props, 'BaseSelect', 'contrast')
 const rounded = useNuiDefaultProperty(props, 'BaseSelect', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseSelect', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseSelect', 'contrast')
 
 const selectRef = ref<HTMLSelectElement>()
 const id = useNinjaId(() => props.id)
@@ -135,20 +140,20 @@ const radiuses = {
   md: 'nui-select-rounded-md',
   lg: 'nui-select-rounded-lg',
   full: 'nui-select-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-select-sm',
   md: 'nui-select-md',
   lg: 'nui-select-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-select-default',
   'default-contrast': 'nui-select-default-contrast',
   muted: 'nui-select-muted',
   'muted-contrast': 'nui-select-muted-contrast',
-} as Record<string, string>
+}
 
 defineExpose({
   /**
@@ -200,7 +205,7 @@ const placeholder = computed(() => {
     >
       <slot name="label">{{ props.label }}</slot>
     </label>
-    <div class="nui-select-outer">
+    <div class="nui-select-outer" :class="props.classes?.outer">
       <select
         :id="id"
         ref="selectRef"
@@ -244,13 +249,13 @@ const placeholder = computed(() => {
       >
         <IconChevronDown class="nui-select-chevron-inner" />
       </div>
-      <span
+      <BaseInputHelpText
         v-if="props.error && typeof props.error === 'string'"
-        class="nui-select-error-text"
+        color="danger"
         :class="props.classes?.error"
       >
         {{ props.error }}
-      </span>
+      </BaseInputHelpText>
     </div>
   </div>
 </template>

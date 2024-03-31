@@ -2,21 +2,6 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The size of the button.
-     *
-     * @default 'sm'
-     */
-    size?: 'xs' | 'sm' | 'md' | 'lg'
-
-    /**
-     * The radius of the button.
-     *
-     * @since 2.0.0
-     * @default 'full'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
      * The color of the button.
      *
      * @default 'default'
@@ -32,6 +17,21 @@ const props = withDefaults(
       | 'warning'
       | 'danger'
       | 'none'
+
+    /**
+     * The radius of the button.
+     *
+     * @since 2.0.0
+     * @default 'full'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the button.
+     *
+     * @default 'sm'
+     */
+    size?: 'xs' | 'sm' | 'md' | 'lg'
   }>(),
   {
     size: undefined,
@@ -40,16 +40,16 @@ const props = withDefaults(
   },
 )
 
-const size = useNuiDefaultProperty(props, 'BaseButtonClose', 'size')
-const rounded = useNuiDefaultProperty(props, 'BaseButtonClose', 'rounded')
 const color = useNuiDefaultProperty(props, 'BaseButtonClose', 'color')
+const rounded = useNuiDefaultProperty(props, 'BaseButtonClose', 'rounded')
+const size = useNuiDefaultProperty(props, 'BaseButtonClose', 'size')
 
 const sizes = {
   xs: 'nui-button-xs',
   sm: 'nui-button-sm',
   md: 'nui-button-md',
   lg: 'nui-button-lg',
-} as Record<string, string>
+}
 
 const radiuses = {
   none: '',
@@ -57,7 +57,7 @@ const radiuses = {
   md: 'nui-button-rounded-md',
   lg: 'nui-button-rounded-lg',
   full: 'nui-button-rounded-full',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-button-default',
@@ -70,7 +70,7 @@ const colors = {
   warning: 'nui-button-warning',
   danger: 'nui-button-danger',
   none: '',
-} as Record<string, string>
+}
 
 const classes = computed(() => [
   'nui-button-close',
@@ -82,6 +82,8 @@ const classes = computed(() => [
 
 <template>
   <button type="button" :class="classes">
-    <IconClose class="nui-button-icon" />
+    <slot>
+      <IconClose class="nui-button-icon" />
+    </slot>
   </button>
 </template>

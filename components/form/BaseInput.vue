@@ -16,28 +16,6 @@ const props = withDefaults(
     type?: string
 
     /**
-     * The radius of the input.
-     *
-     * @since 2.0.0
-     * @default 'rounded'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the input.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the input.
-     *
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
      * The label to display for the input.
      */
     label?: string
@@ -71,6 +49,28 @@ const props = withDefaults(
      * Whether the input is in a loading state.
      */
     loading?: boolean
+
+    /**
+     * The contrast of the input.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * The radius of the input.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -146,9 +146,9 @@ const [modelValue, modelModifiers] = defineModel<
   },
 })
 
+const contrast = useNuiDefaultProperty(props, 'BaseInput', 'contrast')
 const rounded = useNuiDefaultProperty(props, 'BaseInput', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseInput', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseInput', 'contrast')
 
 const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)
@@ -159,20 +159,20 @@ const radiuses = {
   md: 'nui-input-rounded-md',
   lg: 'nui-input-rounded-lg',
   full: 'nui-input-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-input-sm',
   md: 'nui-input-md',
   lg: 'nui-input-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-input-default',
   'default-contrast': 'nui-input-default-contrast',
   muted: 'nui-input-muted',
   'muted-contrast': 'nui-input-muted-contrast',
-} as Record<string, string>
+}
 
 defineExpose({
   /**
@@ -197,7 +197,7 @@ const placeholder = computed(() => {
   return props.placeholder
 })
 
-if (process.dev) {
+if (import.meta.dev) {
   const slots = useSlots()
   if (props.labelFloat && 'label' in slots) {
     // eslint-disable-next-line no-console
@@ -283,13 +283,13 @@ if (process.dev) {
         </div>
         <slot name="action"></slot>
       </div>
-      <span
+      <BaseInputHelpText
         v-if="props.error && typeof props.error === 'string'"
+        color="danger"
         :class="props.classes?.error"
-        class="nui-input-error-text"
       >
         {{ props.error }}
-      </span>
+      </BaseInputHelpText>
     </div>
   </div>
 </template>

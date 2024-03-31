@@ -4,14 +4,6 @@ import type { RouteLocationRaw } from 'vue-router'
 const props = withDefaults(
   defineProps<{
     /**
-     * Defines the hover color of the breadcrumb links
-     *
-     * @since 3.0.0
-     * @default 'default'
-     */
-    color?: 'primary' | 'dark' | 'black'
-
-    /**
      * The items to display in the breadcrumb.
      *
      * If not provided, the breadcrumb will be generated
@@ -45,6 +37,14 @@ const props = withDefaults(
     }[]
 
     /**
+     * Defines the hover color of the breadcrumb links
+     *
+     * @since 3.0.0
+     * @default 'primary'
+     */
+    color?: 'primary' | 'dark' | 'black'
+
+    /**
      * Optional CSS classes to apply to the component inner elements.
      */
     classes?: {
@@ -75,6 +75,8 @@ const props = withDefaults(
     classes: () => ({}),
   },
 )
+
+const color = useNuiDefaultProperty(props, 'BaseBreadcrumb', 'color')
 
 const route = useRoute()
 const router = useRouter()
@@ -127,8 +129,6 @@ const colors = {
   dark: 'nui-breadcrumb-dark',
   black: 'nui-breadcrumb-black',
 }
-
-const color = useNuiDefaultProperty(props, 'BaseBreadcrumb', 'color')
 </script>
 
 <template>

@@ -17,28 +17,6 @@ const props = withDefaults(
     items: T[]
 
     /**
-     * The radius of the multiselect.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the listbox.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the listbox.
-     *
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
      * The label to display for the multiselect.
      */
     label?: string
@@ -99,23 +77,6 @@ const props = withDefaults(
     fixed?: boolean
 
     /**
-     * The placement of the component via floating-ui.
-     */
-    placement?:
-      | 'top'
-      | 'top-start'
-      | 'top-end'
-      | 'right'
-      | 'right-start'
-      | 'right-end'
-      | 'bottom'
-      | 'bottom-start'
-      | 'bottom-end'
-      | 'left'
-      | 'left-start'
-      | 'left-end'
-
-    /**
      * The properties to use for the value, label, sublabel, media, and icon of the options items.
      */
     properties?: {
@@ -146,6 +107,47 @@ const props = withDefaults(
     }
 
     /**
+     * The contrast of the listbox.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * The placement of the component via floating-ui.
+     *
+     * @default 'bottom-start'
+     */
+    placement?:
+      | 'top'
+      | 'top-start'
+      | 'top-end'
+      | 'right'
+      | 'right-start'
+      | 'right-end'
+      | 'bottom'
+      | 'bottom-start'
+      | 'bottom-end'
+      | 'left'
+      | 'left-start'
+      | 'left-end'
+
+    /**
+     * The radius of the multiselect.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the listbox.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
      */
     classes?: {
@@ -153,6 +155,11 @@ const props = withDefaults(
        * CSS classes to apply to the wrapper element.
        */
       wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the outer element.
+       */
+      outer?: string | string[]
 
       /**
        * CSS classes to apply to the label element.
@@ -186,14 +193,29 @@ const props = withDefaults(
     error: false,
     multipleLabel: undefined,
     properties: () => ({}),
-    placement: 'bottom-start',
+    placement: undefined,
     classes: () => ({}),
   },
 )
 
 const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
   set(value) {
-    if (!props.multiple && modelModifiers.prop && props.properties.value) {
+    if (!props.multiple && modelModifiers.prop && props.properties?.value) {
+      const attr = props.properties.value
+      return (
+        props.items.find(
+          (item) =>
+            item &&
+            typeof item === 'object' &&
+            attr in item &&
+            (item as any)[attr] === value,
+        ) as any
+      )?.[attr]
+    }
+    return value
+  },
+  get(value) {
+    if (!props.multiple && modelModifiers.prop && props.properties?.value) {
       const attr = props.properties.value
       return props.items.find(
         (item) =>
@@ -208,8 +230,8 @@ const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
 })
 
 defineSlots<{
-  label(): any
-  icon(): any
+  label(props: Record<string, never>): any
+  icon(props: Record<string, never>): any
   'listbox-button'(props: { value: T | T[] | undefined; open: boolean }): any
   'listbox-item'(props: {
     item: T | T[] | undefined
@@ -219,9 +241,10 @@ defineSlots<{
   }): any
 }>()
 
+const contrast = useNuiDefaultProperty(props, 'BaseListbox', 'contrast')
+const placement = useNuiDefaultProperty(props, 'BaseListbox', 'placement')
 const rounded = useNuiDefaultProperty(props, 'BaseListbox', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseListbox', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseListbox', 'contrast')
 
 const radiuses = {
   none: '',
@@ -229,20 +252,20 @@ const radiuses = {
   md: 'nui-listbox-rounded-md',
   lg: 'nui-listbox-rounded-lg',
   full: 'nui-listbox-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-listbox-sm',
   md: 'nui-listbox-md',
   lg: 'nui-listbox-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-listbox-default',
   'default-contrast': 'nui-listbox-default-contrast',
   muted: 'nui-listbox-muted',
   'muted-contrast': 'nui-listbox-muted-contrast',
-} as Record<string, string>
+}
 
 const placeholder = computed(() => {
   if (props.loading) {
@@ -321,7 +344,7 @@ const internal = ref<any>(modelValue)
         flip
         :offset="5"
         :strategy="props.fixed ? 'fixed' : 'absolute'"
-        :placement="props.placement"
+        :placement="placement"
         :adaptive-width="props.fixed"
         :z-index="20"
       >
@@ -336,7 +359,7 @@ const internal = ref<any>(modelValue)
           <slot name="label">{{ props.label }}</slot>
         </ListboxLabel>
 
-        <div class="nui-listbox-outer">
+        <div class="nui-listbox-outer" :class="props.classes?.outer">
           <FloatReference>
             <div>
               <ListboxButton
@@ -535,13 +558,13 @@ const internal = ref<any>(modelValue)
             </ListboxOptions>
           </FloatContent>
 
-          <span
+          <BaseInputHelpText
             v-if="props.error && typeof props.error === 'string'"
-            class="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none"
+            color="danger"
             :class="props.classes?.error"
           >
             {{ props.error }}
-          </span>
+          </BaseInputHelpText>
         </div>
       </Float>
     </Listbox>

@@ -2,20 +2,6 @@
 const props = withDefaults(
   defineProps<{
     /**
-     * The size of the snack.
-     *
-     * @default 'md'
-     */
-    size?: 'xs' | 'sm' | 'md'
-
-    /**
-     * The color of snack.
-     *
-     * @default 'muted'
-     */
-    color?: 'default' | 'muted'
-
-    /**
      * The text to display in the snackbar.
      */
     label?: string
@@ -29,6 +15,50 @@ const props = withDefaults(
      * An optional image to display in the snackbar.
      */
     image?: string
+
+    /**
+     * The color of snack.
+     *
+     * @default 'default'
+     */
+    color?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * The size of the snack.
+     *
+     * @default 'md'
+     */
+    size?: 'xs' | 'sm' | 'md'
+
+    /**
+     * Optional CSS classes to apply to the component inner elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the icon element.
+       */
+      icon?: string | string[]
+
+      /**
+       * CSS classes to apply to the img element.
+       */
+      img?: string | string[]
+
+      /**
+       * CSS classes to apply to the text element.
+       */
+      text?: string | string[]
+
+      /**
+       * CSS classes to apply to the button element.
+       */
+      button?: string | string[]
+    }
   }>(),
   {
     size: undefined,
@@ -36,6 +66,7 @@ const props = withDefaults(
     label: '',
     icon: undefined,
     image: undefined,
+    classes: () => ({}),
   },
 )
 
@@ -43,36 +74,21 @@ const emit = defineEmits<{
   delete: []
 }>()
 
-const size = useNuiDefaultProperty(props, 'BaseSnack', 'size')
 const color = useNuiDefaultProperty(props, 'BaseSnack', 'color')
+const size = useNuiDefaultProperty(props, 'BaseSnack', 'size')
 
 const sizes = {
   xs: 'nui-snack-xs',
   sm: 'nui-snack-sm',
   md: 'nui-snack-md',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-snack-default',
+  'default-contrast': 'nui-snack-default-contrast',
   muted: 'nui-snack-muted',
-} as Record<string, string>
-
-const closeSize = computed(() => {
-  switch (size.value) {
-    case 'xs': {
-      return 'xs'
-    }
-    case 'sm': {
-      return 'sm'
-    }
-    case 'md': {
-      return 'md'
-    }
-    default: {
-      return 'md'
-    }
-  }
-})
+  'muted-contrast': 'nui-snack-muted-contrast',
+}
 </script>
 
 <template>
@@ -82,23 +98,33 @@ const closeSize = computed(() => {
       size && sizes[size],
       color && colors[color],
       props.icon || props.image ? 'nui-has-media' : '',
+      props.classes?.wrapper,
     ]"
   >
-    <div v-if="props.icon && !props.image" class="nui-snack-icon">
+    <div
+      v-if="props.icon && !props.image"
+      class="nui-snack-icon"
+      :class="props.classes?.icon"
+    >
       <slot name="icon">
         <Icon :name="props.icon" class="nui-snack-icon-inner" />
       </slot>
     </div>
-    <div v-else-if="props.image && !props.icon" class="nui-snack-image">
+    <div
+      v-else-if="props.image && !props.icon"
+      class="nui-snack-image"
+      :class="props.classes?.img"
+    >
       <img :src="props.image" class="nui-snack-image-inner" alt="" />
     </div>
-    <span class="nui-snack-text">
+    <span class="nui-snack-text" :class="props.classes?.text">
       <slot>{{ props.label }}</slot>
     </span>
     <BaseButtonClose
       class="nui-snack-button"
+      :class="props.classes?.button"
       rounded="full"
-      :size="closeSize"
+      :size="size"
       @click="emit('delete')"
     />
   </div>

@@ -2,6 +2,18 @@
 const props = withDefaults(
   defineProps<{
     /**
+     * The icon to display for the kbd.
+     */
+    icon?: string
+
+    /**
+     * The color of the kbd.
+     *
+     * @default 'default'
+     */
+    color?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'none'
+
+    /**
      * The radius of the kbd.
      *
      * @since 2.0.0
@@ -16,18 +28,6 @@ const props = withDefaults(
      * @default 'sm'
      */
     size?: 'xs' | 'sm' | 'md' | 'lg'
-
-    /**
-     * The color of the kbd.
-     *
-     * @default 'default'
-     */
-    color?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'none'
-
-    /**
-     * The icon to display for the kbd.
-     */
-    icon?: string
   }>(),
   {
     rounded: undefined,
@@ -37,9 +37,9 @@ const props = withDefaults(
   },
 )
 
+const color = useNuiDefaultProperty(props, 'BaseKbd', 'color')
 const rounded = useNuiDefaultProperty(props, 'BaseKbd', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseKbd', 'size')
-const color = useNuiDefaultProperty(props, 'BaseKbd', 'color')
 
 const radiuses = {
   none: '',
@@ -47,21 +47,22 @@ const radiuses = {
   md: 'nui-kbd-rounded-md',
   lg: 'nui-kbd-rounded-lg',
   full: 'nui-kbd-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   xs: 'nui-kbd-xs',
   sm: 'nui-kbd-sm',
   md: 'nui-kbd-md',
   lg: 'nui-kbd-lg',
-} as Record<string, string>
+}
 
 const colors = {
+  none: '',
   default: 'nui-kbd-default',
   'default-contrast': 'nui-kbd-default-contrast',
   muted: 'nui-kbd-muted',
   'muted-contrast': 'nui-kbd-muted-contrast',
-} as Record<string, string>
+}
 </script>
 
 <template>

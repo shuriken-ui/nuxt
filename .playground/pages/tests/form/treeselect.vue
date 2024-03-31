@@ -5,7 +5,7 @@ definePageMeta({
   title: 'BaseTreeSelect',
   icon: 'system-uicons:hierarchy',
   description: 'Tree select component',
-  section: 'base',
+  section: 'form',
 })
 
 const tree = [

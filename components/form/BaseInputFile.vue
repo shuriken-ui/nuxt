@@ -11,29 +11,6 @@ const props = withDefaults(
     id?: string
 
     /**
-     * The radius of the file input.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the input.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the input.
-     *
-     * @since 2.0.0
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast'
-
-    /**
      * The label to display for the file input.
      */
     label?: string
@@ -67,6 +44,40 @@ const props = withDefaults(
      * Method to return the text value of the file input.
      */
     textValue?: (fileList?: FileList | null) => string
+
+    /**
+     * The contrast of the input.
+     *
+     * @since 2.0.0
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast'
+
+    /**
+     * The radius of the file input.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * Translation strings.
+     *
+     * @default { empty: 'No file chosen', invalid: 'Invalid file selected', multiple: '{count} files selected'}
+     */
+    i18n?: {
+      empty: string
+      invalid: string
+      multiple: string
+    }
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, text, error, and icon elements.
@@ -107,32 +118,39 @@ const props = withDefaults(
     id: undefined,
     rounded: undefined,
     size: undefined,
+    i18n: undefined,
     contrast: undefined,
     label: undefined,
     icon: undefined,
-    placeholder: 'Choose file',
+    placeholder: undefined,
     error: false,
-    textValue: (fileList?: FileList | null) => {
-      if (!fileList?.item?.length) {
-        return 'No file chosen'
-      }
-
-      return fileList?.item.length === 1
-        ? fileList.item(0)?.name ?? 'Invalid file selected'
-        : `${fileList?.item?.length ?? 0} files selected`
-    },
+    textValue: undefined,
     classes: () => ({}),
   },
 )
 
 const [modelValue] = defineModel<FileList | null>()
 
+const contrast = useNuiDefaultProperty(props, 'BaseInputFile', 'contrast')
 const rounded = useNuiDefaultProperty(props, 'BaseInputFile', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseInputFile', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseInputFile', 'contrast')
+const i18n = useNuiDefaultProperty(props, 'BaseInputFile', 'i18n')
 
 const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)
+
+const defaultTextValue = (fileList?: FileList | null) => {
+  if (!fileList?.item?.length) {
+    return i18n.value.empty
+  }
+
+  return fileList?.item.length === 1
+    ? fileList.item(0)?.name ?? i18n.value.invalid
+    : i18n.value.multiple.replaceAll(
+        '{count}',
+        String(fileList?.item?.length ?? 0),
+      )
+}
 
 const radiuses = {
   none: '',
@@ -140,21 +158,25 @@ const radiuses = {
   md: 'nui-input-rounded-md',
   lg: 'nui-input-rounded-lg',
   full: 'nui-input-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-input-sm',
   md: 'nui-input-md',
   lg: 'nui-input-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-input-default',
   'default-contrast': 'nui-input-default-contrast',
-} as Record<string, string>
+}
 
 const textValue = computed(() => {
-  return props.textValue?.(modelValue.value)
+  if (props.textValue) {
+    return props.textValue(modelValue.value)
+  }
+
+  return defaultTextValue(modelValue.value)
 })
 
 defineExpose({
@@ -199,8 +221,14 @@ defineExpose({
         :for="id"
         :class="[props.classes?.input]"
       >
-        <div class="nui-input-file-addon" :class="props.classes?.text">
-          <span class="text-xs">{{ props.placeholder }}</span>
+        <div
+          v-if="props.placeholder || props.icon || 'icon' in $slots"
+          class="nui-input-file-addon"
+          :class="props.classes?.text"
+        >
+          <span v-if="props.placeholder" class="text-xs">
+            {{ props.placeholder }}
+          </span>
           <slot name="icon">
             <Icon
               v-if="props.icon"
@@ -228,13 +256,13 @@ defineExpose({
       <div v-if="props.loading" class="nui-input-file-placeload">
         <BasePlaceload class="nui-placeload" />
       </div>
-      <span
+      <BaseInputHelpText
         v-if="props.error && typeof props.error === 'string'"
-        class="nui-input-file-error-text"
+        color="danger"
         :class="props.classes?.error"
       >
         {{ props.error }}
-      </span>
+      </BaseInputHelpText>
     </div>
   </div>
 </template>

@@ -36,28 +36,6 @@ const props = withDefaults(
     inputmode?: 'numeric' | 'decimal'
 
     /**
-     * The radius of the input.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the input.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the input.
-     *
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
      * The label to display for the input.
      */
     label?: string
@@ -106,6 +84,29 @@ const props = withDefaults(
      * Whether the input is in a disabled state.
      */
     disabled?: boolean
+
+    /**
+     * The contrast of the input.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * The radius of the input.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the input.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
      */
@@ -182,10 +183,9 @@ const [modelValue, modelModifiers] = defineModel<number, 'lazy'>({
   },
 })
 
-const inputmode = useNuiDefaultProperty(props, 'BaseInputNumber', 'inputmode')
+const contrast = useNuiDefaultProperty(props, 'BaseInputNumber', 'contrast')
 const rounded = useNuiDefaultProperty(props, 'BaseInputNumber', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseInputNumber', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseInputNumber', 'contrast')
 
 const radiuses = {
   none: '',
@@ -193,20 +193,20 @@ const radiuses = {
   md: 'nui-input-number-rounded-md',
   lg: 'nui-input-number-rounded-lg',
   full: 'nui-input-number-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-input-number-sm',
   md: 'nui-input-number-md',
   lg: 'nui-input-number-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-input-number-default',
   'default-contrast': 'nui-input-number-default-contrast',
   muted: 'nui-input-number-muted',
   'muted-contrast': 'nui-input-number-muted-contrast',
-} as Record<string, string>
+}
 
 const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)
@@ -328,7 +328,7 @@ onBeforeUnmount(() => {
   clearInterval(decrementInterval)
 })
 
-if (process.dev) {
+if (import.meta.dev) {
   const slots = useSlots()
   if (props.labelFloat && 'label' in slots) {
     // eslint-disable-next-line no-console
@@ -377,7 +377,7 @@ if (process.dev) {
           class="nui-input-number"
           :class="props.classes?.input"
           :placeholder="placeholder"
-          :inputmode="props.inputmode ? props.inputmode : inputmode"
+          :inputmode="props.inputmode"
           :disabled="props.disabled"
         />
         <input
@@ -390,7 +390,7 @@ if (process.dev) {
           class="nui-input-number"
           :class="props.classes?.input"
           :placeholder="placeholder"
-          :inputmode="props.inputmode ? props.inputmode : inputmode"
+          :inputmode="props.inputmode"
           :disabled="props.disabled"
         />
         <label
@@ -440,12 +440,12 @@ if (process.dev) {
         </div>
       </div>
     </div>
-    <span
+    <BaseInputHelpText
       v-if="props.error && typeof props.error === 'string'"
+      color="danger"
       :class="props.classes?.error"
-      class="nui-input-number-error-text"
     >
       {{ props.error }}
-    </span>
+    </BaseInputHelpText>
   </div>
 </template>

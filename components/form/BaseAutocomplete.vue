@@ -17,28 +17,6 @@ const props = withDefaults(
     items?: T[]
 
     /**
-     * The radius of the component.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the autocomplete component.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of autocomplete component.
-     *
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
      * The label to display for the component.
      */
     label?: string
@@ -52,14 +30,6 @@ const props = withDefaults(
      * An icon to display for the component.
      */
     icon?: string
-
-    /**
-     * Translation strings.
-     */
-    i18n?: {
-      pending: string
-      empty: string
-    }
 
     /**
      * Placeholder text to display when the component is empty.
@@ -107,36 +77,6 @@ const props = withDefaults(
      * You can use this method to implement your own filtering logic or to fetch items from an API.
      */
     filterItems?: (query?: string, items?: T[]) => Promise<T[]> | T[]
-
-    /**
-     * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
-     */
-    classes?: {
-      /**
-       * CSS classes to apply to the wrapper element.
-       */
-      wrapper?: string | string[]
-
-      /**
-       * CSS classes to apply to the label element.
-       */
-      label?: string | string[]
-
-      /**
-       * CSS classes to apply to the input element.
-       */
-      input?: string | string[]
-
-      /**
-       * CSS classes to apply to the icon element.
-       */
-      icon?: string | string[]
-
-      /**
-       * CSS classes to apply to the error element.
-       */
-      error?: string | string[]
-    }
 
     /**
      * Allow custom entries by the user
@@ -228,6 +168,68 @@ const props = withDefaults(
        */
       icon?: T extends object ? keyof T | ((arg: T) => string) : string
     }
+
+    /**
+     * The contrast of autocomplete component.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * Translation strings.
+     *
+     * @default { empty: 'Nothing found.', pending: 'Loading ...' }
+     */
+    i18n?: {
+      empty: string
+      pending: string
+    }
+
+    /**
+     * The radius of the component.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the autocomplete component.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
+     * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
+     */
+    classes?: {
+      /**
+       * CSS classes to apply to the wrapper element.
+       */
+      wrapper?: string | string[]
+
+      /**
+       * CSS classes to apply to the label element.
+       */
+      label?: string | string[]
+
+      /**
+       * CSS classes to apply to the input element.
+       */
+      input?: string | string[]
+
+      /**
+       * CSS classes to apply to the icon element.
+       */
+      icon?: string | string[]
+
+      /**
+       * CSS classes to apply to the error element.
+       */
+      error?: string | string[]
+    }
   }>(),
   {
     items: () => [],
@@ -238,10 +240,7 @@ const props = withDefaults(
     placeholder: '',
     label: '',
     error: '',
-    i18n: () => ({
-      pending: 'Loading ...',
-      empty: 'Nothing found.',
-    }),
+    i18n: undefined,
     loading: false,
     disabled: false,
     clearable: false,
@@ -322,16 +321,30 @@ defineSlots<{
     removeItem: (item: T) => void
   }): any
   'icon'(props: { iconName: string }): any
-  'clear-icon'(): any
-  'dropdown-icon'(): any
+  'clear-icon'(props: Record<string, never>): any
+  'dropdown-icon'(props: Record<string, never>): any
 }>()
 
 const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
   set(value) {
     if (!props.multiple && modelModifiers.prop && props.properties?.value) {
       const attr = props.properties.value
-
-      return items.value.find(
+      return (
+        props.items.find(
+          (item) =>
+            item &&
+            typeof item === 'object' &&
+            attr in item &&
+            (item as any)[attr] === value,
+        ) as any
+      )?.[attr]
+    }
+    return value
+  },
+  get(value) {
+    if (!props.multiple && modelModifiers.prop && props.properties?.value) {
+      const attr = props.properties.value
+      return props.items.find(
         (item) =>
           item &&
           typeof item === 'object' &&
@@ -339,14 +352,14 @@ const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
           (item as any)[attr] === value,
       )
     }
-
     return value
   },
 })
 
+const contrast = useNuiDefaultProperty(props, 'BaseAutocomplete', 'contrast')
+const i18n = useNuiDefaultProperty(props, 'BaseAutocomplete', 'i18n')
 const rounded = useNuiDefaultProperty(props, 'BaseAutocomplete', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseAutocomplete', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseAutocomplete', 'contrast')
 
 const defaultDisplayValue = (item: any): any => {
   if (modelModifiers.prop && props.properties?.value) {
@@ -355,8 +368,14 @@ const defaultDisplayValue = (item: any): any => {
       (i) =>
         i && typeof i === 'object' && attr in i && (i as any)[attr] === item,
     )
-    // @ts-expect-error not sure what the issue is here
-    if (result && props.properties.label) return result[props.properties.label]
+    if (
+      typeof result === 'object' &&
+      result &&
+      props.properties.label &&
+      props.properties.label in result
+    ) {
+      return result[props.properties.label as keyof typeof result]
+    }
   }
   if (item == null || typeof item === 'string') return item
   if (
@@ -422,20 +441,20 @@ const radiuses = {
   md: 'nui-autocomplete-rounded-md',
   lg: 'nui-autocomplete-rounded-lg',
   full: 'nui-autocomplete-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-autocomplete-sm',
   md: 'nui-autocomplete-md',
   lg: 'nui-autocomplete-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-autocomplete-default',
   'default-contrast': 'nui-autocomplete-default-contrast',
   muted: 'nui-autocomplete-muted',
   'muted-contrast': 'nui-autocomplete-muted-contrast',
-} as Record<string, string>
+}
 
 provide(
   'BaseAutocompleteContext',
@@ -497,6 +516,15 @@ watch(
   },
 )
 
+const canClear = computed(() => {
+  if (!props.clearable) return false
+
+  if (Array.isArray(modelValue.value)) {
+    return modelValue.value.length > 0
+  }
+
+  return modelValue.value !== props.clearValue
+})
 function clear() {
   modelValue.value = props.clearValue ?? (props.multiple ? [] : null)
 }
@@ -538,7 +566,6 @@ function key(item: T) {
   if (typeof props.properties.value === 'string')
     return (item as any)[props.properties.value]
   if (typeof props.properties.value === 'function')
-    //@ts-expect-error not sure why properties.value ends up undefined
     return props.properties.value(item as any)
   return displayValueResolved.value(item)
 }
@@ -629,8 +656,8 @@ const internal = ref<any>(modelValue)
             class="nui-autocomplete-input"
             :class="[
               classes?.input,
-              props.dropdown && !props.clearable && '!pe-12',
-              props.dropdown && props.clearable && '!pe-[4.5rem]',
+              props.dropdown && !canClear && '!pe-12',
+              props.dropdown && canClear && '!pe-[4.5rem]',
             ]"
             :display-value="
               props.multiple ? undefined : (displayValueResolved as any)
@@ -662,7 +689,7 @@ const internal = ref<any>(modelValue)
           </div>
           <button
             v-if="
-              props.clearable &&
+              canClear &&
               ((Array.isArray(modelValue) && modelValue?.length > 0) ||
                 (!Array.isArray(modelValue) && modelValue != null))
             "
@@ -701,14 +728,13 @@ const internal = ref<any>(modelValue)
           </div>
         </div>
       </FloatReference>
-
-      <span
+      <BaseInputHelpText
         v-if="props.error && typeof props.error === 'string'"
-        class="nui-autocomplete-error-text"
+        color="danger"
         :class="props.classes?.error"
       >
         {{ props.error }}
-      </span>
+      </BaseInputHelpText>
       <FloatContent :class="!props.fixed && 'w-full'">
         <ComboboxOptions
           as="div"
@@ -726,8 +752,8 @@ const internal = ref<any>(modelValue)
               name="pending"
               v-bind="{ query, filteredItems, pending, items }"
             >
-              <span class="nui-autocomplete-results-placeholder-text">
-                {{ props.i18n.pending }}
+              <span class="nui-autocomplete-results-placeholder-text text-sm">
+                {{ i18n.pending }}
               </span>
             </slot>
           </div>
@@ -739,8 +765,8 @@ const internal = ref<any>(modelValue)
               name="empty"
               v-bind="{ query, filteredItems, pending, items }"
             >
-              <span class="nui-autocomplete-results-placeholder-text">
-                {{ props.i18n.empty }}
+              <span class="nui-autocomplete-results-placeholder-text text-sm">
+                {{ i18n.empty }}
               </span>
             </slot>
           </div>

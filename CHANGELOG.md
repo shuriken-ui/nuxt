@@ -2,6 +2,55 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.6](https://github.com/shuriken-ui/nuxt/compare/v3.0.5...v3.0.6) (2024-03-28)
+
+
+### Bug Fixes
+
+* remove usage of defineAppConfig in default app config ([fac786a](https://github.com/shuriken-ui/nuxt/commit/fac786a28f386182beefb36c515a393216ac7b72))
+
+### [3.0.5](https://github.com/shuriken-ui/nuxt/compare/v3.0.4...v3.0.5) (2024-03-28)
+
+
+### Bug Fixes
+
+* **BaseButton:** update xll version ([57d849c](https://github.com/shuriken-ui/nuxt/commit/57d849cf0fa8e940c8aecd409a87755f7d0269e8))
+* **BaseCheckboxAnimated:** remove usage of dom access in script ([89778d5](https://github.com/shuriken-ui/nuxt/commit/89778d59f65806e7d16d8bee32e53d5459c17d72))
+* **BaseDropdown:** add menu wrapper in classes ([dbbd4f1](https://github.com/shuriken-ui/nuxt/commit/dbbd4f18be6ae293a00e46a9ff8d05da1f9964db))
+
+### [3.0.4](https://github.com/shuriken-ui/nuxt/compare/v3.0.3...v3.0.4) (2024-03-23)
+
+
+### Bug Fixes
+
+* **BaseAutocomplete:** fix clearable with custom clearValue ([2a2a9f2](https://github.com/shuriken-ui/nuxt/commit/2a2a9f25d2f5cbfa8aa28a4f0566c7e113e178a4))
+* **BaseDropdownItem:** expose active and close to all slots ([765b972](https://github.com/shuriken-ui/nuxt/commit/765b972c4366df828e72943788490df34e999c04))
+* **config:** base pagination type to color ([08f07a1](https://github.com/shuriken-ui/nuxt/commit/08f07a17f34c534ef918125a6742ad1448b2ae43))
+
+### [3.0.3](https://github.com/shuriken-ui/nuxt/compare/v3.0.2...v3.0.3) (2024-03-18)
+
+
+### Bug Fixes
+
+* **meta:** slots typescript definition when no prarms ([691037d](https://github.com/shuriken-ui/nuxt/commit/691037d25f179619d8ec0b54fbe6c5b99d5c00ea))
+
+### [3.0.2](https://github.com/shuriken-ui/nuxt/compare/v3.0.1...v3.0.2) (2024-03-18)
+
+
+### Bug Fixes
+
+* **BaseMessage:** missing default icon for contrast colors ([e2cc7d8](https://github.com/shuriken-ui/nuxt/commit/e2cc7d89d23536f71c68b0b0fbd2ae952771df89))
+* **config:** ensure all types match components ([b1e13b3](https://github.com/shuriken-ui/nuxt/commit/b1e13b353a840181d3f441b20531b25a7672b10c)), closes [#116](https://github.com/shuriken-ui/nuxt/issues/116)
+
+### [3.0.1](https://github.com/shuriken-ui/nuxt/compare/v3.0.0...v3.0.1) (2024-03-05)
+
+
+### Bug Fixes
+
+* prop modifier in BaseAutocomplete and BaseListbox ([f674c3e](https://github.com/shuriken-ui/nuxt/commit/f674c3e9f8418c59045b7be7c2db0ba915bb6bee))
+
+## [3.0.0](https://github.com/shuriken-ui/nuxt/compare/v3.0.0-next.1...v3.0.0) (2024-03-05)
+
 ## [3.0.0-next.1](https://github.com/shuriken-ui/nuxt/compare/v3.0.0-next.0...v3.0.0-next.1) (2024-03-04)
 
 

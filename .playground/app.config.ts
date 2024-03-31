@@ -7,5 +7,9 @@ export default defineAppConfig({
       color: 'default',
       size: 'md',
     },
+    BaseMessage: {
+      color: 'default',
+      rounded: 'sm',
+    },
   },
 })

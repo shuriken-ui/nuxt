@@ -8,6 +8,10 @@ definePageMeta({
 
 const autocomplete1 = ref<string>()
 const autocomplete2 = ref<{ name: string }>()
+const autocomplete3 = ref('value2')
+const autocomplete4 = ref<string[]>()
+const autocomplete5 = ref<any[]>()
+const autocomplete6 = ref<string[]>()
 const checkbox1 = ref<boolean>()
 const checkbox2 = ref<{ checked: boolean }>()
 const checkbox3 = ref<string[]>([])
@@ -30,6 +34,9 @@ const inputFile1 = ref<FileList | null>(null)
 const inputFileCustom1 = ref<FileList | null>(null)
 const listbox1 = ref<string>()
 const listbox2 = ref<{ name: string }>()
+const listbox3 = ref('bar')
+const listbox4 = ref([])
+const listbox5 = ref([])
 const select1 = ref()
 const select2 = ref()
 const textarea1 = ref()
@@ -109,6 +116,155 @@ autocomplete2: {{ autocomplete2 }}({{ typeof autocomplete2 }})</pre
           <BaseButtonAction @click="autocomplete2 = undefined">
             reset
           </BaseButtonAction>
+        </BaseCard>
+      </div>
+    </NuiPreview>
+
+    <NuiPreview
+      title="BaseAutocomplete (prop modifier)"
+      description="Autocomplete with prop modifier"
+    >
+      <div class="grid grid-cols-4 gap-6">
+        <div class="col-span-2">
+          <BaseAutocomplete
+            v-model.prop="autocomplete3"
+            :display-value="(item) => item?.name"
+            :properties="{
+              value: 'value',
+              label: 'name',
+            }"
+            :items="[
+              {
+                name: 'Item 1',
+                value: 'value1',
+              },
+              {
+                name: 'Item 2',
+                value: 'value2',
+              },
+              {
+                name: 'Item 3',
+                value: 'value3',
+              },
+              {
+                name: 'Item 4',
+                value: 'value4',
+              },
+            ]"
+          />
+        </div>
+        <BaseCard class="col-span-2 p-2">
+          <pre>
+autocomplete3: {{ autocomplete3 }}({{ typeof autocomplete3 }})</pre
+          >
+          <BaseButtonAction @click="autocomplete3 = ''">reset</BaseButtonAction>
+        </BaseCard>
+      </div>
+    </NuiPreview>
+
+    <NuiPreview
+      title="BaseAutocomplete (multiple)"
+      description="Autocomplete multiple"
+    >
+      <div class="grid grid-cols-4 gap-6">
+        <div class="col-span-2">
+          <BaseAutocomplete
+            v-model="autocomplete4"
+            multiple
+            :items="['tete', 'hello', 'test', 'tast', 'tutu', 'holla']"
+          />
+        </div>
+        <BaseCard class="col-span-2 p-2">
+          <pre>
+autocomplete4: {{ autocomplete4 }}({{ typeof autocomplete4 }})</pre
+          >
+          <BaseButtonAction @click="autocomplete4 = undefined">
+            reset
+          </BaseButtonAction>
+        </BaseCard>
+      </div>
+    </NuiPreview>
+
+    <NuiPreview
+      title="BaseAutocomplete (multiple & object)"
+      description="Autocomplete multiple with object"
+    >
+      <div class="grid grid-cols-4 gap-6">
+        <div class="col-span-2">
+          <BaseAutocomplete
+            v-model="autocomplete5"
+            multiple
+            :properties="{
+              value: 'value',
+              label: 'name',
+            }"
+            :items="[
+              {
+                name: 'Item 1',
+                value: 'value1',
+              },
+              {
+                name: 'Item 2',
+                value: 'value2',
+              },
+              {
+                name: 'Item 3',
+                value: 'value3',
+              },
+              {
+                name: 'Item 4',
+                value: 'value4',
+              },
+            ]"
+          />
+        </div>
+        <BaseCard class="col-span-2 p-2">
+          <pre>
+autocomplete5: {{ autocomplete5 }}({{ typeof autocomplete5 }})</pre
+          >
+          <BaseButtonAction @click="autocomplete5 = []">reset</BaseButtonAction>
+        </BaseCard>
+      </div>
+    </NuiPreview>
+
+    <NuiPreview
+      title="BaseAutocomplete (multiple & prop modifier)"
+      description="Autocomplete multiple with prop modifier"
+    >
+      <div class="grid grid-cols-4 gap-6">
+        <div class="col-span-2">
+          <BaseAutocomplete
+            v-model.prop="autocomplete6"
+            multiple
+            :properties="{
+              value: 'value',
+              label: 'name',
+            }"
+            :items="[
+              {
+                name: 'Item 1',
+                value: 'value1',
+              },
+              {
+                name: 'Item 2',
+                value: 'value2',
+              },
+              {
+                name: 'Item 3',
+                value: 'value3',
+              },
+              {
+                name: 'Item 4',
+                value: 'value4',
+              },
+            ]"
+          />
+        </div>
+        <BaseCard class="col-span-2 p-2">
+          <pre>
+autocomplete6: {{ autocomplete6 }}({{ typeof autocomplete6 }})</pre
+          >
+          <BaseButtonAction @click="autocomplete6 = []">reset</BaseButtonAction>
         </BaseCard>
       </div>
     </NuiPreview>
@@ -506,7 +662,7 @@ inputFileCustom1: {{
       </div>
     </NuiPreview>
 
-    <NuiPreview title="BaseListbox (string)" description="BaseListbox test">
+    <NuiPreview title="BaseListbox (object)" description="BaseListbox test">
       <div class="grid grid-cols-4 gap-6">
         <div class="col-span-2">
           <BaseListbox
@@ -530,6 +686,101 @@ inputFileCustom1: {{
           <BaseButtonAction @click="listbox2 = undefined">
             reset
           </BaseButtonAction>
+        </BaseCard>
+      </div>
+    </NuiPreview>
+
+    <NuiPreview
+      title="BaseListbox (prop modifier)"
+      description="BaseListbox test"
+    >
+      <div class="grid grid-cols-4 gap-6">
+        <div class="col-span-2">
+          <BaseListbox
+            v-model.prop="listbox3"
+            :properties="{ value: 'name', label: 'name' }"
+            :items="[
+              {
+                name: 'foo',
+              },
+              {
+                name: 'bar',
+              },
+              {
+                name: 'baz',
+              },
+            ]"
+          />
+        </div>
+        <BaseCard class="col-span-2 p-2">
+          <pre>listbox3: {{ listbox3 }}({{ typeof listbox3 }})</pre>
+          <BaseButtonAction @click="listbox3 = ''">reset</BaseButtonAction>
+        </BaseCard>
+      </div>
+    </NuiPreview>
+
+    <NuiPreview
+      title="BaseListbox (multipe object)"
+      description="BaseListbox test"
+    >
+      <div class="grid grid-cols-4 gap-6">
+        <div class="col-span-2">
+          <BaseListbox
+            v-model="listbox4"
+            :properties="{ value: 'value', label: 'name' }"
+            multiple
+            :items="[
+              {
+                name: 'Foo',
+                value: 'foo',
+              },
+              {
+                name: 'Bar',
+                value: 'bar',
+              },
+              {
+                name: 'baz',
+                value: 'Baz',
+              },
+            ]"
+          />
+        </div>
+        <BaseCard class="col-span-2 p-2">
+          <pre>listbox4: {{ listbox4 }}({{ typeof listbox4 }})</pre>
+          <BaseButtonAction @click="listbox4 = []">reset</BaseButtonAction>
+        </BaseCard>
+      </div>
+    </NuiPreview>
+
+    <NuiPreview
+      title="BaseListbox (prop modifier)"
+      description="BaseListbox test"
+    >
+      <div class="grid grid-cols-4 gap-6">
+        <div class="col-span-2">
+          <BaseListbox
+            v-model.prop="listbox5"
+            :properties="{ value: 'value', label: 'name' }"
+            multiple
+            :items="[
+              {
+                name: 'Foo',
+                value: 'foo',
+              },
+              {
+                name: 'Bar',
+                value: 'bar',
+              },
+              {
+                name: 'baz',
+                value: 'Baz',
+              },
+            ]"
+          />
+        </div>
+        <BaseCard class="col-span-2 p-2">
+          <pre>listbox5: {{ listbox5 }}({{ typeof listbox5 }})</pre>
+          <BaseButtonAction @click="listbox5 = []">reset</BaseButtonAction>
         </BaseCard>
       </div>
     </NuiPreview>

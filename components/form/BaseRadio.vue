@@ -20,7 +20,16 @@ const props = withDefaults(
      */
     label?: string
 
-    /** The color of the radio.*/
+    /**
+     * An error message to display below the radio label.
+     */
+    error?: string | boolean
+
+    /**
+     * The color of the radio.
+     *
+     * @default 'default'
+     */
     color?:
       | 'default'
       | 'muted'
@@ -32,11 +41,6 @@ const props = withDefaults(
       | 'success'
       | 'warning'
       | 'danger'
-
-    /**
-     * An error message to display below the radio label.
-     */
-    error?: string | boolean
 
     /**
      * Classes to apply to the various parts of the radio input.
@@ -75,7 +79,7 @@ const props = withDefaults(
 const [modelValue] = defineModel<T>()
 
 defineSlots<{
-  default(): any
+  default(props: Record<string, never>): any
 }>()
 
 const color = useNuiDefaultProperty(props, 'BaseRadio', 'color')
@@ -94,7 +98,7 @@ const colors = {
   success: 'nui-radio-success',
   warning: 'nui-radio-warning',
   danger: 'nui-radio-danger',
-} as Record<string, string>
+}
 
 defineExpose({
   /**
@@ -140,7 +144,9 @@ defineExpose({
         v-if="props.error && typeof props.error === 'string'"
         class="nui-radio-error"
       >
-        {{ props.error }}
+        <BaseInputHelpText color="danger">
+          {{ props.error }}
+        </BaseInputHelpText>
       </div>
     </div>
   </div>

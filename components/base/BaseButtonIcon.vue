@@ -31,11 +31,14 @@ const props = withDefaults(
     type?: 'button' | 'submit' | 'reset'
 
     /**
-     * The size of the button.
-     *
-     * @default 'md'
+     * Whether the button or link is in a loading state.
      */
-    size?: 'sm' | 'md' | 'lg'
+    loading?: boolean
+
+    /**
+     * Whether the button or link is disabled.
+     */
+    disabled?: boolean
 
     /**
      * The color of the button.
@@ -66,14 +69,11 @@ const props = withDefaults(
     rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
 
     /**
-     * Whether the button or link is in a loading state.
+     * The size of the button.
+     *
+     * @default 'md'
      */
-    loading?: boolean
-
-    /**
-     * Whether the button or link is disabled.
-     */
-    disabled?: boolean
+    size?: 'sm' | 'md' | 'lg'
   }>(),
   {
     to: undefined,
@@ -87,8 +87,8 @@ const props = withDefaults(
   },
 )
 
-const rounded = useNuiDefaultProperty(props, 'BaseButtonIcon', 'rounded')
 const color = useNuiDefaultProperty(props, 'BaseButtonIcon', 'color')
+const rounded = useNuiDefaultProperty(props, 'BaseButtonIcon', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseButtonIcon', 'size')
 
 const radiuses = {
@@ -97,13 +97,13 @@ const radiuses = {
   md: 'nui-button-rounded-md',
   lg: 'nui-button-rounded-lg',
   full: 'nui-button-rounded-full',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-button-small',
   md: 'nui-button-medium',
   lg: 'nui-button-large',
-} as Record<string, string>
+}
 
 const colors = {
   default: 'nui-button-default',
@@ -119,7 +119,7 @@ const colors = {
   warning: 'nui-button-warning',
   danger: 'nui-button-danger',
   none: '',
-} as Record<string, string>
+}
 
 const classes = computed(() => [
   'nui-button-icon',

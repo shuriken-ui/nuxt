@@ -21,6 +21,7 @@ const fifth = ref<FileList | null>(null)
           <BaseInputFile
             v-model="first"
             rounded="none"
+            placeholder="Choose file"
             label="Rounded: none"
             color-focus
           />
@@ -28,6 +29,7 @@ const fifth = ref<FileList | null>(null)
             v-model="second"
             rounded="sm"
             label="Rounded: sm"
+            icon="heroicons:document-text"
             color-focus
           />
           <BaseInputFile

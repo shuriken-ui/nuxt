@@ -16,28 +16,6 @@ const props = withDefaults(
     name?: string
 
     /**
-     * The radius of the textarea.
-     *
-     * @since 2.0.0
-     * @default 'sm'
-     */
-    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
-
-    /**
-     * The size of the textarea.
-     *
-     * @default 'md'
-     */
-    size?: 'sm' | 'md' | 'lg'
-
-    /**
-     * The contrast of the textarea.
-     *
-     * @default 'default'
-     */
-    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
-
-    /**
      * The label for the textarea.
      */
     label?: string
@@ -103,6 +81,28 @@ const props = withDefaults(
     maxHeight?: number
 
     /**
+     * The contrast of the textarea.
+     *
+     * @default 'default'
+     */
+    contrast?: 'default' | 'default-contrast' | 'muted' | 'muted-contrast'
+
+    /**
+     * The radius of the textarea.
+     *
+     * @since 2.0.0
+     * @default 'sm'
+     */
+    rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full'
+
+    /**
+     * The size of the textarea.
+     *
+     * @default 'md'
+     */
+    size?: 'sm' | 'md' | 'lg'
+
+    /**
      * A set of classes to apply to the various elements of the textarea.
      */
     classes?: {
@@ -153,9 +153,9 @@ const [modelValue, modelModifiers] = defineModel<string, 'lazy' | 'trim'>({
   },
 })
 
+const contrast = useNuiDefaultProperty(props, 'BaseTextarea', 'contrast')
 const rounded = useNuiDefaultProperty(props, 'BaseTextarea', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseTextarea', 'size')
-const contrast = useNuiDefaultProperty(props, 'BaseTextarea', 'contrast')
 
 const textareaRef = ref<HTMLTextAreaElement>()
 const id = useNinjaId(() => props.id)
@@ -166,20 +166,20 @@ const radiuses = {
   md: 'nui-textarea-rounded-md',
   lg: 'nui-textarea-rounded-lg',
   full: 'nui-textarea-rounded-lg',
-} as Record<string, string>
+}
 
 const sizes = {
   sm: 'nui-textarea-sm',
   md: 'nui-textarea-md',
   lg: 'nui-textarea-lg',
-} as Record<string, string>
+}
 
 const contrasts = {
   default: 'nui-textarea-default',
   'default-contrast': 'nui-textarea-default-contrast',
   muted: 'nui-textarea-muted',
   'muted-contrast': 'nui-textarea-muted-contrast',
-} as Record<string, string>
+}
 
 function fitSize() {
   if (!textareaRef.value) {
@@ -301,13 +301,13 @@ defineExpose({
       >
         <slot name="addon"></slot>
       </div>
-      <span
+      <BaseInputHelpText
         v-if="props.error && typeof props.error === 'string'"
-        class="nui-textarea-error-text"
+        color="danger"
         :class="props.classes?.error"
       >
         {{ props.error }}
-      </span>
+      </BaseInputHelpText>
     </div>
   </div>
 </template>
