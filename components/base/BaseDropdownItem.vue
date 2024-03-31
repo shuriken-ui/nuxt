@@ -154,6 +154,7 @@ const { is, attributes } = useNinjaButton(props)
         rounded && radiuses[rounded],
         contrast && contrasts[contrast],
         color && colors[color],
+        props.disabled && 'nui-item-disabled',
         props.classes?.wrapper,
       ]"
       @click.passive="close"

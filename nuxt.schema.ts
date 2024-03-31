@@ -254,7 +254,7 @@ export default defineNuxtSchema({
         /**
          * The color of the icon box.
          *
-         * @type {'default' | 'default-contrast' | 'dark' | 'light' | 'black' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'dark' | 'light' | 'black' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
          */
         color: 'default',
         /**
@@ -312,6 +312,32 @@ export default defineNuxtSchema({
          * @type {'none' | 'sm' | 'md' | 'lg' | 'full'}
          */
         rounded: 'sm',
+        /**
+         * The default icons of the message.
+         *
+         * @type {{
+            default?: string
+            'default-contrast'?: string
+            muted?: string
+            'muted-contrast'?: string
+            info?: string
+            success?: string
+            warning?: string
+            danger?: string
+            primary?: string
+          }}
+         */
+        defaultIcons: {
+          muted: 'akar-icons:info-fill',
+          'muted-contrast': 'akar-icons:info-fill',
+          default: 'akar-icons:info-fill',
+          'default-contrast': 'akar-icons:info-fill',
+          info: 'akar-icons:info-fill',
+          success: 'carbon:checkmark-filled',
+          warning: 'ci:warning',
+          danger: 'ph:warning-octagon-fill',
+          primary: 'akar-icons:info-fill',
+        },
       },
       BasePagination: {
         /**
@@ -408,7 +434,7 @@ export default defineNuxtSchema({
         /**
          * The color of the snack.
          *
-         * @type {'default' | 'muted'}
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast'}
          */
         color: 'default',
         /**
@@ -667,6 +693,14 @@ export default defineNuxtSchema({
          * @type {'sm' | 'md' | 'lg'}
          */
         size: 'md',
+      },
+      BaseInputHelpText: {
+        /**
+         * The color of the text.
+         *
+         * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'light' | 'dark' | 'black' | 'primary' | 'info' | 'success' | 'warning' | 'danger' | 'none'}
+         */
+        color: 'default',
       },
       BaseListbox: {
         /**
