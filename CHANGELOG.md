@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/shuriken-ui/nuxt/compare/v3.0.6...v3.1.0) (2024-03-31)
+
+
+### Features
+
+* **BaseInputFile:** add configurable i18n property ([320d17e](https://github.com/shuriken-ui/nuxt/commit/320d17e667753f3ba29c100efd321b3c5a7b6268))
+
 ### [3.0.6](https://github.com/shuriken-ui/nuxt/compare/v3.0.5...v3.0.6) (2024-03-28)
 
 
