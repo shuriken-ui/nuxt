@@ -200,6 +200,9 @@ export default {
       rounded: 'sm',
       size: 'md',
     },
+    BaseInputHelpText: {
+      color: 'default',
+    },
     BaseListbox: {
       contrast: 'default',
       placement: 'bottom-start',
