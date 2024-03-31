@@ -249,13 +249,13 @@ const placeholder = computed(() => {
       >
         <IconChevronDown class="nui-select-chevron-inner" />
       </div>
-      <span
+      <BaseInputHelpText
         v-if="props.error && typeof props.error === 'string'"
-        class="nui-select-error-text"
+        color="danger"
         :class="props.classes?.error"
       >
         {{ props.error }}
-      </span>
+      </BaseInputHelpText>
     </div>
   </div>
 </template>

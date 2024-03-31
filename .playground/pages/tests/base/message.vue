@@ -52,6 +52,23 @@ definePageMeta({
           </BaseMessage>
         </div>
       </NuiPreview>
+
+      <NuiPreview title="Radius" description="Message component radiuses">
+        <div class="grid grid-cols-1 md:grid-cols-2 max-w-2xl gap-4">
+          <BaseMessage color="success" icon rounded="sm" closable>
+            A successful message.
+          </BaseMessage>
+          <BaseMessage color="info" icon rounded="md" closable>
+            An information message.
+          </BaseMessage>
+          <BaseMessage color="warning" icon rounded="lg" closable>
+            A warning message.
+          </BaseMessage>
+          <BaseMessage color="danger" icon rounded="full" closable>
+            A destructive message.
+          </BaseMessage>
+        </div>
+      </NuiPreview>
     </NuiPreviewContainer>
   </div>
 </template>

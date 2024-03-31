@@ -83,6 +83,17 @@ export default {
     BaseMessage: {
       color: 'default',
       rounded: 'sm',
+      defaultIcons: {
+        muted: 'akar-icons:info-fill',
+        'muted-contrast': 'akar-icons:info-fill',
+        default: 'akar-icons:info-fill',
+        'default-contrast': 'akar-icons:info-fill',
+        info: 'akar-icons:info-fill',
+        success: 'carbon:checkmark-filled',
+        warning: 'ci:warning',
+        danger: 'ph:warning-octagon-fill',
+        primary: 'akar-icons:info-fill',
+      },
     },
     BasePagination: {
       color: 'primary',
@@ -177,12 +188,20 @@ export default {
       contrast: 'default',
       rounded: 'sm',
       size: 'md',
+      i18n: {
+        empty: 'No file chosen',
+        invalid: 'Invalid file selected',
+        multiple: '{count} files selected',
+      },
     },
     BaseInputFileHeadless: {},
     BaseInputNumber: {
       contrast: 'default',
       rounded: 'sm',
       size: 'md',
+    },
+    BaseInputHelpText: {
+      color: 'default',
     },
     BaseListbox: {
       contrast: 'default',
