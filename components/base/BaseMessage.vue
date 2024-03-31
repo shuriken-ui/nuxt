@@ -168,6 +168,7 @@ const icon = computed(() =>
       rounded && radiuses[rounded],
       color && colors[color],
       classes?.wrapper,
+      props.icon ? 'nui-has-icon' : 'nui-has-text',
     ]"
   >
     <div
@@ -182,17 +183,18 @@ const icon = computed(() =>
     <span class="nui-message-inner-text" :class="classes?.text">
       <slot>{{ props.message }}</slot>
     </span>
-    <button
-      v-if="props.closable"
-      type="button"
-      tabindex="0"
-      class="nui-message-close"
-      :class="[rounded && radiuses[rounded]]"
-      @click="emit('close')"
-    >
-      <slot name="close-button">
-        <Icon :name="closeIcon" class="nui-close-icon" />
-      </slot>
-    </button>
+    <div v-if="props.closable" class="nui-message-close-wrapper">
+      <button
+        type="button"
+        tabindex="0"
+        class="nui-message-close"
+        :class="[rounded && radiuses[rounded]]"
+        @click="emit('close')"
+      >
+        <slot name="close-button">
+          <Icon :name="closeIcon" class="nui-close-icon" />
+        </slot>
+      </button>
+    </div>
   </div>
 </template>
