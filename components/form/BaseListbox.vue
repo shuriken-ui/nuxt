@@ -558,13 +558,13 @@ const internal = ref<any>(modelValue)
             </ListboxOptions>
           </FloatContent>
 
-          <span
+          <BaseInputHelpText
             v-if="props.error && typeof props.error === 'string'"
-            class="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none"
+            color="danger"
             :class="props.classes?.error"
           >
             {{ props.error }}
-          </span>
+          </BaseInputHelpText>
         </div>
       </Float>
     </Listbox>

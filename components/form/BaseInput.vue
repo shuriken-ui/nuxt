@@ -283,13 +283,13 @@ if (import.meta.dev) {
         </div>
         <slot name="action"></slot>
       </div>
-      <span
+      <BaseInputHelpText
         v-if="props.error && typeof props.error === 'string'"
+        color="danger"
         :class="props.classes?.error"
-        class="nui-input-error-text"
       >
         {{ props.error }}
-      </span>
+      </BaseInputHelpText>
     </div>
   </div>
 </template>
