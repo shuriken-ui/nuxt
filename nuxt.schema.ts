@@ -637,7 +637,7 @@ export default defineNuxtSchema({
          */
         size: 'md',
         /**
-         * The size of the input.
+         * The translation strings for the input file.
          *
          * @type {{ empty: string; invalid: string; multiple: string }}
          */
