@@ -144,7 +144,9 @@ defineExpose({
         v-if="props.error && typeof props.error === 'string'"
         class="nui-radio-error"
       >
-        {{ props.error }}
+        <BaseInputHelpText color="danger">
+          {{ props.error }}
+        </BaseInputHelpText>
       </div>
     </div>
   </div>

@@ -728,14 +728,13 @@ const internal = ref<any>(modelValue)
           </div>
         </div>
       </FloatReference>
-
-      <span
+      <BaseInputHelpText
         v-if="props.error && typeof props.error === 'string'"
-        class="nui-autocomplete-error-text"
+        color="danger"
         :class="props.classes?.error"
       >
         {{ props.error }}
-      </span>
+      </BaseInputHelpText>
       <FloatContent :class="!props.fixed && 'w-full'">
         <ComboboxOptions
           as="div"
@@ -753,7 +752,7 @@ const internal = ref<any>(modelValue)
               name="pending"
               v-bind="{ query, filteredItems, pending, items }"
             >
-              <span class="nui-autocomplete-results-placeholder-text">
+              <span class="nui-autocomplete-results-placeholder-text text-sm">
                 {{ i18n.pending }}
               </span>
             </slot>
@@ -766,7 +765,7 @@ const internal = ref<any>(modelValue)
               name="empty"
               v-bind="{ query, filteredItems, pending, items }"
             >
-              <span class="nui-autocomplete-results-placeholder-text">
+              <span class="nui-autocomplete-results-placeholder-text text-sm">
                 {{ i18n.empty }}
               </span>
             </slot>

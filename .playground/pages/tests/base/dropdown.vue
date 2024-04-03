@@ -181,6 +181,7 @@ definePageMeta({
               text="View your projects"
               contrast="default"
               rounded="sm"
+              disabled
             />
             <BaseDropdownItem
               to="#"
@@ -428,8 +429,37 @@ definePageMeta({
         title="Text: start"
         description="Dropdown text start position"
       >
-        <div class="flex justify-start w-full">
+        <div class="flex justify-start w-full gap-8">
           <BaseDropdown variant="text" label="Dropdown" orientation="start">
+            <BaseDropdownItem
+              to="#"
+              title="Profile"
+              text="View your profile"
+              contrast="default"
+              rounded="sm"
+            />
+            <BaseDropdownItem
+              to="#"
+              title="Projects"
+              text="View your projects"
+              contrast="default"
+              rounded="sm"
+            />
+            <BaseDropdownItem to="#" title="Team" text="Manage your team" />
+            <BaseDropdownItem
+              to="#"
+              title="Settings"
+              text="Set your preferences"
+              contrast="default"
+              rounded="sm"
+            />
+          </BaseDropdown>
+          <BaseDropdown
+            variant="text"
+            button-color="info"
+            label="Dropdown"
+            orientation="start"
+          >
             <BaseDropdownItem
               to="#"
               title="Profile"
