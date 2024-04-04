@@ -19,7 +19,17 @@ type NuxtLinkProps = {
   exactActiveClass?: string
   ariaCurrentValue?: string
 }
-const props = defineProps<NuxtLinkProps>()
+const props = withDefaults(defineProps<NuxtLinkProps>(), {
+  to: undefined,
+  href: undefined,
+  target: undefined,
+  rel: undefined,
+  prefetch: undefined,
+  noPrefetch: undefined,
+  activeClass: undefined,
+  exactActiveClass: undefined,
+  ariaCurrentValue: undefined,
+})
 const NuxtLink = defineNuxtLink({})
 </script>
 
