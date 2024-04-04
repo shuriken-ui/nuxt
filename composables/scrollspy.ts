@@ -56,7 +56,7 @@ export const useNinjaScrollspy = (
           }
 
           timer = setTimeout(() => {
-            if (selectors.value) {
+            if (selectors.value?.length) {
               const element = document.querySelectorAll(
                 selectors.value.join(', '),
               )
