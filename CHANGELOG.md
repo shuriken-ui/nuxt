@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.1](https://github.com/shuriken-ui/nuxt/compare/v3.1.0...v3.1.1) (2024-04-04)
+
+
+### Bug Fixes
+
+* **BaseLink:** set default props to prevent prefetch and noPrefetch collision ([c10c8ce](https://github.com/shuriken-ui/nuxt/commit/c10c8ce3d430d02588e69861dc0479a7b3967220))
+* **useNinjaId:** use native crypto and only generate id on client to avoid hydration issues ([0a5b1b1](https://github.com/shuriken-ui/nuxt/commit/0a5b1b10d9078e3a3511cca961491bb6557918bb))
+* **useNinjaScrollspy:** ensure update elements is called when selectors has content ([cd6c244](https://github.com/shuriken-ui/nuxt/commit/cd6c24493a0bac04337b7ca19102b58d3f2a26e5))
+
 ## [3.1.0](https://github.com/shuriken-ui/nuxt/compare/v3.0.6...v3.1.0) (2024-03-31)
 
 
