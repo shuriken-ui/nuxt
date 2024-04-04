@@ -91,7 +91,7 @@
     "unplugin-fonts": "^1.1.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
-    "vue-tsc": "^2.0.6"
+    "vue-tsc": "^2.0.10"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged",
@@ -119,6 +119,9 @@
         "vite",
         "vue"
       ]
+    },
+    "overrides": {
+      "vue-component-meta": "^2.0.10"
     }
   }
 }
