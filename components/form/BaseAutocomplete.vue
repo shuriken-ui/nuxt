@@ -321,8 +321,8 @@ defineSlots<{
     removeItem: (item: T) => void
   }): any
   'icon'(props: { iconName: string }): any
-  'clear-icon'(props: Record<string, never>): any
-  'dropdown-icon'(props: Record<string, never>): any
+  'clear-icon'(): any
+  'dropdown-icon'(): any
 }>()
 
 const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({

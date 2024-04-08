@@ -170,7 +170,7 @@ export default defineComponent({
 }> & {
   new (): {
     $slots: {
-      default(_: Record<string, never>): any
+      default(): any
     }
   }
 }

@@ -75,7 +75,7 @@ const props = withDefaults(
 )
 
 defineSlots<{
-  'selected-icon'(props: Record<string, never>): any
+  'selected-icon'(): any
 }>()
 
 const rounded = useNuiDefaultProperty(props, 'BaseAutocompleteItem', 'rounded')

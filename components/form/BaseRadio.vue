@@ -79,7 +79,7 @@ const props = withDefaults(
 const [modelValue] = defineModel<T>()
 
 defineSlots<{
-  default(props: Record<string, never>): any
+  default(): any
 }>()
 
 const color = useNuiDefaultProperty(props, 'BaseRadio', 'color')

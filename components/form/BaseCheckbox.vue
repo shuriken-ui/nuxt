@@ -103,7 +103,7 @@ const props = withDefaults(
 )
 
 defineSlots<{
-  default(props: Record<string, never>): any
+  default(): any
 }>()
 
 const [modelValue] = defineModel<T | T[]>()
