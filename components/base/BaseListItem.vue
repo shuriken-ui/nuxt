@@ -42,7 +42,7 @@ const hasSubtitle = computed(() => {
       </BaseParagraph>
     </div>
 
-    <div class="ms-auto">
+    <div v-if="'end' in $slots" class="ms-auto">
       <slot name="end" />
     </div>
   </li>
