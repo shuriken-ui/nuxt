@@ -68,7 +68,7 @@ const props = withDefaults(
      *
      * @default 'md'
      */
-    size?: 'sm' | 'md' | 'lg' | 'xl'
+    size?: 'sm' | 'md' | 'lg'
 
     /**
      * The variant of the button..
@@ -114,10 +114,9 @@ const badgeColors = {
 }
 
 const sizes = {
-  sm: 'nui-button-small',
-  md: 'nui-button-medium',
-  lg: 'nui-button-large',
-  xl: 'nui-button-xlarge',
+  sm: 'nui-button-sm',
+  md: 'nui-button-md',
+  lg: 'nui-button-lg',
 }
 
 const radiuses = {
