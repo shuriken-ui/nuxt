@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.2](https://github.com/shuriken-ui/nuxt/compare/v3.1.1...v3.1.2) (2024-04-08)
+
+
+### Bug Fixes
+
+* add default input id to theme switcher ([44430cc](https://github.com/shuriken-ui/nuxt/commit/44430cc971cbb119c069c6cfd9e2ed1fc774c3bd))
+* **BaseListItem:** conditionally render end slot ([bbb4f12](https://github.com/shuriken-ui/nuxt/commit/bbb4f127ff5f9239287d66b0966af0e2fc1696c4))
+* update nui tailwind ([e191f3d](https://github.com/shuriken-ui/nuxt/commit/e191f3de7532e6ddc49c30d4e2ab9cc473487238))
+
 ### [3.1.1](https://github.com/shuriken-ui/nuxt/compare/v3.1.0...v3.1.1) (2024-04-04)
 
 
