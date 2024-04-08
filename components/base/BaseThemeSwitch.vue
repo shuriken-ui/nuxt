@@ -2,6 +2,11 @@
 const props = withDefaults(
   defineProps<{
     /**
+     * The form input identifier.
+     */
+    id?: string
+
+    /**
      * Disables transitions when toggling between light and dark mode.
      *
      * @default false
@@ -9,10 +14,12 @@ const props = withDefaults(
     disableTransitions?: boolean
   }>(),
   {
+    id: undefined,
     disableTransitions: undefined,
   },
 )
 
+const id = useNinjaId(() => props.id)
 const disableTransitions = useNuiDefaultProperty(
   props,
   'BaseThemeSwitch',
@@ -43,8 +50,13 @@ const isDark = computed({
 </script>
 
 <template>
-  <label class="nui-theme-switch">
-    <input class="nui-theme-switch-input" type="checkbox" v-model="isDark" />
+  <label class="nui-theme-switch" :for="id">
+    <input
+      v-model="isDark"
+      :id="id"
+      class="nui-theme-switch-input"
+      type="checkbox"
+    />
     <span class="nui-theme-switch-inner">
       <IconSun class="nui-sun" />
       <IconMoon class="nui-moon" />

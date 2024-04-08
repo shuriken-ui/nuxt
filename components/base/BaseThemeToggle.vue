@@ -2,6 +2,10 @@
 const props = withDefaults(
   defineProps<{
     /**
+     * The form input identifier.
+     */
+    id?: string
+    /**
      * Sets the toggle element to inverted colors mode.
      */
     inverted?: boolean
@@ -13,11 +17,13 @@ const props = withDefaults(
     disableTransitions?: boolean
   }>(),
   {
+    id: undefined,
     inverted: false,
     disableTransitions: undefined,
   },
 )
 
+const id = useNinjaId(() => props.id)
 const disableTransitions = useNuiDefaultProperty(
   props,
   'BaseThemeToggle',
@@ -51,8 +57,14 @@ const isDark = computed({
   <label
     class="nui-theme-toggle"
     :class="props.inverted && 'nui-theme-toggle-inverted'"
+    :for="id"
   >
-    <input v-model="isDark" type="checkbox" class="nui-theme-toggle-input" />
+    <input
+      v-model="isDark"
+      :id="id"
+      type="checkbox"
+      class="nui-theme-toggle-input"
+    />
     <span class="nui-theme-toggle-inner">
       <IconSun class="nui-sun" />
       <IconMoon class="nui-moon" />

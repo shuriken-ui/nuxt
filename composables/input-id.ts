@@ -1,6 +1,6 @@
 import type { MaybeRefOrGetter } from 'vue'
 
-export function useNinjaId(id: MaybeRefOrGetter<string | undefined>) {
+export function useNinjaId(id?: MaybeRefOrGetter<string | undefined>) {
   const internal = ref(toValue(id))
 
   watch(
