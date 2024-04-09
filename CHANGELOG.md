@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.3](https://github.com/shuriken-ui/nuxt/compare/v3.1.2...v3.1.3) (2024-04-09)
+
+
+### Bug Fixes
+
+* **button:** re add xl size ([158395d](https://github.com/shuriken-ui/nuxt/commit/158395dba94f60a18891e91368eb506f2ba02a76))
+
 ### [3.1.2](https://github.com/shuriken-ui/nuxt/compare/v3.1.1...v3.1.2) (2024-04-08)
 
 
