@@ -25,6 +25,7 @@ definePageMeta({
           <BaseButton size="sm" rounded="md">Button</BaseButton>
           <BaseButton size="md" rounded="md">Button</BaseButton>
           <BaseButton size="lg" rounded="md">Button</BaseButton>
+          <BaseButton size="xl" rounded="md">Button</BaseButton>
         </div>
       </NuiPreview>
 
@@ -37,6 +38,9 @@ definePageMeta({
             Button
           </BaseButton>
           <BaseButton size="lg" rounded="md" badge badgePulse>
+            Button
+          </BaseButton>
+          <BaseButton size="xl" rounded="md" badge badgePulse>
             Button
           </BaseButton>
         </div>

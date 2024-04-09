@@ -68,7 +68,7 @@ const props = withDefaults(
      *
      * @default 'md'
      */
-    size?: 'sm' | 'md' | 'lg'
+    size?: 'sm' | 'md' | 'lg' | 'xl'
 
     /**
      * The variant of the button..
@@ -117,6 +117,7 @@ const sizes = {
   sm: 'nui-button-sm',
   md: 'nui-button-md',
   lg: 'nui-button-lg',
+  xl: 'nui-button-xl',
 }
 
 const radiuses = {

@@ -86,7 +86,7 @@ export default defineNuxtSchema({
         /**
          * Default size for the BaseButton component
          *
-         * @type {'sm' | 'md' | 'lg'}
+         * @type {'sm' | 'md' | 'lg' | 'xl'}
          */
         size: 'md',
         /**
