@@ -328,7 +328,7 @@ defineSlots<{
 const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
   set(value) {
     if (!props.multiple && modelModifiers.prop && props.properties?.value) {
-      const attr = props.properties.value
+      const attr = props.properties.value as any
       return (
         props.items.find(
           (item) =>
@@ -343,7 +343,7 @@ const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
   },
   get(value) {
     if (!props.multiple && modelModifiers.prop && props.properties?.value) {
-      const attr = props.properties.value
+      const attr = props.properties.value as any
       return props.items.find(
         (item) =>
           item &&
@@ -363,7 +363,7 @@ const size = useNuiDefaultProperty(props, 'BaseAutocomplete', 'size')
 
 const defaultDisplayValue = (item: any): any => {
   if (modelModifiers.prop && props.properties?.value) {
-    const attr = props.properties.value
+    const attr = props.properties.value as any
     const result = items.value.find(
       (i) =>
         i && typeof i === 'object' && attr in i && (i as any)[attr] === item,
@@ -372,7 +372,7 @@ const defaultDisplayValue = (item: any): any => {
       typeof result === 'object' &&
       result &&
       props.properties.label &&
-      props.properties.label in result
+      (props.properties.label as any) in result
     ) {
       return result[props.properties.label as keyof typeof result]
     }
@@ -381,7 +381,7 @@ const defaultDisplayValue = (item: any): any => {
   if (
     typeof item === 'object' &&
     props.properties?.label &&
-    props.properties.label in item
+    (props.properties.label as any) in item
   )
     return item[props.properties.label]
 
@@ -400,13 +400,13 @@ const defaultFilter = (query?: string, items?: T[]): T[] => {
     if (
       typeof item === 'object' &&
       props.properties?.label &&
-      props.properties.label in item
+      (props.properties.label as any) in item
     )
       return item[props.properties.label].toLowerCase().includes(lower)
     if (
       typeof item === 'object' &&
       props.properties?.sublabel &&
-      props.properties.sublabel in item
+      (props.properties.sublabel as any) in item
     )
       return item[props.properties.sublabel].toLowerCase().includes(lower)
   })
