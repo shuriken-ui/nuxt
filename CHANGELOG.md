@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.5](https://github.com/shuriken-ui/nuxt/compare/v3.1.4...v3.1.5) (2024-04-11)
+
+
+### 🩹 Bug Fixes
+
+* **BasePagination:** improve responsive and large number styles ([94c03db](https://github.com/shuriken-ui/nuxt/commit/94c03db6f0b7cdb59fa6b2c20fac509d8999ff3e))
+
 ### [3.1.4](https://github.com/shuriken-ui/nuxt/compare/v3.1.3...v3.1.4) (2024-04-11)
 
 
