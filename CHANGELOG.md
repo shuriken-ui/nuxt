@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.4](https://github.com/shuriken-ui/nuxt/compare/v3.1.3...v3.1.4) (2024-04-11)
+
+
+### Bug Fixes
+
+* **BaseAutocomplete:** disable internal typing on properties ([8625c1d](https://github.com/shuriken-ui/nuxt/commit/8625c1da4947cfb39b0aade991560cd59d1db28e))
+
 ### [3.1.3](https://github.com/shuriken-ui/nuxt/compare/v3.1.2...v3.1.3) (2024-04-09)
 
 
