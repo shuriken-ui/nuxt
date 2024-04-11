@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { RouteLocationOptions } from 'vue-router'
+import type { RouteLocationRaw } from 'vue-router'
 
 const props = withDefaults(
   defineProps<{
@@ -186,10 +186,8 @@ const paginatedLink = (page = 1) => {
   }
 
   return {
-    name: route.name,
-    params: route.params,
     query,
-  } as RouteLocationOptions
+  } satisfies RouteLocationRaw
 }
 const handleLinkClick = (e: MouseEvent, page = 1) => {
   const _page = Math.max(1, Math.min(page, lastPage.value))

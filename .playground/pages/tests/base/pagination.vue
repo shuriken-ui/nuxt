@@ -78,7 +78,7 @@ const currentPage = computed(() => {
       >
         <BasePagination
           :item-per-page="8"
-          :total-items="512"
+          :total-items="1000000"
           :current-page="currentPage"
           :max-links-displayed="5"
           rounded="full"
