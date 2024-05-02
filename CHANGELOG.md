@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.6](https://github.com/shuriken-ui/nuxt/compare/v3.1.5...v3.1.6) (2024-05-02)
+
+
+### 🩹 Bug Fixes
+
+* replace crypto in useNinjaId ([96e8d5b](https://github.com/shuriken-ui/nuxt/commit/96e8d5bfe11f7c8a66e74463761b39d56c7bee36)), closes [#120](https://github.com/shuriken-ui/nuxt/issues/120)
+
 ### [3.1.5](https://github.com/shuriken-ui/nuxt/compare/v3.1.4...v3.1.5) (2024-04-11)
 
 
