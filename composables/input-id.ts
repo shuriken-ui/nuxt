@@ -6,14 +6,15 @@ export function useNinjaId(id?: MaybeRefOrGetter<string | undefined>) {
   watch(
     () => toValue(id),
     (value) => {
-      internal.value = value || `nui-input-${crypto.randomUUID()}`
+      internal.value =
+        value || `nui-input-${Math.random().toString(36).slice(2)}`
     },
   )
 
   // only generate identifier on client to avoid hydration issues
   onMounted(() => {
     if (!internal.value) {
-      internal.value = `nui-input-${crypto.randomUUID()}`
+      internal.value = `nui-input-${Math.random().toString(36).slice(2)}`
     }
   })
 
