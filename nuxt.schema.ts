@@ -173,6 +173,12 @@ export default defineNuxtSchema({
          */
         buttonColor: 'default',
         /**
+         * The size of the dropdown button.
+         *
+         * @type {'sm' | 'md' | 'lg' | 'xl'}
+         */
+        buttonSize: 'md',
+        /**
          * The color of the dropdown.
          *
          * @type {'default' | 'default-contrast' | 'muted' | 'muted-contrast' | 'none'}

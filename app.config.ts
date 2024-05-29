@@ -48,6 +48,7 @@ export default {
     },
     BaseDropdown: {
       buttonColor: 'default',
+      buttonSize: 'md',
       color: 'default',
       placement: 'bottom-start',
       rounded: 'sm',

@@ -40,6 +40,13 @@ const props = withDefaults(
       | 'none'
 
     /**
+     * The size of the button.
+     *
+     * @default 'md'
+     */
+    buttonSize?: 'sm' | 'md' | 'lg' | 'xl'
+
+    /**
      * The color of the dropdown.
      *
      * @default 'default'
@@ -121,6 +128,7 @@ const props = withDefaults(
   {
     variant: undefined,
     buttonColor: undefined,
+    buttonSize: undefined,
     color: undefined,
     rounded: undefined,
     orientation: undefined,
@@ -134,6 +142,7 @@ const props = withDefaults(
 )
 
 const buttonColor = useNuiDefaultProperty(props, 'BaseDropdown', 'buttonColor')
+const buttonSize = useNuiDefaultProperty(props, 'BaseDropdown', 'buttonSize')
 const color = useNuiDefaultProperty(props, 'BaseDropdown', 'color')
 const placement = useNuiDefaultProperty(props, 'BaseDropdown', 'placement')
 const rounded = useNuiDefaultProperty(props, 'BaseDropdown', 'rounded')
