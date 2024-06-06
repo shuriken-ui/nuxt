@@ -24,8 +24,8 @@ dependencies:
     specifier: ^6.11.0
     version: 6.11.4
   '@shuriken-ui/tailwind':
-    specifier: ^3.0.4
-    version: 3.0.4
+    specifier: ^3.1.0
+    version: 3.1.0
   '@vueuse/nuxt':
     specifier: ^10.7.2
     version: 10.9.0(nuxt@3.11.2)(vue@3.4.21)
@@ -1927,8 +1927,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@shuriken-ui/tailwind@3.0.4:
-    resolution: {integrity: sha512-/ZcDDZzMXZLyrEMhbjVHUF24OkSAt5ekOptV38d4HWN7IVhIDG5n5R7bYPwdmm0N7Cv7x53aH20jze1FPVyd+Q==}
+  /@shuriken-ui/tailwind@3.1.0:
+    resolution: {integrity: sha512-c/fthC5/c26+wh6lXmBHifnwM3Yn2SZAX27M52KVFi4jtgoL9+xqJvPiXxPfiqGdKhMA84/4fcTuivJrbF0iqw==}
     dependencies:
       '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.4.3)
       '@tailwindcss/typography': 0.5.12(tailwindcss@3.4.3)
