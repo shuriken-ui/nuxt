@@ -126,7 +126,7 @@ export default defineNuxtSchema({
         /**
          * Default size for the BaseButtonClose component
          *
-         * @type {'xs' | 'sm' | 'md' | 'lg'}
+         * @type {'xs' | 'sm' | 'md' | 'lg' | 'xl'}
          */
         size: 'sm',
       },
@@ -580,7 +580,7 @@ export default defineNuxtSchema({
         /**
          * The size of the autocomplete.
          *
-         * @type {'sm' | 'md' | 'lg'}
+         * @type {'sm' | 'md' | 'lg' | 'xl'}
          */
         size: 'md',
       },
@@ -639,7 +639,7 @@ export default defineNuxtSchema({
         /**
          * The size of the input.
          *
-         * @type {'sm' | 'md' | 'lg'}
+         * @type {'sm' | 'md' | 'lg' | 'xl'}
          */
         size: 'md',
       },
@@ -659,7 +659,7 @@ export default defineNuxtSchema({
         /**
          * The size of the input.
          *
-         * @type {'sm' | 'md' | 'lg'}
+         * @type {'sm' | 'md' | 'lg' | 'xl'}
          */
         size: 'md',
         /**
@@ -690,7 +690,7 @@ export default defineNuxtSchema({
         /**
          * The size of the input.
          *
-         * @type {'sm' | 'md' | 'lg'}
+         * @type {'sm' | 'md' | 'lg' | 'xl'}
          */
         size: 'md',
       },
@@ -724,7 +724,7 @@ export default defineNuxtSchema({
         /**
          * The size of the input.
          *
-         * @type {'sm' | 'md' | 'lg'}
+         * @type {'sm' | 'md' | 'lg' | 'xl'}
          */
         size: 'md',
       },
@@ -754,7 +754,7 @@ export default defineNuxtSchema({
         /**
          * The size of the select.
          *
-         * @type {'sm' | 'md' | 'lg'}
+         * @type {'sm' | 'md' | 'lg' | 'xl'}
          */
         size: 'md',
       },
