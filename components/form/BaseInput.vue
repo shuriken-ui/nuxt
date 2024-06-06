@@ -70,7 +70,7 @@ const props = withDefaults(
      *
      * @default 'md'
      */
-    size?: 'sm' | 'md' | 'lg'
+    size?: 'sm' | 'md' | 'lg' | 'xl'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -165,6 +165,7 @@ const sizes = {
   sm: 'nui-input-sm',
   md: 'nui-input-md',
   lg: 'nui-input-lg',
+  xl: 'nui-input-xl',
 }
 
 const contrasts = {
