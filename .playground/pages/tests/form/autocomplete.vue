@@ -179,7 +179,7 @@ const frameworks = [
       </NuiPreview>
 
       <NuiPreview title="Size" description="Autocomplete component sizes">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseAutocomplete
               v-model="fields.first"
@@ -206,6 +206,16 @@ const frameworks = [
               :items="frameworks"
               size="lg"
               label="Size: lg"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.third"
+              :items="frameworks"
+              size="xl"
+              label="Size: xl"
               placeholder="Ex: javascript"
             />
           </div>
@@ -216,7 +226,7 @@ const frameworks = [
         title="Contrast: default-contrast"
         description="Autocomplete component default contrast"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseAutocomplete
               v-model="fields.first"
@@ -246,6 +256,17 @@ const frameworks = [
               contrast="default-contrast"
               size="lg"
               label="Size: lg"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.fourth"
+              :items="frameworks"
+              contrast="default-contrast"
+              size="xl"
+              label="Size: xl"
               placeholder="Ex: javascript"
             />
           </div>
@@ -256,7 +277,7 @@ const frameworks = [
         title="Contrast: muted"
         description="Autocomplete component muted"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseAutocomplete
               v-model="fields.first"
@@ -286,6 +307,17 @@ const frameworks = [
               contrast="muted"
               size="lg"
               label="Size: lg"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.fourth"
+              :items="frameworks"
+              contrast="muted"
+              size="xl"
+              label="Size: xl"
               placeholder="Ex: javascript"
             />
           </div>
@@ -296,7 +328,7 @@ const frameworks = [
         title="Contrast: muted-contrast"
         description="Autocomplete component muted contrast"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseAutocomplete
               v-model="fields.first"
@@ -326,6 +358,17 @@ const frameworks = [
               contrast="muted-contrast"
               size="lg"
               label="Size: lg"
+              placeholder="Ex: javascript"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.fourth"
+              :items="frameworks"
+              contrast="muted-contrast"
+              size="xl"
+              label="Size: xl"
               placeholder="Ex: javascript"
             />
           </div>
@@ -333,7 +376,7 @@ const frameworks = [
       </NuiPreview>
 
       <NuiPreview title="Error" description="Autocomplete component error">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseAutocomplete
               v-model="fields.first"
@@ -362,6 +405,17 @@ const frameworks = [
               :items="frameworks"
               size="lg"
               label="Size: lg"
+              placeholder="Ex: javascript"
+              error="Please select a framework"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.fourth"
+              :items="frameworks"
+              size="xl"
+              label="Size: xl"
               placeholder="Ex: javascript"
               error="Please select a framework"
             />
@@ -373,7 +427,7 @@ const frameworks = [
         title="Disabled"
         description="Autocomplete component disabled"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseAutocomplete
               v-model="fields.first"
@@ -406,11 +460,22 @@ const frameworks = [
               disabled
             />
           </div>
+
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.fourth"
+              :items="frameworks"
+              size="xl"
+              label="Size: xl"
+              placeholder="Ex: javascript"
+              disabled
+            />
+          </div>
         </div>
       </NuiPreview>
 
       <NuiPreview title="Icon" description="Autocomplete component icon">
-        <div class="flex flex-wrap items-end gap-5 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-5 max-w-5xl">
           <div class="flex-1">
             <BaseAutocomplete
               v-model="fields.sixth"
@@ -438,6 +503,17 @@ const frameworks = [
               :items="frameworks"
               icon="lucide:search"
               size="lg"
+              placeholder="e.g. Nuxt"
+              label="Framework"
+              color-focus
+            />
+          </div>
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.sixth"
+              :items="frameworks"
+              icon="lucide:search"
+              size="xl"
               placeholder="e.g. Nuxt"
               label="Framework"
               color-focus
@@ -450,7 +526,7 @@ const frameworks = [
         title="Clearable"
         description="Autocomplete component clear button"
       >
-        <div class="flex flex-wrap items-end gap-5 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-5 max-w-5xl">
           <div class="flex-1">
             <BaseAutocomplete
               v-model="fields.seventh"
@@ -480,6 +556,18 @@ const frameworks = [
               :items="frameworks"
               icon="lucide:search"
               size="lg"
+              placeholder="e.g. Nuxt"
+              label="Framework"
+              clearable
+              clear-value="Nuxt"
+            />
+          </div>
+          <div class="flex-1">
+            <BaseAutocomplete
+              v-model="fields.ninth"
+              :items="frameworks"
+              icon="lucide:search"
+              size="xl"
               placeholder="e.g. Nuxt"
               label="Framework"
               clearable
@@ -611,6 +699,26 @@ const frameworks = [
             label="Framework"
             label-float
           />
+          <BaseAutocomplete
+            v-model="fields.tenth"
+            :items="frameworks"
+            size="xl"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            label-float
+          />
+
+          <BaseAutocomplete
+            v-model="fields.eleventh"
+            :items="frameworks"
+            icon="lucide:search"
+            size="xl"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            label-float
+          />
         </div>
       </NuiPreview>
 
@@ -665,12 +773,30 @@ const frameworks = [
             label="Framework"
             loading
           />
-
           <BaseAutocomplete
             v-model="fields.eleventh"
             :items="frameworks"
             icon="lucide:search"
             size="lg"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            loading
+          />
+          <BaseAutocomplete
+            v-model="fields.tenth"
+            :items="frameworks"
+            size="xl"
+            rounded="md"
+            placeholder="e.g. Nuxt"
+            label="Framework"
+            loading
+          />
+          <BaseAutocomplete
+            v-model="fields.eleventh"
+            :items="frameworks"
+            icon="lucide:search"
+            size="xl"
             rounded="md"
             placeholder="e.g. Nuxt"
             label="Framework"

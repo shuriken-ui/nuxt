@@ -199,7 +199,7 @@ const props = withDefaults(
      *
      * @default 'md'
      */
-    size?: 'sm' | 'md' | 'lg'
+    size?: 'sm' | 'md' | 'lg' | 'xl'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -447,6 +447,7 @@ const sizes = {
   sm: 'nui-autocomplete-sm',
   md: 'nui-autocomplete-md',
   lg: 'nui-autocomplete-lg',
+  xl: 'nui-autocomplete-xl',
 }
 
 const contrasts = {
@@ -723,7 +724,12 @@ const internal = ref<any>(modelValue)
           <div v-if="props.loading" class="nui-autocomplete-placeload">
             <BasePlaceload
               class="nui-placeload"
-              :class="props.icon && 'ms-6'"
+              :class="[
+                props.icon && size === 'sm' && 'ms-4',
+                props.icon && size === 'md' && 'ms-6',
+                props.icon && size === 'lg' && 'ms-8',
+                props.icon && size === 'xl' && 'ms-10',
+              ]"
             />
           </div>
         </div>
