@@ -1,5 +1,4 @@
 import { createResolver } from '@nuxt/kit'
-import { withShurikenUI } from '@shuriken-ui/tailwind'
 
 const { resolve } = createResolver(import.meta.url)
 
@@ -32,13 +31,6 @@ export default defineNuxtConfig({
       global: false,
     },
   ],
-
-  hooks: {
-    // @ts-expect-error - hook is handled by nuxtjs/tailwindcss
-    'tailwindcss:config'(config: Config) {
-      withShurikenUI(config)
-    },
-  },
 
   devtools: {
     enabled: false,
