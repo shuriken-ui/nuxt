@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems } from '@headlessui/vue'
-import { Float } from '@headlessui-float/vue'
+import { Float, type FloatProps } from '@headlessui-float/vue'
 
 const props = withDefaults(
   defineProps<{
@@ -117,6 +117,10 @@ const props = withDefaults(
        */
       content?: string | string[]
     }
+    /**
+     * Optional options for the underlying float component.
+     */
+    floatOptions?: FloatProps
   }>(),
   {
     variant: undefined,
@@ -130,6 +134,7 @@ const props = withDefaults(
     headerLabel: undefined,
     fixed: false,
     classes: () => ({}),
+    floatOptions: () => ({}),
   },
 )
 
@@ -204,6 +209,7 @@ const textColors = {
         :placement="placement"
         :adaptive-width="props.fixed"
         :z-index="20"
+        v-bind="floatOptions"
       >
         <MenuButton as="template">
           <slot name="button" v-bind="{ open, close }">
