@@ -145,7 +145,7 @@ const props = withDefaults(
      *
      * @default 'md'
      */
-    size?: 'sm' | 'md' | 'lg'
+    size?: 'sm' | 'md' | 'lg' | 'xl'
 
     /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
@@ -258,6 +258,7 @@ const sizes = {
   sm: 'nui-listbox-sm',
   md: 'nui-listbox-md',
   lg: 'nui-listbox-lg',
+  xl: 'nui-listbox-xl',
 }
 
 const contrasts = {
@@ -483,19 +484,23 @@ const internal = ref<any>(modelValue)
                 :class="[
                   (properties.media && size === 'sm') ||
                   (properties.icon && size === 'sm')
-                    ? 'ms-5'
+                    ? 'ms-6'
                     : '',
                   (properties.media && size === 'md') ||
                   (properties.icon && size === 'md')
-                    ? 'ms-6'
+                    ? 'ms-8'
                     : '',
                   (properties.media && size === 'lg') ||
                   (properties.icon && size === 'lg')
-                    ? 'ms-7'
+                    ? 'ms-9'
+                    : '',
+                  (properties.media && size === 'xl') ||
+                  (properties.icon && size === 'xl')
+                    ? 'ms-9'
                     : '',
                 ]"
               >
-                <BasePlaceload class="nui-placeload" />
+                <BasePlaceload class="nui-placeload !w-[70%]" />
               </div>
             </div>
           </FloatReference>

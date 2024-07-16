@@ -58,7 +58,7 @@ const taxes = ref('With taxes')
       </NuiPreview>
 
       <NuiPreview title="Size" description="Input component sizes">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseInput
               v-model="fieldsRounded.first"
@@ -85,6 +85,16 @@ const taxes = ref('With taxes')
               size="lg"
               rounded="md"
               label="Size: lg"
+              placeholder="Ex: username"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.third"
+              size="xl"
+              rounded="md"
+              label="Size: xl"
               placeholder="Ex: username"
             />
           </div>
@@ -95,7 +105,7 @@ const taxes = ref('With taxes')
         title="Contrast: default-contrast"
         description="Input component default contrast"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseInput
               v-model="fieldsRounded.first"
@@ -125,6 +135,17 @@ const taxes = ref('With taxes')
               size="lg"
               rounded="md"
               label="Size: lg"
+              placeholder="Ex: username"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.third"
+              contrast="default-contrast"
+              size="xl"
+              rounded="md"
+              label="Size: xl"
               placeholder="Ex: username"
             />
           </div>
@@ -132,7 +153,7 @@ const taxes = ref('With taxes')
       </NuiPreview>
 
       <NuiPreview title="Contrast: muted" description="Input component muted">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseInput
               v-model="fieldsRounded.first"
@@ -162,6 +183,17 @@ const taxes = ref('With taxes')
               size="lg"
               rounded="md"
               label="Size: lg"
+              placeholder="Ex: username"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.third"
+              contrast="muted"
+              size="xl"
+              rounded="md"
+              label="Size: xl"
               placeholder="Ex: username"
             />
           </div>
@@ -172,7 +204,7 @@ const taxes = ref('With taxes')
         title="Contrast: muted-contrast"
         description="Input component muted contrast"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseInput
               v-model="fieldsRounded.first"
@@ -202,6 +234,17 @@ const taxes = ref('With taxes')
               size="lg"
               rounded="md"
               label="Size: lg"
+              placeholder="Ex: username"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.third"
+              contrast="muted-contrast"
+              size="xl"
+              rounded="md"
+              label="Size: xl"
               placeholder="Ex: username"
             />
           </div>
@@ -209,7 +252,7 @@ const taxes = ref('With taxes')
       </NuiPreview>
 
       <NuiPreview title="Icon" description="Input component icons">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseInput
               v-model="fieldsRounded.first"
@@ -239,6 +282,17 @@ const taxes = ref('With taxes')
               size="lg"
               rounded="md"
               label="Size: lg"
+              placeholder="Ex: username"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.third"
+              icon="lucide:search"
+              size="xl"
+              rounded="md"
+              label="Size: xl"
               placeholder="Ex: username"
             />
           </div>
@@ -246,7 +300,7 @@ const taxes = ref('With taxes')
       </NuiPreview>
 
       <NuiPreview title="Focus" description="Input component color focus">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseInput
               v-model="fieldsRounded.first"
@@ -275,6 +329,17 @@ const taxes = ref('With taxes')
               size="lg"
               rounded="md"
               label="Size: lg"
+              placeholder="Ex: username"
+              color-focus
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.third"
+              size="xl"
+              rounded="md"
+              label="Size: xl"
               placeholder="Ex: username"
               color-focus
             />
@@ -283,7 +348,7 @@ const taxes = ref('With taxes')
       </NuiPreview>
 
       <NuiPreview title="Error" description="Input component errors">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseInput
               v-model="fieldsRounded.first"
@@ -312,6 +377,17 @@ const taxes = ref('With taxes')
               size="lg"
               rounded="md"
               label="Size: lg"
+              placeholder="Ex: username"
+              error="Please enter a valid username"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.third"
+              size="xl"
+              rounded="md"
+              label="Size: xl"
               placeholder="Ex: username"
               error="Please enter a valid username"
             />
@@ -320,7 +396,7 @@ const taxes = ref('With taxes')
       </NuiPreview>
 
       <NuiPreview title="Error: icon" description="Input component errors">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseInput
               v-model="fieldsRounded.first"
@@ -356,11 +432,23 @@ const taxes = ref('With taxes')
               error="Please enter a valid username"
             />
           </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.third"
+              icon="solar:user-speak-outline"
+              size="xl"
+              rounded="md"
+              label="Size: xl"
+              placeholder="Ex: username"
+              error="Please enter a valid username"
+            />
+          </div>
         </div>
       </NuiPreview>
 
       <NuiPreview title="Slot: action" description="Input component actions">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseInput
               v-model="fieldsRounded.first"
@@ -414,6 +502,26 @@ const taxes = ref('With taxes')
                   type="button"
                   data-nui-tooltip="Save"
                   class="absolute top-0 end-0 z-[1] flex items-center justify-center h-12 w-12 text-muted-400 hover:text-primary-500 transition-colors duration-300"
+                >
+                  <Icon name="lucide:save" class="w-5 h-5" />
+                </button>
+              </template>
+            </BaseInput>
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.third"
+              size="xl"
+              rounded="md"
+              label="Size: xl"
+              placeholder="Ex: username"
+            >
+              <template #action>
+                <button
+                  type="button"
+                  data-nui-tooltip="Save"
+                  class="absolute top-0 end-0 z-[1] flex items-center justify-center h-14 w-14 text-muted-400 hover:text-primary-500 transition-colors duration-300"
                 >
                   <Icon name="lucide:save" class="w-5 h-5" />
                 </button>
@@ -479,11 +587,28 @@ const taxes = ref('With taxes')
             placeholder="Ex: username"
             label-float
           />
+          <BaseInput
+            v-model="fieldsRounded.third"
+            size="xl"
+            rounded="md"
+            label="Size: xl"
+            placeholder="Ex: username"
+            label-float
+          />
+          <BaseInput
+            v-model="fieldsRounded.sixth"
+            icon="lucide:search"
+            size="xl"
+            rounded="md"
+            label="Size: xl"
+            placeholder="Ex: username"
+            label-float
+          />
         </div>
       </NuiPreview>
 
       <NuiPreview title="Disabled" description="Input component disabled state">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseInput
               v-model="fieldsRounded.first"
@@ -512,6 +637,17 @@ const taxes = ref('With taxes')
               size="lg"
               rounded="md"
               label="Size: lg"
+              placeholder="Ex: username"
+              disabled
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseInput
+              v-model="fieldsRounded.third"
+              size="xl"
+              rounded="md"
+              label="Size: xl"
               placeholder="Ex: username"
               disabled
             />
@@ -572,6 +708,23 @@ const taxes = ref('With taxes')
             size="lg"
             rounded="md"
             label="Size: lg"
+            placeholder="Ex: username"
+            loading
+          />
+          <BaseInput
+            v-model="fieldsRounded.third"
+            size="xl"
+            rounded="md"
+            label="Size: xl"
+            placeholder="Ex: username"
+            loading
+          />
+          <BaseInput
+            v-model="fieldsRounded.sixth"
+            icon="lucide:search"
+            size="xl"
+            rounded="md"
+            label="Size: xl"
             placeholder="Ex: username"
             loading
           />

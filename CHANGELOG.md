@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.1](https://github.com/shuriken-ui/nuxt/compare/v3.2.0...v3.2.1) (2024-06-07)
+
+## [3.2.0](https://github.com/shuriken-ui/nuxt/compare/v3.1.6...v3.2.0) (2024-06-06)
+
+
+### 🚀 Features
+
+* **BaseAutocomplete:** add xl size and update demos ([138ae51](https://github.com/shuriken-ui/nuxt/commit/138ae51ce825800ef106fa26c314e3234aa21317))
+* **BaseButtonClose:** add xl size and update demos ([d0de3cb](https://github.com/shuriken-ui/nuxt/commit/d0de3cb5e97d96f1525fd65186fcd438a36a6628))
+* **BaseButtonIcon:** add xl size ([d7d9b30](https://github.com/shuriken-ui/nuxt/commit/d7d9b3064a13cf3595272d48abed3167daeeb12b))
+* **BaseInput:** add xl size and update demos ([1d421c6](https://github.com/shuriken-ui/nuxt/commit/1d421c6cd97f70969bc74d0433ab9502f69ed81d))
+* **BaseInputFile:** add xl size ([93ebdf8](https://github.com/shuriken-ui/nuxt/commit/93ebdf8e3432df89eb1e042545a4cac722190cf9))
+* **BaseInputNumber:** add xl size and update demos ([ccc6042](https://github.com/shuriken-ui/nuxt/commit/ccc6042cc84567368cfa1cb86292dab42cd21e7a))
+* **BaseListbox:** add xl size and update demos ([78c75bd](https://github.com/shuriken-ui/nuxt/commit/78c75bd29f9310b0be7ed2fbaec896c1d8c7ffb8))
+* **BaseSelect:** add xl size and update demos ([a121b2f](https://github.com/shuriken-ui/nuxt/commit/a121b2f1c4242ef010f60038e171991199ec2d61))
+* update the nuxt.schema.ts file to include the xl size option ([9a02992](https://github.com/shuriken-ui/nuxt/commit/9a02992d5e76ddb14cafb792a11b63c423424392))
+
 ### [3.1.6](https://github.com/shuriken-ui/nuxt/compare/v3.1.5...v3.1.6) (2024-05-02)
 
 

@@ -72,7 +72,7 @@ const options = reactive({
       </NuiPreview>
 
       <NuiPreview title="Size" description="Select component sizes">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseSelect
               v-model="options.first"
@@ -123,6 +123,23 @@ const options = reactive({
               <option value="Cyclops">Cyclops</option>
             </BaseSelect>
           </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.third"
+              size="xl"
+              rounded="md"
+              label="Size: xl"
+              color-focus
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
         </div>
       </NuiPreview>
 
@@ -130,7 +147,7 @@ const options = reactive({
         title="Contrast: default-contrast"
         description="Select component default contrast"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseSelect
               v-model="options.first"
@@ -170,6 +187,23 @@ const options = reactive({
               v-model="options.third"
               contrast="default-contrast"
               size="lg"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.third"
+              contrast="default-contrast"
+              size="xl"
               rounded="md"
               label="Rounded: md"
             >
@@ -185,7 +219,7 @@ const options = reactive({
       </NuiPreview>
 
       <NuiPreview title="Contrast: muted" description="Select component muted">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseSelect
               v-model="options.first"
@@ -225,6 +259,23 @@ const options = reactive({
               v-model="options.third"
               contrast="muted"
               size="lg"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.third"
+              contrast="muted"
+              size="xl"
               rounded="md"
               label="Rounded: md"
             >
@@ -243,7 +294,7 @@ const options = reactive({
         title="Contrast: muted-contrast"
         description="Select component muted contrast"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseSelect
               v-model="options.first"
@@ -283,6 +334,23 @@ const options = reactive({
               v-model="options.third"
               contrast="muted-contrast"
               size="lg"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.third"
+              contrast="muted-contrast"
+              size="xl"
               rounded="md"
               label="Rounded: md"
             >
@@ -301,7 +369,7 @@ const options = reactive({
         title="Option group"
         description="Select component option groups"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseSelect
               v-model="options.first"
@@ -346,6 +414,26 @@ const options = reactive({
             <BaseSelect
               v-model="options.third"
               size="lg"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <optgroup label="Marvel">
+                <option value="Iron man">Iron man</option>
+                <option value="Magneto">Magneto</option>
+                <option value="Cyclops">Cyclops</option>
+              </optgroup>
+              <optgroup label="DC Comics">
+                <option value="Superman">Superman</option>
+                <option value="Batman">Batman</option>
+              </optgroup>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.third"
+              size="xl"
               rounded="md"
               label="Rounded: md"
             >
@@ -365,7 +453,7 @@ const options = reactive({
       </NuiPreview>
 
       <NuiPreview title="Icon" description="Select component icons">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseSelect
               v-model="options.first"
@@ -405,6 +493,23 @@ const options = reactive({
               v-model="options.third"
               icon="fa6-solid:mask"
               size="lg"
+              rounded="md"
+              label="Rounded: md"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.third"
+              icon="fa6-solid:mask"
+              size="xl"
               rounded="md"
               label="Rounded: md"
             >
@@ -420,7 +525,7 @@ const options = reactive({
       </NuiPreview>
 
       <NuiPreview title="Error" description="Select component errors">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseSelect
               v-model="options.first"
@@ -459,6 +564,23 @@ const options = reactive({
             <BaseSelect
               v-model="options.third"
               size="lg"
+              rounded="md"
+              label="Rounded: md"
+              error="This field is required"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.third"
+              size="xl"
               rounded="md"
               label="Rounded: md"
               error="This field is required"
@@ -475,7 +597,7 @@ const options = reactive({
       </NuiPreview>
 
       <NuiPreview title="Error: icon" description="Select component errors">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseSelect
               v-model="options.first"
@@ -517,6 +639,24 @@ const options = reactive({
               v-model="options.third"
               icon="fa6-solid:mask"
               size="lg"
+              rounded="md"
+              label="Rounded: md"
+              error="This field is required"
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.third"
+              icon="fa6-solid:mask"
+              size="xl"
               rounded="md"
               label="Rounded: md"
               error="This field is required"
@@ -624,6 +764,35 @@ const options = reactive({
             <option value="Magneto">Magneto</option>
             <option value="Cyclops">Cyclops</option>
           </BaseSelect>
+          <BaseSelect
+            v-model="options.third"
+            size="xl"
+            rounded="md"
+            label="Rounded: md"
+            label-float
+          >
+            <option value="">Select a hero</option>
+            <option value="Superman">Superman</option>
+            <option value="Batman">Batman</option>
+            <option value="Iron man">Iron man</option>
+            <option value="Magneto">Magneto</option>
+            <option value="Cyclops">Cyclops</option>
+          </BaseSelect>
+          <BaseSelect
+            v-model="options.third"
+            icon="fa6-solid:mask"
+            size="xl"
+            rounded="md"
+            label="Rounded: md"
+            label-float
+          >
+            <option value="">Select a hero</option>
+            <option value="Superman">Superman</option>
+            <option value="Batman">Batman</option>
+            <option value="Iron man">Iron man</option>
+            <option value="Magneto">Magneto</option>
+            <option value="Cyclops">Cyclops</option>
+          </BaseSelect>
         </div>
       </NuiPreview>
 
@@ -719,6 +888,35 @@ const options = reactive({
             <option value="Magneto">Magneto</option>
             <option value="Cyclops">Cyclops</option>
           </BaseSelect>
+          <BaseSelect
+            v-model="options.third"
+            size="xl"
+            rounded="md"
+            label="Rounded: md"
+            loading
+          >
+            <option value="">Select a hero</option>
+            <option value="Superman">Superman</option>
+            <option value="Batman">Batman</option>
+            <option value="Iron man">Iron man</option>
+            <option value="Magneto">Magneto</option>
+            <option value="Cyclops">Cyclops</option>
+          </BaseSelect>
+          <BaseSelect
+            v-model="options.third"
+            icon="fa6-solid:mask"
+            size="xl"
+            rounded="md"
+            label="Rounded: md"
+            loading
+          >
+            <option value="">Select a hero</option>
+            <option value="Superman">Superman</option>
+            <option value="Batman">Batman</option>
+            <option value="Iron man">Iron man</option>
+            <option value="Magneto">Magneto</option>
+            <option value="Cyclops">Cyclops</option>
+          </BaseSelect>
         </div>
       </NuiPreview>
 
@@ -726,7 +924,7 @@ const options = reactive({
         title="Disabled"
         description="Select component disabled state"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseSelect
               v-model="options.first"
@@ -765,6 +963,23 @@ const options = reactive({
             <BaseSelect
               v-model="options.third"
               size="lg"
+              rounded="md"
+              label="Rounded: md"
+              disabled
+            >
+              <option value="">Select a hero</option>
+              <option value="Superman">Superman</option>
+              <option value="Batman">Batman</option>
+              <option value="Iron man">Iron man</option>
+              <option value="Magneto">Magneto</option>
+              <option value="Cyclops">Cyclops</option>
+            </BaseSelect>
+          </div>
+
+          <div class="flex-1">
+            <BaseSelect
+              v-model="options.third"
+              size="xl"
               rounded="md"
               label="Rounded: md"
               disabled

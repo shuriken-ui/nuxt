@@ -765,6 +765,82 @@ definePageMeta({
           </BaseDropdown>
         </div>
       </NuiPreview>
+
+      <NuiPreview
+        title="Menu in portal mode"
+        description="Menu is teleported to the body instead of the parent element"
+      >
+        <div class="flex w-full justify-start">
+          <BaseDropdown
+            variant="button"
+            label="Dropdown"
+            orientation="start"
+            :float-options="{ portal: true }"
+          >
+            <BaseDropdownItem
+              to="#"
+              title="Lana Jensen"
+              text="Software Engineer"
+              contrast="default"
+              rounded="sm"
+            >
+              <template #start>
+                <BaseAvatar
+                  src="https://tairo.cssninja.io/img/avatars/4.svg"
+                  size="xs"
+                />
+              </template>
+            </BaseDropdownItem>
+
+            <BaseDropdownItem
+              to="#"
+              title="Shawn Miller"
+              text="Product Manager"
+              contrast="default"
+              rounded="sm"
+            >
+              <template #start>
+                <BaseAvatar
+                  src="https://tairo.cssninja.io/img/avatars/3.svg"
+                  size="xs"
+                />
+              </template>
+            </BaseDropdownItem>
+
+            <BaseDropdownItem
+              to="#"
+              title="John Marynski"
+              text="Sales Manager"
+              contrast="default"
+              rounded="sm"
+            >
+              <template #start>
+                <BaseAvatar
+                  src="https://tairo.cssninja.io/img/avatars/18.svg"
+                  size="xs"
+                />
+              </template>
+            </BaseDropdownItem>
+
+            <BaseDropdownDivider />
+
+            <BaseDropdownItem
+              to="#"
+              title="Garry Porter"
+              text="CEO - Founder"
+              contrast="default"
+              rounded="sm"
+            >
+              <template #start>
+                <BaseAvatar
+                  src="https://tairo.cssninja.io/img/avatars/6.svg"
+                  size="xs"
+                />
+              </template>
+            </BaseDropdownItem>
+          </BaseDropdown>
+        </div>
+      </NuiPreview>
     </NuiPreviewContainer>
   </div>
 </template>

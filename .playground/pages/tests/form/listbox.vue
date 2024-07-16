@@ -139,7 +139,7 @@ const multipleProps = ref([])
       </NuiPreview>
 
       <NuiPreview title="Size" description="Listbox component sizes">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseListbox
               v-model="radiusValue"
@@ -169,6 +169,18 @@ const multipleProps = ref([])
               v-model="radiusValue"
               label="Rounded: md"
               size="lg"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+              color-focus
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              label="Rounded: md"
+              size="xl"
               :items="frameworks"
               placeholder="Select a framework"
               rounded="md"
@@ -182,7 +194,7 @@ const multipleProps = ref([])
         title="Contrast: default-contrast"
         description="Listbox component default contrast"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseListbox
               v-model="radiusValue"
@@ -213,6 +225,18 @@ const multipleProps = ref([])
               contrast="default-contrast"
               label="Rounded: md"
               size="lg"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              contrast="default-contrast"
+              label="Rounded: md"
+              size="xl"
               :items="frameworks"
               placeholder="Select a framework"
               rounded="md"
@@ -222,7 +246,7 @@ const multipleProps = ref([])
       </NuiPreview>
 
       <NuiPreview title="Contrast: muted" description="Listbox component muted">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseListbox
               v-model="radiusValue"
@@ -253,6 +277,18 @@ const multipleProps = ref([])
               contrast="muted"
               label="Rounded: md"
               size="lg"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              contrast="muted"
+              label="Rounded: md"
+              size="xl"
               :items="frameworks"
               placeholder="Select a framework"
               rounded="md"
@@ -265,7 +301,7 @@ const multipleProps = ref([])
         title="Contrast: muted-contrast"
         description="Listbox component muted contrast"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseListbox
               v-model="radiusValue"
@@ -296,6 +332,18 @@ const multipleProps = ref([])
               contrast="muted-contrast"
               label="Rounded: md"
               size="lg"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              contrast="muted-contrast"
+              label="Rounded: md"
+              size="xl"
               :items="frameworks"
               placeholder="Select a framework"
               rounded="md"
@@ -305,7 +353,7 @@ const multipleProps = ref([])
       </NuiPreview>
 
       <NuiPreview title="Error" description="Listbox component errors">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseListbox
               v-model="radiusValue"
@@ -335,6 +383,18 @@ const multipleProps = ref([])
               v-model="radiusValue"
               label="Rounded: md"
               size="lg"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+              error="This field is required"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              label="Rounded: md"
+              size="xl"
               :items="frameworks"
               placeholder="Select a framework"
               rounded="md"
@@ -345,7 +405,7 @@ const multipleProps = ref([])
       </NuiPreview>
 
       <NuiPreview title="Disabled" description="Listbox component disabled">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseListbox
               v-model="radiusValue"
@@ -375,6 +435,18 @@ const multipleProps = ref([])
               v-model="radiusValue"
               label="Rounded: md"
               size="lg"
+              :items="frameworks"
+              placeholder="Select a framework"
+              rounded="md"
+              disabled
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="radiusValue"
+              label="Rounded: md"
+              size="xl"
               :items="frameworks"
               placeholder="Select a framework"
               rounded="md"
@@ -447,6 +519,29 @@ const multipleProps = ref([])
           <BaseListbox
             v-model="assigneeValue"
             size="lg"
+            rounded="md"
+            label="Hobbies"
+            :items="people"
+            :properties="{
+              value: 'id',
+              label: 'name',
+              sublabel: 'text',
+              media: 'media',
+            }"
+            label-float
+          />
+          <BaseListbox
+            v-model="radiusValue"
+            label="Rounded: md"
+            size="xl"
+            :items="frameworks"
+            placeholder="Select a framework"
+            rounded="md"
+            label-float
+          />
+          <BaseListbox
+            v-model="assigneeValue"
+            size="xl"
             rounded="md"
             label="Hobbies"
             :items="people"
@@ -532,11 +627,34 @@ const multipleProps = ref([])
             }"
             loading
           />
+          <BaseListbox
+            v-model="radiusValue"
+            label="Rounded: md"
+            size="xl"
+            :items="frameworks"
+            placeholder="Select a framework"
+            rounded="md"
+            loading
+          />
+          <BaseListbox
+            v-model="assigneeValue"
+            size="xl"
+            rounded="md"
+            label="Hobbies"
+            :items="people"
+            :properties="{
+              value: 'id',
+              label: 'name',
+              sublabel: 'text',
+              media: 'media',
+            }"
+            loading
+          />
         </div>
       </NuiPreview>
 
       <NuiPreview title="Sublabel" description="Listbox component sublabels">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseListbox
               v-model="hobbiesValue"
@@ -571,6 +689,21 @@ const multipleProps = ref([])
             <BaseListbox
               v-model="hobbiesValue"
               size="lg"
+              rounded="md"
+              label="Hobbies"
+              :items="hobbies"
+              :properties="{
+                value: 'id',
+                label: 'name',
+                sublabel: 'text',
+              }"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="hobbiesValue"
+              size="xl"
               rounded="md"
               label="Hobbies"
               :items="hobbies"
@@ -585,7 +718,7 @@ const multipleProps = ref([])
       </NuiPreview>
 
       <NuiPreview title="Icon" description="Listbox component icons">
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseListbox
               v-model="hobbiesValue"
@@ -622,6 +755,22 @@ const multipleProps = ref([])
             <BaseListbox
               v-model="hobbiesValue"
               size="lg"
+              rounded="md"
+              label="Hobbies"
+              :items="hobbies"
+              :properties="{
+                value: 'id',
+                label: 'name',
+                sublabel: 'text',
+                icon: 'icon',
+              }"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="hobbiesValue"
+              size="xl"
               rounded="md"
               label="Hobbies"
               :items="hobbies"
@@ -637,7 +786,7 @@ const multipleProps = ref([])
       </NuiPreview>
 
       <NuiPreview title="Image" description="Listbox component images">
-        <div class="flex flex-wrap items-end gap-3 max-w-4xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-6xl">
           <div class="flex-1">
             <BaseListbox
               v-model="assigneeValue"
@@ -674,6 +823,22 @@ const multipleProps = ref([])
             <BaseListbox
               v-model="assigneeValue"
               size="lg"
+              rounded="md"
+              label="Hobbies"
+              :items="people"
+              :properties="{
+                value: 'id',
+                label: 'name',
+                sublabel: 'text',
+                media: 'media',
+              }"
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="assigneeValue"
+              size="xl"
               rounded="md"
               label="Hobbies"
               :items="people"
@@ -692,7 +857,7 @@ const multipleProps = ref([])
         title="Multiple: Objects"
         description="Listbox component multiple selection with object values"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseListbox
               v-model="multipleValues"
@@ -731,6 +896,23 @@ const multipleProps = ref([])
             <BaseListbox
               v-model="multipleValues"
               size="lg"
+              rounded="md"
+              label="Hobbies"
+              :items="people"
+              :properties="{
+                value: 'id',
+                label: 'name',
+                sublabel: 'text',
+                media: 'media',
+              }"
+              multiple
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model="multipleValues"
+              size="xl"
               rounded="md"
               label="Hobbies"
               :items="people"
@@ -750,7 +932,7 @@ const multipleProps = ref([])
         title="Multiple: Objects /w prop modifier"
         description="Listbox component multiple selection"
       >
-        <div class="flex flex-wrap items-end gap-3 max-w-3xl">
+        <div class="flex flex-wrap items-end gap-3 max-w-5xl">
           <div class="flex-1">
             <BaseListbox
               v-model.prop="multipleProps"
@@ -789,6 +971,23 @@ const multipleProps = ref([])
             <BaseListbox
               v-model.prop="multipleProps"
               size="lg"
+              rounded="md"
+              label="Hobbies"
+              :items="people"
+              :properties="{
+                value: 'id',
+                label: 'name',
+                sublabel: 'text',
+                media: 'media',
+              }"
+              multiple
+            />
+          </div>
+
+          <div class="flex-1">
+            <BaseListbox
+              v-model.prop="multipleProps"
+              size="xl"
               rounded="md"
               label="Hobbies"
               :items="people"

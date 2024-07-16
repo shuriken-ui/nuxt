@@ -66,7 +66,7 @@ const props = withDefaults(
      *
      * @default 'md'
      */
-    size?: 'sm' | 'md' | 'lg'
+    size?: 'sm' | 'md' | 'lg' | 'xl'
 
     /**
      * Translation strings.
@@ -164,6 +164,7 @@ const sizes = {
   sm: 'nui-input-sm',
   md: 'nui-input-md',
   lg: 'nui-input-lg',
+  xl: 'nui-input-xl',
 }
 
 const contrasts = {

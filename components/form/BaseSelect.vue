@@ -70,7 +70,7 @@ const props = withDefaults(
      *
      * @default 'md'
      */
-    size?: 'sm' | 'md' | 'lg'
+    size?: 'sm' | 'md' | 'lg' | 'xl'
 
     /**
      * Classes to apply to the select input.
@@ -146,6 +146,7 @@ const sizes = {
   sm: 'nui-select-sm',
   md: 'nui-select-md',
   lg: 'nui-select-lg',
+  xl: 'nui-select-xl',
 }
 
 const contrasts = {

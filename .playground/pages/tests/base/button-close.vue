@@ -26,6 +26,7 @@ definePageMeta({
           <BaseButtonClose size="sm" rounded="md" color="muted" />
           <BaseButtonClose size="md" rounded="md" color="muted" />
           <BaseButtonClose size="lg" rounded="md" color="muted" />
+          <BaseButtonClose size="xl" rounded="md" color="muted" />
         </div>
       </NuiPreview>
 
@@ -38,6 +39,7 @@ definePageMeta({
           <BaseButtonClose size="sm" rounded="full" color="default" />
           <BaseButtonClose size="md" rounded="full" color="default" />
           <BaseButtonClose size="lg" rounded="full" color="default" />
+          <BaseButtonClose size="xl" rounded="full" color="default" />
         </div>
       </NuiPreview>
 
@@ -50,6 +52,7 @@ definePageMeta({
           <BaseButtonClose size="sm" rounded="full" color="muted" />
           <BaseButtonClose size="md" rounded="full" color="muted" />
           <BaseButtonClose size="lg" rounded="full" color="muted" />
+          <BaseButtonClose size="xl" rounded="full" color="muted" />
         </div>
       </NuiPreview>
 
@@ -62,6 +65,7 @@ definePageMeta({
           <BaseButtonClose size="sm" rounded="full" color="info" />
           <BaseButtonClose size="md" rounded="full" color="info" />
           <BaseButtonClose size="lg" rounded="full" color="info" />
+          <BaseButtonClose size="xl" rounded="full" color="info" />
         </div>
       </NuiPreview>
 
@@ -74,6 +78,7 @@ definePageMeta({
           <BaseButtonClose size="sm" rounded="full" color="success" />
           <BaseButtonClose size="md" rounded="full" color="success" />
           <BaseButtonClose size="lg" rounded="full" color="success" />
+          <BaseButtonClose size="xl" rounded="full" color="success" />
         </div>
       </NuiPreview>
 
@@ -86,6 +91,7 @@ definePageMeta({
           <BaseButtonClose size="sm" rounded="full" color="warning" />
           <BaseButtonClose size="md" rounded="full" color="warning" />
           <BaseButtonClose size="lg" rounded="full" color="warning" />
+          <BaseButtonClose size="xl" rounded="full" color="warning" />
         </div>
       </NuiPreview>
 
@@ -98,6 +104,7 @@ definePageMeta({
           <BaseButtonClose size="sm" rounded="full" color="danger" />
           <BaseButtonClose size="md" rounded="full" color="danger" />
           <BaseButtonClose size="lg" rounded="full" color="danger" />
+          <BaseButtonClose size="xl" rounded="full" color="danger" />
         </div>
       </NuiPreview>
     </NuiPreviewContainer>
