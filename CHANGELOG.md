@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/shuriken-ui/nuxt/compare/v3.2.1...v3.3.0) (2024-07-16)
+
+
+### 💅 Refactors
+
+* **tailwind-config:** provide config through tailwind.config ([#123](https://github.com/shuriken-ui/nuxt/issues/123)) ([5ba5bf4](https://github.com/shuriken-ui/nuxt/commit/5ba5bf47e615014c80fbd38545414b159a19880f))
+
+
+### 🚀 Features
+
+* **BaseButton:** add buttonSize property ([fe5227f](https://github.com/shuriken-ui/nuxt/commit/fe5227f40a9924567d7e87497b534f759d7b8de4))
+* **BaseDropdown:** add floatOptions props to control the underlying Float component ([#126](https://github.com/shuriken-ui/nuxt/issues/126)) ([761f583](https://github.com/shuriken-ui/nuxt/commit/761f58395c89d6582c6d68b63b0de0a91beca0e8))
+
 ### [3.2.1](https://github.com/shuriken-ui/nuxt/compare/v3.2.0...v3.2.1) (2024-06-07)
 
 ## [3.2.0](https://github.com/shuriken-ui/nuxt/compare/v3.1.6...v3.2.0) (2024-06-06)
