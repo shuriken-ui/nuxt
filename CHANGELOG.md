@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.4.0](https://github.com/shuriken-ui/nuxt/compare/v3.3.0...v3.4.0) (2024-07-25)
+
+
+### 🚀 Features
+
+* migrate nuxt-icon to @nuxt/icon ([8c5a1a1](https://github.com/shuriken-ui/nuxt/commit/8c5a1a1a8d77356fc91bfee8f8e7d771d8f3f1c8))
+
 ## [3.3.0](https://github.com/shuriken-ui/nuxt/compare/v3.2.1...v3.3.0) (2024-07-16)
 
 
