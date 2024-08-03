@@ -47,7 +47,7 @@ const props = withDefaults(
     buttonSize?: 'sm' | 'md' | 'lg' | 'xl'
 
     /**
-     * The color of the dropdown.
+     * The color of the dropdown.buttonSize
      *
      * @default 'default'
      */
@@ -224,6 +224,7 @@ const textColors = {
           <slot name="button" v-bind="{ open, close }">
             <BaseButton
               v-if="variant === 'button' || props.variant === 'button'"
+              :size="props.buttonSize ? props.buttonSize : buttonSize"
               :color="props.buttonColor ? props.buttonColor : buttonColor"
               :rounded="props.rounded ? props.rounded : rounded"
               class="!pe-3 !ps-4"
