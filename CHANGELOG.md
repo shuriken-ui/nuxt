@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.1](https://github.com/shuriken-ui/nuxt/compare/v3.4.0...v3.4.1) (2024-08-04)
+
+
+### 🩹 Bug Fixes
+
+* **BaseAutocomplete:** expose refrence to input element ([a4874f4](https://github.com/shuriken-ui/nuxt/commit/a4874f49cf12dd4dd454c71c34bbd5557853a523))
+* **BaseDropdown:** button size prop not applied ([448914d](https://github.com/shuriken-ui/nuxt/commit/448914d03c3147a8a9c4f5d1a7a5fe24af1392d7)), closes [#128](https://github.com/shuriken-ui/nuxt/issues/128)
+
 ## [3.4.0](https://github.com/shuriken-ui/nuxt/compare/v3.3.0...v3.4.0) (2024-07-25)
 
 
