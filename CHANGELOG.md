@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.5.0](https://github.com/shuriken-ui/nuxt/compare/v3.4.1...v3.5.0) (2024-08-04)
+
+
+### 🚀 Features
+
+* **BaseAutocomplete:** add float-options property ([841eed4](https://github.com/shuriken-ui/nuxt/commit/841eed4aaf425ce609f105c1fcc5f62a27496980))
+* **BaseInputNumber:** add raw model modifer to prevent float parsing ([d9ec94b](https://github.com/shuriken-ui/nuxt/commit/d9ec94bbfa3037f411304c1bcd1ab561715fd7e4))
+* **BaseListbox:** add float-options property ([0676d03](https://github.com/shuriken-ui/nuxt/commit/0676d03d00c98693f1d21781ea26cd90381f740a))
+
 ### [3.4.1](https://github.com/shuriken-ui/nuxt/compare/v3.4.0...v3.4.1) (2024-08-04)
 
 
