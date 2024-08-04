@@ -177,8 +177,12 @@ function looseToNumber(val: any) {
   return Number.isNaN(n) ? val : n
 }
 
-const [modelValue, modelModifiers] = defineModel<number, 'lazy'>({
+const [modelValue, modelModifiers] = defineModel<number, 'lazy' | 'raw'>({
   set(value) {
+    if (modelModifiers.raw) {
+      return value
+    }
+
     return looseToNumber(value)
   },
 })
