@@ -1,5 +1,10 @@
 <script setup lang="ts" generic="T extends unknown = string">
-import { Float, FloatContent, FloatReference } from '@headlessui-float/vue'
+import {
+  Float,
+  FloatContent,
+  FloatReference,
+  type FloatProps,
+} from '@headlessui-float/vue'
 import {
   Combobox,
   ComboboxButton,
@@ -202,6 +207,11 @@ const props = withDefaults(
     size?: 'sm' | 'md' | 'lg' | 'xl'
 
     /**
+     * Optional options for the underlying float component.
+     */
+    floatOptions?: FloatProps
+
+    /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
      */
     classes?: {
@@ -260,6 +270,7 @@ const props = withDefaults(
     fixed: false,
     placement: 'bottom-start',
     properties: undefined,
+    floatOptions: () => ({}),
   },
 )
 
@@ -620,6 +631,7 @@ const internal = ref<any>(modelValue)
       :placement="props.placement"
       :adaptive-width="props.fixed"
       :z-index="200"
+      v-bind="floatOptions"
     >
       <ComboboxLabel
         v-if="
