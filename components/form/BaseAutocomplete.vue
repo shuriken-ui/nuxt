@@ -356,6 +356,11 @@ const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
   },
 })
 
+const comboboxInputRef = ref<InstanceType<typeof ComboboxInput>>()
+const inputRef = computed(
+  () => comboboxInputRef.value?.$el as HTMLInputElement | undefined,
+)
+
 const contrast = useNuiDefaultProperty(props, 'BaseAutocomplete', 'contrast')
 const i18n = useNuiDefaultProperty(props, 'BaseAutocomplete', 'i18n')
 const rounded = useNuiDefaultProperty(props, 'BaseAutocomplete', 'rounded')
@@ -470,6 +475,11 @@ provide(
   }),
 )
 defineExpose({
+  /**
+   * The underlying HTMLInputElement element.
+   */
+  el: inputRef,
+
   /**
    * Current selected value.
    */
@@ -654,6 +664,7 @@ const internal = ref<any>(modelValue)
       <FloatReference>
         <div class="nui-autocomplete-outer">
           <ComboboxInput
+            ref="comboboxInputRef"
             class="nui-autocomplete-input"
             :class="[
               classes?.input,
