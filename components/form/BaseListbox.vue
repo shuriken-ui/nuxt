@@ -7,7 +7,12 @@ import {
   ListboxOptions,
 } from '@headlessui/vue'
 
-import { Float, FloatReference, FloatContent } from '@headlessui-float/vue'
+import {
+  Float,
+  FloatReference,
+  FloatContent,
+  type FloatProps,
+} from '@headlessui-float/vue'
 
 const props = withDefaults(
   defineProps<{
@@ -148,6 +153,11 @@ const props = withDefaults(
     size?: 'sm' | 'md' | 'lg' | 'xl'
 
     /**
+     * Optional options for the underlying float component.
+     */
+    floatOptions?: FloatProps
+
+    /**
      * Optional CSS classes to apply to the wrapper, label, input, addon, error, and icon elements.
      */
     classes?: {
@@ -195,6 +205,7 @@ const props = withDefaults(
     properties: () => ({}),
     placement: undefined,
     classes: () => ({}),
+    floatOptions: () => ({}),
   },
 )
 
@@ -348,6 +359,7 @@ const internal = ref<any>(modelValue)
         :placement="placement"
         :adaptive-width="props.fixed"
         :z-index="20"
+        v-bind="floatOptions"
       >
         <ListboxLabel
           v-if="
