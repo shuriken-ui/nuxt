@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.6.0](https://github.com/shuriken-ui/nuxt/compare/v3.5.0...v3.6.0) (2024-08-05)
+
+
+### 🚀 Features
+
+* **BaseDropdown:** add disabled property ([b7b73d2](https://github.com/shuriken-ui/nuxt/commit/b7b73d29649752e5902de6f0b11759ef70c94881))
+
 ## [3.5.0](https://github.com/shuriken-ui/nuxt/compare/v3.4.1...v3.5.0) (2024-08-04)
 
 
