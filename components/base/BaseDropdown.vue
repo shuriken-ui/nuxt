@@ -20,6 +20,11 @@ const props = withDefaults(
     fixed?: boolean
 
     /**
+     * Used a fixed strategy to float the component
+     */
+    disabled?: boolean
+
+    /**
      * The color of the button.
      *
      * @default 'default'
@@ -220,13 +225,14 @@ const textColors = {
         :z-index="20"
         v-bind="floatOptions"
       >
-        <MenuButton as="template">
+        <MenuButton as="template" :disabled="props.disabled">
           <slot name="button" v-bind="{ open, close }">
             <BaseButton
               v-if="variant === 'button' || props.variant === 'button'"
               :size="props.buttonSize ? props.buttonSize : buttonSize"
               :color="props.buttonColor ? props.buttonColor : buttonColor"
               :rounded="props.rounded ? props.rounded : rounded"
+              :disabled="props.disabled"
               class="!pe-3 !ps-4"
             >
               <slot name="label" v-bind="{ open, close }">
@@ -242,6 +248,7 @@ const textColors = {
               v-else-if="props.variant === 'context'"
               type="button"
               class="nui-context-button nui-focus"
+              :disabled="props.disabled"
             >
               <span class="nui-context-button-inner">
                 <Icon
@@ -254,6 +261,7 @@ const textColors = {
             <button
               v-else-if="props.variant === 'text'"
               type="button"
+              :disabled="props.disabled"
               :class="[
                 'nui-text-button nui-focus',
                 buttonColor && textColors[buttonColor],
