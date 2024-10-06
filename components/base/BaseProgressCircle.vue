@@ -130,8 +130,12 @@ const colors = {
       r="15.91549431"
     />
     <circle
-      class="circle-value stroke-current transition-all duration-500"
-      :class="[color && colors[color], props.classes?.progress]"
+      class="stroke-current"
+      :class="[
+        color && colors[color],
+        props.classes?.progress,
+        props.animation !== false && 'circle-value transition-all duration-500',
+      ]"
       :stroke-width="props.thickness"
       :stroke-dasharray="`${percent},100`"
       stroke-linecap="round"
