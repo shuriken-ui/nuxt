@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.6.1](https://github.com/shuriken-ui/nuxt/compare/v3.6.0...v3.6.1) (2024-10-07)
+
+
+### 🩹 Bug Fixes
+
+* **BaseAvatar:** inherit attributes to image ([7d149ca](https://github.com/shuriken-ui/nuxt/commit/7d149caaa585e34b6816d66d83b0bcb9c62b8035))
+* **BaseProgressCircle:** reactivity when not animated ([f601270](https://github.com/shuriken-ui/nuxt/commit/f6012708f9a03cfd5de386dba0bdd93a3b23de98))
+
 ## [3.6.0](https://github.com/shuriken-ui/nuxt/compare/v3.5.0...v3.6.0) (2024-08-05)
 
 
