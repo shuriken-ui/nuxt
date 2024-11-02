@@ -125,8 +125,8 @@ const progressCircle = ref(25)
             </BaseButtonAction>
             <BaseButtonAction
               :class="
-                progressCircle === 100 &&
-                '!border-primary-500 !text-primary-500'
+                progressCircle === 100
+                  && '!border-primary-500 !text-primary-500'
               "
               @click="progressCircle = 100"
             >

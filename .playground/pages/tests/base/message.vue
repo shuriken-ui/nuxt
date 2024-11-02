@@ -12,21 +12,41 @@ definePageMeta({
     <NuiPreviewContainer title="BaseMessage">
       <NuiPreview title="Color" description="Message component colors">
         <div class="grid grid-cols-1 md:grid-cols-2 max-w-2xl gap-4">
-          <BaseMessage color="success">A successful message.</BaseMessage>
-          <BaseMessage color="info">An information message.</BaseMessage>
-          <BaseMessage color="warning">A warning message.</BaseMessage>
-          <BaseMessage color="danger">A destructive message.</BaseMessage>
-          <BaseMessage color="default">A default message.</BaseMessage>
-          <BaseMessage color="muted">A muted message.</BaseMessage>
+          <BaseMessage color="success">
+            A successful message.
+          </BaseMessage>
+          <BaseMessage color="info">
+            An information message.
+          </BaseMessage>
+          <BaseMessage color="warning">
+            A warning message.
+          </BaseMessage>
+          <BaseMessage color="danger">
+            A destructive message.
+          </BaseMessage>
+          <BaseMessage color="default">
+            A default message.
+          </BaseMessage>
+          <BaseMessage color="muted">
+            A muted message.
+          </BaseMessage>
         </div>
       </NuiPreview>
 
       <NuiPreview title="Icon" description="Message component icons">
         <div class="grid grid-cols-1 md:grid-cols-2 max-w-2xl gap-4">
-          <BaseMessage color="success" icon>A successful message.</BaseMessage>
-          <BaseMessage color="info" icon>An information message.</BaseMessage>
-          <BaseMessage color="warning" icon>A warning message.</BaseMessage>
-          <BaseMessage color="danger" icon>A destructive message.</BaseMessage>
+          <BaseMessage color="success" icon>
+            A successful message.
+          </BaseMessage>
+          <BaseMessage color="info" icon>
+            An information message.
+          </BaseMessage>
+          <BaseMessage color="warning" icon>
+            A warning message.
+          </BaseMessage>
+          <BaseMessage color="danger" icon>
+            A destructive message.
+          </BaseMessage>
           <BaseMessage color="default" icon="mingcute:avalanche-avax-fill">
             A default message.
           </BaseMessage>

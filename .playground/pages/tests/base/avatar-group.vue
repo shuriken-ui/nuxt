@@ -9,23 +9,23 @@ definePageMeta({
 const people = [
   {
     'data-nui-tooltip': 'Clarissa Perez',
-    src: 'https://tairo.cssninja.io/img/avatars/19.svg',
+    'src': 'https://tairo.cssninja.io/img/avatars/19.svg',
   },
   {
     'data-nui-tooltip': 'Aaaron Splatter',
-    src: 'https://tairo.cssninja.io/img/avatars/16.svg',
+    'src': 'https://tairo.cssninja.io/img/avatars/16.svg',
   },
   {
     'data-nui-tooltip': 'Mike Miller',
-    src: 'https://tairo.cssninja.io/img/avatars/3.svg',
+    'src': 'https://tairo.cssninja.io/img/avatars/3.svg',
   },
   {
     'data-nui-tooltip': 'Benedict Kessler',
-    src: 'https://tairo.cssninja.io/img/avatars/22.svg',
+    'src': 'https://tairo.cssninja.io/img/avatars/22.svg',
   },
   {
     'data-nui-tooltip': 'Maya Rosselini',
-    src: 'https://tairo.cssninja.io/img/avatars/2.svg',
+    'src': 'https://tairo.cssninja.io/img/avatars/2.svg',
   },
 ]
 </script>

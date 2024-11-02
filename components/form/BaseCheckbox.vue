@@ -45,7 +45,8 @@ const props = withDefaults(
      */
     indeterminate?: boolean
 
-    /** The color of the checkbox.
+    /**
+     * The color of the checkbox.
      *
      * @default 'default'
      */
@@ -103,7 +104,7 @@ const props = withDefaults(
 )
 
 defineSlots<{
-  default(): any
+  default: () => any
 }>()
 
 const [modelValue] = defineModel<T | T[]>()
@@ -177,8 +178,8 @@ defineExpose({
         v-bind="$attrs"
         class="nui-checkbox-input"
         type="checkbox"
-      />
-      <div class="nui-checkbox-inner"></div>
+      >
+      <div class="nui-checkbox-inner" />
       <IconCheck class="nui-icon-check" />
       <IconIndeterminate class="nui-icon-indeterminate" />
     </div>

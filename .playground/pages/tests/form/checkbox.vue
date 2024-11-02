@@ -383,8 +383,8 @@ function reset() {
           name="true-false"
           :label="customValue"
           rounded="full"
-          :true-value="'checked'"
-          :false-value="'not-checked'"
+          true-value="checked"
+          false-value="not-checked"
           color="muted"
         />
       </NuiPreview>
@@ -523,8 +523,8 @@ function reset() {
 
                 <button
                   type="reset"
-                  @click.prevent="reset"
                   class="text-primary-500 font-sans text-sm font-medium underline-offset-4 hover:underline"
+                  @click.prevent="reset"
                 >
                   Cancel
                 </button>
@@ -557,7 +557,7 @@ function reset() {
                       </div>
 
                       <div class="child text-muted-300 ms-auto">
-                        <div class="h-3 w-3 rounded-full bg-current"></div>
+                        <div class="h-3 w-3 rounded-full bg-current" />
                       </div>
                     </div>
                   </BaseCard>
@@ -589,7 +589,7 @@ function reset() {
                       </div>
 
                       <div class="child text-muted-300 ms-auto">
-                        <div class="h-3 w-3 rounded-full bg-current"></div>
+                        <div class="h-3 w-3 rounded-full bg-current" />
                       </div>
                     </div>
                   </BaseCard>
@@ -621,7 +621,7 @@ function reset() {
                       </div>
 
                       <div class="child text-muted-300 ms-auto">
-                        <div class="h-3 w-3 rounded-full bg-current"></div>
+                        <div class="h-3 w-3 rounded-full bg-current" />
                       </div>
                     </div>
                   </BaseCard>

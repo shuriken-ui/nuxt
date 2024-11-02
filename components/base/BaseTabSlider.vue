@@ -125,12 +125,12 @@ const radiuses = {
 }
 
 const colors = {
-  default: 'nui-tabs-default',
+  'default': 'nui-tabs-default',
   'default-contrast': 'nui-tabs-default-contrast',
-  primary: 'nui-tabs-primary',
-  light: 'nui-tabs-light',
-  dark: 'nui-tabs-dark',
-  black: 'nui-tabs-black',
+  'primary': 'nui-tabs-primary',
+  'light': 'nui-tabs-light',
+  'dark': 'nui-tabs-dark',
+  'black': 'nui-tabs-black',
 }
 
 const tabsLength = computed(() => Math.min(3, Math.max(2, props.tabs.length)))
@@ -171,12 +171,12 @@ function toggle(value: string) {
         >
           {{ tab?.label ?? tab?.value }}
         </button>
-        <div v-show="modelValue" class="nui-tab-slider-naver"></div>
+        <div v-show="modelValue" class="nui-tab-slider-naver" />
       </div>
     </div>
 
     <div class="nui-tab-content" :class="props.classes?.content">
-      <slot :active-value="modelValue" :toggle="toggle"></slot>
+      <slot :active-value="modelValue" :toggle="toggle" />
     </div>
   </div>
 </template>

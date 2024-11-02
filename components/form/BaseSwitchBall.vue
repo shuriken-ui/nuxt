@@ -124,12 +124,12 @@ defineExpose({
         class="nui-switch-ball-input peer"
         :class="props.classes?.input"
         @change="modelValue = !modelValue"
-      />
+      >
       <span
         class="nui-switch-ball-handle"
         :class="props.classes?.handle"
-      ></span>
-      <span class="nui-switch-ball-track" :class="props.classes?.track"></span>
+      />
+      <span class="nui-switch-ball-track" :class="props.classes?.track" />
       <IconCheck class="nui-switch-ball-icon" :class="props.classes?.icon" />
     </span>
     <span v-if="!props.sublabel" class="nui-switch-ball-single-label">

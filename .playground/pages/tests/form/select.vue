@@ -25,48 +25,108 @@ const options = reactive({
             rounded="none"
             label="Rounded: none"
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect v-model="options.second" rounded="sm" label="Rounded: sm">
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect v-model="options.third" rounded="md" label="Rounded: md">
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect v-model="options.fourth" rounded="lg" label="Rounded: lg">
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.fifth"
             rounded="full"
             label="Rounded: full"
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
         </BaseFocusLoop>
       </NuiPreview>
@@ -81,12 +141,24 @@ const options = reactive({
               label="Size: sm"
               color-focus
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -98,12 +170,24 @@ const options = reactive({
               label="Size: md"
               color-focus
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -115,12 +199,24 @@ const options = reactive({
               label="Size: lg"
               color-focus
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -132,12 +228,24 @@ const options = reactive({
               label="Size: xl"
               color-focus
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
         </div>
@@ -156,12 +264,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -173,12 +293,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -190,12 +322,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -207,12 +351,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
         </div>
@@ -228,12 +384,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -245,12 +413,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -262,12 +442,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -279,12 +471,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
         </div>
@@ -303,12 +507,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -320,12 +536,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -337,12 +565,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -354,12 +594,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
         </div>
@@ -377,15 +629,27 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
+              <option value="">
+                Select a hero
+              </option>
               <optgroup label="Marvel">
-                <option value="Iron man">Iron man</option>
-                <option value="Magneto">Magneto</option>
-                <option value="Cyclops">Cyclops</option>
+                <option value="Iron man">
+                  Iron man
+                </option>
+                <option value="Magneto">
+                  Magneto
+                </option>
+                <option value="Cyclops">
+                  Cyclops
+                </option>
               </optgroup>
               <optgroup label="DC Comics">
-                <option value="Superman">Superman</option>
-                <option value="Batman">Batman</option>
+                <option value="Superman">
+                  Superman
+                </option>
+                <option value="Batman">
+                  Batman
+                </option>
               </optgroup>
             </BaseSelect>
           </div>
@@ -397,15 +661,27 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
+              <option value="">
+                Select a hero
+              </option>
               <optgroup label="Marvel">
-                <option value="Iron man">Iron man</option>
-                <option value="Magneto">Magneto</option>
-                <option value="Cyclops">Cyclops</option>
+                <option value="Iron man">
+                  Iron man
+                </option>
+                <option value="Magneto">
+                  Magneto
+                </option>
+                <option value="Cyclops">
+                  Cyclops
+                </option>
               </optgroup>
               <optgroup label="DC Comics">
-                <option value="Superman">Superman</option>
-                <option value="Batman">Batman</option>
+                <option value="Superman">
+                  Superman
+                </option>
+                <option value="Batman">
+                  Batman
+                </option>
               </optgroup>
             </BaseSelect>
           </div>
@@ -417,15 +693,27 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
+              <option value="">
+                Select a hero
+              </option>
               <optgroup label="Marvel">
-                <option value="Iron man">Iron man</option>
-                <option value="Magneto">Magneto</option>
-                <option value="Cyclops">Cyclops</option>
+                <option value="Iron man">
+                  Iron man
+                </option>
+                <option value="Magneto">
+                  Magneto
+                </option>
+                <option value="Cyclops">
+                  Cyclops
+                </option>
               </optgroup>
               <optgroup label="DC Comics">
-                <option value="Superman">Superman</option>
-                <option value="Batman">Batman</option>
+                <option value="Superman">
+                  Superman
+                </option>
+                <option value="Batman">
+                  Batman
+                </option>
               </optgroup>
             </BaseSelect>
           </div>
@@ -437,15 +725,27 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
+              <option value="">
+                Select a hero
+              </option>
               <optgroup label="Marvel">
-                <option value="Iron man">Iron man</option>
-                <option value="Magneto">Magneto</option>
-                <option value="Cyclops">Cyclops</option>
+                <option value="Iron man">
+                  Iron man
+                </option>
+                <option value="Magneto">
+                  Magneto
+                </option>
+                <option value="Cyclops">
+                  Cyclops
+                </option>
               </optgroup>
               <optgroup label="DC Comics">
-                <option value="Superman">Superman</option>
-                <option value="Batman">Batman</option>
+                <option value="Superman">
+                  Superman
+                </option>
+                <option value="Batman">
+                  Batman
+                </option>
               </optgroup>
             </BaseSelect>
           </div>
@@ -462,12 +762,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -479,12 +791,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -496,12 +820,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -513,12 +849,24 @@ const options = reactive({
               rounded="md"
               label="Rounded: md"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
         </div>
@@ -534,12 +882,24 @@ const options = reactive({
               label="Rounded: md"
               error="This field is required"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -551,12 +911,24 @@ const options = reactive({
               label="Rounded: md"
               error="This field is required"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -568,12 +940,24 @@ const options = reactive({
               label="Rounded: md"
               error="This field is required"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -585,12 +969,24 @@ const options = reactive({
               label="Rounded: md"
               error="This field is required"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
         </div>
@@ -607,12 +1003,24 @@ const options = reactive({
               label="Rounded: md"
               error="This field is required"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -625,12 +1033,24 @@ const options = reactive({
               label="Rounded: md"
               error="This field is required"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -643,12 +1063,24 @@ const options = reactive({
               label="Rounded: md"
               error="This field is required"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -661,12 +1093,24 @@ const options = reactive({
               label="Rounded: md"
               error="This field is required"
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
         </div>
@@ -684,12 +1128,24 @@ const options = reactive({
             label="Rounded: md"
             label-float
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.first"
@@ -699,12 +1155,24 @@ const options = reactive({
             label="Rounded: md"
             label-float
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.second"
@@ -713,12 +1181,24 @@ const options = reactive({
             label="Rounded: md"
             label-float
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.second"
@@ -728,12 +1208,24 @@ const options = reactive({
             label="Rounded: md"
             label-float
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.third"
@@ -742,12 +1234,24 @@ const options = reactive({
             label="Rounded: md"
             label-float
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.third"
@@ -757,12 +1261,24 @@ const options = reactive({
             label="Rounded: md"
             label-float
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.third"
@@ -771,12 +1287,24 @@ const options = reactive({
             label="Rounded: md"
             label-float
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.third"
@@ -786,12 +1314,24 @@ const options = reactive({
             label="Rounded: md"
             label-float
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
         </div>
       </NuiPreview>
@@ -808,12 +1348,24 @@ const options = reactive({
             label="Rounded: md"
             loading
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.first"
@@ -823,12 +1375,24 @@ const options = reactive({
             label="Rounded: md"
             loading
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.second"
@@ -837,12 +1401,24 @@ const options = reactive({
             label="Rounded: md"
             loading
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.second"
@@ -852,12 +1428,24 @@ const options = reactive({
             label="Rounded: md"
             loading
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.third"
@@ -866,12 +1454,24 @@ const options = reactive({
             label="Rounded: md"
             loading
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.third"
@@ -881,12 +1481,24 @@ const options = reactive({
             label="Rounded: md"
             loading
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.third"
@@ -895,12 +1507,24 @@ const options = reactive({
             label="Rounded: md"
             loading
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
           <BaseSelect
             v-model="options.third"
@@ -910,12 +1534,24 @@ const options = reactive({
             label="Rounded: md"
             loading
           >
-            <option value="">Select a hero</option>
-            <option value="Superman">Superman</option>
-            <option value="Batman">Batman</option>
-            <option value="Iron man">Iron man</option>
-            <option value="Magneto">Magneto</option>
-            <option value="Cyclops">Cyclops</option>
+            <option value="">
+              Select a hero
+            </option>
+            <option value="Superman">
+              Superman
+            </option>
+            <option value="Batman">
+              Batman
+            </option>
+            <option value="Iron man">
+              Iron man
+            </option>
+            <option value="Magneto">
+              Magneto
+            </option>
+            <option value="Cyclops">
+              Cyclops
+            </option>
           </BaseSelect>
         </div>
       </NuiPreview>
@@ -933,12 +1569,24 @@ const options = reactive({
               label="Rounded: md"
               disabled
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -950,12 +1598,24 @@ const options = reactive({
               label="Rounded: md"
               disabled
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -967,12 +1627,24 @@ const options = reactive({
               label="Rounded: md"
               disabled
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
 
@@ -984,12 +1656,24 @@ const options = reactive({
               label="Rounded: md"
               disabled
             >
-              <option value="">Select a hero</option>
-              <option value="Superman">Superman</option>
-              <option value="Batman">Batman</option>
-              <option value="Iron man">Iron man</option>
-              <option value="Magneto">Magneto</option>
-              <option value="Cyclops">Cyclops</option>
+              <option value="">
+                Select a hero
+              </option>
+              <option value="Superman">
+                Superman
+              </option>
+              <option value="Batman">
+                Batman
+              </option>
+              <option value="Iron man">
+                Iron man
+              </option>
+              <option value="Magneto">
+                Magneto
+              </option>
+              <option value="Cyclops">
+                Cyclops
+              </option>
             </BaseSelect>
           </div>
         </div>

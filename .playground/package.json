@@ -1,0 +1,18 @@
+{
+  "name": "playground",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@iconify-json/cib": "^1.2.1",
+    "@iconify-json/clarity": "^1.2.1",
+    "@iconify-json/fa": "^1.2.0",
+    "@iconify-json/heroicons": "^1.2.1",
+    "@iconify-json/ic": "^1.2.1",
+    "@iconify-json/ion": "^1.2.1",
+    "@iconify-json/lucide": "^1.2.11",
+    "@iconify-json/mdi-light": "^1.2.1",
+    "@iconify-json/ph": "^1.2.1",
+    "@iconify-json/system-uicons": "^1.2.1",
+    "@iconify-json/tabler": "^1.2.7"
+  }
+}

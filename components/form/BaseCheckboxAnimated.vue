@@ -25,7 +25,8 @@ const props = withDefaults(
      */
     id?: string
 
-    /** The color of the checkbox.
+    /**
+     * The color of the checkbox.
      *
      * @default 'primary'
      */
@@ -124,7 +125,8 @@ function change() {
 
     if (checked.value) {
       values.splice(values.indexOf(trueValue), 1)
-    } else {
+    }
+    else {
       values.push(trueValue)
     }
 
@@ -152,7 +154,8 @@ watchEffect(() => {
         isUnchecked.value = false
       }, 150)
     }
-  } else {
+  }
+  else {
     isUnchecked.value = true
     isChecked.value = false
 
@@ -164,7 +167,8 @@ watchEffect(() => {
   }
 
   onScopeDispose(() => {
-    if (timeout) clearTimeout(timeout)
+    if (timeout)
+      clearTimeout(timeout)
   })
 })
 </script>
@@ -191,13 +195,13 @@ watchEffect(() => {
       :class="props.classes?.input"
       v-bind="$attrs"
       @change="change"
-    />
+    >
     <label
       class="peer-disabled:opacity-75"
       :for="id"
       :class="[color && colors[color], props.classes?.label]"
     >
-      <div ref="innerElement" :class="[isOpaque ? 'is-opaque' : '']"></div>
+      <div ref="innerElement" :class="[isOpaque ? 'is-opaque' : '']" />
       <IconCheckCircle />
     </label>
   </div>

@@ -86,7 +86,7 @@ const sizes = {
         class="nui-placeholder-page-img"
         :class="props.classes?.img"
       >
-        <slot name="image"></slot>
+        <slot name="image" />
       </div>
       <div class="nui-placeholder-page-content" :class="props.classes?.content">
         <BaseHeading
@@ -105,7 +105,7 @@ const sizes = {
         >
           {{ props.subtitle }}
         </p>
-        <slot></slot>
+        <slot />
       </div>
     </div>
   </div>

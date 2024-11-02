@@ -55,9 +55,12 @@ function drop(event: DragEvent) {
   }
 }
 function remove(file?: File) {
-  if (!file) return
-  if (!modelValue.value) return
-  if (!inputRef.value) return
+  if (!file)
+    return
+  if (!modelValue.value)
+    return
+  if (!inputRef.value)
+    return
 
   const filtered = new DataTransfer()
 
@@ -77,7 +80,8 @@ function remove(file?: File) {
 
 function handleFileChange(event: Event) {
   const newFiles = (event.target as HTMLInputElement).files
-  if (!newFiles) return
+  if (!newFiles)
+    return
 
   if (props.multiple && modelValue.value) {
     // When multiple is true, append new files to existing ones
@@ -93,17 +97,19 @@ function handleFileChange(event: Event) {
     for (const newFile of newFiles) {
       if (
         !existingFiles.some(
-          (existingFile) => existingFile.name === newFile.name,
+          existingFile => existingFile.name === newFile.name,
         )
       ) {
         updatedFiles.items.add(newFile)
       }
     }
-    if (!inputRef.value) return
+    if (!inputRef.value)
+      return
 
     inputRef.value.files = updatedFiles.files
     modelValue.value = updatedFiles.files
-  } else {
+  }
+  else {
     // When multiple is false, replace current files with new selection
     modelValue.value = newFiles
   }
@@ -164,7 +170,7 @@ defineExpose({
       :remove="remove"
       :preview="useNinjaFilePreview"
       :drop="drop"
-    ></slot>
+    />
     <input
       :id="id"
       ref="inputRef"
@@ -173,6 +179,6 @@ defineExpose({
       class="hidden"
       :multiple="props.multiple"
       @change="handleFileChange"
-    />
+    >
   </div>
 </template>

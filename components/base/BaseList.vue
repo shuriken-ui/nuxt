@@ -20,9 +20,9 @@ export default defineComponent({
     return () => {
       const ordered = props.ordered ? 'nui-list-ol' : 'nui-list-ul'
       const children = slots.default?.()
-      const hasMedia =
-        props.media ??
-        children?.some((vnode) => {
+      const hasMedia
+        = props.media
+        ?? children?.some((vnode) => {
           return typeof vnode.type !== 'string'
         })
 

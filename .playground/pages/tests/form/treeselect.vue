@@ -60,7 +60,7 @@ const tree = [
     item: 'Item 4',
     // open: true,
     children: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 8000))
+      await new Promise(resolve => setTimeout(resolve, 8000))
 
       return Array.from(
         {
@@ -69,7 +69,7 @@ const tree = [
         (x, i) => ({
           item: `Item 4.${i}`,
           children: async () => {
-            await new Promise((resolve) => setTimeout(resolve, 2000))
+            await new Promise(resolve => setTimeout(resolve, 2000))
 
             return Array.from(
               {
@@ -129,8 +129,8 @@ const fileTree = [
   },
 ]
 
-const topicTree = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 3000))
+async function topicTree() {
+  await new Promise(resolve => setTimeout(resolve, 3000))
 
   return [
     {
@@ -378,7 +378,6 @@ const treeSelectRef = ref<any>(null)
 const treeSelectRef2 = ref<any>(null)
 
 function toggleAll() {
-  console.log('toggle all ?', treeSelectRef.value)
   treeSelectRef.value?.toggleChildrenSelection()
 }
 function toggleAll2() {
@@ -410,7 +409,7 @@ function selectAll2() {
 
       <NuiPreview title="Checkbox" description="Tree select component checkbox">
         <div class="max-w-xs">
-          <BaseTreeSelect :children="tree" v-model="selection1" />
+          <BaseTreeSelect v-model="selection1" :children="tree" />
         </div>
       </NuiPreview>
 
@@ -441,7 +440,7 @@ function selectAll2() {
             }"
             treeline
           >
-            <template #item-label="{ index, level, child, open, toggle }">
+            <template #item-label="{ child }">
               <span>custom: {{ child.item }}</span>
             </template>
           </BaseTreeSelect>
@@ -465,14 +464,14 @@ function selectAll2() {
               },
             }"
             treeline
-          ></BaseTreeSelect>
+          />
         </div>
       </NuiPreview>
 
       <NuiPreview title="Topic" description="Tree select component topic icons">
         <div class="max-w-xs">
           <BaseTreeSelect :children="topicTree">
-            <template #item-label="{ index, level, child, open, toggle }">
+            <template #item-label="{ level, child, toggle }">
               <BaseTreeSelectItem
                 :level="level"
                 :toggle="toggle"
@@ -481,7 +480,7 @@ function selectAll2() {
                   text: child.item.text,
                   icon: child.item.icon,
                 }"
-              ></BaseTreeSelectItem>
+              />
             </template>
           </BaseTreeSelect>
         </div>
@@ -491,16 +490,16 @@ function selectAll2() {
         <div class="max-w-full">
           <BaseTreeSelect
             ref="treeSelectRef2"
+            v-model="selection3"
             :children="teamTree"
             treeline
-            v-model="selection3"
             :classes="{
               checkbox: {
                 wrapper: '!text-success-500 mx-2',
               },
             }"
           >
-            <template #item-label="{ index, level, child, open, toggle }">
+            <template #item-label="{ level, child, toggle }">
               <BaseTreeSelectItem
                 :level="level"
                 :toggle="toggle"
@@ -509,12 +508,16 @@ function selectAll2() {
                   text: child.item?.text,
                   media: child.item?.media,
                 }"
-              ></BaseTreeSelectItem>
+              />
             </template>
           </BaseTreeSelect>
           <div class="flex gap-2 mt-4">
-            <BaseButton @click="toggleAll2">toggle selection</BaseButton>
-            <BaseButton @click="selectAll2">select all selection</BaseButton>
+            <BaseButton @click="toggleAll2">
+              toggle selection
+            </BaseButton>
+            <BaseButton @click="selectAll2">
+              select all selection
+            </BaseButton>
             <BaseButton @click="unselectAll2">
               unselect all selection
             </BaseButton>
@@ -535,11 +538,11 @@ function selectAll2() {
           >
             <BaseTreeSelect
               ref="treeSelectRef"
-              :children="teamTree"
               v-model="selection4"
+              :children="teamTree"
             >
-              <template #item-label="{ index, level, child, open, toggle }">
-                <MenuItem v-slot="{ active }">
+              <template #item-label="{ level, child, toggle }">
+                <MenuItem>
                   <BaseTreeSelectItem
                     :level="level"
                     :toggle="toggle"
@@ -548,11 +551,13 @@ function selectAll2() {
                       text: child.item?.text,
                       media: child.item?.media,
                     }"
-                  ></BaseTreeSelectItem>
+                  />
                 </MenuItem>
               </template>
             </BaseTreeSelect>
-            <BaseButton @click="toggleAll">toggle selection</BaseButton>
+            <BaseButton @click="toggleAll">
+              toggle selection
+            </BaseButton>
           </BaseDropdown>
           <div class="mt-4">
             <pre>{{ selection4 }}</pre>

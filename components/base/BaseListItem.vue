@@ -31,14 +31,18 @@ const hasSubtitle = computed(() => {
         size="md"
         lead="tight"
       >
-        <slot name="title">{{ props.title }}</slot>
+        <slot name="title">
+          {{ props.title }}
+        </slot>
       </BaseHeading>
       <BaseParagraph
         v-if="hasSubtitle"
         size="xs"
         class="text-muted-500 dark:text-muted-400"
       >
-        <slot name="subtitle">{{ props.subtitle }}</slot>
+        <slot name="subtitle">
+          {{ props.subtitle }}
+        </slot>
       </BaseParagraph>
     </div>
 

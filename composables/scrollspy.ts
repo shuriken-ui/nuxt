@@ -4,10 +4,7 @@ import type { MaybeRefOrGetter } from 'vue'
  * Scrollspy allows you to watch visible headings in a specific page.
  * Useful for table of contents live style updates.
  */
-export const useNinjaScrollspy = (
-  _options?: MaybeRefOrGetter<IntersectionObserverInit>,
-  _selectors?: MaybeRefOrGetter<string[]>,
-) => {
+export function useNinjaScrollspy(_options?: MaybeRefOrGetter<IntersectionObserverInit>, _selectors?: MaybeRefOrGetter<string[]>) {
   const options = toRef(_options)
   const selectors = toRef(_selectors)
 
@@ -23,8 +20,9 @@ export const useNinjaScrollspy = (
 
       if (entry.isIntersecting) {
         intersectingIds.value.push(id)
-      } else {
-        intersectingIds.value = intersectingIds.value.filter((t) => t !== id)
+      }
+      else {
+        intersectingIds.value = intersectingIds.value.filter(t => t !== id)
       }
     }
   }

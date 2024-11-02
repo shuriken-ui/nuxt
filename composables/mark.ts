@@ -1,5 +1,5 @@
 import type { MaybeRefOrGetter } from 'vue'
-// eslint-disable-next-line vue/prefer-import-from-vue
+
 import { escapeHtml } from '@vue/shared'
 
 export function useNinjaMark(

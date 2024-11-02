@@ -75,7 +75,7 @@ const props = withDefaults(
 )
 
 defineSlots<{
-  'selected-icon'(): any
+  'selected-icon': () => any
 }>()
 
 const rounded = useNuiDefaultProperty(props, 'BaseAutocompleteItem', 'rounded')
@@ -93,39 +93,44 @@ const inputContext = inject('BaseAutocompleteContext', {
 })
 
 const label = computed(() => {
-  if (props.item == null || props.properties == null) return
+  if (props.item == null || props.properties == null)
+    return null
   if (typeof props.properties.label === 'string')
     return (props.item as any)[props.properties.label]
   if (typeof props.properties.label === 'function')
     return props.properties.label(props.item)
-  return
+
+  return null
 })
 
 const sublabel = computed(() => {
-  if (props.item == null || props.properties == null) return
+  if (props.item == null || props.properties == null)
+    return null
   if (typeof props.properties.sublabel === 'string')
     return (props.item as any)[props.properties.sublabel]
   if (typeof props.properties.sublabel === 'function')
     return props.properties.sublabel(props.item)
-  return
+  return null
 })
 
 const media = computed(() => {
-  if (props.item == null || props.properties == null) return
+  if (props.item == null || props.properties == null)
+    return null
   if (typeof props.properties.media === 'string')
     return (props.item as any)[props.properties.media]
   if (typeof props.properties.media === 'function')
     return props.properties.media(props.item)
-  return
+  return null
 })
 
 const icon = computed(() => {
-  if (props.item == null || props.properties == null) return
+  if (props.item == null || props.properties == null)
+    return null
   if (typeof props.properties.icon === 'string')
     return (props.item as any)[props.properties.icon]
   if (typeof props.properties.icon === 'function')
     return props.properties.icon(props.item)
-  return
+  return null
 })
 
 const query = computed(() => inputContext.query)
@@ -164,11 +169,11 @@ const markedSublabel = useNinjaMark(() => sublabel.value, query, mark)
         class="text-muted-800 dark:text-white"
       >
         <!-- eslint-disable-next-line vue/no-v-html -->
-        <span v-html="markedLabel"></span>
+        <span v-html="markedLabel" />
       </BaseHeading>
       <BaseText v-if="sublabel" size="xs" class="text-muted-400">
         <!-- eslint-disable-next-line vue/no-v-html -->
-        <span v-html="markedSublabel"></span>
+        <span v-html="markedSublabel" />
       </BaseText>
     </div>
     <div

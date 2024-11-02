@@ -56,11 +56,11 @@ const size = useNuiDefaultProperty(props, 'BaseParagraph', 'size')
 const weight = useNuiDefaultProperty(props, 'BaseParagraph', 'weight')
 
 const sizes = {
-  xs: 'nui-paragraph-xs',
-  sm: 'nui-paragraph-sm',
-  md: 'nui-paragraph-md',
-  lg: 'nui-paragraph-lg',
-  xl: 'nui-paragraph-xl',
+  'xs': 'nui-paragraph-xs',
+  'sm': 'nui-paragraph-sm',
+  'md': 'nui-paragraph-md',
+  'lg': 'nui-paragraph-lg',
+  'xl': 'nui-paragraph-xl',
   '2xl': 'nui-paragraph-2xl',
   '3xl': 'nui-paragraph-3xl',
   '4xl': 'nui-paragraph-4xl',
@@ -99,6 +99,6 @@ const classes = computed(() => [
 
 <template>
   <component :is="props.as ? props.as : as" :class="classes">
-    <slot></slot>
+    <slot />
   </component>
 </template>

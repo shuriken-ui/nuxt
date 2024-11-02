@@ -1,9 +1,11 @@
-import { addTemplate } from '@nuxt/kit'
-import colors from 'tailwindcss/colors.js'
-import { join, dirname } from 'pathe'
+/* eslint-disable ts/ban-ts-comment */
+
 import { fileURLToPath } from 'node:url'
+import { addTemplate } from '@nuxt/kit'
+import { dirname, join } from 'pathe'
 
 export default defineNuxtConfig({
+  compatibilityDate: '2024-11-02',
   extends: '..',
   modules: ['nuxt-component-meta', 'unplugin-fonts/nuxt'],
   unfonts: {
@@ -63,12 +65,17 @@ export default defineNuxtConfig({
   },
   hooks: {
     // @ts-ignore
-    'tailwindcss:resolvedConfig'(config) {
+    'tailwindcss:resolvedConfig': function (config) {
       addTemplate({
         filename: 'tailwind.config.ts', // gets prepended by .nuxt/
         getContents: () => `export default ${JSON.stringify(config, null, 2)}`,
         write: true,
       })
+    },
+  },
+  vite: {
+    optimizeDeps: {
+      include: ['@headlessui/vue', '@headlessui-float/vue'],
     },
   },
 })

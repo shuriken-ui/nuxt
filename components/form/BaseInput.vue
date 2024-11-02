@@ -138,7 +138,8 @@ const [modelValue, modelModifiers] = defineModel<
   set(value) {
     if (modelModifiers.number) {
       return looseToNumber(value)
-    } else if (modelModifiers.trim && typeof value === 'string') {
+    }
+    else if (modelModifiers.trim && typeof value === 'string') {
       return value.trim()
     }
 
@@ -169,9 +170,9 @@ const sizes = {
 }
 
 const contrasts = {
-  default: 'nui-input-default',
+  'default': 'nui-input-default',
   'default-contrast': 'nui-input-default-contrast',
-  muted: 'nui-input-muted',
+  'muted': 'nui-input-muted',
   'muted-contrast': 'nui-input-muted-contrast',
 }
 
@@ -201,7 +202,6 @@ const placeholder = computed(() => {
 if (import.meta.dev) {
   const slots = useSlots()
   if (props.labelFloat && 'label' in slots) {
-    // eslint-disable-next-line no-console
     console.warn(
       '[ninja-ui][base-input] The "label-float" property is not compatible with the label slot, use the label property instead.',
     )
@@ -226,8 +226,8 @@ if (import.meta.dev) {
   >
     <label
       v-if="
-        ('label' in $slots && !props.labelFloat) ||
-        (props.label && !props.labelFloat)
+        ('label' in $slots && !props.labelFloat)
+          || (props.label && !props.labelFloat)
       "
       class="nui-input-label"
       :for="id"
@@ -247,7 +247,7 @@ if (import.meta.dev) {
           class="nui-input"
           :class="props.classes?.input"
           :placeholder="placeholder"
-        />
+        >
         <input
           v-else
           :id="id"
@@ -258,11 +258,11 @@ if (import.meta.dev) {
           class="nui-input"
           :class="props.classes?.input"
           :placeholder="placeholder"
-        />
+        >
         <label
           v-if="
-            ('label' in $slots && props.labelFloat) ||
-            (props.label && props.labelFloat)
+            ('label' in $slots && props.labelFloat)
+              || (props.label && props.labelFloat)
           "
           class="nui-label-float"
           :for="id"
@@ -282,7 +282,7 @@ if (import.meta.dev) {
             <Icon :name="props.icon" class="nui-input-icon-inner" />
           </slot>
         </div>
-        <slot name="action"></slot>
+        <slot name="action" />
       </div>
       <BaseInputHelpText
         v-if="props.error && typeof props.error === 'string'"

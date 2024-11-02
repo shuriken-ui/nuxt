@@ -56,11 +56,11 @@ const size = useNuiDefaultProperty(props, 'BaseHeading', 'size')
 const weight = useNuiDefaultProperty(props, 'BaseHeading', 'weight')
 
 const sizes = {
-  xs: 'nui-heading-xs',
-  sm: 'nui-heading-sm',
-  md: 'nui-heading-md',
-  lg: 'nui-heading-lg',
-  xl: 'nui-heading-xl',
+  'xs': 'nui-heading-xs',
+  'sm': 'nui-heading-sm',
+  'md': 'nui-heading-md',
+  'lg': 'nui-heading-lg',
+  'xl': 'nui-heading-xl',
   '2xl': 'nui-heading-2xl',
   '3xl': 'nui-heading-3xl',
   '4xl': 'nui-heading-4xl',
@@ -99,6 +99,6 @@ const classes = computed(() => [
 
 <template>
   <component :is="props.as ? props.as : as" :class="classes">
-    <slot></slot>
+    <slot />
   </component>
 </template>

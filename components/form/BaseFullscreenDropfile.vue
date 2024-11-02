@@ -121,7 +121,9 @@ const colors = {
               :name="props.icon"
               class="nui-fullscreen-dropfile-icon"
             />
-            <div class="nui-fullscreen-dropfile-label">{{ props.label }}</div>
+            <div class="nui-fullscreen-dropfile-label">
+              {{ props.label }}
+            </div>
           </div>
         </div>
       </Transition>

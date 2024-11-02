@@ -119,33 +119,32 @@ const emits = defineEmits<{
   ): void
 }>()
 
+defineSlots<{
+  'accordion-item': (props: {
+    index: number
+    item: { title: string, content: T }
+    toggle: (index: number) => void
+  }) => any
+  'accordion-item-summary': (props: {
+    index: number
+    item: { title: string, content: T }
+    toggle: (index: number) => void
+  }) => any
+  'accordion-item-content': (props: {
+    index: number
+    item: { title: string, content: T }
+    toggle: (index: number) => void
+  }) => any
+}>()
 const action = useNuiDefaultProperty(props, 'BaseAccordion', 'action')
 const color = useNuiDefaultProperty(props, 'BaseAccordion', 'color')
 const dotColor = useNuiDefaultProperty(props, 'BaseAccordion', 'dotColor')
 const rounded = useNuiDefaultProperty(props, 'BaseAccordion', 'rounded')
 
-defineSlots<{
-  'accordion-item'(props: {
-    index: number
-    item: { title: string; content: T }
-    toggle: (index: number) => void
-  }): any
-  'accordion-item-summary'(props: {
-    index: number
-    item: { title: string; content: T }
-    toggle: (index: number) => void
-  }): any
-  'accordion-item-content'(props: {
-    index: number
-    item: { title: string; content: T }
-    toggle: (index: number) => void
-  }): any
-}>()
-
 const colors = {
-  default: 'nui-accordion-default',
+  'default': 'nui-accordion-default',
   'default-contrast': 'nui-accordion-default-contrast',
-  muted: 'nui-accordion-muted',
+  'muted': 'nui-accordion-muted',
   'muted-contrast': 'nui-accordion-muted-contrast',
 }
 
@@ -174,7 +173,7 @@ const actions = {
 }
 
 const internalOpenItems = ref(props.openItems)
-const toggle = (key: number) => {
+function toggle(key: number) {
   const wasOpen = internalOpenItems.value.includes(key)
 
   if (props.exclusive) {
@@ -190,7 +189,8 @@ const toggle = (key: number) => {
 
   if (wasOpen) {
     internalOpenItems.value.splice(internalOpenItems.value.indexOf(key), 1)
-  } else {
+  }
+  else {
     emits('open', props.items[key])
     internalOpenItems.value.push(key)
   }
@@ -243,7 +243,7 @@ const toggle = (key: number) => {
                 <div
                   v-if="props.action === 'dot' || action === 'dot'"
                   class="nui-accordion-dot"
-                ></div>
+                />
                 <div
                   v-else-if="props.action === 'chevron' || action === 'chevron'"
                   class="nui-icon-outer"

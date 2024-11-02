@@ -19,7 +19,7 @@ definePageMeta({
             <img
               src="https://tairo.cssninja.io/img/illustrations/placeholders/people/2.svg"
               alt="placeholder-image"
-            />
+            >
           </template>
 
           <div class="mt-2 flex justify-center gap-2">

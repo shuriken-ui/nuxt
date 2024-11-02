@@ -18,7 +18,7 @@ const props = withDefaults(
       /**
        * The default default icon
        */
-      default?: string
+      'default'?: string
 
       /**
        * The default default contrast icon
@@ -28,7 +28,7 @@ const props = withDefaults(
       /**
        * The default muted icon
        */
-      muted?: string
+      'muted'?: string
 
       /**
        * The default muted contrast icon
@@ -38,27 +38,27 @@ const props = withDefaults(
       /**
        * The default info icon
        */
-      info?: string
+      'info'?: string
 
       /**
        * The default success icon
        */
-      success?: string
+      'success'?: string
 
       /**
        * The default warning icon
        */
-      warning?: string
+      'warning'?: string
 
       /**
        * The default danger icon
        */
-      danger?: string
+      'danger'?: string
 
       /**
        * The default primary icon
        */
-      primary?: string
+      'primary'?: string
     }
 
     /**
@@ -141,15 +141,15 @@ const radiuses = {
 }
 
 const colors = {
-  default: 'nui-message-default',
+  'default': 'nui-message-default',
   'default-contrast': 'nui-message-default-contrast',
-  muted: 'nui-message-muted',
+  'muted': 'nui-message-muted',
   'muted-contrast': 'nui-message-muted-contrast',
-  primary: 'nui-message-primary',
-  info: 'nui-message-info',
-  success: 'nui-message-success',
-  warning: 'nui-message-warning',
-  danger: 'nui-message-danger',
+  'primary': 'nui-message-primary',
+  'info': 'nui-message-info',
+  'success': 'nui-message-success',
+  'warning': 'nui-message-warning',
+  'danger': 'nui-message-danger',
 }
 
 const icon = computed(() =>

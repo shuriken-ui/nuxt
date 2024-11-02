@@ -6,7 +6,7 @@ interface TreeViewItemTreeLeaf {
 interface TreeViewItemTreeChildren {
   item: any
   open?: boolean
-  // eslint-disable-next-line no-use-before-define
+
   children?: TreeViewTreeSource
 }
 
@@ -43,9 +43,9 @@ const props = withDefaults(
     treeline?:
       | boolean
       | {
-          offset?: string
-          minLevel?: number
-        }
+        offset?: string
+        minLevel?: number
+      }
     /**
      * Translation strings.
      */
@@ -134,7 +134,8 @@ const defaultIcons = {
 } as const
 
 const icons = computed(() => {
-  if (!props.icons) return defaultIcons
+  if (!props.icons)
+    return defaultIcons
   return {
     ...defaultIcons,
     ...props.icons,
@@ -147,8 +148,10 @@ const defaultTreeline = {
 }
 
 const treeline = computed(() => {
-  if (props.treeline === false) return false
-  if (props.treeline === true) return defaultTreeline
+  if (props.treeline === false)
+    return false
+  if (props.treeline === true)
+    return defaultTreeline
   return {
     ...defaultTreeline,
     ...props.treeline,
@@ -159,7 +162,8 @@ const defaultCheckboxClasses = {
   wrapper: 'text-primary-500 scale-[0.8] me-1',
 }
 const checkboxClasses = computed(() => {
-  if (!props.classes?.checkbox) return defaultCheckboxClasses
+  if (!props.classes?.checkbox)
+    return defaultCheckboxClasses
   return {
     ...defaultCheckboxClasses,
     ...props.classes.checkbox,
@@ -274,7 +278,8 @@ function useTreeState() {
 function getDefaultOpenMap(source?: TreeViewTreeSource) {
   const map: Record<number, boolean> = {}
   const children = getChildren(source)
-  if (!children) return map
+  if (!children)
+    return map
 
   for (const index in children) {
     const item = children[index]
@@ -287,7 +292,8 @@ function getDefaultOpenMap(source?: TreeViewTreeSource) {
 }
 
 async function loadTree(source?: TreeViewTreeSource) {
-  if (!source) return
+  if (!source)
+    return
   const _subtreeState = treeState?.treeMap.get(source)
 
   if (!_subtreeState) {
@@ -298,7 +304,8 @@ async function loadTree(source?: TreeViewTreeSource) {
     _subtreeState.pending = true
     try {
       _subtreeState.tree = await source()
-    } finally {
+    }
+    finally {
       _subtreeState.pending = false
       _subtreeState.loaded = true
     }
@@ -310,7 +317,8 @@ async function loadTree(source?: TreeViewTreeSource) {
 }
 
 function isNodeLoaded(node?: TreeViewItemNode) {
-  if (!node) return false
+  if (!node)
+    return false
 
   if ('children' in node) {
     if (typeof node.children === 'function') {
@@ -323,7 +331,8 @@ function isNodeLoaded(node?: TreeViewItemNode) {
 }
 
 function getChildren(tree?: TreeViewTreeSource) {
-  if (!tree) return
+  if (!tree)
+    return
 
   return treeState?.treeMap.has(tree)
     ? treeState?.treeMap.get(tree)?.tree
@@ -333,15 +342,19 @@ function getChildren(tree?: TreeViewTreeSource) {
 }
 
 function getNodeChildren(node?: TreeViewItemNode) {
-  if (!node) return
-  if (!('children' in node) || !node.children) return
+  if (!node)
+    return
+  if (!('children' in node) || !node.children)
+    return
   return getChildren(node.children)
 }
 
 function areAllChildSelected(node?: TreeViewItemNode): boolean {
   const _value = modelValue.value
-  if (!_value) return false
-  if (!node) return false
+  if (!_value)
+    return false
+  if (!node)
+    return false
   const children = getNodeChildren(node)
 
   if (!children) {
@@ -349,9 +362,10 @@ function areAllChildSelected(node?: TreeViewItemNode): boolean {
   }
 
   return (
-    isNodeLoaded(node) &&
-    children.every((child) => {
-      if (!('children' in child)) return _value.includes(child)
+    isNodeLoaded(node)
+    && children.every((child) => {
+      if (!('children' in child))
+        return _value.includes(child)
 
       const subchildren = getNodeChildren(child)
 
@@ -366,8 +380,10 @@ function areAllChildSelected(node?: TreeViewItemNode): boolean {
 
 function areSomeChildSelected(node?: TreeViewItemNode): boolean {
   const _value = modelValue.value
-  if (!_value) return false
-  if (!node) return false
+  if (!_value)
+    return false
+  if (!node)
+    return false
   const children = getNodeChildren(node)
 
   if (!children) {
@@ -375,9 +391,10 @@ function areSomeChildSelected(node?: TreeViewItemNode): boolean {
   }
 
   return (
-    isNodeLoaded(node) &&
-    children.some((child) => {
-      if (!('children' in child)) return _value.includes(child)
+    isNodeLoaded(node)
+    && children.some((child) => {
+      if (!('children' in child))
+        return _value.includes(child)
 
       const subchildren = getNodeChildren(child)
 
@@ -391,15 +408,19 @@ function areSomeChildSelected(node?: TreeViewItemNode): boolean {
 }
 
 function isUndeterminate(node?: TreeViewItemNode) {
-  if (!node) return false
-  if (!isNodeLoaded(node)) return false
+  if (!node)
+    return false
+  if (!isNodeLoaded(node))
+    return false
   return areSomeChildSelected(node) && !areAllChildSelected(node)
 }
 
 function selectAllNode(node?: TreeViewItemNode) {
   const _value = modelValue.value
-  if (!_value) return
-  if (!node) return
+  if (!_value)
+    return
+  if (!node)
+    return
 
   if (!('children' in node) || !node.children) {
     const idx = _value.indexOf(node)
@@ -408,7 +429,8 @@ function selectAllNode(node?: TreeViewItemNode) {
     }
     return
   }
-  if (!isNodeLoaded(node)) return
+  if (!isNodeLoaded(node))
+    return
 
   const children = getNodeChildren(node)
 
@@ -419,7 +441,8 @@ function selectAllNode(node?: TreeViewItemNode) {
   for (const child of children) {
     if ('children' in child) {
       selectAllNode(child)
-    } else {
+    }
+    else {
       const idx = _value.indexOf(child)
       if (idx === -1) {
         _value.push(child)
@@ -430,7 +453,8 @@ function selectAllNode(node?: TreeViewItemNode) {
 
 function selectAllChildren(tree?: TreeViewItemNode[]) {
   const children = tree || _children.value
-  if (!children) return
+  if (!children)
+    return
 
   for (const child of children) {
     selectAllNode(child)
@@ -439,8 +463,10 @@ function selectAllChildren(tree?: TreeViewItemNode[]) {
 
 function unselectAllNode(node?: TreeViewItemNode) {
   const _value = modelValue.value
-  if (!_value) return
-  if (!node) return
+  if (!_value)
+    return
+  if (!node)
+    return
   if (!('children' in node) || !node.children) {
     const idx = _value.indexOf(node)
     if (idx >= 0) {
@@ -448,7 +474,8 @@ function unselectAllNode(node?: TreeViewItemNode) {
     }
     return
   }
-  if (!isNodeLoaded(node)) return
+  if (!isNodeLoaded(node))
+    return
 
   const children = getNodeChildren(node)
 
@@ -459,7 +486,8 @@ function unselectAllNode(node?: TreeViewItemNode) {
   for (const child of children) {
     if ('children' in child) {
       unselectAllNode(child)
-    } else {
+    }
+    else {
       const idx = _value.indexOf(child)
       if (idx >= 0) {
         _value.splice(idx, 1)
@@ -470,7 +498,8 @@ function unselectAllNode(node?: TreeViewItemNode) {
 
 function unselectAllChildren(tree?: TreeViewItemNode[]) {
   const children = tree || _children.value
-  if (!children) return
+  if (!children)
+    return
 
   for (const child of children) {
     unselectAllNode(child)
@@ -479,8 +508,10 @@ function unselectAllChildren(tree?: TreeViewItemNode[]) {
 
 function toggleNodeSelection(node?: TreeViewItemNode, event?: Event) {
   const _value = modelValue.value
-  if (!_value) return
-  if (!node) return
+  if (!_value)
+    return
+  if (!node)
+    return
 
   if ('children' in node) {
     if (!isNodeLoaded(node)) {
@@ -495,7 +526,8 @@ function toggleNodeSelection(node?: TreeViewItemNode, event?: Event) {
     }
     if (areAllChildSelected(node)) {
       unselectAllNode(node)
-    } else if (children.length > 0) {
+    }
+    else if (children.length > 0) {
       selectAllNode(node)
     }
     return
@@ -504,19 +536,22 @@ function toggleNodeSelection(node?: TreeViewItemNode, event?: Event) {
   const idx = _value.indexOf(node)
   if (idx >= 0) {
     _value.splice(idx, 1)
-  } else {
+  }
+  else {
     _value.push(node)
   }
 }
 
 function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
   const children = tree || _children.value
-  if (!children) return
+  if (!children)
+    return
 
   for (const child of children) {
     if ('children' in child) {
       toggleChildrenSelection(getNodeChildren(child), event)
-    } else {
+    }
+    else {
       toggleNodeSelection(child, event)
     }
   }
@@ -691,15 +726,15 @@ function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
               <BaseCheckbox
                 v-if="'children' in child"
                 :model-value="
-                  isNodeLoaded(child) &&
-                  getNodeChildren(child)?.length &&
-                  areAllChildSelected(child)
+                  isNodeLoaded(child)
+                    && getNodeChildren(child)?.length
+                    && areAllChildSelected(child)
                 "
                 :indeterminate="isUndeterminate(child)"
                 :disabled="
-                  subtreeState.pending ||
-                  !isNodeLoaded(child) ||
-                  getNodeChildren(child)?.length === 0
+                  subtreeState.pending
+                    || !isNodeLoaded(child)
+                    || getNodeChildren(child)?.length === 0
                 "
                 :classes="checkboxClasses"
                 color="default"
@@ -746,7 +781,7 @@ function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
               :style="{
                 left: treeline.offset,
               }"
-            ></div>
+            />
             <slot name="children" v-bind="{ index, level, child, parent }">
               <BaseTreeSelect
                 v-model="modelValue"
@@ -759,37 +794,37 @@ function toggleChildrenSelection(tree?: TreeViewItemNode[], event?: Event) {
                 :classes="props.classes"
               >
                 <template #pending="ctx: any">
-                  <slot name="pending" v-bind="ctx"></slot>
+                  <slot name="pending" v-bind="ctx" />
                 </template>
                 <template #pending-label="ctx: any">
-                  <slot name="pending-label" v-bind="ctx"></slot>
+                  <slot name="pending-label" v-bind="ctx" />
                 </template>
                 <template #pending-icon="ctx: any">
-                  <slot name="pending-icon" v-bind="ctx"></slot>
+                  <slot name="pending-icon" v-bind="ctx" />
                 </template>
                 <template #empty="ctx: any">
-                  <slot name="empty" v-bind="ctx"></slot>
+                  <slot name="empty" v-bind="ctx" />
                 </template>
                 <template #empty-label="ctx: any">
-                  <slot name="empty-label" v-bind="ctx"></slot>
+                  <slot name="empty-label" v-bind="ctx" />
                 </template>
                 <template #empty-icon="ctx: any">
-                  <slot name="empty-icon" v-bind="ctx"></slot>
+                  <slot name="empty-icon" v-bind="ctx" />
                 </template>
                 <template #item="ctx: any">
-                  <slot name="item" v-bind="ctx"></slot>
+                  <slot name="item" v-bind="ctx" />
                 </template>
                 <template #item-select="ctx: any">
-                  <slot name="item-select" v-bind="ctx"></slot>
+                  <slot name="item-select" v-bind="ctx" />
                 </template>
                 <template #item-icon="ctx: any">
-                  <slot name="item-icon" v-bind="ctx"></slot>
+                  <slot name="item-icon" v-bind="ctx" />
                 </template>
                 <template #item-label="ctx: any">
-                  <slot name="item-label" v-bind="ctx"></slot>
+                  <slot name="item-label" v-bind="ctx" />
                 </template>
                 <template #children="ctx: any">
-                  <slot name="children" v-bind="ctx"></slot>
+                  <slot name="children" v-bind="ctx" />
                 </template>
               </BaseTreeSelect>
             </slot>

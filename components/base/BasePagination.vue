@@ -144,9 +144,9 @@ const totalPageDisplayed = computed(() =>
 const pages = computed(() => {
   const _pages = []
   let firstButton = props.currentPage - Math.floor(totalPageDisplayed.value / 2)
-  let lastButton =
-    firstButton +
-    (totalPageDisplayed.value - Math.ceil(totalPageDisplayed.value % 2))
+  let lastButton
+    = firstButton
+    + (totalPageDisplayed.value - Math.ceil(totalPageDisplayed.value % 2))
 
   if (firstButton < 1) {
     firstButton = 1
@@ -171,7 +171,7 @@ const pages = computed(() => {
 
 const showLastLink = computed(() => lastPage.value > 1)
 
-const paginatedLink = (page = 1) => {
+function paginatedLink(page = 1) {
   if (props.noRouter) {
     return {}
   }
@@ -189,7 +189,7 @@ const paginatedLink = (page = 1) => {
     query,
   } satisfies RouteLocationRaw
 }
-const handleLinkClick = (e: MouseEvent, page = 1) => {
+function handleLinkClick(e: MouseEvent, page = 1) {
   const _page = Math.max(1, Math.min(page, lastPage.value))
   emits('update:currentPage', _page)
 
@@ -216,7 +216,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
       class="nui-pagination-list"
       :class="[rounded && radiuses[rounded], props.classes?.list]"
     >
-      <slot name="before-pagination"></slot>
+      <slot name="before-pagination" />
       <!-- Link -->
       <li>
         <NuxtLink
@@ -291,14 +291,14 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           {{ lastPage }}
         </NuxtLink>
       </li>
-      <slot name="after-pagination"></slot>
+      <slot name="after-pagination" />
     </BaseFocusLoop>
 
     <BaseFocusLoop
       class="nui-pagination-buttons"
       :class="[rounded && radiuses[rounded], props.classes?.buttons]"
     >
-      <slot name="before-navigation"></slot>
+      <slot name="before-navigation" />
 
       <!-- Previous -->
       <NuxtLink
@@ -327,7 +327,7 @@ const handleLinkClick = (e: MouseEvent, page = 1) => {
           <Icon :name="nextIcon" class="pagination-button-icon" />
         </slot>
       </NuxtLink>
-      <slot name="after-navigation"></slot>
+      <slot name="after-navigation" />
     </BaseFocusLoop>
   </div>
 </template>

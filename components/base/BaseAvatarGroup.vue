@@ -20,7 +20,8 @@ const props = withDefaults(
      */
     limit?: number
 
-    /** The size of the avatars.
+    /**
+     * The size of the avatars.
      *
      * @default 'sm'
      */
@@ -56,12 +57,12 @@ const props = withDefaults(
 )
 
 const sizes = {
-  xxs: 'nui-avatar-group-xxs',
-  xs: 'nui-avatar-group-xs',
-  sm: 'nui-avatar-group-sm',
-  md: 'nui-avatar-group-md',
-  lg: 'nui-avatar-group-lg',
-  xl: 'nui-avatar-group-lg',
+  'xxs': 'nui-avatar-group-xxs',
+  'xs': 'nui-avatar-group-xs',
+  'sm': 'nui-avatar-group-sm',
+  'md': 'nui-avatar-group-md',
+  'lg': 'nui-avatar-group-lg',
+  'xl': 'nui-avatar-group-lg',
   '2xl': 'nui-avatar-group-lg',
   '3xl': 'nui-avatar-group-lg',
   '4xl': 'nui-avatar-group-lg',
@@ -72,9 +73,9 @@ const limit = useNuiDefaultProperty(props, 'BaseAvatarGroup', 'limit')
 
 const avatarDisplay = computed(() => {
   if (
-    props.avatars &&
-    limit.value !== undefined &&
-    props.avatars.length > limit.value
+    props.avatars
+    && limit.value !== undefined
+    && props.avatars.length > limit.value
   ) {
     return props.avatars.slice(0, limit.value - 1)
   }
@@ -99,7 +100,7 @@ const avatarDisplay = computed(() => {
           :size="props.size"
           rounded="full"
           tabindex="0"
-          class="bg-primary-500/20 text-primary-500 !scale-90"
+          class="bg-primary-500/20 text-primary-500"
         />
       </div>
       <div

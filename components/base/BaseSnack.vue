@@ -84,9 +84,9 @@ const sizes = {
 }
 
 const colors = {
-  default: 'nui-snack-default',
+  'default': 'nui-snack-default',
   'default-contrast': 'nui-snack-default-contrast',
-  muted: 'nui-snack-muted',
+  'muted': 'nui-snack-muted',
   'muted-contrast': 'nui-snack-muted-contrast',
 }
 </script>
@@ -115,7 +115,7 @@ const colors = {
       class="nui-snack-image"
       :class="props.classes?.img"
     >
-      <img :src="props.image" class="nui-snack-image-inner" alt="" />
+      <img :src="props.image" class="nui-snack-image-inner" alt="">
     </div>
     <span class="nui-snack-text" :class="props.classes?.text">
       <slot>{{ props.label }}</slot>

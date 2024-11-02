@@ -61,16 +61,16 @@ const radiuses = {
 }
 
 const colors = {
-  default: 'nui-button-default',
+  'default': 'nui-button-default',
   'default-contrast': 'nui-button-default-contrast',
-  muted: 'nui-button-muted',
+  'muted': 'nui-button-muted',
   'muted-contrast': 'nui-button-muted-contrast',
-  primary: 'nui-button-primary',
-  info: 'nui-button-info',
-  success: 'nui-button-success',
-  warning: 'nui-button-warning',
-  danger: 'nui-button-danger',
-  none: '',
+  'primary': 'nui-button-primary',
+  'info': 'nui-button-info',
+  'success': 'nui-button-success',
+  'warning': 'nui-button-warning',
+  'danger': 'nui-button-danger',
+  'none': '',
 }
 
 const classes = computed(() => [

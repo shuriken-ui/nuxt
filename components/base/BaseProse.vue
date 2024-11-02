@@ -26,6 +26,6 @@ const radiuses = {
 
 <template>
   <div class="nui-prose" :class="rounded && radiuses[rounded]">
-    <slot></slot>
+    <slot />
   </div>
 </template>

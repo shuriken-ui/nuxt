@@ -752,9 +752,13 @@ const taxes = ref('With taxes')
               wrapper: 'w-36',
             }"
           >
-            <option value="With taxes">With taxes</option>
+            <option value="With taxes">
+              With taxes
+            </option>
 
-            <option value="Without taxes">Without taxes</option>
+            <option value="Without taxes">
+              Without taxes
+            </option>
           </BaseSelect>
         </BaseButtonGroup>
       </NuiPreview>

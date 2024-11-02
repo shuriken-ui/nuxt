@@ -11,7 +11,8 @@ const props = withDefaults(
      */
     bordered?: boolean
 
-    /** The color of the box.
+    /**
+     * The color of the box.
      *
      * @default 'default'
      */
@@ -45,7 +46,8 @@ const props = withDefaults(
      */
     size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 
-    /** The variant of the box.
+    /**
+     * The variant of the box.
      *
      * @since 2.0.0
      * @default 'solid'
@@ -76,11 +78,11 @@ const radiuses = {
 }
 
 const sizes = {
-  xs: 'nui-box-xs',
-  sm: 'nui-box-sm',
-  md: 'nui-box-md',
-  lg: 'nui-box-lg',
-  xl: 'nui-box-xl',
+  'xs': 'nui-box-xs',
+  'sm': 'nui-box-sm',
+  'md': 'nui-box-md',
+  'lg': 'nui-box-lg',
+  'xl': 'nui-box-xl',
   '2xl': 'nui-box-2xl',
 }
 
@@ -91,19 +93,19 @@ const variants = {
 }
 
 const colors = {
-  none: '',
-  default: 'nui-box-default',
+  'none': '',
+  'default': 'nui-box-default',
   'default-contrast': 'nui-box-default-contrast',
-  muted: 'nui-box-muted',
+  'muted': 'nui-box-muted',
   'muted-contrast': 'nui-box-muted-contrast',
-  light: 'nui-box-light',
-  dark: 'nui-box-dark',
-  black: 'nui-box-black',
-  primary: 'nui-box-primary',
-  info: 'nui-box-info',
-  success: 'nui-box-success',
-  warning: 'nui-box-warning',
-  danger: 'nui-box-danger',
+  'light': 'nui-box-light',
+  'dark': 'nui-box-dark',
+  'black': 'nui-box-black',
+  'primary': 'nui-box-primary',
+  'info': 'nui-box-info',
+  'success': 'nui-box-success',
+  'warning': 'nui-box-warning',
+  'danger': 'nui-box-danger',
 }
 
 const masks = {
@@ -127,6 +129,6 @@ const classes = computed(() => [
 
 <template>
   <div :class="classes">
-    <slot></slot>
+    <slot />
   </div>
 </template>

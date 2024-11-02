@@ -170,8 +170,8 @@ const customValue = ref('not-checked')
           <div class="flex w-3/5 flex-wrap items-end gap-4">
             <BaseCheckboxAnimated
               v-model="customValue"
-              :true-value="'checked'"
-              :false-value="'not-checked'"
+              true-value="checked"
+              false-value="not-checked"
               :classes="{ label: 'text-primary-500' }"
             />
             <pre>{{ customValue }}</pre>

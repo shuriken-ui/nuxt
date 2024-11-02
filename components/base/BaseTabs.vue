@@ -162,7 +162,7 @@ function toggle(value: string) {
     </div>
 
     <div class="relative block" :class="props.classes?.content">
-      <slot name="tab" :active-value="modelValue" :toggle="toggle"></slot>
+      <slot name="tab" :active-value="modelValue" :toggle="toggle" />
     </div>
   </div>
 </template>

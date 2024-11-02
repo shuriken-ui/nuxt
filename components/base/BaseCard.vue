@@ -51,18 +51,18 @@ const radiuses = {
 }
 
 const colors = {
-  default: 'nui-card-default',
+  'default': 'nui-card-default',
   'default-contrast': 'nui-card-default-contrast',
-  muted: 'nui-card-muted',
+  'muted': 'nui-card-muted',
   'muted-contrast': 'nui-card-muted-contrast',
-  dark: 'nui-card-dark',
-  black: 'nui-card-black',
-  primary: 'nui-card-primary',
-  info: 'nui-card-info',
-  success: 'nui-card-success',
-  warning: 'nui-card-warning',
-  danger: 'nui-card-danger',
-  none: '',
+  'dark': 'nui-card-dark',
+  'black': 'nui-card-black',
+  'primary': 'nui-card-primary',
+  'info': 'nui-card-info',
+  'success': 'nui-card-success',
+  'warning': 'nui-card-warning',
+  'danger': 'nui-card-danger',
+  'none': '',
 }
 
 const shadows = {
@@ -80,6 +80,6 @@ const classes = computed(() => [
 
 <template>
   <div :class="classes">
-    <slot></slot>
+    <slot />
   </div>
 </template>

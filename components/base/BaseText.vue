@@ -47,11 +47,11 @@ const size = useNuiDefaultProperty(props, 'BaseText', 'size')
 const weight = useNuiDefaultProperty(props, 'BaseText', 'weight')
 
 const sizes = {
-  xs: 'nui-content-xs',
-  sm: 'nui-content-sm',
-  md: 'nui-content-md',
-  lg: 'nui-content-lg',
-  xl: 'nui-content-xl',
+  'xs': 'nui-content-xs',
+  'sm': 'nui-content-sm',
+  'md': 'nui-content-md',
+  'lg': 'nui-content-lg',
+  'xl': 'nui-content-xl',
   '2xl': 'nui-content-2xl',
   '3xl': 'nui-content-3xl',
   '4xl': 'nui-content-4xl',
@@ -90,6 +90,6 @@ const classes = computed(() => [
 
 <template>
   <span :class="classes">
-    <slot></slot>
+    <slot />
   </span>
 </template>

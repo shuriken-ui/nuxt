@@ -8,7 +8,6 @@ definePageMeta({
 
 const value = ref('primary')
 const customValue = ref('pink')
-const headlessValue = ref('value_1')
 </script>
 
 <template>

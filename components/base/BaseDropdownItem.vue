@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { MenuItem } from '@headlessui/vue'
 import type { RouteLocationRaw } from 'vue-router'
+import { MenuItem } from '@headlessui/vue'
 
 const props = withDefaults(
   defineProps<{
@@ -159,20 +159,24 @@ const { is, attributes } = useNinjaButton(props)
       ]"
       @click.passive="close"
     >
-      <slot name="start"></slot>
+      <slot name="start" />
       <div class="nui-item-content">
         <div :class="props.classes?.title">
-          <slot v-bind="{ active, close }">{{ props.title }}</slot>
+          <slot v-bind="{ active, close }">
+            {{ props.title }}
+          </slot>
         </div>
         <p
           v-if="'text' in $slots || props.text"
           class="text-muted-400 font-sans text-xs"
           :class="props.classes?.text"
         >
-          <slot name="text" v-bind="{ active, close }">{{ props.text }}</slot>
+          <slot name="text" v-bind="{ active, close }">
+            {{ props.text }}
+          </slot>
         </p>
       </div>
-      <slot name="end" v-bind="{ active, close }"></slot>
+      <slot name="end" v-bind="{ active, close }" />
     </component>
   </MenuItem>
 </template>

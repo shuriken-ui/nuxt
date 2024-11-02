@@ -175,10 +175,18 @@ definePageMeta({
         description="Kbd component default slot"
       >
         <div class="flex flex-wrap items-end gap-3">
-          <BaseKbd size="xs" color="default" rounded="md">ctrl</BaseKbd>
-          <BaseKbd size="sm" color="default" rounded="md">ctrl</BaseKbd>
-          <BaseKbd size="md" color="default" rounded="md">ctrl</BaseKbd>
-          <BaseKbd size="lg" color="default" rounded="md">ctrl</BaseKbd>
+          <BaseKbd size="xs" color="default" rounded="md">
+            ctrl
+          </BaseKbd>
+          <BaseKbd size="sm" color="default" rounded="md">
+            ctrl
+          </BaseKbd>
+          <BaseKbd size="md" color="default" rounded="md">
+            ctrl
+          </BaseKbd>
+          <BaseKbd size="lg" color="default" rounded="md">
+            ctrl
+          </BaseKbd>
         </div>
       </NuiPreview>
 

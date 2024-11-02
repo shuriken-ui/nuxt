@@ -9,14 +9,11 @@ export interface BaseButtonProperties {
   target?: string
 }
 
-export const useNinjaButton = (
-  properties: BaseButtonProperties,
-  {
-    // @todo: make this configurable (design tokens)
-    externalDefaultRelationship = 'noopener noreferrer',
-    externalDefaultTarget = '_blank',
-  } = {},
-) => {
+export function useNinjaButton(properties: BaseButtonProperties, {
+  // @todo: make this configurable (design tokens)
+  externalDefaultRelationship = 'noopener noreferrer',
+  externalDefaultTarget = '_blank',
+} = {}) {
   const NuxtLink = defineNuxtLink({})
 
   const is = computed(() =>
@@ -26,16 +23,15 @@ export const useNinjaButton = (
     if (is.value === 'button') {
       return properties.type || 'button'
     }
-
-    return
   })
   const external = computed(() => {
     if (typeof properties.to === 'string' && properties.to.startsWith('http')) {
       return true
-    } else if (
-      typeof properties.to === 'object' &&
-      'path' in properties.to &&
-      properties.to.path?.startsWith('http')
+    }
+    else if (
+      typeof properties.to === 'object'
+      && 'path' in properties.to
+      && properties.to.path?.startsWith('http')
     ) {
       return true
     }

@@ -6,8 +6,8 @@ export function useNinjaId(id?: MaybeRefOrGetter<string | undefined>) {
   watch(
     () => toValue(id),
     (value) => {
-      internal.value =
-        value || `nui-input-${Math.random().toString(36).slice(2)}`
+      internal.value
+        = value || `nui-input-${Math.random().toString(36).slice(2)}`
     },
   )
 

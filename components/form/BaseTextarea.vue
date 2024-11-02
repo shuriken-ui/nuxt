@@ -175,9 +175,9 @@ const sizes = {
 }
 
 const contrasts = {
-  default: 'nui-textarea-default',
+  'default': 'nui-textarea-default',
   'default-contrast': 'nui-textarea-default-contrast',
-  muted: 'nui-textarea-muted',
+  'muted': 'nui-textarea-muted',
   'muted-contrast': 'nui-textarea-muted-contrast',
 }
 
@@ -188,11 +188,11 @@ function fitSize() {
 
   if (props.autogrow) {
     textareaRef.value.style.height = 'auto'
-    textareaRef.value.style.height =
-      Math.min(
+    textareaRef.value.style.height
+      = `${Math.min(
         props.maxHeight ?? Number.POSITIVE_INFINITY,
         1 + textareaRef.value.scrollHeight,
-      ) + 'px'
+      )}px`
   }
 }
 
@@ -263,7 +263,7 @@ defineExpose({
         :readonly="props.readonly"
         :disabled="props.disabled"
         :rows="props.rows"
-      ></textarea>
+      />
       <textarea
         v-else
         :id="id"
@@ -280,7 +280,7 @@ defineExpose({
         :readonly="props.readonly"
         :disabled="props.disabled"
         :rows="props.rows"
-      ></textarea>
+      />
       <label
         v-if="props.label && props.labelFloat"
         class="nui-label-float"
@@ -299,7 +299,7 @@ defineExpose({
         class="nui-textarea-addon"
         :class="props.classes?.addon"
       >
-        <slot name="addon"></slot>
+        <slot name="addon" />
       </div>
       <BaseInputHelpText
         v-if="props.error && typeof props.error === 'string'"

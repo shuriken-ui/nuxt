@@ -271,7 +271,9 @@ const value = ref('')
               </div>
 
               <div class="flex items-center gap-2">
-                <BaseButton size="sm">Post Comment</BaseButton>
+                <BaseButton size="sm">
+                  Post Comment
+                </BaseButton>
               </div>
             </template>
           </BaseTextarea>
@@ -302,7 +304,9 @@ const value = ref('')
               </div>
 
               <div class="flex items-center gap-2">
-                <BaseButton size="sm">Post Comment</BaseButton>
+                <BaseButton size="sm">
+                  Post Comment
+                </BaseButton>
               </div>
             </template>
           </BaseTextarea>

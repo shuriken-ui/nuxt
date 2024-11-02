@@ -76,11 +76,11 @@ const props = withDefaults(
     classes: () => ({}),
   },
 )
-const [modelValue] = defineModel<T>()
-
 defineSlots<{
-  default(): any
+  default: () => any
 }>()
+
+const [modelValue] = defineModel<T>()
 
 const color = useNuiDefaultProperty(props, 'BaseRadio', 'color')
 
@@ -127,9 +127,9 @@ defineExpose({
         type="radio"
         :value="props.value"
         class="nui-radio-input"
-      />
-      <div :class="props.classes?.inputBg" class="nui-radio-inner"></div>
-      <div :class="props.classes?.inputDot" class="nui-radio-dot"></div>
+      >
+      <div :class="props.classes?.inputBg" class="nui-radio-inner" />
+      <div :class="props.classes?.inputDot" class="nui-radio-dot" />
     </div>
     <div class="nui-radio-label-wrapper">
       <label

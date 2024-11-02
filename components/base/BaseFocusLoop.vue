@@ -1,6 +1,6 @@
 <script lang="ts">
-import type { PropType, DefineComponent } from 'vue'
 import type { KeyFilter } from '@vueuse/core'
+import type { DefineComponent, PropType } from 'vue'
 import { onKeyStroke } from '@vueuse/core'
 
 export default defineComponent({
@@ -121,7 +121,8 @@ export default defineComponent({
 
         if (focusActiveIndex + 1 <= focusLoopLength) {
           focusableItems.get(focusActiveIndex + 1)?.focus()
-        } else {
+        }
+        else {
           focusableItems.get(0)?.focus()
         }
       }
@@ -135,7 +136,8 @@ export default defineComponent({
 
         if (focusActiveIndex > 0) {
           focusableItems.get(focusActiveIndex - 1)?.focus()
-        } else {
+        }
+        else {
           focusableItems.get(focusLoopLength)?.focus()
         }
       }
@@ -170,7 +172,7 @@ export default defineComponent({
 }> & {
   new (): {
     $slots: {
-      default(): any
+      default: () => any
     }
   }
 }

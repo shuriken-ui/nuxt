@@ -4,12 +4,12 @@ import type { RouteRecordNormalized } from 'vue-router'
 const router = useRouter()
 const color = useColorMode()
 
-const isDark = computed(() => color.value === 'dark')
-const logo = computed(() =>
-  isDark.value
-    ? 'https://user-images.githubusercontent.com/3911343/232132279-8d8bf0ad-b1d7-4802-984e-a696763dc6cd.png'
-    : 'https://user-images.githubusercontent.com/3911343/232132309-62971744-dcdb-429c-aa93-6ba0c1caac42.png',
-)
+// const isDark = computed(() => color.value === 'dark')
+// const logo = computed(() =>
+//   isDark.value
+//     ? 'https://user-images.githubusercontent.com/3911343/232132279-8d8bf0ad-b1d7-4802-984e-a696763dc6cd.png'
+//     : 'https://user-images.githubusercontent.com/3911343/232132309-62971744-dcdb-429c-aa93-6ba0c1caac42.png',
+// )
 const routes = computed(() =>
   router.getRoutes().reduce((r, a) => {
     if ((a.meta as any).section) {
@@ -49,12 +49,12 @@ const routes = computed(() =>
                   >
                     <span class="flex gap-4 items-center">
                       <Icon
-                        class="text-sm text-muted-400 w-6 h-6 shrink-0"
                         v-if="
-                          typeof (route as RouteRecordNormalized).meta?.icon ===
-                            'string' &&
-                          (route as RouteRecordNormalized).meta?.icon
+                          typeof (route as RouteRecordNormalized).meta?.icon
+                            === 'string'
+                            && (route as RouteRecordNormalized).meta?.icon
                         "
+                        class="text-sm text-muted-400 w-6 h-6 shrink-0"
                         :name="
                           (route as RouteRecordNormalized).meta?.icon as string
                         "
@@ -66,10 +66,10 @@ const routes = computed(() =>
                           {{ (route as RouteRecordNormalized).meta?.title }}
                         </span>
                         <span
-                          class="block text-xs text-muted-500"
                           v-if="
                             (route as RouteRecordNormalized).meta?.description
                           "
+                          class="block text-xs text-muted-500"
                         >
                           {{
                             (route as RouteRecordNormalized).meta?.description
@@ -90,9 +90,15 @@ const routes = computed(() =>
     </div>
     <div class="fixed top-0 end-0 pr-6 pt-6 z-50">
       <BaseSelect v-model="color.preference" size="sm">
-        <option value="system">system</option>
-        <option value="light">light</option>
-        <option value="dark">dark</option>
+        <option value="system">
+          system
+        </option>
+        <option value="light">
+          light
+        </option>
+        <option value="dark">
+          dark
+        </option>
       </BaseSelect>
     </div>
   </div>

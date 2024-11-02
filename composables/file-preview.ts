@@ -9,8 +9,10 @@ export function useNinjaFilePreview(
 
   const preview = computed(() => {
     const file = fileReference.value
-    if (!file) return ''
-    if (previewMap.has(file)) return previewMap.get(file)?.value
+    if (!file)
+      return ''
+    if (previewMap.has(file))
+      return previewMap.get(file)?.value
 
     const reader = new FileReader()
     const source = ref<string>('')

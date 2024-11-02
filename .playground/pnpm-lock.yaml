@@ -1,0 +1,129 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    devDependencies:
+      '@iconify-json/cib':
+        specifier: ^1.2.1
+        version: 1.2.1
+      '@iconify-json/clarity':
+        specifier: ^1.2.1
+        version: 1.2.1
+      '@iconify-json/fa':
+        specifier: ^1.2.0
+        version: 1.2.0
+      '@iconify-json/heroicons':
+        specifier: ^1.2.1
+        version: 1.2.1
+      '@iconify-json/ic':
+        specifier: ^1.2.1
+        version: 1.2.1
+      '@iconify-json/ion':
+        specifier: ^1.2.1
+        version: 1.2.1
+      '@iconify-json/lucide':
+        specifier: ^1.2.11
+        version: 1.2.11
+      '@iconify-json/mdi-light':
+        specifier: ^1.2.1
+        version: 1.2.1
+      '@iconify-json/ph':
+        specifier: ^1.2.1
+        version: 1.2.1
+      '@iconify-json/system-uicons':
+        specifier: ^1.2.1
+        version: 1.2.1
+      '@iconify-json/tabler':
+        specifier: ^1.2.7
+        version: 1.2.7
+
+packages:
+
+  '@iconify-json/cib@1.2.1':
+    resolution: {integrity: sha512-3GaouBPiNevaodcZ3eJi0kxzZYFQxTkR847SNbW+ezGJSQsdO6hsvZQl0HKfla56zFXLaL4Ne/zybT3EtMjwrA==}
+
+  '@iconify-json/clarity@1.2.1':
+    resolution: {integrity: sha512-xUjFG3QU/Kqcs2O7/wHAj+xLlfJvzPY0bE5C5AaspwmOnau5R+rcTCAKtDZHUUvhSq+9t7GAJ5bUO5nkzmttrA==}
+
+  '@iconify-json/fa@1.2.0':
+    resolution: {integrity: sha512-D49fT0bDtnoJIEE2586VDL6Yuti6BBYWA90GIeZabJ6KZ8WXylw+EhQfz6weMDr0HrRDFV/mzwS8gpWADBprMA==}
+
+  '@iconify-json/heroicons@1.2.1':
+    resolution: {integrity: sha512-TkKfS5U27kE5MXmSGLzPoz95BP5VA9xEJXwJFwmPMVLX+xyWq0OkoiWTUXB0uAoQODpb8BaRpzSydItrq9fIRA==}
+
+  '@iconify-json/ic@1.2.1':
+    resolution: {integrity: sha512-UjL/bjJP/T5EV881+hTzcfTKVo0KEUjhnMiJcLtPzNgPtU2KZZmRx8BSKKR61H4CN/5FTEbyawGyG0aEt3SwGQ==}
+
+  '@iconify-json/ion@1.2.1':
+    resolution: {integrity: sha512-33jiBdtP8+uBV0KRz8Z9g54QFujzssiT9W6wdNuY61VQM1s3cvoAX89yiczRs4/6b2xJE5vqqvsEJAQPqfY5JA==}
+
+  '@iconify-json/lucide@1.2.11':
+    resolution: {integrity: sha512-dqpbV7+g1qqxtZOHCZKwdKhtYYqEUjFhYiOg/+PcADbjtapoL+bwa1Brn12gAHq5r2K7Mf29xRHOTmZ3UHHOrw==}
+
+  '@iconify-json/mdi-light@1.2.1':
+    resolution: {integrity: sha512-kTs9efbpF5GDcevR9PWCDJQrV1Vfr6RS8KJyGIPM6zxd8AGGAtNCxyACrJ+zeq6K99ZmcTIPr8tlymmPFAxwnw==}
+
+  '@iconify-json/ph@1.2.1':
+    resolution: {integrity: sha512-x0DNfwWrS18dbsBYOq3XGiZnGz4CgRyC+YSl/TZvMQiKhIUl1woWqUbMYqqfMNUBzjyk7ulvaRovpRsIlqIf8g==}
+
+  '@iconify-json/system-uicons@1.2.1':
+    resolution: {integrity: sha512-P3CEr7GewtwcAWX/RZeRZw4Gkq+WS+w5iTh+0jDR30A2bEEhm98R1N0Pas3VUJSU/b/3EfsA6cAX18wrjcqwkw==}
+
+  '@iconify-json/tabler@1.2.7':
+    resolution: {integrity: sha512-q6FbDeC5caOC7i7/dcJOv7PdovHWItd84hCvsnlD/mzsrl5Nhol6eSQOMRv1bIpyxykGEiSDbOsVK5f23j/aFg==}
+
+  '@iconify/types@2.0.0':
+    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
+
+snapshots:
+
+  '@iconify-json/cib@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/clarity@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/fa@1.2.0':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/heroicons@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/ic@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/ion@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/lucide@1.2.11':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/mdi-light@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/ph@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/system-uicons@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/tabler@1.2.7':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify/types@2.0.0': {}

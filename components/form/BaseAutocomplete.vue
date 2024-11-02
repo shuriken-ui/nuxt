@@ -1,11 +1,5 @@
 <script setup lang="ts" generic="T extends unknown = string">
 import {
-  Float,
-  FloatContent,
-  FloatReference,
-  type FloatProps,
-} from '@headlessui-float/vue'
-import {
   Combobox,
   ComboboxButton,
   ComboboxInput,
@@ -13,6 +7,12 @@ import {
   ComboboxOption,
   ComboboxOptions,
 } from '@headlessui/vue'
+import {
+  Float,
+  FloatContent,
+  type FloatProps,
+  FloatReference,
+} from '@headlessui-float/vue'
 
 const props = withDefaults(
   defineProps<{
@@ -279,7 +279,7 @@ const emits = defineEmits<{
 }>()
 
 defineSlots<{
-  item(props: {
+  'item': (props: {
     query: string
     filteredItems: T[]
     pending: boolean
@@ -287,53 +287,53 @@ defineSlots<{
     item: T
     active: boolean
     selected: boolean
-  }): any
-  label(props: {
+  }) => any
+  'label': (props: {
     query: string
     filteredItems: T[]
     pending: boolean
     items: T[]
-  }): any
-  pending(props: {
+  }) => any
+  'pending': (props: {
     query: string
     filteredItems: T[]
     pending: boolean
     items: T[]
-  }): any
-  empty(props: {
+  }) => any
+  'empty': (props: {
     query: string
     filteredItems: T[]
     pending: boolean
     items: T[]
-  }): any
-  'start-item'(props: {
+  }) => any
+  'start-item': (props: {
     query: string
     filteredItems: T[]
     pending: boolean
     items: T[]
-  }): any
-  'end-item'(props: {
+  }) => any
+  'end-item': (props: {
     query: string
     filteredItems: T[]
     pending: boolean
     items: T[]
-  }): any
-  'create-item'(props: {
+  }) => any
+  'create-item': (props: {
     query: string
     filteredItems: T[]
     pending: boolean
     items: T[]
     active: boolean
     selected: boolean
-  }): any
-  'autocomplete-multiple-list-item'(props: {
+  }) => any
+  'autocomplete-multiple-list-item': (props: {
     item: T
     displayValue: string
     removeItem: (item: T) => void
-  }): any
-  'icon'(props: { iconName: string }): any
-  'clear-icon'(): any
-  'dropdown-icon'(): any
+  }) => any
+  'icon': (props: { iconName: string }) => any
+  'clear-icon': () => any
+  'dropdown-icon': () => any
 }>()
 
 const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
@@ -342,11 +342,11 @@ const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
       const attr = props.properties.value as any
       return (
         props.items.find(
-          (item) =>
-            item &&
-            typeof item === 'object' &&
-            attr in item &&
-            (item as any)[attr] === value,
+          item =>
+            item
+            && typeof item === 'object'
+            && attr in item
+            && (item as any)[attr] === value,
         ) as any
       )?.[attr]
     }
@@ -356,11 +356,11 @@ const [modelValue, modelModifiers] = defineModel<T | T[], 'prop'>({
     if (!props.multiple && modelModifiers.prop && props.properties?.value) {
       const attr = props.properties.value as any
       return props.items.find(
-        (item) =>
-          item &&
-          typeof item === 'object' &&
-          attr in item &&
-          (item as any)[attr] === value,
+        item =>
+          item
+          && typeof item === 'object'
+          && attr in item
+          && (item as any)[attr] === value,
       )
     }
     return value
@@ -377,34 +377,38 @@ const i18n = useNuiDefaultProperty(props, 'BaseAutocomplete', 'i18n')
 const rounded = useNuiDefaultProperty(props, 'BaseAutocomplete', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseAutocomplete', 'size')
 
-const defaultDisplayValue = (item: any): any => {
+const items = shallowRef(props.items)
+
+function defaultDisplayValue(item: any): any {
   if (modelModifiers.prop && props.properties?.value) {
     const attr = props.properties.value as any
     const result = items.value.find(
-      (i) =>
+      i =>
         i && typeof i === 'object' && attr in i && (i as any)[attr] === item,
     )
     if (
-      typeof result === 'object' &&
-      result &&
-      props.properties.label &&
-      (props.properties.label as any) in result
+      typeof result === 'object'
+      && result
+      && props.properties.label
+      && (props.properties.label as any) in result
     ) {
       return result[props.properties.label as keyof typeof result]
     }
   }
-  if (item == null || typeof item === 'string') return item
+  if (item == null || typeof item === 'string')
+    return item
   if (
-    typeof item === 'object' &&
-    props.properties?.label &&
-    (props.properties.label as any) in item
-  )
+    typeof item === 'object'
+    && props.properties?.label
+    && (props.properties.label as any) in item
+  ) {
     return item[props.properties.label]
+  }
 
   return item
 }
 
-const defaultFilter = (query?: string, items?: T[]): T[] => {
+function defaultFilter(query?: string, items?: T[]): T[] {
   if (!query || !items) {
     return items ?? []
   }
@@ -412,32 +416,38 @@ const defaultFilter = (query?: string, items?: T[]): T[] => {
   const lower = query.toLowerCase()
 
   return items.filter((item: any) => {
-    if (typeof item === 'string') return item?.toLowerCase().includes(lower)
+    if (typeof item === 'string')
+      return item?.toLowerCase().includes(lower)
     if (
-      typeof item === 'object' &&
-      props.properties?.label &&
-      (props.properties.label as any) in item
-    )
+      typeof item === 'object'
+      && props.properties?.label
+      && (props.properties.label as any) in item
+    ) {
       return item[props.properties.label].toLowerCase().includes(lower)
+    }
     if (
-      typeof item === 'object' &&
-      props.properties?.sublabel &&
-      (props.properties.sublabel as any) in item
-    )
+      typeof item === 'object'
+      && props.properties?.sublabel
+      && (props.properties.sublabel as any) in item
+    ) {
       return item[props.properties.sublabel].toLowerCase().includes(lower)
+    }
+
+    return false
   })
 }
 
 const filterResolved = computed(() => {
-  if (props.filterItems === undefined) return defaultFilter
+  if (props.filterItems === undefined)
+    return defaultFilter
   return props.filterItems
 })
 const displayValueResolved = computed(() => {
-  if (props.displayValue === undefined) return defaultDisplayValue
+  if (props.displayValue === undefined)
+    return defaultDisplayValue
   return props.displayValue
 })
 
-const items = shallowRef(props.items)
 const query = ref('')
 const debounced = refDebounced(query, props.filterDebounce)
 const filteredItems = shallowRef<
@@ -467,9 +477,9 @@ const sizes = {
 }
 
 const contrasts = {
-  default: 'nui-autocomplete-default',
+  'default': 'nui-autocomplete-default',
   'default-contrast': 'nui-autocomplete-default-contrast',
-  muted: 'nui-autocomplete-muted',
+  'muted': 'nui-autocomplete-muted',
   'muted-contrast': 'nui-autocomplete-muted-contrast',
 }
 
@@ -520,14 +530,16 @@ watch([debounced, items], async ([value, _items]) => {
   pendingFilter.value = true
   try {
     filteredItems.value = await filterResolved.value(value, _items)
-  } catch (error: any) {
+  }
+  catch (error: any) {
     if (error?.name === 'AbortError') {
       // Ignore abort errors
       return
     }
 
     throw error
-  } finally {
+  }
+  finally {
     pendingFilter.value = false
   }
 })
@@ -539,7 +551,8 @@ watch(
 )
 
 const canClear = computed(() => {
-  if (!props.clearable) return false
+  if (!props.clearable)
+    return false
 
   if (Array.isArray(modelValue.value)) {
     return modelValue.value.length > 0
@@ -553,11 +566,11 @@ function clear() {
 
 const iconResolved = computed(() => {
   if (
-    modelValue.value &&
-    typeof modelValue.value === 'object' &&
-    !Array.isArray(modelValue.value) &&
-    'icon' in modelValue.value &&
-    typeof modelValue.value.icon === 'string'
+    modelValue.value
+    && typeof modelValue.value === 'object'
+    && !Array.isArray(modelValue.value)
+    && 'icon' in modelValue.value
+    && typeof modelValue.value.icon === 'string'
   ) {
     return modelValue.value.icon
   }
@@ -576,7 +589,7 @@ function removeItem(item: any) {
         modelValue.value.splice(i, 1)
       }
     }
-    // eslint-disable-next-line eqeqeq
+
     else if (modelValue.value[i] === item) {
       modelValue.value.splice(i, 1)
     }
@@ -584,7 +597,8 @@ function removeItem(item: any) {
 }
 
 function key(item: T) {
-  if (props.properties == null) return displayValueResolved.value(item)
+  if (props.properties == null)
+    return displayValueResolved.value(item)
   if (typeof props.properties.value === 'string')
     return (item as any)[props.properties.value]
   if (typeof props.properties.value === 'function')
@@ -605,8 +619,7 @@ const internal = ref<any>(modelValue)
     "
     :multiple="props.multiple"
     :disabled="props.disabled"
-    :class="[
-      'nui-autocomplete',
+    class="nui-autocomplete" :class="[
       props.classes?.wrapper,
       size && sizes[size],
       contrast && contrasts[contrast],
@@ -624,7 +637,6 @@ const internal = ref<any>(modelValue)
       leave="transition ease-in duration-100"
       leave-from="opacity-100"
       leave-to="opacity-0"
-      @hide="query = ''"
       :flip="!props.multiple"
       :offset="5"
       :strategy="props.fixed ? 'fixed' : 'absolute'"
@@ -632,11 +644,12 @@ const internal = ref<any>(modelValue)
       :adaptive-width="props.fixed"
       :z-index="200"
       v-bind="floatOptions"
+      @hide="query = ''"
     >
       <ComboboxLabel
         v-if="
-          ('label' in $slots && !labelFloat) ||
-          (props.label && !props.labelFloat)
+          ('label' in $slots && !labelFloat)
+            || (props.label && !props.labelFloat)
         "
         class="nui-autocomplete-label"
         :class="classes?.label"
@@ -693,8 +706,8 @@ const internal = ref<any>(modelValue)
           />
           <ComboboxLabel
             v-if="
-              ('label' in $slots && props.labelFloat) ||
-              (props.label && props.labelFloat)
+              ('label' in $slots && props.labelFloat)
+                || (props.label && props.labelFloat)
             "
             class="nui-label-float"
             :class="props.classes?.label"
@@ -713,9 +726,9 @@ const internal = ref<any>(modelValue)
           </div>
           <button
             v-if="
-              canClear &&
-              ((Array.isArray(modelValue) && modelValue?.length > 0) ||
-                (!Array.isArray(modelValue) && modelValue != null))
+              canClear
+                && ((Array.isArray(modelValue) && modelValue?.length > 0)
+                  || (!Array.isArray(modelValue) && modelValue != null))
             "
             type="button"
             tabindex="-1"
@@ -812,12 +825,12 @@ const internal = ref<any>(modelValue)
                   pending,
                   items,
                 }"
-              ></slot>
+              />
             </div>
             <ComboboxOption
               v-if="allowCreate && queryCreate"
-              :value="queryCreate"
               v-slot="{ active, selected }"
+              :value="queryCreate"
               :class="
                 hideCreatePrompt ? 'hidden' : 'nui-autocomplete-results-item'
               "
@@ -875,8 +888,8 @@ const internal = ref<any>(modelValue)
                     properties
                       ? item
                       : ({
-                          label: displayValueResolved(item),
-                        } as T)
+                        label: displayValueResolved(item),
+                      } as T)
                   "
                   :active="active"
                   :selected="selected"
@@ -896,7 +909,7 @@ const internal = ref<any>(modelValue)
                   pending,
                   items,
                 }"
-              ></slot>
+              />
             </div>
           </template>
         </ComboboxOptions>

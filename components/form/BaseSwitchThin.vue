@@ -119,12 +119,12 @@ defineExpose({
         class="nui-switch-thin-input peer"
         :class="props.classes?.input"
         @change="modelValue = !modelValue"
-      />
+      >
       <span
         class="nui-switch-thin-handle"
         :class="props.classes?.handle"
-      ></span>
-      <span class="nui-switch-thin-track" :class="props.classes?.track"></span>
+      />
+      <span class="nui-switch-thin-track" :class="props.classes?.track" />
     </span>
     <span v-if="!props.sublabel" class="nui-switch-thin-single-label">
       {{ props.label }}

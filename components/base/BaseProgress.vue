@@ -141,11 +141,11 @@ const isIndeterminate = computed(() => typeof value.value !== 'number')
     <div
       class="nui-progress-bar"
       :class="[
-        isIndeterminate &&
-          'nui-progress-indeterminate animate-nui-progress-indeterminate',
+        isIndeterminate
+          && 'nui-progress-indeterminate animate-nui-progress-indeterminate',
         props.classes?.progress,
       ]"
       :style="!isIndeterminate ? `width: ${value}%` : 'width: 100%'"
-    ></div>
+    />
   </div>
 </template>

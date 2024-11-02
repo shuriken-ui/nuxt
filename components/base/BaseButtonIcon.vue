@@ -107,19 +107,19 @@ const sizes = {
 }
 
 const colors = {
-  default: 'nui-button-default',
+  'default': 'nui-button-default',
   'default-contrast': 'nui-button-default-contrast',
-  muted: 'nui-button-muted',
+  'muted': 'nui-button-muted',
   'muted-contrast': 'nui-button-muted-contrast',
-  light: 'nui-button-light',
-  dark: 'nui-button-dark',
-  black: 'nui-button-black',
-  primary: 'nui-button-primary',
-  info: 'nui-button-info',
-  success: 'nui-button-success',
-  warning: 'nui-button-warning',
-  danger: 'nui-button-danger',
-  none: '',
+  'light': 'nui-button-light',
+  'dark': 'nui-button-dark',
+  'black': 'nui-button-black',
+  'primary': 'nui-button-primary',
+  'info': 'nui-button-info',
+  'success': 'nui-button-success',
+  'warning': 'nui-button-warning',
+  'danger': 'nui-button-danger',
+  'none': '',
 }
 
 const classes = computed(() => [
@@ -135,7 +135,7 @@ const { attributes, is } = useNinjaButton(props)
 
 <template>
   <component :is="is" v-bind="attributes" :class="classes">
-    <slot v-if="!props.loading"></slot>
+    <slot v-if="!props.loading" />
     <BasePlaceload v-else class="size-4 rounded-md" />
   </component>
 </template>

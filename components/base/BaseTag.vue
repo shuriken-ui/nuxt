@@ -77,18 +77,18 @@ const radiuses = {
 }
 
 const colors = {
-  default: 'nui-tag-default',
+  'default': 'nui-tag-default',
   'default-contrast': 'nui-tag-default-contrast',
-  muted: 'nui-tag-muted',
+  'muted': 'nui-tag-muted',
   'muted-contrast': 'nui-tag-muted-contrast',
-  light: 'nui-tag-light',
-  dark: 'nui-tag-dark',
-  black: 'nui-tag-black',
-  primary: 'nui-tag-primary',
-  info: 'nui-tag-info',
-  success: 'nui-tag-success',
-  warning: 'nui-tag-warning',
-  danger: 'nui-tag-danger',
+  'light': 'nui-tag-light',
+  'dark': 'nui-tag-dark',
+  'black': 'nui-tag-black',
+  'primary': 'nui-tag-primary',
+  'info': 'nui-tag-info',
+  'success': 'nui-tag-success',
+  'warning': 'nui-tag-warning',
+  'danger': 'nui-tag-danger',
 }
 
 const sizes = {
@@ -113,6 +113,6 @@ const classes = computed(() => [
 
 <template>
   <span :class="classes">
-    <slot></slot>
+    <slot />
   </span>
 </template>

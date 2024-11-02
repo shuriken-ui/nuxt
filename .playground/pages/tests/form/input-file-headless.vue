@@ -22,9 +22,9 @@ const uploadedFiles = ref<FileList | null>(null)
         <div>
           <form action="" method="POST" @submit.prevent="">
             <BaseInputFileHeadless
-              accept="image/*"
-              v-model="inputFile"
               v-slot="{ open, remove, preview, files }"
+              v-model="inputFile"
+              accept="image/*"
             >
               <div class="relative h-20 w-20">
                 <img
@@ -32,14 +32,14 @@ const uploadedFiles = ref<FileList | null>(null)
                   :src="preview(files.item(0)!).value"
                   alt="Upload preview"
                   class="bg-muted-200 dark:bg-muted-700/60 h-20 w-20 rounded-full object-cover object-center"
-                />
+                >
 
                 <img
                   v-else
                   :src="currentAvatar"
                   alt="Upload preview"
                   class="bg-muted-200 dark:bg-muted-700/60 h-20 w-20 rounded-full object-cover object-center"
-                />
+                >
 
                 <div
                   v-if="files?.length && files.item(0)"
@@ -48,9 +48,9 @@ const uploadedFiles = ref<FileList | null>(null)
                   <BaseButtonIcon
                     size="sm"
                     rounded="full"
-                    @click="remove(files.item(0)!)"
                     data-nui-tooltip="Remove image"
                     class="scale-90"
+                    @click="remove(files.item(0)!)"
                   >
                     <Icon name="lucide:x" class="h-4 w-4" />
                   </BaseButtonIcon>
@@ -72,9 +72,9 @@ const uploadedFiles = ref<FileList | null>(null)
       <NuiPreview title="File" description="File upload variation">
         <div class="max-w-xl">
           <BaseInputFileHeadless
-            multiple
-            v-model="uploadedFiles"
             v-slot="{ open, remove, preview, drop, files }"
+            v-model="uploadedFiles"
+            multiple
           >
             <!-- Controls -->
             <div class="mb-4 flex items-center gap-2">
@@ -149,18 +149,18 @@ const uploadedFiles = ref<FileList | null>(null)
                     <div class="flex items-center gap-2">
                       <div class="shrink-0">
                         <img
-                          class="h-14 w-14 rounded-xl object-cover object-center"
                           v-if="file.type.startsWith('image')"
+                          class="h-14 w-14 rounded-xl object-cover object-center"
                           :src="preview(file).value"
                           alt="Image preview"
-                        />
+                        >
 
                         <img
                           v-else
                           class="h-14 w-14 rounded-xl object-cover object-center"
                           src="https://tairo.cssninja.io/img/avatars/placeholder-file.png"
                           alt="Image preview"
-                        />
+                        >
                       </div>
 
                       <div class="font-sans">
@@ -177,10 +177,9 @@ const uploadedFiles = ref<FileList | null>(null)
                     </div>
 
                     <div
-                      class="ms-auto w-32 px-4 transition-opacity duration-300"
-                      :class="'opacity-100'"
+                      class="ms-auto w-32 px-4 transition-opacity duration-300 opacity-100"
                     >
-                      <BaseProgress :value="0" size="xs" :color="'success'" />
+                      <BaseProgress :value="0" size="xs" color="success" />
                     </div>
 
                     <div class="flex gap-2">

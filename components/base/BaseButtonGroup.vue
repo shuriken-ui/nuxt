@@ -1,5 +1,5 @@
 <template>
   <div class="nui-button-group">
-    <slot></slot>
+    <slot />
   </div>
 </template>

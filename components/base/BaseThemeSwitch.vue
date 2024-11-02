@@ -52,11 +52,11 @@ const isDark = computed({
 <template>
   <label class="nui-theme-switch" :for="id">
     <input
-      v-model="isDark"
       :id="id"
+      v-model="isDark"
       class="nui-theme-switch-input"
       type="checkbox"
-    />
+    >
     <span class="nui-theme-switch-inner">
       <IconSun class="nui-sun" />
       <IconMoon class="nui-moon" />

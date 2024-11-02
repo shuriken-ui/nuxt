@@ -15,11 +15,21 @@ definePageMeta({
         description="Button action component border radiuses"
       >
         <div class="flex flex-wrap items-end gap-2">
-          <BaseButtonAction rounded="none">Action</BaseButtonAction>
-          <BaseButtonAction rounded="sm">Action</BaseButtonAction>
-          <BaseButtonAction rounded="md">Action</BaseButtonAction>
-          <BaseButtonAction rounded="lg">Action</BaseButtonAction>
-          <BaseButtonAction rounded="full">Action</BaseButtonAction>
+          <BaseButtonAction rounded="none">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="sm">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="md">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="lg">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="full">
+            Action
+          </BaseButtonAction>
         </div>
       </NuiPreview>
 
@@ -31,9 +41,15 @@ definePageMeta({
           <BaseButtonAction rounded="none" color="muted">
             Action
           </BaseButtonAction>
-          <BaseButtonAction rounded="sm" color="muted">Action</BaseButtonAction>
-          <BaseButtonAction rounded="md" color="muted">Action</BaseButtonAction>
-          <BaseButtonAction rounded="lg" color="muted">Action</BaseButtonAction>
+          <BaseButtonAction rounded="sm" color="muted">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="md" color="muted">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="lg" color="muted">
+            Action
+          </BaseButtonAction>
           <BaseButtonAction rounded="full" color="muted">
             Action
           </BaseButtonAction>
@@ -71,9 +87,15 @@ definePageMeta({
           <BaseButtonAction rounded="none" color="info">
             Action
           </BaseButtonAction>
-          <BaseButtonAction rounded="sm" color="info">Action</BaseButtonAction>
-          <BaseButtonAction rounded="md" color="info">Action</BaseButtonAction>
-          <BaseButtonAction rounded="lg" color="info">Action</BaseButtonAction>
+          <BaseButtonAction rounded="sm" color="info">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="md" color="info">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="lg" color="info">
+            Action
+          </BaseButtonAction>
           <BaseButtonAction rounded="full" color="info">
             Action
           </BaseButtonAction>
@@ -157,9 +179,15 @@ definePageMeta({
           <BaseButtonAction rounded="none" color="light">
             Action
           </BaseButtonAction>
-          <BaseButtonAction rounded="sm" color="light">Action</BaseButtonAction>
-          <BaseButtonAction rounded="md" color="light">Action</BaseButtonAction>
-          <BaseButtonAction rounded="lg" color="light">Action</BaseButtonAction>
+          <BaseButtonAction rounded="sm" color="light">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="md" color="light">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="lg" color="light">
+            Action
+          </BaseButtonAction>
           <BaseButtonAction rounded="full" color="light">
             Action
           </BaseButtonAction>
@@ -174,9 +202,15 @@ definePageMeta({
           <BaseButtonAction rounded="none" color="dark">
             Action
           </BaseButtonAction>
-          <BaseButtonAction rounded="sm" color="dark">Action</BaseButtonAction>
-          <BaseButtonAction rounded="md" color="dark">Action</BaseButtonAction>
-          <BaseButtonAction rounded="lg" color="dark">Action</BaseButtonAction>
+          <BaseButtonAction rounded="sm" color="dark">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="md" color="dark">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="lg" color="dark">
+            Action
+          </BaseButtonAction>
           <BaseButtonAction rounded="full" color="dark">
             Action
           </BaseButtonAction>
@@ -191,9 +225,15 @@ definePageMeta({
           <BaseButtonAction rounded="none" color="black">
             Action
           </BaseButtonAction>
-          <BaseButtonAction rounded="sm" color="black">Action</BaseButtonAction>
-          <BaseButtonAction rounded="md" color="black">Action</BaseButtonAction>
-          <BaseButtonAction rounded="lg" color="black">Action</BaseButtonAction>
+          <BaseButtonAction rounded="sm" color="black">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="md" color="black">
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="lg" color="black">
+            Action
+          </BaseButtonAction>
           <BaseButtonAction rounded="full" color="black">
             Action
           </BaseButtonAction>
@@ -205,11 +245,21 @@ definePageMeta({
         description="Button action component in loading state"
       >
         <div class="flex flex-wrap items-end gap-2">
-          <BaseButtonAction rounded="none" loading>Action</BaseButtonAction>
-          <BaseButtonAction rounded="sm" loading>Action</BaseButtonAction>
-          <BaseButtonAction rounded="md" loading>Action</BaseButtonAction>
-          <BaseButtonAction rounded="lg" loading>Action</BaseButtonAction>
-          <BaseButtonAction rounded="full" loading>Action</BaseButtonAction>
+          <BaseButtonAction rounded="none" loading>
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="sm" loading>
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="md" loading>
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="lg" loading>
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="full" loading>
+            Action
+          </BaseButtonAction>
         </div>
       </NuiPreview>
 
@@ -218,11 +268,21 @@ definePageMeta({
         description="Button action component in disabled state"
       >
         <div class="flex flex-wrap items-end gap-2">
-          <BaseButtonAction rounded="none" disabled>Action</BaseButtonAction>
-          <BaseButtonAction rounded="sm" disabled>Action</BaseButtonAction>
-          <BaseButtonAction rounded="md" disabled>Action</BaseButtonAction>
-          <BaseButtonAction rounded="lg" disabled>Action</BaseButtonAction>
-          <BaseButtonAction rounded="full" disabled>Action</BaseButtonAction>
+          <BaseButtonAction rounded="none" disabled>
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="sm" disabled>
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="md" disabled>
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="lg" disabled>
+            Action
+          </BaseButtonAction>
+          <BaseButtonAction rounded="full" disabled>
+            Action
+          </BaseButtonAction>
         </div>
       </NuiPreview>
 
@@ -231,20 +291,30 @@ definePageMeta({
         description="Button action component inside a button group"
       >
         <BaseButtonGroup>
-          <BaseButtonAction rounded="md">View</BaseButtonAction>
+          <BaseButtonAction rounded="md">
+            View
+          </BaseButtonAction>
           <BaseButtonAction rounded="md">
             <Icon name="ph:pen" class="h-4 w-4" />
           </BaseButtonAction>
-          <BaseButtonAction muted rounded="md">Muted</BaseButtonAction>
+          <BaseButtonAction muted rounded="md">
+            Muted
+          </BaseButtonAction>
           <BaseDropdown label="plus">
             <template #button>
-              <BaseButtonAction rounded="none">plus</BaseButtonAction>
+              <BaseButtonAction rounded="none">
+                plus
+              </BaseButtonAction>
             </template>
             <BaseDropdownItem>Edit</BaseDropdownItem>
             <BaseDropdownItem>Cancel</BaseDropdownItem>
           </BaseDropdown>
-          <BaseButtonAction disabled rounded="md">Disabled</BaseButtonAction>
-          <BaseButtonAction rounded="md">Share</BaseButtonAction>
+          <BaseButtonAction disabled rounded="md">
+            Disabled
+          </BaseButtonAction>
+          <BaseButtonAction rounded="md">
+            Share
+          </BaseButtonAction>
         </BaseButtonGroup>
       </NuiPreview>
     </NuiPreviewContainer>

@@ -98,18 +98,18 @@ const size = useNuiDefaultProperty(props, 'BaseButton', 'size')
 const variant = useNuiDefaultProperty(props, 'BaseButton', 'variant')
 
 const badgeColors = {
-  primary: 'nui-badge-primary',
-  info: 'nui-badge-info',
-  success: 'nui-badge-success',
-  warning: 'nui-badge-warning',
-  danger: 'nui-badge-danger',
-  none: '',
-  default: '',
+  'primary': 'nui-badge-primary',
+  'info': 'nui-badge-info',
+  'success': 'nui-badge-success',
+  'warning': 'nui-badge-warning',
+  'danger': 'nui-badge-danger',
+  'none': '',
+  'default': '',
   'default-contrast': '',
-  light: '',
-  dark: '',
-  black: '',
-  muted: '',
+  'light': '',
+  'dark': '',
+  'black': '',
+  'muted': '',
   'muted-contrast': '',
 }
 
@@ -135,19 +135,19 @@ const variants = {
 }
 
 const colors = {
-  none: '',
-  default: 'nui-button-default',
+  'none': '',
+  'default': 'nui-button-default',
   'default-contrast': 'nui-button-default-contrast',
-  primary: 'nui-button-primary',
-  info: 'nui-button-info',
-  success: 'nui-button-success',
-  warning: 'nui-button-warning',
-  danger: 'nui-button-danger',
-  muted: 'nui-button-muted',
+  'primary': 'nui-button-primary',
+  'info': 'nui-button-info',
+  'success': 'nui-button-success',
+  'warning': 'nui-button-warning',
+  'danger': 'nui-button-danger',
+  'muted': 'nui-button-muted',
   'muted-contrast': 'nui-button-muted-contrast',
-  light: 'nui-button-light',
-  dark: 'nui-button-dark',
-  black: 'nui-button-black',
+  'light': 'nui-button-light',
+  'dark': 'nui-button-dark',
+  'black': 'nui-button-black',
 }
 
 const shadows = {
@@ -177,8 +177,8 @@ const { attributes, is } = useNinjaButton(props)
       class="nui-button-badge"
       :class="badgeColors[color]"
     >
-      <span v-if="props.badgePulse" class="nui-button-badge-pulse"></span>
-      <span class="nui-button-badge-inner"></span>
+      <span v-if="props.badgePulse" class="nui-button-badge-pulse" />
+      <span class="nui-button-badge-inner" />
     </span>
   </component>
 </template>

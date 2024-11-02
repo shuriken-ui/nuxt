@@ -39,11 +39,11 @@ const props = withDefaults(
   },
 )
 
-const [modelValue] = defineModel<T | T[]>()
-
 defineSlots<{
-  default(props: { value: T | T[] | undefined }): any
+  default: (props: { value: T | T[] | undefined }) => any
 }>()
+
+const [modelValue] = defineModel<T | T[]>()
 
 const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)
@@ -81,8 +81,8 @@ defineExpose({
         v-bind="$attrs"
         class="peer absolute inset-0 z-20 size-full cursor-pointer appearance-none"
         type="checkbox"
-      />
-      <slot v-bind="{ value: modelValue }"></slot>
+      >
+      <slot v-bind="{ value: modelValue }" />
     </div>
   </div>
 </template>

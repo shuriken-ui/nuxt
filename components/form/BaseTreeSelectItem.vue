@@ -86,7 +86,7 @@ const wrapperProps = computed(() => {
       rounded === 'full' && 'rounded-xl',
     ]"
   >
-    <slot></slot>
+    <slot />
 
     <component :is="wrapperTag" class="flex items-center" v-bind="wrapperProps">
       <BaseAvatar

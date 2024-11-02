@@ -16,13 +16,13 @@ definePageMeta({
       >
         <div class="w-full max-w-sm">
           <BaseTabSlider
+            v-slot="{ activeValue }"
             rounded="none"
             model-value="team"
             :tabs="[
               { label: 'Team', value: 'team' },
               { label: 'Projects', value: 'projects' },
             ]"
-            v-slot="{ activeValue }"
           >
             <p
               v-if="activeValue === 'team'"
@@ -59,6 +59,7 @@ definePageMeta({
       >
         <div class="w-full max-w-sm">
           <BaseTabSlider
+            v-slot="{ activeValue }"
             rounded="sm"
             color="dark"
             model-value="team"
@@ -66,7 +67,6 @@ definePageMeta({
               { label: 'Team', value: 'team' },
               { label: 'Projects', value: 'projects' },
             ]"
-            v-slot="{ activeValue }"
           >
             <p
               v-if="activeValue === 'team'"
@@ -103,6 +103,7 @@ definePageMeta({
       >
         <div class="w-full max-w-sm">
           <BaseTabSlider
+            v-slot="{ activeValue }"
             rounded="md"
             color="black"
             model-value="team"
@@ -110,7 +111,6 @@ definePageMeta({
               { label: 'Team', value: 'team' },
               { label: 'Projects', value: 'projects' },
             ]"
-            v-slot="{ activeValue }"
           >
             <p
               v-if="activeValue === 'team'"
@@ -147,6 +147,7 @@ definePageMeta({
       >
         <div class="w-full max-w-sm">
           <BaseTabSlider
+            v-slot="{ activeValue }"
             rounded="lg"
             color="light"
             model-value="team"
@@ -154,7 +155,6 @@ definePageMeta({
               { label: 'Team', value: 'team' },
               { label: 'Projects', value: 'projects' },
             ]"
-            v-slot="{ activeValue }"
           >
             <p
               v-if="activeValue === 'team'"
@@ -191,13 +191,13 @@ definePageMeta({
       >
         <div class="w-full max-w-sm">
           <BaseTabSlider
+            v-slot="{ activeValue }"
             rounded="full"
             model-value="team"
             :tabs="[
               { label: 'Team', value: 'team' },
               { label: 'Projects', value: 'projects' },
             ]"
-            v-slot="{ activeValue }"
           >
             <p
               v-if="activeValue === 'team'"
@@ -234,6 +234,7 @@ definePageMeta({
       >
         <div class="w-full max-w-sm">
           <BaseTabSlider
+            v-slot="{ activeValue }"
             rounded="full"
             size="sm"
             model-value="team"
@@ -241,7 +242,6 @@ definePageMeta({
               { label: 'Team', value: 'team' },
               { label: 'Projects', value: 'projects' },
             ]"
-            v-slot="{ activeValue }"
           >
             <p
               v-if="activeValue === 'team'"
@@ -278,6 +278,7 @@ definePageMeta({
       >
         <div class="w-full max-w-sm">
           <BaseTabSlider
+            v-slot="{ activeValue }"
             rounded="none"
             model-value="team"
             :tabs="[
@@ -285,7 +286,6 @@ definePageMeta({
               { label: 'Projects', value: 'projects' },
               { label: 'Tasks', value: 'tasks' },
             ]"
-            v-slot="{ activeValue }"
           >
             <p
               v-if="activeValue === 'team'"
@@ -322,6 +322,7 @@ definePageMeta({
       >
         <div class="w-full max-w-sm">
           <BaseTabSlider
+            v-slot="{ activeValue }"
             rounded="sm"
             model-value="team"
             :tabs="[
@@ -329,7 +330,6 @@ definePageMeta({
               { label: 'Projects', value: 'projects' },
               { label: 'Tasks', value: 'tasks' },
             ]"
-            v-slot="{ activeValue }"
           >
             <p
               v-if="activeValue === 'team'"
@@ -366,6 +366,7 @@ definePageMeta({
       >
         <div class="w-full max-w-sm">
           <BaseTabSlider
+            v-slot="{ activeValue }"
             rounded="md"
             model-value="team"
             :tabs="[
@@ -373,7 +374,6 @@ definePageMeta({
               { label: 'Projects', value: 'projects' },
               { label: 'Tasks', value: 'tasks' },
             ]"
-            v-slot="{ activeValue }"
           >
             <p
               v-if="activeValue === 'team'"
@@ -410,6 +410,7 @@ definePageMeta({
       >
         <div class="w-full max-w-sm">
           <BaseTabSlider
+            v-slot="{ activeValue }"
             rounded="lg"
             model-value="team"
             :tabs="[
@@ -417,7 +418,6 @@ definePageMeta({
               { label: 'Projects', value: 'projects' },
               { label: 'Tasks', value: 'tasks' },
             ]"
-            v-slot="{ activeValue }"
           >
             <p
               v-if="activeValue === 'team'"
@@ -454,6 +454,7 @@ definePageMeta({
       >
         <div class="w-full max-w-sm">
           <BaseTabSlider
+            v-slot="{ activeValue }"
             rounded="full"
             model-value="team"
             :tabs="[
@@ -461,7 +462,6 @@ definePageMeta({
               { label: 'Projects', value: 'projects' },
               { label: 'Tasks', value: 'tasks' },
             ]"
-            v-slot="{ activeValue }"
           >
             <p
               v-if="activeValue === 'team'"
@@ -498,6 +498,7 @@ definePageMeta({
       >
         <div class="w-full max-w-sm">
           <BaseTabSlider
+            v-slot="{ activeValue }"
             rounded="full"
             size="sm"
             model-value="team"
@@ -506,7 +507,6 @@ definePageMeta({
               { label: 'Projects', value: 'projects' },
               { label: 'Tasks', value: 'tasks' },
             ]"
-            v-slot="{ activeValue }"
           >
             <p
               v-if="activeValue === 'team'"

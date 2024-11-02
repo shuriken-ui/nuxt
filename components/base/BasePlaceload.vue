@@ -1,3 +1,3 @@
 <template>
-  <div class="nui-placeload animate-nui-placeload"></div>
+  <div class="nui-placeload animate-nui-placeload" />
 </template>

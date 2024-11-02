@@ -139,7 +139,7 @@ const i18n = useNuiDefaultProperty(props, 'BaseInputFile', 'i18n')
 const inputRef = ref<HTMLInputElement>()
 const id = useNinjaId(() => props.id)
 
-const defaultTextValue = (fileList?: FileList | null) => {
+function defaultTextValue(fileList?: FileList | null) {
   if (!fileList?.item?.length) {
     return i18n.value.empty
   }
@@ -147,9 +147,9 @@ const defaultTextValue = (fileList?: FileList | null) => {
   return fileList?.item.length === 1
     ? fileList.item(0)?.name ?? i18n.value.invalid
     : i18n.value.multiple.replaceAll(
-        '{count}',
-        String(fileList?.item?.length ?? 0),
-      )
+      '{count}',
+      String(fileList?.item?.length ?? 0),
+    )
 }
 
 const radiuses = {
@@ -168,7 +168,7 @@ const sizes = {
 }
 
 const contrasts = {
-  default: 'nui-input-default',
+  'default': 'nui-input-default',
   'default-contrast': 'nui-input-default-contrast',
 }
 
@@ -251,7 +251,7 @@ defineExpose({
           @change="
             (event) => (modelValue = (event.target as HTMLInputElement).files)
           "
-        />
+        >
       </label>
 
       <div v-if="props.loading" class="nui-input-file-placeload">

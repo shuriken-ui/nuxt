@@ -511,12 +511,12 @@ definePageMeta({
             text="H"
             size="xxs"
             class="bg-muted-200 text-muted-800 dark:bg-muted-600 dark:text-muted-300"
-          ></BaseAvatar>
+          />
           <BaseAvatar
             text="H"
             size="xs"
             class="bg-muted-200 text-muted-800 dark:bg-muted-600 dark:text-muted-300"
-          ></BaseAvatar>
+          />
           <BaseAvatar
             text="H"
             size="sm"
@@ -565,13 +565,13 @@ definePageMeta({
             size="xxs"
             rounded="lg"
             class="bg-muted-200 text-muted-800 dark:bg-muted-600 dark:text-muted-300"
-          ></BaseAvatar>
+          />
           <BaseAvatar
             text="H"
             size="xs"
             rounded="lg"
             class="bg-muted-200 text-muted-800 dark:bg-muted-600 dark:text-muted-300"
-          ></BaseAvatar>
+          />
           <BaseAvatar
             text="H"
             size="sm"
@@ -627,13 +627,13 @@ definePageMeta({
             size="xxs"
             badge-src="https://tairo.cssninja.io/img/icons/flags/united-states-of-america.svg"
             class="bg-muted-200 text-muted-800 dark:bg-muted-600 dark:text-muted-300"
-          ></BaseAvatar>
+          />
           <BaseAvatar
             text="H"
             size="xs"
             badge-src="https://tairo.cssninja.io/img/icons/flags/united-states-of-america.svg"
             class="bg-muted-200 text-muted-800 dark:bg-muted-600 dark:text-muted-300"
-          ></BaseAvatar>
+          />
           <BaseAvatar
             text="H"
             size="sm"
@@ -690,14 +690,14 @@ definePageMeta({
             rounded="lg"
             badge-src="https://tairo.cssninja.io/img/icons/flags/united-states-of-america.svg"
             class="bg-muted-200 text-muted-800 dark:bg-muted-600 dark:text-muted-300"
-          ></BaseAvatar>
+          />
           <BaseAvatar
             text="H"
             size="xs"
             rounded="lg"
             badge-src="https://tairo.cssninja.io/img/icons/flags/united-states-of-america.svg"
             class="bg-muted-200 text-muted-800 dark:bg-muted-600 dark:text-muted-300"
-          ></BaseAvatar>
+          />
           <BaseAvatar
             text="H"
             size="sm"

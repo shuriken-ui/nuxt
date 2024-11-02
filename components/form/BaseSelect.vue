@@ -150,9 +150,9 @@ const sizes = {
 }
 
 const contrasts = {
-  default: 'nui-select-default',
+  'default': 'nui-select-default',
   'default-contrast': 'nui-select-default-contrast',
-  muted: 'nui-select-muted',
+  'muted': 'nui-select-muted',
   'muted-contrast': 'nui-select-muted-contrast',
 }
 
@@ -197,8 +197,8 @@ const placeholder = computed(() => {
   >
     <label
       v-if="
-        ('label' in $slots && !props.labelFloat) ||
-        (props.label && !props.labelFloat)
+        ('label' in $slots && !props.labelFloat)
+          || (props.label && !props.labelFloat)
       "
       class="nui-select-label"
       :for="id"
@@ -219,12 +219,12 @@ const placeholder = computed(() => {
         <option v-if="placeholder" value="" disabled hidden>
           {{ placeholder }}
         </option>
-        <slot></slot>
+        <slot />
       </select>
       <label
         v-if="
-          ('label' in $slots && props.labelFloat) ||
-          (props.label && props.labelFloat)
+          ('label' in $slots && props.labelFloat)
+            || (props.label && props.labelFloat)
         "
         :for="id"
         class="nui-label-float"

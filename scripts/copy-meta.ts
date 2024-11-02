@@ -1,6 +1,7 @@
-import { fileURLToPath } from 'node:url'
 import { existsSync } from 'node:fs'
-import { writeFile, copyFile } from 'node:fs/promises'
+import { copyFile, writeFile } from 'node:fs/promises'
+import process from 'node:process'
+import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'pathe'
 
 const unusedKeys = new Set([
@@ -19,7 +20,6 @@ const unusedKeys = new Set([
 
 function filterKeys(key: string, value: unknown) {
   if (unusedKeys.has(key)) {
-    // eslint-disable-next-line unicorn/no-useless-undefined
     return undefined
   }
 
@@ -40,11 +40,11 @@ async function main() {
     console.error(
       'component-meta.mjs file does not exists in playground, run "npx nuxt build .playground" to fix',
     )
-    // eslint-disable-next-line unicorn/no-process-exit
+
     process.exit(1)
   }
 
-  const components = await import(inputSource).then((m) => m.default || m)
+  const components = await import(inputSource).then(m => m.default || m)
 
   await Promise.all([
     copyFile(inputDts, outDts),
@@ -59,9 +59,8 @@ async function main() {
   ])
 }
 
-// eslint-disable-next-line unicorn/prefer-top-level-await
 main().catch((error) => {
   console.error(error)
-  // eslint-disable-next-line unicorn/no-process-exit
+
   process.exit(1)
 })

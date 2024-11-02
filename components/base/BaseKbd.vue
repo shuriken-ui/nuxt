@@ -57,10 +57,10 @@ const sizes = {
 }
 
 const colors = {
-  none: '',
-  default: 'nui-kbd-default',
+  'none': '',
+  'default': 'nui-kbd-default',
   'default-contrast': 'nui-kbd-default-contrast',
-  muted: 'nui-kbd-muted',
+  'muted': 'nui-kbd-muted',
   'muted-contrast': 'nui-kbd-muted-contrast',
 }
 </script>
