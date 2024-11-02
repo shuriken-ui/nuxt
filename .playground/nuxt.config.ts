@@ -1,46 +1,18 @@
-/* eslint-disable ts/ban-ts-comment */
-
 import { fileURLToPath } from 'node:url'
 import { addTemplate } from '@nuxt/kit'
 import { dirname, join } from 'pathe'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-02',
+  future: {
+    compatibilityVersion: 4,
+  },
   extends: '..',
   modules: ['nuxt-component-meta', 'unplugin-fonts/nuxt'],
   unfonts: {
     google: {
       families: ['Roboto Flex', 'Inter', 'Karla'],
     },
-  },
-  sourcemap: true,
-  tailwindcss: {
-    // config: {
-    //   content: [],
-    //   theme: {
-    //     fontFamily: {
-    //       heading: ['Inter', 'sans-serif'],
-    //       sans: ['Inter', 'sans-serif'],
-    //       alt: ['Karla', 'sans-serif'],
-    //       mono: [
-    //         'ui-monospace',
-    //         'SFMono-Regular',
-    //         'Menlo',
-    //         'Monaco',
-    //         'Consolas',
-    //         '"Liberation Mono"',
-    //         '"Courier New"',
-    //         'monospace',
-    //       ],
-    //     },
-    //     extend: {
-    //       colors: {
-    //         primary: colors?.violet,
-    //         muted: colors?.stone,
-    //       },
-    //     },
-    //   },
-    // },
   },
   componentMeta: {
     globalsOnly: false,
@@ -64,7 +36,6 @@ export default defineNuxtConfig({
     },
   },
   hooks: {
-    // @ts-ignore
     'tailwindcss:resolvedConfig': function (config) {
       addTemplate({
         filename: 'tailwind.config.ts', // gets prepended by .nuxt/
