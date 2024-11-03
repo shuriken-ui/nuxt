@@ -1,4 +1,7 @@
 comment:
-		# add "condensed_" to "header", "files" and "footer"
-    layout: "condensed_header, condensed_files, condensed_footer"
-    hide_project_coverage: TRUE # set to true
+  layout: " diff, flags, files"
+  behavior: default
+  require_changes: false
+  require_base: false
+  require_head: true
+  hide_project_coverage: false
