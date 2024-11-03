@@ -65,7 +65,7 @@ const props = withDefaults(
      * Defines the color of the avatar
      *
      * @since 3.0.0
-     * @default 'default'
+     * @default 'muted'
      */
     color?:
       | 'white'
