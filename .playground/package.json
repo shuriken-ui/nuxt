@@ -13,6 +13,9 @@
     "@iconify-json/mdi-light": "^1.2.1",
     "@iconify-json/ph": "^1.2.1",
     "@iconify-json/system-uicons": "^1.2.1",
-    "@iconify-json/tabler": "^1.2.7"
+    "@iconify-json/tabler": "^1.2.7",
+    "@nuxt/fonts": "^0.10.2",
+    "@shuriken-ui/nuxt": "workspace:*",
+    "nuxt": "^3.14.159"
   }
 }

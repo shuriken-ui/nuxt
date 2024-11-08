@@ -1,0 +1,70 @@
+@import 'tailwindcss';
+
+@import '@shuriken-ui/tailwind';
+
+@variant dark (&:where(.dark, .dark *));
+
+/*
+  The default border color has changed to \`currentColor\` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+/*
+  Form elements have a 1px border by default in Tailwind CSS v4, so we've
+  added these compatibility styles to make sure everything still looks the
+  same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add \`border-0\` to
+  any form elements that shouldn't have a border.
+*/
+@layer base {
+  input:where(:not([type='button'], [type='reset'], [type='submit'])),
+  select,
+  textarea {
+    border-width: 0;
+  }
+}
+
+@theme {
+  --font-family-sans: Inter, sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace,;
+  --font-family-alt: Karla, sans-serif;
+  --font-family-heading: var(--font-family-sans);
+
+  /** Colors */
+  /* --color-primary-50: var(--color-red-50);
+  --color-primary-100: var(--color-red-100);
+  --color-primary-200: var(--color-red-200);
+  --color-primary-300: var(--color-red-300);
+  --color-primary-400: var(--color-red-400);
+  --color-primary-500: var(--color-red-500);
+  --color-primary-600: var(--color-red-600);
+  --color-primary-700: var(--color-red-700);
+  --color-primary-800: var(--color-red-800);
+  --color-primary-900: var(--color-red-900);
+  --color-primary-950: var(--color-red-950); */
+
+  --color-muted-50: var(--color-stone-50);
+  --color-muted-100: var(--color-stone-100);
+  --color-muted-200: var(--color-stone-200);
+  --color-muted-300: var(--color-stone-300);
+  --color-muted-400: var(--color-stone-400);
+  --color-muted-500: var(--color-stone-500);
+  --color-muted-600: var(--color-stone-600);
+  --color-muted-700: var(--color-stone-700);
+  --color-muted-800: var(--color-stone-800);
+  --color-muted-900: var(--color-stone-900);
+  --color-muted-950: var(--color-stone-950);
+}

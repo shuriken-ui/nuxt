@@ -80,31 +80,31 @@ const rounded = useNuiDefaultProperty(props, 'BaseButtonAction', 'rounded')
 
 const radiuses = {
   none: '',
-  sm: 'nui-button-rounded-sm',
-  md: 'nui-button-rounded-md',
-  lg: 'nui-button-rounded-lg',
-  full: 'nui-button-rounded-full',
+  sm: 'nui-button-action-rounded-sm',
+  md: 'nui-button-action-rounded-md',
+  lg: 'nui-button-action-rounded-lg',
+  full: 'nui-button-action-rounded-full',
 }
 
 const colors = {
-  'default': 'nui-button-default',
-  'default-contrast': 'nui-button-default-contrast',
-  'muted': 'nui-button-muted',
-  'muted-contrast': 'nui-button-muted-contrast',
-  'light': 'nui-button-light',
-  'dark': 'nui-button-dark',
-  'black': 'nui-button-black',
-  'primary': 'nui-button-primary',
-  'info': 'nui-button-info',
-  'success': 'nui-button-success',
-  'warning': 'nui-button-warning',
-  'danger': 'nui-button-danger',
+  'default': 'nui-button-action-default',
+  'default-contrast': 'nui-button-action-default-contrast',
+  'muted': 'nui-button-action-muted',
+  'muted-contrast': 'nui-button-action-muted-contrast',
+  'light': 'nui-button-action-light',
+  'dark': 'nui-button-action-dark',
+  'black': 'nui-button-action-black',
+  'primary': 'nui-button-action-primary',
+  'info': 'nui-button-action-info',
+  'success': 'nui-button-action-success',
+  'warning': 'nui-button-action-warning',
+  'danger': 'nui-button-action-danger',
   'none': '',
 }
 
 const classes = computed(() => [
   'nui-button-action',
-  props.loading && 'nui-button-loading',
+  props.loading && 'nui-button-action-loading',
   color.value && colors[color.value],
   rounded.value && radiuses[rounded.value],
 ])

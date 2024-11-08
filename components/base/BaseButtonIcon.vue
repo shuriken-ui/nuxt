@@ -93,38 +93,38 @@ const size = useNuiDefaultProperty(props, 'BaseButtonIcon', 'size')
 
 const radiuses = {
   none: '',
-  sm: 'nui-button-rounded-sm',
-  md: 'nui-button-rounded-md',
-  lg: 'nui-button-rounded-lg',
-  full: 'nui-button-rounded-full',
+  sm: 'nui-button-icon-rounded-sm',
+  md: 'nui-button-icon-rounded-md',
+  lg: 'nui-button-icon-rounded-lg',
+  full: 'nui-button-icon-rounded-full',
 }
 
 const sizes = {
-  sm: 'nui-button-sm',
-  md: 'nui-button-md',
-  lg: 'nui-button-lg',
-  xl: 'nui-button-xl',
+  sm: 'nui-button-icon-sm',
+  md: 'nui-button-icon-md',
+  lg: 'nui-button-icon-lg',
+  xl: 'nui-button-icon-xl',
 }
 
 const colors = {
-  'default': 'nui-button-default',
-  'default-contrast': 'nui-button-default-contrast',
-  'muted': 'nui-button-muted',
-  'muted-contrast': 'nui-button-muted-contrast',
-  'light': 'nui-button-light',
-  'dark': 'nui-button-dark',
-  'black': 'nui-button-black',
-  'primary': 'nui-button-primary',
-  'info': 'nui-button-info',
-  'success': 'nui-button-success',
-  'warning': 'nui-button-warning',
-  'danger': 'nui-button-danger',
+  'default': 'nui-button-icon-default',
+  'default-contrast': 'nui-button-icon-default-contrast',
+  'muted': 'nui-button-icon-muted',
+  'muted-contrast': 'nui-button-icon-muted-contrast',
+  'light': 'nui-button-icon-light',
+  'dark': 'nui-button-icon-dark',
+  'black': 'nui-button-icon-black',
+  'primary': 'nui-button-icon-primary',
+  'info': 'nui-button-icon-info',
+  'success': 'nui-button-icon-success',
+  'warning': 'nui-button-icon-warning',
+  'danger': 'nui-button-icon-danger',
   'none': '',
 }
 
 const classes = computed(() => [
   'nui-button-icon',
-  props.loading && 'nui-button-loading',
+  props.loading && 'nui-button-icon-loading',
   rounded.value && radiuses[rounded.value],
   size.value && sizes[size.value],
   color.value && colors[color.value],

@@ -45,31 +45,31 @@ const rounded = useNuiDefaultProperty(props, 'BaseButtonClose', 'rounded')
 const size = useNuiDefaultProperty(props, 'BaseButtonClose', 'size')
 
 const sizes = {
-  xs: 'nui-button-xs',
-  sm: 'nui-button-sm',
-  md: 'nui-button-md',
-  lg: 'nui-button-lg',
-  xl: 'nui-button-xl',
+  xs: 'nui-button-close-xs',
+  sm: 'nui-button-close-sm',
+  md: 'nui-button-close-md',
+  lg: 'nui-button-close-lg',
+  xl: 'nui-button-close-xl',
 }
 
 const radiuses = {
   none: '',
-  sm: 'nui-button-rounded-sm',
-  md: 'nui-button-rounded-md',
-  lg: 'nui-button-rounded-lg',
-  full: 'nui-button-rounded-full',
+  sm: 'nui-button-close-rounded-sm',
+  md: 'nui-button-close-rounded-md',
+  lg: 'nui-button-close-rounded-lg',
+  full: 'nui-button-close-rounded-full',
 }
 
 const colors = {
-  'default': 'nui-button-default',
-  'default-contrast': 'nui-button-default-contrast',
-  'muted': 'nui-button-muted',
-  'muted-contrast': 'nui-button-muted-contrast',
-  'primary': 'nui-button-primary',
-  'info': 'nui-button-info',
-  'success': 'nui-button-success',
-  'warning': 'nui-button-warning',
-  'danger': 'nui-button-danger',
+  'default': 'nui-button-close-default',
+  'default-contrast': 'nui-button-close-default-contrast',
+  'muted': 'nui-button-close-muted',
+  'muted-contrast': 'nui-button-close-muted-contrast',
+  'primary': 'nui-button-close-primary',
+  'info': 'nui-button-close-info',
+  'success': 'nui-button-close-success',
+  'warning': 'nui-button-close-warning',
+  'danger': 'nui-button-close-danger',
   'none': '',
 }
 
@@ -84,7 +84,7 @@ const classes = computed(() => [
 <template>
   <button type="button" :class="classes">
     <slot>
-      <IconClose class="nui-button-icon" />
+      <IconClose class="nui-button-close-icon" />
     </slot>
   </button>
 </template>

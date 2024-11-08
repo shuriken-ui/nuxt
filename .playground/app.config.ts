@@ -1,5 +1,7 @@
 export default defineAppConfig({
-  nuxtIcon: {},
+  icon: {
+    mode: 'svg',
+  },
   nui: {
     BaseButton: {
       variant: 'solid',

@@ -1,4 +1,5 @@
 import { createResolver } from '@nuxt/kit'
+import tailwindcss from '@tailwindcss/vite'
 
 const { resolve } = createResolver(import.meta.url)
 
@@ -6,9 +7,13 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     '@nuxtjs/color-mode',
-    '@nuxtjs/tailwindcss',
+    // '@nuxtjs/tailwindcss',
     '@nuxt/icon',
   ],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 
   colorMode: {
     classSuffix: '',
