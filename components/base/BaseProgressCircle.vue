@@ -81,7 +81,8 @@ const percent = computed(() => {
   if (max === 0) {
     return 0
   }
-  return (value / max) * 100
+  // Round to 2 decimal places
+  return Math.round((value / max) * 10000) / 100
 })
 
 const dasharray = computed(() => {
@@ -149,13 +150,16 @@ const colors = {
 
 <style scoped>
 .block {
+  --progress-circle-duration: v-bind(duration);
+  --progress-circle-dasharray: v-bind(dasharray);
+
   transform-origin: center;
   transform: rotate(-90deg);
 }
 
 .circle-value {
   animation-name: circle-chart-fill;
-  animation-duration: v-bind(duration);
+  animation-duration: var(--progress-circle-duration);
   /* transform: rotate(-90deg); */
   transform-origin: center;
   stroke-dashoffset: 0;
@@ -168,7 +172,7 @@ const colors = {
   }
 
   100% {
-    stroke-dasharray: v-bind(dasharray);
+    stroke-dasharray: var(--progress-circle-dasharray);
   }
 }
 </style>
