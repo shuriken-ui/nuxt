@@ -129,8 +129,10 @@ describe('component: BaseSelect', () => {
         },
       })
 
-      const select = component.get('.nui-select')
-      expect(select.attributes('placeholder')).toBe('Select an option')
+      const option = component.get('option')
+      expect(option.text()).toBe('Select an option')
+      expect(option.attributes('disabled')).toBeDefined()
+      expect(option.attributes('hidden')).toBeDefined()
     })
   })
 })
