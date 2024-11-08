@@ -40,6 +40,7 @@ describe('component: BaseSelect', () => {
       await component.get('.nui-select').setValue('42')
       expect(component.props('modelValue')).toBe('42')
     })
+
     it('should handle v-model, direct', async () => {
       const component = mount(BaseSelect, {
         props: {
@@ -64,8 +65,72 @@ describe('component: BaseSelect', () => {
       resetNuiAppConfig('BaseSelect')
     })
 
-    it('should', async () => {
-      expect(true).toBeTruthy()
+    it('should render with custom app.config', async () => {
+      useAppConfig().nui.BaseSelect!.size = 'sm'
+      useAppConfig().nui.BaseSelect!.rounded = 'lg'
+
+      const component = mount(BaseSelect)
+
+      const wrapper = component.get('.nui-select-wrapper')
+      expect(wrapper.classes('nui-select-sm')).toBeTruthy()
+      expect(wrapper.classes('nui-select-rounded-lg')).toBeTruthy()
+    })
+
+    it('should render with default app.config', async () => {
+      const component = mount(BaseSelect)
+
+      const wrapper = component.get('.nui-select-wrapper')
+      expect(wrapper.classes('nui-select-md')).toBeTruthy()
+      expect(wrapper.classes('nui-select-rounded-sm')).toBeTruthy()
+    })
+
+    it('should render with props', async () => {
+      const component = mount(BaseSelect, {
+        props: {
+          size: 'lg',
+          rounded: 'md',
+        },
+      })
+
+      const wrapper = component.get('.nui-select-wrapper')
+      expect(wrapper.classes('nui-select-lg')).toBeTruthy()
+      expect(wrapper.classes('nui-select-rounded-md')).toBeTruthy()
+    })
+
+    it('should render error', async () => {
+      const component = mount(BaseSelect, {
+        props: {
+          error: 'test',
+        },
+      })
+
+      const wrapper = component.get('.nui-select-wrapper')
+      const help = component.get('.nui-select-help-text')
+      expect(wrapper.classes('nui-select-error')).toBeTruthy()
+      expect(help.classes('text-danger-500')).toBeTruthy()
+      expect(help.text()).toBe('test')
+    })
+
+    it('should render disabled state', async () => {
+      const component = mount(BaseSelect, {
+        props: {
+          disabled: true,
+        },
+      })
+
+      const select = component.get('.nui-select')
+      expect(select.attributes('disabled')).toBeDefined()
+    })
+
+    it('should render with placeholder', async () => {
+      const component = mount(BaseSelect, {
+        props: {
+          placeholder: 'Select an option',
+        },
+      })
+
+      const select = component.get('.nui-select')
+      expect(select.attributes('placeholder')).toBe('Select an option')
     })
   })
 })
