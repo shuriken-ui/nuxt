@@ -105,7 +105,7 @@ describe('component: BaseSelect', () => {
       })
 
       const wrapper = component.get('.nui-select-wrapper')
-      const help = component.get('.nui-select-help-text')
+      const help = component.get('.nui-input-help-text')
       expect(wrapper.classes('nui-select-error')).toBeTruthy()
       expect(help.classes('text-danger-500')).toBeTruthy()
       expect(help.text()).toBe('test')
