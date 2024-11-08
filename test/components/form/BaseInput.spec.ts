@@ -124,5 +124,27 @@ describe('component: BaseInput', () => {
       expect(help.classes('text-danger-500')).toBeTruthy()
       expect(help.text()).toBe('test')
     })
+
+    it('should render disabled state', async () => {
+      const component = mount(BaseInput, {
+        props: {
+          disabled: true,
+        },
+      })
+
+      const input = component.get('.nui-input')
+      expect(input.attributes('disabled')).toBeDefined()
+    })
+
+    it('should render with placeholder', async () => {
+      const component = mount(BaseInput, {
+        props: {
+          placeholder: 'Enter text',
+        },
+      })
+
+      const input = component.get('.nui-input')
+      expect(input.attributes('placeholder')).toBe('Enter text')
+    })
   })
 })
